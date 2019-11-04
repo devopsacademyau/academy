@@ -1,0 +1,166 @@
+/* Medium Layout: 1280px. */
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+
+    .mainmenu-area #mainmenu ul.nav.navbar-nav {
+        text-align: center;
+    }
+    .mainmenu-area #mainmenu ul.nav.navbar-nav li a {
+        padding: 15px 10px;
+    }
+}
+
+
+/* Tablet Layout: 768px. */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .prices [class|='col'] {
+        padding: 0 15px !important;
+        margin: auto !important;
+    }
+    .price-box {
+        padding: 60px 30px;
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
+    .price-box:hover {
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
+    .blog-box {
+        margin-bottom: 30px;
+    }
+    .mainmenu-area #mainmenu .help-menu {
+        position: absolute;
+        right: 0;
+        top: 0;
+
+    }
+    .contact-form {
+        margin-bottom: 60px;
+    }
+    .process {
+        background: none;
+    }
+}
+
+
+/* Mobile Layout: 320px. */
+
+@media only screen and (max-width: 767px) {
+    body {
+        font-size: 12px;
+    }
+    .page-title {
+        margin-bottom: 30px;
+    }
+    .page-title h2.title {
+        font-size: 30px;
+    }
+    .mainmenu-area #mainmenu {
+        overflow: auto;
+    }
+    .mainmenu-area #mainmenu ul.nav.navbar-nav li {
+        display: block;
+    }
+    .mainmenu-area #mainmenu ul.nav.navbar-nav.help-menu li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+    .mainmenu-area #mainmenu ul.nav.navbar-nav li a {
+        padding: 15px 10px;
+    }
+    .filter-controls li {
+        display: block;
+        padding: 5px;
+        margin-bottom: 0;
+    }
+    .mainmenu-area #mainmenu {
+        padding: 0 30px;
+        background: #87b5ff;
+        background: -webkit-gradient(linear, left top, right top, from(#87b5ff), to(#99d4ef));
+        background: linear-gradient(to right, #87b5ff 0%, #99d4ef 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87b5ff', endColorstr='#99d4ef', GradientType=1);
+        text-align: center;
+    }
+    .mainmenu-area .navbar-toggle {
+        border: 1px solid #ffffff;
+        border-radius: 3px;
+    }
+
+    .mainmenu-area .navbar-toggle .icon-bar {
+        background-color: #ffffff;
+    }
+
+    .bttn.bttn-lg {
+        padding: 15px 30px;
+        font-size: 20px;
+    }
+    .header-area .header-text .header-title {
+        font-size: 36px;
+    }
+    .video-box {
+        margin-bottom: 30px;
+    }
+    .tabs-list li a {
+        padding: 10px 5px;
+        font-size: 14px;
+    }
+    .blog-box {
+        margin-bottom: 30px;
+    }
+    .prices [class|='col'] {
+        padding: 0 15px !important;
+        margin: auto !important;
+    }
+    .price-box {
+        padding: 60px 30px;
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
+    .price-box:hover {
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
+    .count-box {
+        margin-bottom: 30px;
+    }
+    .footer-single {
+        margin-top: 30px;
+    }
+    .contact-form {
+        margin-bottom: 60px;
+    }
+    .process {
+        background: none;
+    }
+
+    .social-menu-2 a {
+        margin: 0 5px;
+    }
+    .tabs-list-2 li a {
+        padding: 7px 15px;
+        font-size: 12px;
+    }
+    .single-process {
+        margin-top: 30px;
+    }
+    .testimonials .single-testimonial {
+        padding: 80px 30px 50px 30px;
+    }
+    .testimonials .single-testimonial .testimonial-text {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .mix,
+    .col-xs-6 {
+        width: 100%;
+    }
+}
+
+
+/* Wide Mobile Layout: 480px. */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
