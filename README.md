@@ -1,24 +1,127 @@
 # DevOps Academy
 
-<img src="website/logo.png" width="300">
+<p align="center">
+    <img src="website/logo.png" width="300">
+</p>
+
+This non-profit repository intention is to help the community to learn the DevOps methodology and culture throughout a series of classes and hands-on laboratories based on Amazon Web Services (AWS) and become ready to start working as Automation/Cloud/DevOps Engineer.
+
+Feel free to contribute with content (PR), help peer reviewing code or just going through the exercises!
+
+If you want to make part of the team behind this, get in touch on help@devopsacademy.com.au.
+
+
+# in-person classes
+
+The academy content will also be shared through some free in-person classes in Melbourne/Australia for a limited number of participants.
+
+If you live in Melbourne and are interested in participate, [please read this documentation](in-person.md).
+
 
 # Table of Content
 
-- [DevOps Academy](#devops-academy)
-- [Table of Content](#table-of-content)
-- [Introduction](#introduction)
+- [How it Works](#how-it-works)
+- [Content](#content)
+    - [Classes](#classes)
+    - [Labs](#labs)
+    - [Projects](#projects)
 - [Authors](#authors)
-  - [Caio Trevisan](#caio-trevisan)
-  - [Denis Storti](#denis-storti)
-  - [Francisco Collet](#francisco-collet)
+    - [Caio Trevisan](#caio-trevisan)
+    - [Denis Storti](#denis-storti)
+    - [Francisco Collet](#francisco-collet)
 - [Sponsors](#sponsors)
-  - [ITBR Australia](#itbr-australia)
+    - [ITBR Australia](#itbr-australia)
 
-# Introduction
 
-WIP
+# How it Works
 
-[Class plan and structure](classes/class_plan.md)
+The DevOps Academy consists in 8 hands-on exercises (6 laboratories + 2 projects) + at least 3 peer review contributions to other members code. 
+
+To participate, you will need to:
+
+- fork this repository to your own github account
+- clone the forked repository to your computer
+
+```bash
+git clone <repo-url>
+```
+
+- create a folder with your own name under each exercise
+
+```bash
+cd <repo-name>
+mkdir labs/lab01/<my-name>
+```
+
+- add your code, create a commit with the change and push it
+
+```bash
+cd labs/lab01/<my-name>
+touch newfile
+
+# commit and push
+git add newfile
+git commit -m "adding a new file"
+git push
+```
+
+- create a `pull request` from your forked repository back to this one
+- wait until you get at least two review approvals, one being from the maintainers
+- you complete the exercise once your code is merged to this repository
+
+Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
+
+
+# Content
+
+- Version Control (GIT)
+    - What is it?
+    - Benefits
+    - Basic commands
+    - How to clone/fork/pr this repository
+- Agile methodology
+    - Frameworks
+    - Scrum
+    - Kanban
+- Infrastructure as Code
+    - Concepts
+    - Terraform introduction
+- Containers
+    - Concepts
+    - Docker images
+    - Docker Compose
+    - 3Musketeers
+- CI/CD
+    - What is CI
+    - What is CD
+    - Pipelines
+- Amazon Web Services (AWS)
+    - Cloud concepts
+    - Identity and Access Management (IAM) / CloudTrail / CloudWatch
+    - VPC / Subnet / route table / network acl / security group
+    - EC2 / auto-scaling group / load-balancer
+    - Simple Storage Service (S3)
+    - RDS / DynamoDB
+    - Cloudfront / WAF
+    - Route53 / Certificate Manager (ACM)
+    - Elastic Container Service (ECS) / Elastic Container Registry (ECR)
+    - Lambda
+
+The content can be accessed through each specific README link below.
+
+## Classes
+
+- [Class 01 - GIT and AWS introduction](classes/class01/README.md)
+
+## Labs
+
+- [Lab 01 - EC2 + EBS](labs/lab01/README.md)
+
+## Projects
+
+- [Project 01 - Application migration from on-prem to the cloud](projects/project01/README.md)
+- [Project 02 - Cloud native application architecture on AWS](projects/project02/README.md)
+
 
 # Authors
 
