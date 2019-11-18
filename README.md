@@ -17,6 +17,7 @@ The academy content will also be shared through some free in-person classes in M
 
 If you live in Melbourne and are interested in participate, [please read this documentation](in-person.md).
 
+Expression of interest registration is open from the 21/11 to 30/11.
 
 # Table of Content
 
