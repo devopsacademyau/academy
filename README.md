@@ -32,6 +32,7 @@ Expression of interest registration is open from the 21/11 to 30/11.
     - [Francisco Collet](#francisco-collet)
 - [Sponsors](#sponsors)
     - [ITBR Australia](#itbr-australia)
+    - [Contino](https://contino.io)
 
 
 # How it Works
