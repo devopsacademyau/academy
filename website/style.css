@@ -1352,7 +1352,7 @@ a.scrolldown {
 .contact-area {
     position: relative;
     z-index: 1;
-    padding: 100px 0;
+    padding: 40px 0;
     margin-bottom: -250px;
 }
 
@@ -1365,7 +1365,7 @@ a.scrolldown {
     margin: auto;
     width: 1370px;
     max-width: 98%;
-    height: 90%;
+    height: 80%;
     background-color: #ffffff;
     -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
