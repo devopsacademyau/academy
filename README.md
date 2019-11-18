@@ -71,6 +71,13 @@ git push
 
 Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
 
+# Requirements
+
+- [Github Account](https://github.com/join)
+- [AWS Account](https://aws.amazon.com/free/start-your-free-trial/)
+- [AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+- [Terraform cli](https://learn.hashicorp.com/terraform/getting-started/install.html) 
+- [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
 
 # Content
 
