@@ -142,7 +142,7 @@ input:-webkit-autofill:focus {
 }
 
 .page-title {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .page-title .title {
@@ -152,7 +152,7 @@ input:-webkit-autofill:focus {
 
 .bar-title {
     position: relative;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
 }
 
 .bar-title:after {
@@ -1095,6 +1095,10 @@ a.scrolldown {
     margin-top: 150px;
 }
 
+.copyright {
+    margin-top: 50px;
+}
+
 /*-- 18. Preloader --*/
 
 .preloader {
@@ -1225,7 +1229,7 @@ a.scrolldown {
 
 .service-box .box-image {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     padding-bottom: 15px;
 }
 
@@ -1365,7 +1369,7 @@ a.scrolldown {
     margin: auto;
     width: 1370px;
     max-width: 98%;
-    height: 80%;
+    height: 90%;
     background-color: #ffffff;
     -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
