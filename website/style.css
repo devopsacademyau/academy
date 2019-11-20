@@ -134,7 +134,7 @@ input:-webkit-autofill:focus {
 }
 
 .section-padding {
-    padding: 100px 0;
+    padding: 80px 0;
 }
 
 .gray-bg {
@@ -142,7 +142,7 @@ input:-webkit-autofill:focus {
 }
 
 .page-title {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .page-title .title {
@@ -152,7 +152,7 @@ input:-webkit-autofill:focus {
 
 .bar-title {
     position: relative;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
 }
 
 .bar-title:after {
@@ -1095,6 +1095,10 @@ a.scrolldown {
     margin-top: 150px;
 }
 
+.copyright {
+    margin-top: 50px;
+}
+
 /*-- 18. Preloader --*/
 
 .preloader {
@@ -1225,7 +1229,7 @@ a.scrolldown {
 
 .service-box .box-image {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     padding-bottom: 15px;
 }
 
@@ -1352,7 +1356,7 @@ a.scrolldown {
 .contact-area {
     position: relative;
     z-index: 1;
-    padding: 100px 0;
+    padding: 40px 0;
     margin-bottom: -250px;
 }
 
