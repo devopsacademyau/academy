@@ -17,6 +17,7 @@ The academy content will also be shared through some free in-person classes in M
 
 If you live in Melbourne and are interested in participate, [please read this documentation](in-person.md).
 
+Expression of interest registration is open from the 21/11 to 30/11.
 
 # Table of Content
 
@@ -31,6 +32,7 @@ If you live in Melbourne and are interested in participate, [please read this do
     - [Francisco Collet](#francisco-collet)
 - [Sponsors](#sponsors)
     - [ITBR Australia](#itbr-australia)
+    - [Contino](https://contino.io)
 
 
 # How it Works
@@ -71,6 +73,13 @@ git push
 
 Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
 
+# Requirements
+
+- [Github Account](https://github.com/join)
+- [AWS Account](https://aws.amazon.com/free/start-your-free-trial/)
+- [AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+- [Terraform cli](https://learn.hashicorp.com/terraform/getting-started/install.html) 
+- [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
 
 # Content
 
