@@ -198,16 +198,18 @@
     - https://aws.amazon.com/codecommit/faqs/
     - https://aws.amazon.com/codebuild/faqs/
     - https://aws.amazon.com/codedeploy/faqs/
-    https://aws.amazon.com/codepipeline/faqs/
+    - https://aws.amazon.com/codepipeline/faqs/
 
 
-### Labs and Exercises
+## Labs and Exercises
 
-#### Account billing alarm
+### Account billing alarm
 - Set a billing alarm on your account, so you are notified when you reach $10, $20, $50 dollars
-#### EC2
+
+### EC2
 - Create a new EC2 Instance inside the default VPC with an public IP address and connect to it though SSH
 - Create a new EC2 instance in the same VPC but with private address only and connect to it
-#### S3
+
+### S3
 - Create a S3 bucket and upload a file to it
 - Access the file on the S3 bucket from the EC2 instance
