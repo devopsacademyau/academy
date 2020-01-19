@@ -43,7 +43,7 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 - Single Github repo.
 
 ## Grading
-- Implementation (planning, agile practices, Pull requests review, Trello board) - 25%
+- Planning & team work (planning, agile practices, Pull requests review, Trello board) - 25%
 - Presentation - 10%
 - Documentation (READMEs, solution diagram, etc) - 15%
 - Technical solution working - 50%

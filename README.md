@@ -150,5 +150,8 @@ The content can be accessed through each specific README link below.
 
 # Sponsors
 
-## ITBR Australia
-[www.itbr.com.au](https://www.itbr.com.au)
+> ### ITBR Australia Community
+> [www.itbr.com.au](https://www.itbr.com.au)
+
+> ### Contino (In class course, Feb 2020)
+> [https://www.contino.io](https://www.contino.io/)

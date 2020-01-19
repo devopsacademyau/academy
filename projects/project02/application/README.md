@@ -4,14 +4,6 @@ Simple to do list app with UI in ReactJS and API in Python Flask.
 
 The user can create, delete, update (mark as item `done`) or delete to do list items.
 
-Data flow:
-![](docs/pythonflask.png)
-
-User interface:
-![](docs/todo_ss.png)
-
-
-
 ## Run me
 
 Requirements:
@@ -47,7 +39,7 @@ curl -X POST http://127.0.0.1:5000/ -d text="flask api is teh awesomez"
 #### References:
 - [Todo list tutorial](https://medium.com/@pamit/todo-list-building-a-react-app-with-rails-api-7a3027907665)
 
-### Improvements
+### Some Pending Improvements (tip!)
 
 - Create CI/CD 
 - Create unit tests and integration tests
