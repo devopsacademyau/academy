@@ -131,6 +131,15 @@ The content can be accessed through each specific README link below.
 - [Project 01 - Application migration from on-prem to the cloud](projects/project01/README.md)
 - [Project 02 - Cloud native application architecture on AWS](projects/project02/README.md)
 
+# Contributors and Instructors
+
+### Presentation format
+* We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/)
+* For GitPitch, use PITCHME.md files and subfolders using query string "p=FOLDERNAME" with the class name
+* GitPitch can run either online (out-of-the-box for Github public repos):
+    * Online: access `https://gitpitch.com/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`. Folder must contain a PITCHME.md file.
+    * Offline: use a [Docker container](https://github.com/kns-it/Docker-GitPitch/), run `make presentation` and `open http://localhost:9000/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`
+    For running in a specific folder: `FOLDER_NAME=class2 make presentation`
 
 # Authors
 
