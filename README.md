@@ -1,7 +1,7 @@
 # DevOps Academy
 
 <p align="center">
-    <img src="website/logo.png" width="300">
+    <img src="docs/logo.png" width="300">
 </p>
 
 This non-profit repository intention is to help the community to learn the DevOps methodology and culture throughout a series of classes and hands-on laboratories based on Amazon Web Services (AWS) and become ready to start working as Automation/Cloud/DevOps Engineer.
