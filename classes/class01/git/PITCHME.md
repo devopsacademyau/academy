@@ -179,22 +179,6 @@ Let's do it together
 @snapend
 
 @snap[west text-06]
-- Identify where each command is writing to: 
-    - git rebase
-    - git commit
-    - git push
-    - git checkout
-    - git reset
-    - git fetch
-@snapend
-
----
-
-@snap[north-west span-25 text-07]
-**Exercises**
-@snapend
-
-@snap[west text-06]
 1. Create a "repository" (project) with a git hosting tool (like Bitbucket)
 1. Copy (or clone) the repository to your local machine
 1. Add a file to your local repo and "commit" (save) the changes
