@@ -134,7 +134,7 @@ The content can be accessed through each specific README link below.
 # Contributors and Instructors
 
 ### Presentation format
-* We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/)
+* We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
 * For GitPitch, use PITCHME.md files and subfolders using query string "p=FOLDERNAME" with the class name
 * GitPitch can run either online (out-of-the-box for Github public repos):
     * Online: access `https://gitpitch.com/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`. Folder must contain a PITCHME.md file.

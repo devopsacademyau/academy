@@ -24,7 +24,7 @@
 @snap[west]
 @ul[list-spaced-bullets text-07 span-50]
 - Created by Linus Torvalds in 2005 for development of the Linux kernel
-- It is a distributed VCS
+- Git is a distributed VCS
 - Centralized vs Distributed VCS?
 - Optimistic vs Pessimistic locking?
 
@@ -53,6 +53,10 @@
     - Changes modify history (append or rewrite)
     - Release is a history of changes
 
+Note:
+- Centralised: RTC, ClearCase, Subversion
+- Distributed: Git, Mercurial
+
 ---
 
 @snap[north-west text-07 span-25 text-left]
@@ -66,6 +70,12 @@
 @snap[west text-05 span-50]
 @quote[Prevents conflicts between concurrent business transactions by detecting a conflict and rolling back the transaction.](David Rice)
 @quote[...Whereas Pessimistic Offline Lock assumes that the chance of session conflict is high and therefore limits the system's concurrency.](David Rice)
+@snapend
+
+---
+
+@snap[west text-left text-07]
+# So, how git achieves optimistic locking so developers can work in parallel in the same file?
 @snapend
 
 ---
@@ -112,7 +122,7 @@
 ---
 
 @snap[north-west text-left text-07]
-### Git Main Commands 
+### Git Main Commands (more)
 @snapend
 
 @snap[west span-45 text-05]
@@ -142,8 +152,22 @@ Let's do it together
 
 @snap[east text-05]
 
-- Access https://gitexercises.fracz.com/
-- Fill your name and email and complete the "How to start?" section
+## Access https://gitexercises.fracz.com/
+
+
+## Fill your name and email and complete the "How to start?" section
+
+@snapend
+
+---
+
+@snap[north-west text-07]
+Let's do it together
+@snapend
+
+@snap[east text-05]
+
+- Access https://learngitbranching.js.org/
 
 @snapend
 
