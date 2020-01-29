@@ -94,9 +94,12 @@
     - Currently at 22
 - Edge Location
     - AWS Endpoint used for caching content(CDN)
-    - Currently at 200
+    - Currently at 205
 
-*Add diagram showing those components*
+<p align="center">
+    <img src="../img/aws_regions.jpg">
+</p>
+*Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).*
 
 *Add a diagram with a HA solution*
 
