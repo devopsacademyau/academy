@@ -109,6 +109,10 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
     <img src="../img/aws_services.jpg" width="900">
 </p>
 
+<p align="center">
+    <img src="../img/aws_innovation.jpg" width="900">
+</p>
+
 *Include a chart with number of new services per year*
 
 ### Main AWS Services
