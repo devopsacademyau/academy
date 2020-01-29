@@ -99,6 +99,7 @@
 <p align="center">
     <img src="../img/aws_regions.jpg">
 </p>
+
 Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
 
 *Add a diagram with a HA solution*
