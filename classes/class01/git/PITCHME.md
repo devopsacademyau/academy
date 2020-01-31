@@ -75,7 +75,7 @@ Note:
 ---
 
 @snap[west text-left text-07]
-# So, how git achieves optimistic locking so developers can work in parallel in the same file?
+So, how git achieves optimistic locking so developers can work in parallel in the same file?
 @snapend
 
 ---
@@ -147,28 +147,35 @@ Note:
 ---
 
 @snap[north-west text-07]
-Let's do it together
+### Let's do it together
 @snapend
 
-@snap[east text-05]
-
-## Access https://gitexercises.fracz.com/
-
-
-## Fill your name and email and complete the "How to start?" section
+### Let's add a folder to hold exercises for classes
+@snap[west text-07]
+1. Check README.md in the root for instructions.
+1. Add, commit and push it to your remote dev branch :tada:
+1. Create a Pull Request (PR)
 
 @snapend
 
 ---
 
 @snap[north-west text-07]
-Let's do it together
+## Checking in code can get complex (quickly!)
 @snapend
 
-@snap[east text-05]
+@snap[center span-40 text-05]
+![IMAGE](classes/class01/git/assets/merge_hell.png)
+@snapend
 
-- Access https://learngitbranching.js.org/
+---
 
+@snap[north-west text-left text-07]
+### Merge vs Rebase
+@snapend
+
+@snap[west span-40 text-05]
+![IMAGE](classes/class01/git/assets/merge_vs_rebase.jpg)
 @snapend
 
 ---
@@ -189,6 +196,19 @@ Let's do it together
 ![IMAGE](classes/class01/git/assets/rebase.png)
 @snapend
 
+---
+
+@snap[north-west text-07]
+### Let's do it together
+@snapend
+
+@snap[west text-06]
+
+1. Access https://learngitbranching.js.org/
+1. merge - `level intro3`
+1. rebase - `level intro4`
+
+@snapend
 
 ---
 
@@ -202,62 +222,59 @@ Let's do it together
 **Exercises**
 @snapend
 
-@snap[west text-06]
-1. Create a "repository" (project) with a git hosting tool (like Bitbucket)
-1. Copy (or clone) the repository to your local machine
-1. Add a file to your local repo and "commit" (save) the changes
-1. "Push" your changes to your master branch
-1. Make a change to your file with a git hosting tool and commit
-1. "Pull" the changes to your local machine
-1. Create a "branch" (version), make a change, commit the change
-1. Open a "pull request" (propose changes to the master branch)
-1. "Merge" your branch to the master branch
-@snapend
-
----
-
-@snap[north-west span-25 text-07]
-**Exercises**
-@snapend
-
-1. Is it possible to see the inner commit of squashed commit with `git rebase`?
-1. How to compare two different repositories using `git diff`?
-1. Install [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh) and git plugin.
+Submit with the file name indicated:
+1. file ex_git01.txt - Is it possible to see the inner commit of squashed commit with `git rebase`?
+1. file ex_git02.txt - How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
+1. Install [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh) and git plugin
 
 ---
 
 @snap[north-west text-07]
-**Exercises** - Big file and secrets
+**Exercise ex_git03** - Big file and secrets
 @snapend
 
+Folder ex_git03:
 @snap[west text-06]
 1. Initialize a new git repository locally
 1. Add a simple text file and commit 
     - `echo "mypassword" > pwd.txt; git add pwd.txt; git commit -m "Add secret key file. I should not do it."`
 1. Check the commit with `git log`
-1. Check the size of the repository directory (take note of this)
+1. Check the size of the repository directory
     - On the parent, `du -sh .`
-1. Add a fairly big file `file.txt`
-    - `dd if=/dev/random of=file.txt count=1024 bs=102576`
+1. Add a fairly big file `file.txt` (around 100MB)
+    - `dd if=/dev/random of=file.txt count=1024 bs=10257`
 1. Add and commit it locally
     - `git add file.txt; git commit -m "Add big file"`
 1. Check the size of the repository directory again (take note of this)
+    - On the parent, `du -sh .`
 1. Revert the commit that added the big file
+    - use `git revert`, `git reset` or `git rebase`
 1. Check the size of the repository directory again (take note of this)
+    - On the parent, `du -h`
 @snapend
 
 ---
 
 @snap[north-west text-07]
-**Exercises** - Big file and secrets
+**Exercise ex_git03** - Big file and secrets
 @snapend
 
 @snap[west text-06]
-- Did you notice any difference in the size of the repo?
+- Did you notice any difference in the size of the repo before and after adding the big file
 - What is causing this problem?
 - Let's suppose you remotely pushed your `pwd.txt` file. If you delete it and push it, is it still accessible for other people or it is safe?
 - How do you solve it, i.e. how do you remove something from history? What are the consequences?
 
+@snapend
+
+---
+
+@snap[north-west text-07]
+**Oh s*** I don't know what I did!**
+@snapend
+
+@snap[west text-07]
+https://ohshitgit.com/
 @snapend
 
 ---

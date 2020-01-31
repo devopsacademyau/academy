@@ -48,7 +48,7 @@ To participate, you will need to:
 git clone <repo-url>
 ```
 
-- create a folder with your own name under each exercise
+- create a folder with your `github username` (e.g. `denstorti`, `kikobr82`, ...)
 
 ```bash
 cd <repo-name>
