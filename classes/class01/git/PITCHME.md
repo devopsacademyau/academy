@@ -161,13 +161,26 @@ Let's add a folder to hold exercises for classes
 ![IMAGE](classes/class01/git/assets/merge_hell.png)
 @snapend
 
----
-
-@snap[north-west text-left text-07]
-### Merge vs Rebase
+@snap[south text-05]
+How can we have a standard approach to work as one team?
 @snapend
 
-@snap[west span-40 text-05]
+---
+@snap[north-west text-07]
+### A solution: Trunk based development 
+@snapend
+
+@snap[middlepoint text-07]
+Short lived branches simplify a lot of things!
+https://trunkbaseddevelopment.com/
+@snapend
+
+@snap[south-west text-04]
+See also GitFlow (https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+@snapend
+---
+
+@snap[midpoint span-60 text-05]
 ![IMAGE](classes/class01/git/assets/merge_vs_rebase.jpg)
 @snapend
 
@@ -215,34 +228,33 @@ Let's add a folder to hold exercises for classes
 **Exercises**
 @snapend
 
-Submit with the file name indicated:
+@snap[west text-06]
 1. file ex_git01.txt - Is it possible to see the inner commit of squashed commit with `git rebase`?
-1. file ex_git02.txt - How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
-1. Install [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh) and git plugin
-
+2. file ex_git02.txt - How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
+3. Install [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh) and git plugin
+@snapend
 ---
 
 @snap[north-west text-07]
 **Exercise ex_git03** - Big file and secrets
 @snapend
 
-Folder ex_git03:
 @snap[west text-06]
 1. Initialize a new git repository locally
-1. Add a simple text file and commit 
+2. Add a simple text file and commit 
     - `echo "mypassword" > pwd.txt; git add pwd.txt; git commit -m "Add secret key file. I should not do it."`
-1. Check the commit with `git log`
-1. Check the size of the repository directory
+3. Check the commit with `git log`
+4. Check the size of the repository directory
     - On the parent, `du -sh .`
-1. Add a fairly big file `file.txt` (around 100MB)
+5. Add a fairly big file `file.txt` (around 100MB)
     - `dd if=/dev/random of=file.txt count=1024 bs=10257`
-1. Add and commit it locally
+6. Add and commit it locally
     - `git add file.txt; git commit -m "Add big file"`
-1. Check the size of the repository directory again (take note of this)
+7. Check the size of the repository directory again (take note of this)
     - On the parent, `du -sh .`
-1. Revert the commit that added the big file
+8. Revert the commit that added the big file
     - use `git revert`, `git reset` or `git rebase`
-1. Check the size of the repository directory again (take note of this)
+9. Check the size of the repository directory again (take note of this)
     - On the parent, `du -h`
 @snapend
 
@@ -255,8 +267,8 @@ Folder ex_git03:
 @snap[west text-06]
 - Did you notice any difference in the size of the repo before and after adding the big file
 - What is causing this problem?
-- Let's suppose you remotely pushed your `pwd.txt` file. If you delete it and push it, is it still accessible for other people or it is safe?
-- How do you solve it, i.e. how do you remove something from history? What are the consequences?
+- Let's suppose you remotely pushed your `pwd.txt` file. If you delete it and push it, is it enough? (It's not). Why?
+- How do you solve it, i.e. how do you remove something from Git history? What are the consequences?
 
 @snapend
 
