@@ -31,15 +31,7 @@
 
 ## Git 101
 
-*WIP*
-
-### What is it?
-
-### Benefits
-
-### Main commands
-
-### Exercises
+https://gitpitch.com/devopsacademyau/academy?p=/classes/class01/git#/
 
 ## AWS 101
 
