@@ -270,7 +270,7 @@ Folder ex_git03:
 ---
 
 @snap[north-west text-07]
-**Oh s*** I don't know what I did!**
+**Oh s\*\*\* I don't know what I did!**
 @snapend
 
 @snap[west text-07]
