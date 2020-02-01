@@ -53,10 +53,6 @@
     - Changes modify history (append or rewrite)
     - Release is a history of changes
 
-Note:
-- Centralised: RTC, ClearCase, Subversion
-- Distributed: Git, Mercurial
-
 ---
 
 @snap[north-west text-07 span-25 text-left]
@@ -148,23 +144,20 @@ So, how git achieves optimistic locking so developers can work in parallel in th
 
 @snap[north-west text-07]
 ### Let's do it together
+Let's add a folder to hold exercises for classes
 @snapend
 
-### Let's add a folder to hold exercises for classes
 @snap[west text-07]
 1. Check README.md in the root for instructions.
-1. Add, commit and push it to your remote dev branch :tada:
-1. Create a Pull Request (PR)
+2. Add, commit and push it to your remote dev branch :tada:
+3. Create a Pull Request (PR)
 
 @snapend
 
 ---
 
 @snap[north-west text-07]
-## Checking in code can get complex (quickly!)
-@snapend
-
-@snap[center span-40 text-05]
+### Checking in code can get complex (quickly!)
 ![IMAGE](classes/class01/git/assets/merge_hell.png)
 @snapend
 
@@ -270,7 +263,7 @@ Folder ex_git03:
 ---
 
 @snap[north-west text-07]
-**Oh s\*\*\* I don't know what I did!**
+**OMG, I don't know what I did!**
 @snapend
 
 @snap[west text-07]
