@@ -4,25 +4,15 @@
     <img src="docs/logo.png" width="300">
 </p>
 
-This non-profit repository intention is to help the community to learn the DevOps methodology and culture throughout a series of classes and hands-on laboratories based on Amazon Web Services (AWS) and become ready to start working as Automation/Cloud/DevOps Engineer.
+This non-profit repository intention is to help the community to learn the DevOps methodology and culture throughout a series of classes and hands-on laboratories and become ready to start working as Automation/Cloud/DevOps Engineer.
 
 Feel free to contribute with content (PR), help peer reviewing code or just going through the exercises!
 
 If you want to make part of the team behind this, get in touch on help@devopsacademy.com.au.
 
-
-# in-person classes
-
-The academy content will also be shared through some free in-person classes in Melbourne/Australia for a limited number of participants.
-
-If you live in Melbourne and are interested in participate, [please read this documentation](in-person.md).
-
-Expression of interest registration is open from the 21/11 to 30/11.
-
 # Table of Content
 
 - [DevOps Academy](#devops-academy)
-- [in-person classes](#in-person-classes)
 - [Table of Content](#table-of-content)
 - [How it Works](#how-it-works)
 - [Requirements](#requirements)
@@ -41,41 +31,9 @@ Expression of interest registration is open from the 21/11 to 30/11.
 
 # How it Works
 
-The DevOps Academy consists in 8 hands-on exercises (6 laboratories + 2 projects) + at least 3 peer review contributions to other members code. 
+To complete the DevOps Academy, you will have to go through 8 classes with hands-on exercises. For each exercise, you will have to submit your code via pull requests to this repository as per [instructions](#exercises). The last two labs are complete projects based on current industry needs.
 
-To participate, you will need to:
-
-- fork this repository to your own github account
-- clone the forked repository to your computer
-
-```bash
-git clone <repo-url>
-```
-
-- create a folder with your `github username` (e.g. `denstorti`, `kikobr82`, ...)
-
-```bash
-cd <repo-name>
-mkdir labs/lab01/<my-name>
-```
-
-- add your code, create a commit with the change and push it
-
-```bash
-cd labs/lab01/<my-name>
-touch newfile
-
-# commit and push
-git add newfile
-git commit -m "adding a new file"
-git push
-```
-
-- create a `pull request` from your forked repository back to this one
-- wait until you get at least two review approvals, one being from the maintainers
-- you complete the exercise once your code is merged to this repository
-
-Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
+You will also be required to peer review at least 5 pull requests from other students to finish this course.
 
 # Requirements
 
@@ -128,23 +86,64 @@ The content can be accessed through each specific README link below.
 
 ## Exercises
 
-
-Create a folder with your `github username` inside `classes/<class name>/exercise_submissions/<your github user>`
-and place your answers in it.
+For each class exercise, create a folder with your `github username` inside `classes/<class name>/exercises/<exercise-number>/<your github user>/`
+and place your files in it.
 
 Exercise submissions can be textual like a simple .txt file or more complex containing several files and folders.
 
-If you need to have several files in your answer, create a folder with the exercise number and place all files in there.
-
 Example: 
-`classes/<class name>/exercise_submissions/<your github user>/ex_aws01`
+`classes/class01/exercises/c01-e01/caiocezart/<my-files>`
+
+To submit exercises, you will have to:
+
+- clone this repository
+
+```bash
+git clone <repo-url>
+```
+
+- create a new branch with branch name containing exercise number and your name
+
+```bash
+git branch -b caiocezart/c01-e01
+```
+
+- create a folder with your `github username` (e.g. `denstorti`, `kikobr82`, ...)
+
+```bash
+cd <repo-name>
+
+mkdir classes/class01/exercises/c01-e01/<my-name>
+```
+
+- add your code, create a commit with the change and push it
+
+```bash
+cd classes/class01/exercises/c01-e01/<my-name>
+touch newfile
+
+# commit and push
+git add newfile
+git commit -m "adding a new file"
+git push
+```
+
+- create a `pull request` from your branch to master
+- wait until you get at least two review approvals, one being from the instructors
+- once you have the approvals, you will merge your code to master and complete the exercise
+
+Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
 
 ## Projects
 
 - [Project 01 - Application migration from on-prem to the cloud](projects/project01/README.md)
 - [Project 02 - Cloud native application architecture on AWS](projects/project02/README.md)
 
-Projects will be submitted in the respective project `project_submissions` folder via PRs.
+Projects will be submitted in the respective project `submissions` folder via PRs.
+
+Example:
+`projects/project01/submissions/caiocezart/<my-files>`
+
 
 # Contributors and Instructors
 
@@ -155,6 +154,7 @@ Projects will be submitted in the respective project `project_submissions` folde
     * Online: access `https://gitpitch.com/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`. Folder must contain a PITCHME.md file.
     * Offline: use a [Docker container](https://github.com/kns-it/Docker-GitPitch/), run `make presentation` and `open http://localhost:9000/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`
     For running in a specific folder: `FOLDER_NAME=class2 make presentation`
+
 
 # Authors
 
