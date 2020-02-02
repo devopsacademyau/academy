@@ -24,7 +24,7 @@ https://join.slack.com/t/devopsacademyau/shared_invite/enQtODI2NzE5OTYxNDExLTE5Y
  
 ## GitHub account and SSH key added
 
-To access the academy content and to share your work, you will need a GitHub account. More information on how to use GIT is available on the first [class](../01class/README.md). For now, just make sure you create your GitHub account and if you can, generate an SSH key on your laptop and add it to your GH account.
+To access the academy content and to share your work, you will need a GitHub account. More information on how to use GIT is available on the first [class](/classes/01class/README.md). For now, just make sure you create your GitHub account and if you can, generate an SSH key on your laptop and add it to your GH account.
  
 - Create an account: https://github.com/join
 - Generate an SSH key: https://help.github.com/en/enterprise/2.16/user/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
