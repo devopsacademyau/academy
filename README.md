@@ -21,18 +21,22 @@ Expression of interest registration is open from the 21/11 to 30/11.
 
 # Table of Content
 
+- [DevOps Academy](#devops-academy)
+- [in-person classes](#in-person-classes)
+- [Table of Content](#table-of-content)
 - [How it Works](#how-it-works)
+- [Requirements](#requirements)
 - [Content](#content)
-    - [Classes](#classes)
-    - [Labs](#labs)
-    - [Projects](#projects)
+  - [Classes](#classes)
+  - [Exercises](#exercises)
+  - [Projects](#projects)
+- [Contributors and Instructors](#contributors-and-instructors)
+    - [Presentation format](#presentation-format)
 - [Authors](#authors)
-    - [Caio Trevisan](#caio-trevisan)
-    - [Denis Storti](#denis-storti)
-    - [Francisco Collet](#francisco-collet)
+  - [Caio Trevisan](#caio-trevisan)
+  - [Denis Storti](#denis-storti)
+  - [Francisco Collet](#francisco-collet)
 - [Sponsors](#sponsors)
-    - [ITBR Australia](#itbr-australia)
-    - [Contino](https://contino.io)
 
 
 # How it Works
@@ -48,7 +52,7 @@ To participate, you will need to:
 git clone <repo-url>
 ```
 
-- create a folder with your own name under each exercise
+- create a folder with your `github username` (e.g. `denstorti`, `kikobr82`, ...)
 
 ```bash
 cd <repo-name>
@@ -122,15 +126,35 @@ The content can be accessed through each specific README link below.
 
 - [Class 01 - GIT and AWS introduction](classes/class01/README.md)
 
-## Labs
+## Exercises
 
-- [Lab 01 - EC2 + EBS](labs/lab01/README.md)
+
+Create a folder with your `github username` inside `classes/<class name>/exercise_submissions/<your github user>`
+and place your answers in it.
+
+Exercise submissions can be textual like a simple .txt file or more complex containing several files and folders.
+
+If you need to have several files in your answer, create a folder with the exercise number and place all files in there.
+
+Example: 
+`classes/<class name>/exercise_submissions/<your github user>/ex_aws01`
 
 ## Projects
 
 - [Project 01 - Application migration from on-prem to the cloud](projects/project01/README.md)
 - [Project 02 - Cloud native application architecture on AWS](projects/project02/README.md)
 
+Projects will be submitted in the respective project `project_submissions` folder via PRs.
+
+# Contributors and Instructors
+
+### Presentation format
+* We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
+* For GitPitch, use PITCHME.md files and subfolders using query string "p=FOLDERNAME" with the class name
+* GitPitch can run either online (out-of-the-box for Github public repos):
+    * Online: access `https://gitpitch.com/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`. Folder must contain a PITCHME.md file.
+    * Offline: use a [Docker container](https://github.com/kns-it/Docker-GitPitch/), run `make presentation` and `open http://localhost:9000/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`
+    For running in a specific folder: `FOLDER_NAME=class2 make presentation`
 
 # Authors
 
