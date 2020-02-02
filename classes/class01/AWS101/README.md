@@ -1,46 +1,5 @@
 # Class 01
 
-## Agenda
-
- - Introduction
- - Git 101
- - AWS 101
-
-## Introduction
-
-*WIP*
-
-### Welcome and Program Induction
-
-*WIP*
-
-### Everyone Introduction
-
-- Name?
-- How long you've been in Australia?
-- What is you skillset?
-- What is your main goal with the course?
-
-### Tech
-
-*WIP*
-
-### Course Requirements
-
-*WIP*
-
-## Git 101
-
-*WIP*
-
-### What is it?
-
-### Benefits
-
-### Main commands
-
-### Exercises
-
 ## AWS 101
 
 ### Agenda
@@ -204,17 +163,3 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
     - https://aws.amazon.com/codebuild/faqs/
     - https://aws.amazon.com/codedeploy/faqs/
     - https://aws.amazon.com/codepipeline/faqs/
-
-
-## Labs and Exercises
-
-### Account billing alarm
-- Set a billing alarm on your account, so you are notified when you reach $10, $20, $50 dollars
-
-### EC2
-- Create a new EC2 Instance inside the default VPC with an public IP address and connect to it though SSH
-- Create a new EC2 instance in the same VPC but with private address only and connect to it
-
-### S3
-- Create a S3 bucket and upload a file to it
-- Access the file on the S3 bucket from the EC2 instance
