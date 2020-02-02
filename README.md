@@ -37,11 +37,18 @@ You will also be required to peer review at least 5 pull requests from other stu
 
 # Requirements
 
-- [Github Account](https://github.com/join)
-- [AWS Account](https://aws.amazon.com/free/start-your-free-trial/)
-- [AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
-- [Terraform cli](https://learn.hashicorp.com/terraform/getting-started/install.html) 
-- [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
+Please find below the requirements to complete this course:
+
+- Slack
+- Github Account
+- AWS Account
+- AWS cli
+- Terraform
+- Visual Studio Code
+- Docker
+
+If you need help in any of these topics, [a tutorial is available on the pre-class](classes/00pre-class/README.md):
+
 
 # Content
 
@@ -92,7 +99,7 @@ and place your files in it.
 Exercise submissions can be textual like a simple .txt file or more complex containing several files and folders.
 
 Example: 
-`classes/class01/exercises/c01-e01/caiocezart/<my-files>`
+`classes/01class/exercises/c01-e01/caiocezart/<my-files>`
 
 To submit exercises, you will have to:
 
@@ -113,13 +120,13 @@ git branch -b caiocezart/c01-e01
 ```bash
 cd <repo-name>
 
-mkdir classes/class01/exercises/c01-e01/<my-name>
+mkdir classes/01class/exercises/c01-e01/<my-name>
 ```
 
 - add your code, create a commit with the change and push it
 
 ```bash
-cd classes/class01/exercises/c01-e01/<my-name>
+cd classes/01class/exercises/c01-e01/<my-name>
 touch newfile
 
 # commit and push

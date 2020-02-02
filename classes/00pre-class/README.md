@@ -12,7 +12,6 @@
   - [Challenge05](#challenge-05)
 - [Terraform command-line tool](#terraform-command-line-tool)
 - [Docker command-line tool](#docker-command-line-tool)
-- []()
 
 
 ## join slack
