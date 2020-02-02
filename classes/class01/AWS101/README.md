@@ -56,7 +56,7 @@
     - Currently at 205
 
 <p align="center">
-    <img src="../img/aws_regions.jpg">
+    <img src="../../img/aws_regions.jpg">
 </p>
 
 Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
@@ -64,11 +64,11 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
 
 ### AWS Services (+130)
 <p align="center">
-    <img src="../img/aws_services.jpg" width="900">
+    <img src="../../img/aws_services.jpg" width="900">
 </p>
 
 <p align="center">
-    <img src="../img/aws_innovation.jpg" width="900">
+    <img src="../../img/aws_innovation.jpg" width="900">
 </p>
 
 ### Main AWS Services
