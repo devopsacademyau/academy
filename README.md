@@ -82,7 +82,7 @@ The content can be accessed through each specific README link below.
 
 ## Classes
 
-- [Class 01 - GIT and AWS introduction](classes/class01/README.md)
+- [Class 01 - GIT and AWS introduction](classes/01class/README.md)
 
 ## Exercises
 

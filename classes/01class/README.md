@@ -2,9 +2,9 @@
 
 ## Agenda
 
- - Introduction
- - Git 101
- - AWS 101
+ - [Introduction](#introduction)
+ - [Git 101](git/PITCHME.md)
+ - [AWS 101](aws101/README.md)
 
 ## Introduction
 
@@ -25,6 +25,3 @@
 
 *WIP*
 
-### Course Requirements
-
-*WIP*
