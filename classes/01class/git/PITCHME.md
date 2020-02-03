@@ -32,7 +32,7 @@
 @snapend
 
 @snap[north-east span-15]
-![IMAGE](classes/class01/git/assets/git.0.jpg)
+![IMAGE](classes/01class/git/assets/git.0.jpg)
 @snapend
 
 ---
@@ -60,7 +60,7 @@
 @snapend
 
 @snap[east span-50]
-![IMAGE](classes/class01/git/assets/OptimisticSketch.gif)
+![IMAGE](classes/01class/git/assets/OptimisticSketch.gif)
 @snapend
 
 @snap[west text-05 span-50]
@@ -78,7 +78,7 @@ So, how git achieves optimistic locking so developers can work in parallel in th
 
 @snap[west text-left text-07]
 ### Git Storage
-![IMAGE](classes/class01/git/assets/git_storage.png)
+![IMAGE](classes/01class/git/assets/git_storage.png)
 @snapend
 
 @snap[east span-40 text-08]
@@ -158,7 +158,7 @@ Let's add a folder to hold exercises for classes
 
 @snap[north-west text-07]
 ### Checking in code can get complex (quickly!)
-![IMAGE](classes/class01/git/assets/merge_hell.png)
+![IMAGE](classes/01class/git/assets/merge_hell.png)
 @snapend
 
 @snap[south text-05]
@@ -181,7 +181,7 @@ See also GitFlow (https://www.atlassian.com/git/tutorials/comparing-workflows/gi
 ---
 
 @snap[midpoint span-60 text-05]
-![IMAGE](classes/class01/git/assets/merge_vs_rebase.jpg)
+![IMAGE](classes/01class/git/assets/merge_vs_rebase.jpg)
 @snapend
 
 ---
@@ -193,13 +193,13 @@ See also GitFlow (https://www.atlassian.com/git/tutorials/comparing-workflows/gi
 @snap[west span-40 text-05]
 `git checkout feature`
 `git merge master`
-![IMAGE](classes/class01/git/assets/merge.png)
+![IMAGE](classes/01class/git/assets/merge.png)
 @snapend
 
 @snap[east span-40 text-05]
 `git checkout feature`
 `git rebase master`
-![IMAGE](classes/class01/git/assets/rebase.png)
+![IMAGE](classes/01class/git/assets/rebase.png)
 @snapend
 
 ---
