@@ -9,7 +9,7 @@
    - [Sponsors](#sponsors)
    - [Everyone Introduction (in-person only)](#everyone-introduction-in-person-only)
  - [Git 101](git/PITCHME.md)
- - [AWS 101](aws101/README.md)
+ - [AWS 101](AWS101/README.md)
 
 ## Introduction
 
