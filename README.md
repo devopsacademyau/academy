@@ -91,6 +91,7 @@ The content can be accessed through each specific README link below.
 
 - [Class 01 - GIT and AWS introduction](classes/01class/README.md)
 
+
 ## Exercises
 
 For each class exercise, create a new branch following `<github-account>/<exercise-number>` and add your work on a folder like `classes/<class name>/exercises/<exercise-number>/<your github user>/`.
@@ -142,10 +143,14 @@ git push
 
 Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
 
-- [Class 01 (AWS & GIT 101)](/classes/01class/exercises/README.md)
+### Available labs
+
+- [Class 01: (AWS & GIT 101)](/classes/01class/exercises/README.md)
 
 
 ## Projects
+
+More info to come..
 
 - [Project 01 - Application migration from on-prem to the cloud](projects/project01/README.md)
 - [Project 02 - Cloud native application architecture on AWS](projects/project02/README.md)

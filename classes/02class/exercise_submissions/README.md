@@ -1,3 +1,3 @@
 # Exercises
 
-[Instructions](/README.md#Exercises)
+[Instructions](/README.md#exercises)
