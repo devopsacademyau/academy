@@ -91,10 +91,10 @@ The content can be accessed through each specific README link below.
 
 - [Class 01 - GIT and AWS introduction](classes/01class/README.md)
 
+
 ## Exercises
 
-For each class exercise, create a folder with your `github username` inside `classes/<class name>/exercises/<exercise-number>/<your github user>/`
-and place your files in it.
+For each class exercise, create a new branch following `<github-account>/<exercise-number>` and add your work on a folder like `classes/<class name>/exercises/<exercise-number>/<your github user>/`.
 
 Exercise submissions can be textual like a simple .txt file or more complex containing several files and folders.
 
@@ -108,6 +108,8 @@ To submit exercises, you will have to:
 ```bash
 git clone <repo-url>
 ```
+
+- [OR fork it to your own GitHub account and clone from there](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
 
 - create a new branch with branch name containing exercise number and your name
 
@@ -141,7 +143,14 @@ git push
 
 Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
 
+### Available labs
+
+- [Class 01: (AWS & GIT 101)](/classes/01class/exercises/README.md)
+
+
 ## Projects
+
+More info to come..
 
 - [Project 01 - Application migration from on-prem to the cloud](projects/project01/README.md)
 - [Project 02 - Cloud native application architecture on AWS](projects/project02/README.md)
@@ -154,7 +163,8 @@ Example:
 
 # Contributors and Instructors
 
-### Presentation format
+## Presentation format
+
 * We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
 * For GitPitch, use PITCHME.md files and subfolders using query string "p=FOLDERNAME" with the class name
 * GitPitch can run either online (out-of-the-box for Github public repos):
@@ -181,8 +191,8 @@ Example:
 
 # Sponsors
 
-> ### ITBR Australia Community
-> [www.itbr.com.au](https://www.itbr.com.au)
+## ITBR Australia Community
+[www.itbr.com.au](https://www.itbr.com.au)
 
-> ### Contino (In class course, Feb 2020)
-> [https://www.contino.io](https://www.contino.io/)
+## Contino
+[https://www.contino.io](https://www.contino.io/)
