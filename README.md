@@ -114,7 +114,7 @@ git clone <repo-url>
 - create a new branch with branch name containing exercise number and your name
 
 ```bash
-git branch -b caiocezart/c01-e01
+git checkout -b caiocezart/c01-e01
 ```
 
 - create a folder with your `github username` (e.g. `denstorti`, `kikobr82`, ...)
