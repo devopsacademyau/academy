@@ -1,4 +1,4 @@
-## Secrets (c01-git-04)
+## Secrets (c01-git04)
 
 Perform the following commands:
 1. In the same repository of the previous exercise:
@@ -13,7 +13,7 @@ Perform the following commands:
 
 **Questions**
 
-Create a file **answer01.txt** answering the questions below. Include details and commands used.
+Create a file **c01-git04-1.txt** answering the questions below. Include details and commands used.
 1. Let's suppose you remotely pushed your `my_env.txt` file. A colleague asks you to remove this information from Git. What's your colleague worried about? 
 2. If you modify the file in your workspace, then push it, will it be enough? (It's not). Why?
 3. If you delete the file and push it, then create a new one with the rest of the information, is it enough? (It's not). Why?

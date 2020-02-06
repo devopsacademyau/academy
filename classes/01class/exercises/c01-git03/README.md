@@ -1,4 +1,4 @@
-## Big file (c01-git-03)
+## Big file (c01-git03)
 
 Perform the following commands:
 1. Initialize a new git repository **locally** (you don't need to push it)
@@ -19,7 +19,7 @@ Perform the following commands:
 
 **Questions**
 
-Create a file **answer01.txt** answering the questions below. Include details and commands used.
+Create a file **c01-git03-1.txt** answering the questions below. Include details and commands used.
 1. Did you notice any difference in the size of the repo before and after adding the big file?
 1. What is the reason for this problem?
 1. How do you remove something from Git history? Which commands would you use? What are the consequences?
