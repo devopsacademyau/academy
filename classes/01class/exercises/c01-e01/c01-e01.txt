@@ -5,7 +5,7 @@ academy/classes/01class/Exercises/c01-e01 on  henriqueediniz-c01-e01 [?]
 Docker version 19.03.5, build 633a0ea
 academy/classes/01class/Exercises/c01-e01 on  henriqueediniz-c01-e01 [?] 
 ✦ 👽 henriquediniz terraform version
-Terraform v0.12.19
+Terraform v0.12.20
 
 Your version of Terraform is out of date! The latest version
 is 0.12.20. You can update by downloading from https://www.terraform.io/downloads.html
