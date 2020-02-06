@@ -176,7 +176,7 @@ https://trunkbaseddevelopment.com/
 @snapend
 
 @snap[south-west text-04]
-See also GitFlow (https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+[See also GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 @snapend
 ---
 
@@ -204,72 +204,23 @@ See also GitFlow (https://www.atlassian.com/git/tutorials/comparing-workflows/gi
 
 ---
 
-@snap[north-west text-07]
-### Let's do it together
-@snapend
-
-@snap[west text-06]
-
-1. Access https://learngitbranching.js.org/
-1. merge - `level intro3`
-1. rebase - `level intro4`
-
-@snapend
-
----
-
 @snap[middlepoint text-07]
 ## What is the problem of re-writing the history with **git rebase**?
 @snapend
 
 ---
 
-@snap[north-west span-25 text-07]
-**Exercises**
-@snapend
-
-@snap[west text-06]
-1. file ex_git01.txt - Is it possible to see the inner commit of squashed commit with `git rebase`?
-2. file ex_git02.txt - How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
-3. Install [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh) and git plugin
-@snapend
----
-
 @snap[north-west text-07]
-**Exercise ex_git03** - Big file and secrets
+### Let's do it together - Exercise
 @snapend
 
 @snap[west text-06]
-1. Initialize a new git repository locally
-2. Add a simple text file and commit 
-    - `echo "mypassword" > pwd.txt; git add pwd.txt; git commit -m "Add secret key file. I should not do it."`
-3. Check the commit with `git log`
-4. Check the size of the repository directory
-    - On the parent, `du -sh .`
-5. Add a fairly big file `file.txt` (around 100MB)
-    - `dd if=/dev/random of=file.txt count=1024 bs=10257`
-6. Add and commit it locally
-    - `git add file.txt; git commit -m "Add big file"`
-7. Check the size of the repository directory again (take note of this)
-    - On the parent, `du -sh .`
-8. Revert the commit that added the big file
-    - use `git revert`, `git reset` or `git rebase`
-9. Check the size of the repository directory again (take note of this)
-    - On the parent, `du -h`
-@snapend
-
----
-
-@snap[north-west text-07]
-**Exercise ex_git03** - Big file and secrets
-@snapend
-
-@snap[west text-06]
-- Did you notice any difference in the size of the repo before and after adding the big file
-- What is causing this problem?
-- Let's suppose you remotely pushed your `pwd.txt` file. If you delete it and push it, is it enough? (It's not). Why?
-- How do you solve it, i.e. how do you remove something from Git history? What are the consequences?
-
+**Merging and Rebasing**
+1. Access https://learngitbranching.js.org/
+2. Merging exercise:
+   1. type `level intro3`
+3. Rebasing exercise:
+   1. type `level intro4`
 @snapend
 
 ---
