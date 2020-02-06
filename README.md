@@ -89,7 +89,41 @@ The content can be accessed through each specific README link below.
 
 ## Classes
 
-- [Class 01 - GIT and AWS introduction](classes/01class/README.md)
+- [Class 01](classes/01class/README.md)
+    - DevOps Academy Introduction
+    - Introduction to AWS
+    - Git
+- [Class 02](classes/02class/README.md)
+    - Agile Methodologies
+    - AWS IAM
+    - AWS Network Deep Dive
+- [Class 03](classes/03class/README.md)
+    - AWS EC2
+        - Load Balancing
+        - Auto Scaling Group
+    - AWS S3
+    - AWS Route 53
+    - Container - Docker
+        - Repositories
+        - Images
+        - Dockerfile
+        - AWS ECS
+- [Class 04](classes/04class/README.md)
+    - AWS - IAM Keys
+    - AWS - CLI
+    - AWS - RDS
+    - IaC - Terraform
+    - MakeFile
+- [Class 05](classes/05class/README.md)
+    - Project #1 Delivery
+- [Class 06](classes/06class/README.md)
+    - CI/CD Concepts
+    - Pipelines
+    - 3 Musketeers
+- [Class 07](classes/07class/README.md)
+    - Serverless
+- [Class 08](classes/08class/README.md)
+    - Project #2 Delivery
 
 
 ## Exercises
