@@ -1,0 +1,53 @@
+Public IP:
+
+I access the EC2 console and with help of documentation I made a configuration of my first instance. I create one Image of Amazon Linux AMI with a default VPC and I create a security group called Henrique Security Group to allows SSH with Key pairs that I create before named as myKey.
+
+My terminal:
+
+✦ 👽 henriquediniz ssh -i "myKey.pem" ec2-user@ec2-34-238-83-178.compute-1.amazonaws.com
+Last login: Fri Feb  7 12:07:15 2020 from 155.143.178.112
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+7 package(s) needed for security, out of 39 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-85-181 ~]$ 
+
+
+
+Documentation reference: https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html
+
+
+Private IP: 
+
+To access my other instance, I did not flag Assign IPs automatically as private and used the same configuration as the last instance, however, I have to create an elastic IP associated with my private IP to be accessed from within the VPC using the internal IP .
+
+I used this steps:
+
+- Go into the EC2 dashboard, then in the NETWORK & SECURITY menu go to Elastic IPs.
+- Click on Allocate a new address.
+- Right click on the new IP and select Associate address.
+- Associate it with your EC2 instance that doesn't have an elastic IP.
+
+
+My terminal: 
+
+✦ 👽 henriquediniz ssh -i "myKey.pem" ec2-user@ec2-52-205-249-95.compute-1.amazonaws.com
+The authenticity of host 'ec2-52-205-249-95.compute-1.amazonaws.com (52.205.249.95)' can't be established.
+ECDSA key fingerprint is SHA256:FsxeDVvSIGoYryj4cBPVBy58s8pEPi3IMfnHfAEoxEM.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ec2-52-205-249-95.compute-1.amazonaws.com,52.205.249.95' (ECDSA) to the list of known hosts.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-172-31-95-179 ~]$ 
+
+
+Documentation reference: https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html
+
