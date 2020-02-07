@@ -8,7 +8,7 @@
 - Cloud Benefits
 - AWS Foundations
 - AWS Services
-- Labs and Exerciss
+- Labs and Exercises
 
 ### General Cloud Concepts
 
@@ -18,7 +18,7 @@
     - Elastic services
         - Services can scale up and down so you can only pay what you need
     - Easy and cheap to test new technologies
-        - Because you only pay for what you use, and during the time you use, you can run tests with new technologies for a weeka nd only pay for the resources onsumed during that week.
+        - Because you only pay for what you use, and during the time you use, you can run tests with new technologies for a week and only pay for the resources consumed during that week.
     - Fast innovation pace
         - Being able to test without big investments, the feedback on tests are quicker and you can continuosly innovate
 
@@ -30,7 +30,7 @@
     - Ephemeral Environments
         - Components are not changed/upgraded. They are fully replaced and nothing is expected to be lost
     - Automation
-        - Automation is an important factor to be able to recreate environments faster and whitout human errors
+        - Automation is an important factor to be able to recreate environments faster and without human errors
 
 ### Cloud Benefits
 
@@ -105,7 +105,7 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
     - Block storage
     - https://aws.amazon.com/ebs/faqs/
 - EFS
-    - Managed Elastic Filesystem(NFS)
+    - Managed Elastic File System(NFS)
     - https://aws.amazon.com/efs/faq/
 #### Networking
 - VPC
