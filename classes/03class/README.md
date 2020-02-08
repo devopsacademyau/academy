@@ -54,11 +54,20 @@ It's composed by the docker daemon and the docker client. The first is the servi
 
 
 ### Repositories
-A container repository is a place where images can be stored. It can be public or private.
+A container repository is a place where images can be stored and it can be public or private.
 Examples of repositories:
-- [DockerHub]()
-- [AWS ECR] ()
-- [Artifactory]()
+- [DockerHub](https://hub.docker.com/)
+- [AWS ECR](https://aws.amazon.com/ecr/)
+- [Artifactory](https://jfrog.com/artifactory/)
+
+Repositories are used to share an image that was created for a specific purpose. It can be used to store an image with specific pre-requisites to run multiple applications like:
+- an image with apache+php+modules to run multiple php applications
+- an image with a specific version of jdk to run multiple java applications
+- an image with a specific version of mysql to run multiple databases
+It can also be used to store the final version of your application(artifact) that will run in production
+- an image with apache+php+modules+yourapp
+- an image with python binaries and your application to run a machine learning algorythm
+- an image with terraform cli that executes any terraform code
 
 ### Dockerfile
 *WIP*
