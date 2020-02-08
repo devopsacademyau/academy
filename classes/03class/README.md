@@ -71,7 +71,16 @@ It can also be used to store the final version of your application(artifact) tha
 A docker repository is often used as a tool in the middle of the CI/CD process, since the docker image created during the CI pipeline needs to be stored somewhere so it can be used during the CD pipeline. More related to this in class #6.
 
 ### Dockerfile
-*WIP*
+```bash
+docker build -t website:01 .
+```
+```bash
+docker run -it -p 8081:80 website:01
+```
+
+```bash
+docker history [image]
+```
 
 ### Main docker commands
 - docker run
