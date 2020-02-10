@@ -8,8 +8,8 @@
    - [Slack](#slack)
    - [Sponsors](#sponsors)
    - [Everyone Introduction (in-person only)](#everyone-introduction-in-person-only)
- - [Git 101](git/PITCHME.md)
- - [AWS 101](aws101/README.md)
+ - [Git 101](/classes/01class/git/PITCHME.md)
+ - [AWS 101](/classes/01class/aws101/README.md)
 
 ## Introduction
 
@@ -19,6 +19,7 @@
 - DevOps academy is sharing and learning
 - Help people get job ready for the cloud industry
 - There is no competition and no single winners
+
 
 ### General guidelines
 

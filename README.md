@@ -89,12 +89,46 @@ The content can be accessed through each specific README link below.
 
 ## Classes
 
-- [Class 01 - GIT and AWS introduction](classes/01class/README.md)
+- [Class 01](classes/01class/README.md)
+    - DevOps Academy Introduction
+    - Introduction to AWS
+    - Git
+- [Class 02](classes/02class/README.md)
+    - Agile Methodologies
+    - AWS IAM
+    - AWS Network Deep Dive
+- [Class 03](classes/03class/README.md)
+    - AWS EC2
+        - Load Balancing
+        - Auto Scaling Group
+    - AWS S3
+    - AWS Route 53
+    - Container - Docker
+        - Repositories
+        - Images
+        - Dockerfile
+        - AWS ECS
+- [Class 04](classes/04class/README.md)
+    - AWS - IAM Keys
+    - AWS - CLI
+    - AWS - RDS
+    - IaC - Terraform
+    - MakeFile
+- [Class 05](classes/05class/README.md)
+    - Project #1 Delivery
+- [Class 06](classes/06class/README.md)
+    - CI/CD Concepts
+    - Pipelines
+    - 3 Musketeers
+- [Class 07](classes/07class/README.md)
+    - Serverless
+- [Class 08](classes/08class/README.md)
+    - Project #2 Delivery
+
 
 ## Exercises
 
-For each class exercise, create a folder with your `github username` inside `classes/<class name>/exercises/<exercise-number>/<your github user>/`
-and place your files in it.
+For each class exercise, create a new branch following `<github-account>/<exercise-number>` and add your work on a folder like `classes/<class name>/exercises/<exercise-number>/<your github user>/`.
 
 Exercise submissions can be textual like a simple .txt file or more complex containing several files and folders.
 
@@ -109,10 +143,12 @@ To submit exercises, you will have to:
 git clone <repo-url>
 ```
 
+- [OR fork it to your own GitHub account and clone from there](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
+
 - create a new branch with branch name containing exercise number and your name
 
 ```bash
-git branch -b caiocezart/c01-e01
+git checkout -b caiocezart/c01-e01
 ```
 
 - create a folder with your `github username` (e.g. `denstorti`, `kikobr82`, ...)
@@ -141,7 +177,14 @@ git push
 
 Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
 
+### Available labs
+
+- [Class 01: (AWS & GIT 101)](/classes/01class/exercises/README.md)
+
+
 ## Projects
+
+More info to come..
 
 - [Project 01 - Application migration from on-prem to the cloud](projects/project01/README.md)
 - [Project 02 - Cloud native application architecture on AWS](projects/project02/README.md)
@@ -154,7 +197,8 @@ Example:
 
 # Contributors and Instructors
 
-### Presentation format
+## Presentation format
+
 * We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
 * For GitPitch, use PITCHME.md files and subfolders using query string "p=FOLDERNAME" with the class name
 * GitPitch can run either online (out-of-the-box for Github public repos):
@@ -181,8 +225,8 @@ Example:
 
 # Sponsors
 
-> ### ITBR Australia Community
-> [www.itbr.com.au](https://www.itbr.com.au)
+## ITBR Australia Community
+[www.itbr.com.au](https://www.itbr.com.au)
 
-> ### Contino (In class course, Feb 2020)
-> [https://www.contino.io](https://www.contino.io/)
+## Contino
+[https://www.contino.io](https://www.contino.io/)

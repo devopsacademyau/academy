@@ -1,0 +1,17 @@
+#C01-e03
+
+##Creating EC2 instance using Public IP address
+* created EC2 instance via console 
+* Chose the free tier stuff, in this case Amazon Linux 2 AMI (HVM), SSD Volume Type
+* Enabled auto assign public IP
+* Clicked connect from the console on my public machine
+* Downloaded the credentials and connected via ssh using command below:
+    > chmod 400 Christina AWS.pem
+    > ssh -i "Christina AWS.pem" ec2-user@ec2-13-211-212-190.ap-southeast-2.compute.amazonaws.com
+
+
+##Creating EC2 instance using Private IP address
+* Same thing with public but disable auto assign public IP
+* Since it's private and I couldn't connect it, I had to connect it through the public instance created previously using -A option (agent forwarding)
+    > ssh -A -i ChristinaAWS.pem ec2-user@ec2-13-211-212-190.ap-southeast-2.compute.amazonaws.com
+    > ssh  ec2-user@172.31.4.38

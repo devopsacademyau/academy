@@ -1,0 +1,3 @@
+Is it possible to see the inner commit of squashed commit with git rebase?
+
+Using the rebase command on interactive mode (-i or --interactive) it is possible to squash commits. The inner commits squashed are not visible on history after the rebase but can be restored or listed using the commands "git log --walk-reflogs" or "git reflog --all" 
