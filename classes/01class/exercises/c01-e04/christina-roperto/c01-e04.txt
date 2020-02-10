@@ -1,0 +1,13 @@
+#S3(C01-E04)
+
+* Created bucket and chose default options
+* Went to IAM service and create a new role for EC2 with Amazon S3 Full Access policy. Saved it as S3FullAccess
+* Went back to list of EC2 instances created on the previous exercise and chose the public one and attach IAM role as S3FullAccess
+* connected to the EC2 instance and type aws s3 ls
+* copied the file from the S3 bucket using this line: aws s3 cp s3://c01-e04/README.md README.md
+
+source: 
+https://www.youtube.com/watch?time_continue=13&v=NHAuCWIHevk&feature=emb_logo
+https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
+
+
