@@ -1,0 +1,1 @@
+aws2 --version

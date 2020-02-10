@@ -1,0 +1,3 @@
+flask==1.1.1
+flask_api
+flask_cors
