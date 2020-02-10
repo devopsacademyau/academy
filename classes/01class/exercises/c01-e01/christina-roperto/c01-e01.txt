@@ -1,0 +1,3 @@
+aws-cli/1.17.9 Python/3.7.3 Darwin/19.2.0 botocore/1.14.9
+Docker version 19.03.5, build 633a0ea
+Terraform v0.12.20
