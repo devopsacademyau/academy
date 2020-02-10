@@ -16,16 +16,32 @@ Run "sudo yum update" to apply all updates.
 [ec2-user@ip-172-31-16-166 ~]$
 
 
-I couldn't connect to the second instance straight way because it only have a private IP, so I need to allocate and associate an Elastic IP for it using AWS Console Elastic IPs option. After done that I could connect to it and I got those values on Terminal screen:
+I couldn't connect to the second instance straight way because it only have a private IP, so I used my first EC2 instance (that is siting in the same VPC) to connect to the second one, before to connect with it I need to upload my Key pairs to my first EC2 instance and I have used WinSCP to achieve that. And that is my Terminal output:
 
 Using username "ec2-user".
 Authenticating with public key "imported-openssh-key"
+Last login: Mon Feb 10 09:56:00 2020 from 101.116.15.247
 
        __|  __|_  )
        _|  (     /   Amazon Linux AMI
       ___|\___|___|
 
 https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+2 package(s) needed for security, out of 5 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-30-122 ~]$ ls
+ExerciseC01-E03.pem
+[ec2-user@ip-172-31-30-122 ~]$ chmod 400 ExerciseC01-E03.pem
+[ec2-user@ip-172-31-30-122 ~]$ ssh -i "ExerciseC01-E03.pem" ec2-user@172.31.34.49
+Last login: Mon Feb 10 10:11:18 2020 from ip-172-31-30-122.us-east-2.compute.internal
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+3 package(s) needed for security, out of 6 available
+Run "sudo yum update" to apply all updates.
 [ec2-user@ip-172-31-34-49 ~]$
 
 
