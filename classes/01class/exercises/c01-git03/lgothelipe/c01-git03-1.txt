@@ -1,0 +1,81 @@
+Big file (c01-git03)
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01
+$ git init
+Initialized empty Git repository in C:/Temp/Test01/.git/
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01 (master)
+$ touch README.md
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01 (master)
+$ git log
+fatal: your current branch 'master' does not have any commits yet
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01 (master)
+$ du -sh .
+49K     .
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01 (master)
+$ dd if=/dev/random of=file.txt count=10240 bs=10257
+10240+0 records in
+10240+0 records out
+105031680 bytes (105 MB, 100 MiB) copied, 8.73808 s, 12.0 MB/s
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01 (master)
+$ git add file.txt; git commit -m "Add big file"
+[master (root-commit) 1a8259c] Add big file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file.txt
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01 (master)
+$ du -sh .
+201M    .
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01 (master)
+$ git revert HEAD
+Removing file.txt
+hint: Waiting for your editor to close the file...
+ Attempting to call a function in a renderer window that has been closed or released.
+Function provided here: Object.<anonymous> (C:\Users\Lucas Q\AppData\Local\atom\app-1.41.0\resources\app.asar\node_modules\github\lib\worker.js:79:22
+Remote event names: destroyed, crashed
+[master df868d1] Revert "Add big file"
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 file.txt
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01 (master)
+$ du -h
+41K     ./.git/hooks
+1.0K    ./.git/info
+1.0K    ./.git/logs/refs/heads
+1.0K    ./.git/logs/refs
+2.0K    ./.git/logs
+1.0K    ./.git/objects/1a
+1.0K    ./.git/objects/4b
+101M    ./.git/objects/90
+1.0K    ./.git/objects/98
+1.0K    ./.git/objects/df
+0       ./.git/objects/info
+0       ./.git/objects/pack
+101M    ./.git/objects
+1.0K    ./.git/refs/heads
+0       ./.git/refs/tags
+1.0K    ./.git/refs
+101M    ./.git
+101M    .
+
+Lucas Q@DESKTOP-0ORGFEK MINGW64 /c/Temp/Test01 (master)
+$
+
+
+Did you notice any difference in the size of the repo before and after adding the big file?
+
+Yes, before addind the big file it was 49K and after add a 100MB file it had 201MB.
+
+What is the reason for this problem?
+
+A copy of the file was stored on the history on the folder /.git/objects
+
+How do you remove something from Git history? Which commands would you use? What are the consequences?
+
+To remove the file from history use "git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD". 
+To remove the local cache remove folder ".git". As a consequece, this procedure will permanently remove the file from the repository.
