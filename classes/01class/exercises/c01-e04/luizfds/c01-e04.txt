@@ -1,0 +1,16 @@
+S3(C01-E01)
+Create a S3 bucket and upload a file to it
+
+To achieve the task "Create a S3 bucket and upload a file to it" I've used the following commands:
+
+To create a bucket I have used aws s3api command (I could achieve the same using s3 command e.g. "aws s3 mb s3://bucket-c01-e03 --region us-east-1")
+$ aws s3api create-bucket --bucket bucket-c01-e03 --region us-east-1
+{
+    "Location": "/bucket-c01-e03"
+}
+
+To upload a file I executed the following command:
+$ aws s3 cp "C:\devopsacademy\academy\classes\01class\exercises\c01-e04\luizfds\c01-e04.txt" s3://bucket-c01-e03
+upload: luizfds\c01-e04.txt to s3://bucket-c01-e03/c01-e04.txt
+
+In order to access the file on the S3 bucket from any the EC2 instance created in the previous exercise or from a new instance I first need to access my EC2 instance (I've used the first one create in exercise C01-E03), then I need to configure the AWS CLI using the command "aws configure" to add my AWS Access Key ID and AWS Secret Access Key. After doing all required configuration I was able to download a file from the bucket created before using this command "aws s3 cp s3://bucket-c01-e03/c01-e04.txt ./".
