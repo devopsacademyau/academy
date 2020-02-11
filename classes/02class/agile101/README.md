@@ -1,0 +1,91 @@
+# Class 02
+
+This class is an introduction to Agile methodology and frameworks.
+
+The main goal is to explain the difference between sequential life cycle software development and iterative ones. 
+
+There is also a brief introduction to Scrum and Kanban frameworks.
+
+## Agile 101
+
+***Contents***
+
+- [Class 02](#class-02)
+  - [Agile 101](#agile-101)
+    - [Software Development Methodologies and Frameworks](#software-development-methodologies-and-frameworks)
+      - [What is Waterfall methodology?](#what-is-waterfall-methodology)
+      - [What is the Agile methodology?](#what-is-the-agile-methodology)
+    - [Agile and DevOps](#agile-and-devops)
+    - [Agile Frameworks](#agile-frameworks)
+    - [Kanban](#kanban)
+    - [Scrum](#scrum)
+      - [What's it?](#whats-it)
+      - [The framework](#the-framework)
+      - [Roles](#roles)
+      - [Events](#events)
+      - [Artifacts](#artifacts)
+      - [Exercises and games](#exercises-and-games)
+      - [Scrumban](#scrumban)
+    - [References](#references)
+
+### Software Development Methodologies and Frameworks 
+
+#### What is Waterfall methodology?
+
+Waterfall Model methodology which is also known as Liner Sequential Life Cycle Model. Waterfall Model followed in the sequential order, and so project development team only moves to next phase of development or testing if the previous step completed successfully. [[1]](#r1)
+
+![alt Waterfall example](./assets/waterfall.png)
+*Waterfall example [[2]](#r2)*
+
+#### What is the Agile methodology?
+Agile methodology is a practice that helps continuous iteration of development and testing in the software development process. In this model, development and testing activities are concurrent, unlike the Waterfall model. This process allows more communication between customers, developers, managers, and testers.
+
+Agile is part of a larger group of [Iterative Methodologies](https://existek.com/blog/sdlc-models/) that exist since 90's, like IBM RUP (Rational Unified Process), RAD, DAD (Discipled Agile Delivery).
+
+***Lean thinking:***
+
+[from less.works](https://less.works/less/principles/lean-thinking.html)
+  > Consider a relay race. The racers are standing around waiting for the baton from their colleague. The accountant in the finance department, looking aghast at this terrible underutilization ‘waste,’ would probably mandate a policy goal of “95% utilization of resources” to ensure all the racers are busy and “productive.” Maybe—he would suggest—the runners could run three races at the same time to increase “resource utilization,” or they could run up a mountain while waiting for the baton.
+
+  Does your organization measure “productivity” or “efficiency” in terms of how busy people are, or how much time is spent watching the runners? Or does it measure “productivity” in terms of fast delivery of value to the real customer, thereby “watching the baton”? 
+
+  Lean thinking is a proven system that scales to large development, as evidenced by Toyota and others. Although most often applied to products, it is also used in service areas—both within Toyota and in domains such as healthcare. 
+  
+***Scaled Agile frameworks***
+
+When working in an Enterprise composed by many teams, with well defined process for change management, portfolio/project management and valuation, capacity management, compliance and regulation auditing, etc., this Agile methodologies need to scale so several teams work in harmony to achieve the strategic Enterprise goals.
+
+
+There some variations of the Scrum framework, as:
+- [LeSS](https://less.works/)
+
+![alt LeSS framework](./assets/less.png)
+*LeSS framework*
+
+- [Nexus](https://www.scrum.org/resources/scaling-scrum)
+![alt Nexus framework](./assets/nexus.jpg)
+*Nexus framework*
+- [Scrum of Scrums](http://guide.agilealliance.org/guide/scrumofscrums.html)
+- [SAFe](https://www.scaledagileframework.com/)
+- Many others...
+
+
+### Agile and DevOps
+### Agile Frameworks
+### Kanban
+The major differences between Scrum and Kanban is that in Scrum work is divided into sprints that last a fixed amount of time, whereas in Kanban the flow of work is continuous. This is visible in work stage tables, which in Scrum are emptied after each sprint, whereas in Kanban all tasks are marked on the same table. Scrum focuses on teams with multifaceted know-how, whereas Kanban makes specialized, functional teams possible.[61]
+### Scrum
+  #### What's it?
+  #### The framework
+  #### Roles
+  #### Events
+  #### Artifacts
+  #### Exercises and games
+
+
+#### Scrumban
+
+### References
+<!-- <sup id="a1">[1](#f1)</sup> -->
+ 1. <small id="r1"> https://www.guru99.com/waterfall-vs-agile.html </small> 
+ 2. <small id="r2"> http://www.covalentmarketing.com/blog/2015/10/19/software-development-lifecycle-waterfall-vs-agile-2/  </small>
