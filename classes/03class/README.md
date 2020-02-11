@@ -36,6 +36,7 @@ Virtual machines (VMs) are an abstraction of physical hardware turning one serve
 - [rkt](https://coreos.com/rkt/)
 - [LXC](https://linuxcontainers.org/)
 - [OpenVZ](https://openvz.org/)
+
 Docker is a tool to faciliate the creation, deployment and execution of applications by using containers.
 It's composed by the docker daemon and the docker client. The first is the service that runs on the operating system(like Linux, MacOS, Windows) that will execute containers. The Docker deamon exposes a RestAPI that is accessed by the docker client. We use the docker client to submit instructions to the docker daemon so it can execute the containers, create new images, delete existing containers, connect to a running container, etc.
 ### Repositories
@@ -44,14 +45,17 @@ Examples of repositories:
 - [DockerHub](https://hub.docker.com/)
 - [AWS ECR](https://aws.amazon.com/ecr/)
 - [Artifactory](https://jfrog.com/artifactory/)
+
 Repositories are used to share an image that was created for a specific purpose. It can be used to store an image with specific pre-requisites to run multiple applications like:
 - an image with apache+php+modules to run multiple php applications
 - an image with a specific version of jdk to run multiple java applications
 - an image with a specific version of mysql to run multiple databases
+
 It can also be used to store the final version of your application(artifact) that will run in production
 - an image with apache+php+modules+yourapp
 - an image with python binaries and your application to run a machine learning algorythm
 - an image with terraform cli that executes any terraform code
+
 A docker repository is often used as a tool in the middle of the CI/CD process, since the docker image created during the CI pipeline needs to be stored somewhere so it can be used during the CD pipeline. More related to this in class #6.
 ### Dockerfile
 A docker file is a set of instruction(like a recipe) to create a new docker image. Those instructions will be used to install the application pre-requisites as well as inlcude all the application related files into the image that is being created.
@@ -85,6 +89,7 @@ CMD [ "/app/app1.bin", "run" ]
   - Used when the container needs to be run as an executable. The commandd inside ENTRYPOINT instruction will can't be overwritten during container execution.
 - WORKDIR
   - Sets the working directory to run the instructions: RUN, CMD, ENTRYPOINT, COPY and ADD
+
 Reference to all Instructions: [https://docs.docker.com/engine/reference/builder/](https://docs.docker.com/engine/reference/builder/)
 #### Let's give it a go
 Simple [Docker file](artifacts/docker/Dockerfile):
@@ -149,6 +154,7 @@ http://apache.mirror.serversaustralia.com.au//httpd/httpd-2.4.41.tar.gz
     - List the running containers
 - docker container [action]
     - Execute an action related to containers
+    
 Reference for all docker commands and options: [https://docs.docker.com/engine/reference/commandline/docker/](https://docs.docker.com/engine/reference/commandline/docker/)
 ### AWS ECS
 *WIP*
