@@ -1,0 +1,7 @@
+FROM ubuntu:18.04
+WORKDIR tmp
+RUN apt-get update
+RUN apt-get -y install curl
+ADD http://apache.mirror.serversaustralia.com.au//httpd/httpd-2.4.41.tar.gz /tmp/
+RUN tar xzvf /tmp/httpd-2.4.41.tar.gz
+RUN rm -rf /tmp/httpd-2.4.41.tar.gz
