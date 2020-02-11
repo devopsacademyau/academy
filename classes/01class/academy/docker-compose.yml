@@ -1,8 +1,0 @@
-version: '3.7'
-services:
-  gitpitch:
-    image: knsit/gitpitch:latest
-    environment:
-      - "GP_GITHUB_AS_DEFAULT=true"
-    ports:
-      - 9000:9000
