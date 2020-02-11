@@ -1,0 +1,17 @@
+Logged on my AWS account and created S3 bucket under S3
+Upload a test.txt file to the bucket "devops12836"
+Under Identity and Access Management, created a Role for EC2 to access S3
+Under EC2 -> Instances, attached the role created to give EC2 access to S3
+SSH to EC2 instance and list the S3 buckets (aws s3 ls):
+
+[ec2-user@ip-172-31-0-213 ~]$ aws s3 ls
+2020-02-08 11:53:11 devops12836
+[ec2-user@ip-172-31-0-213 ~]$
+
+Copied test.txt from the bucket devops12836:
+
+[ec2-user@ip-172-31-0-213 ~]$ aws s3 cp s3://devops12836/test.txt .
+download: s3://devops12836/test.txt to ./test.txt
+[ec2-user@ip-172-31-0-213 ~]$ ls
+test.txt
+[ec2-user@ip-172-31-0-213 ~]$ cat test.txt
