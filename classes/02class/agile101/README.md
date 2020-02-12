@@ -18,15 +18,17 @@ There is also a brief introduction to Scrum and Kanban frameworks.
   - [How about DevOps?](#how-about-devops)
   - [Agile Frameworks and Methodology](#agile-frameworks-and-methodology)
     - [Kanban](#kanban)
+      - [What's it?](#whats-it)
+      - [Getting started](#getting-started)
       - [Metrics](#metrics)
       - [Limit the work-in-progress (WIP) to deliver more!](#limit-the-work-in-progress-wip-to-deliver-more)
     - [Scrum](#scrum)
-      - [What's it?](#whats-it)
+      - [What's it?](#whats-it-1)
       - [The framework](#the-framework)
       - [Roles](#roles)
       - [Events](#events)
       - [Artifacts](#artifacts)
-    - [Exercises and games](#exercises-and-games)
+      - [Reduce utilisation, batch size and item size](#reduce-utilisation-batch-size-and-item-size)
     - [Kanban vs Scrum](#kanban-vs-scrum)
     - [Scaled Agile frameworks](#scaled-agile-frameworks)
   - [References](#references)
@@ -86,8 +88,6 @@ The "*lean process*" is a method for creating a more effective business by elimi
 
 ## How about DevOps?
 
-If you are a Software Developer, some Agile practices might be part of your routine already (it should be at this day and age).
-
 But it is common to see that companies that didn't embrace a new different development culture (Agile or DevOps) might still have **separate Teams (or even Managing Directors) for Development and Operations**.
 
 > So, what do you do after your team followed beautifully all of the Agile best practices and delivered a feature?
@@ -96,6 +96,15 @@ But it is common to see that companies that didn't embrace a new different devel
 So, DevOps is all about culture!
 
 It is a way of organising teams to deliver value through software, tearing down the walls left behind by Agile methodologies.
+
+Gene Kim explains The Three Ways as principles of DevOps:
+
+* The first way: **System Thinking**	
+  * emphasizes the performance of the entire system, as opposed to the performance of a specific silo of work or department — this can be as large as a division or as small as an individual contributor.
+* The second way: **Amplify Feedback Loops**
+  * creating the right to left feedback loops. The goal of almost any process improvement initiative is to shorten and amplify feedback loops so necessary corrections can be continually made.
+* The third way: **Culture of Continual Experimentation and Learning**	
+  * creating a culture that fosters two things: continual experimentation, taking risks and learning from failure; and understanding that repetition and practice is the prerequisite to mastery.
 
 ![alt Nexus framework](./assets/walls_agile_devops.jpg)
 *Agile and DevOps work together as a cultural change* [[5]](https://www.accenture.com/us-en/blogs/blogs-reshma-shinde-devops-transformations-operations)
@@ -112,11 +121,15 @@ Frameworks are adaptable as the team wish, as long as it keeps the same goal of 
 
 ### Kanban
 
+#### What's it?
+
 A Kanban board is an agile project management tool designed to help:
 
 - **Visualize what you do today (workflow)**: seeing all the items in context of each other can be very informative
 - **Limit the amount of work in progress (WIP)**: this helps balance the flow-based approach so teams donet start and commit to too much work at once
 - **Enhance flow**: when something is finished, the next highest thing from the backlog is pulled into play
+
+#### Getting started
 
 Get started with Kanban, you'll need:
 * Board (physical or digital)
@@ -132,6 +145,7 @@ Get started with Kanban, you'll need:
 [*Kanban board example*](https://www.atlassian.com/agile/kanban/boards)
 
 #### Metrics
+
 ![](./assets/leadtimes_kanban.png)
 [*Metrics in Kanban*](https://stefanroock.wordpress.com/2010/03/02/kanban-definition-of-lead-time-and-cycle-time/)
 
@@ -146,21 +160,26 @@ A column with a WIP limit of three cannot have more than three cards in it. **Wh
 
 These WIP limits are critical for exposing bottlenecks in the workflow and maximizing flow. WIP limits give you an early warning sign that you committed to too much work
 
+![](./assets/little_law.png)
+[*Little's Law*](https://www.process.st/littles-law/). WIP = Throughput x Lead time
+
 ![](./assets/kanban_wip.png)
 [*Kanban WIP limit example*](https://www.atlassian.com/agile/kanban/wip-limits).
 Above, a WIP limit has been set on code review. Since the column is exceeding its limit, the background has turned red.
 
 ### Scrum
 
-WIP
+[See also the official Scrum Guide](https://www.scrumguides.org/scrum-guide.html)
+
   #### What's it?
   #### The framework
   #### Roles
   #### Events
   #### Artifacts
 
-### Exercises and games
-WIP
+#### Reduce utilisation, batch size and item size
+
+[Check out Theory of Constraints and Queue Theory applied to Agile](https://www.slideshare.net/andrewrusling/improving-throughput-with-the-theory-of-constraints-and-queuing-theory)
 
 
 ### Kanban vs Scrum
@@ -181,7 +200,6 @@ Cycle time | Velocity
 More appropriate in operational environments with a high degree of variability in priority	| More appropriate in situations where work can be prioritized in batches that can be left alone
 
 Organization, culture and team dynamics often determine which method is the best fit.
-
 
 ### Scaled Agile frameworks
 
@@ -206,3 +224,4 @@ There some variations of the Scrum framework, as:
 <!-- <sup id="a1">[1](#f1)</sup> -->
  1. <small id="r1"> https://www.guru99.com/waterfall-vs-agile.html </small> 
  2. <small id="r2"> http://www.covalentmarketing.com/blog/2015/10/19/software-development-lifecycle-waterfall-vs-agile-2/  </small>
+ 3. https://www.atlassian.com/agile/devops
