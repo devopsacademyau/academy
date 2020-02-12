@@ -12,25 +12,28 @@ There is also a brief introduction to Scrum and Kanban frameworks.
 
 - [Class 02](#class-02)
   - [Agile 101](#agile-101)
-    - [Software Development Methodologies and Frameworks](#software-development-methodologies-and-frameworks)
-      - [What is Waterfall methodology?](#what-is-waterfall-methodology)
-      - [What is the Agile methodology?](#what-is-the-agile-methodology)
-    - [How about DevOps?](#how-about-devops)
-    - [Agile Frameworks](#agile-frameworks)
-      - [Kanban](#kanban)
-      - [Scrum](#scrum)
-        - [What's it?](#whats-it)
-        - [The framework](#the-framework)
-        - [Roles](#roles)
-        - [Events](#events)
-        - [Artifacts](#artifacts)
-      - [Exercises and games](#exercises-and-games)
-      - [Scaled Agile frameworks](#scaled-agile-frameworks)
-    - [References](#references)
+  - [Software Development Methodologies and Frameworks](#software-development-methodologies-and-frameworks)
+    - [What is Waterfall methodology?](#what-is-waterfall-methodology)
+    - [What is Agile?](#what-is-agile)
+  - [How about DevOps?](#how-about-devops)
+  - [Agile Frameworks and Methodology](#agile-frameworks-and-methodology)
+    - [Kanban](#kanban)
+      - [Metrics](#metrics)
+      - [Limit the work-in-progress (WIP) to deliver more!](#limit-the-work-in-progress-wip-to-deliver-more)
+    - [Scrum](#scrum)
+      - [What's it?](#whats-it)
+      - [The framework](#the-framework)
+      - [Roles](#roles)
+      - [Events](#events)
+      - [Artifacts](#artifacts)
+    - [Exercises and games](#exercises-and-games)
+    - [Kanban vs Scrum](#kanban-vs-scrum)
+    - [Scaled Agile frameworks](#scaled-agile-frameworks)
+  - [References](#references)
 
-### Software Development Methodologies and Frameworks 
+## Software Development Methodologies and Frameworks 
 
-#### What is Waterfall methodology?
+### What is Waterfall methodology?
 
 Waterfall Model methodology which is also known as Liner Sequential Life Cycle Model. Waterfall Model followed in the sequential order, and so project development team only moves to next phase of development or testing if the previous step completed successfully. [[1]](#r1)
 
@@ -40,10 +43,17 @@ Waterfall Model methodology which is also known as Liner Sequential Life Cycle M
 > How do you do with always-changing requirements while using a waterfall methodology?
 > How often you test and release?
 
-#### What is the Agile methodology?
-Agile methodology is a practice that helps continuous iteration of development and testing in the software development process. In this model, development and testing activities are concurrent, unlike the Waterfall model. This process allows more communication between customers, developers, managers, and testers.
+### What is Agile?
 
-Agile is part of a larger group of [Iterative Methodologies](https://existek.com/blog/sdlc-models/) that exist since 90's, like IBM RUP (Rational Unified Process), RAD, DAD (Discipled Agile Delivery).
+Agile is an iterative approach to project management and software development that helps teams **deliver value to their customers faster** and with fewer headaches. Instead of betting everything on a "big bang" launch, an **agile team delivers work in small, but consumable, increments**. Requirements, plans, and results are evaluated continuously so teams have a natural mechanism for responding to change quickly.
+
+Four main values:
+1. **Individuals and interactions** over processes and tools
+1. **Working software** over comprehensive documentation
+1. **Customer collaboration** over contract negotiation
+1. **Responding to change** over following a plan
+
+[Agile Manifesto - 12 Principles](https://agilemanifesto.org/principles.html):
 
 **So, what's agility?**
 
@@ -53,7 +63,7 @@ The problems faced with Waterfall and similar methodologies, come down to delive
 
 The fact here is that business is ever changing to keep up with the competition or innovate, and software needs to quickly adapt and support these new scenarios.
 
-It does not matter much if the final product is a software product or if the IT area is just supporting the business goals (e.g. banking, healthcare, energy, etc). It needs to keep up with the business, meaning that it needs to bring more money in or reduce costs [(Read about Kaizen)](https://blog.kainexus.com/improvement-disciplines/kaizen/best-practices-for-effective-kaizen-management)!
+It does not matter much if the final product is a software product or if the IT area is just supporting the business goals (e.g. banking, healthcare, energy, etc). It needs to keep up with the business, meaning that it needs to bring more money in or reduce costs.
 
 **So, what changes in terms of Software Development Life Cycle?**
 
@@ -62,24 +72,19 @@ We need to iterate more with a smaller set of requirements that bring value to t
 ![alt Waterfall example](./assets/waterfall_agile.gif)
 *Waterfall vs Agile [[3]](http://customerthink.com/agile-versus-waterfall-for-crm-implementation-success/)*
 
-***Lean thinking:***
+***Lean***
 
-The term “lean thinking” was coined by  James P. Womack and Daniel T. Jones to capture the essence of their in-depth study of Toyota's fabled Toyota Production System.
+The term "*lean thinking*" was coined by  James P. Womack and Daniel T. Jones to capture the essence of their in-depth study of Toyota's fabled Toyota Production System.
 
-Lean thinking is a way of thinking about an activity and seeing the waste inadvertently generated by the way the process is organized. It uses the concepts of:
+The "*lean process*" is a method for creating a more effective business by eliminating wasteful practices and improving efficiency. More widely referred to as “lean,” the lean process focuses on improving products and services based on what customers want and value. [[4]](https://www.graphicproducts.com/articles/lean-process/)
 
-- Value
-- Value streams
-- Flow
-
-[from less.works](https://less.works/less/principles/lean-thinking.html)
+[from less.works website:](https://less.works/less/principles/lean-thinking.html)
   > Consider a relay race. The racers are standing around waiting for the baton from their colleague. The accountant in the finance department, looking aghast at this terrible underutilization ‘waste,’ would probably mandate a policy goal of “95% utilization of resources” to ensure all the racers are busy and “productive.” Maybe—he would suggest—the runners could run three races at the same time to increase “resource utilization,” or they could run up a mountain while waiting for the baton.
 
   > Does your organization measure “productivity” or “efficiency” in terms of how busy people are, or how much time is spent watching the runners? Or does it measure “productivity” in terms of fast delivery of value to the real customer, thereby “watching the baton”? 
 
-  Lean thinking is a proven system that scales to large development, as evidenced by Toyota and others. Although most often applied to products, it is also used in service areas—both within Toyota and in domains such as healthcare. 
 
-### How about DevOps?
+## How about DevOps?
 
 If you are a Software Developer, some Agile practices might be part of your routine already (it should be at this day and age).
 
@@ -93,26 +98,92 @@ So, DevOps is all about culture!
 It is a way of organising teams to deliver value through software, tearing down the walls left behind by Agile methodologies.
 
 ![alt Nexus framework](./assets/walls_agile_devops.jpg)
-*Agile and DevOps work together as a cultural change* [[4]](https://www.accenture.com/us-en/blogs/blogs-reshma-shinde-devops-transformations-operations)
+*Agile and DevOps work together as a cultural change* [[5]](https://www.accenture.com/us-en/blogs/blogs-reshma-shinde-devops-transformations-operations)
 
 > As it is a cultural change, people need to change actions, processes need to evolve!
 
-### Agile Frameworks
-#### Kanban
-The major differences between Scrum and Kanban is that in Scrum work is divided into sprints that last a fixed amount of time, whereas in Kanban the flow of work is continuous. This is visible in work stage tables, which in Scrum are emptied after each sprint, whereas in Kanban all tasks are marked on the same table. Scrum focuses on teams with multifaceted know-how, whereas Kanban makes specialized, functional teams possible.
+## Agile Frameworks and Methodology
 
-#### Scrum
+Framework: set of practices --> not a methodology.
+
+Methodology: step by step description.
+
+Frameworks are adaptable as the team wish, as long as it keeps the same goal of the original framework.
+
+### Kanban
+
+A Kanban board is an agile project management tool designed to help:
+
+- **Visualize what you do today (workflow)**: seeing all the items in context of each other can be very informative
+- **Limit the amount of work in progress (WIP)**: this helps balance the flow-based approach so teams donet start and commit to too much work at once
+- **Enhance flow**: when something is finished, the next highest thing from the backlog is pulled into play
+
+Get started with Kanban, you'll need:
+* Board (physical or digital)
+* Cards
+* Define the workflow (columns)
+  * One or more `backlog` columns (e.g. To Do, Next tasks, Ready for Dev, etc)
+  * One or more `in-progress` columns (e.g. In Progress, Development, Test, Review, Acceptance Test, QA, etc)
+  * One or more `done` columns (e.g. Done, Closed)
+* Work as *one* team. Everybody is responsible for improving the process. 
+[(Read about Kaizen)](https://blog.kainexus.com/improvement-disciplines/kaizen/best-practices-for-effective-kaizen-management)!
+
+![](./assets/kanban_board_example.png)
+[*Kanban board example*](https://www.atlassian.com/agile/kanban/boards)
+
+#### Metrics
+![](./assets/leadtimes_kanban.png)
+[*Metrics in Kanban*](https://stefanroock.wordpress.com/2010/03/02/kanban-definition-of-lead-time-and-cycle-time/)
+
+![](./assets/CumulativeFlowDiagram.svg)
+[*Cumulative Flow Diagram*](https://stefanroock.wordpress.com/2010/03/02/kanban-definition-of-lead-time-and-cycle-time/) shows the number of issues in each state.
+
+#### Limit the work-in-progress (WIP) to deliver more!
+
+WIP limits are the maximum number of cards that can be in one column at any given time. 
+
+A column with a WIP limit of three cannot have more than three cards in it. **When the column is “maxed-out” the team needs to swarm on those cards** and move them forward before new cards can move into that stage of the workflow. 
+
+These WIP limits are critical for exposing bottlenecks in the workflow and maximizing flow. WIP limits give you an early warning sign that you committed to too much work
+
+![](./assets/kanban_wip.png)
+[*Kanban WIP limit example*](https://www.atlassian.com/agile/kanban/wip-limits).
+Above, a WIP limit has been set on code review. Since the column is exceeding its limit, the background has turned red.
+
+### Scrum
+
 WIP
-  ##### What's it?
-  ##### The framework
-  ##### Roles
-  ##### Events
-  ##### Artifacts
+  #### What's it?
+  #### The framework
+  #### Roles
+  #### Events
+  #### Artifacts
 
-#### Exercises and games
+### Exercises and games
 WIP
 
-#### Scaled Agile frameworks
+
+### Kanban vs Scrum
+
+Both Kanban and Scrum focus on releasing software early and often. Both require highly-collaborative and self-managed teams.
+
+The major differences between Scrum and Kanban is that in Scrum work is divided into sprints that last a fixed amount of time, whereas in Kanban the flow of work is continuous.
+
+There are, however, differences between the approaches [[6]](https://resources.collab.net/agile-101/what-is-kanban):
+
+Kanban	| 	Scrum
+--------|----------
+No prescribed roles	| Pre-defined roles of Scrum master, Product owner and team member
+Continuous Delivery	| Timeboxed sprints
+Work is pulled through the system (single piece flow)	| Work is pulled through the system in batches (the sprint backlog)
+Changes can be made at any time	| Teams should strive to not make changes to the sprint forecast during the sprint. Doing so compromises learnings around estimation.
+Cycle time | Velocity
+More appropriate in operational environments with a high degree of variability in priority	| More appropriate in situations where work can be prioritized in batches that can be left alone
+
+Organization, culture and team dynamics often determine which method is the best fit.
+
+
+### Scaled Agile frameworks
 
 When working in an Enterprise composed by many teams, with well defined process for change management, portfolio/project management and valuation, capacity management, compliance and regulation auditing, etc., this Agile methodologies need to scale so several teams work in harmony to achieve the strategic Enterprise goals.
 
@@ -131,7 +202,7 @@ There some variations of the Scrum framework, as:
 - Many others...
 
 
-### References
+## References
 <!-- <sup id="a1">[1](#f1)</sup> -->
  1. <small id="r1"> https://www.guru99.com/waterfall-vs-agile.html </small> 
  2. <small id="r2"> http://www.covalentmarketing.com/blog/2015/10/19/software-development-lifecycle-waterfall-vs-agile-2/  </small>
