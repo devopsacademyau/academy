@@ -153,33 +153,33 @@ During the build of a docker image, docker can re-use layers previously created.
 
 Consider two very similar images, where the only difference between it is a `RUN` step. Even that this step only adds a single file with 13 bytes to the image, it completely affects the result of remaining layers of the image. Observe that the `apt-get update` steps are exacly the same and adds the same amount of MB to the image, however, it has a different sha(79b65ac314b1 on the first image and a70625894939 on the second).
 ```
-IMAGE               CREATED              CREATED BY                                      SIZE                COMMENT
-bc8d9068fd51        25 seconds ago       /bin/sh -c rm -rf /tmp/httpd-2.4.41.tar.gz      0B                  
-510793020658        27 seconds ago       /bin/sh -c tar xzvf /tmp/httpd-2.4.41.tar.gz    39.5MB              
-2ae1c163c167        29 seconds ago       /bin/sh -c #(nop) ADD cc9f7bcc45b8069f007672…   9.27MB              
-fa26d5204572        35 seconds ago       /bin/sh -c apt-get -y install curl              14.3MB              
-79b65ac314b1        About a minute ago   /bin/sh -c apt-get update                       27.9MB              
-c3234c0c7372        About a minute ago   /bin/sh -c echo "image change" > /tmp/devops…   13B                 
-5ba0d7847404        2 days ago           /bin/sh -c #(nop) WORKDIR /tmp                  0B                  
-ccc6e87d482b        4 weeks ago          /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
-<missing>           4 weeks ago          /bin/sh -c mkdir -p /run/systemd && echo 'do…   7B                  
-<missing>           4 weeks ago          /bin/sh -c set -xe   && echo '#!/bin/sh' > /…   745B                
-<missing>           4 weeks ago          /bin/sh -c [ -z "$(apt-get indextargets)" ]     987kB               
+IMAGE               CREATED              CREATED BY                                      SIZE   
+bc8d9068fd51        25 seconds ago       /bin/sh -c rm -rf /tmp/httpd-2.4.41.tar.gz      0B     
+510793020658        27 seconds ago       /bin/sh -c tar xzvf /tmp/httpd-2.4.41.tar.gz    39.5MB 
+2ae1c163c167        29 seconds ago       /bin/sh -c #(nop) ADD cc9f7bcc45b8069f007672…   9.27MB 
+fa26d5204572        35 seconds ago       /bin/sh -c apt-get -y install curl              14.3MB 
+79b65ac314b1        About a minute ago   /bin/sh -c apt-get update                       27.9MB 
+c3234c0c7372        About a minute ago   /bin/sh -c echo "image change" > /tmp/devops…   13B    
+5ba0d7847404        2 days ago           /bin/sh -c #(nop) WORKDIR /tmp                  0B     
+ccc6e87d482b        4 weeks ago          /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B     
+<missing>           4 weeks ago          /bin/sh -c mkdir -p /run/systemd && echo 'do…   7B     
+<missing>           4 weeks ago          /bin/sh -c set -xe   && echo '#!/bin/sh' > /…   745B   
+<missing>           4 weeks ago          /bin/sh -c [ -z "$(apt-get indextargets)" ]     987kB  
 <missing>           4 weeks ago          /bin/sh -c #(nop) ADD file:08e718ed0796013f5…   63.2MB
 ```
 ```
-IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
-95a90787b890        2 days ago          /bin/sh -c rm -rf /tmp/httpd-2.4.41.tar.gz      0B                  
-1631588fac44        2 days ago          /bin/sh -c tar xzvf /tmp/httpd-2.4.41.tar.gz    39.5MB              
-7141d3a52fe8        2 days ago          /bin/sh -c #(nop) ADD cc9f7bcc45b8069f007672…   9.27MB              
-06e2b5d8b3e7        2 days ago          /bin/sh -c apt-get -y install curl              14.3MB              
-a70625894939        2 days ago          /bin/sh -c apt-get update                       27.9MB              
-5ba0d7847404        2 days ago          /bin/sh -c #(nop) WORKDIR /tmp                  0B                  
-ccc6e87d482b        4 weeks ago         /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
-<missing>           4 weeks ago         /bin/sh -c mkdir -p /run/systemd && echo 'do…   7B                  
-<missing>           4 weeks ago         /bin/sh -c set -xe   && echo '#!/bin/sh' > /…   745B                
-<missing>           4 weeks ago         /bin/sh -c [ -z "$(apt-get indextargets)" ]     987kB               
-<missing>           4 weeks ago         /bin/sh -c #(nop) ADD file:08e718ed0796013f5…   63.2MB       ```
+IMAGE               CREATED             CREATED BY                                      SIZE 
+95a90787b890        2 days ago          /bin/sh -c rm -rf /tmp/httpd-2.4.41.tar.gz      0B
+1631588fac44        2 days ago          /bin/sh -c tar xzvf /tmp/httpd-2.4.41.tar.gz    39.5MB
+7141d3a52fe8        2 days ago          /bin/sh -c #(nop) ADD cc9f7bcc45b8069f007672…   9.27MB
+06e2b5d8b3e7        2 days ago          /bin/sh -c apt-get -y install curl              14.3MB
+a70625894939        2 days ago          /bin/sh -c apt-get update                       27.9MB
+5ba0d7847404        2 days ago          /bin/sh -c #(nop) WORKDIR /tmp                  0B    
+ccc6e87d482b        4 weeks ago         /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B    
+<missing>           4 weeks ago         /bin/sh -c mkdir -p /run/systemd && echo 'do…   7B    
+<missing>           4 weeks ago         /bin/sh -c set -xe   && echo '#!/bin/sh' > /…   745B  
+<missing>           4 weeks ago         /bin/sh -c [ -z "$(apt-get indextargets)" ]     987kB 
+<missing>           4 weeks ago         /bin/sh -c #(nop) ADD file:08e718ed0796013f5…   63.2MB 
 ```
 
 Considering the behaviour exposed above, it's important to keep the steps that will result in identical state, to be executed before steps that will result in different states. For example, if you're building an image with an application under development and you have the following steps on your image build:
