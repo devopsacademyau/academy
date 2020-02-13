@@ -146,9 +146,11 @@ On the third approach, whcih is the most appropriate for our objective, it was u
 
 ### Remember when creating a docker image
 - Always use a tag in the image you'll use(FROM).
+
 The tag represents a specific image and is supposed to be immutable. This means that the image with the same tag will *always* be the same. This is important, so by specifying a versioned tag(not using the tag `latest`), you know exaclty which base image will be used during the build of your own image.
 Keep the same mindset when creating your images. Once an image is created and published with a specific tag, that tag should belong to that artefact only. Any new image published should use a different tag. 
 - Because of the way images are build(layers), keep the instructions that will change less on top of your Dockerfile
+
 During the build of a docker image, docker can re-use layers previously created. This only happens when the lower layers are the same.
 
 Consider two very similar images, where the only difference between it is a `RUN` step. Even that this step only adds a single file with 13 bytes to the image, it completely affects the result of remaining layers of the image. Observe that the `apt-get update` steps are exacly the same and adds the same amount of MB to the image, however, it has a different sha(79b65ac314b1 on the first image and a70625894939 on the second).
