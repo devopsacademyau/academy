@@ -1,5 +1,6 @@
 FROM ubuntu:18.04
 WORKDIR tmp
+RUN echo "image change" > /tmp/devops.academy
 RUN apt-get update
 RUN apt-get -y install curl
 ADD http://apache.mirror.serversaustralia.com.au//httpd/httpd-2.4.41.tar.gz /tmp/
