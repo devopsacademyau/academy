@@ -24,10 +24,13 @@ There is also a brief introduction to Scrum and Kanban frameworks.
       - [Limit the work-in-progress (WIP) to deliver more!](#limit-the-work-in-progress-wip-to-deliver-more)
     - [Scrum](#scrum)
       - [What's it?](#whats-it-1)
-      - [The framework](#the-framework)
       - [Roles](#roles)
-      - [Events](#events)
-      - [Artifacts](#artifacts)
+      - [Sprints](#sprints)
+    - [Really important! Don't forget about those!](#really-important-dont-forget-about-those)
+      - [Refinement](#refinement)
+      - [Definition of ready](#definition-of-ready)
+      - [Definition of done](#definition-of-done)
+  - [Appendix](#appendix)
       - [Reduce utilisation, batch size and item size](#reduce-utilisation-batch-size-and-item-size)
     - [Kanban vs Scrum](#kanban-vs-scrum)
     - [Scaled Agile frameworks](#scaled-agile-frameworks)
@@ -107,6 +110,7 @@ Gene Kim explains The Three Ways as principles of DevOps:
   * creating a culture that fosters two things: continual experimentation, taking risks and learning from failure; and understanding that repetition and practice is the prerequisite to mastery.
 
 ![alt Nexus framework](./assets/walls_agile_devops.jpg)
+
 *Agile and DevOps work together as a cultural change* [[5]](https://www.accenture.com/us-en/blogs/blogs-reshma-shinde-devops-transformations-operations)
 
 > As it is a cultural change, people need to change actions, processes need to evolve!
@@ -142,14 +146,17 @@ Get started with Kanban, you'll need:
 [(Read about Kaizen)](https://blog.kainexus.com/improvement-disciplines/kaizen/best-practices-for-effective-kaizen-management)!
 
 ![](./assets/kanban_board_example.png)
+
 [*Kanban board example*](https://www.atlassian.com/agile/kanban/boards)
 
 #### Metrics
 
 ![](./assets/leadtimes_kanban.png)
+
 [*Metrics in Kanban*](https://stefanroock.wordpress.com/2010/03/02/kanban-definition-of-lead-time-and-cycle-time/)
 
 ![](./assets/CumulativeFlowDiagram.svg)
+
 [*Cumulative Flow Diagram*](https://stefanroock.wordpress.com/2010/03/02/kanban-definition-of-lead-time-and-cycle-time/) shows the number of issues in each state.
 
 #### Limit the work-in-progress (WIP) to deliver more!
@@ -161,21 +168,113 @@ A column with a WIP limit of three cannot have more than three cards in it. **Wh
 These WIP limits are critical for exposing bottlenecks in the workflow and maximizing flow. WIP limits give you an early warning sign that you committed to too much work
 
 ![](./assets/little_law.png)
+
 [*Little's Law*](https://www.process.st/littles-law/). WIP = Throughput x Lead time
 
 ![](./assets/kanban_wip.png)
+
 [*Kanban WIP limit example*](https://www.atlassian.com/agile/kanban/wip-limits).
 Above, a WIP limit has been set on code review. Since the column is exceeding its limit, the background has turned red.
 
 ### Scrum
 
-[See also the official Scrum Guide](https://www.scrumguides.org/scrum-guide.html)
+[OFFICAL SCRUM GUIDE](https://www.scrumguides.org/scrum-guide.html)
 
-  #### What's it?
-  #### The framework
-  #### Roles
-  #### Events
-  #### Artifacts
+#### What's it?
+
+Scrum is a framework that helps teams work together. Much like a rugby team (where it gets its name) training for the big game, Scrum encourages teams to learn through experiences, self-organize while working on a problem, and reflect on their wins and losses to continuously improve. [[6]](https://www.atlassian.com/agile/scrum)
+
+What it doesn’t do is provide a one-size-fits-all model for teams to work within. 
+
+![](./assets/scrum_overview.jpg)
+
+*Scrum overview* (https://medium.com/jorgeacetozi/agile-and-scrum-overview-fb68fc04aff8)
+
+It is composed by:
+* The Scrum **Team**:
+  * The Product Owner
+  * The Development Team
+  * The Scrum Master
+  
+* Scrum **Events**:
+  * The Sprint
+    * The heart of Scrum is a Sprint, a **time-box** of one month or less during which a "Done", useable, and potentially **releasable product Increment is created**.
+  * Sprint Planning
+    * Plan on **what** can be be delivered and **how** to deliver an Increment
+  * Daily Scrum
+    * The Daily Scrum is a **15-minute time-boxed event** for the **Development Team**. The Daily Scrum is held every day of the Sprint. At it, the Development Team plans work for the next 24 hours.
+  * Sprint Review
+    * During the Sprint Review, the Scrum Team and stakeholders collaborate about what was done in the Sprint.
+  * Sprint Retrospective
+    * The Sprint Retrospective is an opportunity for the Scrum Team to inspect itself and create a plan for improvements (of the process) to be enacted during the next Sprint.
+  
+* Scrum **Artifacts**:
+  * Product Backlog
+    * The Product Backlog is an ordered list of everything that is known to be needed in the product. The Product Owner is responsible for the Product Backlog.
+  * Sprint Backlog
+    * The Sprint Backlog is the **set of Product Backlog items selected for the Sprint, **plus a plan**** for delivering the product Increment and realizing the Sprint Goal
+  * Increment
+    * At the end of a Sprint, the **new Increment must be "Done"** which means it must be in **useable condition** and meet the Scrum Team’s **definition of "Done"** (DoD).
+
+#### Roles
+
+See Atlassian website (https://www.atlassian.com/agile/scrum/roles).
+
+* Product Owner
+![](./assets/Scrum-Product&#32;Owner-revised.png)
+* Scrum Master
+![](./assets/Scrum-Master-revised.png)
+
+* Development Team
+
+> They are self-organizing
+
+> Development Teams are cross-functional
+
+> No titles for Development Team members
+
+> No sub-teams in the Development Team
+
+> Accountability belongs to the Development Team as a whole
+
+![](./assets/Scrum-Development&#32;team-revised.png)
+
+
+#### Sprints
+
+Sprints contain and consist of:
+-  the Sprint Planning, 
+-  Daily Scrums, 
+-  the development work, 
+-  the Sprint Review, 
+-  and the Sprint Retrospective.
+
+During the Sprint:
+
+- No changes are made that would endanger the Sprint Goal;
+- Quality goals do not decrease; and,
+- Scope may be clarified and re-negotiated between the Product Owner and Development Team as more is learned.
+
+### Really important! Don't forget about those!
+
+#### Refinement
+Product Backlog refinement is the act of adding detail, ***estimates***, and order to items in the Product Backlog. 
+
+This is an ***ongoing process*** in which the Product Owner and the Development Team collaborate on the details of Product Backlog items. 
+
+During Product Backlog refinement, items are reviewed and revised. *The Scrum Team decides how and when refinement is done*.
+
+#### Definition of ready
+Product Backlog items that can be "Done" by the Development Team within one Sprint are deemed "Ready" for selection in a Sprint Planning.
+
+Refinement enables this.
+
+#### Definition of done
+Although this may vary significantly per Scrum Team, members must have a shared understanding of what it means for work to be complete, to ensure transparency.
+
+Is it a software delivered in production? Is it a software tested in non-production environment? Is it a documentation released?
+
+## Appendix
 
 #### Reduce utilisation, batch size and item size
 
