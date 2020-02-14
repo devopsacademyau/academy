@@ -1,39 +1,48 @@
-# Class 03
+# Docker
 
 This class is an introduction to Containers and Docker.
-
 The main goal is to explain the purpose of containers, the benefits and how to use it.
-
-## Docker
+We'll also take a look into how the AWs ECS Service works and it's purpose.
 
 ***Contents***
 
-- [Class 03](#class-03)
-  - [Docker](#docker)
-  - [Containers](#containers)
-    - [What is a container?](#what-is-a-container)
-    - [Difference between Virtual Machine and Container](#difference-between-virtual-machine-and-container)
-        - [Container](#container)
-        - [Virtual Machine](#virtual-machine)
-    - [What is Docker?](#what-is-docker)
-  - [Respositories](#repositories)
-  - [Dockerfile](#dockerfile)
-    - [Main Dockerfile Instructions](#main-dockerfile-instructions)
-    - [Let's Give it a Go](#lets-give-it-a-go)
-  - [Docker Image](#docker-image)
-    - [Remember when creating a docker image](#remember-when-creating-a-docker-image)
-  - [Main docker commands](#main-docker-commands)
-  - [ECS](#ecs)
+- [Docker](#docker)
+- [Containers](#containers)
+  - [What is a container?](#what-is-a-container)
+  - [Difference between Virtual Machine and Container](#difference-between-virtual-machine-and-container)
+  - [Benefits of COntainers](#benefits-of-containers)
+    - [Container](#container)
+    - [Virtual Machine](#virtual-machine)
+  - [What is Docker?](#what-is-docker)
+- [Respositories](#repositories)
+- [Dockerfile](#dockerfile)
+  - [Main Dockerfile Instructions](#main-dockerfile-instructions)
+  - [Let's Give it a Go](#lets-give-it-a-go)
+- [Docker Image](#docker-image)
+  - [Remember when creating a docker image](#remember-when-creating-a-docker-image)
+- [Main docker commands](#main-docker-commands)
+- [ECS](#ecs)
+  - [ECS Cluster](#ecs-cluster)
+  - [ECS Service](#ecs-service)
+  - [ECS Task Definition](#ecs-task-definition)
 
 ## Containers
 
 ### What is a container?
-A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another
+A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A container is supposed to run a single process.
 **Add diagram with the packaging example**
 
 ### Difference between Virtual Machine and Container
 Both the virtual machine and the container have resource isolation, but they work in a different way. While the virtual machine virtualizes the hardware, the container virtualizes the operating system. This makes the container a lot more portable and efficient.
 **Add diagram with difference between VM and container**
+
+### Benefits of Containers
+Before talking about the benefits of containers, it's important to make clear that not all kinds of workloads are a good fit for a container. Because of the container nature, an application with multiple processes and services running on a single machine is not a good fit for a container. 
+
+Once you confirm that a specific service is a good fit for a container, the benefits of a container includes:
+- Container images are normally small compared to VMs, so it's easy to move them around
+- Because everything required by the application is inside the container, the execution of the container will be the same anywhere
+- Speeds up the development process since the Developer can have multple containers running on his local computer to simulate a very reliable production environment(in terms of funcionality)
 
 #### Container
 Containers are an abstraction at the app layer that packages code and dependencies together. Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up less space than VMs (container images are typically tens of MBs in size), can handle more applications and require fewer VMs and Operating systems. 
@@ -102,7 +111,7 @@ CMD [ "/app/app1.bin", "run" ]
 - WORKDIR
   - Sets the working directory to run the instructions: RUN, CMD, ENTRYPOINT, COPY and ADD
 
-Reference to all Instructions: [https://docs.docker.com/engine/reference/builder/](https://docs.docker.com/engine/reference/builder/)
+Reference to all Dockerfile Instructions: [https://docs.docker.com/engine/reference/builder/](https://docs.docker.com/engine/reference/builder/)
 
 ### Let's give it a go
 Simple [Docker file](artifacts/Dockerfile):
@@ -212,7 +221,21 @@ In that case, ordering the steps as 2-3-1 in your Dockerfile, will make Docker r
 Reference for all docker commands and options: [https://docs.docker.com/engine/reference/commandline/docker/](https://docs.docker.com/engine/reference/commandline/docker/)
 
 ## AWS ECS
-*WIP*
+[ECS](https://aws.amazon.com/ecs/)(Elastic Container Service) is a fully managed containers orchestration service available on AWS. A container orchestration tool is responsible to coordinate and manage all aspects of the lifecycle of  containers execution. As an example, it can be configured to run 2 replicas of a specific image and whenever something goes wrong with one the replicas, the orchstration tool will notice it and spin up a new container, so it keeps 2 replicas running all the time.
 
-## Exercise
-*WIP*
+### How does ECS works?
+ECS is composed mainly by three components: [ECS Cluster](#ecs-cluster), [ECS Service](#ecs-service) and [ECS Task Definition](#ecs-task-definition). 
+
+#### ECS Cluster
+The [ECS Cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) is a group of EC2 instances that will be used to run containers. ECS Clusters are Region-specific but it can span across multiple AZs in a that specific Region, providing a high availability container solution.
+
+#### ECS Service
+The [ECS Service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) is responsible by run and maintain the requested number of tasks(containers) of a specific image in the cluster. It's also responsible by associating the containers running with a specific load balance, so the traffic trying to access the service can be balanced between multiple containers.
+
+#### ECS Task definition
+The [ECS Task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) describes the container execution parmeters. Informations like the image to be used, the resources(cpu and memory) that will be made available for that container, the AWS IAM Role used by the container and volumes to be mounted will be specified in the Task definition, so when a new instance of the container is created, it will always have the same configurations.
+
+### More information
+- You can also run containers on AWS ECS through [Fargate](https://aws.amazon.com/fargate/) to provide serverless compute for containers. With fargate you won't need to manage compute instances to run your containers, as your containers will run in a serverless engine.
+- ECS fully integrates with AWS Load Balancer and AutoScaling groups, so you can balance the requests among multiple containers, as well your ECS service and increase the number of replicas of your task definition based on things like CPU and memory, so if your application is receiving a larger number of users, more containers will be available to support that load.
+
