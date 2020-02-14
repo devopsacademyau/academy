@@ -8,7 +8,7 @@
    - [Slack](#slack)
    - [Sponsors](#sponsors)
    - [Everyone Introduction (in-person only)](#everyone-introduction-in-person-only)
- - [Git 101](/classes/01class/git/PITCHME.md)
+ - [Git 101](/classes/01class/git/README.md)
  - [AWS 101](/classes/01class/aws101/README.md)
 
 ## Introduction

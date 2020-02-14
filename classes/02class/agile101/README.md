@@ -1,4 +1,5 @@
-# Class 02
+
+# Agile 101
 
 This class is an introduction to Agile methodology and frameworks.
 
@@ -6,12 +7,9 @@ The main goal is to explain the difference between sequential life cycle softwar
 
 There is also a brief introduction to Scrum and Kanban frameworks.
 
-## Agile 101
-
 ***Contents***
 
-- [Class 02](#class-02)
-  - [Agile 101](#agile-101)
+- [Agile 101](#agile-101)
   - [Software Development Methodologies and Frameworks](#software-development-methodologies-and-frameworks)
     - [What is Waterfall methodology?](#what-is-waterfall-methodology)
     - [What is Agile?](#what-is-agile)
@@ -40,7 +38,9 @@ There is also a brief introduction to Scrum and Kanban frameworks.
 
 ### What is Waterfall methodology?
 
-Waterfall Model methodology which is also known as Liner Sequential Life Cycle Model. Waterfall Model followed in the sequential order, and so project development team only moves to next phase of development or testing if the previous step completed successfully. [[1]](#r1)
+Waterfall methodology is a Liner Sequential Life Cycle Model.
+
+In this methodology, the processes follow a sequential order, and so project development team only moves to next phase of development or testing when the previous step is completed successfully. [[1]](#r1)
 
 ![alt Waterfall example](./assets/waterfall.png)
 *Waterfall example [[2]](#r2)*
