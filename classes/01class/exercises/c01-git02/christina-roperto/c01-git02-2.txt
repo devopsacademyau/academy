@@ -1,0 +1,9 @@
+# How to compare two different local repositories using git diff? 
+`git diff branch_name_a branch_name_b`
+
+# How about remote ones, can you do the same?
+yes. 
+
+`git diff origin/master upstream/master`
+
+

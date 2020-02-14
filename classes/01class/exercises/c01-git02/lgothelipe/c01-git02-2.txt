@@ -1,0 +1,22 @@
+How to compare two different local repositories using git diff? How about remote ones, can you do the same?
+
+To compare two different local repositories you can use the commands below:
+
+#Add the 2nd local repository to the list of repos
+
+	"git remote add 'repo_B' 'path_to_repo_b.git'"
+
+#Compare the two repos with git diff 
+
+	"git diff master remotes/repo_B/master"
+
+
+The same applies to remote repositories:
+
+#Add the 2nd repository to the list of repos
+
+	"git remote add 'other-repo' 'git://....../remote-repo.git'"
+
+#Compare the two repos with git diff
+
+	"git diff master remotes/other-repo/master"

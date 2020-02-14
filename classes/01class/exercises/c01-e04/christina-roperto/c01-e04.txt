@@ -1,0 +1,36 @@
+#S3(C01-E04) REVISED
+
+* Created bucket called "c01-e04" and chose default options and uploaded README.md
+* Went to IAM service and created a new policy with a limited list and read access as suggested. Called it "S3ListAndReadOnly"
+* Created a new role and attached the "S3ListAndReadOnly" policy created on step 2 and called it "S3LeastPrivilege"
+* Went back to list of EC2 instances created on the previous exercise (c01-e03) and chose the public one and attach IAM role "S3LeastPrivilege" created on the previous step
+* connected to the EC2 instance and type aws s3 ls c01-e04
+* copied the file from the S3 bucket using this line: aws s3 cp s3://c01-e04/README.md README.md
+
+Policy JSON:
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::c01-e04",
+                "arn:aws:s3:::c01-e04/README.md"
+            ]
+        }
+    ]
+}
+```
+
+source: 
+https://aws.amazon.com/blogs/security/use-the-new-visual-editor-to-create-and-modify-your-aws-iam-policies/
+https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
+
+
