@@ -1,0 +1,47 @@
+Created a seperate local branch called git-e03 and created the readme file as well as the large file
+
+➜  starkmatt git:(c01-git03) ✗ dd if=/dev/random of=file.txt count=102
+4 bs=10257
+dd: warning: partial read (115 bytes); suggest iflag=fullblock
+0+1024 records in
+0+1024 records out
+78377 bytes (78 kB, 77 KiB) copied, 0.0578101 s, 1.4 MB/s
+➜  starkmatt git:(c01-git03) ✗ ls -l
+total 80
+-rw-r----- 1 root root     0 Feb 14 01:29 c01-git03.txt
+-rw-r----- 1 root root 78377 Feb 14 01:38 file.txt
+-rw-r----- 1 root root     0 Feb 14 01:35 README.md
+➜  starkmatt git:(c01-git03) ✗ git add file.txt; git commit -m "Adding
+ bigger file"
+[c01-git03 4f32a74] Adding bigger file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 classes/01class/exercises/c01-git03/starkmatt/file.txt
+➜  starkmatt git:(c01-git03) ✗ cd ..
+➜  c01-git03 git:(c01-git03) ✗ du -sh 
+100K	.
+
+I noticed that the file size when running du-sh at the time was 100K
+After running du-sh again I saw the following
+➜  starkmatt git:(c01-git03) ✗ du -sh .
+84K	.
+
+I believe it was because I added the "." indicating this location where as initally I didn't put the "."
+I reverted the changes by typing;
+ git log
+
+And then identifying the commit by the ID and then typing
+
+git revert 4f32a74a68991551b2d8d1bfbec1b8dd03fbefc1
+
+Confimed that the file had been removd by reverting the last commit
+➜  starkmatt git:(c01-git) ✗ ls -l
+total 4
+-rw-r----- 1 root root 1326 Feb 14 02:02 c01-e03.txt
+-rw-r----- 1 root root    0 Feb 14 01:35 README.md
+➜  starkmatt git:(c01-git) ✗ du -sh .
+8.0K	.
+
+I then ran du -h on the Repo
+
+34M	./academy
+
