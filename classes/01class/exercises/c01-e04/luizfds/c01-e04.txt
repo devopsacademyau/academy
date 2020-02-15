@@ -1,16 +1,57 @@
-S3(C01-E01)
+S3(C01-E04)
 Create a S3 bucket and upload a file to it
-
 To achieve the task "Create a S3 bucket and upload a file to it" I've used the following commands:
-
-To create a bucket I have used aws s3api command (I could achieve the same using s3 command e.g. "aws s3 mb s3://bucket-c01-e03 --region us-east-1")
-$ aws s3api create-bucket --bucket bucket-c01-e03 --region us-east-1
+To create a bucket I have used aws s3api command (I could achieve the same using s3 command e.g. "aws s3 mb s3://bucket-c01-e04 --region us-east-1")
+$ aws s3api create-bucket --bucket bucket-c01-e04 --region us-east-1
 {
-    "Location": "/bucket-c01-e03"
+    "Location": "/bucket-c01-e04"
 }
 
-To upload a file I executed the following command:
-$ aws s3 cp "C:\devopsacademy\academy\classes\01class\exercises\c01-e04\luizfds\c01-e04.txt" s3://bucket-c01-e03
-upload: luizfds\c01-e04.txt to s3://bucket-c01-e03/c01-e04.txt
+To upload a file to my new bucket I executed the following command:
+$ aws s3 cp "C:\devopsacademy\academy\classes\01class\exercises\c01-e04\luizfds\c01-e04.txt" s3://bucket-c01-e04
+upload: luizfds\c01-e04.txt to s3://bucket-c01-e04/c01-e04.txt
 
-In order to access the file on the S3 bucket from any the EC2 instance created in the previous exercise or from a new instance I first need to access my EC2 instance (I've used the first one create in exercise C01-E03), then I need to configure the AWS CLI using the command "aws configure" to add my AWS Access Key ID and AWS Secret Access Key. After doing all required configuration I was able to download a file from the bucket created before using this command "aws s3 cp s3://bucket-c01-e03/c01-e04.txt ./".
+In order to access the file on the S3 bucket from my EC2 instance created in the previous exercise I had to create a new IAM Policy and using least privileges approach I only allowed the it to read and list S3 bucket, so the JSON config file for the policy looks like this:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::bucket-c01-e04",
+                "arn:aws:s3:::bucket-c01-e04/*"
+            ]
+        }
+    ]
+}
+
+The next step was create a new role with my new policy attached to it and then I had to associate it with my EC2 Instance. 
+login as: ec2-user
+Authenticating with public key "imported-openssh-key"
+Last login: Sat Feb 15 04:45:19 2020 from 101.116.71.230
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+5 package(s) needed for security, out of 9 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-30-122 ~]$ aws s3api list-objects --bucket bucket-c01-e04
+{
+    "Contents": [
+        {
+            "LastModified": "2020-02-15T04:31:38.000Z",
+            "ETag": "\"1e0c0dfd4e10f25583a6a1f884423f22\"",
+            "StorageClass": "STANDARD",
+            "Key": "c01-e04.txt",
+            "Size": 1170
+        }
+    ]
+}
+
