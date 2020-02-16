@@ -5,13 +5,6 @@
  - [Agile 101](/classes/02class/agile101/README.md)
  - AWS Services - Part I
 
-### Exercise
-- 3 groups of 4 people
-- What have you learned last class?
-- What whas interesting about last class?
-- Anything that you didn't understand last class?
-
-
 ## AWS Services - Part I
 
 ### IAM

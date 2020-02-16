@@ -28,6 +28,15 @@ There is also a brief introduction to Scrum and Kanban frameworks.
       - [Refinement](#refinement)
       - [Definition of ready](#definition-of-ready)
       - [Definition of done](#definition-of-done)
+  - [Game 1 - The Number Multitasking Game (10 min)](#game-1---the-number-multitasking-game-10-min)
+    - [What you need to play the game](#what-you-need-to-play-the-game)
+    - [How to play](#how-to-play)
+    - [Questions for discussion](#questions-for-discussion)
+  - [Game 2 - Pass the Pennies  - (20 min)](#game-2---pass-the-pennies---20-min)
+    - [What you need to play the game](#what-you-need-to-play-the-game-1)
+    - [How to play](#how-to-play-1)
+    - [Questions for discussion](#questions-for-discussion-1)
+    - [Exercise](#exercise)
   - [Appendix](#appendix)
       - [Reduce utilisation, batch size and item size](#reduce-utilisation-batch-size-and-item-size)
     - [Kanban vs Scrum](#kanban-vs-scrum)
@@ -258,6 +267,7 @@ During the Sprint:
 ### Really important! Don't forget about those!
 
 #### Refinement
+
 Product Backlog refinement is the act of adding detail, ***estimates***, and order to items in the Product Backlog. 
 
 This is an ***ongoing process*** in which the Product Owner and the Development Team collaborate on the details of Product Backlog items. 
@@ -273,6 +283,159 @@ Refinement enables this.
 Although this may vary significantly per Scrum Team, members must have a shared understanding of what it means for work to be complete, to ensure transparency.
 
 Is it a software delivered in production? Is it a software tested in non-production environment? Is it a documentation released?
+
+## Game 1 - The Number Multitasking Game (10 min)
+
+Adapted from Reference: https://livebook.manning.com/book/kanban-in-action/chapter-13/64
+
+This game is a simple simulation that can be played with a single person.
+
+It shows that less WIP improves lead times and helps alleviate stress and pressure.
+
+### What you need to play the game
+
+You need the following to play the game:
+
+1 pen per player
+1 sheet of paper per player
+A manager who times each player (this role can be played by the facilitator, if needed)
+A stopwatch (or a phone with a stopwatch application)
+
+### How to play
+
+Ask the people playing to help you with three important tasks that your company has coming up. Here are the tasks:
+
+- Write the roman numerals I through X in a column from top to bottom. Use your usual writing hand (right-hand?)
+
+- Write the letters A through J in another column from top to bottom. Use the other 'unusual' writing hand (left-hand?)
+
+- Write the numbers 1 through 10 in a final column from top to bottom. Use your usual writing hand (right-hand?)
+
+The manager will time the players for each task as well as record the total time (when all the tasks are done). 
+
+When the iteration is over, note the time for each task under it on the paper (or on the whiteboard).
+
+**First run**
+
+All projects are priorities, spend equal time in each.
+
+Write row by row.
+
+Example table:
+
+|          | Row by row |
+|----------|----|---|---|
+| Roman |  1:20  |   |   |
+| Letters |  1:22  |   |   |
+| Numbers | 1:24   |   |   |
+| TOTAL |  1:24  |   |   |
+
+
+**Second run** 
+
+It turns out the first task (roman numerals) is the most important one.
+
+The letters task is the second most important, and the numbers turn out to not be that important at all.
+
+This time focus on *what’s most important first* and finish it before continuing on to the next task.
+
+> “First all the roman numerals, then all the letters, and finally all the numbers. Column by column.”
+
+Example table:
+
+|          | Row by row | Column by Column
+|----------|----|---|---|
+| Roman |  1:20  |   | 
+| Letters |  1:22  |   |
+| Numbers | 1:24   |   |
+| TOTAL |  1:24  |   |
+
+### Questions for discussion
+
+- What happened to the total time? Why?
+- What happened to the times for each individual project? Why?
+- Was the first round harder? Why?
+- Does the simulation resemble your work situation?
+  - What are your individual projects?
+  - What does “switching pens” represent in your context?
+- How are projects prioritized at your company? Do you know what’s most important to work on right now?
+- How many projects/different things are you working on right now?
+- What happened to the quality of the produced result?
+- How did the first approach feel? Did the second approach feel better?
+
+## Game 2 - Pass the Pennies  - (20 min)
+
+Adapted from Reference: https://livebook.manning.com/book/kanban-in-action/chapter-13/13
+(group - adapted - instead of coins, paper sheets)
+
+### What you need to play the game
+
+The game is a fast and engaging way to introduce the concept of WIP and show why limiting WIP is a good idea.
+
+(for a team of 12 people - split in 2 teams)
+
+3 workers who write on paper sheets
+3 managers who time their worker
+1 customer or project manager (can be played by you, the facilitator, or the last manager in line, if needed)
+3 paper sheets
+3 pens/pencils
+A table to play on
+3 stopwatches (or phones with stopwatch applications)
+A whiteboard or flipchart to write results on
+
+### How to play
+
+The objective for each role is as follows:
+
+- Workers— Write decimal numbers (from 1 to 20) and pass the sheet to the next worker in line.
+- Managers— Measure the effective time that each worker is writing.
+- A customer— Determines the total time in two aspects:
+  - the time it takes for the first coin to be delivered,
+  - total time (until the last coin is delivered).
+
+Seat the *workers* around the table with a manager standing behind each worker. 
+
+Instruct the *managers* to use the stopwatch to track the effective time the worker is working. 
+
+Ask the *customer* to measure the time for the first coin delivery and the total time for all coins to be delivered.
+
+Run 3 iterations:
+- The first counting from 1 to 20.
+- Second, from 1 to 5.
+- Third, one in one.
+
+The final table will look like:
+
+|          | 20 | 5 | 1 |
+|----------|----|---|---|
+| worker 1 |  0:23  |   |   |
+| worker 2 |  0:21  |   |   |
+| worker 3 | ...   |   |   |
+| FIRST (customer) |    |   |   |
+| TOTAL (customer)|    |   |   |
+
+### Questions for discussion
+
+- What happened to the total time? Why?
+- What happened to the time for each individual worker? Why?
+- How did it feel to play the game? When was it stressful? When was it calmer?
+- Can this game be translated into your work?
+  - What are the coins in your work?
+  - What isn’t applicable in your context?
+  - What would happen if you lowered the number of “coins” in your context?
+  - What’s hindering you from doing that?
+- What can’t be translated into your work situation?
+
+### Exercise
+
+1. Let's do stand up meetings every class! YAY!
+2. Form 3 groups of 4 people
+3. Max 10 minutes
+
+- What have you learned last class? 
+- Could you solve all the exercises?
+- Anything that you didn't understand last class (impediments)?
+
 
 ## Appendix
 
@@ -304,7 +467,6 @@ Organization, culture and team dynamics often determine which method is the best
 
 When working in an Enterprise composed by many teams, with well defined process for change management, portfolio/project management and valuation, capacity management, compliance and regulation auditing, etc., this Agile methodologies need to scale so several teams work in harmony to achieve the strategic Enterprise goals.
 
-
 There some variations of the Scrum framework, as:
 - [LeSS](https://less.works/)
 
@@ -317,7 +479,6 @@ There some variations of the Scrum framework, as:
 - [Scrum of Scrums](http://guide.agilealliance.org/guide/scrumofscrums.html)
 - [SAFe](https://www.scaledagileframework.com/)
 - Many others...
-
 
 ## References
 <!-- <sup id="a1">[1](#f1)</sup> -->
