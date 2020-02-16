@@ -1,0 +1,5 @@
+Docker version 18.06.2, build 6d37f41
+aws-cli/2.0.0dev4 Python/3.7.3 Linux/4.19.79-1.ph3-esx botocore/2.0.0dev3
+Terraform v0.12.20
+
+
