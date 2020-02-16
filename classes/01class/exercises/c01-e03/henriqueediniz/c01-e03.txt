@@ -23,31 +23,37 @@ Documentation reference: https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-c
 
 Private IP: 
 
-To access my other instance, I did not flag Assign IPs automatically as private and used the same configuration as the last instance, however, I have to create an elastic IP associated with my private IP to be accessed from within the VPC using the internal IP .
-
-I used this steps:
-
-- Go into the EC2 dashboard, then in the NETWORK & SECURITY menu go to Elastic IPs.
-- Click on Allocate a new address.
-- Right click on the new IP and select Associate address.
-- Associate it with your EC2 instance that doesn't have an elastic IP.
+I create a Security Group to my Jump Server and I create a Jump Server instance with my SSH. After, I have uploaded my SSH with Putty to my instance that I would like to connect and tried to connect.
 
 
-My terminal: 
 
-✦ 👽 henriquediniz ssh -i "myKey.pem" ec2-user@ec2-52-205-249-95.compute-1.amazonaws.com
-The authenticity of host 'ec2-52-205-249-95.compute-1.amazonaws.com (52.205.249.95)' can't be established.
-ECDSA key fingerprint is SHA256:FsxeDVvSIGoYryj4cBPVBy58s8pEPi3IMfnHfAEoxEM.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'ec2-52-205-249-95.compute-1.amazonaws.com,52.205.249.95' (ECDSA) to the list of known hosts.
+
+My terminal in putty: 
+
+login as: ec2-user
+Authenticating with public key "myKey.pem" from agent
+Last login: Sun Feb 16 10:32:45 2020 from ec2-18-206-107-26.compute-1.amazonaws.com
 
        __|  __|_  )
        _|  (     /   Amazon Linux 2 AMI
       ___|\___|___|
 
 https://aws.amazon.com/amazon-linux-2/
-[ec2-user@ip-172-31-95-179 ~]$ 
+[ec2-user@ip-172-31-61-19 ~]$ ssh ec2-54-175-0-167.compute-1.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+No packages needed for security; 2 packages available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-81-119 ~]$
 
 
-Documentation reference: https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html
 
+
+
+I had use this video to show the steps to create a jump server and access my instance: https://www.youtube.com/watch?v=Mwf17O45IA0
+
+*I need use ssh-agent in my Mac to manager my keys.
