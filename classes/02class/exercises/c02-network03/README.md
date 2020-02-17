@@ -45,7 +45,7 @@ Create a NAT Gateway called `devopsacademy-ngw` and attach it to one of your pub
 Post how did you accomplish that on AWS console.
 
 
-### 5) Route Table
+### 5) Route Table (rt)
 
 Create the above route tables and associate with referred subnets:
 
@@ -81,7 +81,7 @@ Add the following routes to your new route tables:
 - Can you delete the destination route to your VPC network? Why?
 - What happens if you do not associate your route table with any subnets?
 
-### Network ACL
+### Network ACL (NACL's)
 
 #### Look for the network ACL created for your VPC and answer the following:
 
@@ -89,7 +89,7 @@ Your ACL rule inbound and outbound should look like this:
 
 |Rule#|Type|Protocol|Port Range|Source|Allow/Deny|
 |-|-|-|-|-|-|
-|100|ALL Traffic|ALL|ALL|<vpc-network>|ALLOW|
+|100|ALL Traffic|ALL|ALL|`<vpc-network>`|ALLOW|
 |101|ALL Traffic|ALL|ALL|0.0.0.0/0|ALLOW|
 |*|ALL Traffic|ALL|ALL|0.0.0.0/0|DENY
 
@@ -104,19 +104,28 @@ Create two new security groups with attached to your new VPC with the following:
 
 |Security Group Name|Rule|Type|Port Range|Source|Description
 |-|-|-|-|-|-|
-|public-sg|inbound|Custom TCP Rule|22|<your-home-ip-address>|SSH access from home to AWS|
-|private-sg|inbound|Custom TCP Rule|22|<public-sg-id>|SSH access only from public instances on AWS|
+|public-sg|inbound|Custom TCP Rule|22|`<your-home-ip-address>`|SSH access from home to AWS|
+|private-sg|inbound|Custom TCP Rule|22|`<public-sg-id>`|SSH access only from public instances on AWS|
 
 #### post details on how did you achieve that
+
+### Elastic Network Interface (ENI)
+
+Let's assume our service will need a fixed IP address and that if something happens with the instance we will have to move this IP address to a new one.
+
+Create a new ENI attached to one of your private subnets and give it a fixed IP address within the network range of the chosen subnet.
+
+#### post details on how did you achieve that -- note that Network Interfaces can be found on Services > Computer > EC2
 
 ### EC2
 
 Repeat exercise from last class where you have to:
 
 - launch an EC2 instance on a public subnet
-- attach your public SG to your public instance
-- launch an EC2 instance on a private subnet
-- attach your private SG to your publoc instance
+  - attach your public SG to your public instance
+- launch an EC2 instance on the same private subnet that you created your ENI
+  - attach ENI created from last exercise
+  - attach your private SG to your public instance
 - access to your public instance using SSH
 - FROM your PUBLIC instance, SSH to your private one
 
