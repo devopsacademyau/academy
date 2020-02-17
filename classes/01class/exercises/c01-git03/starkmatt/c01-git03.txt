@@ -1,53 +1,63 @@
-Created a seperate local branch called git-e03 and created the readme file as well as the large file
+##Exercise GIT03
 
-➜  starkmatt git:(c01-git03) ✗ dd if=/dev/random of=file.txt count=102
-4 bs=10257
-dd: warning: partial read (115 bytes); suggest iflag=fullblock
-0+1024 records in
-0+1024 records out
-78377 bytes (78 kB, 77 KiB) copied, 0.0578101 s, 1.4 MB/s
-➜  starkmatt git:(c01-git03) ✗ ls -l
-total 80
--rw-r----- 1 root root     0 Feb 14 01:29 c01-git03.txt
--rw-r----- 1 root root 78377 Feb 14 01:38 file.txt
--rw-r----- 1 root root     0 Feb 14 01:35 README.md
-➜  starkmatt git:(c01-git03) ✗ git add file.txt; git commit -m "Adding
- bigger file"
-[c01-git03 4f32a74] Adding bigger file
+#Create Temp Repo
+➜  ~ git:(Temp01) ✗ git add temp                              
+➜  ~ git:(Temp01) ✗ git commit
+[Temp01 71a774c] Testing
  1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 classes/01class/exercises/c01-git03/starkmatt/file.txt
-➜  starkmatt git:(c01-git03) ✗ cd ..
-➜  c01-git03 git:(c01-git03) ✗ du -sh 
-100K	.
+ create mode 100644 temp/README.md
+➜  ~ git:(Temp01) ✗ git branch
+➜  ~ git:(Temp01) ✗ cd temp 
+➜  temp git:(Temp01) ✗ ls -l 
+total 0
+-rw-r----- 1 root root 0 Feb 17 22:04 README.md
+➜  temp git:(Temp01) ✗ git log
+➜  temp git:(Temp01) ✗ du -h
+4.0K	.
+➜  temp git:(Temp01) ✗ du -h
+4.0K	.
 
-I noticed that the file size when running du-sh at the time was 100K
-After running du-sh again I saw the following
-➜  starkmatt git:(c01-git03) ✗ du -sh .
-84K	.
+#Adding Big File
 
-I believe it was because I added the "." indicating this location where as initally I didn't put the "."
-I reverted the changes by typing;
- git log
+➜  temp git:(Temp01) ✗ git log
+➜  temp git:(Temp01) ✗ dd if=/dev/urandom of=file.txt bs=1048576 count=100
+100+0 records in
+100+0 records out
+104857600 bytes (105 MB, 100 MiB) copied, 1.51314 s, 69.3 MB/s
+➜  temp git:(Temp01) ✗ ls -l
+total 102400
+-rw-r----- 1 root root 104857600 Feb 17 22:17 file.txt
+-rw-r----- 1 root root         0 Feb 17 22:04 README.md
+➜  temp git:(Temp01) ✗ du -sh .
+101M	.
+➜  temp git:(Temp01) ✗ 
+➜  temp git:(Temp01) ✗ git add file.txt; git commit -m "Adding correct b1g f1le"
+[Temp01 134ee01] Adding correct b1g f1le
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 temp/file.txt
+➜  temp git:(Temp01) ✗ cd ..
+➜  ~ git:(Temp01) ✗ du -sh temp 
+101M	temp
+#Removal of Adding big F1le
+rebase -i HEAD~2
+drop 134ee01 Adding correct b1g f1le
 
-And then identifying the commit by the ID and then typing
-
-git revert 4f32a74a68991551b2d8d1bfbec1b8dd03fbefc1
-
-Confimed that the file had been removd by reverting the last commit
-➜  starkmatt git:(c01-git) ✗ ls -l
-total 4
--rw-r----- 1 root root 1326 Feb 14 02:02 c01-e03.txt
--rw-r----- 1 root root    0 Feb 14 01:35 README.md
-➜  starkmatt git:(c01-git) ✗ du -sh .
-8.0K	.
-
-I then ran du -h on the Repo
-
-34M	./academy
+#Checking Directory Size after removal
+➜  temp git:(Temp01) ✗ du -sh .
+4.0K	.
+➜  temp git:(Temp01) ✗ ls -l
+total 0
+-rw-r----- 1 root root 0 Feb 17 22:04 README.md
+➜  temp git:(Temp01) ✗ 
 
 Questions
 
-- I believe that this can be an issue if a big file is created in the teams local repo and then merged to the master without doublechecking.
-The file size of the repo may increase and then cause issues when other team members are pulling changes to their repos.
+1) Did you notice any difference in the size of the repo before and after adding the big file?
+Indeed, as you notice above there was a big difference in file sizes after the file were created.
+It looked to be bigger than what was used in the command by about 2-5MB
 
-- To remove git history, it would be ideal to use git rebase, as it is a clean commit and free of unnecessary merge commits 
+2) What is the reason for this problem?
+There seems to be a cached added to Git folder along side the inital folder the file was created in.
+
+3) How do you remove something from Git history? Which commands would you use? What are the consequences?
+In this particular instance I used rebase -i HEAD~2 and used the "drop" command to remove the Adding of big file and cleaning up commit history
