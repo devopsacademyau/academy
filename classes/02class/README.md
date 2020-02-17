@@ -34,8 +34,6 @@
 
 ## AWS Services - Part I
 
-### IAM
-
 ### VPC + Subnets
 
 *WIP*
@@ -44,35 +42,9 @@
 
 *WIP*
 
-### Auto-Scaling
-
-*WIP*
-
-### Load Balancers
-
-*WIP*
-
-### Route53
-
-*WIP*
-
-### S3
-
-*WIP*
-
-### RDS
-
-*WIP*
-
-### DynamoDB
-
-*WIP*
-
-### Lambda
-
-*WIP*
-
 ## Labs and Exercises
+
+(Link to exercises)[/classes/class02/exercises/README.md]
 
 ### VPC and EC2s
 - Build a new VPC, 3 subnets, NATGW, IGW, routes, nacls	6
