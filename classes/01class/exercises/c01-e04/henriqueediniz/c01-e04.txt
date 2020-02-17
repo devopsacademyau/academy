@@ -1,0 +1,19 @@
+I have created in my account a S3 bucket under S3 and upload a test file called testS3.txt
+I create in my IAM a group that my instance in EC2 can access to S3.
+
+
+[ec2-user@ip-172-31-81-119 ~]$ was s3 ls
+2020-02-17 08:42:11 henrique_bucket
+[ec2-user@ip-172-31-81-119 ~]$
+
+-- copy my file to the bucket
+[ec2-user@ip-172-31-81-119 ~]$ aws s3 cp s3://henrique_bucket/testS3.txt 
+
+ec2-user@ip-172-31-81-119 ~]$ ls
+testS3.txt
+ec2-user@ip-172-31-81-119 ~]$ cat test.txt
+
+
+
+
+Used this doc to understand S3 https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html
