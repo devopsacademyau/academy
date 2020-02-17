@@ -1,0 +1,8 @@
+C:\Users\Marco>aws --version
+aws-cli/1.17.9 Python/3.6.0 Windows/10 botocore/1.14.9
+
+marco@marco-VirtualBox:~$ docker --version
+Docker version 19.03.6, build 369ce74a3c
+
+C:\Users\Marco>terraform -version
+Terraform v0.12.20
