@@ -1,0 +1,34 @@
+c01-e03.txt
+
+created one t2.micro instance with public IP
+created one t2.micro instance with no public IP
+both using same pem file
+
+
+anderson@andreazza:~$ chmod -400 bastion.pem
+
+
+anderson@andreazza:~$ ssh-add bastion.pem 
+Identity added: bastion.pem (bastion.pem)
+
+
+anderson@andreazza:~$ ssh -A ec2-user@ec2-3-106-164-98.ap-southeast-2.compute.amazonaws.com 
+Last login: Sat Feb 15 08:05:26 2020 from 14-201-210-33.tpgi.com.au
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+No packages needed for security; 2 packages available
+Run "sudo yum update" to apply all updates.
+
+
+[ec2-user@ip-172-31-14-157 ~]$ ssh ec2-user@172.31.4.55
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-172-31-4-55 ~]$ 
