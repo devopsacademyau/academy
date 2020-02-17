@@ -1,8 +1,0 @@
-Found this one a little tricky, the instructions were a little cryptic or maybe just my understanding of the exercise.
-
-git branch bugFix
-git checkout bugFix; git commit
-git checkout master; git commit
-git checkout bugFix; git rebase master
-
-
