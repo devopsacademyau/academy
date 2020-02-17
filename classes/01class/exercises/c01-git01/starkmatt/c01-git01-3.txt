@@ -1,0 +1,5 @@
+#Exercise 3
+
+git reset head~1
+git checkout pushed
+git revert HEAD
