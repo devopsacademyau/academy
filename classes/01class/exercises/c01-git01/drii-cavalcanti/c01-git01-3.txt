@@ -1,0 +1,3 @@
+git reset C3^
+get checkout pushed
+git revert C2

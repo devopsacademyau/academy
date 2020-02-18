@@ -1,0 +1,8 @@
+c01-git02-2.txt
+
+- How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
+
+
+git diff branch_1 branch_2
+
+git diff localbranch remotebranch
