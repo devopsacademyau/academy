@@ -1,6 +1,6 @@
 # AWS VPC + subnets
 
-Create a txt file under your folder name to add deliverables.
+Create a txt file under your folder name `c02-network03` and add all answers from questions below.
 
 Everything is to be done preferable on Sydney region `ap-southeast-2`
 

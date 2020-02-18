@@ -15,10 +15,10 @@
     - [Network ACL](#network-acl)
     - [Security Group](#security-group)
     - [Elastic Network Interface](#elastic-network-interface)
-    - []
-    - [VPC Peering]()
-    - [Transit Gateway]()
-- [References]()
+    - [Direct Connect and VPN](#direct-connect-and-vpn)
+    - [VPC Peering](#vpc-peering)
+    - [Transit Gateway](#transit-gateway)
+- [References](#references)
 
 
 ## Introduction
