@@ -1,0 +1,7 @@
+Is it possible to see the inner commit of squashed commit with git rebase?
+Yes, it's possible as Git never really loses anything, even when performing history rewriting operations like rebasing or commit amending. You can see the squashed commit using git reflog. 
+
+source:
+https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog
+https://www.atlassian.com/git/tutorials/rewriting-history
+https://stackoverflow.com/questions/3594746/getting-the-information-of-squashed-commits-in-git

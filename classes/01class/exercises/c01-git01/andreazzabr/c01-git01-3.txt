@@ -1,0 +1,6 @@
+c01-git01-3.txt
+
+git checkout pushed
+git revert pushed
+git checkout local
+git reset HEAD~1
