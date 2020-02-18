@@ -95,7 +95,6 @@ The content can be accessed through each specific README link below.
     - Git
 - [Class 02](classes/02class/README.md)
     - Agile Methodologies
-    - AWS IAM
     - AWS Network Deep Dive
 - [Class 03](classes/03class/README.md)
     - AWS EC2
@@ -109,7 +108,7 @@ The content can be accessed through each specific README link below.
         - Dockerfile
         - AWS ECS
 - [Class 04](classes/04class/README.md)
-    - AWS - IAM Keys
+    - AWS IAM
     - AWS - CLI
     - AWS - RDS
     - IaC - Terraform
