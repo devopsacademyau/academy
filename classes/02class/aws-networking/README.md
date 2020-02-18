@@ -40,7 +40,7 @@ For connecting multiple networks together, a router is needed. Either as a full 
 
 ![lan-wan](lan-wan.png)
 
-### Internet Protocol Address (IP)
+### Internet Protocol Address (IP address)
 
 An IP is a numerical, human-readable way of assigning a computer to a network. For example ``. The protocol has two addressiong versions are available:
 
@@ -76,15 +76,16 @@ Subnets are made to isolate traffic within a network and provide security on the
 
 It is a best practice to isolate networks that have databases or private systems running from workloads that can be accessible from the internet. The naming convention for these subnets are: 
 
-- `private` subnet
-  - Workloads like databases or identity management systems will run here
-  - Any service running in this subnet won't be accessible direct from public networks (like internet). To access applications 
-  - Services can go out to the internet through a nat gateway.
-  - to access a workload here, a jumpbox from the public subnet is neccesary
-
 - `public` subnet
   - good fit for frontend webservers where clients will have the first point of contact. From the webserver you can then communicate with backend servers running on private subnets
   - nat gateways (translate private IP's to public IP's)
+  
+- `private` subnet
+  - Workloads like databases or identity management systems will run here
+  - Any service running in this subnet won't be accessible direct from public networks (like internet).
+  - Services can go out to the internet through a nat gateway.
+    - A NAT Gateway will receive the internal request, masquerade as if it was its own and forward to the external service. The external service will only know the gateway and return the response to it. Then the gateway will forward the packet to the internal instance.
+  - to access a workload here, a jumpbox from the public subnet is neccesary
 
 Very often a `secure` subnet will also be presented and is mainly used for databases. The secure subnet won't have neither IN or OUT access to internet and can only be accessed from workloads running in `private` subnet.
 
@@ -100,7 +101,12 @@ A VPC can then be sliced into multiple networks called subnets where you will ha
 
 ### AWS Networking
 
-Subnets within a VPC on AWS environment are bound to only one Availability Zone (AZ). To achieve high availability (in case one AZ goes off) of a workload, we need to create the one public/private subnet per AZ, so 4 subnets in total for this example.
+Subnets within a VPC on AWS environment are bound to only one Availability Zone (AZ). To achieve high availability (in case one AZ goes off) we need to create a public and a private subnet per AZ, so 4 subnets in total for this example.
+
+Reference: 
+
+- https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html
+- https://aws.amazon.com/premiumsupport/knowledge-center/move-ec2-instance/
 
 This article will now move into a tutorial style with information needed for creating a fully working VPC with a few subnets. Explicit instructions/commands/where to go on AWS console can easily be found on the provider documentation. 
 
@@ -133,13 +139,17 @@ There is no cost for creating a VPC.
 
 #### Subnet
 
-Subnets can then be sliced to smaller chunks of ip addressing to isolate workloads. The most common size for a subnet is a `/24` which will support `256` IP's.
+The VPC subnet can then be sliced into smaller subnets to spread the workloads between multiple AZs as well to isolate public and private workloads. The most common size for a subnet is a `/24` which will support `256` IP's.
 
 It's important to mention that only `251` IP's out of `256` will be available to be assigned to hosts as a few of them are special addresses.
 
 - of any subnet:
   - first ip (0) is known as `network`
+    - IP network address range
   - last ip (255) is used for broadcasting
+    - used to map the logical address (IP address) to the correct MAC address (physical address)
+    - DHCP protocol also uses broadcasting to dynamically assign IP addresses to host
+    - all devices listen to broadcast in addition of its own
  
 - of any AWS subnet:
   - second ip (1) is reserved to be used by the VPC Router
