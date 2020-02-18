@@ -8,10 +8,11 @@
    It is still not working, once you have commited your changes is going to be in the git history.
 
 4. How to fix this? How do you remove something from Git history?
-   I'd apply a filter in the 'index' layer for each commit.
+   I'd try to revert it by moving a branch backwards from 'index' layer (local) .
 
 5. Which commands would you use? What are the consequences for other developers?
-   - git filter-branch --index-filter 'git rm --cached --ignore-unmatch <filename>' HEAD
-   Using the tree filter may take forever because it checks out every commit.
+   - git reset HEAD~1
+   - git rebase 
+   These commands will combine all commits into a larger one. None of other developers will be affected.
    
    
