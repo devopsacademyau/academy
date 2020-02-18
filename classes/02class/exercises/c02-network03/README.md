@@ -34,7 +34,7 @@ Create 2 subnets (private and public) per Availability Zone (6 subnets in total)
 
 Create an Internet Gateway called `devopsacademy-igw` and attach it to your `devopsacademy-vpc` VPC.
 
-Post how did you accomplish that on AWS console.
+#### Post how did you accomplish that on AWS console.
 
 ### 4) NAT Gateway (NGW) (optional)
 
@@ -42,7 +42,7 @@ Be aware that NAT Gateway is out of the free-tier. If you just use it while you 
 
 Create a NAT Gateway called `devopsacademy-ngw` and attach it to one of your public subnets (any) with an Elastic IP. 
 
-Post how did you accomplish that on AWS console.
+##### Post how did you accomplish that on AWS console.
 
 
 ### 5) Route Table (rt)
