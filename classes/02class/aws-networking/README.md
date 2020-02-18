@@ -3,22 +3,21 @@
 
 ## Contents
 
-- [Introduction]()
-- [Basic Networking]()
-- [Cloud Networking]()
-  - [AWS Networking]()
-    - [VPC]()
-    - [Subnets]()
-    - [Internet Gateway]()
-    - [NAT Gateway]()
-    - [Routing Table]()
-    - [Elastic IP]()
-    - [Elastic Network Interface]()
-    - [Network ACL]()
-    - [Security Groups]()
-    - [VPN/Direct Connect]()
-    - [Transit Gateway]()
+- [Introduction](#introduction)
+- [Basic Networking](#basic-networking)
+- [Cloud Networking](#cloud-networking)
+  - [AWS Networking](#aws-networking)
+    - [VPC](#vpc)
+    - [Subnet](#subnet)
+    - [Internet Gateway](#internet-gateway)
+    - [NAT Gateway](#nat-gateway)
+    - [Routing Table](#routing-table)
+    - [Network ACL](#network-acl)
+    - [Security Group](#security-group)
+    - [Elastic Network Interface](#elastic-network-interface)
+    - []
     - [VPC Peering]()
+    - [Transit Gateway]()
 - [References]()
 
 
@@ -39,6 +38,8 @@ A computer with a manual IP address configured constitutes in a LAN, although it
 
 For connecting multiple networks together, a router is needed. Either as a full hardware device or just an application working as a Router. This device will be in charge of knowing all existing paths, receive requests from a network and forward the packages to its destination.
 
+![lan-wan](lan-wan.png)
+
 ### Internet Protocol Address (IP)
 
 An IP is a numerical, human-readable way of assigning a computer to a network. For example ``. The protocol has two addressiong versions are available:
@@ -47,6 +48,17 @@ An IP is a numerical, human-readable way of assigning a computer to a network. F
 - IPv6 as a 128-bits address. i.e.: 2001:db8:0:1234:0:567:8:1
 
 IPv6 was introduced a few years ago due to the growth of the internet and the depletion of available IPv4 addresses. IPv6 is out of context of this material. For reference: https://docs.aws.amazon.com/vpc/latest/userguide/get-started-ipv6.html
+
+![ip](ip.png)
+
+A few IPv4 network ranges are considered private and thus need to be routed across different networks to work.
+
+|Network|Range|Number of addresses
+|-|-|-|
+|10.0.0.0/8|10.0.0.0 - 10.255.255.255|16 777 216|
+|172.16.0.0/12|172.16.0.0 - 172.31.255.255|1 048 576|
+|192.168.0.0/16|192.168.0.0 - 192.168.255.255|65 536|
+
 
 Reference content for deep-dive information:
 
@@ -78,6 +90,8 @@ Very often a `secure` subnet will also be presented and is mainly used for datab
 
 Don't get me wrong here, those are just conventions.
 
+![public-private](public-private.png)
+
 ## Cloud Networking
 
 Most of today's cloud providers share the same concept of Virtual Private Cloud (VPC) for stablishing a logically isolated section of network within your account.
@@ -90,7 +104,7 @@ Subnets within a VPC on AWS environment are bound to only one Availability Zone 
 
 This article will now move into a tutorial style with information needed for creating a fully working VPC with a few subnets. Explicit instructions/commands/where to go on AWS console can easily be found on the provider documentation. 
 
-As always, we recommend to play around in the console and familiarise yourself with it. There is not better way to learn:
+As always, we recommend to play around in the console and familiarise yourself with it. There is no better way to learn.
 
 What we will be doing:
 
@@ -108,7 +122,6 @@ The first thing is to determine what will be the network size for the whole VPC.
 
 It's always ideal to think ahead how many devices your network will support and only reserve the right amount of addresses need with some extra for future expansions. Although we won't need this many IP's, for this example we will be using the `/16` network as it will simplify the big picture understanding.
 
-
 |field|value|
 |-|-|
 |Name tag|devopsacademy|
@@ -118,11 +131,11 @@ It's always ideal to think ahead how many devices your network will support and 
 
 There is no cost for creating a VPC.
 
-#### Subnets
+#### Subnet
 
 Subnets can then be sliced to smaller chunks of ip addressing to isolate workloads. The most common size for a subnet is a `/24` which will support `256` IP's.
 
-It's important to mentiont that only `251` IP's out of `256` will be available to be assigned to hosts as a few of them are special addresses.
+It's important to mention that only `251` IP's out of `256` will be available to be assigned to hosts as a few of them are special addresses.
 
 - of any subnet:
   - first ip (0) is known as `network`
@@ -156,12 +169,83 @@ For each subnet:
 
 Now, what it makes a `public`/`private` subnet actually be considered `public` or `private` ?
 
+
+![vpc-public-private](vpc-public-private.png)
+
 #### Internet Gateway
 
+To be able to route internal VPC requests from public subnets to the internet, a Internet Gateway is required. This is a managed service and it is included on the free-tier. Only need to attach it to a VPC when creating.
+
+Reference: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html
+
 #### NAT Gateway
+
+From private subnets, access from the internet shouldn't be allowed direct to the instances. However, the instances still need access to the internet for updates or consuming external services. The NAT Gateway masquerades the private requests to the internet.
+
+Reference: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html
+
+#### Routing Table
+
+As any other junction of networks, a router is needed. AWS abstracts the concept of the router completing managing the VPC Router (this is a virtual thing and can't be accessed directly). The only job left to be done is configuring routes between your networks through routing tables.
+
+Reference: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html
+
+#### Network ACL
+
+AWS offers two types of network security/firewall: 1) Network ACL (NACL's) and 2) Security Groups (SG's). NACL's are controls on the network layer, managing the access that goes out from one subnet to another. 
+
+NACL's are stateless, which means that responses to allowed inbound traffic are subject to the rules for outbound traffic (and vice versa). Basically, you need to add a rule for inbound AND outbound.
+
+Reference: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
+
+#### Security Group
+
+Security Groups are on the layer 7 (application). It controls requests from applications into specific ports.
+
+You might set up similar rules on both NACL's and SG's for an additional layer of security.
+
+Reference: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html
+
+#### Elastic Network Interface
+
+ENI's are like a virtual network card that will be always available independent from the instance itself. So in a case that you lose your instance for any reason, you can always re-attach the existing ENI to a new instance and maintain all network configurations like IP address the same.
+
+Reference: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html
+
+#### Direct Connect and VPN
+
+What if you want to connect your AWS VPC to your local datacenter/home network and maintain everything as one `local` network? You can either create a VPN between AWS and your external network or connect your network to AWS through a direct fiber link.
+
+Those two subjects are not included in this course.
+
+Reference:
+- https://aws.amazon.com/directconnect/
+- https://aws.amazon.com/vpn/
+
+#### VPC Peering
+
+What if you decide to have multiple VPC's on your network for a complete isolation of traffic between production and development but also to share some similar resources? Each VPC would be considered an external network to each other and would require some sort of routing between them so the applications could reach each other. 
+
+AWS then offers a way to `peer` two VPC's and create a automatic routing connection. This way you only need to setup routing rules and network acls. Important to mention that a VPC A peering with VPC B, where VPC B is also paired with VPC C. VPC A does not have access to VPC C through VPC B.
+
+VPC Peering is out of this course context.
+
+Reference: https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html
+
+![vpc-peering](vpc-peering.png)
+
+#### Transit Gateway
+
+When the network starts to get complex with multiple VPC's and Direct Connect/VPN links across the environment, it becomes a nightmare to manage all the routing tables. Transit Gateway simplify the process becoming just one centralised point where you will connect all your VPC's and external networks and control just one routing table.
+
+This is also not included on this course.
+
+Reference: https://aws.amazon.com/transit-gateway/
 
 ## References
 
 - [Wikipedia IP_address](https://en.wikipedia.org/wiki/IP_address)
 - [AWS IP Addressing](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html)
 - [AWS VPC](https://aws.amazon.com/vpc/)
+- [AWS VPC with Public and Private Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
+- [Public and Private subnets](https://cloudacademy.com/lab/securing-your-vpc-using-public-and-private-subnets-with-network-acl/)
