@@ -1,0 +1,6 @@
+Is it possible to see the inner commit of squashed commit with 'git rebase' ?
+
+Yes, using the command git reflog.
+Basically, reflog is an alias for git log. 
+
+https://git-scm.com/docs/git-reflog
