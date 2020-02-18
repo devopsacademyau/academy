@@ -52,6 +52,7 @@ Waterfall methodology is a Liner Sequential Life Cycle Model.
 In this methodology, the processes follow a sequential order, and so project development team only moves to next phase of development or testing when the previous step is completed successfully. [[1]](#r1)
 
 ![alt Waterfall example](./assets/waterfall.png)
+
 *Waterfall example [[2]](#r2)*
 
 > How do you do with always-changing requirements while using a waterfall methodology?
@@ -84,6 +85,7 @@ It does not matter much if the final product is a software product or if the IT 
 We need to iterate more with a smaller set of requirements that bring value to the business!
 
 ![alt Waterfall example](./assets/waterfall_agile.gif)
+
 *Waterfall vs Agile [[3]](http://customerthink.com/agile-versus-waterfall-for-crm-implementation-success/)*
 
 ***Lean***
@@ -230,8 +232,11 @@ It is composed by:
 See Atlassian website (https://www.atlassian.com/agile/scrum/roles).
 
 * Product Owner
+
 ![](./assets/Scrum-Product&#32;Owner-revised.png)
+
 * Scrum Master
+
 ![](./assets/Scrum-Master-revised.png)
 
 * Development Team
@@ -296,10 +301,10 @@ It shows that less WIP improves lead times and helps alleviate stress and pressu
 
 You need the following to play the game:
 
-1 pen per player
-1 sheet of paper per player
-A manager who times each player (this role can be played by the facilitator, if needed)
-A stopwatch (or a phone with a stopwatch application)
+- 1 pen per player
+- 1 sheet of paper per player
+- A manager who times each player (this role can be played by the facilitator, if needed)
+- A stopwatch (or a phone with a stopwatch application)
 
 ### How to play
 
@@ -323,12 +328,12 @@ Write row by row.
 
 Example table:
 
-|          | Row by row |
-|----------|----|---|---|
-| Roman |  1:20  |   |   |
-| Letters |  1:22  |   |   |
-| Numbers | 1:24   |   |   |
-| TOTAL |  1:24  |   |   |
+|          | Row by row | 
+|----------|----|
+| Roman |  1:20  |
+| Letters |  1:22  |
+| Numbers | 1:24   |
+| TOTAL |  1:24  | 
 
 
 **Second run** 
@@ -343,8 +348,8 @@ This time focus on *what’s most important first* and finish it before continui
 
 Example table:
 
-|          | Row by row | Column by Column
-|----------|----|---|---|
+|          | Row by row | Column by Column |
+|----------|----|---|
 | Roman |  1:20  |   | 
 | Letters |  1:22  |   |
 | Numbers | 1:24   |   |
@@ -406,7 +411,7 @@ Run 3 iterations:
 
 The final table will look like:
 
-|          | 20 | 5 | 1 |
+|  batch size        | 20 | 5 | 1 |
 |----------|----|---|---|
 | worker 1 |  0:23  |   |   |
 | worker 2 |  0:21  |   |   |
