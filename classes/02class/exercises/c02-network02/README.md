@@ -1,6 +1,6 @@
 # Subnetting
 
-Commit your work in a text file under your folder name.
+Commit all your answers to a text file `c02-network02.txt` under your folder name.
 
 ### Given a AWS network range, slice it in 4 small subnets and identify how many usable hosts for each one of them.
 
