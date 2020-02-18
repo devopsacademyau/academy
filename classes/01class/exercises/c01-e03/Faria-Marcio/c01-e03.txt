@@ -1,0 +1,1 @@
+I followed the https://www.guru99.com/creating-amazon-ec2-instance.html steps. I could create the instances as EC2(C01-E03) exercise details but I faced problem to connect to the instances. I'll check it in details to find out the solution.
