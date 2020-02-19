@@ -31,7 +31,7 @@ We'll also take a look into how the AWs ECS Service works and it's purpose.
 ## Containers
 
 ### What is a container?
-A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A container is supposed to run a single process.
+A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A container is supposed to run a single main process. Once the process is completed/stoppped, the container will exit.
 <p align="center">
     <img src="assets/container01.jpg" width="900">
 </p>
