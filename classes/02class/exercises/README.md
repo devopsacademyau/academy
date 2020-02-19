@@ -1,8 +1,5 @@
 # Labs and exercises
 
-## Agile
-
-
 ## Networking
 
 - [IP Addressing](/classes/02class/exercises/c02-network01/README.md)
