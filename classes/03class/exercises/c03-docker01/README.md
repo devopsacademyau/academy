@@ -13,7 +13,7 @@ Create a new docker image named `da-terraform` with the tag `c03-docker-e01` tha
 
 ## Submit a PR with the following files:
 - Dockerfile: used to create the image
-- c03-docker01.txt: Containing the commands used to build and execute the image, as well a the output of container execution.
+- c03-docker01.txt: Containing the commands used to build and execute the image, as well as the output of container execution.
 
 ## References
 - [https://linoxide.com/linux-how-to/how-to-install-terraform-on-centos-ubuntu/](https://linoxide.com/linux-how-to/how-to-install-terraform-on-centos-ubuntu)
