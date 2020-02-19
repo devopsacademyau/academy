@@ -1,0 +1,6 @@
+- I've created an S3 bucket on https://s3.console.aws.amazon.com/s3/home?region=ap-southeast-2;
+- Uploaded a test .txt file on it;
+- Created an IAM role to S3;
+- Associated the IAM role that I'd created to one of my instances;
+- Connected to that instance;
+- Used the command line "aws s3 ls"
