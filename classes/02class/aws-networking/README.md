@@ -1,6 +1,3 @@
-* WIP
-
-
 ## Contents
 
 - [Introduction](#introduction)
@@ -49,7 +46,7 @@ An IP is a numerical, human-readable way of assigning a computer to a network. F
 
 IPv6 was introduced a few years ago due to the growth of the internet and the depletion of available IPv4 addresses. IPv6 is out of context of this material. For reference: https://docs.aws.amazon.com/vpc/latest/userguide/get-started-ipv6.html
 
-![ip](ip.png)
+![ip](/classes/02class/aws-networking/assets/ip.png)
 
 A few IPv4 network ranges are considered private and thus need to be routed across different networks to work.
 
@@ -91,7 +88,7 @@ Very often a `secure` subnet will also be presented and is mainly used for datab
 
 Don't get me wrong here, those are just conventions.
 
-![public-private](public-private.png)
+![public-private](/classes/02class/aws-networking/assets/public-private.png)
 
 ## Cloud Networking
 
@@ -123,6 +120,8 @@ What we will be doing:
   - routing table
 
 #### VPC
+
+![vpc-diagram](/classes/02class/aws-networking/assets/aws-vpc-diagram.png)
 
 The first thing is to determine what will be the network size for the whole VPC. AWS supports networks up to `65.536` IP's reffered as a `/16` network. 
 
@@ -162,9 +161,9 @@ Note that the range `from` and `to` of each network can't overlap with each othe
 
 |subnet|Availability Zone|network|cidr|from|to|ips|
 |-|-|-|-|-|-|-|
-|private-a|ap-southeast-2a|10.0.1.0|24|10.0.1.4|10.0.1.254|251
-|private-b|ap-southeast-2b|10.0.2.0|24|10.0.2.4|10.0.2.254|251
-|public-a|ap-southeast-2a|10.0.10.0|24|10.0.10.4|10.0.10.254|251
+|private-a|ap-southeast-2a|10.0.0.0|24|10.0.0.4|10.0.0.254|251
+|private-b|ap-southeast-2b|10.0.10.0|24|10.0.10.4|10.0.10.254|251
+|public-a|ap-southeast-2a|10.0.1.0|24|10.0.1.4|10.0.1.254|251
 |public-b|ap-southeast-2b|10.0.11.0|24|10.0.11.4|10.0.11.254|251
 
 For each subnet:
@@ -180,7 +179,7 @@ For each subnet:
 Now, what it makes a `public`/`private` subnet actually be considered `public` or `private` ?
 
 
-![vpc-public-private](vpc-public-private.png)
+![vpc-public-private](/classes/02class/aws-networking/assets/vpc-public-private.png)
 
 #### Internet Gateway
 
@@ -210,7 +209,7 @@ Reference: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.htm
 
 #### Security Group
 
-Security Groups are on the layer 7 (application). It controls requests from applications into specific ports.
+Security Groups are at the instance level, acting as a virtual firewall can be used to control inbound and outbound traffic. It controls requests from services for specific protocols and ports.
 
 You might set up similar rules on both NACL's and SG's for an additional layer of security.
 
@@ -242,7 +241,7 @@ VPC Peering is out of this course context.
 
 Reference: https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html
 
-![vpc-peering](vpc-peering.png)
+![vpc-peering](/classes/02class/aws-networking/assets/vpc-peering.png)
 
 #### Transit Gateway
 
