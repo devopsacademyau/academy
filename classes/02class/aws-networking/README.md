@@ -1,6 +1,3 @@
-* WIP
-
-
 ## Contents
 
 - [Introduction](#introduction)
@@ -210,7 +207,7 @@ Reference: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.htm
 
 #### Security Group
 
-Security Groups are on the layer 7 (application). It controls requests from applications into specific ports.
+Security Groups are at the instance level, acting as a virtual firewall can be used to control inbound and outbound traffic. It controls requests from services for specific protocols and ports.
 
 You might set up similar rules on both NACL's and SG's for an additional layer of security.
 
