@@ -241,3 +241,6 @@ The [ECS Task definition](https://docs.aws.amazon.com/AmazonECS/latest/developer
 - You can also run containers on AWS ECS through [Fargate](https://aws.amazon.com/fargate/) to provide serverless compute for containers. With fargate you won't need to manage compute instances to run your containers, as your containers will run in a serverless engine.
 - ECS fully integrates with AWS Load Balancer and AutoScaling groups, so you can balance the requests among multiple containers, as well your ECS service and increase the number of replicas of your task definition based on things like CPU and memory, so if your application is receiving a larger number of users, more containers will be available to support that load.
 
+## AWS ECR
+WIP
+
