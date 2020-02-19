@@ -1,0 +1,7 @@
+C01-git01-2
+
+-	Check out a new branch: $ git checkout bugFix
+-	Commit once: $ git commit -m “first commit”
+-	Go to master and commit again: $ git checkout master 
+-	                               $ git commit -m “second commit”
+-	Checkout bugFix, rebase onto master: $ git rebase master 
