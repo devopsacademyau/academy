@@ -1,7 +1,6 @@
-# Labs and exercises
+# Labs and Exercises
 
-## Agile
-
+For instructions on how to submit your work, [please check the main repository README here](/README.md#exercises)
 
 ## Networking
 
