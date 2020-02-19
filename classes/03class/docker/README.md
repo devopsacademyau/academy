@@ -30,11 +30,19 @@ We'll also take a look into how the AWs ECS Service works and it's purpose.
 
 ### What is a container?
 A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A container is supposed to run a single process.
-**Add diagram with the packaging example**
+<p align="center">
+    <img src="assets/container01.jpg" width="900">
+</p>
 
 ### Difference between Virtual Machine and Container
 Both the virtual machine and the container have resource isolation, but they work in a different way. While the virtual machine virtualizes the hardware, the container virtualizes the operating system. This makes the container a lot more portable and efficient.
 **Add diagram with difference between VM and container**
+
+#### Container
+Containers are an abstraction at the app layer that packages code and dependencies together. Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up less space than VMs (container images are typically tens of MBs in size), can handle more applications and require fewer VMs and Operating systems. 
+
+#### Virtual Machine
+Virtual machines (VMs) are an abstraction of physical hardware turning one server into many servers. The hypervisor allows multiple VMs to run on a single machine. Each VM includes a full copy of an operating system, the application, necessary binaries and libraries - taking up tens of GBs. VMs can also be slow to boot.
 
 ### Benefits of Containers
 Before talking about the benefits of containers, it's important to make clear that not all kinds of workloads are a good fit for a container. Because of the container nature, an application with multiple processes and services running on a single machine is not a good fit for a container. 
@@ -43,12 +51,6 @@ Once you confirm that a specific service is a good fit for a container, the bene
 - Container images are normally small compared to VMs, so it's easy to move them around
 - Because everything required by the application is inside the container, the execution of the container will be the same anywhere
 - Speeds up the development process since the Developer can have multple containers running on his local computer to simulate a very reliable production environment(in terms of funcionality)
-
-#### Container
-Containers are an abstraction at the app layer that packages code and dependencies together. Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up less space than VMs (container images are typically tens of MBs in size), can handle more applications and require fewer VMs and Operating systems. 
-
-#### Virtual Machine
-Virtual machines (VMs) are an abstraction of physical hardware turning one server into many servers. The hypervisor allows multiple VMs to run on a single machine. Each VM includes a full copy of an operating system, the application, necessary binaries and libraries - taking up tens of GBs. VMs can also be slow to boot.
 
 ### What is Docker?
 [Docker](https://www.docker.com) is the most common container option in the market and have thousands of public images available to pack your application, but there are other options like the ones listed below:
