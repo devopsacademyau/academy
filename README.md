@@ -100,7 +100,6 @@ The content can be accessed through each specific README link below.
     - AWS EC2
         - Load Balancing
         - Auto Scaling Group
-    - AWS S3
     - AWS Route 53
     - Container - Docker
         - Repositories
@@ -108,17 +107,20 @@ The content can be accessed through each specific README link below.
         - Dockerfile
         - AWS ECS
 - [Class 04](classes/04class/README.md)
-    - AWS IAM
+    - Project #1 Kick-off
+    - AWS - IAM
     - AWS - CLI
+    - AWS - S3
     - AWS - RDS
     - IaC - Terraform
     - MakeFile
 - [Class 05](classes/05class/README.md)
-    - Project #1 Delivery
-- [Class 06](classes/06class/README.md)
     - CI/CD Concepts
     - Pipelines
     - 3 Musketeers
+- [Class 06](classes/06class/README.md)
+    - Project #1 Delivery
+    - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
     - Serverless
 - [Class 08](classes/08class/README.md)
