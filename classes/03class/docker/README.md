@@ -25,6 +25,8 @@ We'll also take a look into how the AWs ECS Service works and it's purpose.
   - [ECS Cluster](#ecs-cluster)
   - [ECS Service](#ecs-service)
   - [ECS Task Definition](#ecs-task-definition)
+- [ECR](#ecr)
+- [Main Take Aways](#main-take-aways)
 
 ## Containers
 
@@ -242,5 +244,12 @@ The [ECS Task definition](https://docs.aws.amazon.com/AmazonECS/latest/developer
 - ECS fully integrates with AWS Load Balancer and AutoScaling groups, so you can balance the requests among multiple containers, as well your ECS service and increase the number of replicas of your task definition based on things like CPU and memory, so if your application is receiving a larger number of users, more containers will be available to support that load.
 
 ## AWS ECR
+[ECR](https://aws.amazon.com/ecr/)(Elastic Container Registry) is a fully managed Docker Container Registry to store your docker images. It fully integrated with ECS and it eliminates the  need to operate and manage a  container repository tool. All images are stored in a high-available and scalable architecture. It also integrates with IAM, so you can make use of roles and policies to manage the resource-level permissions for each repository.
+
+In order to push an image to ECR, you can follow this [guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html).
+
+In order to pull and image from ECR, you ca follow this [guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-pull-ecr-image.html).
+
+## Main Take Aways
 WIP
 
