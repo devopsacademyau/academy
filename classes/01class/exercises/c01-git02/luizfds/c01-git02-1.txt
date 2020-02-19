@@ -1,0 +1,12 @@
+Is it possible to see the inner commit of squashed commit with git rebase?
+
+Yes, it is possible. Squashed commits won't appear using a simple 'git log' command tough, to see inner commits of a squashed one we need to use the command 'git reflog' or 'git log --walk-reflogs'.
+
+By default, git reflog will output the reflog of the HEAD ref. HEAD is a symbolic reference to the currently active branch. Reflogs are available for other refs as well. The syntax to access a git ref is name@{qualifier}. In addition to HEAD refs, other branches, tags, remotes, and the Git stash can be referenced as well.
+
+You can get a complete reflog of all refs by executing:
+
+ git reflog show --all
+
+ References:
+ https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog
