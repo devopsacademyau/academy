@@ -113,7 +113,7 @@ CMD [ "/app/app1.bin", "run" ]
 - USER
   - Specify which user account will be used to run the commands inside the container when it runs
 - CMD
-  - Set a default command and default parameters which will be executed when docker is run. Those values can be overwritten during the contianer execution
+  - Set a default command and default parameters which will be executed when Docker is run. Those values can be overwritten during the contianer execution
 - ENTRYPOINT
   - Used when the container needs to be run as an executable. The commandd inside ENTRYPOINT instruction will can't be overwritten during container execution.
 - WORKDIR
@@ -211,7 +211,7 @@ Considering the behaviour exposed above, it's important to keep the steps that w
 In that case, you can consider that the step 2 will always have the same result. If building the image multiple times a day, the step 3 will most likely have the same result as well. On the other hand, the step one, because is being constantly changed during the development process, will have a different result mostly every build.
 In that case, ordering the steps as 2-3-1 in your Dockerfile, will make Docker reuse the step 2 and 3 for mostly every build, so the build process will be faster and you won't  need to keep downloading and installing the application pre-requites and updates on every build you do.
 
-## Main docker commands
+## Main Docker commands
 - docker run
     - Creates and execute a new container    
 - docker build
