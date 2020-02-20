@@ -1,8 +1,8 @@
-# Docker
+# Introduction to Containers
 
 This class is an introduction to Containers and Docker.
 The main goal is to explain the purpose of containers, the benefits and how to use it.
-We'll also take a look into how the AWs ECS Service works and it's purpose.
+We'll also take a look into how the AWS ECS Service works and its purpose.
 
 ***Contents***
 
@@ -14,7 +14,7 @@ We'll also take a look into how the AWs ECS Service works and it's purpose.
     - [Container](#container)
     - [Virtual Machine](#virtual-machine)
   - [What is Docker?](#what-is-docker)
-- [Respositories](#repositories)
+- [Registries](#registries)
 - [Dockerfile](#dockerfile)
   - [Main Dockerfile Instructions](#main-dockerfile-instructions)
   - [Let's Give it a Go](#lets-give-it-a-go)
@@ -31,7 +31,9 @@ We'll also take a look into how the AWs ECS Service works and it's purpose.
 ## Containers
 
 ### What is a container?
-A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A container is supposed to run a single main process. Once the process is completed/stoppped, the container will exit.
+A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. 
+
+A container is supposed to run a single main process. Once the process is completed/stoppped, the container will exit.
 <p align="center">
     <img src="assets/container01.jpg" width="900">
 </p>
@@ -61,16 +63,18 @@ Once you confirm that a specific service is a good fit for a container, the bene
 - [OpenVZ](https://openvz.org/)
 
 Docker is a tool to faciliate the creation, deployment and execution of applications by using containers.
-It's composed by the docker daemon and the docker client. The first is the service that runs on the operating system(like Linux, MacOS, Windows) that will execute containers. The Docker deamon exposes a RestAPI that is accessed by the docker client. We use the docker client to submit instructions to the docker daemon so it can execute the containers, create new images, delete existing containers, connect to a running container, etc.
+It's composed by the Docker daemon and the Docker client. The first is the service that runs on the operating system(like Linux, MacOS, Windows) that will execute containers. 
 
-## Repositories
-A container repository is a place where images can be stored and it can be public or private.
-Examples of repositories:
+The Docker deamon exposes a RestAPI that is accessed by the Docker client. We use the Docker client to submit instructions to the Docker daemon so it can execute the containers, create new images, delete existing containers, connect to a running container, etc.
+
+## Registries
+A container registry is a place where images can be stored and it can be public or private.
+Examples of registries:
 - [DockerHub](https://hub.docker.com/)
 - [AWS ECR](https://aws.amazon.com/ecr/)
 - [Artifactory](https://jfrog.com/artifactory/)
 
-Repositories are used to share an image that was created for a specific purpose. It can be used to store an image with specific pre-requisites to run multiple applications like:
+Registries are used to share an image that was created for a specific purpose. It can be used to store an image with specific pre-requisites to run multiple applications like:
 - an image with apache+php+modules to run multiple php applications
 - an image with a specific version of jdk to run multiple java applications
 - an image with a specific version of mysql to run multiple databases
@@ -80,11 +84,11 @@ It can also be used to store the final version of your application(artifact) tha
 - an image with python binaries and your application to run a machine learning algorythm
 - an image with terraform cli that executes any terraform code
 
-A docker repository is often used as a tool in the middle of the CI/CD process, since the docker image created during the CI pipeline needs to be stored somewhere so it can be used during the CD pipeline. More related to this in class #6.
+A Docker registry is often used as a tool in the middle of the CI/CD process, since the Docker image created during the CI pipeline needs to be stored somewhere so it can be used during the CD pipeline. More related to this in class #6.
 
 ## Dockerfile
-A docker file is a set of instruction(like a recipe) to create a new docker image. Those instructions will be used to install the application pre-requisites as well as inlcude all the application related files into the image that is being created.
-A docker file is always based on an existen docker image and the instructions included in the Docker file goes over that base image.
+A Dockerfile is a set of instruction(like a recipe) to create a new Docker image. Those instructions will be used to install the application pre-requisites as well as inlcude all the application related files into the image that is being created.
+A Dockerfile is always based on an existen image and the instructions included in the Docker file goes over that base image.
 Example of Dockerfile:
 ```
 FROM golang:1.14rc1-buster
@@ -134,7 +138,7 @@ Each instruction in a Docker file adds a new layer during the build of the image
 
 An image is supposed to have everything required(pre-requisites and binaries) to run a specific application. Ideally we target for very small images, to make the container as much portable as possible.
 
-Below we have three examples of a Dockerfile that creates an image with the same purpose, but the difference on how the image is created(which instructios we have on the Dockerfile) can make a huge difference in the final result. Let's build three docker images with those Dockerfiles.
+Below we have three examples of a Dockerfile that creates an image with the same purpose, but the difference on how the image is created(which instructios we have on the Dockerfile) can make a huge difference in the final result. Let's build three Docker images with those Dockerfiles.
 
 ```
 docker build -t image:01 -f artifacts/Dockerfile.Image1 .
@@ -157,14 +161,15 @@ Even considering that all three Dockerfiles achieved the objective, there are hu
 
 On the third approach, whcih is the most appropriate for our objective, it was used the multi-stage build functionality. You can learn more about this approach [here](https://docs.docker.com/develop/develop-images/multistage-build/). 
 
-### Remember when creating a docker image
+### Remember when creating a Docker image
 - Always use a tag in the image you'll use(FROM).
 
 The tag represents a specific image and is supposed to be immutable. This means that the image with the same tag will *always* be the same. This is important, so by specifying a versioned tag(not using the tag `latest`), you know exaclty which base image will be used during the build of your own image.
 Keep the same mindset when creating your images. Once an image is created and published with a specific tag, that tag should belong to that artefact only. Any new image published should use a different tag. 
+
 - Because of the way images are build(layers), keep the instructions that will change less on top of your Dockerfile
 
-During the build of a docker image, docker can re-use layers previously created. This only happens when the lower layers are the same.
+During the build of an image, Docker can re-use layers previously created. This only happens when the lower layers are the same.
 
 Consider two very similar images, where the only difference between it is a `RUN` step. Even that this step only adds a single file with 13 bytes to the image, it completely affects the result of remaining layers of the image. Observe that the `apt-get update` steps are exacly the same and adds the same amount of MB to the image, however, it has a different sha(79b65ac314b1 on the first image and a70625894939 on the second).
 ```
@@ -210,11 +215,11 @@ In that case, ordering the steps as 2-3-1 in your Dockerfile, will make Docker r
 - docker run
     - Creates and execute a new container    
 - docker build
-    - Build a new image from a docker file
+    - Build a new image from a Dockerfile
 - docker exec
     - Execute a command on a running container
 - docker images
-    - List the images stored on the local system managed by the docker daemon
+    - List the images stored on the local system managed by the Docker daemon
 - docker ps
     - List the running containers
 - docker container [action]
@@ -222,7 +227,7 @@ In that case, ordering the steps as 2-3-1 in your Dockerfile, will make Docker r
 - docker image [action]
     - Execute an action related to images
 
-Reference for all docker commands and options: [https://docs.docker.com/engine/reference/commandline/docker/](https://docs.docker.com/engine/reference/commandline/docker/)
+Reference for all Docker commands and options: [https://docs.docker.com/engine/reference/commandline/docker/](https://docs.docker.com/engine/reference/commandline/docker/)
 
 ## AWS ECS
 [ECS](https://aws.amazon.com/ecs/)(Elastic Container Service) is a fully managed containers orchestration service available on AWS. A container orchestration tool is responsible to coordinate and manage all aspects of the lifecycle of  containers execution. As an example, it can be configured to run 2 replicas of a specific image and whenever something goes wrong with one the replicas, the orchstration tool will notice it and spin up a new container, so it keeps 2 replicas running all the time.
@@ -244,7 +249,7 @@ The [ECS Task definition](https://docs.aws.amazon.com/AmazonECS/latest/developer
 - ECS fully integrates with AWS Load Balancer and AutoScaling groups, so you can balance the requests among multiple containers, as well your ECS service and increase the number of replicas of your task definition based on things like CPU and memory, so if your application is receiving a larger number of users, more containers will be available to support that load.
 
 ## AWS ECR
-[ECR](https://aws.amazon.com/ecr/)(Elastic Container Registry) is a fully managed Docker Container Registry to store your docker images. It fully integrated with ECS and it eliminates the  need to operate and manage a  container repository tool. All images are stored in a high-available and scalable architecture. It also integrates with IAM, so you can make use of roles and policies to manage the resource-level permissions for each repository.
+[ECR](https://aws.amazon.com/ecr/)(Elastic Container Registry) is a fully managed Docker Container Registry to store your Docker images. It fully integrated with ECS and it eliminates the  need to operate and manage a  container repository tool. All images are stored in a high-available and scalable architecture. It also integrates with IAM, so you can make use of roles and policies to manage the resource-level permissions for each repository.
 
 In order to push an image to ECR, you can follow this [guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html).
 

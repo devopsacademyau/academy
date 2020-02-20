@@ -2,4 +2,4 @@
 
 ## Agenda
 
- - [Docker](/classes/03class/docker/README.md)
+ - [Introduction to Containers](/classes/03class/docker/README.md)
