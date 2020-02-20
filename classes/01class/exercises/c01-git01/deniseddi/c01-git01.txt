@@ -1,0 +1,8 @@
+C01-git01
+
+-	Make a new branch: $ git branch bugFix
+-	Checkout to branch: $ git checkout bugFix 
+-	Commit: $ git commit -m “first commit”
+-	Go back to master: $ git checkout master
+-	Another commit here: $ git commit -m “second commit”
+-	Merge bugFix into master: $ git merge bugFix
