@@ -20,7 +20,7 @@ We'll also take a look into how the AWS ECS Service works and its purpose.
   - [Let's Give it a Go](#lets-give-it-a-go)
 - [Docker Image](#docker-image)
   - [Remember when creating a docker image](#remember-when-creating-a-docker-image)
-- [Main docker commands](#main-docker-commands)
+- [Docker Client](#docker-client)
 - [ECS](#ecs)
   - [ECS Cluster](#ecs-cluster)
   - [ECS Service](#ecs-service)
@@ -211,7 +211,10 @@ Considering the behaviour exposed above, it's important to keep the steps that w
 In that case, you can consider that the step 2 will always have the same result. If building the image multiple times a day, the step 3 will most likely have the same result as well. On the other hand, the step one, because is being constantly changed during the development process, will have a different result mostly every build.
 In that case, ordering the steps as 2-3-1 in your Dockerfile, will make Docker reuse the step 2 and 3 for mostly every build, so the build process will be faster and you won't  need to keep downloading and installing the application pre-requites and updates on every build you do.
 
-## Main Docker commands
+## Docker client
+
+**WIP - Describe a little bit more about the docker client and its usage.**
+
 - docker run
     - Creates and execute a new container    
 - docker build
@@ -261,6 +264,6 @@ In order to pull and image from ECR, you ca follow this [guide](https://docs.aws
 - We should know how to run a container
 - We should know how to create a new container image
 - We should be able to access the service being served from a container running on our local machine
-- We should know what is ECS and what its used for
-- We should know what is ECR and how we pull and push images to it
+- We should know what is ECS and its purpose
+- We should know what is ECR and how we pull and push images from/to it
 
