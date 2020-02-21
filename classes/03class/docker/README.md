@@ -39,14 +39,23 @@ A container is supposed to run a single main process. Once the process is comple
 </p>
 
 ### Difference between Virtual Machine and Container
-Both the virtual machine and the container have resource isolation, but they work in a different way. While the virtual machine virtualizes the hardware, the container virtualizes the operating system. This makes the container a lot more portable and efficient.
+Both the virtual machine and the container works with resource isolation, which protect one of the instances(VM or container) to access resources from another instance, even having both running on the same hardware. 
+
+Despite both having the resouce isolation feature, they work in a different way. While the virtual machine virtualizes the hardware, the container virtualizes the operating system. This makes the container a lot more portable and efficient.
 **Add diagram with difference between VM and container**
 
 #### Container
-Containers are an abstraction at the app layer that packages code and dependencies together. Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up less space than VMs (container images are typically tens of MBs in size), can handle more applications and require fewer VMs and Operating systems. 
+Containers are an abstraction at the app layer that packages code and dependencies together. 
+
+Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up less space than VMs (container images are typically tens of MBs in size), can handle more applications and require fewer VMs and Operating systems. 
 
 #### Virtual Machine
-Virtual machines (VMs) are an abstraction of physical hardware turning one server into many servers. The hypervisor allows multiple VMs to run on a single machine. Each VM includes a full copy of an operating system, the application, necessary binaries and libraries - taking up tens of GBs. VMs can also be slow to boot.
+Virtual machines (VMs) are an abstraction of physical hardware turning one server into many servers.
+
+A hypervisor is a process that separates a computer’s operating system and applications from the underlying physical hardware. The hypervisor allows multiple VMs to run on a single machine.
+
+Each VM includes a full copy of an operating system, the application, binaries, and libraries - the full size can take in the scale of GBs. 
+
 
 ### Benefits of Containers
 Before talking about the benefits of containers, it's important to make clear that not all kinds of workloads are a good fit for a container. Because of the container nature, an application with multiple processes and services running on a single machine is not a good fit for a container. 
@@ -57,10 +66,8 @@ Once you confirm that a specific service is a good fit for a container, the bene
 - Speeds up the development process since the Developer can have multple containers running on his local computer to simulate a very reliable production environment(in terms of funcionality)
 
 ### What is Docker?
-[Docker](https://www.docker.com) is the most common container option in the market and have thousands of public images available to pack your application, but there are other options like the ones listed below:
-- [rkt](https://coreos.com/rkt/)
-- [LXC](https://linuxcontainers.org/)
-- [OpenVZ](https://openvz.org/)
+[Docker](https://www.docker.com) is the most common container option in the market and have thousands of public images available to pack your application, but there are other options like the ones listed [below](#appendix).
+
 
 Docker is a tool to faciliate the creation, deployment and execution of applications by using containers.
 It's composed by the Docker daemon and the Docker client. The first is the service that runs on the operating system(like Linux, MacOS, Windows) that will execute containers. 
@@ -88,6 +95,7 @@ A Docker registry is often used as a tool in the middle of the CI/CD process, si
 
 ## Dockerfile
 A Dockerfile is a set of instruction(like a recipe) to create a new Docker image. Those instructions will be used to install the application pre-requisites as well as inlcude all the application related files into the image that is being created.
+
 A Dockerfile is always based on an existen image and the instructions included in the Docker file goes over that base image.
 Example of Dockerfile:
 ```
@@ -157,6 +165,7 @@ docker history image:03
 ```
 
 The objective of those three images is the same: Have the contents of the `httpd-2.4.41.tar.gz` file uncompressed into the `/tmp` folder. 
+
 Even considering that all three Dockerfiles achieved the objective, there are huge differences on how this objective was reached on each approach. Additionally the final result of each image is really different(final image almost 50% from the biggest to the smallest image). This shows the importance of properly writing a Dockerfile. 
 
 On the third approach, whcih is the most appropriate for our objective, it was used the multi-stage build functionality. You can learn more about this approach [here](https://docs.docker.com/develop/develop-images/multistage-build/). 
@@ -165,13 +174,16 @@ On the third approach, whcih is the most appropriate for our objective, it was u
 - Always use a tag in the image you'll use(FROM).
 
 The tag represents a specific image and is supposed to be immutable. This means that the image with the same tag will *always* be the same. This is important, so by specifying a versioned tag(not using the tag `latest`), you know exaclty which base image will be used during the build of your own image.
+
 Keep the same mindset when creating your images. Once an image is created and published with a specific tag, that tag should belong to that artefact only. Any new image published should use a different tag. 
 
 - Because of the way images are build(layers), keep the instructions that will change less on top of your Dockerfile
 
 During the build of an image, Docker can re-use layers previously created. This only happens when the lower layers are the same.
 
-Consider two very similar images, where the only difference between it is a `RUN` step. Even that this step only adds a single file with 13 bytes to the image, it completely affects the result of remaining layers of the image. Observe that the `apt-get update` steps are exacly the same and adds the same amount of MB to the image, however, it has a different sha(79b65ac314b1 on the first image and a70625894939 on the second).
+Consider two very similar images, where the only difference between it is a `RUN` step. Even that this step only adds a single file with 13 bytes to the image, it completely affects the result of remaining layers of the image. 
+
+Observe that the `apt-get update` steps are exacly the same and adds the same amount of MB to the image, however, it has a different sha(79b65ac314b1 on the first image and a70625894939 on the second).
 ```
 IMAGE               CREATED              CREATED BY                                      SIZE   
 bc8d9068fd51        25 seconds ago       /bin/sh -c rm -rf /tmp/httpd-2.4.41.tar.gz      0B     
@@ -209,6 +221,7 @@ Considering the behaviour exposed above, it's important to keep the steps that w
 3) Installing updates on the image
 
 In that case, you can consider that the step 2 will always have the same result. If building the image multiple times a day, the step 3 will most likely have the same result as well. On the other hand, the step one, because is being constantly changed during the development process, will have a different result mostly every build.
+
 In that case, ordering the steps as 2-3-1 in your Dockerfile, will make Docker reuse the step 2 and 3 for mostly every build, so the build process will be faster and you won't  need to keep downloading and installing the application pre-requites and updates on every build you do.
 
 ## Docker client
@@ -233,7 +246,9 @@ In that case, ordering the steps as 2-3-1 in your Dockerfile, will make Docker r
 Reference for all Docker commands and options: [https://docs.docker.com/engine/reference/commandline/docker/](https://docs.docker.com/engine/reference/commandline/docker/)
 
 ## AWS ECS
-[ECS](https://aws.amazon.com/ecs/)(Elastic Container Service) is a fully managed containers orchestration service available on AWS. A container orchestration tool is responsible to coordinate and manage all aspects of the lifecycle of  containers execution. As an example, it can be configured to run 2 replicas of a specific image and whenever something goes wrong with one the replicas, the orchstration tool will notice it and spin up a new container, so it keeps 2 replicas running all the time.
+[ECS](https://aws.amazon.com/ecs/)(Elastic Container Service) is a fully managed containers orchestration service available on AWS. A container orchestration tool is responsible to coordinate and manage all aspects of the lifecycle of  containers execution.
+
+As an example, it can be configured to run 2 replicas of a specific image and whenever something goes wrong with one the replicas, the orchstration tool will notice it and spin up a new container, so it keeps 2 replicas running all the time.
 
 ### How does ECS works?
 ECS is composed mainly by three components: [ECS Cluster](#ecs-cluster), [ECS Service](#ecs-service) and [ECS Task Definition](#ecs-task-definition). 
@@ -242,17 +257,23 @@ ECS is composed mainly by three components: [ECS Cluster](#ecs-cluster), [ECS Se
 The [ECS Cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) is a group of EC2 instances that will be used to run containers. ECS Clusters are Region-specific but it can span across multiple AZs in a that specific Region, providing a high availability container solution.
 
 #### ECS Service
-The [ECS Service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) is responsible by run and maintain the requested number of tasks(containers) of a specific image in the cluster. It's also responsible by associating the containers running with a specific load balance, so the traffic trying to access the service can be balanced between multiple containers.
+The [ECS Service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) is responsible by run and maintain the requested number of tasks(containers) of a specific image in the cluster. 
+
+It's also responsible by associating the containers running with a specific load balance, so the traffic trying to access the service can be balanced between multiple containers.
 
 #### ECS Task definition
-The [ECS Task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) describes the container execution parmeters. Informations like the image to be used, the resources(cpu and memory) that will be made available for that container, the AWS IAM Role used by the container and volumes to be mounted will be specified in the Task definition, so when a new instance of the container is created, it will always have the same configurations.
+The [ECS Task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) describes the container execution parmeters. 
+
+Informations like the image to be used, the resources(cpu and memory) that will be made available for that container, the AWS IAM Role used by the container and volumes to be mounted will be specified in the Task definition, so when a new instance of the container is created, it will always have the same configurations.
 
 ### More information
 - You can also run containers on AWS ECS through [Fargate](https://aws.amazon.com/fargate/) to provide serverless compute for containers. With fargate you won't need to manage compute instances to run your containers, as your containers will run in a serverless engine.
 - ECS fully integrates with AWS Load Balancer and AutoScaling groups, so you can balance the requests among multiple containers, as well your ECS service and increase the number of replicas of your task definition based on things like CPU and memory, so if your application is receiving a larger number of users, more containers will be available to support that load.
 
 ## AWS ECR
-[ECR](https://aws.amazon.com/ecr/)(Elastic Container Registry) is a fully managed Docker Container Registry to store your Docker images. It fully integrated with ECS and it eliminates the  need to operate and manage a  container repository tool. All images are stored in a high-available and scalable architecture. It also integrates with IAM, so you can make use of roles and policies to manage the resource-level permissions for each repository.
+[ECR](https://aws.amazon.com/ecr/)(Elastic Container Registry) is a fully managed Docker Container Registry to store your Docker images. It fully integrated with ECS and it eliminates the  need to operate and manage a  container repository tool. 
+
+All images are stored in a high-available and scalable architecture. It also integrates with IAM, so you can make use of roles and policies to manage the resource-level permissions for each repository.
 
 In order to push an image to ECR, you can follow this [guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html).
 
@@ -267,3 +288,10 @@ In order to pull and image from ECR, you ca follow this [guide](https://docs.aws
 - We should know what is ECS and its purpose
 - We should know what is ECR and how we pull and push images from/to it
 
+## Appendix
+
+- List of other container tools
+    - [rkt](https://coreos.com/rkt/)
+    - [LXC](https://linuxcontainers.org/)
+    - [OpenVZ](https://openvz.org/)
+- ECS, Deep Dive. https://www.youtube.com/watch?v=qbEPae8YNbs.
