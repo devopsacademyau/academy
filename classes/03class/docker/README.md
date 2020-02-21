@@ -168,7 +168,7 @@ The objective of those three images is the same: Have the contents of the `httpd
 
 Even considering that all three Dockerfiles achieved the objective, there are huge differences on how this objective was reached on each approach. Additionally the final result of each image is really different(final image almost 50% from the biggest to the smallest image). This shows the importance of properly writing a Dockerfile. 
 
-On the third approach, whcih is the most appropriate for our objective, it was used the multi-stage build functionality. You can learn more about this approach [here](https://docs.docker.com/develop/develop-images/multistage-build/). 
+On the third approach, which is the most appropriate for our objective, it was used the multi-stage build functionality. You can learn more about this approach [here](https://docs.docker.com/develop/develop-images/multistage-build/). 
 
 ### Remember when creating a Docker image
 - Always use a tag in the image you'll use(FROM).
