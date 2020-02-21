@@ -10,17 +10,18 @@ We'll also take a look into how the AWS ECS Service works and its purpose.
 - [Containers](#containers)
   - [What is a container?](#what-is-a-container)
   - [Difference between Virtual Machine and Container](#difference-between-virtual-machine-and-container)
-  - [Benefits of COntainers](#benefits-of-containers)
+  - [Benefits of Containers](#benefits-of-containers)
     - [Container](#container)
     - [Virtual Machine](#virtual-machine)
-  - [What is Docker?](#what-is-docker)
+- [What is Docker?](#what-is-docker)
+  - [Docker Daemon](#docker-daemon)
+  - [Docker Client](#docker-client)
 - [Registries](#registries)
 - [Dockerfile](#dockerfile)
   - [Main Dockerfile Instructions](#main-dockerfile-instructions)
   - [Let's Give it a Go](#lets-give-it-a-go)
 - [Docker Image](#docker-image)
   - [Remember when creating a docker image](#remember-when-creating-a-docker-image)
-- [Docker Client](#docker-client)
 - [ECS](#ecs)
   - [ECS Cluster](#ecs-cluster)
   - [ECS Service](#ecs-service)
@@ -56,7 +57,6 @@ A hypervisor is a process that separates a computer’s operating system and app
 
 Each VM includes a full copy of an operating system, the application, binaries, and libraries - the full size can take in the scale of GBs. 
 
-
 ### Benefits of Containers
 Before talking about the benefits of containers, it's important to make clear that not all kinds of workloads are a good fit for a container. Because of the container nature, an application with multiple processes and services running on a single machine is not a good fit for a container. 
 
@@ -65,14 +65,36 @@ Once you confirm that a specific service is a good fit for a container, the bene
 - Because everything required by the application is inside the container, the execution of the container will be the same anywhere
 - Speeds up the development process since the Developer can have multple containers running on his local computer to simulate a very reliable production environment(in terms of funcionality)
 
-### What is Docker?
+## What is Docker?
 [Docker](https://www.docker.com) is the most common container option in the market and have thousands of public images available to pack your application, but there are other options like the ones listed [below](#appendix).
 
-
 Docker is a tool to faciliate the creation, deployment and execution of applications by using containers.
-It's composed by the Docker daemon and the Docker client. The first is the service that runs on the operating system(like Linux, MacOS, Windows) that will execute containers. 
+It's composed by the Docker daemon and the Docker client. 
 
+### Docker Daemon
 The Docker deamon exposes a RestAPI that is accessed by the Docker client. We use the Docker client to submit instructions to the Docker daemon so it can execute the containers, create new images, delete existing containers, connect to a running container, etc.
+
+### Docker Client
+The Docker client is the command line tool used to interact with the Docker Deamon. With the client you can do things like create new docker images, interact with containers(start, stop, delete or execute commands in the container, etc) , interact with images(delete, list, etc)  and many more. 
+
+Below you have some of the most common commands used in the docker client.
+
+- docker run
+    - Creates and execute a new container    
+- docker build
+    - Build a new image from a Dockerfile
+- docker exec
+    - Execute a command on a running container
+- docker images
+    - List the images stored on the local system managed by the Docker daemon
+- docker ps
+    - List the running containers
+- docker container [action]
+    - Execute an action related to containers
+- docker image [action]
+    - Execute an action related to images
+
+Reference for all Docker client commands and options: [https://docs.docker.com/engine/reference/commandline/docker/](https://docs.docker.com/engine/reference/commandline/docker/)
 
 ## Registries
 A container registry is a place where images can be stored and it can be public or private.
@@ -223,27 +245,6 @@ Considering the behaviour exposed above, it's important to keep the steps that w
 In that case, you can consider that the step 2 will always have the same result. If building the image multiple times a day, the step 3 will most likely have the same result as well. On the other hand, the step one, because is being constantly changed during the development process, will have a different result mostly every build.
 
 In that case, ordering the steps as 2-3-1 in your Dockerfile, will make Docker reuse the step 2 and 3 for mostly every build, so the build process will be faster and you won't  need to keep downloading and installing the application pre-requites and updates on every build you do.
-
-## Docker client
-
-**WIP - Describe a little bit more about the docker client and its usage.**
-
-- docker run
-    - Creates and execute a new container    
-- docker build
-    - Build a new image from a Dockerfile
-- docker exec
-    - Execute a command on a running container
-- docker images
-    - List the images stored on the local system managed by the Docker daemon
-- docker ps
-    - List the running containers
-- docker container [action]
-    - Execute an action related to containers
-- docker image [action]
-    - Execute an action related to images
-
-Reference for all Docker commands and options: [https://docs.docker.com/engine/reference/commandline/docker/](https://docs.docker.com/engine/reference/commandline/docker/)
 
 ## AWS ECS
 [ECS](https://aws.amazon.com/ecs/)(Elastic Container Service) is a fully managed containers orchestration service available on AWS. A container orchestration tool is responsible to coordinate and manage all aspects of the lifecycle of  containers execution.
