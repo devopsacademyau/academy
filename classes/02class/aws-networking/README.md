@@ -35,7 +35,7 @@ A computer with a manual IP address configured constitutes in a LAN, although it
 
 For connecting multiple networks together, a router is needed. Either as a full hardware device or just an application working as a Router. This device will be in charge of knowing all existing paths, receive requests from a network and forward the packages to its destination.
 
-![lan-wan](lan-wan.png)
+![lan-wan](/classes/02class/aws-networking/assets/lan-wan.png)
 
 ### Internet Protocol Address (IP address)
 
