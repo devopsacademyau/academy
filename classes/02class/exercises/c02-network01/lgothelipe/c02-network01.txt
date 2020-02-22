@@ -14,17 +14,17 @@ hosts = 65,531
 
 249.165.166.135/30
 Ip binary = 11111001.10100101.10100110.10000111
-Subnet binary = 11111111.11111111.11111111.11110000
-Subnet decimals = 255.255.255.240
+Subnet binary = 11111111.11111111.11111111.11111100
+Subnet decimals = 255.255.255.252
 private/public = public
-hosts = 11
+hosts = would be 4, but in AWS, the minimum subnet size is /28
 
 236.68.223.18/32
 Ip binary = 11111001.10100101.10100110.10000111
 Subnet binary = 11111111.11111111.11111111.11111111
 Subnet decimals = 255.255.255.255
 private/public = public
-hosts = 0
+hosts = would be 1, but in AWS, the minimum subnet size is /28
 
 172.31.0.0/16
 Ip binary = 10101100.00011111.00000000.00000000
