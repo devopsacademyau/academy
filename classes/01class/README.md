@@ -52,3 +52,5 @@ Join our slack following instructions [here](/classes/00pre-class/README.md#join
 - How long you've been in Australia?
 - What is you skillset?
 - What is your main goal with the course?
+
+## [Exercises](./exercises/README.md)
