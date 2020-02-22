@@ -1,0 +1,15 @@
+Details from created vpc:
+
+VPC ID: vpc-0397f4f64e6134cf7
+Tenancy: default
+State: available
+Default VPC: No
+IPv4 CIDR: 10.0.0.0/16
+IPv6 CIDR: -
+IPv6 Pool: -
+DNS resolution: Enabled
+Network ACL: acl-0fbaf1683ea2b481a
+DNS hostnames: Disabled
+DHCP options set: dopt-92cf68f9
+Route table: rtb-0da8522e5d6df0424
+Owner: 709308406413
