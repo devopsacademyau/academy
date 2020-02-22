@@ -142,7 +142,7 @@ The VPC subnet can then be sliced into smaller subnets to spread the workloads b
 
 It's important to mention that only `251` IP's out of `256` will be available to be assigned to hosts as a few of them are special addresses.
 
-- of any subnet:
+- for any subnet:
   - first ip (0) is known as `network`
     - IP network address range
   - last ip (255) is used for broadcasting
@@ -150,7 +150,7 @@ It's important to mention that only `251` IP's out of `256` will be available to
     - DHCP protocol also uses broadcasting to dynamically assign IP addresses to host
     - all devices listen to broadcast in addition of its own
  
-- of any AWS subnet:
+- for any AWS subnet:
   - second ip (1) is reserved to be used by the VPC Router
   - third ip (2) is reserved to be used by AWS DNS
   - forth ip (3) is reserved for future use
