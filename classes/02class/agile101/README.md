@@ -41,6 +41,8 @@ There is also a brief introduction to Scrum and Kanban frameworks.
       - [Reduce utilisation, batch size and item size](#reduce-utilisation-batch-size-and-item-size)
     - [Kanban vs Scrum](#kanban-vs-scrum)
     - [Scaled Agile frameworks](#scaled-agile-frameworks)
+    - [Spotify Engineering Model](#spotify-engineering-model)
+    - [Little's Law](#littles-law)
   - [References](#references)
 
 ## Software Development Methodologies and Frameworks 
@@ -178,9 +180,7 @@ A column with a WIP limit of three cannot have more than three cards in it. **Wh
 
 These WIP limits are critical for exposing bottlenecks in the workflow and maximizing flow. WIP limits give you an early warning sign that you committed to too much work
 
-![](./assets/little_law.png)
-
-[*Little's Law*](https://www.process.st/littles-law/). WIP = Throughput x Lead time
+[Checkout Little's Law](#littles-law)
 
 ![](./assets/kanban_wip.png)
 
@@ -379,14 +379,14 @@ The game is a fast and engaging way to introduce the concept of WIP and show why
 
 (for a team of 12 people - split in 2 teams)
 
-3 workers who write on paper sheets
-3 managers who time their worker
-1 customer or project manager (can be played by you, the facilitator, or the last manager in line, if needed)
-3 paper sheets
-3 pens/pencils
-A table to play on
-3 stopwatches (or phones with stopwatch applications)
-A whiteboard or flipchart to write results on
+- 3 workers who write on paper sheets
+- 3 managers who time their worker
+- 1 customer or project manager (can be played by you, the facilitator, or the last manager in line, if needed)
+- 3 paper sheets
+- 3 pens/pencils
+- A table to play on
+- 3 stopwatches (or phones with stopwatch applications)
+- A whiteboard or flipchart to write results on
 
 ### How to play
 
@@ -484,6 +484,20 @@ There some variations of the Scrum framework, as:
 - [Scrum of Scrums](http://guide.agilealliance.org/guide/scrumofscrums.html)
 - [SAFe](https://www.scaledagileframework.com/)
 - Many others...
+
+### Spotify Engineering Model
+
+Watch the videos in: 
+- https://labs.spotify.com/2014/03/27/spotify-engineering-culture-part-1/
+- https://labs.spotify.com/2014/09/20/spotify-engineering-culture-part-2/
+
+
+### Little's Law
+WIP = Throughput x Lead time
+
+![](./assets/little_law.png)
+
+[*Little's Law*](https://www.process.st/littles-law/). 
 
 ## References
 <!-- <sup id="a1">[1](#f1)</sup> -->

@@ -19,14 +19,18 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
 - [Content](#content)
   - [Classes](#classes)
   - [Exercises](#exercises)
+    - [Example of the submission process](#example-of-the-submission-process)
+    - [Available labs](#available-labs)
   - [Projects](#projects)
 - [Contributors and Instructors](#contributors-and-instructors)
-    - [Presentation format](#presentation-format)
+  - [Presentation format](#presentation-format)
 - [Authors](#authors)
   - [Caio Trevisan](#caio-trevisan)
   - [Denis Storti](#denis-storti)
   - [Francisco Collet](#francisco-collet)
 - [Sponsors](#sponsors)
+  - [ITBR Australia Community](#itbr-australia-community)
+  - [Contino](#contino)
 
 
 # How it Works
@@ -129,54 +133,66 @@ The content can be accessed through each specific README link below.
 
 ## Exercises
 
-For each class exercise, create a new branch following `<github-account>/<exercise-number>` and add your work on a folder like `classes/<class name>/exercises/<exercise-number>/<your github user>/`.
+For each class **exercise**:
+1. Clone this repository
+   
+```bash
+git clone <repo-url>
+```
+- [OR fork it to your own GitHub account and clone from there](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
+
+2. Switch to **master** branch and **pull** it 
+
+3. Create a new branch **from master** with branch name containing exercise number and your name, e.g `<github-username>/<exercise-number>` 
+
+```bash
+git checkout -b caiocezart/c01-e01
+```
+4. create a folder with your `<github-username>` (e.g. `denstorti`, `kikobr82`, ...)
+
+```bash
+cd <repo-name>
+
+mkdir classes/01class/exercises/c01-e01/<my-username>
+```
+
+5. Add your work on a folder like `classes/<class name>/exercises/<exercise-number>/<github-username>/`.
 
 Exercise submissions can be textual like a simple .txt file or more complex containing several files and folders.
 
 Example: 
 `classes/01class/exercises/c01-e01/caiocezart/<my-files>`
 
-To submit exercises, you will have to:
+6. Create one or more commits with changes for this exercise
+7. Push it to the remote repo regularly
+8. Only open a Pull Request with the name `<github-username>/<exercise-number>` ***when your work is ready to be reviewed***
+9. Once you have the approvals, we will merge your code to **master** branch and complete the exercise. Congrats!
+10. Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
 
-- clone this repository
-
+### Example of the submission process
 ```bash
-git clone <repo-url>
+# starting with exercise1
+git checkout master
+git pull
+git checkout -b "my_github_username/exercise1"
+# code code code 
+# Remember to add files inside the correct folder
+# e.g. .../classes/01class/exercises/exercise1/<my_github_username>
+git add file1 file2
+git commit -m "comment about the changes on this commit"
+# ... several commits later
+git push origin "my_github_username/exercise1"
+# ... several pushes later, when you are ready for a review
+# Open a PR via Github website with the name 
+
+# now, doing exercise2
+git checkout master
+# update your work directory from remote repo
+git pull 
+git checkout -b "my_github_username/exercise2"
+...
+...
 ```
-
-- [OR fork it to your own GitHub account and clone from there](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
-
-- create a new branch with branch name containing exercise number and your name
-
-```bash
-git checkout -b caiocezart/c01-e01
-```
-
-- create a folder with your `github username` (e.g. `denstorti`, `kikobr82`, ...)
-
-```bash
-cd <repo-name>
-
-mkdir classes/01class/exercises/c01-e01/<my-name>
-```
-
-- add your code, create a commit with the change and push it
-
-```bash
-cd classes/01class/exercises/c01-e01/<my-name>
-touch newfile
-
-# commit and push
-git add newfile
-git commit -m "adding a new file"
-git push
-```
-
-- create a `pull request` from your branch to master
-- wait until you get at least two review approvals, one being from the instructors
-- once you have the approvals, you will merge your code to master and complete the exercise
-
-Upon completion of your first exercise, you will be given permission to start/help peer reviewing other community members code! 
 
 ### Available labs
 
