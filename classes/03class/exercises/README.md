@@ -10,4 +10,4 @@ For instructions on how to submit your work, [please check the main repository R
 - [Clean Up (c03-docker04)](/classes/03class/exercises/c03-docker04/README.md)
 - [Running Again (c03-docker05)](/classes/03class/exercises/c03-docker05/README.md)
 - [From the Outside (c03-docker06)](/classes/03class/exercises/c03-docker06/README.md)
-- [ECS (c03-docker07)](/classes/03class/exercises/c03-docker06/README.md)
+- [ECS (c03-docker07)](/classes/03class/exercises/c03-docker07/README.md)

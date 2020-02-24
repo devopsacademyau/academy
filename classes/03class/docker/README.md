@@ -51,7 +51,7 @@ Despite both having the resouce isolation feature, they work in a different way.
 #### Container
 Containers are an abstraction at the app layer that packages code and dependencies together. 
 
-Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up less space than VMs (container images are typically tens of MBs in size), can handle more applications and require fewer VMs and Operating systems. 
+Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up less space than VMs (container are typically tens of MBs in size), can handle more applications and require fewer VMs and Operating systems. 
 
 #### Virtual Machine
 Virtual machines (VMs) are an abstraction of physical hardware turning one server into many servers.
@@ -64,12 +64,12 @@ Each VM includes a full copy of an operating system, the application, binaries, 
 Before talking about the benefits of containers, it's important to make clear that not all kinds of workloads are a good fit for a container. Because of the container nature, an application with multiple processes and services running on a single machine is not a good fit for a container. 
 
 Once you confirm that a specific service is a good fit for a container, the benefits of a container includes:
-- Container images are normally small compared to VMs, so it's easy to move them around
+- Container are normally small compared to VMs, so it's easy to move them around
 - Because everything required by the application is inside the container, the execution of the container will be the same anywhere
 - Speeds up the development process since the Developer can have multple containers running on his local computer to simulate a very reliable production environment(in terms of funcionality)
 
 ## What is Docker?
-[Docker](https://www.docker.com) is the most common container option in the market and have thousands of public images available to pack your application, but there are other options like the ones listed [below](#appendix).
+[Docker](https://www.docker.com) is the most common container option in the market and have thousands of public [images](#docker-image) available to pack your application, but there are other options like the ones listed [below](#appendix).
 
 Docker is a tool to faciliate the creation, deployment and execution of applications by using containers.
 It's composed by the Docker daemon and the Docker client. 
@@ -82,7 +82,7 @@ It's composed by the Docker daemon and the Docker client.
 The Docker deamon exposes a RestAPI that is accessed by the Docker client. We use the Docker client to submit instructions to the Docker daemon so it can execute the containers, create new images, delete existing containers, connect to a running container, etc.
 
 ### Docker Client
-The Docker client is the command line tool used to interact with the Docker Deamon. With the client you can do things like create new docker images, interact with containers(start, stop, delete or execute commands in the container, etc) , interact with images(delete, list, etc)  and many more. 
+The Docker client is the command line tool used to interact with the Docker Deamon. With the client you can do things like create new docker images, interact with containers(start, stop, delete or execute commands in the container, etc), interact with images(delete, list, etc) and many more. 
 
 Below you have some of the most common commands used in the docker client.
 
@@ -123,9 +123,9 @@ It can also be used to store the final version of your application(artifact) tha
 A Docker registry is often used as a tool in the middle of the CI/CD process, since the Docker image created during the CI pipeline needs to be stored somewhere so it can be used during the CD pipeline. More related to this in class #6.
 
 ## Dockerfile
-A Dockerfile is a set of instruction(like a recipe) to create a new Docker image. Those instructions will be used to install the application pre-requisites as well as inlcude all the application related files into the image that is being created.
+A Dockerfile is a set of instructions(like a recipe) to create a new Docker image. These instructions are used to install into the image the application pre-requisites as well as include all the application related files.
 
-A Dockerfile is always based on an existen image and the instructions included in the Docker file goes over that base image.
+A Dockerfile is always based on an existing image and the instructions included in the Dockerfile go on top of that base image.
 Example of Dockerfile:
 ```
 FROM golang:1.14rc1-buster
@@ -173,9 +173,10 @@ An Image is an ordered collection of root filesystem changes and the correspondi
 
 Each instruction in a Docker file adds a new layer during the build of the image.
 
+An image is supposed to have everything required (pre-requisites and binaries) to run a specific application. Ideally we target very small images, to make the container as portable as possible.
 An image is supposed to have everything required(pre-requisites and binaries) to run a specific application. Ideally we target for very small images, to make the container as much portable as possible.
 
-Below we have three examples of a Dockerfile that creates an image with the same purpose, but the difference on how the image is created(which instructios we have on the Dockerfile) can make a huge difference in the final result. Let's build three Docker images with those Dockerfiles.
+Below we have three examples of a Dockerfile that creates an image with the same purpose, but the difference in how the image is created(which instructions we have on the Dockerfile) can make a huge difference in the final result. Let's build three Docker images with those Dockerfiles.
 
 ```
 docker build -t image:01 -f artifacts/Dockerfile.Image1 .
@@ -195,14 +196,14 @@ docker history image:03
 
 The objective of those three images is the same: Have the contents of the `httpd-2.4.41.tar.gz` file uncompressed into the `/tmp` folder. 
 
-Even considering that all three Dockerfiles achieved the objective, there are huge differences on how this objective was reached on each approach. Additionally the final result of each image is really different(final image almost 50% from the biggest to the smallest image). This shows the importance of properly writing a Dockerfile. 
+Even considering that all three Dockerfiles achieved the objective, there are huge differences in how this objective was reached on each approach. Additionally the final result of each image is really different(final image almost 50% from the biggest to the smallest image). This shows the importance of properly writing a Dockerfile. 
 
 On the third approach, which is the most appropriate for our objective, it was used the multi-stage build functionality. You can learn more about this approach [here](https://docs.docker.com/develop/develop-images/multistage-build/). 
 
 ### Remember when creating a Docker image
-- Always use a tag in the image you'll use(FROM).
+- Always use a tag in the image you'll use(FROM instruction).
 
-The tag represents a specific image and is supposed to be immutable. This means that the image with the same tag will *always* be the same. This is important, so by specifying a versioned tag(not using the tag `latest`), you know exaclty which base image will be used during the build of your own image.
+The tag represents a specific image and is supposed to be immutable. This means that the image with the same tag will *always* be the same. This is important, so by specifying a versioned tag(not using the tag `latest`), you know exactly which base image will be used during the build of your own image.
 
 Keep the same mindset when creating your images. Once an image is created and published with a specific tag, that tag should belong to that artefact only. Any new image published should use a different tag. 
 
@@ -212,7 +213,7 @@ During the build of an image, Docker can re-use layers previously created. This 
 
 Consider two very similar images, where the only difference between it is a `RUN` step. Even that this step only adds a single file with 13 bytes to the image, it completely affects the result of remaining layers of the image. 
 
-Observe that the `apt-get update` steps are exacly the same and adds the same amount of MB to the image, however, it has a different sha(79b65ac314b1 on the first image and a70625894939 on the second).
+Observe that the `apt-get update` steps are exactly the same and add the same amount of MB to the image, however, it has a different SHS(79b65ac314b1 on the first image and a70625894939 on the second).
 ```
 IMAGE               CREATED              CREATED BY                                      SIZE   
 bc8d9068fd51        25 seconds ago       /bin/sh -c rm -rf /tmp/httpd-2.4.41.tar.gz      0B     
@@ -243,7 +244,7 @@ ccc6e87d482b        4 weeks ago         /bin/sh -c #(nop)  CMD ["/bin/bash"]    
 <missing>           4 weeks ago         /bin/sh -c #(nop) ADD file:08e718ed0796013f5…   63.2MB 
 ```
 
-Considering the behaviour exposed above, it's important to keep the steps that will result in identical state, to be executed before steps that will result in different states. For example, if you're building an image with an application under development and you have the following steps on your image build:
+Considering the behavior exposed above, it's important to keep the steps that will result in an identical state, to be executed before steps that will result in different states. For example, if you're building an image with an application under development and you have the following steps on your image build:
 
 1) Copying application files
 2) Installing application pre-requisites(apache+php) with specific versions
@@ -265,14 +266,14 @@ ECS is composed mainly by three components: [ECS Cluster](#ecs-cluster), [ECS Se
 The [ECS Cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) is a group of EC2 instances that will be used to run containers. ECS Clusters are Region-specific but it can span across multiple AZs in a that specific Region, providing a high availability container solution.
 
 #### ECS Service
-The [ECS Service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) is responsible by run and maintain the requested number of tasks(containers) of a specific image in the cluster. 
+The [ECS Service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) is responsible for running and maintaining the requested number of tasks(containers) of a specific image in the cluster.
 
 It's also responsible by associating the containers running with a specific load balance, so the traffic trying to access the service can be balanced between multiple containers.
 
 #### ECS Task definition
 The [ECS Task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) describes the container execution parmeters. 
 
-Informations like the image to be used, the resources(cpu and memory) that will be made available for that container, the AWS IAM Role used by the container and volumes to be mounted will be specified in the Task definition, so when a new instance of the container is created, it will always have the same configurations.
+The Task definition contains information about the image used, resources(CPU and memory) that will be made available for that container, AWS IAM Role assumed by the container and volumes to be mounted, so when a new container is created it will always use the same configurations.
 
 ### More information
 - You can also run containers on AWS ECS through [Fargate](https://aws.amazon.com/fargate/) to provide serverless compute for containers. With fargate you won't need to manage compute instances to run your containers, as your containers will run in a serverless engine.
