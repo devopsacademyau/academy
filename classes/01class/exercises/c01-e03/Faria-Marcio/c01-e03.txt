@@ -1,0 +1,15 @@
+PUBLIC IP ADDRESS EC2:
+
+1- On EC2 services I clicked on Launch Instance button;
+2- Chose the default Amazon Machine Image (AMI), which was Amazon Linux;
+3- Chose t2.micro instance type;
+4- Configured the instance to Auto-assign Public IP, to access through SSH, and launched it;
+5- Created a new key pair (AWS_-_Devops_KeyPair.pem);
+6- On Ubuntu I accessed the instance through ssh -i "Devops_KeyPair.pem" ec2-user@ec2-13-54-19-240.ap-southeast-2.compute.amazonaws.com;
+
+
+PRIVATE IP ADDRESS EC2:
+
+- Steps 1, 2, 3 of Public IP Address, and launched the EC2 instance;
+4- Created a new Elastic IP address and allocated it to EC2 private IP address;
+5- On Ubuntu I accessed the instance through ssh -i "Devops_KeyPair.pem" ec2-user@ec2-3-104-115-53.ap-southeast-2.compute.amazonaws.com;
