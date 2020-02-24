@@ -43,7 +43,10 @@ A container is supposed to run a single main process. Once the process is comple
 Both the virtual machine and the container works with resource isolation, which protect one of the instances(VM or container) to access resources from another instance, even having both running on the same hardware. 
 
 Despite both having the resouce isolation feature, they work in a different way. While the virtual machine virtualizes the hardware, the container virtualizes the operating system. This makes the container a lot more portable and efficient.
-**Add diagram with difference between VM and container**
+
+<p align="center">
+    <img src="assets/container02.jpg" width="900">
+</p>
 
 #### Container
 Containers are an abstraction at the app layer that packages code and dependencies together. 
@@ -70,6 +73,10 @@ Once you confirm that a specific service is a good fit for a container, the bene
 
 Docker is a tool to faciliate the creation, deployment and execution of applications by using containers.
 It's composed by the Docker daemon and the Docker client. 
+
+<p align="center">
+    <img src="assets/container03.jpg" width="900">
+</p>
 
 ### Docker Daemon
 The Docker deamon exposes a RestAPI that is accessed by the Docker client. We use the Docker client to submit instructions to the Docker daemon so it can execute the containers, create new images, delete existing containers, connect to a running container, etc.
