@@ -26,4 +26,4 @@
     No, by default, each VPC comes with 1 route table pre-configured with a “local” route. The scope of the “local” route is only within the subnet defined for the entire VPC. For example, if your VPC was set up to have the address space of 172.16.0.0/16, your “local” route would be defined as “172.16.0.0/16”. This allows all of the resources created within the VPC to talk to each other without any additional configuration. You cannot delete the “local” route from your route table, and anytime a new route table is created within a VPC, the “local” route is included by default.
 
 - What happens if you do not associate your route table with any subnets?
-    Your route table will not be used.
+    The route table will not be used and the Main route table will be used instead. Each subnet in our VPC must be associated with a route table. A subnet can be explicitly associated with custom route table, or implicitly or explicitly associated with the main route table. And another useful information is that you cannot delete the main route table, but you can replace the main route table with a custom subnet route table that you've created. 
