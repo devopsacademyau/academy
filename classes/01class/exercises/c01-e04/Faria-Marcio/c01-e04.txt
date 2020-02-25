@@ -1,6 +1,24 @@
 - I've created an S3 bucket on https://s3.console.aws.amazon.com/s3/home?region=ap-southeast-2;
 - Uploaded a test .txt file on it;
-- Created an IAM role to S3;
+- Using least privileges I created a new IAM Policy allowing it to read and list S3 bucket only. JSON file:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::c01e04",
+                "arn:aws:s3:::c01e04/*"
+            ]
+        }
+    ]
+}
+- Created an IAM role and attached the new policy to it;
 - Associated the IAM role that I'd created to one of my instances;
 - Connected to that instance;
 - Used the command line "aws s3 ls"
