@@ -1,32 +1,30 @@
-# Subnetting
-
-Commit all your answers to a text file `c02-network02.txt` under your folder name.
-
-### Given a AWS network range, slice it in 4 small subnets and identify how many usable hosts for each one of them.
+## Given a AWS network range, slice it in 4 small subnets and identify how many usable hosts for each one of them.
 
 - 10.0.0.0/16
+    10.0.0.0/18	 
+        16,382 total hosts of 16,384 (first ip (0) is known as network and last ip (255) is used for broadcasting)
+        16,379 usable hosts in AWS (1 is reserved to be used by the VPC Router, 1 is reserved to be used by AWS DNS and 1 is reserved for future use)
+    
+    10.0.64.0/18
+        16,379 usable hosts in AWS
 
-The network size for 10.0.0.0/16 will have 65,536 IP addresses, so:
-65,536 / 4 = 16,384 addresses per subnet
-of those 16,384 IPs we'll have 16,379 usable hosts (AWS reserves 5 IP address of every subnet for IP networking purposes)
-________________________________________________________________________________________________________________
-Subnet address	| Netmask	    | Range of addresses	    | Usable hosts range        | Number of Usable Hosts
-----------------|---------------|---------------------------|---------------------------|-----------------------
-10.0.0.0/18	    | 255.255.192.0	| 10.0.0.0   - 10.0.63.255	| 10.0.0.4   - 10.0.63.254	| 16382		
-10.0.64.0/18	| 255.255.192.0	| 10.0.64.0  - 10.0.127.255	| 10.0.64.4  - 10.0.127.254	| 16382
-10.0.128.0/18	| 255.255.192.0	| 10.0.128.0 - 10.0.191.255	| 10.0.128.4 - 10.0.191.254	| 16382	
-10.0.192.0/18	| 255.255.192.0	| 10.0.192.0 - 10.0.255.255	| 10.0.192.4 - 10.0.255.254	| 16382
-----------------------------------------------------------------------------------------------------------------
+    10.0.128.0/18	
+        16,379 usable hosts in AWS
+
+    10.0.192.0/18	
+        16,379 usable hosts in AWS
 
 - 192.168.0.0/24
-The network size for 192.168.0.0/24 will have 256 IP addresses, so:
-256 / 4 = 64 addresses per subnet
-of those 64 IPs we'll have 59 usable hosts (AWS reserves 5 IP address of every subnet for IP networking purposes)
-____________________________________________________________________________________________________________________________
-Subnet address	 | Netmask	        | Range of addresses	        | Usable hosts range	        | Number of Usable Hosts
------------------|------------------|-------------------------------|-------------------------------|-----------------------
-192.168.0.0/26	 | 255.255.255.192	| 192.168.0.0 - 192.168.0.63	| 192.168.0.4 - 192.168.0.62	| 59			
-192.168.0.64/26	 | 255.255.255.192	| 192.168.0.64 - 192.168.0.127	| 192.168.0.68 - 192.168.0.126	| 59	
-192.168.0.128/26 | 255.255.255.192	| 192.168.0.128 - 192.168.0.191	| 192.168.0.132 - 192.168.0.190	| 59		
-192.168.0.192/26 | 255.255.255.192	| 192.168.0.192 - 192.168.0.255	| 192.168.0.196 - 192.168.0.254	| 59	
-----------------------------------------------------------------------------------------------------------------------------
+    192.168.0.0/26	 
+        62 total hosts
+        59 usable hosts in AWS
+
+    192.168.0.64/26	 
+        59 usable hosts in AWS
+
+    192.168.0.128/26 
+        59 usable hosts in AWS
+
+    192.168.0.192/26 
+        59 usable hosts in AWS
+
