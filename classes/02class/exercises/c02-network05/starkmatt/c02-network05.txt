@@ -1,0 +1,6 @@
+Execrise 5.
+
+- In the VPC Dashboard, Navigate to Internet Gateways located on the Left hand side.
+- Up on the top click "Create Internet Gateway", Add the name tag "devopsacademy-igw"
+- After it's created it will come up unattached, right-click and then Attach it to the existing VPC (devopsacademy-vpc)
+
