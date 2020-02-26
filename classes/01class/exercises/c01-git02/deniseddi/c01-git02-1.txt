@@ -1,0 +1,3 @@
+1. Is it possible to see the inner commit of squashed commit with git rebase?
+
+No. As you are “squashing” commits and preparing to rebase, then yes you can see and choose the commits you want to squash (eg. “git rebase -i”). But after you “rebase”, you actually created new commits or re-wrote history, replacing the original and no longer reachable commits with a single one. 
