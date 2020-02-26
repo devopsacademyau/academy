@@ -1,0 +1,35 @@
+Exercise 3
+
+New VPC Created, 
+Please see Output;
+
+VPC ID
+vpc-09fdac84afa8718d9
+Tenancy
+default
+State
+available
+Default VPC
+No
+IPv4 CIDR
+10.0.0.0/16
+Classic link
+Disabled
+IPv6 CIDR
+-
+IPv6 Pool
+-
+DNS resolution
+Enabled
+Network ACL
+acl-0ff5f2117a0218c48
+DNS hostnames
+Disabled
+DHCP options set
+dopt-7d37131a
+ClassicLink DNS Support
+Disabled
+Route table
+rtb-04b1a7bf7af820150
+Owner
+672269152614
