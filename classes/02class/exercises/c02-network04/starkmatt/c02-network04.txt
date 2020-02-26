@@ -1,0 +1,33 @@
+Exercise 4
+
+name: private-a
+AZ: ap-southeast-2a (apse2-az1)
+VPC: vpc-09fdac84afa8718d9 | devopsacademy-vpc
+IPV4 CIDR: 10.0.64.0/19
+
+name: private-b
+AZ: ap-southeast-2b (apse2-az3)
+VPC: vpc-09fdac84afa8718d9 | devopsacademy-vpc
+IPV4 CIDR: 10.0.96.0/19
+
+name: private-c 
+AZ: ap-southeast-2c (apse2-az2)
+VPC: vpc-09fdac84afa8718d9 | devopsacademy-vpc
+IPV4 CIDR: 10.0.128.0/19
+
+name: public-a
+AZ: ap-southeast-2a (apse2-az1)
+VPC:vpc-09fdac84afa8718d9 | devopsacademy-vpc
+IPV4 CIDR: 10.0.160.0/19
+
+name: public-b
+AZ: ap-southeast-2b (apse2-az3)
+VPC:vpc-09fdac84afa8718d9 | devopsacademy-vpc
+IPV4 CIDR: 10.0.192.0/19
+
+name: public-c
+AZ: ap-southeast-2c (apse2-az2)
+VPC:vpc-09fdac84afa8718d9 | devopsacademy-vpc
+IPV4 CIDR: 10.0.192.0.19
+
+
