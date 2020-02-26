@@ -28,6 +28,6 @@ IPV4 CIDR: 10.0.192.0/19
 name: public-c
 AZ: ap-southeast-2c (apse2-az2)
 VPC:vpc-09fdac84afa8718d9 | devopsacademy-vpc
-IPV4 CIDR: 10.0.192.0.19
+IPV4 CIDR: 10.0.224.0/19
 
 
