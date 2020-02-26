@@ -213,7 +213,7 @@ During the build of an image, Docker can re-use layers previously created. This 
 
 Consider two very similar images, where the only difference between it is a `RUN` step. Even that this step only adds a single file with 13 bytes to the image, it completely affects the result of remaining layers of the image. 
 
-Observe that the `apt-get update` steps are exactly the same and add the same amount of MB to the image, however, it has a different SHS(79b65ac314b1 on the first image and a70625894939 on the second).
+Observe that the `apt-get update` steps are exactly the same and add the same amount of MB to the image, however, it has a different SHA (79b65ac314b1 on the first image and a70625894939 on the second).
 ```
 IMAGE               CREATED              CREATED BY                                      SIZE   
 bc8d9068fd51        25 seconds ago       /bin/sh -c rm -rf /tmp/httpd-2.4.41.tar.gz      0B     
