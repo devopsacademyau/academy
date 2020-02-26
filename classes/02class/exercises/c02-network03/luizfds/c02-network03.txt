@@ -1,0 +1,17 @@
+Details from created vpc:
+
+VPC ID: vpc-0fb0464639ce57474
+Tenancy: default
+State: available
+Default VPC: No
+IPv4 CIDR: 10.0.0.0/16
+Classic link: Disabled
+IPv6 CIDR: -
+IPv6 Pool: -
+DNS resolution: Enabled
+Network ACL: acl-0ee6cc9cf1246d38c
+DNS hostnames: Disabled
+DHCP options set: dopt-1bfdda7c
+ClassicLink DNS Support: Disabled
+Route table: rtb-0b563e84d503c0293
+Owner: 709308406413
