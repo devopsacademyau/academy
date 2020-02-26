@@ -15,3 +15,7 @@ For instructions on how to submit your work, [please check the main repository R
 - [Account billing alarm (C01-E02)](/classes/01class/exercises/c01-e02/README.md)
 - [First EC2 instance (C01-E03)](/classes/01class/exercises/c01-e03/README.md)
 - [S3 (C01-E04)](/classes/01class/exercises/c01-e04/README.md)
+
+## References
+
+- [Preparing a Linux EC2 Jump Box in AWS (C01-E03)](https://www.youtube.com/watch?v=Mwf17O45IA0)

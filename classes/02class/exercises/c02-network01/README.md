@@ -9,7 +9,7 @@ Commit all your answers to a text file `c02-network01.txt` under your folder nam
 - subnet in binary
 - subnet in decimals
 - is it private or public?
-- how many IP addresses for HOSTS are available on AWS subnets
+- how many IP addresses for HOSTS are available on subnets (not necessarily AWS ones) -- if you wish to do for AWS subnets type, just state your decision.
 
 - Example: `192.168.0.1/24`
 

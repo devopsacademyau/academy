@@ -15,3 +15,4 @@ For instructions on how to submit your work, [please check the main repository R
 - [AWS VPC + subnets - Security Groups](/classes/02class/exercises/c02-network09/README.md)
 - [AWS VPC + subnets - ENI](/classes/02class/exercises/c02-network10/README.md)
 - [AWS VPC + subnets - EC2](/classes/02class/exercises/c02-network11/README.md)
+- [AWS VPC Peering Challenge](/classes/02class/exercises/c02-network12-challenge/README.md)
