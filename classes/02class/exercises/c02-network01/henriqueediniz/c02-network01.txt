@@ -1,0 +1,42 @@
+10.0.0.1/24
+
+IP in binary: 00001010.00000000.00000000.00000001
+Subnet in binary: 11111111.11111111.11111111.00000000
+Subnet in decimals: 255.255.255.0
+Private/public: Private
+Hosts: 251 IPs (Amazon reserves 5 IPs address of every subnet for networking purpose.)
+
+192.168.0.1/16
+
+IP in binary: 11000000.10101000.00000000.00000001
+Subnet in binary: 11111111.11111111.00000000.00000000
+Subnet in decimals: 255.255.0.0
+Private/public: Private
+Hosts: 65529 ( 5 to AWS)
+
+249.165.166.135/30
+
+IP in binary: 11111001.10100101.10100110.10000111
+Subnet in binary: 11111111.11111111.11111111.11111100
+Subnet in decimals: 255.255.255.252
+Private/public: Public
+Hosts: I need access this doc to understand: https://aws.amazon.com/vpc/faqs/
+Neither, because the minimum size of a subnet in AWS is /28 as 14 IP addresses. 
+Subnets cannot be larger than the VPC in which they are created. 
+
+
+236.68.223.18/32
+
+IP in binary: 11101100.01000100.11011111.00010010
+Subnet in binary: 11111111.11111111.11111111.11111111
+Subnet in decimals: 255.255.255.255
+Private/public: Public
+Hosts: None
+
+172.31.0.0/16
+
+IP in binary: 10101100.00011111.00000000.00000000
+Subnet in binary: 11111111.11111111.00000000.00000000
+Subnet in decimals: 255.255.0.0
+Private/public: Private
+Hosts: 65529
