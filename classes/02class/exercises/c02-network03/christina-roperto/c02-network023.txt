@@ -8,18 +8,17 @@ Tenancy default
 Post details from the vpc created.
 
 -----------------------------------------------
-Subnet ID : subnet-0d1bdd61c393a4a06
-VPC : vpc-06763d321855b5d7b | devopsacademy-vpc
-IPv4 CIDR : 10.0.0.0/24
-Available IPv4 Addresses : 251
+VPC ID: vpc-06763d321855b5d7b
+Tenancy: default
+State: available
+Default VPC: No
+IPv4 CIDR: 10.0.0.0/16
+Classic link: Disabled
 IPv6 CIDR: -
-Availability Zone : ap-southeast-2a (apse2-az1)
-Main Route table : rtb-04f51380e2c873973
-Main Network ACL : acl-0e3ca08a1d66e2ec5
-Route Table : rtb-08fd0215a0c4892e6
-Network ACL : acl-0e3ca08a1d66e2ec5
-Default subnet: No
-Auto-assign public IPv4 address: No
-Auto-assign IPv6 address: No
-Owner: 956839463650
-
+IPv6 Pool: -
+DNS resolution: Enabled
+Network ACL: acl-0e3ca08a1d66e2ec5
+DNS hostnames: Enabled
+DHCP options set: dopt-6d61440a
+ClassicLink DNS Support: Disabled
+Route table: rtb-01034bd8ac1ec257a | devopsacademy-rt-public
