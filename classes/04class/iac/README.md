@@ -13,7 +13,7 @@ In this class, we'll be using Terraform as the main tool to provision resources 
 - [Terraform Foundation](#terraform-introduction)
   - [Terraform Providers](#terrform-providers)
   - [Terraform State](#terraform-state)
- - [Terraform Resources(#terraform-resources)] 
+ - [Terraform Resources](#terraform-resources) 
 
 ## What is IaC?
 Infrastructure as Code (IaC) is the process of create, configure and manage IT resources through machine-readable file. Instead of manually creating and configuring IT resources, it's possible to have everything created in an automated and repeatable way. 
