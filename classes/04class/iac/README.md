@@ -10,9 +10,10 @@ In this class, we'll be using Terraform as the main tool to provision resources 
   - [Benefits of IaC](#benefits-of-iac)
   - [IaC Models](#iac-models)
   - [IaC Methos](#iac-methods)
-- [Terraform Introduction](#terraform-introduction)
+- [Terraform Foundation](#terraform-introduction)
   - [Terraform Providers](#terrform-providers)
   - [Terraform State](#terraform-state)
+ - [Terraform Resources(#terraform-resources)] 
 
 ## What is IaC?
 Infrastructure as Code (IaC) is the process of create, configure and manage IT resources through machine-readable file. Instead of manually creating and configuring IT resources, it's possible to have everything created in an automated and repeatable way. 
@@ -49,7 +50,7 @@ In the pull method, the resource being managed by the IaC tool will pull the too
 
 In the push metho, the resource being managed stays in a `sleep mode` and the communication is initiated by the IaC tool. In that case, the tool will push the desired state to the resource being managed and the resource will converge to the desired state (again, either through imperative or declarative model).
 
-## Terraform Introduction
+## Terraform Foundation
 [Terraform](https://www.terraform.io/) is one of the main IaC tools available and it uses a Decalative model with a push method. It can be used to manage resources in multiple cloud providers(including AWS, Azure and GCP) as well as manage resources in on-premisses(like in VMware and Openshift). 
 
 It's an extremly powerfull tool that can be used to create maintain and delete entire IT environments. During this material we'll focus on how to use Terraform to manage AWS resources.
@@ -67,10 +68,10 @@ During the terraform code that you'll create to deploy the resources, for exampl
 # Configure the AWS Provider
 provider "aws" {
   version = "~> 2.0"
-  region  = "us-east-1"
+  region  = "ap-southeast-2"
 }
 
-# Create a VPC
+# Create a VPC named devopsacademy-vpc
 resource "aws_vpc" "devopsacademy_vpc" {
   cidr_block = "192.168.50.0.0/16"
 
@@ -81,7 +82,6 @@ resource "aws_vpc" "devopsacademy_vpc" {
 ```
 
 ### Terraform State
-
 In order to be able to create, change, delete and keep track of current state of the resources being managed by itself, Terraform make uses of a file called `Terraform State`, which is used to store state about your managed infrastructure and configuration. 
 
 This state is used by Terraform to map real world resources to your configuration, keep track of metadata, and to improve performance for large infrastructures.
@@ -93,6 +93,7 @@ With this file, Terraform can, whenever you deploy new code to your environment,
 In order to specify where the Terraform State will be stored, we use the `backend` code, as the example below:
 
 ```terraform
+# Define where the terraform state will be stored
 terraform {
   backend "local" {
     path = "/devopsacademy/critical/terraform.tfstate"
@@ -103,3 +104,5 @@ If, for any reason, the state file is lost, terraform wont be able to know the r
 
 
 More details around the Terraform State can be found [here](https://www.terraform.io/docs/state/index.html).
+
+## Terraform Resources
