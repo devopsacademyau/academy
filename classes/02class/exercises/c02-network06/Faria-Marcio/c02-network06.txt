@@ -1,0 +1,8 @@
+--STEPS:
+	On AWS console, I clicked on VPC and NAT Gateways. Using Create NAT Gateway button I created the NGW as C02-Network06 asked.
+
+-- RESULT
+Name			NAT Gateway ID		Status		Status 	Elastic IP 	Private IP 	Network Interface ID	VPC			Subnet			 Created		Deleted
+								Message	Address		Address
+devopsacademy-ngw	nat-07b6e1054fdaaf9cb	available	-	3.105.120.245	192.168.101.142	eni-0e1ecb8ba820708b2	vpc-04386a3405acb18af 	subnet-0ee9145a0a0a5d838 February 28, 2020 	-
+																| devopsacademy-vpc	| public-a		 at 2:31:04 PM UTC+11
