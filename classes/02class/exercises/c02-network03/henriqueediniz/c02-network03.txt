@@ -1,0 +1,17 @@
+VPC Description:
+
+VPC ID: vac-01ca526eeg23wqrc0
+Tenancy: default
+State: available
+Default VPC: No
+IPv4 CIDR: 192.168.0.0/16
+Classic link: Disabled
+IPv6 CIDR: -
+IPv6 Pool: -
+DNS resolution: Enabled
+Network ACL: acl-0e2dd1f302d22l239
+DNS hostnames: Disabled
+DHCP options set: dopt-2d0b4f1b
+ClassicLink DNS Support: Disabled
+Route table: rtb-1ff9c7a155a78f229
+Owner: 238193821009
