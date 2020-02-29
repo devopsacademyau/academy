@@ -5,7 +5,7 @@ Class 01 - Exercise 04
 Using the AWS interface https://s3.console.aws.amazon.com/s3/home?region=ap-southeast-2#
 - Create a bucket: set the name and region
 - Set the properties, versioning, log, etc (if relevant)
-- Block public access (if relevant)
+- Block public access
 
 1.1 - upload a file to it
 - Access created bucket
@@ -30,29 +30,18 @@ EDIT INSTANCE
 - Select instance, actions, intance setting and replace the IAM role
 - Select the role create above and apply
 
+PRIVATE ACCESS (using IAM role policy)
+
 Carines-MBP:downloads carineoliveira$ ssh -i "admin-key-pair-ap-southeast-2.pem" ec2-user@ec2-52-63-89-119.ap-southeast-2.compute.amazonaws.com
-Last login: Sat Feb 29 07:36:48 2020 from 220.240.200.80
+Last login: Sat Feb 29 11:31:23 2020 from 220.240.200.80
 
        __|  __|_  )
        _|  (     /   Amazon Linux AMI
       ___|\___|___|
 
 https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
-[ec2-user@ip-10-0-0-78 ~]$ ls
-[ec2-user@ip-10-0-0-78 ~]$ wget https://academy-bucket.s3-ap-southeast-2.amazonaws.com/logo.png
---2020-02-29 07:53:10--  https://academy-bucket.s3-ap-southeast-2.amazonaws.com/logo.png
-Resolving academy-bucket.s3-ap-southeast-2.amazonaws.com (academy-bucket.s3-ap-southeast-2.amazonaws.com)... 52.95.134.18
-Connecting to academy-bucket.s3-ap-southeast-2.amazonaws.com (academy-bucket.s3-ap-southeast-2.amazonaws.com)|52.95.134.18|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 244930 (239K) [image/png]
-Saving to: ‘logo.png’
 
-logo.png                            100%[===================================================================>] 239.19K  --.-KB/s    in 0.006s  
-
-2020-02-29 07:53:10 (37.2 MB/s) - ‘logo.png’ saved [244930/244930]
-
+[ec2-user@ip-10-0-0-78 ~]$ aws s3 cp s3://academy-bucket/logo.png .
+download: s3://academy-bucket/logo.png to ./logo.png    
 [ec2-user@ip-10-0-0-78 ~]$ ls
 logo.png
-
-
-
