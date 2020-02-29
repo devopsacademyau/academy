@@ -1,0 +1,111 @@
+Class 01 - GitHub 03
+
+- Did you notice any difference in the size of the repo before and after adding the big file?
+Yes. The directory was 92K big when the first file were added and then 20M big when the second file were added.
+
+- What is the reason for this problem?
+The files were kept in the folder ./.git/objects for history even after the reset.
+
+- How do you remove something from Git history? Which commands would you use? What are the consequences?
+
+Execute the following command to remove undesired files:
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD
+
+Then force push the local repository to overwrite git repository and branches that were pushed:
+git push origin --force --all
+
+Consequences: 
+- It removes the file permanently and it could be a problem when done by mistake making the file unable to recover. 
+
+
+Carines-MacBook-Pro:GitTest carineoliveira$ git init
+Initialized empty Git repository in /private/tmp/GitTest/.git/
+Carines-MacBook-Pro:GitTest carineoliveira$ touch README.md
+Carines-MacBook-Pro:GitTest carineoliveira$ git add README.md 
+Carines-MacBook-Pro:GitTest carineoliveira$ git commit -m "test first commit"
+[master (root-commit) bbde03f] test first commit
+ Committer: Carine Oliveira <carineoliveira@Carines-MBP.lan>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 README.md
+ Carines-MacBook-Pro:GitTest carineoliveira$ git log
+commit bbde03fa419a154efeca793ecb8ff5292fe6ff87 (HEAD -> master)
+Author: Carine Oliveira <carineoliveira@Carines-MBP.lan>
+Date:   Mon Feb 24 22:47:43 2020 +1100
+
+    test first commit
+ Carines-MacBook-Pro:GitTest carineoliveira$ du -sh
+ 92K  
+ arines-MacBook-Pro:GitTest carineoliveira$ dd if=/dev/random of=file.txt count=1024 bs=10257
+1024+0 records in
+1024+0 records out
+10503168 bytes transferred in 0.050561 secs (207731821 bytes/sec)
+Carines-MacBook-Pro:GitTest carineoliveira$ git add file.txt 
+Carines-MacBook-Pro:GitTest carineoliveira$ git commit -m "test add big file"
+[master 1fc763a] test add big file
+ Committer: Carine Oliveira <carineoliveira@Carines-MBP.lan>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file.txt
+Carines-MacBook-Pro:GitTest carineoliveira$ git log
+commit 1fc763adf7bcf4caf77120d809767ff14a8d682b (HEAD -> master)
+Author: Carine Oliveira <carineoliveira@Carines-MBP.lan>
+Date:   Mon Feb 24 22:49:58 2020 +1100
+
+    test add big file
+
+commit bbde03fa419a154efeca793ecb8ff5292fe6ff87
+Author: Carine Oliveira <carineoliveira@Carines-MBP.lan>
+Date:   Mon Feb 24 22:47:43 2020 +1100
+
+    test first commit
+Carines-MacBook-Pro:GitTest carineoliveira$ du -sh
+ 20M    .    
+ arines-MacBook-Pro:GitTest carineoliveira$ git reset HEAD~
+Carines-MacBook-Pro:GitTest carineoliveira$ git log
+commit bbde03fa419a154efeca793ecb8ff5292fe6ff87 (HEAD -> master)
+Author: Carine Oliveira <carineoliveira@Carines-MBP.lan>
+Date:   Mon Feb 24 22:47:43 2020 +1100
+
+    test first commit
+Carines-MacBook-Pro:GitTest carineoliveira$ du -h
+4.0K    ./.git/objects/bb
+  0B    ./.git/objects/pack
+4.0K    ./.git/objects/1f
+  0B    ./.git/objects/info
+4.0K    ./.git/objects/b8
+4.0K    ./.git/objects/e6
+4.0K    ./.git/objects/f9
+ 10M    ./.git/objects/83
+ 10M    ./.git/objects
+4.0K    ./.git/info
+4.0K    ./.git/logs/refs/heads
+4.0K    ./.git/logs/refs
+8.0K    ./.git/logs
+ 44K    ./.git/hooks
+4.0K    ./.git/refs/heads
+  0B    ./.git/refs/tags
+4.0K    ./.git/refs
+  0B    ./.git/branches
+ 10M    ./.git
+ 20M    .
