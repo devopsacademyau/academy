@@ -1,6 +1,6 @@
 VPC Description:
 
-VPC ID: vac-01ca526eeg23wqrc0
+VPC ID: vpc-01ca526eeg23wqrc0
 Tenancy: default
 State: available
 Default VPC: No
