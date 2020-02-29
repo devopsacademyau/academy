@@ -1,32 +1,32 @@
 --- PRIVATE ---
 
-name: private1
+name: private-a
 VPC: vpc-01ca526eeg23wqrc0
-AZ: ap-southeast-2-1
+AZ: ap-southeast-2-a
 IPv4 CIDR: 10.0.0.0/19
 
-name: private2
+name: private-b
 VPC: vpc-01ca526eeg23wqrc0
-AZ: ap-southeast-2-2
+AZ: ap-southeast-2-b
 IPv4 CIDR: 10.0.32.0/19
 
-name: private2
+name: private-c
 VPC: vpc-01ca526eeg23wqrc0
-AZ: ap-southeast-2-3
+AZ: ap-southeast-2-c
 IPv4 CIDR: 10.0.64.0/19
 
 --- PUBLIC ---
-name: public1
+name: public-a
 VPC: vpc-01ca526eeg23wqrc0
-AZ: ap-southeast-2-1
+AZ: ap-southeast-2-a
 IPv4 CIDR: 10.0.96.0/19
 
-name: public2
+name: public-b
 VPC: vpc-01ca526eeg23wqrc0
-AZ: ap-southeast-2-2
+AZ: ap-southeast-2-b
 IPv4 CIDR: 10.0.128.0/19
 
-name: public3
+name: public-c
 VPC: vpc-01ca526eeg23wqrc0
-AZ: ap-southeast-2-3
+AZ: ap-southeast-2-c
 IPv4 CIDR: 10.0.160.0/19
