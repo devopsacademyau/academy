@@ -1,0 +1,29 @@
+- How did you accomplish both instructions?
+    1. I openned the Amazon VPC console at https://console.aws.amazon.com/vpc/. 
+    2. In the navigation pane, I choosed Route Tables, and then I clicked in Create Route Table button.
+    3. In the Create Route Table dialog box, I named my route table as required in this exercise, then I selected my VPC called devopsacademy-vpc, and after that I choosed Yes, Create (I did step 2 and 3 for the 2 route tables requested).
+    4. I Selected my route table devopsacademy-rt-public.
+    5. On the Routes tab, I choosed Edit, Add another route, and added the following routes:
+        a. destination = 0.0.0.0/0 | target = `devopsacademy-igw` igw-072562ff79a1e5246
+    6. I Selected my route table devopsacademy-rt-private.
+    7. On the Routes tab, I choosed Edit, Add another route, and added the following routes:
+        a. destination = 0.0.0.0/0 | target = `devopsacademy-ngw`| -- nat-0f0ec490564833c21
+    8. On the Subnet Associations tab for both new Route Tables, I choosed Edit, selected the Associate check box for the subnet, and then choose Save (eg devopsacademy-rt-public => all public subnets and devopsacademy-rt-private => all private subnets)
+
+- Why did you add 0.0.0.0 route to the IGW on public route table?
+    0.0.0.0 is the "default route" which is the least specific match. So any more specific match will route the traffic, but if there's no other match it'll head to 0.0.0.0 and I added IGW to it because to be able to route internal VPC requests from public subnets to the internet, a Internet Gateway is required.
+
+- Why did you add 0.0.0.0 route to the NGW on private route table?
+    From private subnets, access from the internet shouldn't be allowed direct to the instances. However, the instances still need access to the internet for updates or consuming external services. The NAT Gateway masquerades the private requests to the internet.
+
+- What is the difference of IGW and NGW?
+    An Internet Gateway (IGW) is a logical connection between an Amazon VPC and the Internet.
+    A NAT Gateway does something similar, but with two main differences:
+        1. It allows resources in a private subnet to access the internet (think yum updates, external database connections, wget calls, OS patch, etc)
+        2. It only works one way. The internet at large cannot get through your NAT to your private resources unless you explicitly allow it.
+
+- Can you delete the destination route to your VPC network? Why?
+    No, by default, each VPC comes with 1 route table pre-configured with a “local” route. The scope of the “local” route is only within the subnet defined for the entire VPC. For example, if your VPC was set up to have the address space of 172.16.0.0/16, your “local” route would be defined as “172.16.0.0/16”. This allows all of the resources created within the VPC to talk to each other without any additional configuration. You cannot delete the “local” route from your route table, and anytime a new route table is created within a VPC, the “local” route is included by default.
+
+- What happens if you do not associate your route table with any subnets?
+    The route table will not be used and the Main route table will be used instead. Each subnet in our VPC must be associated with a route table. A subnet can be explicitly associated with custom route table, or implicitly or explicitly associated with the main route table. And another useful information is that you cannot delete the main route table, but you can replace the main route table with a custom subnet route table that you've created. 

@@ -1,0 +1,67 @@
+<h2>Execrise 1</h2>
+
+#10.0.0.1/24
+
+IP Address in Binary:00001010.00000000.00000000.00000001
+
+Subnet in Binary:11111111.11111111.11111111.00000000
+
+Subnet in Decimals:255.255.255.0
+
+Private / Public: Private 
+
+IP Addresses for Hosts available (AWS): 251
+
+#192.168.0.1/16
+
+IP Address in Binary: 11000000.10101000.00000000.00000001
+
+Subnet in Binary: 11111111.11111111.00000000.00000000
+
+Subnet in Decimals:255.255.0.0
+
+Private / Public: Private
+
+IP Addresses for hosts available (AWS): 65,534
+
+
+#249.165.166.135/30
+
+IP Address in Binary: 11111001.10100101.10100110.10000111
+
+Subnet in Binary: 11111111.11111111.11111111.11111100
+
+Subnet in Decimals: 255.255.255.252
+
+Private / Public: Private
+
+IP Addresses for hosts available (AWS):
+2 (Unsure if my calculations were correct)
+
+
+
+#236.68.223.18/32
+
+IP Address in Binary: 11101100.01000100.11100000.00010010
+
+Subnet in Binary 11111111.11111111.11111111.11111111
+
+Subnet in Decimals: 255.255.255.255
+
+Private / Public:Public
+
+IP Addresses for hosts available (AWS): 0 (or 1 including my connection ?)
+
+
+#172.31.0.0/16
+
+IP Address in Binary: 11010000.00011111.00000000.00000000
+
+Subnet in Binary: 11111111.11111111.00000000.00000000
+
+Subnet in Decimals: 255.255.0.0
+
+Private / Public: Private
+
+IP Addresses for hosts available (AWS): 65,534
+

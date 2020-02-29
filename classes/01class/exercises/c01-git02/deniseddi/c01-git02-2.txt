@@ -1,0 +1,9 @@
+2.How to compare two different local repositories using git diff? How about remote ones, can you do the same?
+
+The "diff" command takes two inputs and compare the differences between them. My understanding is that these inputs can be files, branches, commits, etc. 
+
+To compare two different local repos:
+$ git diff branch1..branch2 or $ git diff <branch name a> <branch name b>
+
+To compare to a remote repo:
+$ git diff <local branch> <remote>/<remote branch>

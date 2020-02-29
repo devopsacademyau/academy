@@ -1,0 +1,36 @@
+Exercise 2
+
+### Given a AWS network range, slice it in 4 small subnets and identify how many usable hosts for each one of them
+
+# 10.0.0.0/16
+
+I believe we can use 10.0.0.0/18 (For the 3rd Octet, but I believe there could be a few answers?)
+
+How I worked this out is, 256 Divide 4 which gives us 64, we have 64 Bits to use.
+
+10.0.0.0/18
+
+10.0.64.0/18
+
+10.0.128.0/18
+
+10.0.192.0/18
+
+Hosts = 16,379
+
+
+# 192.168.0.0/24
+
+Using the same methodology as above, 256 Divide by 4 (64 useable bits)
+
+192.168.0.0/26
+
+192.168.0.64/26
+
+192.168.0.128/26
+
+192.168.0.192/26
+
+Host = 59
+
+
