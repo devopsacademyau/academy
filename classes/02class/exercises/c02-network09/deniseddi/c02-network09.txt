@@ -1,0 +1,18 @@
+To achieve this task, first I followed the steps from AWS docs on creating a Security Group:
+
+1. On VPC dashboard, selected Security Groups -> Create Security group.
+2. Entered the following details:
+   Security group name: public-sg, Description: SSH access from home to AWS, VPC: devopsacademy-vpc
+3. Create. 
+
+To add Rules:
+4. Selected the security group just created. On the top of navigation pane, selected Actions -> Edit inbound rules -> Add Rule
+   Type: Custom TCP Rule, Protocol: TCP, Port Range: 22, Source: (My IP) 121.211.57.221/32, Description: SSH access from home to AWS.
+5. Save rules.
+
+Followed the same steps for creating a second Security Group and Rules. Except, I entered the following details: 
+
+  (Security Group) 
+  Security group name: public-sg, Description: SSH access only from public instances on AWS, VPC: devopsacademy-vpc
+  (Rules)
+  Type: Custom TCP Rule, Protocol: TCP, Port Range: 22, Source (Custom) sg-01d8e1876769d1275, Description: SSH access from home to AWS.
