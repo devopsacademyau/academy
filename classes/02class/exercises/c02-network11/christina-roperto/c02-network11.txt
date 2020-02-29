@@ -1,0 +1,51 @@
+AWS VPC + subnets
+Commit all your answers to a text file c02-network11.txt under your folder name.
+
+Everything is to be done preferable on Sydney region ap-southeast-2
+
+EC2
+Repeat exercise from last class where you have to:
+
+launch an EC2 instance on a public subnet
+attach your public SG to your public instance
+launch an EC2 instance on the same private subnet that you created your ENI
+attach ENI created from last exercise
+attach your private SG to your public instance
+access to your public instance using SSH
+FROM your PUBLIC instance, SSH to your private one
+However this time, use your custom created subnets instead of the AWS default ones.
+
+post if you had to do any troubleshooting or if that worked straight away
+DO NOT FORGET TO DELETE YOUR RESOURCES ONCE YOU FINISH:
+ALL EC2 INSTANCES
+NAT GATEWAY
+ANY ELASTIC IP (those are charged only if you allocate one and is not being used)
+You can leave the vpc, subnets, route tables, internet gateway, network acl
+
+-----------------------------------------------------------------------------------------------------
+
+
+Launched an EC2 instance on subnet public-access
+- chose default free AMI (Amazon Linux 2 AMI) and free tier instance type (t2 micro)
+- verified the network is devopsacademy-vpc
+- chose use subnet setting (Enable) on the auto-assign public ip
+- on the last step, attached public-sg
+- selected an existing keypair
+- connecting via ssh using the command: ssh -i "ChristinaAWS.pem" ec2-user@ec2-54-252-160-136.ap-southeast-2.compute.amazonaws.com
+- connected and ran yum update
+
+
+
+Launched an EC2 instance on the same private subnet that you created your ENI
+- same with the the public subnet but disable auto assign public IP and attached private-sg
+- connected the private subnet through public subnet using agent forwarding: 
+ssh -A -i "ChristinaAWS.pem" ec2-user@ec2-54-252-160-136.ap-southeast-2.compute.amazonaws.com
+then connect the private subnet: ssh ec2-user@10.0.1.4
+
+
+
+I had this Issue when connecting via ssh, I chose yes but not sure if that's normal: 
+The authenticity of host 'ec2-54-252-160-136.ap-southeast-2.compute.amazonaws.com (54.252.160.136)' can't be established.
+ECDSA key fingerprint is SHA256:0GMFyH+fTNvd0xCSnwnJ7fAJFQNEKZaf+HrcQSU3aFQ.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ec2-54-252-160-136.ap-southeast-2.compute.amazonaws.com,54.252.160.136' (ECDSA) to the list of known hosts.
