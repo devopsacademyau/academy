@@ -289,13 +289,13 @@ In order to push an image to ECR, you can follow this [guide](https://docs.aws.a
 In order to pull and image from ECR, you ca follow this [guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-pull-ecr-image.html).
 
 ## Main Take Aways
-- We should know what is a container and it's benefits
-- We should know what is a container registry and what it's used for
-- We should know how to run a container
-- We should know how to create a new container image
-- We should be able to access the service being served from a container running on our local machine
-- We should know what is ECS and its purpose
-- We should know what is ECR and how we pull and push images from/to it
+- What is a container and its benefits
+- What is a container registry and what it's used for
+- How to run a container
+- How to create a new container image
+- Be able to access a service running from a container on our local machine
+- What is ECS and its purpose
+- What is ECR and how we pull and push images from/to it
 
 ## Appendix
 
