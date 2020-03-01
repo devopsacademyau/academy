@@ -22,28 +22,32 @@ Creating a new Instance with Public IP adress:
 -	The security group created by the launch instance wizard enabled SSH traffic by default.
 -	Got path to the location of private key.
 -	Set permissions of my private key. 
-o	chmod 400 /Users/denisegomes/Downloads/denise_admin_keypair.pem
+o	chmod 400 /Users/denisegomes/Downloads/denise_admin_keypair3.pem
 -	Didn’t opt for the instance’s fingerprint. 
 -	Connected using my instance’s public DNS:
-o	ssh -i /Users/denisegomes/Downloads/denise_admin_keypair.pem ec2-user@ec2-13-55-22-176.ap-southeast-2.compute.amazonaws.com
+o	ssh -A -i /Users/denisegomes/Downloads/denise_admin_keypair3.pem ec2-user@ec2-3-104-38-234.ap-southeast-2.compute.amazonaws.com
+(-A is to forward the keypair)
 
 Creating a new Instance with Private IP:
 
 1. Steps 1-3 as above, 
 
-2. Created a new key pair at the launch of the Instance (for trying this other option) 
+2. Selected same key pair at the launch of the Instance. 
 
 3. On launching the instance,
-
 - Instead of “Review and Launch”, I went to ‘next: Configure instance details.
 - Chose a subnet from the list. 
 - In the “Network interfaces” section, entered the custom private IPv4 address. Left as “Auto-assign” because according to documentation: “*Network interfaces*: For *Primary IP*, enter a private IPv4 address from the range of your subnet, or leave *Auto-assign* to let AWS choose a private IPv4 address for you.”
-
+- Auto-Assign Public IP: DISABLED, not to assign a public IP address to the instance.
 - Selected the previously created Security group
-- Created a new key pair, named it. 
 - Launched Instance
-- Connected using a SSH client and my instance’s public DNS.
+o Instance:  i-03235cb3e40dada4c Private IP: 172.31.5.11
+
+4. Connected the first instance, then once connected: 
+o	ssh  ec2-user@172.31.5.11 
+- Private instance was successfully connected.
+ 
 
 P.s. Followed AWS to assign a custom primary private IP address from https://aws.amazon.com/premiumsupport/knowledge-center/custom-private-primary-address-ec2/
-but not sure if it worked as expected. Instanced launched but still showing a Public IP address as well…
+The info about auto-assign Public IP to Disable was missing. 
 
