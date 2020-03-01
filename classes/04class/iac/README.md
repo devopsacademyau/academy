@@ -111,6 +111,7 @@ Resources are the most important component of a Terraform code. Each resource bl
 The resource block defines all the characteristics and configuration of the resource, and each resource type will have different required and optional arguments.
 
 ```terraform
+# Define a new resource of the EC2 instace type
 resource "aws_instance" "da_academy" {
   ami               = "ami-077007384e83bf4cc"
   availability_zone = "ap-southeast2-2a"
@@ -130,11 +131,7 @@ This name defined by you have no importance outside of the Terraform scope, so i
 The name is important to be referenced by another resource being created in the same Terraform code.
 
 ```terraform
-resource "aws_eip_association" "da_academy" {
-  instance_id   = "${aws_instance.da_academy.id}"
-  allocation_id = "${aws_eip.da_academy.id}"
-}
-
+# Define a new resource of the EC2 instace type
 resource "aws_instance" "da_academy" {
   ami               = "ami-077007384e83bf4cc"
   availability_zone = "ap-southeast2-2a"
@@ -145,9 +142,17 @@ resource "aws_instance" "da_academy" {
   }
 }
 
+# Define a new resource of the EIP type
 resource "aws_eip" "da_academy" {
   vpc = true
 }
+
+# Associate an EC2 instance resource with a EIP resource
+resource "aws_eip_association" "da_academy" {
+  instance_id   = "${aws_instance.da_academy.id}"
+  allocation_id = "${aws_eip.da_academy.id}"
+}
+
 ```
 
 In the example above, we're using the same EC2 instance creation code, but we're adding 2 new resources to it. One of them is the resource type `aws_eip`, which creates a new Elastic IP. The other new resource is a `aws_eip_association`, which we're using to associate the EIP named `da_academy` to the EC2 instance named `da_academy`.
