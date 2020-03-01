@@ -106,3 +106,62 @@ If, for any reason, the state file is lost, terraform wont be able to know the r
 More details around the Terraform State can be found [here](https://www.terraform.io/docs/state/index.html).
 
 ## Terraform Resources
+Resources are the most important component of a Terraform code. Each resource block represents an object in the infrastructure that will be created and managed by Terraform.
+
+The resource block defines all the characteristics and configuration of the resource, and each resource type will have different required and optional arguments.
+
+```terraform
+resource "aws_instance" "da_academy" {
+  ami               = "ami-077007384e83bf4cc"
+  availability_zone = "ap-southeast2-2a"
+  instance_type     = "t1.micro"
+
+  tags = {
+    Name = "DevOpsAcademy-Instance"
+  }
+}
+```
+In the example above, an EC2 Instance named `DevOpsAcademy-Instance` would be created. In this resource we have also identified the AMI that needs to be used, the instance type and the Availability Zone that the instance should be created into. Many more optional Arguments could be added to this resource, like `key_name`, `subnet_id`, `security_group`, and many others. A list of all Argument options for EC2 can be found [here](https://www.terraform.io/docs/providers/aws/r/instance.html).
+
+Each resource block declares a resource type and the resource name. In the example above, the instance type is `aws_instance` and the resource name is `da_academy`. 
+
+This name defined by you have no importance outside of the Terraform scope, so it won't affect any configuration of the resource being created in AWS, in our case.
+
+The name is important to be referenced by another resource being created in the same Terraform code.
+
+```terraform
+resource "aws_eip_association" "da_academy" {
+  instance_id   = "${aws_instance.da_academy.id}"
+  allocation_id = "${aws_eip.da_academy.id}"
+}
+
+resource "aws_instance" "da_academy" {
+  ami               = "ami-077007384e83bf4cc"
+  availability_zone = "ap-southeast2-2a"
+  instance_type     = "t1.micro"
+
+  tags = {
+    Name = "DevOpsAcademy-Instance"
+  }
+}
+
+resource "aws_eip" "da_academy" {
+  vpc = true
+}
+```
+
+In the example above, we're using the same EC2 instance creation code, but we're adding 2 new resources to it. One of them is the resource type `aws_eip`, which creates a new Elastic IP. The other new resource is a `aws_eip_association`, which we're using to associate the EIP named `da_academy` to the EC2 instance named `da_academy`.
+
+Keep in mind that the full name of a resource(composed by the resource type + the name of the resource) must be unique in your Terraform code.
+
+Note that for the resource reference, there is one additional component to the names we're referencing. For example, when we are referencing the EC2 instance in the EIP association resource, we're using `aws_instance.da_academy.id`. 
+
+The `aws_instance.da_academy` we already know that represents the unique name of that particular resource, however the additional `id` part of the reference we've used is new to us.
+
+Each resource, when created, have a list of `Attributes`, that, just like the list of Arguments, is different for each type or resource.
+
+In the case of the EC2 instance, the ID represents the Instance ID of a instance. EC2 instances have other Attributes when created, such as `arn`, `public_ip`, `private_ip`, `public_dns` and many more.
+
+As you can image, it's important to know all Arguments and Attributes of each resource available on th AWS provider, but there is a great documentation, about each resource on the [Terraform AWS provider page](https://www.terraform.io/docs/providers/aws/index.html).
+
+When creating any Terraform code, consider the Provider documentation page your best friend. No one creating Terraform code lives without it.
