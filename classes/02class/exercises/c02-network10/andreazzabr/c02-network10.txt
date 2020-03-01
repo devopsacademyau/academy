@@ -16,6 +16,6 @@ network interfaces
 create new
 
 description:  placaderede
-subnet: public-a
-ipv4 custom: 10.0.96.20
-sg: public-sg
+subnet: private-a
+ipv4 custom: 10.0.0.20
+sg: private-sg
