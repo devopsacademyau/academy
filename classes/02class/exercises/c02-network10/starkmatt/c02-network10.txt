@@ -1,0 +1,28 @@
+##Exercise 10
+
+- Services, Navigated to EC2 Dashboard and on the Left hand side Network Interfaces.
+- Gave the name devopsacademy-eni and attached it to private subnet accessible (Also private-sg)
+assigned the following IP Address 10.0.64.10
+
+===================================
+Network interface ID
+eni-03b2e0b5f0ea7d0ce
+Subnet ID
+subnet-0bb0ab2b92dd5ff77
+VPC ID
+vpc-09fdac84afa8718d9
+Availability Zone
+ap-southeast-2a
+MAC address
+02:12:50:18:50:4e
+Description
+devopsacademy-eni
+Security groups
+private-sg. view inbound rules. view outbound rules
+Network interface owner
+672269152614
+Status
+available
+Primary private IPv4 IP
+10.0.64.10
+===================================
