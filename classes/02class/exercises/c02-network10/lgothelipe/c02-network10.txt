@@ -1,0 +1,6 @@
+How to create an Elastic Network Interface (ENI)
+
+1. Log on to the AWS account
+2. Under EC2, Network Interfaces click on "Create Network Interface"
+3. Give it a descriptions, subnet and click on IPv4 Private IP -> Custom
+4. Enter an IP address within the network range of the chosen subnet.
