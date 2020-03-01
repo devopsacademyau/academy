@@ -10,7 +10,7 @@ Rule#    Type    Protocol    Port Range    Source    Allow/Deny
 *    ALL Traffic    ALL    ALL    0.0.0.0/0    DENY
 
 What is the difference between inbound x outbound?
-Inbound rules filters connections TO the host and outbound is FROM the host
+Inbound rules filters connections TO the subnet and outbound is FROM the subnet
 
 What is going to happen by default? Everything allowed or denied?
 All allowed
@@ -21,5 +21,5 @@ Inbound rule
 
 How would you block access from your network to an external network 180.200.50.0/24?
 Outbound rule
-90    SSH (22)    TCP (6)    22    180.200.50.0/24    DENY
+90    ALL Traffic    ALL    ALL    180.200.50.0/24    DENY
 
