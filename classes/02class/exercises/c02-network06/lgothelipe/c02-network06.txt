@@ -1,0 +1,7 @@
+How to crate a NAT Gateway on AWS
+
+1. Log on to the AWS account
+2. Under VPC, click on NAT Gateway
+3. Click on "Create NAT Gateway"
+4. Select a subnet and allocate an Elastic IP address
+
