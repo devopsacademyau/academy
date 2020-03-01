@@ -1,0 +1,6 @@
+How to create Security Groups on AWS
+
+1. Log on to the AWS account
+2. Under VPC -> Security Groups click on "Create security group"
+3. Select the security group created an set up inbound and outbound rules
+
