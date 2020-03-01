@@ -1,0 +1,61 @@
+c02-network11.txt
+
+## EC2
+
+Repeat exercise from last class where you have to:
+
+- launch an EC2 instance on a public subnet
+  - attach your public SG to your public instance
+- launch an EC2 instance on the same private subnet that you created your ENI
+  - attach ENI created from last exercise
+  - attach your private SG to your public instance
+- access to your public instance using SSH
+- FROM your PUBLIC instance, SSH to your private one
+
+However this time, use your custom created subnets instead of the AWS default ones.
+
+#### post if you had to do any troubleshooting or if that worked straight away
+
+yes, i couldn't connect or ping my public instance.
+doing some troubleshooting, i realized that i forgot to add 0.0.0.0/0 pointing to my igw on my route table.
+after adding that, i could ping and connect to my public instance, as follow
+
+
+anderson@andreazza:~$ ssh -A ec2-user@ec2-54-206-121-133.ap-southeast-2.compute.amazonaws.com
+Last login: Sun Mar  1 12:06:59 2020 from 14-201-210-33.tpgi.com.au
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-0-120-96 ~]$ 
+
+[ec2-user@ip-10-0-120-96 ~]$ ssh ec2-user@10.0.0.20
+The authenticity of host '10.0.0.20 (10.0.0.20)' can't be established.
+ECDSA key fingerprint is SHA256:bnGs+2oDPsgjU+GH5Ktue9EhrMxBhxD+M1mmQXNPG+M.
+ECDSA key fingerprint is MD5:82:d9:39:c7:2f:67:7f:e3:b0:e4:86:50:32:74:57:68.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '10.0.0.20' (ECDSA) to the list of known hosts.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-0-0-20 ~]$ 
+[ec2-user@ip-10-0-0-20 ~]$ 
+
+
+
+
+
+#### DO NOT FORGET TO DELETE YOUR RESOURCES ONCE YOU FINISH:
+
+- ALL EC2 INSTANCES
+- NAT GATEWAY
+- ANY ELASTIC IP (those are charged only if you allocate one and is not being used)
+
+You can leave the vpc, subnets, route tables, internet gateway, network acl
+
+
