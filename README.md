@@ -128,6 +128,7 @@ The content can be accessed through each specific README link below.
       - AWS CodeBuild
     - Pipelines
       - AWS CodePipeline
+      - AWS CodeDeploy (with Terraform)
     - Docker Compose
     - 3 Musketeers (Docker, Docker-Compose, Make)
 - [Class 06](classes/06class/README.md)
