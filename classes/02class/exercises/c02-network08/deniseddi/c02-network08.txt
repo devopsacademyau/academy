@@ -11,8 +11,8 @@ Network ACL (NACL's)
     According to the AWS docs, the default network ACL is configured to allow all traffic to flow in and out of the subnets. So, everything allowed. 
 
 •	How would you block SSH connection coming from the network 172.16.200.200/24?
-    Apparently, the only way to deny sources/IP addresses is to use Network ACL's in the VPC. So, after logging in to AWS console, I would go to my VPC dashboard and then to Network ACLs. I can then open the ACL editor, select the subnet where I would have my instance running. Edit the inbound rules by adding a new rule and explicitly “deny” the IP address 172.16.200.200/24 on port 80 (or any number less than 100, in order to be evaluated before the default). Save it. 
+    Apparently, the only way to deny sources/IP addresses is to use Network ACL's in the VPC. So, after logging in to AWS console, I would go to my VPC dashboard and then to Network ACLs. I can then open the ACL editor, select the subnet where I would have my instance running, Edit the inbound rules by adding a new rule and explicitly “deny” the IP address 172.16.200.200/24 specifying a rule number less than 100, in order to be evaluated before the default. The standard TCP port for SSH is 22. Save it. 
 
 •	How would you block access from your network to an external network 180.200.50.0/24?
-    I would go to my VPC dashboard and then to Network ACLs. Next, open the ACL editor and  select the subnet, this time selecting the Outbound rules -> Edit it by adding a new rule and explicitly “deny” the IP address 180.200.50.0/24 on a port number less than 100. Save it.
+    I would go to my VPC dashboard and then to Network ACLs. I would then open the ACL editor, select the subnet, this time select the Outbound rules -> Edit it by adding a new rule and explicitly “deny” the IP address 180.200.50.0/24 giving it a rule number less than 100. Selecting Type: "All Traffic", Protocol “All” (Any) and Port “All”.  Save it.
 
