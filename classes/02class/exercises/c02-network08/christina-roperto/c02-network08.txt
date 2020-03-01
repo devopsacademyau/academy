@@ -17,7 +17,6 @@ Rule#	Type	Protocol	Port Range	Source	Allow/Deny
 What is the difference between inbound x outbound?
 - inbound filters the packets coming to your network while outbound filters the packets leaving your network
 
-
 What is going to happen by default? Everything allowed or denied?
 - Everything allowed 
 

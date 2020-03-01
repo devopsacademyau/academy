@@ -1,0 +1,9 @@
+Name		Subnet ID			State		VPC						IPv4 CIDR		Available 	IPv6 CIDR	Availability Zone	Availability 	Route table		Network ACL		Default		Auto-assign public 	Auto-assign 
+																	IPv4 Addresses						Zone ID								subnet		IPv4 address		IPv6 address
+private-a	subnet-0a74bea287f32ea1f	available	vpc-04386a3405acb18af | devopsacademy-vpc	192.168.1.0/24		251		-		ap-southeast-2a		apse2-az3	rtb-0a0a5deef59d78a72	acl-0be025d96f9f721a6	No		No			No
+private-b	subnet-043a4115af79ab94c	available	vpc-04386a3405acb18af | devopsacademy-vpc	192.168.2.0/24		251		-		ap-southeast-2b		apse2-az1	rtb-0a0a5deef59d78a72	acl-0be025d96f9f721a6	No		No			No
+private-c	subnet-09a3dadf61841984c	available	vpc-04386a3405acb18af | devopsacademy-vpc	192.168.3.0/24		251		-		ap-southeast-2c		apse2-az2	rtb-0a0a5deef59d78a72	acl-0be025d96f9f721a6	No		No			No
+
+public-a	subnet-0ee9145a0a0a5d838	available	vpc-04386a3405acb18af | devopsacademy-vpc	192.168.101.0/24	251		-		ap-southeast-2a		apse2-az3	rtb-0a0a5deef59d78a72	acl-0be025d96f9f721a6	No		No			No
+public-b	subnet-0ca953eac96345798	available	vpc-04386a3405acb18af | devopsacademy-vpc	192.168.102.0/24	251		-		ap-southeast-2b		apse2-az1	rtb-0a0a5deef59d78a72	acl-0be025d96f9f721a6	No		No			No
+public-c	subnet-0529a0985f4d80f1e	available	vpc-04386a3405acb18af | devopsacademy-vpc	192.168.103.0/24	251		-		ap-southeast-2c		apse2-az2	rtb-0a0a5deef59d78a72	acl-0be025d96f9f721a6	No		No			No
