@@ -11,5 +11,5 @@ PUBLIC IP ADDRESS EC2:
 PRIVATE IP ADDRESS EC2:
 
 - Steps 1, 2, 3 of Public IP Address, I disabled Auto-assign Public IP option and launched the EC2 instance;
-4- Created a new Elastic IP address and allocated it to EC2 private IP address;
-5- On Ubuntu I accessed the instance through ssh -i "Devops_KeyPair.pem" ec2-user@ec2-3-104-115-53.ap-southeast-2.compute.amazonaws.com;
+4- Using WinSCP I uploaded the "Devops_KeyPair.pem" file to the public instance;
+5- On Ubuntu I accessed the private instance using ssh -i "Devops_KeyPair.pem" ec2-user@172.31.14.171 command through the public instance;
