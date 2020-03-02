@@ -8,6 +8,12 @@ I added a new record at my route table `devopsacademy-rt-public` with Christina 
 Christina did this configuration at her end allowing my private IP `10.0.1.251` to access her VPC.
 
 - from an instance in one vpc, SSH to the other instance (will have to share the ssh keys, create a new one just for this exercise -- pay attention to security)
+We have share our ssh keys using the command `cat .ssh/authorized_keys`.
+To add ssh keys to my machine I used the command `echo public_key_string >> ~/.ssh/authorized_keys`
+n the above command, substitute the public_key_string with the output from the `cat .ssh/authorized_keys`
+
+- open any security group to allow the SSH within the instances
+After open a security group we were able to connect in each other EC2 instance using ssh. See log from my EC2 below:
 
 ec2-user@ip-10-0-1-251 ~]$ echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrkaRZD3oYFkZq1UrwokqX7XZybbVq3dDQDuNxO0c4i4j6MRXfsqHVdAP6ADpPzZjMuT+Y+2s051jdtI8Nj5sq8GfHQW6La5PfLss7FqLcquxbQvZuSgoUBBGPvJ72XgAg1HdMBFO9y6l62zhoBWEUW+s/l//POvTly+MBGCSpSsnmRAh3FX48l6PSISqwIgeZ5kSNL/1j6tHD15SHIIXYMb+WhYE+2C/Tx+pbOqRWcFxSSMSVxZnXTWuw1M8xorxwKCL14TGnRfD1E+KwbBjPxcl6WUBX71Q9Kc9dZWbgK8e1t2DhSSOjaLcCfqtn6zfTMzb1WzJDEOSI4lEYGeyN Christina AWS >> ~/.ssh/authorized_keys
 [ec2-user@ip-10-0-1-251 ~]$ chmod -R go= ~/.ssh
@@ -19,8 +25,6 @@ Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '192.168.0.248' (ECDSA) to the list of known hosts.
 Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
 [ec2-user@ip-10-0-1-251 ~]$
-
-- open any security group to allow the SSH within the instances
 
 - explain any learnings from this process
 
