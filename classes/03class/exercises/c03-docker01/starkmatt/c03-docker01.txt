@@ -1,0 +1,74 @@
+###Exercise 1 
+
+
+### Build Process 
+
+Command to build: ➜  artifacts git:(master) ✗ docker build -t da-terraform:c03-docker-e01 -f da-terraform .
+ 
+artifacts git:(master) docker build -t da-terraform:c03-docker-e01 -f da-terraform .
+Sending build context to Docker daemon  8.704kB
+Step 1/7 : FROM alpine:latest
+latest: Pulling from library/alpine
+c9b1b535fdd9: Already exists 
+Digest: sha256:ab00606a42621fb68f2ed6ad3c88be54397f981a7b70a79db3d1172b11c4367d
+Status: Downloaded newer image for alpine:latest
+ ---> e7d92cdc71fe
+Step 2/7 : WORKDIR sh
+ ---> Running in 6d0bcf6ca1e9
+Removing intermediate container 6d0bcf6ca1e9
+ ---> 7f1452ebb40e
+Step 3/7 : RUN echo "Installing Alpine & Terraform"
+ ---> Running in 654a9785f30a
+Installing Alpine & Terraform
+Removing intermediate container 654a9785f30a
+ ---> d29d943b95a9
+Step 4/7 : RUN apk update
+ ---> Running in 279198dbcb03
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/community/x86_64/APKINDEX.tar.gz
+v3.11.3-101-gb98b6bd765 [http://dl-cdn.alpinelinux.org/alpine/v3.11/main]
+v3.11.3-102-g266334e886 [http://dl-cdn.alpinelinux.org/alpine/v3.11/community]
+OK: 11266 distinct packages available
+Removing intermediate container 279198dbcb03
+ ---> a4101f5f86d7
+Step 5/7 : RUN apk add bash
+ ---> Running in 1c93d6865485
+(1/4) Installing ncurses-terminfo-base (6.1_p20200118-r2)
+(2/4) Installing ncurses-libs (6.1_p20200118-r2)
+(3/4) Installing readline (8.0.1-r0)
+(4/4) Installing bash (5.0.11-r1)
+Executing bash-5.0.11-r1.post-install
+Executing busybox-1.31.1-r9.trigger
+OK: 8 MiB in 18 packages
+Removing intermediate container 1c93d6865485
+ ---> 02e56067c25d
+Step 6/7 : RUN apk add terraform
+ ---> Running in 6d48d66842b7
+(1/1) Installing terraform (0.12.17-r0)
+Executing busybox-1.31.1-r9.trigger
+OK: 71 MiB in 19 packages
+Removing intermediate container 6d48d66842b7
+ ---> 966cf08544ca
+Step 7/7 : CMD ["/bin/sh", "-c", "terraform --version"]
+ ---> Running in ed187e511b01
+Removing intermediate container ed187e511b01
+ ---> 6246ec923f93
+Successfully built 6246ec923f93
+Successfully tagged da-terraform:c03-docker-e01
+
+
+##Running Docker Container w/ Terraform Version 
+
+artifacts git:(master) docker run -it da-terraform:c03-docker-e01                   
+Terraform v0.12.17
+Your version of Terraform is out of date! The latest version
+is 0.12.21. You can update by downloading from https://www.terraform.io/downloads.html
+
+
+#Docker Container Size
+
+artifacts git:(master) ✗ docker images
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+da-terraform                  c03-docker-e01      6246ec923f93        16 seconds ago      76MB
+
+
