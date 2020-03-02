@@ -5,3 +5,13 @@ How to crate a NAT Gateway on AWS
 3. Click on "Create NAT Gateway"
 4. Select a subnet and allocate an Elastic IP address
 
+NTG details:
+
+NAT Gateway ID nat-0ebea25274f8ac30d
+Status available
+Status Message - 
+Elastic IP Address 3.24.197.184
+Private IP Address 172.16.10.118
+Network Interface ID eni-07702777f21c7605d
+VPC vpc-06ce419efb39da1e3 | devopsacademy-vpc
+Subnet subnet-0f3870b2f15dc1ac7 | public-a
