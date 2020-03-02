@@ -1,0 +1,36 @@
+$ aws configure set default.region ap-southeast-2
+$ aws ec2 create-vpc --cidr-block 10.0.0.0/16 --instance-tenancy default
+$ aws ec2 create-tags --resources vpc-05b563ad72951b5ca --tags Key=Name,Value=devopsacademy-vpc
+$ aws ec2 describe-vpcs --vpc-ids vpc-05b563ad72951b5ca
+{
+    "Vpcs": [
+        {
+            "CidrBlock": "10.0.0.0/16",
+            "DhcpOptionsId": "dopt-85b89fe2",
+            "State": "available",
+            "VpcId": "vpc-05b563ad72951b5ca",
+            "OwnerId": "595875296375",
+            "InstanceTenancy": "default",
+            "CidrBlockAssociationSet": [
+                {
+                    "AssociationId": "vpc-cidr-assoc-0f588d0ca52ad12a5",
+                    "CidrBlock": "10.0.0.0/16",
+                    "CidrBlockState": {
+                        "State": "associated"
+                    }
+                }
+            ],
+            "IsDefault": false,
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "devopsacademy-vpc"
+                }
+            ]
+        }
+    ]
+}
+
+--------------------------------
+Route table: rtb-0e2f1c7de9ffcd04c
+Network ACL: acl-091ab4be129ad420d

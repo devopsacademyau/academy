@@ -1,0 +1,35 @@
+private-a
+VPC vpc-06ce419efb39da1e3 | devopsacademy-vpc
+Available IPv4 Addresses 251
+Availability Zone ap-southeast-2a (apse2-az1)
+IPv4 CIDR 172.16.10.0/24
+
+public-a
+VPC vpc-06ce419efb39da1e3 | devopsacademy-vpc
+Available IPv4 Addresses 251
+Availability Zone ap-southeast-2a (apse2-az1)
+IPv4 CIDR 172.16.20.0/24
+
+private-b
+VPC vpc-06ce419efb39da1e3 | devopsacademy-vpc
+Available IPv4 Addresses 251
+Availability Zone ap-southeast-2b (apse2-az3)
+IPv4 CIDR 172.16.30.0/24
+
+public-b
+VPC vpc-06ce419efb39da1e3 | devopsacademy-vpc
+Available IPv4 Addresses 251
+Availability Zone ap-southeast-2b (apse2-az3)
+IPv4 CIDR 172.16.40.0/24
+
+private-c
+VPC vpc-06ce419efb39da1e3 | devopsacademy-vpc
+Available IPv4 Addresses 251
+Availability Zone ap-southeast-2c (apse2-az2)
+IPv4 CIDR 172.16.50.0/24
+
+public-c
+VPC vpc-06ce419efb39da1e3 | devopsacademy-vpc
+Available IPv4 Addresses 251
+Availability Zone ap-southeast-2c (apse2-az2)
+IPv4 CIDR 172.16.60.0/24

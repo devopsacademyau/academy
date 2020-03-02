@@ -1,0 +1,32 @@
+1. How did you accomplish both instructions?
+   
+   Routes tables -> Create route table
+   Name tag: devopsacademy-rt-public     | devopsacademy-rt-private
+   VPC: devopsacademy-vpc                | devopsacademy-vpc
+   Route Table ID: rtb-0e207eae762680d7c | rtb-0eb05e1f99f327b29
+   
+   === Setting all subnets to the new route tables ==================
+   Select subnet -> Route table -> Edit route table association
+   public-a | devopsacademy-rt-public
+   public-b | devopsacademy-rt-public   
+
+   === Editing routes ===============================================
+   Select route table -> Edit routes
+   Name: devopsacademy-rt-public | devopsacademy-rt-public 
+   Destination: 0.0.0.0/0        | 0.0.0.0/0
+   Target: devopsacademy-igw     | devopsacademy-ngw
+
+2. Why did you add 0.0.0.0 route to the IGW on public route table?
+   To scope the route for the internet gateway to ALL destinations not explicitly known to the route table.
+
+3. Why did you add 0.0.0.0 route to the NGW on private route table?
+   It routes ALL IPv4 internet traffic to the NAT device.
+
+4. What is the difference of IGW and NGW?
+   Basically, an IGW is used for setting a subnet as a public subnet which will be able to access to the internet directly. On the other hand, a NGW will be used to create a route for a private subnet to be able to access to the internet throught a public subnet.   
+
+5. Can you delete the destination route to your VPC network? Why?
+   We cannot modify and even delete the destination route to your VPC network. Because the local route is a default route for communication within the VPC.
+   
+6. What happens if you do not associate your route table with any subnets?
+   They will obey the main route table.

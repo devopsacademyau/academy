@@ -1,0 +1,35 @@
+Creating a Elastic IP:
+Elastic IPs -> Allocate new address
+IPv4 address pool: 	Amazon pool
+
+Creating a NAT Gateways:
+NAT Gateways -> Create NAT Gateway
+Subnet: subnet-0c2c8d06bf7d3cf5e | public-a | devopsacademy-vpc
+Elastic IP: eipalloc-0645ff568fee7202f | 54.66.204.8
+
+========== NAT Gateway ===================================
+
+Name: devopsacademy-ngw
+NAT Gateway ID: nat-0e4ab0449da28c987
+Status: available
+Status Message: -
+Elastic IP Address: 13.236.176.249
+Private IP Address: 10.0.1.219
+Network Interface ID: eni-093ba59bc8ba307ac
+VPC: vpc-05b563ad72951b5ca | devopsacademy-vpc
+Subnet: subnet-0c2c8d06bf7d3cf5e | public-a
+Created: February 29, 2020 at 12:36:19 PM UTC+11
+Deleted: -
+
+========== Elastic IP ====================================
+
+Elastic IP: 13.236.176.249
+Allocation ID: eipalloc-0f106ceccc90a3e0c
+Instance: -
+Private IP address: 10.0.1.219
+Scope: vpc
+Association ID: eipassoc-5a4528a6
+Network Interface ID: eni-093ba59bc8ba307ac
+Network Interface Owner ID: 595875296375
+
+==========================================================
