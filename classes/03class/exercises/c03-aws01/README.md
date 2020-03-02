@@ -8,7 +8,7 @@ Commit all your answers to a text file `c03-aws01.txt` under your folder name.
 - how did you achieve that?
 - access through your browser each instance IP on port 80 `http://<instance-ip>` and post the hostname of each one
 - details of the security group used
-- what this line is doing? `curl 169.254.169.254/latest/meta-data/hostname > index.html`
+- what this line is doing? `curl https://169.254.169.254/latest/meta-data/hostname > index.html`
 
 Details:
 
