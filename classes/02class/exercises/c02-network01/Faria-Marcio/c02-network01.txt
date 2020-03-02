@@ -1,3 +1,5 @@
+The below details are a regular network (not in AWS).
+
 IP			IP in binary				subnet in binary			subnet in decimals	is it private 	how many IP addresses?	
 																or public?	
 10.0.0.1/24		00001010.00000000.00000000.00000001	11111111.11111111.11111111.00000000	255.255.255.0		private		254	
