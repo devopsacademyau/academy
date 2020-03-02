@@ -105,6 +105,7 @@ The content can be accessed through each specific README link below.
     - AWS EC2
         - Load Balancing
         - Auto Scaling Group
+    - AWS CloudWatch
     - AWS Route 53
     - Container - Docker
         - Repositories
@@ -116,9 +117,9 @@ The content can be accessed through each specific README link below.
     - AWS IAM (Identity and Access Management)
     - AWS CLI
     - AWS S3 (Simple Storage Service)
-    - AWS Cloudfront
-    - AWS WAF (Web Application Firewall)
-    - AWS CloudWatch
+      - Website
+      > - AWS Cloudfront
+      > - AWS WAF (Web Application Firewall)
     - MakeFile
     - IaC - Terraform
     - AWS RDS (Relational Database Service)
@@ -129,21 +130,24 @@ The content can be accessed through each specific README link below.
     - Pipelines
       - AWS CodePipeline
       - AWS CodeDeploy (with Terraform)
+      - Github Actions ??
     - Docker Compose
     - 3 Musketeers (Docker, Docker-Compose, Make)
 - [Class 06](classes/06class/README.md)
     - Project #1 Delivery
-    - Project #2 Kick-off
-    - AWS KMS (Key Management Service)
-    - AWS SSM - Parameter Store 
-- [Class 07](classes/07class/README.md)
     - Introduction Serverless
     - AWS Lambda
+    - AWS API Gateway
+    - Project #2 Kick-off
+- [Class 07](classes/07class/README.md)
+    - AWS DynamoDB
+    - AWS KMS (Key Management Service)
+    - AWS SSM - Parameter Store
     - AWS SNS
     - AWS SQS
-    - AWS DynamoDB
 - [Class 08](classes/08class/README.md)
     - Project #2 Delivery
+    - Next steps
     - Course Closure
 
 
