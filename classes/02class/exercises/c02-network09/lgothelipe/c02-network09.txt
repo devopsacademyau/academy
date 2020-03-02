@@ -1,0 +1,28 @@
+How to create Security Groups on AWS
+
+1. Log on to the AWS account
+2. Under VPC -> Security Groups click on "Create security group"
+3. Select the security group created an set up inbound and outbound rules
+
+Private Security Groups Details:
+
+Group name private-sg
+Group description SSH access only from public instances on AWS
+Group ID sg-0d05d7b682371ada3
+VPC ID vpc-06ce419efb39da1e3
+
+Inbound rule: 
+
+Type SSH | Protocol TCP | Port Range 22 | Source sg-08bd5d01892f7292f (public-sg) | Description SSH access only from public instances on AWS
+
+
+Public Security Groups Details:
+
+Group name public-sg
+Group description SSH access from home to AWS
+Group ID sg-08bd5d01892f7292f
+VPC ID vpc-06ce419efb39da1e3
+
+Inbound rule:
+
+Type SSH | Protocol TCP | Port Range 22 | Source 115.70.22.140/32 | Description SSH access from home to AWS
