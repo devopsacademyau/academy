@@ -1,2 +1,6 @@
-Name			ID			State		VPC
-devopsacademy-igw	igw-0e3f883191b5130ca	attached	vpc-04386a3405acb18af | devopsacademy-vpc
+--STEPS:
+	On AWS console, I clicked on VPC and Internet Gateways. Using Create Internet Gateway button I created the IGW as C02-Network05 asked.
+  
+-- RESULT
+  Name			          ID			                State		    VPC
+  devopsacademy-igw	  igw-0e3f883191b5130ca	  attached	  vpc-04386a3405acb18af | devopsacademy-vpc
