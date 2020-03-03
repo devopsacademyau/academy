@@ -1,0 +1,22 @@
+-	Created a new VPC using AWS console. 
+
+-	VPC details:
+    Name: devopsacademy-vpc
+    Sydney Region: ap-southeast-2
+
+    VPC ID: vpc-017bb80047b1a21b3	
+    Tenancy: default
+    State: available	
+    Default VPC: No
+    IPv4 CIDR: 10.0.0.0/16	
+    Classic link: Disabled
+    IPv6 CIDR: -	
+    IPv6 Pool: -
+    DNS resolution: Enabled	
+    Network ACL: acl-0890af8665f57126c
+    DNS hostnames: Disabled	
+    DHCP options set: dopt-c01c38a7
+    ClassicLink DNS Support: Disabled	
+    Route table: rtb-0c03ff247957a3b0c
+    Owner: 148202060271
+

@@ -1,0 +1,24 @@
+I completed this task using the AWS console but the same could be achieved by using the AWS CLI. To create a SG via AWS CLI I could use this command `aws ec2 create-security-group --group-name public-sg --description "public-sg" --vpc-id vpc-0fb0464639ce57474`.
+
+    1st I Openned the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
+    2nd I chose Security Groups in the navigation pane.
+    3rd I chose Create Security Group.
+    4th In the Create security group pannel I specified a name and description for the security group and then I selected the ID of my VPC called `devopsacademy-vpc`.
+    * I repeated those steps for the two SGs (`public-sg` and `private-sg`).
+    
+To add rules for my SG `public-sg` I followed below steps: 
+    1st I selected the SG `public-sg` and then Edit Rules on the Inbound tab.
+    2nd In the dialog, I chose Add Rule and did the following:
+        Type: SSH
+        Protocol: TCP
+        Port Range: 22
+        Source: My IP (220.253.116.184/32)
+        Description: SSH access from home to AWS
+    3rd Clicked in Save
+
+The only difference for the second one `private-sg` was on the second step, instead of add an IP address I added the ID of my SG `public-sg`, see below:
+    Type: SSH
+    Protocol: TCP
+    Port Range: 22
+    Source: Custom (My SG Id `sg-06e21eb2559962aa3`)
+    Description: SSH access only from public instances on AWS

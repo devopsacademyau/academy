@@ -1,0 +1,6 @@
+How to compare two different local repositories using git diff? How about remote ones, can you do the same?
+   To compare two different local repos using git diff we use the following command:
+   $ git diff branch_1 branch_2
+
+   It's possible to do the same for remote repositories, we just need to use the remote address of each repo as parameter:
+   $ git diff origin/master upstream/master
