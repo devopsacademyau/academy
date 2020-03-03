@@ -1,6 +1,0 @@
-Creating a NAT Gateway on AWS
-
-- Log on to the AWS account
-- Under VPC, click on NAT Gateway
-- Click on "Create NAT Gateway"
-- Select a public subnet and allocate an Elastic IP address
