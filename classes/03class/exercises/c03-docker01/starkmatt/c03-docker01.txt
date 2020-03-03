@@ -1,74 +1,71 @@
-###Exercise 1 
+#### Exercise 1 ####
 
 
-### Build Process 
-
-Command to build: ➜  artifacts git:(master) ✗ docker build -t da-terraform:c03-docker-e01 -f da-terraform .
- 
-artifacts git:(master) docker build -t da-terraform:c03-docker-e01 -f da-terraform .
-Sending build context to Docker daemon  8.704kB
-Step 1/7 : FROM alpine:latest
+### Building Docker Container
+➜  starkmatt git:(starkmatt/c03-docker01) ✗ docker build -t da-terraform:c03-docker-e01 -f Dockerfile .
+Sending build context to Docker daemon  7.168kB
+Step 1/5 : FROM alpine:latest
 latest: Pulling from library/alpine
 c9b1b535fdd9: Already exists 
 Digest: sha256:ab00606a42621fb68f2ed6ad3c88be54397f981a7b70a79db3d1172b11c4367d
 Status: Downloaded newer image for alpine:latest
  ---> e7d92cdc71fe
-Step 2/7 : WORKDIR sh
- ---> Running in 6d0bcf6ca1e9
-Removing intermediate container 6d0bcf6ca1e9
- ---> 7f1452ebb40e
-Step 3/7 : RUN echo "Installing Alpine & Terraform"
- ---> Running in 654a9785f30a
+Step 2/5 : WORKDIR /usr
+ ---> Running in de50cd08d8fe
+Removing intermediate container de50cd08d8fe
+ ---> ada7952f6e48
+Step 3/5 : RUN echo "Installing Alpine & Terraform"
+ ---> Running in f93f39e2d98d
 Installing Alpine & Terraform
-Removing intermediate container 654a9785f30a
- ---> d29d943b95a9
-Step 4/7 : RUN apk update
- ---> Running in 279198dbcb03
+Removing intermediate container f93f39e2d98d
+ ---> 56cb141bb177
+Step 4/5 : RUN apk add zip && apk add curl && curl --url https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_386.zip --output terraform.zip && unzip terraform.zip && chmod +x terraform && mv terraform /usr/bin && rm -f terraform.zip && apk del zip
+ ---> Running in 25854e83632b
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/community/x86_64/APKINDEX.tar.gz
-v3.11.3-101-gb98b6bd765 [http://dl-cdn.alpinelinux.org/alpine/v3.11/main]
-v3.11.3-102-g266334e886 [http://dl-cdn.alpinelinux.org/alpine/v3.11/community]
-OK: 11266 distinct packages available
-Removing intermediate container 279198dbcb03
- ---> a4101f5f86d7
-Step 5/7 : RUN apk add bash
- ---> Running in 1c93d6865485
-(1/4) Installing ncurses-terminfo-base (6.1_p20200118-r2)
-(2/4) Installing ncurses-libs (6.1_p20200118-r2)
-(3/4) Installing readline (8.0.1-r0)
-(4/4) Installing bash (5.0.11-r1)
-Executing bash-5.0.11-r1.post-install
+(1/2) Installing unzip (6.0-r4)
+(2/2) Installing zip (3.0-r7)
 Executing busybox-1.31.1-r9.trigger
-OK: 8 MiB in 18 packages
-Removing intermediate container 1c93d6865485
- ---> 02e56067c25d
-Step 6/7 : RUN apk add terraform
- ---> Running in 6d48d66842b7
-(1/1) Installing terraform (0.12.17-r0)
+OK: 6 MiB in 16 packages
+(1/4) Installing ca-certificates (20191127-r1)
+(2/4) Installing nghttp2-libs (1.40.0-r0)
+(3/4) Installing libcurl (7.67.0-r0)
+(4/4) Installing curl (7.67.0-r0)
 Executing busybox-1.31.1-r9.trigger
-OK: 71 MiB in 19 packages
-Removing intermediate container 6d48d66842b7
- ---> 966cf08544ca
-Step 7/7 : CMD ["/bin/sh", "-c", "terraform --version"]
- ---> Running in ed187e511b01
-Removing intermediate container ed187e511b01
- ---> 6246ec923f93
-Successfully built 6246ec923f93
-Successfully tagged da-terraform:c03-docker-e01
+Executing ca-certificates-20191127-r1.trigger
+OK: 8 MiB in 20 packages
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 14.4M  100 14.4M    0     0  5427k      0  0:00:02  0:00:02 --:--:-- 5425k
+Archive:  terraform.zip
+  inflating: terraform               
+(1/2) Purging zip (3.0-r7)
+(2/2) Purging unzip (6.0-r4)
+Executing busybox-1.31.1-r9.trigger
+OK: 7 MiB in 18 packages
+Removing intermediate container 25854e83632b
+ ---> 601816230125
+Step 5/5 : CMD ["terraform", "--version"]
+ ---> Running in 3fb359815b6e
+Removing intermediate container 3fb359815b6e
+ ---> 1e30fb86a6ae
+Successfully built 1e30fb86a6ae
 
 
-##Running Docker Container w/ Terraform Version 
 
-artifacts git:(master) docker run -it da-terraform:c03-docker-e01                   
-Terraform v0.12.17
+
+
+### Running Docker Container
+➜  starkmatt git:(starkmatt/c03-docker01) ✗ docker run -it da-terraform:c03-docker-e01                 
+Terraform v0.12.20
+
 Your version of Terraform is out of date! The latest version
 is 0.12.21. You can update by downloading from https://www.terraform.io/downloads.html
 
+### Docker Container File Size
 
-#Docker Container Size
-
-artifacts git:(master) ✗ docker images
+➜  starkmatt git:(starkmatt/c03-docker01) ✗ docker images
 REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-da-terraform                  c03-docker-e01      6246ec923f93        16 seconds ago      76MB
+da-terraform                  c03-docker-e01      1e30fb86a6ae        11 minutes ago      51.3MB
 
 
