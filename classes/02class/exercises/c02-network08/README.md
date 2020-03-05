@@ -18,5 +18,5 @@ Your ACL rule inbound and outbound should look like this:
 
 - What is the difference between inbound x outbound?
 - What is going to happen by default? Everything allowed or denied?
-- How would you block SSH connection comming from the network `172.16.200.200/24`?
+- How would you block SSH connection comming from the network `172.16.200.0/24`?
 - How would you block access from your network to an external network `180.200.50.0/24`?
