@@ -12,8 +12,7 @@ We have share our ssh keys using the command `cat .ssh/authorized_keys`.
 To add ssh keys to my machine I used the command `echo public_key_string >> ~/.ssh/authorized_keys`
 n the above command, substitute the public_key_string with the output from the `cat .ssh/authorized_keys`
 
-- open any security group to allow the SSH within the instances
-After open a security group we were able to connect in each other EC2 instance using ssh. See log from my EC2 below:
+After given access to inbound traffic in security group we were able to connect in each other EC2 instance using ssh. See log from my EC2 below:
 
 ec2-user@ip-10-0-1-251 ~]$ echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrkaRZD3oYFkZq1UrwokqX7XZybbVq3dDQDuNxO0c4i4j6MRXfsqHVdAP6ADpPzZjMuT+Y+2s051jdtI8Nj5sq8GfHQW6La5PfLss7FqLcquxbQvZuSgoUBBGPvJ72XgAg1HdMBFO9y6l62zhoBWEUW+s/l//POvTly+MBGCSpSsnmRAh3FX48l6PSISqwIgeZ5kSNL/1j6tHD15SHIIXYMb+WhYE+2C/Tx+pbOqRWcFxSSMSVxZnXTWuw1M8xorxwKCL14TGnRfD1E+KwbBjPxcl6WUBX71Q9Kc9dZWbgK8e1t2DhSSOjaLcCfqtn6zfTMzb1WzJDEOSI4lEYGeyN Christina AWS >> ~/.ssh/authorized_keys
 [ec2-user@ip-10-0-1-251 ~]$ chmod -R go= ~/.ssh
@@ -25,41 +24,3 @@ Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '192.168.0.248' (ECDSA) to the list of known hosts.
 Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
 [ec2-user@ip-10-0-1-251 ~]$
-
-- explain any learnings from this process
-
-
-## References
-
-[What is a VPC Peering and How to do it?](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html)
-
-
-Logs
-From EC2
-[ec2-user@ip-10-0-1-251 ~]$ echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrkaRZD3oYFkZq1UrwokqX7XZybbVq3dDQDuNxO0c4i4j6MRXfsqHVdAP6ADpPzZjMuT+Y+2s051jdtI8Nj5sq8GfHQW6La5PfLss7FqLcquxbQvZuSgoUBBGPvJ72XgAg1HdMBFO9y6l62zhoBWEUW+s/l//POvTly+MBGCSpSsnmRAh3FX48l6PSISqwIgeZ5kSNL/1j6tHD15SHIIXYMb+WhYE+2C/Tx+pbOqRWcFxSSMSVxZnXTWuw1M8xorxwKCL14TGnRfD1E+KwbBjPxcl6WUBX71Q9Kc9dZWbgK8e1t2DhSSOjaLcCfqtn6zfTMzb1WzJDEOSI4lEYGeyN Christina AWS >> ~/.ssh/authorized_keys
-[ec2-user@ip-10-0-1-251 ~]$ chmod -R go= ~/.ssh
-[ec2-user@ip-10-0-1-251 ~]$ ssh ec2-user@192.168.0.248 
-The authenticity of host '192.168.0.248 (192.168.0.248)' can't be established.
-ECDSA key fingerprint is SHA256:sY4ZlQo25HsafZpBgbiiHdxHwoRBqjaFp9beFs50zH8.
-ECDSA key fingerprint is MD5:76:72:8b:71:fd:d7:da:3a:64:06:0c:ff:cf:de:b9:dd.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '192.168.0.248' (ECDSA) to the list of known hosts.
-Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
-[ec2-user@ip-10-0-1-251 ~]$
-
-From my PC using ssh ProxyCommand
-
-The authenticity of host '192.168.0.248 (<no hostip for proxy command>)' can't be established.
-ECDSA key fingerprint is SHA256:sY4ZlQo25HsafZpBgbiiHdxHwoRBqjaFp9beFs50zH8.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '192.168.0.248' (ECDSA) to the list of known hosts.
-Last login: Mon Mar  2 11:18:43 2020 from 194-193-61-223.tpgi.com.au
-
-       __|  __|_  )
-       _|  (     /   Amazon Linux 2 AMI
-      ___|\___|___|
-
-https://aws.amazon.com/amazon-linux-2/
-1 package(s) needed for security, out of 25 available
-Run "sudo yum update" to apply all updates.
-[ec2-user@ip-192-168-0-248 ~]$ 
