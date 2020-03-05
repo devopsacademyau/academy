@@ -6,12 +6,12 @@ Everything is to be done preferable on Sydney region `ap-southeast-2`
 
 ## VPC Peering
 
-Once you have your custom VPC + subnets + nacls + security groups in place and tested (up to exercise c02-network-11 completed), pair with someone else and create a VPC peering within your vpc's.
+Once you have your custom VPC + Subnets + NACL's + Security Groups in place and tested (up to exercise c02-network-11 completed), pair with someone else and create a VPC peering within your vpc's.
 
-Few wording assumed from now:
+Few definitions assumed in this exercise:
 
-- your vpc = origin vpc
-- someone else vpc = target vpc
+- your VPC = origin VPC
+- someone else's VPC = target VPC
 
 #### Deliverables
 
@@ -19,7 +19,7 @@ Few wording assumed from now:
 - add routes from origin VPC to target VPC - only for private subnets
 - open any network ACL to allow the connection within the subnets -- try to only open the mininum required
 - from an instance in one vpc, SSH to the other instance (will have to share the ssh keys, create a new one just for this exercise -- pay attention to security)
-- open any security group to allow the SSH within the instances
+- open any security group to allow the SSH communication between the instances
 - explain any learnings from this process
 
 ## References

@@ -15,6 +15,7 @@ Repeat exercise from last class where you have to:
   - attach your private SG to your public instance
 - access to your public instance using SSH
 - FROM your PUBLIC instance, SSH to your private one
+- from the PRIVATE instance, try to ping 8.8.8.8 to check internet connection through NATGW
 
 However this time, use your custom created subnets instead of the AWS default ones.
 

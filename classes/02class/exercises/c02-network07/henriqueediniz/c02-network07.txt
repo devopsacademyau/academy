@@ -1,0 +1,20 @@
+-How did you accomplish both instructions?
+Follow this ways:
+Aws console -> vpc -> route tables -> new route table -> Name tag -> vpc
+Select RT -> Routes tab -> edit routes -> add route -> 0.0.0.0/0 -> target -> select gateway -> save.
+
+-Why did you add 0.0.0.0 route to the IGW on public route table?
+My public hosts will able to access the Internet.
+
+-Why did you add 0.0.0.0 route to the NGW on private route table?
+My private hosts will able to access the Internet
+
+-What is the difference of IGW and NGW?
+IGW gives access to public -> Hosts to the internet
+NGW gives access to private -> Hosts to the internet
+
+-Can you delete the destination route to your VPC network? Why?
+No, you can’t reach any other machine locally.
+
+-What happens if you do not associate your route table with any subnets?
+The subnets will be implicit associated with the main route table.
