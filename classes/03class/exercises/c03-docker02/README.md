@@ -4,7 +4,7 @@ Create two docker images, being:
 - Named `exercise02` with a tag `v1` with the following pre-requisites:
     - Dockerfile must be named Dockerfile.v1
     - Final image is based from httpd:2.4.41-alpine
-    - Copy the file classes/03class/docker/artifacts/exercise02/ into the folder /usr/local/apache2/htdocs/
+    - Copy the file classes/03class/docker/artifacts/c03-docker02/index.html into the folder /usr/local/apache2/htdocs/
 - Named `exercise02` with a tag `v2` with the following pre-requisites
     - Dockerfile must be named Dockerfile.v2
     - Final image is based from httpd:2.4.41-alpine
