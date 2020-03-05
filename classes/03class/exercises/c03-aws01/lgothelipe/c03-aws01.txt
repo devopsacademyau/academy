@@ -40,5 +40,10 @@ Type HTTP | Protocol TCP | Port Range 80 | Source 0.0.0.0/0
 
 What this line is doing? curl https://169.254.169.254/latest/meta-data/hostname > index.html
 
-Geting the hostname of the EC2 instance and writing on the file index.html
+This line is geting the hostname of the EC2 instance and writing on the file index.html
 After that, the script moves the file to the http service folder that can be accessed by a brower using the EC2 public IP.
+
+Instance metadata (https://169.254.169.254/latest/meta-data) is data about the instance that can be used to configure or manage the running instance. The user data specified when launching an instance can be accessed from http://169.254.169.254/latest/user-data.
+
+
+
