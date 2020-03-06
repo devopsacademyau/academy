@@ -1,0 +1,2 @@
+
+bucket_name = "devopsacademy"
