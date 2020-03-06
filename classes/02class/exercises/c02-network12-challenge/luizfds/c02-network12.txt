@@ -14,7 +14,7 @@ n the above command, substitute the public_key_string with the output from the `
 
 After given access to inbound traffic in security group we were able to connect in each other EC2 instance using ssh. See log from my EC2 below:
 
-ec2-user@ip-10-0-1-251 ~]$ echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrkaRZD3oYFkZq1UrwokqX7XZybbVq3dDQDuNxO0c4i4j6MRXfsqHVdAP6ADpPzZjMuT+Y+2s051jdtI8Nj5sq8GfHQW6La5PfLss7FqLcquxbQvZuSgoUBBGPvJ72XgAg1HdMBFO9y6l62zhoBWEUW+s/l//POvTly+MBGCSpSsnmRAh3FX48l6PSISqwIgeZ5kSNL/1j6tHD15SHIIXYMb+WhYE+2C/Tx+pbOqRWcFxSSMSVxZnXTWuw1M8xorxwKCL14TGnRfD1E+KwbBjPxcl6WUBX71Q9Kc9dZWbgK8e1t2DhSSOjaLcCfqtn6zfTMzb1WzJDEOSI4lEYGeyN Christina AWS >> ~/.ssh/authorized_keys
+ec2-user@ip-10-0-1-251 ~]$ echo ssh-rsa ##public_key_string## >> ~/.ssh/authorized_keys
 [ec2-user@ip-10-0-1-251 ~]$ chmod -R go= ~/.ssh
 [ec2-user@ip-10-0-1-251 ~]$ ssh ec2-user@192.168.0.248 
 The authenticity of host '192.168.0.248 (192.168.0.248)' can't be established.
