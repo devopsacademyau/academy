@@ -4,5 +4,6 @@ For instructions on how to submit your work, [please check the main repository R
 
 ## Infrastructure as Code
 
-- [WIP](/classes/04class/exercises/c04-iac01/README.md)
-
+- [S3 Bucket and EC2 Instance](/classes/04class/exercises/c04-iac01/README.md)
+- [VPC](/classes/04class/exercises/c04-iac02/README.md)
+- [Changing Values](/classes/04class/exercises/c04-iac03/README.md)
