@@ -11,6 +11,7 @@ The main goal is to explain the purpose, the benefits and how to use it.
     - [Multiple Targets](#multiple-targets)
     - [Pre-Requisites](#pre-requisites)
     - [Variables](#variables)
+- [Mixing together](#mixing-together)
 
 ## What is Make?
 Make is a tool to execute a sequence of commands (like a recipe) based on targets defined in a specific file.
@@ -168,3 +169,11 @@ Creating file
 -rw-r--r-- 1 da-academy da-academy 0 Mar  8 21:49 output.txt
 ```
 Noticed that by executing the command `FILE=out.txt make create_file`, the file `out.txt` was created. Also, because we defined a default value of `output.txt` in the Makfile for the `$FILE` variable (FILE ?= output.txt), by not specifying a value during the make execution, make uses this default value.
+
+## Mixing Together
+Now that we know a few things about the Make utility and the Makefile, let's mix it with some of the other tools that we've been learning in the past classes.
+
+
+
+## Appendix
+- [Make documentatio](https://www.gnu.org/software/make/manual/html_node/index.html#toc-Overview-of-make)
