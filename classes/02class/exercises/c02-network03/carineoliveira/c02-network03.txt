@@ -1,0 +1,28 @@
+Class 02 - Exercise Network 03
+
+VPC
+Create a new AWS VPC with:
+
+CIDR block /16
+Name: devopsacademy-vpc
+No IPv6
+Tenancy default
+Post details from the vpc created.
+You will notice that as soon as you create a VPC, a route table, default local routes and network acls are automatically deployed. More to that in the next exercises.
+
+
+VPC ID: vpc-068099807f07cd4cb
+Tenancy: default
+State: available
+Default VPC: No
+IPv4 CIDR: 10.0.0.0/16
+Classic link: Disabled
+IPv6 CIDR: -
+IPv6 Pool: -
+DNS resolution: Enabled
+Network ACL: acl-0786746dd41059c05
+DNS hostnames: Disabled
+DHCP options set: dopt-1b795e7c
+ClassicLink DNS Support: Disabled
+Route table: rtb-05dee17137953c5f3
+Owner: 160372566358
