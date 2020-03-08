@@ -1,0 +1,6 @@
+level rampup4
+
+git checkout local
+git reset master
+git checkout pushed
+git revert pushed
