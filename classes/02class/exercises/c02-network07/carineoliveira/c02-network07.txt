@@ -1,0 +1,37 @@
+Class 02 - Exercise Network 07
+
+How did you accomplish both instructions?
+    Under VPC, 'Route Tables', press 'Create route table', give it a name tag and select the VPC 'devopsacademy-vpc' and press 'Create'.
+    Repeat step above for the other route table.
+
+    For devopsacademy-rt-public:
+        Select 'Routes' tab and press 'Edit routes'
+        Add route '0.0.0.0/0' and select 'Internet Gateway' target 'devopsacademy-igw'
+    
+    For devopsacademy-rt-private
+        Select 'Routes' tab and press 'Edit routes'
+        Add route '0.0.0.0/0' and select 'NAT Gateway' target 'nat-04f2324c951360f64 (devopsacademy-ngw)'
+
+
+Why did you add 0.0.0.0 route to the IGW on public route table?
+    The custom route table associated with public subnets should contain just the default route (i.e. 0.0.0.0/0) pointing to an Internet Gateway (IGW). 
+    
+
+Why did you add 0.0.0.0 route to the NGW on private route table?
+    In order for the resources within the VPC to reach the public internet, the “gateway of last resort” (0.0.0.0/0) needs to be defined and pointed to either a NAT Gateway.
+
+What is the difference of IGW and NGW?
+- IGW
+    An Internet Gateway (IGW) is a logical connection between an Amazon VPC and the Internet. 
+    It is not a physical device. Only one can be associated with each VPC. It allows resources within the VPC to access the internet, and vice versa.
+    An IGW allows resources within your public subnet to access the internet, and the internet to access said resources.
+
+- NGW
+    It allows resources in a private subnet to access the internet.
+    It only works one way. The internet at large cannot get through your NAT to your private resources unless you explicitly allow it.
+
+Can you delete the destination route to your VPC network? Why?
+    No, every route table should contain a local route for communication within the VPC. This route is added by default to all route tables. 
+
+What happens if you do not associate your route table with any subnets?
+    No destination will be linked to it. It will be obsolete.
