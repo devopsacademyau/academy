@@ -5,7 +5,6 @@ This class is an introduction to the AWS storage service S3, AWS IAM and databas
 The AWS CLI is also introduced as an import tool to help in the daily activities of a Cloud Engineer.
 
 **Contents**
-- [Introduction to Containers](#introduction-to-containers)
 - [AWS Command Line Interface (CLI)](#aws-command-line-interface-cli)
   - [Why AWS CLI?](#why-aws-cli)
   - [Installation (now CLIv2)](#installation-now-cliv2)
@@ -30,14 +29,11 @@ The AWS CLI is also introduced as an import tool to help in the daily activities
   - [Use case 2: Host entire static websites](#use-case-2-host-entire-static-websites)
 - [AWS Relational Database Service (RDS)](#aws-relational-database-service-rds)
   - [Why RDS?](#why-rds)
-    - [Database Engines available](#database-engines-available)
+    - [Permissions](#permissions)
     - [Database on EC2 vs RDS](#database-on-ec2-vs-rds)
 - [Main class takeaways](#main-class-takeaways)
 - [Appendix](#appendix)
   - [Archiving/Backup - Amazon Glacier](#archivingbackup---amazon-glacier)
-
-
-
 
 # AWS Command Line Interface (CLI)
 
@@ -290,11 +286,6 @@ The image below contains the 3 steps that just happened in the commands above:
 *Check the full* [*article here.*](https://aws.amazon.com/blogs/security/how-to-use-a-single-iam-user-to-easily-access-all-your-accounts-by-using-the-aws-cli/)
 
 
-
-
-
-
-
 # AWS Simple Storage Service (S3)
 
 Extracted from [AWS Whitepaper - AWS Storage Services Overview](https://d0.awsstatic.com/whitepapers/AWS%20Storage%20Services%20Whitepaper-v9.pdf)
@@ -329,19 +320,24 @@ There are four common usage patterns for Amazon S3:
 **WIP - DETAIL  **
 
 
-
-
-
 # AWS Relational Database Service (RDS)
 
 ## Why RDS?
 
-**WIP - HIGH LEVEL  **
+RDS is a scalable managed relational databse service provided by AWS that eliminates most of the daily operational tasks that you have with your databases. It's available on multiple database types, including very common ones like MySQL, MSSQL, Oracle and PostgreSQL.
 
-### Database Engines available
+With RDS, there is no need to worry with hardware provisioning, database installation and patching or even backups. RDS provides all those things automatically. YOu simply sleect the type of database instance that you need, the version and the size, and it will be created for you with an admin user and password so you can create your databases and tables.
+
+Similar to an EC2 instance, a RDS instance needs to be created on a VPC and it will receive an IP address based on the subnet it's created into. Also, Security Groups can be used to secure your database instance connectity, so make sure you only allow access to your database instances from the right IP ranges and in the right ports. 
+
+### Permissions
+
+RDS is one of the few AWS services that does not fully integrates with IAM. IAM roles and policies can be used to allow users to interact with the RDS service for actions like create, update or delete a RDS instance, but IAM will not have any control of the data inside the RDS instance. For that you'll need to rely on regular database users, by creating the required users in your tables.
 
 ### Database on EC2 vs RDS
+An EC2 instance can also be used to host your relational database instances, and it might be necessary to do it depending on your requirements. It may require a specific database version that is not available on RDS or you may need some database permissions that are not available on RDS, but most of the cases you will have the option to have database on either option.
 
+The main differences between those two options are listed below:
 
 
 # Main class takeaways 
