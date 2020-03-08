@@ -176,4 +176,4 @@ Now that we know a few things about the Make utility and the Makefile, let's mix
 
 
 ## Appendix
-- [Make documentatio](https://www.gnu.org/software/make/manual/html_node/index.html#toc-Overview-of-make)
+- [Make documentation](https://www.gnu.org/software/make/manual/html_node/index.html#toc-Overview-of-make)
