@@ -1,0 +1,63 @@
+Auto Scaling Group
+Commit all your answers to a text file c03-aws01.txt under your folder name.
+
+Create an Auto Scaling Group with the following details and post:
+how did you achieve that?
+-----------------------------------------------------------------------------------------------
+I Went to my console and chose EC2
+Clicked on the Auto Scaling Group on the left menu and click create
+named it devopsacademy-asg and click on launch configuration
+chose details specified on the exercise:
+    AMI: Amazon Linux Image 2
+    Type: t2.nano
+    Name: devopsacademy-launch-config
+    save the user data
+
+added details and rule on security group 
+    name: devopsacademy-autoscaling-sg1
+    type: HTTP, Protocol: TCP, Port: 80, source: 0.0.0.0/0
+
+I also added another rule on TCP Port 22 as it says that the AMI requires port(s) 22 to be open in order to have access
+Reviewed and chose the key pair and created an Auto Scaling Group using the launch configuration
+Created an Auto Scaling Group that starts with 2 instance and attached the previously created VPC from exercise 2 and 2 public subnets (public a and public b)
+
+Added scaling policies to adjust the capacity of this group. added 1 as minimum and 2 as maximum.
+Chose a simple scaling policies to increase and decrease group size and selected 1 capacity unit to remove and add when needed and add 300s before allowing another scale activity
+
+-----------------------------------------------------------------------------------------------
+
+
+
+access through your browser each instance IP on port 80 http://<instance-ip> and post the hostname of each one
+
+http://54.206.80.115/
+ip-10-0-0-163.ap-southeast-2.compute.internal
+
+http://54.252.218.165/
+ip-10-0-2-123.ap-southeast-2.compute.internal
+
+
+details of the security group used
+Group name: devopsacademy-asg
+Group size: 2
+Minimum Group Size: 1
+Maximum Group Size: 2
+Subnet(s): subnet-085fc3134a8646f52,subnet-0de236af712438154
+Health Check Grace Period: 300
+Detailed Monitoring: No
+Instance Protection: None
+Service-Linked Role: AWSServiceRoleForAutoScaling
+
+****************************************************************************************************
+Scaling Policies
+Increase Group Size: With alarm = None; Add 1 capacity units and 300 seconds between activities
+Decrease Group Size: With alarm = None; Remove 1 capacity units and 300 seconds between activities
+****************************************************************************************************
+
+Creating Auto Scaling group                 Successful (devopsacademy-asg)
+Retrieving Auto Scaling group details       Successful
+Creating Scaling policies                   Successful (Increase Group Size,Decrease Group Size)
+
+
+what this line is doing? curl https://169.254.169.254/latest/meta-data/hostname > index.html
+it's retrieving instance's hostname details and save it in index.html file
