@@ -1,0 +1,20 @@
+➜  exercises git:(luizfds/c03-docker03) docker tag da-terraform:c03-docker-e01 luizfdsilva/devopsacademy:da-terraform
+➜  exercises git:(luizfds/c03-docker03) ✗ docker push luizfdsilva/devopsacademy:da-terraform
+The push refers to repository [docker.io/luizfdsilva/devopsacademy]
+58a7c6719384: Pushed 
+c1cc09c27b07: Pushed 
+39db6acceed3: Mounted from library/alpine 
+da-terraform: digest: sha256:a045b4daa560c914ceac99860322228f1b2bbd6697a7536f0f3801f85284a45f size: 947
+
+➜  exercises git:(luizfds/c03-docker03) ✗ docker tag exercise02:v1 luizfdsilva/devopsacademy:exercise02
+➜  exercises git:(luizfds/c03-docker03) ✗ docker push luizfdsilva/devopsacademy:exercise02
+The push refers to repository [docker.io/luizfdsilva/devopsacademy]
+58416fd6e99e: Pushed 
+b64dd1b17dce: Mounted from library/httpd 
+3924f7d08fde: Mounted from library/httpd 
+535f972b218c: Mounted from library/httpd 
+d66bb18f34c6: Mounted from library/httpd 
+5216338b40a7: Mounted from library/httpd 
+exercise02: digest: sha256:f3410d9ae303085d0b3b78f7af9830aea0fbf5833b8c4a8a24c0af3a3b0b5f14 size: 1569
+
+Both images can be found at https://hub.docker.com/r/luizfdsilva/devopsacademy
