@@ -1,0 +1,25 @@
+
+# Answer for exercise c02-network08 
+
+What is the difference between inbound x outbound? Becouse this FW is stateless will be necessary allow or deny bouth direcition for all connection wich go to our network.
+What is going to happen by default? It is allowed.   Everything allowed or denied? Base on rule number for the last rule on this exemple, the traffic can be allow or deny in my case it is allow becouse the rule number is 102 with will no be consider when new connection hit this firewall. 
+How would you block SSH connection comming from the network 172.16.200.0/24? 
+
+Create a new Inbound Rule:  
+Rule: 10
+Type: SSH (22)
+Protocol: TCP (6)
+Port: 22
+Source: 172.16.200.0/24
+Action: DENY
+
+How would you block access from your network to an external network 180.200.50.0/24?
+
+Create a new Outbound Rule:
+Rule: 10
+Type: ALL Trraffic
+Protocol: ALL
+Port: ALL
+Source: 180.200.50.0/24
+Action: DENY
+
