@@ -1,0 +1,10 @@
+Did you notice any difference in the size of the repo before and after adding the big file?
+Yes, I notice that the before the new file was added repo size was 100K and after added it 
+had 213M.
+
+What is the reason for this problem?
+The 'git add' command added a copy of the file in the folder ./.git/objects. 
+
+How do you remove something from Git history? Which commands would you use? What are the consequences?
+To remove something from git history we can use the follow command 'git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD'. 
+As a consequece, this procedure will permanently remove the file from the repository. 
