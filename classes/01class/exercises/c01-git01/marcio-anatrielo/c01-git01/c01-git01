@@ -1,0 +1,10 @@
+
+git branch bugFix 
+
+git checkout bugFix
+
+git merge 
+
+git merge bugFix 
+
+git checkout bugFix; git merge master
