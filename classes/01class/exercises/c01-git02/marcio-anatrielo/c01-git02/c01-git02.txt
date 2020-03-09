@@ -1,0 +1,72 @@
+# Description
+
+Exercise (e.g. C01-GIT02): 
+
+Student Name: Marcio Andre
+
+> A brief explanation of what has been done.
+
+
+Step 1: Is it possible to see the inner commit of squashed commit with git rebase? Yes 
+
+Step 2: Show example to check diff betewen branchs local and remote 
+
+Step 3: Show procedure to install ohmuzsh
+
+
+## Type of change
+
+- [X] Exercise Submission (one exercise per PR)
+  - [X] This PR is just for **one** exercise of a class
+  - [X] PR name follows the pattern `<github-username>/<exercise-number>`
+  - [X] Added exercise files inside folder `/classes/<class- number>/exercises/<exercise-number>/<github-username>/`
+	- [X] Review [exercise submission steps](./README.md#Exercises)
+- [ ] Class content (instructors/admins)
+- [ ] Documentation update
+- [ ] Repo management
+
+
+
+You can add other repo first as a remote to your current repo:
+
+$ git remote add other_name PATH_TO_OTHER_REPO
+
+then fetch brach from that remote:
+
+$ git fetch other_name branch_name:branch_name
+
+this creates that branch as a new branch in your current repo, then you can diff that branch with any of your branches, for example, to compare current branch against new branch(branch_name):
+
+$ git diff branch_name
+
+
+Install process for ohmyzsh 
+
+
+Download 
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+Edit file 
+
+vi ~/.zshrc
+
+Add pluging 
+
+plugins=(
+  git
+  bundler
+  dotenv
+  osx
+  rake
+  rbenv
+  ruby
+)
+
+Change theme and test option 
+ 
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME="avit"
+#ZSH_THEME="awesomepanda"
+ZSH_THEME="gnzh"
