@@ -1,0 +1,4 @@
+# AWS VPC + subnets
+
+
+aws ec2 attach-internet-gateway --internet-gateway-id igw-0cb74ff15ff9377ee --vpc-id vpc-0c9124eda0e459981  
