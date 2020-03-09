@@ -1,0 +1,8 @@
+
+# Exercise  answers c02-network07 
+How did you accomplish both instructions? Yes
+Why did you add 0.0.0.0 route to the IGW on public route table? Yes
+Why did you add 0.0.0.0 route to the NGW on private route table? Yes
+What is the difference of IGW and NGW? IGW is internet gateway and NGW is local gateway for all EC2
+Can you delete the destination route to your VPC network?No Why? Becouse in this case the NGW can not delivery any requestion. 
+What happens if you do not associate your route table with any subnets? The gateway can not found this subnet. 
