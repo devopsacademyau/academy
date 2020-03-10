@@ -1,16 +1,12 @@
-➜  luizfds git:(luizfds/c03-docker06) ✗ docker image build --build-arg user_name=NoOne -t hello-name:v1 .
+➜  luizfds git:(luizfds/c03-docker06) ✗ docker image build -t hello-name:v1 .
 Sending build context to Docker daemon  3.584kB
-Step 1/3 : FROM alpine:3.9.5
+Step 1/2 : FROM alpine:3.9.5
  ---> 82f67be598eb
-Step 2/3 : ENV user_name NoOne
+Step 2/2 : ENTRYPOINT ["echo", "Hello"]
  ---> Using cache
- ---> 6d8f8c0b83c2
-Step 3/3 : CMD [ "sh", "-c", "echo Hello ${user_name}" ]
- ---> Using cache
- ---> a40784ce46f0
-[Warning] One or more build-args [user_name] were not consumed
-Successfully built a40784ce46f0
+ ---> 0fe7247b1274
+Successfully built 0fe7247b1274
 Successfully tagged hello-name:v1
 
-➜  luizfds git:(luizfds/c03-docker06) ✗ docker run -e "user_name=Luiz Silva" -it hello-name:v1
-Hello Luiz Silva
+➜  luizfds git:(luizfds/c03-docker06) ✗ docker run -it hello-name:v1 Luiz    
+Hello Luiz
