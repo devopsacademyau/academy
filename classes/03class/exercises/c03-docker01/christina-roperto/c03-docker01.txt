@@ -1,0 +1,34 @@
+Command: $ docker build -t da-terrrafrom:c03-docker-e01 . && docker run --rm -it da-terrrafrom:c03-docker-e01
+
+To build: $ docker build -t da-terrrafrom:c03-docker-e01 . 
+
+Sending build context to Docker daemon  2.048kB
+Step 1/5 : from alpine
+ ---> e7d92cdc71fe
+Step 2/5 : RUN wget https://releases.hashicorp.com/terraform/0.12.23/terraform_0.12.23_linux_amd64.zip
+ ---> Using cache
+ ---> eeb2877ec45a
+Step 3/5 : RUN unzip terraform_0.12.23_linux_amd64.zip
+ ---> Using cache
+ ---> dc116cadd7a9
+Step 4/5 : RUN rm terraform_0.12.23_linux_amd64.zip
+ ---> Running in 9e07b04445ed
+Removing intermediate container 9e07b04445ed
+ ---> c56769096143
+Step 5/5 : CMD ./terraform --version
+ ---> Running in 4470b16bb08d
+Removing intermediate container 4470b16bb08d
+ ---> 89460800358f
+Successfully built 89460800358f
+Successfully tagged da-terrrafrom:c03-docker-e01
+
+To execute: $ docker run --rm -it da-terrrafrom:c03-docker-e01
+Output:
+Terraform v0.12.23
+
+****************************************************************************************************************
+
+checking size to make sure it's under 80MB
+$ docker image ls
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+da-terrrafrom                 c03-docker-e01      89460800358f        9 seconds ago       73.5MB
