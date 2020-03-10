@@ -23,9 +23,11 @@ Those are having a one way connection out but not back in, you're able to use an
 
 Can you delete the destination route to your VPC network? Why?
 - The local VPC that was created initally ?
-- It would be unwise, because you won't be able to access the Environment.
+- You cannot delete any VPC that was created by default (AWS Does not allow it)
 
 What happens if you do not associate your route table with any subnets?
 The RT will only associate the main route table and VPC which was created initally.
 When creating RT's to specific subnets you need to be sure you're allocating them accordingly.
+If none is associated the the route table will not be used and the main route table will be used instead
+
 
