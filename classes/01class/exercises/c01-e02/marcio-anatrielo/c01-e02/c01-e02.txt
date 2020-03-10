@@ -1,0 +1,10 @@
+
+
+Cloudwhatch 
+ - Billing 
+
+Define alart base on description below: 
+
+Billing Alert - $50.00
+Billing Alert - $20.00
+Billing Alert - $10.00

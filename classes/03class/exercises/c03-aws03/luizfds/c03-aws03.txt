@@ -1,0 +1,24 @@
+
+- how did you achieve that?
+    I opted to use public hosted zone for this exercise.
+        1. From AWS Management Console I openned the Route 53 console at https://console.aws.amazon.com/route53/
+            1.1 I resgistered a domain called `luizsilva.com` (I am going to use in a personal website in a new future)
+            1.2 By doing step one, AWS automatically created a Public Hosted Zone for my new domain.
+            1.3 I openned my hosted zone and created a new Record Set with following configuration:
+                Name: luizsilva.com.
+                Type: A - IPv4 address
+                Alias: Yes
+                    Alias Target: dualstack.devopsacademy-alb-1916322731.ap-southeast-2.elb.amazonaws.com. (Load Balancer DNS)
+            1.4 I also added a `www` subdomain for my new domain. I accomplished that by adding a new Record Set with following configuration:
+                Name: www .luizsilva.com.
+                Type: CNAME
+                Alias: No
+                    Value: devopsacademy-alb-1916322731.ap-southeast-2.elb.amazonaws.com
+        2. With my domain available, I openned the ACM console at https://console.aws.amazon.com/acm/home in order to issue a SSL Certificate
+            Domain	Validation status
+            luizsilva.com	Success
+            *.luizsilva.com	Success
+        3. With SSL working properly, I accessed my Load Balancer again and added another Listener for HTTPS : 443
+        4. Then I edited my Listener for HTTP a now all HTTP resquests are being redirected to my HTTPS.
+            Redirect to https://#{host}:443/#{path}?#{query}
+            Status code:HTTP_301 

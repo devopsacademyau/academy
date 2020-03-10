@@ -1,0 +1,63 @@
+
+
+# AWS VPC + subnets - c02-network4
+
+Subnet: 10.0.10.0/24
+Netmask: 255.255.255.0
+Name: public-a
+Subnet ID:  subnet-0cefa52e070641e55
+State: available
+VPC: vpc-0c9124eda0e459981 | devopsacademy-vpc
+IPv4 CIDR: 10.0.10.0/24
+Available IPv4 Addresses: 251
+Availability Zone: ap-southeast-2a
+
+Subnet: 10.0.11.0/24
+Netmask: 255.255.255.0
+Name: private-a
+Subnet ID: subnet-040d6e8edd071c298
+State: available
+VPC: vpc-0c9124eda0e459981 | devopsacademy-vpc
+IPv4 CIDR: 10.0.11.0/24
+Available IPv4 Addresses: 251
+Availability Zone: ap-southeast-2a
+
+Subnet: 10.0.12.0/24
+Netmask: 255.255.255.0
+Name: public-b
+Subnet ID: subnet-0587e9f8712f049f4
+State: available
+VPC: vpc-0c9124eda0e459981 | devopsacademy-vpc
+IPv4 CIDR: 10.0.12.0/24
+Available IPv4 Addresses: 251
+Availability Zone: ap-southeast-2b
+
+Subnet: 10.0.13.0/24
+Netmask: 255.255.255.0
+Name: private-b
+Subnet ID: subnet-074645071b6f1976d
+State: available
+VPC: vpc-0c9124eda0e459981 | devopsacademy-vpc
+IPv4 CIDR:10.0.13.0/24
+Available IPv4 Addresses: 251
+Availability Zone: ap-southeast-2b
+
+Subnet: 10.0.14.0/24
+Netmask: 255.255.255.0
+Name: public-c
+Subnet ID: subnet-0f288427167ccc3a8
+State: available
+VPC: vpc-0c9124eda0e459981 | devopsacademy-vpc
+IPv4 CIDR: 10.0.14.0/24
+Available IPv4 Addresses: 251
+Availability Zone: ap-southeast-2c
+
+Subnet: 10.0.15.0/24
+Netmask: 255.255.255.0
+Name: private-c
+Subnet ID: subnet-0615460609f6fa230
+State:  available
+VPC: vpc-0c9124eda0e459981 | devopsacademy-vpc
+IPv4 CIDR: 10.0.15.0/24
+Available IPv4 Addresses: 251
+Availability Zone: ap-southeast-2c

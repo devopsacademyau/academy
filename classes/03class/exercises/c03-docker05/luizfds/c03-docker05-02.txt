@@ -1,0 +1,4 @@
+A brief explanation of what happened when you executed the commands to run the containers
+Docker first tried to find the image locally and as I don't have any image on local computer Docker tried to find it on Docker Hub. With the image located on Hub, Docker pulled it to local machine and then ran it.
+
+Something happened with the second image (the with using Bind mount) and it didn't started straight away but it worked when I executed the run command again.
