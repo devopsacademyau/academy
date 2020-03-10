@@ -25,7 +25,7 @@ A.Ensure that you don’t have any PR open, and run the command:
 	git filter-branch --force --index-filter \  "git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA" \ --prune-empty --tag-name-filter cat -- --all
 
 B.Add your file with sensitive data to .gitignore to ensure that you don't accidentally commit it again:
-
+ 
 	echo "YOUR-FILE-WITH-SENSITIVE-DATA" >> .gitignore
 	git add .gitignore
 	git commit -m "Add YOUR-FILE-WITH-SENSITIVE-DATA to .gitignore"
