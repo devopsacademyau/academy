@@ -5,12 +5,16 @@ This class is an introduction to the AWS storage service S3, AWS IAM and databas
 The AWS CLI is also introduced as an import tool to help in the daily activities of a Cloud Engineer.
 
 **Contents**
+- [Introduction to Containers](#introduction-to-containers)
 - [AWS Command Line Interface (CLI)](#aws-command-line-interface-cli)
   - [Why AWS CLI?](#why-aws-cli)
   - [Installation (now CLIv2)](#installation-now-cliv2)
   - [Configuration](#configuration)
-    - [Access Keys and Secrets](#access-keys-and-secrets)
+    - [Setting Access Keys and Secrets](#setting-access-keys-and-secrets)
+      - [Alternative method to set credentials (not recommended)](#alternative-method-to-set-credentials-not-recommended)
+      - [Checking who are you with AWS Security Token Service (STS)](#checking-who-are-you-with-aws-security-token-service-sts)
   - [CLI Documentation and Help](#cli-documentation-and-help)
+  - [Example: List your S3 buckets](#example-list-your-s3-buckets)
 - [AWS Identity and Access Management (IAM)](#aws-identity-and-access-management-iam)
   - [What's IAM?](#whats-iam)
   - [IAM - Four Pillars (Users, Groups, Roles, Policies)](#iam---four-pillars-users-groups-roles-policies)
@@ -18,9 +22,10 @@ The AWS CLI is also introduced as an import tool to help in the daily activities
     - [Groups](#groups)
     - [Roles](#roles)
     - [Policies and Permissions](#policies-and-permissions)
-      - [Policy format](#policy-format)
+      - [Policy structure](#policy-structure)
       - [Policy Evaluation Logic](#policy-evaluation-logic)
   - [Let's not depend on users - Using STS to assume roles!](#lets-not-depend-on-users---using-sts-to-assume-roles)
+      - [A cleaner way to assume roles using AWS CLI](#a-cleaner-way-to-assume-roles-using-aws-cli)
 - [AWS Simple Storage Service (S3)](#aws-simple-storage-service-s3)
   - [What's S3?](#whats-s3)
   - [Main Use Cases](#main-use-cases)
@@ -33,7 +38,7 @@ The AWS CLI is also introduced as an import tool to help in the daily activities
     - [Database on EC2 vs RDS](#database-on-ec2-vs-rds)
 - [Main class takeaways](#main-class-takeaways)
 - [Appendix](#appendix)
-  - [Archiving/Backup - Amazon Glacier](#archivingbackup---amazon-glacier)
+    - [Archiving/Backup - Amazon Glacier](#archivingbackup---amazon-glacier)
 
 # AWS Command Line Interface (CLI)
 
@@ -73,17 +78,17 @@ There are two main authentication and authorisation methods:
 - access keys/secrets
 - temporary credentials (by assuming a Role or exchanging an authentication token for temporary credentials)
 
-### Access Keys and Secrets
+### Setting Access Keys and Secrets
 Configure your user credentials in the CLI:
 
 ```
-aws configure
+aws configure --profile <NAME_OF_PROFILE>
 ```
 
 You will need to fill your Access Key ID and Secret, as in the example below:
 
 ```bash
-$ aws configure
+$ aws configure --profile default
 AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
 AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 Default region name [None]: us-west-2
@@ -92,8 +97,51 @@ Default output format [None]: ENTER
 
 This Access Key ID is used when authenticating in AWS with an User. It can be easily generated with a new User is created in the IAM service with the `Programmatic Access` enabled. [Check this tutorial here]().
 
+Information about which profiles are already configured can be obtained in the AWS CLI configuration file, usually in `~/.aws/config`, try:
 
-Checking who are you with AWS Security Token Service (STS)
+`cat ~/.aws/config`
+
+Credentials are in:
+
+`cat ~/.aws/credentials`
+
+You will see something like this, every word between brackets refers to an AWS profile followed by its credentials:
+```
+[default]
+aws_access_key_id = <MY_SECRET_ID>
+aws_secret_access_key = <MY_SECRET_KEY>
+
+[contino-denis]
+aws_access_key_id = <MY_SECRET_ID>
+aws_secret_access_key = MY_SECRET_KEY
+
+[denisdev]
+aws_access_key_id = <MY_SECRET_ID>
+aws_secret_access_key = QMY_SECRET_KEY
+```
+
+For using a specific profile during a terminal session, you can set the environment variable `AWS_PROFILE`:
+
+```
+export AWS_PROFILE=denisdev
+```
+
+#### Alternative method to set credentials (not recommended)
+
+You can also set the environment variables below to set up the credentials:
+
+```
+export AWS_ACCESS_KEY_ID=AKIAI44QH8DHBEXAMPLE
+export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+export AWS_SESSION_TOKEN=AQoDYXdzEJr...<remainder of security token>
+```
+
+You can unset it with:
+```
+unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_SECURITY_TOKEN
+```
+
+#### Checking who are you with AWS Security Token Service (STS)
 ```bash
 aws sts get-caller-identity
 ```
@@ -125,7 +173,19 @@ aws s3 cp help
 
 You can also check the [web documentation.](https://docs.aws.amazon.com/cli/latest/index.html)
 
+## Example: List your S3 buckets
 
+> The credentials configured must be allowed to `s3:ListBucket` 
+
+> https://docs.aws.amazon.com/cli/latest/reference/s3api/list-buckets.html
+
+Run:
+
+`aws s3 ls`
+
+IAM will validate if your user has rights to perform this operation, if so AWS will return a list of buckets in the account.
+
+<hr/>
 
 # AWS Identity and Access Management (IAM)
 
@@ -155,7 +215,7 @@ For example, you could have a group called Admins and give that group the types 
 ### Roles
 An IAM role is very similar to a user, in that it is an identity with permission policies that determine what the identity can and cannot do in AWS. However, a role does not have any credentials (password or access keys) associated with it. 
 
-Instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it. 
+Instead of being uniquely associated with one person, a role is ***intended to be assumable*** by anyone who needs it. 
 
 An IAM user can assume a role to temporarily take on different permissions for a specific task.
 
@@ -163,42 +223,73 @@ An IAM user can assume a role to temporarily take on different permissions for a
 
 ### Policies and Permissions
 
-You manage access in AWS by creating policies and **attaching** them to IAM identities (users, groups of users, or roles) or AWS resources. 
+You manage access in AWS by creating policies and **attaching** them to IAM identities (users, groups of users, or roles) or AWS resources. For other types of policies, [check here](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html).
 
-A policy is an object in AWS that, when associated with an identity or resource, defines their permissions. 
+A ***policy*** is an object in AWS that, when associated with an identity or resource, defines their ***permissions***.
 
-AWS evaluates these policies when an **IAM principal (user or role) makes a request**. 
+AWS evaluates these policies when an **IAM principal (user or role) makes a request**.
+
+> Other types of permissions are not included in this course as Service Control Policies (SCPs) and Access Control Lists (ACLs).
+
+#### Policy structure
+A permission contains the following attributes:
+
+![](./assets/permission_format.png)
+
+- **Version** – Specify the version of the policy language that you want to use. As a best practice, use the latest 2012-10-17 version.
+
+- **Statement** – Use this main policy element as a container for the following elements. You can include more than one statement in a policy.
+
+- **Sid** (Optional) – Include an optional statement ID to differentiate between your statements.
+
+- **Effect** – Use Allow or Deny to indicate whether the policy allows or denies access.
+
+- **Principal** (Required in only some circumstances) – If you create a resource-based policy, you must indicate the account, user, role, or federated user to which you would like to allow or deny access. If you are creating an IAM permissions policy to attach to a user or role, you cannot include this element. The principal is implied as that user or role.
+
+- **Action** – Include a list of actions that the policy allows or denies.
+
+- **Resource** (Required in only some circumstances) – If you create an IAM permissions policy, you must specify a list of resources to which the actions apply. If you create a resource-based policy, this element is optional. If you do not include this element, then the resource to which the action applies is the resource to which the policy is attached.
+
+- **Condition** (Optional) – Specify the circumstances under which the policy grants permission.
+
+Reference [IAM JSON Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html) and [Access Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html).
 
 Permissions in the policies determine whether the request is ALLOWED or DENIED.
 
 Policies are defined in JSON, for example:
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "ec2:*",
-            "Effect": "Allow",
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "cloudwatch:*",
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "autoscaling:*",
-            "Resource": "*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "FirstStatement",
+      "Effect": "Allow",
+      "Action": ["iam:ChangePassword"],
+      "Resource": "*"
+    },
+    {
+      "Sid": "SecondStatement",
+      "Effect": "Allow",
+      "Action": "s3:ListAllMyBuckets",
+      "Resource": "*"
+    },
+    {
+      "Sid": "ThirdStatement",
+      "Effect": "Allow",
+      "Action": [
+        "s3:List*",
+        "s3:Get*"
+      ],
+      "Resource": [
+        "arn:aws:s3:::confidential-data",
+        "arn:aws:s3:::confidential-data/*"
+      ],
+      "Condition": {"Bool": {"aws:MultiFactorAuthPresent": "true"}}
+    }
+  ]
 }
 ```
 
-#### Policy format
-A policy contains four main attributes: Effect, Action, Principal, Resource
-
-**WIP - EXPLAIN FORMAT **
 
 #### Policy Evaluation Logic
 
@@ -209,6 +300,8 @@ A policy contains four main attributes: Effect, Action, Principal, Resource
 For more details, check: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html
 
 ## Let's not depend on users - Using STS to assume roles!
+
+This is called Session Policy.
 
 The AWS Security Token Service (STS) is a web service that enables you to request temporary credentials for AWS IAM users or for users that you authenticate (federated users).
 
@@ -270,14 +363,23 @@ The output for this command is an object containing temporary credentials:
 }
 ```
 
+#### A cleaner way to assume roles using AWS CLI
 
-> You can also use STS service to know who you are!
-> 
-> Run `aws sts get-caller-identity`
-> 
-> Experiment attaching a S3 instance role to an EC2 instance, as you've done in class 02.
->
-> Can you see that the role assumed as exactly the one you attached to the instance? Awesome!
+1. Configure a new profile and set `role_arn` (the role to be assumed)
+   
+   ```
+   aws configure --profile new-profile set role_arn arn:aws:iam::281387974444:role/Admin
+   ```
+2. Set the source profile (example, `default`):
+    ```
+   aws configure --profile new-profile set source_profile default
+   ```
+2. Just use the new profile:
+
+```
+export AWS_PROFILE=new-profile
+```
+3. Temporary credentials are stored in `~/.aws/cli/cache`.
 
 
 The image below contains the 3 steps that just happened in the commands above:
@@ -285,6 +387,16 @@ The image below contains the 3 steps that just happened in the commands above:
 
 *Check the full* [*article here.*](https://aws.amazon.com/blogs/security/how-to-use-a-single-iam-user-to-easily-access-all-your-accounts-by-using-the-aws-cli/)
 
+
+> Don't forget! You can also use STS service to know who you are!
+> 
+> Run `aws sts get-caller-identity`
+> 
+> Experiment attaching a S3 instance role to an EC2 instance, as you've done in class 02.
+>
+> Can you see that the role assumed as exactly the one you attached to the instance? Awesome!
+
+<hr/>
 
 # AWS Simple Storage Service (S3)
 
@@ -319,6 +431,7 @@ There are four common usage patterns for Amazon S3:
 
 **WIP - DETAIL  **
 
+<hr/>
 
 # AWS Relational Database Service (RDS)
 
@@ -344,10 +457,10 @@ If you don't have any of those requirements, RDS will be preferable most of the 
 
 
 # Appendix
-- https://docs.aws.amazon.com/whitepapers/latest/aws-overview/storage-services.html
-- https://docs.aws.amazon.com/whitepapers/latest/aws-overview/database.html
+- AWS Storage Services: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/storage-services.html
+- AWS Database Services: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/database.html
 
-## Archiving/Backup - Amazon Glacier
+### Archiving/Backup - Amazon Glacier
 Ref: https://aws.amazon.com/glacier/
 
 Amazon Glacier is a storage service for data archiving and online backup.
