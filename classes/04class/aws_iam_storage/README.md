@@ -335,9 +335,11 @@ Similar to an EC2 instance, a RDS instance needs to be created on a VPC and it w
 RDS is one of the few AWS services that does not fully integrates with IAM. IAM roles and policies can be used to allow users to interact with the RDS service for actions like create, update or delete a RDS instance, but IAM will not have any control of the data inside the RDS instance. For that you'll need to rely on regular database users, by creating the required users in your tables.
 
 ### Database on EC2 vs RDS
-An EC2 instance can also be used to host your relational database instances, and it might be necessary to do it depending on your requirements. It may require a specific database version that is not available on RDS or you may need some database permissions that are not available on RDS, but most of the cases you will have the option to have database on either option.
+An EC2 instance can also be used to host your relational database instances, and it might be necessary to do it depending on the database requirements. It may require a specific database version that is not available on RDS or you may need some database permissions that are not available on RDS, but most of the cases you will have the option to have database on either option.
 
-The main differences between those two options are listed below:
+If you don't have any of those requirements, RDS will be preferable most of the cases, since you won't need to worry about patching or backup. Also, most of the database options provide a high-availability option, which also reduces the initial configuration work that someone would have by installing the database service on an EC2 instance.
+
+
 
 
 # Main class takeaways 
