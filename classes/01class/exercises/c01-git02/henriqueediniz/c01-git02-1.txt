@@ -1,0 +1,10 @@
+Yes, it is possible. Squashed commits will not appear using a simple 'git log' command, 
+to see inner commits of a squashed one we need to use the command 'git reflog' or 
+'git log --walk-reflogs'.
+
+You can get a complete reflog of all refs by executing:
+
+ git reflog show --all
+
+ Reference:
+ https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog
