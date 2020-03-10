@@ -29,9 +29,15 @@ The AWS CLI is also introduced as an import tool to help in the daily activities
 - [AWS Simple Storage Service (S3)](#aws-simple-storage-service-s3)
   - [What's S3?](#whats-s3)
   - [Main Use Cases](#main-use-cases)
+  - [Amazon S3 Concepts](#amazon-s3-concepts)
+    - [Buckets](#buckets)
+      - [Important stuff](#important-stuff)
+    - [Objects](#objects)
+      - [Important stuff](#important-stuff-1)
+    - [Keys](#keys)
+  - [Use case 1:  Using S3 as a Data Store](#use-case-1-using-s3-as-a-data-store)
+  - [Use case 2: Hosting static websites](#use-case-2-hosting-static-websites)
   - [When not to use it](#when-not-to-use-it)
-  - [Use case 1: Distribute static content](#use-case-1-distribute-static-content)
-  - [Use case 2: Host entire static websites](#use-case-2-host-entire-static-websites)
 - [AWS Relational Database Service (RDS)](#aws-relational-database-service-rds)
   - [Why RDS?](#why-rds)
     - [Permissions](#permissions)
@@ -403,7 +409,7 @@ The image below contains the 3 steps that just happened in the commands above:
 Extracted from [AWS Whitepaper - AWS Storage Services Overview](https://d0.awsstatic.com/whitepapers/AWS%20Storage%20Services%20Whitepaper-v9.pdf)
 
 ## What's S3?
-Amazon Simple Storage Service (Amazon S3) provides developers and IT teams secure, durable, highly scalable object storage at a very low cost.
+Amazon Simple Storage Service (Amazon S3) provides developers and IT teams secure, durable, highly scalable **object storage** at a very low cost.
 
 You can store and retrieve any amount of data, at any time, from anywhere on the web through a simple web service interface.
 
@@ -417,21 +423,67 @@ There are four common usage patterns for Amazon S3:
 3. **Data store** for computation and large-scale analytics, such as financial transaction analysis and clickstream analytics. You can access your data from multiple computing nodes concurrently without being constrained by a single connection.
 4. **Backup and archiving** of critical data.
 
+## Amazon S3 Concepts
+
+### Buckets
+A bucket is a container for objects stored in Amazon S3. 
+
+*Every* object is contained in a bucket. 
+
+For example, if the object named `photos/puppy.jpg` is stored in the `johnsmith` bucket in the US West (Oregon) Region, then it is addressable using the URL https://johnsmith.s3.us-west-2.amazonaws.com/photos/puppy.jpg.
+
+#### Important stuff
+- Bucket names must be globally unique in AWS.
+- Amazon S3 has no physical hierarchy; it only has buckets that contain objects in a [flat file structure](https://docs.amazonaws.cn/en_us/AmazonS3/latest/dev/walkthrough1.html).
+
+### Objects
+
+Objects are the fundamental entities stored in Amazon S3. 
+
+Objects consist of object *data* and *metadata*.
+
+The metadata is a set of name-value pairs that describe the object. These include some default metadata, such as the date last modified, and standard HTTP metadata, such as `Content-Type`. You can also specify custom metadata at the time the object is stored.
+
+#### Important stuff
+- Individual Amazon S3 objects can range in size from a minimum of **0 bytes** to a maximum of **5 terabytes** (to go over 5 gigabytes for an object, you need to use [multi-part upload](https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html)).
+- The largest object that can be *uploaded in a single PUT* is **5 gigabytes**. 
+- Amazon S3 offers eventual consistency for overwrite PUTS and DELETES in all Regions (the object is ***not*** deleted or update synchronously, i.e., a subsequent read might return the old data or the updated data, but it never returns corrupted or partial data.).
+
+
+### Keys
+A key is the unique identifier for an object within a bucket.
+
+Every object in a bucket has exactly one key. 
+
+The combination of a `bucket, key, and version ID`uniquely identify each object. 
+
+ For example, in the URL `http://doc.s3.amazonaws.com/2006-03-01/AmazonS3.wsdl`:
+ - `doc` is the name of the bucket
+ - `2006-03-01/AmazonS3.wsdl` is the key.
+
+> **Prefix**
+> 
+> The prefix value is similar to a directory name that enables you to store similar data under the same directory in a bucket.
+> 
+> For example, for the key `Development/project1.xls`, the prefix is `Development/` (including the delimiter `/`).
+
+
+## Use case 1:  Using S3 as a Data Store
+
+**WIP - DETAIL **
+
+## Use case 2: Hosting static websites
+
+**WIP - DETAIL  **
+
+***
+
 ## When not to use it
 
 ![](./assets/anti_patterns_s3_usage.png)
 
 *AWS Whitepaper - AWS Storage Services Overview* [[source]](https://d0.awsstatic.com/whitepapers/AWS%20Storage%20Services%20Whitepaper-v9.pdf)
 
-## Use case 1: Distribute static content
-
-**WIP - DETAIL **
-
-## Use case 2: Host entire static websites
-
-**WIP - DETAIL  **
-
-***
 
 # AWS Relational Database Service (RDS)
 
