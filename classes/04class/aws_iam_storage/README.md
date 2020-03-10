@@ -323,7 +323,6 @@ There are four common usage patterns for Amazon S3:
 # AWS Relational Database Service (RDS)
 
 ## Why RDS?
-
 RDS is a scalable managed relational databse service provided by AWS that eliminates most of the daily operational tasks that you have with your databases. It's available on multiple database types, including very common ones like MySQL, MSSQL, Oracle and PostgreSQL.
 
 With RDS, there is no need to worry with hardware provisioning, database installation and patching or even backups. RDS provides all those things automatically. YOu simply sleect the type of database instance that you need, the version and the size, and it will be created for you with an admin user and password so you can create your databases and tables.
@@ -331,16 +330,12 @@ With RDS, there is no need to worry with hardware provisioning, database install
 Similar to an EC2 instance, a RDS instance needs to be created on a VPC and it will receive an IP address based on the subnet it's created into. Also, Security Groups can be used to secure your database instance connectity, so make sure you only allow access to your database instances from the right IP ranges and in the right ports. 
 
 ### Permissions
-
 RDS is one of the few AWS services that does not fully integrates with IAM. IAM roles and policies can be used to allow users to interact with the RDS service for actions like create, update or delete a RDS instance, but IAM will not have any control of the data inside the RDS instance. For that you'll need to rely on regular database users, by creating the required users in your tables.
 
 ### Database on EC2 vs RDS
 An EC2 instance can also be used to host your relational database instances, and it might be necessary to do it depending on the database requirements. It may require a specific database version that is not available on RDS or you may need some database permissions that are not available on RDS, but most of the cases you will have the option to have database on either option.
 
 If you don't have any of those requirements, RDS will be preferable most of the cases, since you won't need to worry about patching or backup. Also, most of the database options provide a high-availability option, which also reduces the initial configuration work that someone would have by installing the database service on an EC2 instance.
-
-
-
 
 # Main class takeaways 
 - IAM - Four Pillars (Users, Groups, Roles, Policies)
