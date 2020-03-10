@@ -8,3 +8,11 @@ I then clicked Inbound Rules on the Security Group and added SSH from my home IP
 
 - For the private-sg, I used the same methodology as above but with the diffence was giving SSH access only from my public subnet
 
+Inbound
+
+SSH	TCP	22	0.0.0.0/0	SSH from Public Subnet
+SSH	TCP	22	::/0	SSH from Public Subnet
+
+Outbound:
+
+All traffic	All	All	0.0.0.0/0	-
