@@ -1,6 +1,6 @@
 # Create a RDS Instance (c04-rds01)
 
-In this exercise, you'll need to to create a new RDS Instance using thw aws cli tool. The datase instance should have the following charactericts:
+In this exercise, you'll need to to create a new RDS Instance using thw aws cli tool. The database instance should have the following charactericts:
 - Name: devopsacademy
 - Engine: MySQL
 - Subnet: Private
@@ -12,7 +12,7 @@ Once the database is created, connect to it from an EC2 instance and execute the
 ## Submit a PR with the following files:
 - README.md based on the [ANSWER.md file](ANSWER.md) with a link to all files from your answer. The links are already in the ANSWER.md file, but if you have any additional files, include a link to it.
 - db-creation.txt with the output of the aws cli command to create the security group, the database and any additional resource you may create.
-- output.txt with the output of the `SHOW DATABSES` command you execute in the new RDS instance 
+- output.txt with the output of the `SHOW DATABASES` command you execute in the new RDS instance 
 
 
 ## References

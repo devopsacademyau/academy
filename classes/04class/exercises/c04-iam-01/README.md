@@ -1,1 +1,0 @@
-Create a new user and grant "only" full EC2 Admin access to him.

@@ -185,7 +185,7 @@ Run:
 
 IAM will validate if your user has rights to perform this operation, if so AWS will return a list of buckets in the account.
 
-<hr/>
+***
 
 # AWS Identity and Access Management (IAM)
 
@@ -396,7 +396,7 @@ The image below contains the 3 steps that just happened in the commands above:
 >
 > Can you see that the role assumed as exactly the one you attached to the instance? Awesome!
 
-<hr/>
+***
 
 # AWS Simple Storage Service (S3)
 
@@ -431,7 +431,7 @@ There are four common usage patterns for Amazon S3:
 
 **WIP - DETAIL  **
 
-<hr/>
+***
 
 # AWS Relational Database Service (RDS)
 
@@ -451,14 +451,17 @@ An EC2 instance can also be used to host your relational database instances, and
 If you don't have any of those requirements, RDS will be preferable most of the cases, since you won't need to worry about patching or backup. Also, most of the database options provide a high-availability option, which also reduces the initial configuration work that someone would have by installing the database service on an EC2 instance.
 
 # Main class takeaways 
-- IAM - Four Pillars (Users, Groups, Roles, Policies)
-- Policy statements format (Effect, Action, Principal, Resource)
+- CLI can be configured with different profiles and credentials, or assume temporary permissions using Roles
+- Remember the main building blocks of IAM - Identities and Policies (Users, Groups, Roles, Policies)
+- IAM Policy structure (Effect, Action, Principal, Resource, Condition)
 
 
 
 # Appendix
-- AWS Storage Services: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/storage-services.html
-- AWS Database Services: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/database.html
+- [AWS CLI Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+- [AWS Storage Services](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/storage-services.html)
+- [AWS Database Services](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/database.html)
+
 
 ### Archiving/Backup - Amazon Glacier
 Ref: https://aws.amazon.com/glacier/

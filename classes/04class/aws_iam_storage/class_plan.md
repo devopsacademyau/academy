@@ -16,7 +16,7 @@
    4. Laptop - assume role demo (5 min)
 
 
-3. AWS S3 (20 min)
+3. AWS S3 (15 min)
    1. Laptop - intro 
    
 
