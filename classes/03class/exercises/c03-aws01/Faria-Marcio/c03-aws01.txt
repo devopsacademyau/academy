@@ -43,3 +43,8 @@ QUESTIONS:
 
    - What this line is doing? curl https://169.254.169.254/latest/meta-data/hostname > index.html
 	curl is a command line tool to transfer data to or from a server, using any of the supported protocols (HTTP, FTP, IMAP, POP3, SCP, SFTP, SMTP, TFTP, TELNET, LDAP or FILE), so in this case it is creating "index.html/' file with metadata from the IP address.
+	169.254.169.254 is used in Amazon EC2 and other cloud computing platforms to distribute metadata to cloud instances.
+
+References:
+	https://serverfault.com/questions/427018/what-is-this-ip-address-169-254-169-254/427022
+	https://stackoverflow.com/questions/42314029/whats-special-about-169-254-169-254-ip-address-for-aws
