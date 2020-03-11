@@ -1,0 +1,25 @@
+$ aws ec2 create-internet-gateway
+{
+    "InternetGateway": {
+        "Attachments": [],
+        "InternetGatewayId": "igw-00b8778b6e0acb2bd",
+        "Tags": []
+    }
+}
+$ aws ec2 attach-internet-gateway --internet-gateway-id igw-00b8778b6e0acb2bd --vpc-id vpc-05b563ad72951b5ca
+$ aws ec2 describe-internet-gateways --internet-gateway-ids igw-00b8778b6e0acb2bd
+{
+    "InternetGateways": [
+        {
+            "Attachments": [
+                {
+                    "State": "available",
+                    "VpcId": "vpc-05b563ad72951b5ca"
+                }
+            ],
+            "InternetGatewayId": "igw-00b8778b6e0acb2bd",
+            "OwnerId": "595875296375",
+            "Tags": []
+        }
+    ]
+}

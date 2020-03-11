@@ -1,0 +1,40 @@
+
+Create a file c01-git03-1.txt answering the questions below. Include details and commands used.
+
+1.	Did you notice any difference in the size of the repo before and after adding the big file?
+Yes. Initially the directory’s size was 96K, after adding the new file it became 20M
+
+2.	What is the reason for this problem?
+Even after the commit was reverted (reverted commits are still there in your local repository) git stored a new copy of the file in folder /.git/objects
+
+3.	How do you remove something from Git history? Which commands would you use? What are the consequences?
+- To remove files from the repository’s history 
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD
+This removes files from the repository, permanently.
+ 
+- To Cleanup unnecessary files and optimize the local repository
+git reflog expire --expire=now --all
+git gc --aggressive --prune=now
+This will remove all the reflogs.
+
+Details of the commads used and summary:
+Denises-MacBook-Pro:Devops denisegomes$ mkdir git_test_bigfile
+Denises-MacBook-Pro:Devops denisegomes$ cd git_test_bigfile/
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ git init
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ touch README.md
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ git add README.md
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ git commit -m "adding README"
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ git log
+commit 06e3b71ca8e37d0cd07205d5a2913b0a8ab88768 (HEAD -> master)
+Author: deniseh <deniseddi@hotmail.com>
+Date:   Mon Mar 2 15:59:58 2020 +1100
+    adding README
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ du -sh
+ 96K	.
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ dd if=/dev/random of=file.txt 
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ git add file.txt; git commit -m "Add big file"
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ du -sh
+ 20M	.
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ git revert HEAD
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ du -sh
+ 10M    .

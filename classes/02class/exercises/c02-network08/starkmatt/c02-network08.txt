@@ -1,0 +1,18 @@
+##Exercise 8
+What is the difference between inbound x outbound?
+- Inbound rules ares used to filter traffic coming from the internet to the local network. You'll be able to add rule sets to specific ports and IP addresses if they're required.
+- Outbound rules are used to filter traffic coming from the local network out to other subnets.
+
+What is going to happen by default? Everything allowed or denied?
+By default, Everythingis allowed as the Source is 0.0.0.0/0 
+This means that externally (Public Internet) all is allowed also Internal traffic will also have access
+
+How would you block SSH connection comming from the network `172.16.200.200/24`?
+- In VPC Dashboard, select Network ACLs
+- Click "Inbound Rules" and then select Edit, Click 'Add Rule'
+Rule: 90 Type: SSH(22) Protocol: TCP (6) Port Range: 22 Source: 172.16.200.0/24 DENY
+
+
+How would you block access from your network to an external network 180.200.50.0/24?
+Same methodology as above, but the Rule will be created in Outbound.
+Rule: 90 Type: ALL Traffic Protocol: ALL Port Range: ALL Source: 180.200.50.0/24 DENY

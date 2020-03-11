@@ -1,0 +1,24 @@
+➜  luizfds docker tag exercise02:v1 luizfdsilva/exercise02:v1           
+➜  luizfds docker push luizfdsilva/exercise02:v1
+The push refers to repository [docker.io/luizfdsilva/exercise02]
+64855dbed350: Pushed 
+b64dd1b17dce: Mounted from library/httpd
+3924f7d08fde: Mounted from library/httpd
+535f972b218c: Mounted from library/httpd
+d66bb18f34c6: Mounted from library/httpd
+5216338b40a7: Mounted from library/httpd
+v1: digest: sha256:9c51df9d7b96ae416b4607a985513beed7185237c324521702a325a4da91e5bf size: 1569
+
+➜  luizfds docker tag exercise02:v2 luizfdsilva/exercise02:v2
+➜  luizfds docker push luizfdsilva/exercise02:v2             
+The push refers to repository [docker.io/luizfdsilva/exercise02]
+406d6dfb11b2: Pushed 
+b64dd1b17dce: Layer already exists 
+3924f7d08fde: Layer already exists 
+535f972b218c: Layer already exists 
+d66bb18f34c6: Layer already exists 
+5216338b40a7: Layer already exists 
+v2: digest: sha256:2128e05e8f383d3d25adef09110f30840d05998f1a046357c4f2efd2fe6bc1e6 size: 1569
+
+Both images can be found at https://hub.docker.com/r/luizfdsilva/exercise02
+

@@ -1,0 +1,22 @@
+Create an Auto Scaling Group with the following details and post
+
+QUESTIONS:
+
+   - How did you achieve that?
+	AWS Console --> EC2 --> Create Load Balancer --> Application Load Balancer - Create --> Name: devopsacademy-alb; Scheme: internet-facing; VPC: devopsacademy-vpc; subnet: public-a, public-b -->  Security group name: devopsacademy-sg-asg --> Name: devopsacademy-tg, Target type: instance, Protocol: http, Port:80 --> Registered both instances created by ASG
+
+   - Access through your browser your load balancer CNAME record and keep refreshing the browser. What do you see?
+	Accessing http://devopsacademy-alb-1369608368.ap-southeast-2.elb.amazonaws.com/ the return alternate between ip-192-168-101-151.ap-southeast-2.compute.internal and ip-192-168-102-87.ap-southeast-2.compute.internal
+
+   - Details of the security group used
+	Name	Group ID		Group Name		VPC ID			Type	Description			Owner
+		sg-0f0a8b39374d935a7	devopsacademy-sg-asg	vpc-04386a3405acb18af	EC2-VPC	AutoScaling-Security-Group	148446344264
+
+	Inbound Rules
+	   Type		Protocol	Port Range	Source		Description
+	   HTTP		TCP		80		0.0.0.0/0
+	   HTTP		TCP		80		::/0
+	
+
+   - Public load balancer A record
+	http://devopsacademy-alb-1369608368.ap-southeast-2.elb.amazonaws.com/

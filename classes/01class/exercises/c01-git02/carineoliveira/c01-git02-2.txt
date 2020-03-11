@@ -1,0 +1,4 @@
+- How to compare two different local repositories using git diff? How about remote ones, can you do the same?
+
+Using the command "git diff <branch1> <branch2>" for either local and remote.
+

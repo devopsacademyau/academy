@@ -1,0 +1,30 @@
+## Given a AWS network range, slice it in 4 small subnets and identify how many usable hosts for each one of them.
+
+- 10.0.0.0/16
+    10.0.0.0/18	 
+        16,382 total hosts of 16,384 (first ip (0) is known as network and last ip (255) is used for broadcasting)
+        16,379 usable hosts in AWS (1 is reserved to be used by the VPC Router, 1 is reserved to be used by AWS DNS and 1 is reserved for future use)
+    
+    10.0.64.0/18
+        16,379 usable hosts in AWS
+
+    10.0.128.0/18	
+        16,379 usable hosts in AWS
+
+    10.0.192.0/18	
+        16,379 usable hosts in AWS
+
+- 192.168.0.0/24
+    192.168.0.0/26	 
+        62 total hosts
+        59 usable hosts in AWS
+
+    192.168.0.64/26	 
+        59 usable hosts in AWS
+
+    192.168.0.128/26 
+        59 usable hosts in AWS
+
+    192.168.0.192/26 
+        59 usable hosts in AWS
+

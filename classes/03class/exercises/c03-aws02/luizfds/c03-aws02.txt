@@ -1,0 +1,44 @@
+- how did you achieve that?
+    From EC2 > Load Balancers
+    1. I Openned the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
+    2. In the navigation pane, I chose Load Balancers, Create Load Balancers.
+    3. I selected `Application Load Balancer` as my load balancer type.
+    4. Called it `devopsacademy-alb`.
+    5. From Configure Security Settings panel:
+        Name: 
+        Scheme: internet-facing
+        IP address type: ipv4
+        Listeners: `HTTP > PORT 80`
+        Security Group: auto-scaling-sg
+        VPC: devopsacademy-vpc
+        Availability Zones: public-a, public-b
+        Target group:
+            Name:
+            Target type: Instance
+            Protocol: HTTP
+            Port: 80
+        Register Targets: My instances created by my ASG in previous exercise.
+    6. I chose Create.
+
+- access through your browser your load balancer CNAME record and keep refreshing the browser. What do you see?
+    My index page created in previous exercise with my instance metadata (from one of my 2 instances) and everytime I refreshed the page I got a response from a different instance.
+        1st time
+            devopsacademy-alb-1916322731.ap-southeast-2.elb.amazonaws.com
+                ip-10-0-11-193.ap-southeast-2.compute.internal
+        2nd time
+            devopsacademy-alb-1916322731.ap-southeast-2.elb.amazonaws.com
+                ip-10-0-1-229.ap-southeast-2.compute.internal
+
+- details of the security group used
+    Group name: auto-scaling-sg
+        Group description: auto-scaling-sg
+        Group ID: sg-09a160c95fd893acf
+        VPC ID: vpc-0fb0464639ce57474
+        Inbound: 
+            Type: HTTP
+            Protocol: TCP
+            Port Range: 80
+            Source: Anywhere
+
+- public load balancer A record
+    devopsacademy-alb-1916322731.ap-southeast-2.elb.amazonaws.com

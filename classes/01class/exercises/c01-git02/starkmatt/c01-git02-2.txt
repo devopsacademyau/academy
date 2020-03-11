@@ -1,0 +1,9 @@
+How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
+
+You can compare the two using the git diff command, you'll need to specify what branch.
+git diff branch01 brach02
+
+For remote ones you'll just need to also specify.
+git diff origin/masta upstream/masta
+
+
