@@ -37,3 +37,4 @@ Your state file should not be include in your PR.
 
 ## References
 - [Terraform AWS Resources](https://www.terraform.io/docs/providers/aws/index.html)
+- [terraform Modules](https://www.terraform.io/docs/modules/index.html)
