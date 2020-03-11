@@ -2,4 +2,4 @@
 
 ## Agenda
 
- WIP
+ - [Make](/classes/05class/make/README.md)

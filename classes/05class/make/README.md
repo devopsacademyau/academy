@@ -1,7 +1,6 @@
 # Make
-This class is a general oerview of the Make utility and the Makefile.
+This class is a general overview of the Make utility and the Makefile.
 The main goal is to explain the purpose, the benefits and how to use it.
-
 
 ***Contents***
 - [What is Make](#what-is-make)
@@ -15,7 +14,7 @@ The main goal is to explain the purpose, the benefits and how to use it.
 
 ## What is Make?
 Make is a tool to execute a sequence of commands (like a recipe) based on targets defined in a specific file.
-Commonly used to compile and build applications from its  source code, the make utility has became very popular in the DevOps community, being used to create scripts for automation.
+Commonly used to compile and build applications from its source code, the make utility has became very popular in the DevOps community, being used to create scripts for automation.
 
 ## Why use Make?
 One of the biggest benefits of the Make utility is the ability to run in multiple platforms and shells. For example, if an engineer creates automations using bash scripts, another engineer using a different shell, like zsh, might have problems executing those scripts locally.
@@ -53,7 +52,7 @@ $ make
 Hello World
 $
 ```
-In this case, the target is `say_helloworld` and the instruction is the `@echo "Hello World"`. The target can be a binary file or just the name for the instructions, like our example above. In this case, those are called **phony targets**. From now on, we'll consider all our targets as phony target and we'll include the `.PHONY` directive in our Makefile, as below:
+In this case, the target is `say_helloworld` and the instruction is the `@echo "Hello World"`. The target can be a binary file or just the name for the instructions, like our example above. In this case, those targets are called **phony targets**. From now on, we'll consider all our targets as phony target and we'll include the `.PHONY` directive in our Makefile, as below:
 
 ```Makefile
 .PHONY: say_helloworld
@@ -64,7 +63,7 @@ For more details of the reason behind that, you can check [this link](https://ww
 
 Because there is a single target, if the target is not specified, the single target is execued anyway.
 
-Additionally, in the Makefile, when executing a command you can use the `@` symbol preceding the command to not output the command in the console. Without the `@`, the output would be the following:
+Additionally, in the Makefile when executing a command you can use the `@` symbol preceding the command to not output the command execution in the console. Without the `@`, the output would be the following:
 ```shell
 $ make say_helloworld
 echo "Hello World"
@@ -92,7 +91,10 @@ remove_file:
 	rm output.txt
 ```
 
-Now we have three different targets that can be invoked by running `make create_file`, `make write_to_file` and `make remove_file`. Because we have multiple targets, by executing the `make` without any target, only the first target described in the Makefile will be executed. If you want to change the target to be executed when no target is informed, you can make use of the `.DEFAULT_GOAL` option in the beggining of the Makefile:
+Now we have three different targets that can be invoked by running `make create_file`, `make write_to_file` and `make remove_file`.
+
+Because we have multiple targets, by executing the `make` without any target, only the first target described in the Makefile will be executed. If you want to change the target to be executed when no target is informed, you can make use of the `.DEFAULT_GOAL` option in the beggining of the Makefile:
+
 ```Makefile
 .DEFAULT_GOAL := create_file
 
@@ -131,7 +133,7 @@ echo "Writing to file" > output.txt
 As you can see both targets were executed, since before executing the `write_to_file` target, the `create_file` target was invoked as the pre-requisite. 
 
 ### Variables
-The examples above used mostly hard-coded values and in most cases, we'll need to make use of variables. Specially when running similar automations for multiple environments, variables will be an important feature.
+The examples above used mostly hard-coded values and in most cases, we'll need to make use of variables. Specially when running automations for multiple environments, variables will be an important feature.
 
 Using our previous exemple, we can change the `output.txt` file to a variable and would be able to interact with different files.
 
@@ -171,9 +173,13 @@ Creating file
 Noticed that by executing the command `FILE=out.txt make create_file`, the file `out.txt` was created. Also, because we defined a default value of `output.txt` in the Makfile for the `$FILE` variable (FILE ?= output.txt), by not specifying a value during the make execution, make uses this default value.
 
 ## Mixing Together
-Now that we know a few things about the Make utility and the Makefile, let's mix it with some of the other tools that we've been learning in the past classes.
+Now that we know a few things about the Make utility and the Makefile, let's mix it with some other tool that we've been learning in the past few classes.
 
+A good example would be to use a Makefile to interact with your docker containers. Consider that in order to build and test your container it requires a few long commands and sometimes some changes in variables that your container need. In that case, the Make tool could improve the deveoper and operation experience by reducing the required commands. Take [this Makefile](artifacts/mixing/Makefile) as example:
 
+In this case, you can build your container with a quick `make build` command. To run the container, instead of a very long command  with multiple options, a `make run` can get your application ready to be tested. You can even pass some additional environment variables to your container through the make command execution, if required, as long as the Makefile is ready to understand those variables. And the image can be easyly tagged and published in your container registry with a simple `make publish` command.
+
+As you can see, the make tool can help you in many ways and it integrates very well with manu tools from the DevOps toolset, including containers, cloud providers cli like the aws cli and IaC cli, like terraform.
 
 ## Appendix
 - [Make documentation](https://www.gnu.org/software/make/manual/html_node/index.html#toc-Overview-of-make)
