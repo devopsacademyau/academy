@@ -1,6 +1,6 @@
 # S3 Bucket and EC2 Instance (c04-iac01)
 
-In this exercise, you'll need to an EC2 instance and an S3 Bucket. The EC2 instance needs to be accessible through SSH(Port 22) and the EC2 instance needs to have permission to access the S3 bucket being created in this exercise. All resources must be created through Terraform code, with the exception of the EC2 Keypair, that you can use an existing one from your AWS Account.
+In this exercise, you'll need to an EC2 instance and an S3 Bucket. The EC2 instance needs to be accessible through SSH(Port 22) and the EC2 instance needs to have permission to access the S3 bucket being created in this exercise. All resources must be created through Terraform code, with the exception of the EC2 Keypair, that you can use an existing one from your AWS Account. Similar to [this exercise done manually](https://github.com/devopsacademyau/academy/tree/master/classes/01class/exercises/c01-e04).  
 
 For your EC2 instance to be able to access the S3 bucket, use an IAM Instance Profile with proper permissions to the bucket.
 

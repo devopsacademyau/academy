@@ -1,6 +1,8 @@
 # VPC (c04-iac02)
 
-In this exercise, you'll need to create a new VPC called `devopsacademy-iac`, but this time, every resource of this VPC will be created using Terraform. ALl your resources must be created in a single `vpc.tf` file.
+In this exercise, you'll need to create a new VPC called `devopsacademy-iac`, but this time, every resource of this VPC will be created using Terraform. Similar to the [exercises done for class02](https://github.com/devopsacademyau/academy/tree/master/classes/02class/exercises).
+
+All your resources must be created in a single `vpc.tf` file.
 Your VPC will be composed by:
 - /16 CIDR of your choice in the 10.0.X.X range
 - 4 /24 Subnets, being 2 publics and  privates

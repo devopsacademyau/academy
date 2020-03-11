@@ -1,14 +1,14 @@
 # Infrastructure as Code (IaC)
-This class is an introduction Infrastructure as Code (IaC).
+This class is an introduction to Infrastructure as Code (IaC).
 The main goal is to explain the purpose, the benefits and how to use it.
 In this class, we'll be using Terraform as the main tool to provision resources in AWS through code.
 
 ***Contents***
-- [What is a IaC?](#what-is-iac)
+- [What is IaC?](#what-is-iac)
   - [Benefits of IaC](#benefits-of-iac)
   - [IaC Models](#iac-models)
-  - [IaC Methos](#iac-methods)
-- [Terraform Foundation](#terraform-introduction)
+  - [IaC Methods](#iac-methods)
+- [Terraform Foundation](#terraform-foundation)
   - [Terraform Providers](#terrform-providers)
   - [Terraform State](#terraform-state)
 - [Terraform Client](#terraform-client)
@@ -33,9 +33,9 @@ With all those manual steps in a code format, it would be possible to create tho
 The benefits of IaC are normally around three pillars:
 
 #### Cost
-Repeatable tasks that are transformed into code can reduce costs. Instead of spending 2 hours creating an environment manually that needs to be created weekly, though code, that environment can take less than 5 minutes. 
+Repeatable tasks that are transformed into code can reduce costs. Instead of spending 2 hours creating an environment manually that needs to be created weekly, though code, that environment creation can take less than 5 minutes. 
 
-With that, you're not only reducing the cost to deliver that environment, but the engineer is providing it will be able to focus on more critical things for the company.
+With that, you're not only reducing the cost to deliver that environment, but the engineers will be able to focus on more critical things for the company.
 
 #### Speed
 IaC will make the resources available faster, enabling developers to start working sooner. Especially for environments with several changes or with fast innovation pace, where new environments need to be created frequently, IaC can enable this fast pace.
@@ -48,7 +48,9 @@ Decreasing the possibility of manual mistakes, you increase the availability and
 ### IaC Models
 There are multiple models of IaC, and the two main models are Imperative and Declarative. The more natural way to understand the difference between those two models would be that declarative focus on what and imperative focus on how.
 
-In other words, in the declarative model, you define what the desired state is, and the system will execute the necessary steps to achieve that state. In the imperative model, you need to determine what actions need to be performed as well as the order, so the machine knows what it needs to do to achieve the desired state.
+In other words, in the declarative model, you define what the desired state is, and the system will execute the necessary steps to achieve that state. As an example, you can declare that you want a S3 bucket with a specific name. 
+
+In the imperative model, you need to determine what actions need to be performed as well as the order, so the machine knows what it needs to do to achieve the desired state. Using the same example as above, in an imperative model you would need to describe the steps needed to create an S3 bucket in the console or the exact command required to create the S3 bucket through the aws cli command.
 
 ### IaC Methods
 There are two methods in IaC. Push and Pull. The difference is who starts the communication between the tool and the resource.
@@ -58,9 +60,9 @@ In the pull method, the resource being managed by the IaC tool will pull the too
 In the push method, the resource being managed stays in a `sleep mode`, and the communication is initiated by the IaC tool. In that case, the tool will push the desired state to the resource being managed and the resource will converge to the desired state (again, either through imperative or declarative model).
 
 ## Terraform Foundation
-[Terraform](https://www.terraform.io/) is one of the main IaC tools available, and it uses a Decalative model with a push method. It can be used to manage resources in multiple cloud providers(including AWS, Azure and GCP) as well as manage resources in on-premisses(like in VMware and Openshift).
+[Terraform](https://www.terraform.io/) is one of the main IaC tools available, and it uses a Declarative model with a push method. It can be used to manage resources in multiple cloud providers(including AWS, Azure and GCP) as well as manage resources in on-premises(like in VMware and Openshift).
 
-It's a powerful tool that can be used to create, maintain and delete entire IT environments. During this material, we'll focus on how to use Terraform to manage AWS resources.
+It's a powerful tool that can be used to create, maintain and delete entire IT environments. This material will focus on how to use Terraform to manage AWS resources.
 
 ### Terraform Providers
 
@@ -110,6 +112,8 @@ terraform {
 }
 ```
 If for any reason the state file is lost, terraform won't be able to know the resources that are managed by it. In that case,  you'll need to rely on the [import feature](https://www.terraform.io/docs/import/index.html) to try to recover the existent state, but this is a very manual and arduous task, so make sure you keep your state file safe.
+
+Also, when running your terraform code, the state file will be put in a `lock` state to guaranee that there is no way to have more than one change happening at the same time. This helps to keep the state file consistent.
 
 
 More details around the Terraform State can be found [here](https://www.terraform.io/docs/state/index.html).
@@ -267,6 +271,11 @@ Let's initialize terraform
 ```bash
 $ terraform init
 ```
+The `terraform init` command will initialize the working directory and should only be run once unless you make any change on the following:
+- Backend configuration
+- Child Modules
+- Providers
+
 Now that terraform is initialized, we can run the next command, which would determine the resources that need to be created/updated/removed.
 ```bash
 $ terraform plan -var-file=./class.tfvars
@@ -287,7 +296,6 @@ Additionally, edit the `sg.tf` file and change the port from 80 to 443 in the `f
 
 Now let's re-run the following commands:
 ```
-$ terraform init -var-file=./class.tfvars
 $ terraform plan -var-file=./class.tfvars
 ```
 The plan should now inform that the changes that will be made to the stack. For the S3 modifications we've made, because we're changing the name of the bucket, it will recreate it. For the SecurityGroup, because the change can be done without the need of recreating it, it will just update the configuration with new values.
