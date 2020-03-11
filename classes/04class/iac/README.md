@@ -17,6 +17,8 @@ In this class, we'll be using Terraform as the main tool to provision resources 
  - [Outputs](#outputs)
  - [File Organization](#file-organization)
  - [Running some code](#running-some-code)
+ - [Extra](#extra)
+  - [Modules](#modules)
  - [Appendix](#appendix)
 
 
@@ -299,6 +301,35 @@ Now let's re-run the following commands:
 $ terraform plan -var-file=./class.tfvars
 ```
 The plan should now inform that the changes that will be made to the stack. For the S3 modifications we've made, because we're changing the name of the bucket, it will recreate it. For the SecurityGroup, because the change can be done without the need of recreating it, it will just update the configuration with new values.
+
+## Extra
+
+### Modules
+Terraform Modules is an advanced topic and is used to reduce code duplication as well as to group up resources that are often created together.
+
+For example, whenever a VPC is created, you normally will create Subnets, Routing Tables, NACLs, IGW and a few additional resources. With Modules, you can create a Module named `FullVPC` that receives a few inout variables values and creates all the resources that compose that module.
+
+[This link](https://www.terraform.io/docs/modules/index.html) provides some good practices and examples around Terraform Modules.
+
+The module will work in a similar way to an application function. It will receive inout(Input Variables), it will process the input(create resources based on the variables), and generate an output(specific attribute of a resource created). Considering this, a Terraform module will normally be composed by the following files:
+- _output.tf
+- variables.tf
+- resources.tf
+
+When creating resource(s) from a module, you would add a terraform code block like this:
+
+```terraform
+module "full_vpc" {
+  source         = "path_to_module"
+  vpc_cidr       = "192.168.0.0"
+  sn_prv_a_cird  = "192.168.10.0"
+  sn_prv_b_cird  = "192.168.20.0"
+  sn_pub_a_cird  = "192.168.100.0"
+  sn_pub_b_cird  = "192.168.200.0"
+}
+```
+
+All the resources to be created would be defined in a module located in the path specified, which can be within the same repository or in a different repository. [This link](https://www.terraform.io/docs/modules/sources.html) provides some additional information and options aboud the `source definition` and [this link](https://www.terraform.io/docs/modules/composition.html) provides an smaller example of a VPC+ Subnets module.
 
 ## Appendix
 - [Terraform Modules](https://www.terraform.io/docs/configuration/modules.html)
