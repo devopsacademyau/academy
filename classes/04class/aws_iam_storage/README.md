@@ -35,8 +35,7 @@ The AWS CLI is also introduced as an import tool to help in the daily activities
     - [Objects](#objects)
       - [Important stuff](#important-stuff-1)
     - [Keys](#keys)
-  - [Use case 1:  Using S3 as a Data Store](#use-case-1-using-s3-as-a-data-store)
-  - [Use case 2: Hosting static websites](#use-case-2-hosting-static-websites)
+  - [Storage classes](#storage-classes)
   - [When not to use it](#when-not-to-use-it)
 - [AWS Relational Database Service (RDS)](#aws-relational-database-service-rds)
   - [Why RDS?](#why-rds)
@@ -413,14 +412,15 @@ Amazon Simple Storage Service (Amazon S3) provides developers and IT teams secur
 
 You can store and retrieve any amount of data, at any time, from anywhere on the web through a simple web service interface.
 
-You can write, read, and delete objects containing from zero to 5 TB of data.
-
 ## Main Use Cases
 There are four common usage patterns for Amazon S3:
 
 1. Store and distribute **static web content and media**. This content can be delivered directly from Amazon S3 because each object in S3 has a unique HTTP URL.
+   
 2. Host entire **static websites**. Amazon S3 provides a low-cost, highly available, and highly scalable solution, including storage for static HTML files, images, videos, and client-side scripts in formats such as JavaScript.
+   
 3. **Data store** for computation and large-scale analytics, such as financial transaction analysis and clickstream analytics. You can access your data from multiple computing nodes concurrently without being constrained by a single connection.
+   
 4. **Backup and archiving** of critical data.
 
 ## Amazon S3 Concepts
@@ -468,15 +468,21 @@ The combination of a `bucket, key, and version ID`uniquely identify each object.
 > For example, for the key `Development/project1.xls`, the prefix is `Development/` (including the delimiter `/`).
 
 
-## Use case 1:  Using S3 as a Data Store
+## Storage classes
 
-**WIP - DETAIL **
+S3 offers different storage classes with different durability and availability options. In summary they are:
 
-## Use case 2: Hosting static websites
+|Storage Class|Designed for|Durability (designed for)|Availability (designed for)|Availability Zones|Min storage duration|Min billable object size|Other Considerations|
+|--- |--- |--- |--- |--- |--- |--- |--- |
+|STANDARD|Frequently accessed data|99.999999999%|99.99%|>= 3|None|None|None|
+|STANDARD_IA|Long-lived, infrequently accessed data|99.999999999%|99.9%|>= 3|30 days|128 KB|Per GB retrieval fees apply.|
+|INTELLIGENT_TIERING|Long-lived data with changing or unknown access patterns|99.999999999%|99.9%|>= 3|30 days|None|Monitoring and automation fees per object apply. No retrieval fees.|
+|ONEZONE_IA|Long-lived, infrequently accessed, non-critical data|99.999999999%|99.5%|1|30 days|128 KB|Per GB retrieval fees apply. Not resilient to the loss of the Availability Zone.|
+|S3 Glacier|Long-term data archiving with retrieval times ranging from minutes to hours|99.999999999%|99.99% (after you restore objects)|>= 3|90 days|40 KB|Per GB retrieval fees apply. You must first restore archived objects before you can access them. For more information, see Restoring Archived Objects.|
+|S3 Glacier Deep Archive|Archiving rarely accessed data with a default retrieval time of 12 hours|99.999999999%|99.99% (after you restore objects)|>= 3|180 days|40 KB|Per GB retrieval fees apply. You must first restore archived objects before you can access them. For more information, see Restoring Archived Objects.|
+|RRS (Not recommended)|Frequently accessed, non-critical data|99.99%|99.99%|>= 3|None|None|None|
 
-**WIP - DETAIL  **
-
-***
+[Check here for more information](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html)
 
 ## When not to use it
 
@@ -488,14 +494,22 @@ The combination of a `bucket, key, and version ID`uniquely identify each object.
 # AWS Relational Database Service (RDS)
 
 ## Why RDS?
-RDS is a scalable managed relational databse service provided by AWS that eliminates most of the daily operational tasks that you have with your databases. It's available on multiple database types, including very common ones like MySQL, MSSQL, Oracle and PostgreSQL.
+RDS is a scalable managed relational database service provided by AWS that eliminates most of the daily operational tasks that you have with your databases. 
+
+It's available on multiple database management systems (DBMS), including very common ones like:
+- MySQL
+- MSSQL
+- Oracle
+- PostgreSQL
 
 With RDS, there is no need to worry with hardware provisioning, database installation and patching or even backups. RDS provides all those things automatically. YOu simply sleect the type of database instance that you need, the version and the size, and it will be created for you with an admin user and password so you can create your databases and tables.
 
 Similar to an EC2 instance, a RDS instance needs to be created on a VPC and it will receive an IP address based on the subnet it's created into. Also, Security Groups can be used to secure your database instance connectity, so make sure you only allow access to your database instances from the right IP ranges and in the right ports. 
 
 ### Permissions
-RDS is one of the few AWS services that does not fully integrates with IAM. IAM roles and policies can be used to allow users to interact with the RDS service for actions like create, update or delete a RDS instance, but IAM will not have any control of the data inside the RDS instance. For that you'll need to rely on regular database users, by creating the required users in your tables.
+RDS is one of the few AWS services that does not fully integrates with IAM. IAM roles and policies can be used to allow users to interact with the RDS service for actions like create, update or delete a RDS instance, but IAM will not have any control of the data inside the RDS instance. 
+
+For that you'll need to rely on regular database users, by creating the required users in your tables.
 
 ### Database on EC2 vs RDS
 An EC2 instance can also be used to host your relational database instances, and it might be necessary to do it depending on the database requirements. It may require a specific database version that is not available on RDS or you may need some database permissions that are not available on RDS, but most of the cases you will have the option to have database on either option.
@@ -506,7 +520,8 @@ If you don't have any of those requirements, RDS will be preferable most of the 
 - CLI can be configured with different profiles and credentials, or assume temporary permissions using Roles
 - Remember the main building blocks of IAM - Identities and Policies (Users, Groups, Roles, Policies)
 - IAM Policy structure (Effect, Action, Principal, Resource, Condition)
-
+- S3 is one of the main services in AWS and commonly used as data store for many use cases.
+- RDS can alleviate the load on operations as it is an AWS database managed service.
 
 
 # Appendix

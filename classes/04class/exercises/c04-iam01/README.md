@@ -24,7 +24,7 @@ aws s3 ls --profile s3ReadOnlyProfile
 
 ## Submit a PR with the following files:
 - **README.md**, based on the [ANSWER.md file](ANSWER.md) with a link to all files from your answer. The links are already in the ANSWER.md file, but if you have any additional files, include a link to it.
-- **commands.txt**, with each command executed above in the CLI and its associated output.
+- **cli_commands.txt**, with each command executed above in the CLI and its associated output.
 
 ## References
 - [AWS IAM CLI commands](https://docs.aws.amazon.com/cli/latest/reference/iam/index.html#cli-aws-iam)
