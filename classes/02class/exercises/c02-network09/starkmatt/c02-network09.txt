@@ -10,8 +10,7 @@ I then clicked Inbound Rules on the Security Group and added SSH from my home IP
 
 Inbound
 
-SSH	TCP	22	0.0.0.0/0	SSH from Public Subnet
-SSH	TCP	22	::/0	SSH from Public Subnet
+SSH	TCP	22	sg-07b8771632e783233 (public.sg)	SSH from Public Subnet
 
 Outbound:
 
