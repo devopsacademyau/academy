@@ -34,7 +34,7 @@ Status: Downloaded newer image for starkmatt/exercise02:v2
 
 ## Running images
 
-➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker run -dp 8081:80 docker pull starkmatt/exercise02:v1
+➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker run -dp 8081:80 starkmatt/exercise02:v1
 c28514e6680d64c065b0b0795d7d52af6bf8a71495c9b46ad70288b803a86686
 
 ➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker run -dp 8082:80 starkmatt/exercise02:v2
