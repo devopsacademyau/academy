@@ -1,0 +1,20 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/stale@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-pr-message: 'This pull request has been inactive for 10 days. Marked for deletion'
+        days-before-stale: 10
+        days-before-close: 5:  
+        stale-pr-label: 'marked-for-deletion'
+        exempt-pr-label: 'ready to review'
