@@ -113,7 +113,7 @@ terraform {
 ```
 If for any reason the state file is lost, terraform won't be able to know the resources that are managed by it. In that case,  you'll need to rely on the [import feature](https://www.terraform.io/docs/import/index.html) to try to recover the existent state, but this is a very manual and arduous task, so make sure you keep your state file safe.
 
-Also, when running your terraform code, the state file will be put in a `lock` state to guaranee that there is no way to have more than one change happening at the same time. This helps to keep the state file consistent.
+Also, when running your terraform code, the state file will be put in a `lock` state to guarantee that there is no way to have more than one change happening at the same time. This helps to keep the state file consistent.
 
 
 More details around the Terraform State can be found [here](https://www.terraform.io/docs/state/index.html).
@@ -274,7 +274,7 @@ $ terraform init
 The `terraform init` command will initialize the working directory and should only be run once unless you make any change on the following:
 - Backend configuration
 - Child Modules
-- Providers
+- Providers 
 
 Now that terraform is initialized, we can run the next command, which would determine the resources that need to be created/updated/removed.
 ```bash
