@@ -28,9 +28,9 @@ The following values should be provided through input variables:
 ## Submit a PR with the following files:
 - README.md based on the [ANSWER.md file](ANSWER.md) with a link to the following files from your answer:
     - _backend.tf
-        - with tthe backend configuration
+        - with the backend configuration
     - _provider.tf
-        -with the provider configuration
+        - with the provider configuration
     - vpc.tf
         - with all your resources
     - output.tf
