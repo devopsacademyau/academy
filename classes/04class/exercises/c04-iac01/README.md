@@ -7,9 +7,9 @@ For your EC2 instance to be able to access the S3 bucket, use an IAM Instance Pr
 ## Submit a PR with the following files:
 - README.md based on the [ANSWER.md file](ANSWER.md) with a link to the following files from your answer:
     - _backend.tf
-        - with tthe backend configuration
+        - with the backend configuration
     - _provider.tf
-        -with the provider configuration
+        - with the provider configuration
     - ec2.tf
         - with all your ec2 related resources
     - iam.tf
