@@ -34,4 +34,8 @@ Can you delete the destination route to your VPC network? Why?
     No, every route table should contain a local route for communication within the VPC. This route is added by default to all route tables. 
 
 What happens if you do not associate your route table with any subnets?
-    No destination will be linked to it. It will be obsolete.
+    If created under route table, no destination will be automatically associated to it. It will beconme obsolete.
+    
+    - On the other hand, if no route table is associated under the subnet creation, aws will automatically associate it with the main route table. 
+    
+    It will depend on how the route table and subnets are created. 
