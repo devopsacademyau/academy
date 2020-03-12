@@ -307,11 +307,11 @@ The plan should now inform that the changes that will be made to the stack. For 
 ### Modules
 Terraform Modules is an advanced topic and is used to reduce code duplication as well as to group up resources that are often created together.
 
-For example, whenever a VPC is created, you normally will create Subnets, Routing Tables, NACLs, IGW and a few additional resources. With Modules, you can create a Module named `FullVPC` that receives a few inout variables values and creates all the resources that compose that module.
+For example, whenever a VPC is created, you normally will create Subnets, Routing Tables, NACLs, IGW and a few additional resources. With Modules, you can create a Module named `FullVPC` that receives a few input variables values and creates all the resources that compose that module
 
 [This link](https://www.terraform.io/docs/modules/index.html) provides some good practices and examples around Terraform Modules.
 
-The module will work in a similar way to an application function. It will receive inout(Input Variables), it will process the input(create resources based on the variables), and generate an output(specific attribute of a resource created). Considering this, a Terraform module will normally be composed by the following files:
+The module will work in a similar way to an application function. It will receive input(Input Variables), it will process the input(create resources based on the variables), and generate an output(specific attribute of a resource created). Considering this, a Terraform module will normally be composed by the following files:
 - _output.tf
 - variables.tf
 - resources.tf
