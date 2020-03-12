@@ -2,8 +2,8 @@
 
 ## Command Execution Output
 - [output.txt](output.txt)
-- [erraform-apply.txt](terraform-apply.txt)
-- [terraform-code](terraform-code)
+- [terraform-apply.txt](terraform-apply.txt)
+- [terraform-code/](terraform-code/)
 
 ## Questions:
 - What is the benefit of having the Terraform code for the resources within the module you've created?
