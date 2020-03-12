@@ -1,0 +1,63 @@
+##Exercise GIT03
+
+#Create Temp Repo
+➜  ~ git:(Temp01) ✗ git add temp                              
+➜  ~ git:(Temp01) ✗ git commit
+[Temp01 71a774c] Testing
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 temp/README.md
+➜  ~ git:(Temp01) ✗ git branch
+➜  ~ git:(Temp01) ✗ cd temp 
+➜  temp git:(Temp01) ✗ ls -l 
+total 0
+-rw-r----- 1 root root 0 Feb 17 22:04 README.md
+➜  temp git:(Temp01) ✗ git log
+➜  temp git:(Temp01) ✗ du -h
+4.0K	.
+➜  temp git:(Temp01) ✗ du -h
+4.0K	.
+
+#Adding Big File
+
+➜  temp git:(Temp01) ✗ git log
+➜  temp git:(Temp01) ✗ dd if=/dev/urandom of=file.txt bs=1048576 count=100
+100+0 records in
+100+0 records out
+104857600 bytes (105 MB, 100 MiB) copied, 1.51314 s, 69.3 MB/s
+➜  temp git:(Temp01) ✗ ls -l
+total 102400
+-rw-r----- 1 root root 104857600 Feb 17 22:17 file.txt
+-rw-r----- 1 root root         0 Feb 17 22:04 README.md
+➜  temp git:(Temp01) ✗ du -sh .
+101M	.
+➜  temp git:(Temp01) ✗ 
+➜  temp git:(Temp01) ✗ git add file.txt; git commit -m "Adding correct b1g f1le"
+[Temp01 134ee01] Adding correct b1g f1le
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 temp/file.txt
+➜  temp git:(Temp01) ✗ cd ..
+➜  ~ git:(Temp01) ✗ du -sh temp 
+101M	temp
+#Removal of Adding big F1le
+rebase -i HEAD~2
+drop 134ee01 Adding correct b1g f1le
+
+#Checking Directory Size after removal
+➜  temp git:(Temp01) ✗ du -sh .
+4.0K	.
+➜  temp git:(Temp01) ✗ ls -l
+total 0
+-rw-r----- 1 root root 0 Feb 17 22:04 README.md
+➜  temp git:(Temp01) ✗ 
+
+Questions
+
+1) Did you notice any difference in the size of the repo before and after adding the big file?
+Indeed, as you notice above there was a big difference in file sizes after the file were created.
+It looked to be bigger than what was used in the command by about 2-5MB
+
+2) What is the reason for this problem?
+There seems to be a cached added to Git folder along side the inital folder the file was created in.
+
+3) How do you remove something from Git history? Which commands would you use? What are the consequences?
+In this particular instance I used rebase -i HEAD~2 and used the "drop" command to remove the Adding of big file and cleaning up commit history

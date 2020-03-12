@@ -7,8 +7,13 @@
 
 ##Web Server 02 Build/Run
 ➜  starkmatt git:(starkmatt/c03-docker02) ✗ docker build -t  exercise02:v2 -f Dockerfile.v2 . 
+
 ➜  starkmatt git:(starkmatt/c03-docker02) ✗ docker run -dp 8082:80 exercise02:v2
 c70becb854b2a8afa266894681b81fdf4771bdf26d9e6070d5e09e06a3bbba2e
+=======
+➜  starkmatt git:(starkmatt/c03-docker02) ✗ docker run -dp 8082:80 -v /root/academy/classes/03class/docker/artifacts/c03-docker02:/usr/local/apache2/htdocs -it exercise02:v2
+ea69ddca562f59b9ef73c34ae7491e1450305da96afc412cc4f9340fccb1eff9
+
 
 
 ####After

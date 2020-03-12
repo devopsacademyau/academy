@@ -1,0 +1,12 @@
+###Exercise 4.1 - Docker 
+
+First I ran docker images to show the list of containers.
+Then I noticed that the containers that I had uploaded had duplicated.
+So I've stopped the containers by using 
+
+docker container stop -t 5 (Using the Container ID's)
+
+docker prune (removed all stopped containers)
+
+And then deleted the images using
+docker image rm -f <IMAGE ID>  (I did it this way as I have a few personal docker containers)
