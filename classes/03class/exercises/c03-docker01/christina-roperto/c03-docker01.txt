@@ -1,0 +1,52 @@
+Command: $ docker build -t da-terrrafrom:c03-docker-e01 . && docker run --rm -it da-terrrafrom:c03-docker-e01
+
+To build: $ docker build -t da-terrrafrom:c03-docker-e01 . 
+
+Sending build context to Docker daemon  4.096kB
+Step 1/5 : FROM alpine:latest
+ ---> e7d92cdc71fe
+Step 2/5 : RUN wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
+ ---> Running in a0a905565ea3
+Connecting to releases.hashicorp.com (151.101.81.183:443)
+saving to 'terraform_0.12.20_linux_amd64.zip'
+terraform_0.12.20_li   8% |**                              | 1357k  0:00:10 ETA
+terraform_0.12.20_li  19% |******                          | 3009k  0:00:08 ETA
+terraform_0.12.20_li  29% |*********                       | 4641k  0:00:07 ETA
+terraform_0.12.20_li  37% |************                    | 6001k  0:00:06 ETA
+terraform_0.12.20_li  46% |**************                  | 7345k  0:00:05 ETA
+terraform_0.12.20_li  55% |*****************               | 8769k  0:00:04 ETA
+terraform_0.12.20_li  65% |********************            | 10.0M  0:00:03 ETA
+terraform_0.12.20_li  76% |************************        | 11.7M  0:00:02 ETA
+terraform_0.12.20_li  87% |****************************    | 13.5M  0:00:01 ETA
+terraform_0.12.20_li  99% |******************************* | 15.3M  0:00:00 ETA
+terraform_0.12.20_li 100% |********************************| 15.4M  0:00:00 ETA
+'terraform_0.12.20_linux_amd64.zip' saved
+Removing intermediate container a0a905565ea3
+ ---> 4584b362b854
+Step 3/5 : RUN unzip terraform_0.12.20_linux_amd64.zip
+ ---> Running in 5c9eab187761
+Archive:  terraform_0.12.20_linux_amd64.zip
+  inflating: terraform
+Removing intermediate container 5c9eab187761
+ ---> 5ee63622606e
+Step 4/5 : RUN rm terraform_0.12.20_linux_amd64.zip
+ ---> Running in d3ca22c30622
+Removing intermediate container d3ca22c30622
+ ---> b6c6605d606d
+Step 5/5 : CMD ./terraform --version
+ ---> Running in 229496b0b202
+Removing intermediate container 229496b0b202
+ ---> e8024df28280
+Successfully built e8024df28280
+Successfully tagged da-terrrafrom:c03-docker-e01
+
+To execute: $ docker run --rm -it da-terrrafrom:c03-docker-e01
+Output:
+Terraform v0.12.20
+
+****************************************************************************************************************
+
+checking size to make sure it's under 80MB
+$ docker image ls
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+da-terrrafrom                 c03-docker-e01      89460800358f        9 seconds ago       73.5MB

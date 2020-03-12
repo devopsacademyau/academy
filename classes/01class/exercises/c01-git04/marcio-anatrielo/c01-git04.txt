@@ -1,0 +1,21 @@
+ 
+--Questions:
+
+1) Let's suppose you remotely pushed your my_env.txt file. A colleague asks you to remove this information from Git. What's your colleague worried about?
+   Besed on best practices it is not allow to publish any confidential information like password in a working repo where the development team have access. The best practices is add this file on limited access enviroment with have access control. 
+
+2) If you modify the file in your workspace, then push it, will it be enough? (It's not). Why?
+   No, because the password information will be available for some one with can have access through the repo logs.
+
+3) If you delete the file and push it, then create a new one with the rest of the information, is it enough? (It's not). Why?
+   No, it will create the same problem about security with we have see on last question. That information will be available on repo logs.
+
+4) How to fix this? How do you remove something from Git history?
+   Removing it from Git repo history using git reflog and git gc.
+
+5) Which commands would you use? What are the consequences for other developers?
+   In this case I would use git reflog and git gc:
+   $ git reflog expire --expire=now --all
+   $ git gc --prune=now
+
+The consequence for other developers are that their branch will have a different hostory from your branch and this can couse some conflicts with your branch in future udpate.

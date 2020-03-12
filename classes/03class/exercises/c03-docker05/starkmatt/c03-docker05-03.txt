@@ -1,0 +1,6 @@
+### Exercise 5.3 - Docker
+
+➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker images
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+starkmatt/exercise02          v1                  8f64216a4de0        About an hour ago   109MB
+starkmatt/exercise02          v2                  16c23e8341ef        4 days ago          109MB

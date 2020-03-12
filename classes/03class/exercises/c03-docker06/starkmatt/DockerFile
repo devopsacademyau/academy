@@ -1,0 +1,2 @@
+FROM alpine:3.9.5
+ENTRYPOINT ["/bin/echo","Hello"]
