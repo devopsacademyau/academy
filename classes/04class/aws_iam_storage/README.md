@@ -116,7 +116,7 @@ You will see something like this, every word between brackets refers to an AWS p
 aws_access_key_id = <MY_SECRET_ID>
 aws_secret_access_key = <MY_SECRET_KEY>
 
-[contino-denis]
+[denisprod]
 aws_access_key_id = <MY_SECRET_ID>
 aws_secret_access_key = MY_SECRET_KEY
 
@@ -195,7 +195,7 @@ IAM will validate if your user has rights to perform this operation, if so AWS w
 # AWS Identity and Access Management (IAM)
 
 ## What's IAM?
-AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. You use IAM to control who is **authenticated** (signed in) and **authorized** (has permissions) to use resources.
+AWS IAM is a web service that helps you securely control access to AWS resources. You use IAM to control who is **authenticated** (signed in) and **authorized** (has permissions) to use resources.
 
 Example: How do you grant read-only access to your friend's AWS user for your EC2 instances?
 
@@ -204,7 +204,7 @@ Example: How do you grant read-only access to your friend's AWS user for your EC
 ![](./assets/iam_overview.jpg)
 
 ### Users
-An AWS Identity and Access Management (IAM) user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. A user in AWS consists of a name and credentials.
+An AWS IAM user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. A user in AWS consists of a name and credentials.
 
 A primary use for IAM users is to give people the ability to sign in to the AWS Management Console for interactive tasks and to make programmatic requests to AWS services using the API or CLI.
 
@@ -298,7 +298,7 @@ Policies are defined in JSON, for example:
 
 #### Policy Evaluation Logic
 
-> Desconsider for now the columns that contain services not presented up to this point in the course (SCPs, permission boundaries)
+> Disconsider for now the columns that contain services not presented up to this point in the course (SCPs, permission boundaries)
 
 ![](./assets/PolicyEvaluationHorizontal.png)
 
@@ -408,7 +408,7 @@ The image below contains the 3 steps that just happened in the commands above:
 Extracted from [AWS Whitepaper - AWS Storage Services Overview](https://d0.awsstatic.com/whitepapers/AWS%20Storage%20Services%20Whitepaper-v9.pdf)
 
 ## What's S3?
-Amazon Simple Storage Service (Amazon S3) provides developers and IT teams secure, durable, highly scalable **object storage** at a very low cost.
+Amazon Simple Storage Service (Amazon S3) provides secure, durable, highly scalable **object storage** at a very low cost.
 
 You can store and retrieve any amount of data, at any time, from anywhere on the web through a simple web service interface.
 
@@ -463,7 +463,7 @@ The combination of a `bucket, key, and version ID`uniquely identify each object.
 
 > **Prefix**
 > 
-> The prefix value is similar to a directory name that enables you to store similar data under the same directory in a bucket.
+> The prefix value is similar to a directory in a traditional filesystem, and enables you to store similar data in an organised way in a bucket.
 > 
 > For example, for the key `Development/project1.xls`, the prefix is `Development/` (including the delimiter `/`).
 
