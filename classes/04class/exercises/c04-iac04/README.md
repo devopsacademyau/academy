@@ -35,7 +35,7 @@ terraform-code
     - with the output of the `terraform apply` command
 - output.txt
     - with the output of the curl command accessing your website
-- terraform code folder
+- `terraform-code` folder
     - with all your terraform code:
         - iac-04-module
             with all modules related files
