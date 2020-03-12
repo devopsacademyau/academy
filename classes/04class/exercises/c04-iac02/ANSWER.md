@@ -5,6 +5,7 @@
 - [_provider.tf](_provider.tf)
 - [vpc.tf](vpc.tf)
 - [output.tf](output.tf)
+- [variables.tf](variables.tf)
 - [main.tfvars](main.tfvars)
 
 ## Command Execution Output

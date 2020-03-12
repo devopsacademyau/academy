@@ -43,7 +43,7 @@ With that, you're not only reducing the cost to deliver that environment, but th
 IaC will make the resources available faster, enabling developers to start working sooner. Especially for environments with several changes or with fast innovation pace, where new environments need to be created frequently, IaC can enable this fast pace.
 
 #### Risk
-Because everything is defined through code, you can ensure that no manual mistake can be made during any of the configuration. Also, you'll know what is running on your environment, considering that deployments are only made through code, and no manual changes are possible.
+Because everything is defined through code, you can ensure that no manual mistake can be made during any of the configuration. Also, you'll know what is running on your environment, considering that deployments should only be made through code. Manual can be still possible, but much easier to restore the environment to a known state.
 
 Decreasing the possibility of manual mistakes, you increase the availability and reliability of your environment and reduce your application downtime.
 

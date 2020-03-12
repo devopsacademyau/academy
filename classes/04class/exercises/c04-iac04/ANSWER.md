@@ -1,9 +1,9 @@
-# C04-IAC02
+# C04-IAC04
 
 ## Command Execution Output
 - [output.txt](output.txt)
-- [terraform-apply.txt](terraform-apply.txt)
-- [Terraform code](terraform-code)
+- [erraform-apply.txt](terraform-apply.txt)
+- [terraform-code](terraform-code)
 
 ## Questions:
 - What is the benefit of having the Terraform code for the resources within the module you've created?

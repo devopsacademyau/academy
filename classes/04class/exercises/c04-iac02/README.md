@@ -26,9 +26,21 @@ The following values should be provided through input variables:
 - Subnet 4 CIDR
 
 ## Submit a PR with the following files:
-- README.md based on the [ANSWER.md file](ANSWER.md) with a link to all files from your answer. The links are already in the ANSWER.md file, but if you have any additional files, include a link to it.
-- All your Terraform code used to create the resources listed above
-- output.txt with the output of the `terraform plan` command
+- README.md based on the [ANSWER.md file](ANSWER.md) with a link to the following files from your answer:
+    - _backend.tf
+        - with tthe backend configuration
+    - _provider.tf
+        -with the provider configuration
+    - vpc.tf
+        - with all your resources
+    - output.tf
+        - with the outputs
+    - main.tfvars
+        - with the input variables
+    - variables.tf
+        - with the variables definitions
+    - output.txt 
+        - with the output of the `terraform plan` command
 
 Your state file can be local, and should not be include it in your PR.
 

@@ -5,9 +5,21 @@ In this exercise, you'll need to an EC2 instance and an S3 Bucket. The EC2 insta
 For your EC2 instance to be able to access the S3 bucket, use an IAM Instance Profile with proper permissions to the bucket.
 
 ## Submit a PR with the following files:
-- README.md based on the [ANSWER.md file](ANSWER.md) with a link to all files from your answer. The links are already in the ANSWER.md file, but if you have any additional files, include a link to it.
-- All your Terraform code used to create the resources listed above
-- output.txt with the output of the `terraform plan` command
+- README.md based on the [ANSWER.md file](ANSWER.md) with a link to the following files from your answer:
+    - _backend.tf
+        - with tthe backend configuration
+    - _provider.tf
+        -with the provider configuration
+    - ec2.tf
+        - with all your ec2 related resources
+    - iam.tf
+        - with all your iam related resources
+    - s3.tf
+        - with all your s3 related resources
+    - security-group.tf
+        - with all your Security Group related resources
+    - output.txt 
+        - with the output of the `terraform plan` command
 
 Your state file can be local, and should not be include it in your PR.
 
