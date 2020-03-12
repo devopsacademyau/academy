@@ -1,0 +1,35 @@
+How did you achieve that?
+
+1. Log in AWS account
+2. Under EC2 - Load Balancers
+3. Created Application Load Balancer with the details specified.
+
+ALB:
+
+Name: devops-lb01
+DNS: devopsacademy-lb01-3281371.ap-southeast-2.elb.amazonaws.com
+State: provisioning
+Type: application
+Scheme: internet-facing
+IP address type: ipv4
+Availability Zones: 
+subnet-0d1afa6cd2fdcce30 - ap-southeast-2b
+subnet-0f239c2f23aa1ec9  - ap-southeast-2a
+                
+Access through your browser your load balancer CNAME record and keep refreshing the browser. 
+What do you see?
+
+Every refresh gets a different hostname from the 2 instances: 
+ip-192.168.124.17.ap-southeast-2.compute.internal 
+ip-192.168.144.220.ap-southeast-2.compute.internal
+
+
+Details of the security group used:
+Group name devopsacademy-01
+Group ID sg-0d21d8d287374acb4v
+
+Inbound rule:
+Type All traffic | Protocol All | Port Range All | Source 0.0.0.0/0
+
+Public load balancer A record:
+devopsacademy-lb01-3281371.ap-southeast-2.elb.amazonaws.com
