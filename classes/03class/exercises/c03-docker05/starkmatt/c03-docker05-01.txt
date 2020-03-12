@@ -37,5 +37,5 @@ Status: Downloaded newer image for starkmatt/exercise02:v2
 ➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker run -dp 8081:80 starkmatt/exercise02:v1
 c28514e6680d64c065b0b0795d7d52af6bf8a71495c9b46ad70288b803a86686
 
-➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker run -dp 8082:80 starkmatt/exercise02:v2
+➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker run -dp 8082:80 -v /root/academy/classes/03class/docker/artifacts/c03-docker02:/usr/local/apache2/htdocs -it exercise02:v2
 1e9c9e890027a14ce7dde5d95e1a58e9fec58c0ba8c03b7c04eae9d3ab29a5b0
