@@ -26,3 +26,14 @@ Started creating a VPC using UI: https://ap-southeast-2.console.aws.amazon.com/v
 - Repeat the steps above and select the privete subnet when configuring the instance network. 
 
 
+++ Adding the command to run instance using SSH ++
+
+Carines-MBP:downloads carineoliveira$ ssh -i "admin-key-pair-ap-southeast-2.pem" ec2-user@ec2-52-63-89-119.ap-southeast-2.compute.amazonaws.com
+Last login: Sat Feb 29 13:12:12 2020 from 220.240.200.80
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+[ec2-user@ip-10-0-0-78 ~]$ 
