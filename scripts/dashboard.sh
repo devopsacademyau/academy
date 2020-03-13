@@ -56,6 +56,8 @@ do
                 if [ $? -eq 0 ]
                 then
                     echo -e "${BLUE}** ${LAB} in PR by ${STUDENT} **${NC}"
+                    sed "/^${PRID};/d" ${BASEDIR}/prids-authored.txt > ${BASEDIR}/temp.txt
+                    mv ${BASEDIR}/temp.txt ${BASEDIR}/prids-authored.txt
                     DONE=`cat ${BASEDIR}/results/${LAB}.txt`
                     echo "${DONE}P;" > ${BASEDIR}/results/${LAB}.txt
                     echo "TRUE" > ${BASEDIR}/flag.txt
