@@ -1,0 +1,5 @@
+Building: 
+$ docker build -t hello-name:v1 .
+
+Running by passing environment variables (https://docs.docker.com/engine/reference/commandline/run/): 
+$ docker run --rm -it -e "name=Christina Roperto" hello-name:v1
