@@ -16,7 +16,8 @@ curl ${TOKEN} ${GITHUB_URL}/pulls?state=open --silent| \
     grep "\"number\":"| \
     cut -f2 -d":"| \
     cut -f1 -d ","| \
-    cut -f2 -d" " > ${BASEDIR}/prids.txt
+    cut -f2 -d" " | \
+    sort -h > ${BASEDIR}/prids.txt
 > ${BASEDIR}/prids-authored.txt
 cat ${BASEDIR}/prids.txt|while read PRID
 do
