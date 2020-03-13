@@ -14,7 +14,7 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         stale-pr-message: 'This pull request has been inactive for 10 days. Marked for deletion'
-        days-before-stale: 10
-        days-before-close: 5
+        days-before-stale: 3
+        days-before-close: 10
         stale-pr-label: 'marked-for-deletion'
         exempt-pr-label: 'ready to review'
