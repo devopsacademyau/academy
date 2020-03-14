@@ -10,7 +10,7 @@ Create two docker images, being:
     - Copy the file classes/03class/docker/artifacts/c03-docker02/index.html into the folder /usr/local/apache2/htdocs/
 
 
-anderson@andreazza:~/academy$ sudo docker build -t exercise02:v1 -f ../dockeroos/dockerfile-c03docker02-v1 .
+anderson@andreazza:~/academy$ sudo docker build -t exercise02:v1 -f ../dockeroos/dockerfile.v1 .
 Sending build context to Docker daemon  43.32MB
 Step 1/2 : FROM httpd:2.4.41-alpine
  ---> cb171b88ec92
@@ -43,7 +43,7 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
     - The folder /usr/local/apache2/htdocs/ must be empty
 
 
-anderson@andreazza:~/academy$ sudo docker build -t exercise02:v2 -f ../dockeroos/dockerfile-c03docker02-v2 .
+anderson@andreazza:~/academy$ sudo docker build -t exercise02:v2 -f ../dockeroos/dockerfile.v2 .
 Sending build context to Docker daemon  43.33MB
 Step 1/2 : FROM httpd:2.4.41-alpine
  ---> cb171b88ec92
