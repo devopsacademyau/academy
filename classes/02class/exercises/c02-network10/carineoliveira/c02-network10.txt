@@ -1,0 +1,13 @@
+Class 02 - Exercise Network 09
+
+Let's assume our service will need a fixed IP address and that if something happens with the instance we will have to 
+move this IP address to a new one.
+
+Create a new ENI attached to one of your private subnets and give it a fixed IP address within the network range of the 
+chosen subnet.
+
+
+Under EC2 -> Network Interfaces, press "Create Network Interface"
+Inform a description, select a private subnet
+Select Custom for IPv4 Private IP and inform the private IP 10.0.0.1
+Select the default VPC security group 
