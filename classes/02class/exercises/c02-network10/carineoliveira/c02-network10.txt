@@ -9,5 +9,5 @@ chosen subnet.
 
 Under EC2 -> Network Interfaces, press "Create Network Interface"
 Inform a description, select a private subnet
-Select Custom for IPv4 Private IP and inform the private IP 10.0.0.1
-Select the default VPC security group 
+Select Custom for IPv4 Private IP and inform the private IP 10.0.0.6
+Select the default VPC security group and press Create
