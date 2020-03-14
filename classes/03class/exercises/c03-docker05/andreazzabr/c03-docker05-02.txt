@@ -1,0 +1,5 @@
+c03-docker05-02.txt
+
+: A brief explanation of what happened when you executed the comands to run the containers
+
+both commands were unable to find the image on local machine so it downloaded from dockerhub repo and then ran them
