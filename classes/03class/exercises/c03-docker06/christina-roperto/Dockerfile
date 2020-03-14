@@ -1,2 +1,2 @@
 FROM alpine:latest
-CMD echo Hello, $name
+ENTRYPOINT [ "echo", "Hello" ]
