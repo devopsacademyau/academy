@@ -1,0 +1,30 @@
+Class 02 - Exercise Network 08
+
+Look for the network ACL created for your VPC and answer the following:
+Your ACL rule inbound and outbound should look like this:
+
+Rule#	Type	        Protocol	Port Range	Source	        Allow/Deny
+100	    ALL Traffic	    ALL	        ALL	        <vpc-network>	ALLOW
+101	    ALL Traffic	    ALL	        ALL	        0.0.0.0/0	    ALLOW
+*	    ALL Traffic	    ALL	        ALL	        0.0.0.0/0	    DENY
+
+- What is the difference between inbound x outbound?
+    Inbound: allows traffic from a single IP address to access the instance.
+    Outbound: allows allow all traffic to leave the instance.
+
+- What is going to happen by default? Everything allowed or denied?
+    Everything allowed.
+
+- How would you block SSH connection comming from the network 172.16.200.0/24?
+
+Rule#	Type	        Protocol	Port Range	Source	            Allow/Deny
+100	    ALL Traffic	    ALL	        ALL	        <vpc-network>	    ALLOW
+90	    SSH (22)	    TCP (6)	    22	        172.16.200.0/24	    DENY
+*	    ALL Traffic	    ALL	        ALL	        0.0.0.0/0	        DENY
+
+- How would you block access from your network to an external network 180.200.50.0/24?
+
+Rule#	Type	        Protocol	Port Range	Source	            Allow/Deny
+100	    ALL Traffic	    ALL	        ALL	        <vpc-network>	    ALLOW
+90	    ALL Traffic	    ALL	        ALL	        180.200.50.0/24	    DENY
+*	    ALL Traffic	    ALL	        ALL	        0.0.0.0/0	        DENY
