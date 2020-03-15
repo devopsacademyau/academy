@@ -2,14 +2,22 @@
 
 # AWS VPC + subnets answer c02-network10 
 
-Instance ID: i-034453d19c75b5b31
-Instance type:t2.micro
-Private DNS:ip-10-0-10-240.ap-southeast-2.compute.internal
-Availability zone: ap-southeast-2a
-Private IPs: 10.0.10.240
-VPC ID: vpc-0c9124eda0e459981 (devopsacademy-vpc)
-AMI ID: amzn2-ami-hvm-2.0.20200207.1-x86_64-gp2 (ami-0f767afb799f45102)
-Subnet ID: subnet-0cefa52e070641e55 (public-a)
-Network interfaces: eth0
 
-Error attaching network interface - t2.micro instances do not support Elastic Fabric Adapters.
+Step1: EC2
+Step2: Network Interface 
+Step3: Create Network Interface 
+Step4: Select private subnet
+Step5: Select IP address
+Step6: Select Security Group 
+
+
+Interface Detail: 
+
+Network Interface: eni-0d202e12ce188354d
+Subnet ID: subnet-0248d55faa4632ddb
+VCP ID: vpc-0c9124eda0e459981
+Zone: ap-southeast-2a
+Security groups: devops-academy
+Description: devopsacademy-eni
+Status: available
+Primary private: 10.0.11.254
