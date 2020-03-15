@@ -1,0 +1,40 @@
+#Connecting to dockerhub.com
+    $ sudo docker login --username=fariamarcio
+	Password: 
+	WARNING! Your password will be stored unencrypted in /home/devops/.docker/config.json.
+	Configure a credential helper to remove this warning. See
+	https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+	Login Succeeded
+
+
+#Tagging v1 docker image file to my user account
+    $ sudo docker tag exercise02:v1 fariamarcio/devops_academy:exercise02v1
+
+
+#Pushing the v1 docker image file to my devops_academy repository
+    $ sudo docker push fariamarcio/devops_academy:exercise02v1
+	The push refers to repository [docker.io/fariamarcio/devops_academy]
+	56ed36720c98: Pushed 
+	b64dd1b17dce: Mounted from library/httpd 
+	3924f7d08fde: Mounted from library/httpd 
+	535f972b218c: Mounted from library/httpd 
+	d66bb18f34c6: Mounted from library/httpd 
+	5216338b40a7: Mounted from library/httpd 
+	exercise02v1: digest: sha256:7aebe01e86f120d8c65fb670179ea204dec71214f1134aa31696c858081d906e size: 1569
+
+
+#Tagging v2 docker image file to my user account
+    $ sudo docker tag exercise02:v2 fariamarcio/devops_academy:exercise02v02
+
+
+#Pushing the v2 docker image file to my devops_academy repository
+    $ sudo docker push fariamarcio/devops_academy:exercise02v02
+	The push refers to repository [docker.io/fariamarcio/devops_academy]
+	6ee76f0128ed: Pushed 
+	b64dd1b17dce: Layer already exists 
+	3924f7d08fde: Layer already exists 
+	535f972b218c: Layer already exists 
+	d66bb18f34c6: Layer already exists 
+	5216338b40a7: Layer already exists 
+	exercise02v02: digest: sha256:e76e1c65b7df6e6ffe7318f7453ea822d0d1661dddbe6b08b3585351e39a4d3a size: 1569
