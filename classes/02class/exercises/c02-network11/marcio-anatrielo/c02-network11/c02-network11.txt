@@ -1,0 +1,186 @@
+
+#### AWS VPC + subnets c02-network11 
+
+
+
+
+# launch an EC2 instance on a public subnet
+
+- Instance:  i-04d96583f31beff77 (Devops-Public-EC2)Private IP: 10.0.10.12
+
+Instance ID: i-04d96583f31beff77
+Instance state: running
+Instance type: t2.micro
+Finding :  Opt-in to AWS Compute Optimizer for recommendations. Learn more
+Private DNS:  ip-10-0-10-12.ap-southeast-2.compute.internal
+Public DNS (IPv4):ec2-54-206-78-243.ap-southeast-2.compute.amazonaws.com
+Instance state: running
+IPv4 Public IP: 54.206.78.243
+Availability zone:  ap-southeast-2a
+Private IPs:  10.0.10.12
+Security groups: public-SG. view inbound rules. view outbound rules
+Secondary private IPs:  Scheduled events
+VPC ID:  vpc-0c9124eda0e459981 (devopsacademy-vpc)
+AMI ID :  amzn2-ami-hvm-2.0.20200304.0-x86_64-gp2 (ami-08fdde86b93accf1c)
+Subnet ID:  subnet-058e80ef633484c78 (public-a)
+Network interfaces:  eth0
+
+
+#- attach your public SG to your public instance
+
+- Security groups: public-SG. view inbound rules. view outbound rules
+
+
+
+#- launch an EC2 instance on the same private subnet that you created your ENI
+
+- Instance:  i-0797b67b65feb84d2 (Devops-Private-EC2)Private IP: 10.0.11.124
+
+
+Instance ID: i-0797b67b65feb84d2
+Instance state: running
+Instance type: t2.micro
+Private DNS: ip-10-0-11-124.ap-southeast-2.compute.internal
+Availability zone: ap-southeast-2a
+Private IPs: 10.0.11.124, 10.0.11.254
+Security groups: private-SG. view inbound rules. view outbound rules
+VPC ID:  vpc-0c9124eda0e459981 (devopsacademy-vpc)
+AMI ID: amzn2-ami-hvm-2.0.20200304.0-x86_64-gp2 (ami-08fdde86b93accf1c)
+Subnet ID: subnet-0248d55faa4632ddb (private-a)
+Network interfaces:  eth0 eth1
+
+
+# attach ENI created from last exercise
+
+- Network Interface: eni-0d202e12ce188354d
+
+
+Network interface ID: eni-0d202e12ce188354d
+Subnet ID: subnet-0248d55faa4632ddb
+VPC ID: vpc-0c9124eda0e459981
+Availability Zone: ap-southeast-2a
+MAC address: 06:66:8d:81:2f:de
+Description: devopsacademy-eni
+Security groups: private-SG. view inbound rules. view outbound rules
+Network interface owner: 650909960884
+Status: in-use
+Primary private IPv4 IP:  10.0.11.254
+Private DNS (IPv4): ip-10-0-11-254.ap-southeast-2.compute.internal
+Elastic Fabric Adapter: Disabled
+Attachment ID: eni-attach-00f53a0a2b0c31311
+Instance ID: i-0797b67b65feb84d2
+Attachment owner: 650909960884
+
+# attach your private SG to your public instance
+
+- Security groups: private-SG. view inbound rules. view outbound rules
+
+# access to your public instance using SSH
+
+
+login as: ec2-user
+Authenticating with public key "imported-openssh-key"
+Last login: Sun Mar 15 08:20:44 2020 from 149.167.10.156
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+No packages needed for security; 6 packages available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-10-0-10-254 ~]$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 10.0.10.254  netmask 255.255.255.0  broadcast 10.0.10.255
+        inet6 fe80::484:cdff:fe96:176e  prefixlen 64  scopeid 0x20<link>
+        ether 06:84:cd:96:17:6e  txqueuelen 1000  (Ethernet)
+        RX packets 34135  bytes 42111732 (40.1 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7146  bytes 1036133 (1011.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 10.0.11.254  netmask 255.255.255.0  broadcast 10.0.11.255
+        inet6 fe80::466:8dff:fe81:2fde  prefixlen 64  scopeid 0x20<link>
+        ether 06:66:8d:81:2f:de  txqueuelen 1000  (Ethernet)
+        RX packets 295  bytes 50077 (48.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 471  bytes 67596 (66.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 8  bytes 648 (648.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8  bytes 648 (648.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[ec2-user@ip-10-0-10-254 ~]$
+
+
+
+# FROM your PUBLIC instance, SSH to your private one
+
+
+[ec2-user@ip-10-0-10-254 ~]$ vi devops-private.pem
+[ec2-user@ip-10-0-10-254 ~]$ chmod 400 devops-private.pem
+[ec2-user@ip-10-0-10-254 ~]$ ssh -i "devops-private.pem" ec2-user@10.0.11.252
+The authenticity of host '10.0.11.252 (10.0.11.252)' can't be established.
+ECDSA key fingerprint is SHA256:ekYLF+QACHZoeGhqLR+J8SDHK0scmzJRNzOJ4ADff2w.
+ECDSA key fingerprint is MD5:ec:b7:39:0f:68:15:0b:f5:3d:34:8d:5d:3b:54:8c:bf.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '10.0.11.252' (ECDSA) to the list of known hosts.
+Last login: Sun Mar 15 10:01:14 2020 from ip-10-0-11-254.ap-southeast-2.compute.internal
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+No packages needed for security; 6 packages available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-10-0-11-252 ~]$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 10.0.11.252  netmask 255.255.255.0  broadcast 10.0.11.255
+        inet6 fe80::403:ceff:feb3:1a20  prefixlen 64  scopeid 0x20<link>
+        ether 06:03:ce:b3:1a:20  txqueuelen 1000  (Ethernet)
+        RX packets 29880  bytes 41739684 (39.8 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3281  bytes 254097 (248.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 8  bytes 648 (648.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8  bytes 648 (648.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[ec2-user@ip-10-0-11-252 ~]$
+
+
+# from the PRIVATE instance, try to ping 8.8.8.8 to check internet connection through NATGW
+
+
+[ec2-user@ip-10-0-11-252 ~]$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=45 time=1.35 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=45 time=0.855 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=45 time=0.830 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=45 time=0.932 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=45 time=0.891 ms
+64 bytes from 8.8.8.8: icmp_seq=6 ttl=45 time=0.859 ms
+64 bytes from 8.8.8.8: icmp_seq=7 ttl=45 time=0.831 ms
+64 bytes from 8.8.8.8: icmp_seq=8 ttl=45 time=0.845 ms
+64 bytes from 8.8.8.8: icmp_seq=9 ttl=45 time=0.836 ms
+^C
+--- 8.8.8.8 ping statistics ---
+9 packets transmitted, 9 received, 0% packet loss, time 8100ms
+rtt min/avg/max/mdev = 0.830/0.914/1.352/0.160 ms
+[ec2-user@ip-10-0-11-252 ~]$
+
+
