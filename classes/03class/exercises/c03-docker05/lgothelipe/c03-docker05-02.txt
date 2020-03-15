@@ -1,0 +1,4 @@
+A brief explanation of what happened when you executed the comands to run the containers:
+
+When you run a container docker daemon searchs for the image on the local repository, 
+if it doesn't exist it seaches on the remote repository, download and run the image.

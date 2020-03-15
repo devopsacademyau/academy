@@ -1,0 +1,43 @@
+
+- Create an Application Load Balancer with the following details and post.How did you achieve that?
+
+on AWS console, I followed the steps to Create an Application Load Balancer:
+
+1.Configured a Load Balancer and a Listener as per details given. 
+
+2.Configured a Security Group
+Assigned previously created security group for my ASG
+
+3.Configured Routing(target group)
+Name: target-group
+Type: instance
+Protocol: HTTP
+Port 80  
+
+4.Configure Targets for the Target Group
+Registered targets. Selected the two previously created instances and added to registered on port 80.
+
+5.Create the Load Balancer
+Review -> create. 
+Received message of successfully created load balancer “my-app-load-balancer”. After several minutes, state was active.
+
+- Access through your browser your load balancer CNAME record and keep refreshing the browser. What do you see?
+
+Copied DNS name (A Record) into the address field of web browser.
+As I kept refreshing, the hostname changed (alternated) between the two instances. The load balancer takes requests from clients and distributes them across my two targets in the target group.
+ip-10-0-3-92.ap-southeast-2.compute.internal <-> ip-10-0-1-77.ap-southeast-2.compute.internal
+
+- Details of the security group used:
+
+Security group name: sg_for_my_asg (same as for my ASG)
+Security group ID: sg-0a4f7e086c889b942
+VPC ID: vpc-017bb80047b1a21b3 (devopsacademy -vpc)
+
+Inbound Rules 
+Type: HTTP, Protocol: TCP, Port Range: 80, Source 0.0.0.0/0
+Type: SSH, Protocol: TCP, Port Range: 22, Source 121.211.57.221/32
+(My IP)
+
+- Public load balancer A record:
+
+ my-app-load-balancer-1469952236.ap-southeast-2.elb.amazonaws.com

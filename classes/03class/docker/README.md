@@ -271,7 +271,7 @@ The [ECS Service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ec
 It's also responsible by associating the containers running with a specific load balance, so the traffic trying to access the service can be balanced between multiple containers.
 
 #### ECS Task definition
-The [ECS Task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) describes the container execution parmeters. 
+The [ECS Task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) describes the container execution parameters. 
 
 The Task definition contains information about the image used, resources(CPU and memory) that will be made available for that container, AWS IAM Role assumed by the container and volumes to be mounted, so when a new container is created it will always use the same configurations.
 

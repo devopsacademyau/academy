@@ -1,0 +1,38 @@
+c03-docker05-01.txt
+
+: Containing the commands executed to run both containers.
+
+
+anderson@andreazza:~/academy$ sudo docker run -p 8081 -it andreazzabr/exercise02:v1
+Unable to find image 'andreazzabr/exercise02:v1' locally
+v1: Pulling from andreazzabr/exercise02
+c9b1b535fdd9: Pull complete 
+8f37b2be62f6: Pull complete 
+badbb502951e: Pull complete 
+a27b80e2bf04: Pull complete 
+2c005fed9a91: Pull complete 
+9303b0e404f5: Pull complete 
+Digest: sha256:587f0e8f2b0b75dc4cdf27b9b3228de4b321ec1e703ad339bb384f2767438940
+Status: Downloaded newer image for andreazzabr/exercise02:v1
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Sat Mar 14 05:25:44.051034 2020] [mpm_event:notice] [pid 1:tid 139926891539784] AH00489: Apache/2.4.41 (Unix) configured -- resuming normal operations
+[Sat Mar 14 05:25:44.051108 2020] [core:notice] [pid 1:tid 139926891539784] AH00094: Command line: 'httpd -D FOREGROUND'
+
+
+anderson@andreazza:~/academy$ sudo docker run -v /home/anderson/academy/classes/03class/docker/artifacts/c03-docker02/:/usr/local/apache2/htdocs  -p 8082:80 -it andreazzabr/exercise02:v2
+Unable to find image 'andreazzabr/exercise02:v2' locally
+v2: Pulling from andreazzabr/exercise02
+c9b1b535fdd9: Already exists 
+8f37b2be62f6: Already exists 
+badbb502951e: Already exists 
+a27b80e2bf04: Already exists 
+2c005fed9a91: Already exists 
+cc2e299c38e6: Pull complete 
+Digest: sha256:73b61e0d9d08443a7d65e6a3ec03787d39493209b88922be8b158380992d7a92
+Status: Downloaded newer image for andreazzabr/exercise02:v2
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Sat Mar 14 05:32:31.009400 2020] [mpm_event:notice] [pid 1:tid 140551803571528] AH00489: Apache/2.4.41 (Unix) configured -- resuming normal operations
+[Sat Mar 14 05:32:31.009460 2020] [core:notice] [pid 1:tid 140551803571528] AH00094: Command line: 'httpd -D FOREGROUND'
+

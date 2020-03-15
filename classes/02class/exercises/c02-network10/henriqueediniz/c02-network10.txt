@@ -1,0 +1,23 @@
+Elastic Network Interface (ENI)
+
+1- Log on to the AWS account
+2- Under EC2, Network Interfaces click on "Create Network Interface"
+3- Write descriptions, subnet and click on IPv4 Private IP - Custom
+4- Enter an IP address within the network range and select subent.
+
+
+
+My Details:
+
+Network interface ID eni-0c12e72ff2fe237cb
+Subnet ID subnet-00d096ad42e2825d3
+VPC ID vpc-01ca526eeg23wqrc0
+Availability Zone ap-southeast-2a
+MAC address 04:02:ed:92:44:25
+Description fixed-ip-interface-192.168.10.10
+Security groups default 
+view inbound rules 
+view outbound rules
+Network interface owner 238193821009
+Status available
+Primary private IPv4 IP 192.168.10.10

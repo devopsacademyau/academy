@@ -1,0 +1,2 @@
+➜  exercises git:(luizfds/c03-docker07) curl http://13.239.140.160/
+6

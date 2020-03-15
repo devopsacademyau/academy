@@ -1,0 +1,50 @@
+Create an Auto Scaling Group with the following details and post
+
+QUESTIONS:
+
+   - How did you achieve that?
+	AWS Console --> EC2 --> Auto Scaling --> Auto Scaling Groups --> Create Auto Scaling Group --> Get Started --> Amazon Linux 2 --> t2.micro --> 
+			Name: devopsacademy-asg-launch; 
+			User data:
+				#! /bin/bash
+				yum update -y
+				yum install -y httpd
+				curl 169.254.169.254/latest/meta-data/hostname > index.html
+				mv index.html /var/www/html/
+				systemctl start httpd
+			IP Address Type: Assign a public IP address to every instance
+	Ps. I had to create a new security group (devopsacademy-sg-asg) with inbound rule for port 80 on VPC -> Security Group Menu and use it on Create Auto Scaling Group because my default VPC isn't devopsacademy-vpc one.
+
+	--> Create Auto Scaling Group
+		Group name: devopsacademy-asg
+		Group size: 2
+		Network: devopsacademy-vpc
+		Subnet: public-a, public-b
+	--> Configure Scalling Police
+		Use scaling policies to adjust the capacity of this group
+		Scale between 1 and 2 instances
+		Desired: 2
+		Scale Group Size: devopsacademy-sgs
+	--> Create Auto Sacling group
+
+
+
+   - Access through your browser each instance IP on port 80 http://<instance-ip> and post the hostname of each one
+	- http://52.64.11.209:80
+	    ip-192-168-102-83.ap-southeast-2.compute.internal
+	- http://52.63.182.63:80
+	    ip-192-168-101-151.ap-southeast-2.compute.internal
+
+
+   - Details of the security group used
+	Name	Group ID		Group Name		VPC ID			Type	Description			Owner
+		sg-0f0a8b39374d935a7	devopsacademy-sg-asg	vpc-04386a3405acb18af	EC2-VPC	AutoScaling-Security-Group	148446344264
+
+
+   - What this line is doing? curl https://169.254.169.254/latest/meta-data/hostname > index.html
+	curl is a command line tool to transfer data to or from a server, using any of the supported protocols (HTTP, FTP, IMAP, POP3, SCP, SFTP, SMTP, TFTP, TELNET, LDAP or FILE), so in this case it is creating "index.html/' file with metadata from the IP address.
+	169.254.169.254 is used in Amazon EC2 and other cloud computing platforms to distribute metadata to cloud instances.
+
+References:
+	https://serverfault.com/questions/427018/what-is-this-ip-address-169-254-169-254/427022
+	https://stackoverflow.com/questions/42314029/whats-special-about-169-254-169-254-ip-address-for-aws
