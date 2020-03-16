@@ -1,0 +1,61 @@
+### Exercise Create an Application Load Balancer - c03-aws02.txt 
+
+
+ Answers:
+
+   - How did you achieve that?
+	
+	AWS Console > EC2 > Load Balancer > Create Load Balancer > Load balancer type: HTTP > 
+	
+	#Step 1: Configure Load Balancer
+	
+	Name: devopsacademy-alb;
+	VPC: devopsacademy-vpc
+	Availability Zones: ap-southeast-2a
+	IPv4 address: public-b
+	
+	#Step 2: Configure Security Settings
+	HTTP: 80 only 
+	
+	#Step 3: Configure Security Groups
+	Name: devopsacademy-asg
+		
+	#Step 4: Configure Routing
+	Name: devopsacademy-tgroup
+	Target type: Instance
+	
+	#Step 5: Register Targets
+	Name: devopsacademy-asg-01b
+	
+	#Step 6: Review Load balancer
+	Name: devopsacademy-alb
+	Scheme: internet-facing
+	Listeners: Port:80 - Protocol:HTTP
+	IP address type: ipv4
+	VPC: vpc-0c9124eda0e459981 (devopsacademy-vpc)
+	Subnets: subnet-058e80ef633484c78 (public-a), subnet-090ef1c8ab14467a1 (public-b), subnet-0c4f03fca17e5b905 (public-c)
+	Name:devopsacademy-alb
+
+
+   - Access through your browser your load balancer CNAME record and keep refreshing the browser. What do you see?
+	
+	DNS name: http://devopsacademy-alb-550875590.ap-southeast-2.elb.amazonaws.com/
+    Target01: ip-10-0-12-122.ap-southeast-2.compute.internal
+	Target02: ip-10-0-10-211.ap-southeast-2.compute.internal
+
+
+   - Details of the security group used
+	
+	Name: sg-0d0904c0d9c82db0e 
+	Group Name: devopsacademy-asg
+	
+	Inbound Rules
+	   Type: HTTP			
+	   Protocol:TCP		
+	   Port Range: 80 
+	   Source: 0.0.0.0/0	
+	   	
+
+   - Public load balancer A record
+	
+	Address: devopsacademy-alb-550875590.ap-southeast-2.elb.amazonaws.com
