@@ -3,6 +3,11 @@ export REPO_NAME?=academy
 export BRANCH_NAME?=
 export FOLDER_NAME?=
 
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+
+dashboard:
+	$(ROOT_DIR)/scripts/dashboard.sh
+
 presentation:
 	docker-compose up -d
 	sleep 5

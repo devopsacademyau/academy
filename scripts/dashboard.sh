@@ -1,4 +1,5 @@
-BASEDIR=$PWD
+BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[1;34m'
