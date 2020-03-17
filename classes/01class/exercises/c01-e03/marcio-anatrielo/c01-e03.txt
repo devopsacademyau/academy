@@ -10,6 +10,22 @@ Step 6: Lunch Devops00
 Step 7: Lunch Devops01 
 Step 8: Lunch Devops02 
 
+
+1) - How did you connected to the first public instance; 
+
+	This instance I just select public subnet to be available on public IP by auto.
+
+2) - Private IP of the instance on private subnet; 
+
+	I select private network with no public IP after install. After that I add a new interface on my public VM with the same subnet on my private subnet to create a connection between this two VMs.
+
+
+3) - How did you connected from public to private: 
+	
+Add new interface on public machine to talk at same subnet with my private machine is connected.
+
+
+
 ## Devops00 - i-02245432dcf410836 ## 
 
 Public DNS: ec2-3-24-242-203.ap-southeast-2.compute.amazonaws.com
@@ -62,3 +78,9 @@ ubuntu@ip-172-31-9-155:~$
 Private IP: 172.31.44.68
 
 ssh -i "Devops-Academy.pem" ec2-user@172.31.44.68
+
+
+
+
+
+
