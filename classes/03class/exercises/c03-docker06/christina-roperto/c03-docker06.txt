@@ -1,0 +1,14 @@
+Building: 
+$ docker build -t hello-name:v1 .
+Sending build context to Docker daemon  3.072kB
+Step 1/2 : FROM alpine:latest
+ ---> e7d92cdc71fe
+Step 2/2 : ENTRYPOINT [ "echo", "Hello" ]
+ ---> Using cache
+ ---> bc128b6c8ab1
+Successfully built bc128b6c8ab1
+Successfully tagged hello-name:v1
+
+Running: 
+$ docker run --rm -it hello-name:v1 Christina
+Hello Christina
