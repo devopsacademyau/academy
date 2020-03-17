@@ -3,14 +3,7 @@
 Commit all your answers to a text file `c03-aws01.txt` under your folder name.
 
 
-### Create an Auto Scaling Group with the following details and post:
-
-- how did you achieve that?
-- access through your browser each instance IP on port 80 `http://<instance-ip>` and post the hostname of each one
-- details of the security group used
-- what this line is doing? `curl https://169.254.169.254/latest/meta-data/hostname > index.html`
-
-Details:
+### Create an Auto Scaling Group with the following details:
 
 - AMI: `Amazon Linux Image 2`
 - Type: `t2.nano`
@@ -28,3 +21,10 @@ curl 169.254.169.254/latest/meta-data/hostname > index.html
 mv index.html /var/www/html/
 systemctl start httpd
 ```
+
+### Submit your answer with the following information:
+
+- how did you achieve that?
+- access through your browser each instance IP on port 80 `http://<instance-ip>` and post the hostname of each one
+- details of the security group used
+- what this line is doing? `curl https://169.254.169.254/latest/meta-data/hostname > index.html`
