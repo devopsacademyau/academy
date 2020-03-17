@@ -1,4 +1,11 @@
 
+### Exercise execution detail: 
+
+1) - Can you explain if you manually configured your access keys on your instance or you used the instance role to get access to S3?
+	
+	I create this manually, just copy and past on my VM and change permission with chmod to 600 to have access to run ssh.
+
+
 
 Create S3 buckets 
 
@@ -45,7 +52,7 @@ User permissions
  Administrator Access
  PowerUserAccess
 
-Access key ID AKIAZPDKBZK2N4LR5JI2
+Access key ID AKIAxxxxxxxxxxxxxx
 
 
 Validation and test 
