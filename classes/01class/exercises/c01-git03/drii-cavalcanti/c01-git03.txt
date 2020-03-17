@@ -5,9 +5,9 @@
    It happens because git keeps track of each and every line change we made.
 
 3. How do you remove something from Git history? Which commands would you use? What are the consequences?
-   I'd try to identify all unused data and then clean them up or set the current commit as the initial commit of the project.
-   - git count-objects -v (knowing what is the actual size of our repository)
-   - git clone repo_name.git (taking backup of our git repository before re-writing the git history)
-   - git gc (Finally, garbage collection will remove all data from the repository that is not actually used)
+   As the changes are in the remote repository, we will need to drop/remove the hash
+   - git rebase -i HEAD~X
+   - include drop in the line with the hash to be deleted 
+   - git push --force
    The side effect is once we have re-written the git history, we cannot go back to any previous versions or commits.
    
