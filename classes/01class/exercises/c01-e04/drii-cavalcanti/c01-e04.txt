@@ -4,12 +4,11 @@ Bucket name: c01-e04-drii-cavalcanti
 Choose: c01-e04-drii-cavalcanti -> Upload -> Add File
 
 Linux Terminal:
-ssh -i "<my key pair>.pem" ubuntu@ec2-18-233-100-104.compute-1.amazonaws.com
-ubuntu@ip-172-31-88-249:sudo apt install awscli | aws configure (using my previous accessKeys)
+$ chmod 400 sydney-key-pair.pem
+$ ssh -i "sydney-key-pair.pem" ec2-user@ec2-3-104-64-180.ap-southeast-2.compute.amazonaws.com
 
 Listing files:
-aws s3 ls s3://c01-e04-drii-cavalcanti
+$ aws s3 ls s3://c01-e04-drii-cavalcanti
 
 Deleting file:
-aws s3 rm s3://c01-e04-drii-cavalcanti/nobel_winners.csv
-
+$ aws s3 rm s3://c01-e04-drii-cavalcanti/nobel_winners.csv
