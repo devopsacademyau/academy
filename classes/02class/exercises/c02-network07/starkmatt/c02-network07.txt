@@ -22,8 +22,10 @@ Those are having a one way connection out but not back in, you're able to use an
 
 
 Can you delete the destination route to your VPC network? Why?
-- The local VPC that was created initally ?
-- You cannot delete any VPC that was created by default (AWS Does not allow it)
+
+Default VPC is created for customers by AWS on 172.31.0.0/16.
+They state that "A default VPC is suitable for getting started quickly, and for launching public instances such as a blog or simple website"
+If there is already a default VPC in the region, you cannot create another one
 
 What happens if you do not associate your route table with any subnets?
 The RT will only associate the main route table and VPC which was created initally.
