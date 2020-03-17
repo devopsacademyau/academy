@@ -1,0 +1,11 @@
+Route53
+
+I used an existing domain geral.net (hosted elsewhere) and in my AWS I created a public hosted zone called devops.geral.net. 
+Firstly, I asked the person who holds geral.net to delegate devops.geral.net to the NS from the hosted zone I created so I can manage it myself
+Then I created a CNAME record set called c03-aws03.devops.geral.net with value of my load balancer record devopsacademy-alb-757650965.ap-southeast-2.elb.amazonaws.com
+
+$ curl c03-aws03.devops.geral.net
+ip-10-0-2-123.ap-southeast-2.compute.internal
+
+$ curl c03-aws03.devops.geral.net
+ip-10-0-0-163.ap-southeast-2.compute.internal
