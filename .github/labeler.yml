@@ -1,0 +1,27 @@
+class01:
+    - classes/01class/**/*
+
+class02:
+    - classes/02class/**/*
+
+class03:
+    - classes/03class/**/*
+
+class04:
+    - classes/04class/**/*
+
+class05:
+    - classes/05class/**/*
+
+class06:
+    - classes/06class/**/*
+
+class07:
+    - classes/07class/**/*
+
+class08:
+    - classes/08class/**/*
+    
+ready to review:
+    - classes/**/*
+    - projects/**/*

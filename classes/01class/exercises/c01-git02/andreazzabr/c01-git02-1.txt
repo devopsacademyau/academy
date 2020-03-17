@@ -1,0 +1,5 @@
+c01-git02-1.txt
+
+- Is it possible to see the inner commit of squashed commit with `git rebase`?
+
+yes, using the git reflog command

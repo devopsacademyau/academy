@@ -1,0 +1,21 @@
+#Questions
+
+Create a file c01-git03-1.txt answering the questions below. Include details and commands used.
+
+Did you notice any difference in the size of the repo before and after adding the big file?
+- Yes. The file size is approx. 20MB bigger
+
+What is the reason for this problem?
+- So when the big file is created (10MB), Git also adds the file to its folder(.git). This made it 2x bigger (20MB). When the commit is reverted, the file is removed however Git still stores it in .git folder.
+
+How do you remove something from Git history? Which commands would you use? What are the consequences?
+- You can remove it by typing these commands:
+``` 
+git reflog expire --expire=now --all
+git gc --prune=now 
+```
+
+reflog contains information about the old state of branches and allows you to go back to that state if necessary while gc removes unreachable objects like commits, files, etc. By expiring everything of reflog and prune the gc now, you can make the files truly unreachable.
+However, if the files are cloned by some bots or other people, you might not be able to remove them completely from Git history. 
+
+source: https://stackoverflow.com/questions/11756250/how-to-clean-up-unused-side-branches-in-your-commit-trees

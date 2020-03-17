@@ -1,0 +1,16 @@
+What is the difference between inbound x outbound?
+
+Inbound refers to connections originated from another network to an IP on the VPC network
+Outbound refers to connections from an IP on the VPC network to another network
+
+What is going to happen by default? Everything allowed or denied?
+
+By default everything is allowed
+
+How would you block SSH connection comming from the network 172.16.200.200/24?
+
+Create an inbound "Custom TCP Rule" with Rule# less than 100, port range 22, source network 172.16.200.0/24 and selecting DENY
+
+How would you block access from your network to an external network 180.200.50.0/24?
+
+Create an outbound rule type "ALL Traffic" with Rule# less than 100, destination network 180.200.50.0/24 and selection DENY

@@ -1,0 +1,8 @@
+##Exercise 6
+Was pretty straight forward!
+
+- Clicked Create NAT Gateway.
+- Selected Public-A Subnet
+- Generated a Elastic IP Address.
+NAT Gateway created
+

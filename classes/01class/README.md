@@ -8,7 +8,7 @@
    - [Slack](#slack)
    - [Sponsors](#sponsors)
    - [Everyone Introduction (in-person only)](#everyone-introduction-in-person-only)
- - [Git 101](/classes/01class/git/PITCHME.md)
+ - [Git 101](/classes/01class/git/README.md)
  - [AWS 101](/classes/01class/aws101/README.md)
 
 ## Introduction
@@ -52,3 +52,5 @@ Join our slack following instructions [here](/classes/00pre-class/README.md#join
 - How long you've been in Australia?
 - What is you skillset?
 - What is your main goal with the course?
+
+## [Exercises](./exercises/README.md)

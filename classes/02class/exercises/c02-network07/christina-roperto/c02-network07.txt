@@ -1,0 +1,55 @@
+AWS VPC + subnets
+Commit all your answers to a text file c02-network07.txt under your folder name.
+
+Everything is to be done preferable on Sydney region ap-southeast-2
+
+Route Table (rt)
+Create the above route tables and associate with referred subnets:
+
+|route table|subnet| |devopsacademy-rt-public|all public subnets| |devopsacademy-rt-private|all private subnets|
+
+Post how did you accomplish that on AWS console.
+Routes
+Add the following routes to your new route tables:
+
+devopsacademy-rt-public
+destination	target
+0.0.0.0	    devopsacademy-igw
+
+devopsacademy-rt-private
+destination	target
+0.0.0.0	    devopsacademy-ngw
+
+--------------------------------------------------
+
+Then post your answers for the following:
+How did you accomplish both instructions?
+- I went to route table, chose devopsacademy-rt-public and click routes on the tab and saw the local one (10.0.0.0/16) has been automatically created and I added 0.0.0.0/0 on the destination and attached the internet gateway created on the previous exercise and save the new route. 
+The same thing with the private one however I attached the nat gateway instead of igw.
+
+
+Why did you add 0.0.0.0 route to the IGW on public route table?
+- 0.0.0.0/0 is a default route that covers from 0.0.0.0 to 255.255.255.255. It means all connections to IP addresses that are not on the 10.0.0.0/16 network will be sent to this gateway. 
+
+Why did you add 0.0.0.0 route to the NGW on private route table?
+- same with the previous answer.
+
+What is the difference of IGW and NGW?
+- IGW is a logical connection between an Amazon VPC and the Internet. It allows resources within your VPC to access the internet, and vice versa
+
+
+A NAT Gateway does something similar to IGW, but with two main differences:
+- It allows resources in a private subnet to access the internet (eg yum updates, external database connections, wget calls, OS patch, etc)
+- It only works one way. The internet at large cannot get through your NAT to your private resources unless you explicitly allow it.
+
+source: https://medium.com/awesome-cloud/aws-vpc-difference-between-internet-gateway-and-nat-gateway-c9177e710af6
+
+
+Can you delete the destination route to your VPC network? Why?
+- No, because it's a local route and if you delete it then the local machines can't connect to each other in AWS. 
+
+What happens if you do not associate your route table with any subnets?
+- it will automatically associate itself with a main route table for the VPC (in my case it devopsacademy-rt-public)
+
+
+

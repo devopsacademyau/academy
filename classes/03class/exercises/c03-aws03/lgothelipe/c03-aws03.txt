@@ -1,0 +1,38 @@
+Create a private or public hosted zone and post:
+How did you achieve that?
+
+1. Logged into my AWS account
+2. Under Route 53 -> Create Hosted Zone
+3. Created a private hosted zone devopsau.net and associated to the devopsacademy VPC
+
+Hosted Zone Details
+Domain Name:devopsau.net.
+Type:Private Hosted Zone for Amazon VPC
+Associated VPC: devopsacademy-.. | vpc-06ce419efb39da1e3 | ap-southeast-2
+
+
+Create a friendly CNAME record to your load balancer A record
+
+4. Created a new record "alb.devops.net" type A - Alias and set the ALB dns on "Alias Target"
+5. Accessed one of the instances via SSH and accessed alb.devops.net:
+
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+
+[ec2-user@ip-172-16-40-197 ~]$ curl http://alb.devopsau.net
+ip-172-16-40-197.ap-southeast-2.compute.internal
+
+[ec2-user@ip-172-16-40-197 ~]$ curl http://alb.devopsau.net
+ip-172-16-20-115.ap-southeast-2.compute.internal
+
+[ec2-user@ip-172-16-40-197 ~]$ curl http://alb.devopsau.net
+ip-172-16-40-197.ap-southeast-2.compute.internal
+
+[ec2-user@ip-172-16-40-197 ~]$ curl http://alb.devopsau.net
+ip-172-16-20-115.ap-southeast-2.compute.internal

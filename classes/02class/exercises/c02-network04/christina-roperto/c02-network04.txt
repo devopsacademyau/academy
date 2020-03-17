@@ -1,0 +1,26 @@
+AWS VPC + subnets
+Commit all your answers to a text file c02-network4.txt under your folder name.
+
+Everything is to be done preferable on Sydney region ap-southeast-2
+
+Subnets
+Create 2 subnets (private and public) per Availability Zone (6 subnets in total) with following details:
+
+name: <private/public>- -- e.g.: private-a private-b
+VPC: use the VPC created on last exercise
+AZ: refer to the name -- e.g.: subnet private-a will be Availability Zone A ap-southeast-2a
+IPv4 CIDR: make it room for at least 250 hosts
+Post details from subnets created.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Name	            Subnet ID              State	                      VPC	                 IPv4 CIDR	    Available IPv4 Addresses	IPv6 CIDR	    Availability Zone	Availability Zone ID	    Route table	            Network ACL	            Default subnet	Auto-assign public IPv4 address	Auto-assign IPv6 address	Owner
+public-a	subnet-0de236af712438154	available	vpc-06763d321855b5d7b | devopsacademy-vpc	10.0.0.0/24	            251	                    -	        ap-southeast-2a	    apse2-az1	            rtb-04f51380e2c873973	acl-0e3ca08a1d66e2ec5	        No	                Yes	                        No	                956839463650
+private-a	subnet-0a5be97311593dda6	available	vpc-06763d321855b5d7b | devopsacademy-vpc	10.0.1.0/24	            251	                    -	        ap-southeast-2a	    apse2-az1	            rtb-04f51380e2c873973	acl-0e3ca08a1d66e2ec5	        No	                No	                        No	                956839463650
+public-b	subnet-085fc3134a8646f52	available	vpc-06763d321855b5d7b | devopsacademy-vpc	10.0.2.0/24	            251	                    -	        ap-southeast-2b	    apse2-az3	            rtb-04f51380e2c873973	acl-0e3ca08a1d66e2ec5	        No	                Yes	                        No	                956839463650
+private-b	subnet-020581681d45c09d3	available	vpc-06763d321855b5d7b | devopsacademy-vpc	10.0.3.0/24	            251	                    -	        ap-southeast-2b	    apse2-az3	            rtb-04f51380e2c873973	acl-0e3ca08a1d66e2ec5	        No	                No	                        No	                956839463650
+public-c	subnet-07168fdf64655c943	available	vpc-06763d321855b5d7b | devopsacademy-vpc	10.0.4.0/24	            251	                    -	        ap-southeast-2c	    apse2-az2	            rtb-04f51380e2c873973	acl-0e3ca08a1d66e2ec5	        No	                Yes	                        No	                956839463650
+private-c	subnet-0a71bd0ebebb62217	available	vpc-06763d321855b5d7b | devopsacademy-vpc	10.0.5.0/24	            251	                    -	        ap-southeast-2c	    apse2-az2	            rtb-04f51380e2c873973	acl-0e3ca08a1d66e2ec5	        No	                No	                        No	                956839463650
+

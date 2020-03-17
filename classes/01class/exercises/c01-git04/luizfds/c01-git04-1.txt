@@ -1,0 +1,57 @@
+Q1. Let's suppose you remotely pushed your my_env.txt file. A colleague asks you to remove this information from Git. What's your colleague worried about?
+He is worried that anyone with access to the repository can have access to sensitive information added in the file.
+
+Q2. If you modify the file in your workspace, then push it, will it be enough? (It's not). Why?
+No, it will not be enough. As we saw in the previous exercise, Git creates a copy of the file and adds it to git history.
+
+Q3. If you delete the file and push it, then create a new one with the rest of the information, is it enough? (It's not). Why?
+No, because git will just add a new commit in the history with a new version of the file, the previous version will still be present in the history. 
+
+Q4. How to fix this? How do you remove something from Git history?
+To fix this and entirely remove the unwanted file from our repository's history we can use either the git filter-branch command or the BFG Repo-Cleaner open source tool.
+
+Q5. Which commands would you use? What are the consequences for other developers?
+The git filter-branch command and the BFG Repo-Cleaner rewrite git repository's history, which changes the SHAs for existing commits that you alter and any dependent commits. Changed commit SHAs may affect open pull requests in your repository. So it’s recommended merging or closing all open pull requests before removing files from your repository.
+We can use the following commands: 
+i. Remove the file from git history
+$ git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA" \
+  --prune-empty --tag-name-filter cat -- --all
+  > Rewrite 48dc599c80e20527ed902928085e7861e6b3cbe6 (266/266)
+  > Ref 'refs/heads/master' was rewritten
+ii. Add your file with sensitive data to .gitignore to ensure that you don't accidentally commit it again.
+$ echo "YOUR-FILE-WITH-SENSITIVE-DATA" >> .gitignore
+$ git add .gitignore
+$ git commit -m "Add YOUR-FILE-WITH-SENSITIVE-DATA to .gitignore"
+> [master 051452f] Add YOUR-FILE-WITH-SENSITIVE-DATA to .gitignore
+>  1 files changed, 1 insertions(+), 0 deletions(-)
+iii. Double-check that you've removed everything you wanted to from your repository's history, and that all of your branches are checked out.
+iv. Once you're happy with the state of your repository, force-push your local changes to overwrite your GitHub repository, as well as all the branches you've pushed up:
+$ git push origin --force --all
+> Counting objects: 1074, done.
+> Delta compression using 2 threads.
+> Compressing objects: 100% (677/677), done.
+> Writing objects: 100% (1058/1058), 148.85 KiB, done.
+> Total 1058 (delta 590), reused 602 (delta 378)
+> To https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+>  + 48dc599...051452f master -> master (forced update)
+v. In order to remove the sensitive file from your tagged releases, you'll also need to force-push against your Git tags:
+$ git push origin --force --tags
+> Counting objects: 321, done.
+> Delta compression using up to 8 threads.
+> Compressing objects: 100% (166/166), done.
+> Writing objects: 100% (321/321), 331.74 KiB | 0 bytes/s, done.
+> Total 321 (delta 124), reused 269 (delta 108)
+> To https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+>  + 48dc599...051452f master -> master (forced update)
+vi. Tell your collaborators to rebase, not merge, any branches they created off of your old (tainted) repository history. One merge commit could reintroduce some or all of the tainted history that you just went to the trouble of purging.
+vii. After some time has passed and you're confident that git filter-branch had no unintended side effects, you can force all objects in your local repository to be dereferenced and garbage collected with the following commands (using Git 1.8.5 or newer):
+$ git for-each-ref --format="delete %(refname)" refs/original | git update-ref --stdin
+$ git reflog expire --expire=now --all
+$ git gc --prune=now
+> Counting objects: 2437, done.
+> Delta compression using up to 4 threads.
+> Compressing objects: 100% (1378/1378), done.
+> Writing objects: 100% (2437/2437), done.
+> Total 2437 (delta 1461), reused 1802 (delta 1048)
+

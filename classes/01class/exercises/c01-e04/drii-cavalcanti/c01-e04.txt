@@ -12,4 +12,3 @@ $ aws s3 ls s3://c01-e04-drii-cavalcanti
 
 Deleting file:
 $ aws s3 rm s3://c01-e04-drii-cavalcanti/nobel_winners.csv
-

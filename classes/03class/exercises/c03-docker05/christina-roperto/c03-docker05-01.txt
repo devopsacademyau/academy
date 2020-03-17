@@ -1,0 +1,50 @@
+Containing the commands executed to run both containers.
+
+christinaroperto/exercise02:v1
+
+$ docker pull christinaroperto/exercise02:v1
+
+v1: Pulling from christinaroperto/exercise02
+68ced04f60ab: Pull complete
+35d35f1e0dc9: Pull complete
+8a918bf0ae55: Pull complete
+d7b9f2dbc195: Pull complete
+d56c468bde81: Pull complete
+bd6c26135a09: Pull complete
+Digest: sha256:37582eb4cca6539b0b6fe88e5f9cb7eaa94a7039e7c58bd1a2be051237a9029c
+Status: Downloaded newer image for christinaroperto/exercise02:v1
+docker.io/christinaroperto/exercise02:v1
+
+$ docker run -dit --rm -p 8081:80 christinaroperto/exercise02:v1
+d294b867ccdac95ff681eb9b6d759219d2dd87a14b0633af85e066a1a0d05e26
+
+****************************************************************************************
+
+christinaroperto/exercise02:v1
+
+alternatively you can just use docker run as it's going to pull automatically
+$ docker run -dit --rm -p 8082:80 -v "${PWD}/../../../docker/artifacts/c03-docker02:/usr/local/apache2/htdocs/" christinaroperto/exercise02:v2
+
+Unable to find image 'christinaroperto/exercise02:v2' locally
+v2: Pulling from christinaroperto/exercise02
+68ced04f60ab: Already exists
+35d35f1e0dc9: Already exists
+8a918bf0ae55: Already exists
+d7b9f2dbc195: Already exists
+d56c468bde81: Already exists
+10e2590fbb67: Pull complete
+Digest: sha256:959a52f288841707c6e8206b2d8d1239ec87dad2aea0e42e48c314113a1723e6
+Status: Downloaded newer image for christinaroperto/exercise02:v2
+ca508dddb1cf7648e0b1c03b2be7a4e51cf986e4da5bbcefbfae3272ba3ef9c4
+
+
+Then I would check if both webservers are working
+
+http://localhost:8081/
+DevOps Academy - Docker - Exercise c03-docker02
+
+http://localhost:8082/
+DevOps Academy - Docker - Exercise c03-docker02
+Christina Roperto
+
+Everything seems fine. 

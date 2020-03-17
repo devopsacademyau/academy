@@ -1,0 +1,10 @@
+C01-E04
+- Logged in to AWS console, created and named a S3 bucket "exercise04.week1" (bad name, will do better next time). 
+- Uploaded a file (image) to bucket. "starwarsposter.jpg"
+- Created IAM Role -> set permission -> attached "AmazonS3ReadOnlyAccess" policy (keeping in mind the Principle of least priviledge for increased security). 
+- Attached EC2 instance with Role: Ec2 Service on AWS console -> chose an instance previously created -> instance settings -> attach/Replace IAM Role -> applied role created. 
+- On terminal, connected the EC2 (SSH). 
+- EC2 access to S3 bucket with AWSCLI: 
+- [ec2-user@ip-172-31-12-54 ~]$ aws s3 ls s3://exercise04.week1
+- 2020-02-09 04:58:06    1406633 starwarsposter.jpg
+- Terminated EC2! 
