@@ -1,0 +1,24 @@
+$ sudo docker run -dit -p 8081:80 driicavalcanti/exercise02:v1 
+    Unable to find image 'driicavalcanti/exercise02:v1' locally
+    v1: Pulling from driicavalcanti/exercise02
+    c9b1b535fdd9: Pull complete 
+    8f37b2be62f6: Pull complete 
+    badbb502951e: Pull complete 
+    a27b80e2bf04: Pull complete 
+    2c005fed9a91: Pull complete 
+    550134997660: Pull complete 
+    7a755e2a179c: Pull complete 
+    Digest: sha256:ee677fb42374b022766d71fc6141badbde467494bc57d65c8ad0da527ebafa65
+    Status: Downloaded newer image for driicavalcanti/exercise02:v1
+    73d7201c26e97c6e9ec499060f2687a71cdb291618a38ea3a0b6035e8dac0660
+$ sudo docker run --volume /home/drii-cavalcanti/hd/01_projects/10_DEVOPS_ACADEMY/ori-academy/classes/03class/docker/artifacts/c03-docker02/:/usr/local/apache2/htdocs/ -dit -p 8082:80 driicavalcanti/exercise02:v2
+    Unable to find image 'driicavalcanti/exercise02:v2' locally
+    v2: Pulling from driicavalcanti/exercise02
+    c9b1b535fdd9: Already exists 
+    8f37b2be62f6: Already exists 
+    badbb502951e: Already exists 
+    a27b80e2bf04: Already exists 
+    2c005fed9a91: Already exists 
+    Digest: sha256:cd9cb9f0148b56a4d8f4f58be6a59d9c23d4c8d6c88f4a53736e6c7ca66b742c
+    Status: Downloaded newer image for driicavalcanti/exercise02:v2
+    6b07caec5063415f1730a511ddb8f3e7ccf286871addcf52e57565e4586990bd
