@@ -1,0 +1,5 @@
+$ sudo docker ps -a
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+$ sudo docker images -a          
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+
