@@ -1,0 +1,32 @@
+Create a new EC2 Instance inside the default VPC with an public IP address and connect to it though SSH:
+
+EC2 -> Launch instance
+Choose an Image: Ubuntu Server 18.04 LTS (HVM), SSD Volume Type
+Configure Instance -> Auto-assign Public IP: Enable
+Create a new key pair and download it
+Launch Instances
+View Instances
+
+Connect
+A standalone SSH Client
+
+Linux Terminal:
+sudo chmod 400 <my key pair>
+ssh -i "<my key pair>.pem" ubuntu@ec2-18-233-100-104.compute-1.amazonaws.com
+
+=========================================================================================================
+Create a new EC2 instance in the same VPC but with private address only and connect to it:
+
+EC2 -> Launch instance
+Choose an Image: Ubuntu Server 18.04 LTS (HVM), SSD Volume Type
+Configure Instance -> Auto-assign Public IP: Disable
+Create a new key pair and download it
+Launch Instances
+View Instances
+
+Connect
+A standalone SSH Client
+
+Linux Terminal:
+sudo chmod 400 <my key pair>
+ssh -i "<my key pair>.pem" ubuntu@ec2-18-233-100-104.compute-1.amazonaws.com
