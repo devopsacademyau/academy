@@ -1,0 +1,18 @@
+👽 henriquediniz docker build -t da-terraform:c03-docker-e01 -f Dockerfile .
+Sending build context to Docker daemon  2.048kB
+Step 1/2 : FROM httpd:2.4.41
+2.4.41: Pulling from library/httpd
+68ced04f60ab: Pull complete 
+35d35f1e0dc9: Pull complete 
+8a918bf0ae55: Pull complete 
+d7b9f2dbc195: Pull complete 
+d56c468bde81: Pull complete 
+Digest: sha256:946c54069130dbf136903fe658fe7d113bd8db8004de31282e20b262a3e106fb
+Status: Downloaded newer image for httpd:2.4.41
+ ---> c5a012f9cf45
+Step 2/2 : RUN echo "This is my test:01 image" > /usr/local/apache2/htdocs/index.html
+ ---> Running in 5e67276b8755
+Removing intermediate container 5e67276b8755
+ ---> 11249acb44b5
+Successfully built 11249acb44b5
+Successfully tagged da-terraform:c03-docker-e01
