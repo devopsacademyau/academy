@@ -37,3 +37,13 @@ Removing intermediate container 464cd167a919
  ---> 3012a472bd0b
 Successfully built 3012a472bd0b
 Successfully tagged da-terraform:c03-docker-e01
+👽 henriquediniz docker images                                              
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+da-terraform                c03-docker-e01      3012a472bd0b        22 hours ago        73.5MB
+<none>                      <none>              093d0b3f8e7b        24 hours ago        72.2MB
+<none>                      <none>              11249acb44b5        24 hours ago        165MB
+httpd                       2.4.41              c5a012f9cf45        3 weeks ago         165MB
+alpine                      3.9.5               82f67be598eb        7 weeks ago         5.53MB
+alpine                      latest              e7d92cdc71fe        2 months ago        5.59MB
+postgres                    11                  55ff21ffc6d1        3 months ago        332MB
+terraformdocker/terraform   latest              bb0bbef98775        22 months ago       93.6MB
