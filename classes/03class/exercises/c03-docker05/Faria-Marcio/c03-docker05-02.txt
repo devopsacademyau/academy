@@ -1,0 +1,2 @@
+#What happened when you executed the comands to run the containers
+   	It tried to find the images locally, but they didn't exist so it pulled from fariamarcio/devops_academy (my repository on DockerHub) and created they at my computer.

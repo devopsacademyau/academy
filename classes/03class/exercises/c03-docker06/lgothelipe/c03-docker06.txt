@@ -1,0 +1,22 @@
+$ docker image build -t hello-name:v1 .
+
+Sending build context to Docker daemon   2.56kB
+
+Step 1/2 : FROM alpine:latest
+latest: Pulling from library/alpine
+c9b1b535fdd9: Pulling fs layer
+c9b1b535fdd9: Verifying Checksum
+c9b1b535fdd9: Download complete
+c9b1b535fdd9: Pull complete
+Digest: sha256:ab00606a42621fb68f2ed6ad3c88be54397f981a7b70a79db3d1172b11c4367d
+Status: Downloaded newer image for alpine:latest
+ ---> e7d92cdc71fe
+Step 2/2 : ENTRYPOINT ["echo","Hello"]
+ ---> Running in 7072698fb72e
+Removing intermediate container 7072698fb72e
+ ---> 274023575c13
+Successfully built 274023575c13
+Successfully tagged hello-name:v1
+
+$ docker run hello-name:v1 Lucas
+Hello Lucas 

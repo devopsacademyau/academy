@@ -1,0 +1,38 @@
+Commands executed to clean up both the images and the containers:
+
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND              CREATED              STATUS              PORTS                  NAMES
+061c1c63d97a        exercise02:v2       "httpd-foreground"   21 seconds ago       Up 20 seconds       0.0.0.0:8082->80/tcp   sweet_joliot
+ed8eae556387        exercise02:v1       "httpd-foreground"   About a minute ago   Up About a minute   0.0.0.0:8081->80/tcp   blissful_cannon
+
+$ docker stop sweet_joliot
+$ docker stop blissful_cannon
+
+$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+lgothelipe/exercise02   v1                  29883b7de332        25 minutes ago      109MB
+exercise02              v1                  29883b7de332        25 minutes ago      109MB
+lgothelipe/exercise02   v2                  1abb830a8477        8 days ago          109MB
+exercise02              v2                  1abb830a8477        8 days ago          109MB
+httpd                   2.4.41-alpine       cb171b88ec92        7 weeks ago         109MB
+
+$ docker rmi -f $(docker images -a -q)
+Untagged: lgothelipe/exercise02:v1
+Untagged: lgothelipe/exercise02@sha256:c2a1f47e2e23deb70a40f00929c594a5bcc1427e0f6872033e66abd9fd9f5c98
+Untagged: exercise02:v1
+Deleted: sha256:29883b7de3325818591f701f86e13b82c095ca2e077263e83fbb5ac85c0a5e2e
+Untagged: lgothelipe/exercise02:v2
+Untagged: lgothelipe/exercise02@sha256:e9b685b01ffcb01a773ebdd915bad045bd7b672269cbfd9751ba9b85e6857eee
+Untagged: exercise02:v2
+Deleted: sha256:1abb830a847743e7c25980b4daeecda088eccae1c52618f7f9fadda1b88e3a68
+Deleted: sha256:a76a706470fa406a4e1b099da365acd86bb338a9ffe350fb3459109afaca3f78
+Untagged: httpd:2.4.41-alpine
+Untagged: httpd@sha256:ca20eca5ae5c1be31bdf99d700d86d9164edd71bcf519325bde67ed04aa1008f
+Deleted: sha256:cb171b88ec9231dba1a54af4790c8f38164b64158f3dff912bf4e600da22d02b
+Error: No such image: 29883b7de332
+Error: No such image: 1abb830a8477
+Error: No such image: a76a706470fa
+
+$ docker rm -vf $(docker ps -a -q)
+061c1c63d97a
+ed8eae556387
