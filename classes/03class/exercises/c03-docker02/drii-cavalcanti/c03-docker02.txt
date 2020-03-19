@@ -1,0 +1,8 @@
+1. Containing the output of the curl commands executed before and after changing the file indicated. 
+$ curl http://localhost:8082 
+    <h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+$ curl http://localhost:8082
+    <h1>DevOps Academy - Docker - Coisa linda nenem</h1>
+
+2. Explain any difference between the responses of the webservers before and after changing the file locally.
+   When we mount a volume into a container from our host machine we will be able to keep local directory syncronized within container directory. On the other hand, ADD instruction will just copy files from our host machine and add them to the container's filesystem.
