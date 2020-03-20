@@ -112,10 +112,10 @@ The content can be accessed through each specific README link below.
         - AWS ECS
 - [Class 04](classes/04class/README.md)
     - Project #1 Kick-off
-    - AWS - IAM
-    - AWS - CLI
-    - AWS - S3
-    - AWS - RDS
+    - AWS CLI
+    - AWS IAM
+    - AWS S3
+    - AWS RDS
     - IaC - Terraform
     - MakeFile
 - [Class 05](classes/05class/README.md)
