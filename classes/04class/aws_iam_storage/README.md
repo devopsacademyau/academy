@@ -1,4 +1,4 @@
-# Introduction to Containers
+# Introduction to AWS CLI and AWS S3, IAM and RDS services
 
 This class is an introduction to the AWS storage service S3, AWS IAM and database service RDS.
 
