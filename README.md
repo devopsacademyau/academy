@@ -24,6 +24,7 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
   - [Projects](#projects)
 - [Contributors and Instructors](#contributors-and-instructors)
   - [Presentation format](#presentation-format)
+  - [Clean up Ready to Review tag from Closed PRs](#clean-up-ready-to-review-tag-from-closed-prs)
 - [Authors](#authors)
   - [Caio Trevisan](#caio-trevisan)
   - [Denis Storti](#denis-storti)
@@ -223,6 +224,12 @@ Example:
     * Offline: use a [Docker container](https://github.com/kns-it/Docker-GitPitch/), run `make presentation` and `open http://localhost:9000/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`
     For running in a specific folder: `FOLDER_NAME=class2 make presentation`
 
+
+## Clean up Ready to Review tag from Closed PRs
+
+Set the environment variables GH_USER and GH_TOKEN with a GitHub User and Token with proper permissions to the repository.
+
+Run:  `make rtr-cleanup`
 
 # Authors
 

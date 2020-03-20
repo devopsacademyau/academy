@@ -15,3 +15,6 @@ pitchme_to_readme:
   #Example: FOLDER_NAME=classes/01class/git/ make pitchme_to_readme
 	#Example: FOLDER_NAME=classes/01class/git/ BRANCH_NAME=MY_BRANCH make pitchme_to_readme
 	bash scripts/pitchme_to_readme.sh
+
+rtr-cleanup:
+	$(ROOT_DIR)/scripts/rtr-cleanup.sh
