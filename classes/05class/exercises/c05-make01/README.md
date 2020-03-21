@@ -1,27 +1,27 @@
-# S3 Bucket and EC2 Instance (c04-iac01)
+# Make (c05-make01)
 
-In this exercise, you'll need to an EC2 instance and an S3 Bucket. The EC2 instance needs to be accessible through SSH(Port 22) and the EC2 instance needs to have permission to access the S3 bucket being created in this exercise. All resources must be created through Terraform code, with the exception of the EC2 Keypair, that you can use an existing one from your AWS Account. Similar to [this exercise done manually](https://github.com/devopsacademyau/academy/tree/master/classes/01class/exercises/c01-e04).  
+In this exercise, you'll create a Makefile to execute docker commands to build, publish and run a docker image.
 
-For your EC2 instance to be able to access the S3 bucket, use an IAM Instance Profile with proper permissions to the bucket.
+You'll need to create a new docker image, similar to the one in the [c03-docker02 exercise](/classes/03class/exercises/c03-docker02/README.md), with a few differences. The content of `index.html` must be dynamically created with the `short commit sha` value. The index.html should include this:
+**This image was created by `your name`, based on the `short commit sha`**
+
+The short commit sha value can be get by running the following command in your repository folder: `git rev-parse --short HEAD`
+
+Additionally the docker image tag, instead of `v1` or `v2`, should also have the short commit sha as the tag.
+
+Your Makefile should have the following steps:
+1. **build** - This will build the image and tag it with the right value
+    - The name of the image must be `make01`
+2. **push** - This will push the image to your DockerHub account 
+3. **run** - This will run the docker image locally.
+    - The port to be mapped for the container should be dinamycally provided during the `make run` command.
+ 
 
 ## Submit a PR with the following files:
 - README.md based on the [ANSWER.md file](ANSWER.md) with a link to the following files from your answer:
-    - _backend.tf
-        - with the backend configuration
-    - _provider.tf
-        - with the provider configuration
-    - ec2.tf
-        - with all your ec2 related resources
-    - iam.tf
-        - with all your iam related resources
-    - s3.tf
-        - with all your s3 related resources
-    - security-group.tf
-        - with all your Security Group related resources
+    - Dockerfile
+        - with the instructions to build your docker image
+    - Makefile
+        - with the three phony targets mentioned above 
     - output.txt 
-        - with the output of the `terraform plan` command
-
-Your state file can be local, and should not be include it in your PR.
-
-## References
-- [Terraform AWS Resources](https://www.terraform.io/docs/providers/aws/index.html)
+        - with the execution and outputs of the following command: `make build`, `make push`, `make run`
