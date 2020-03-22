@@ -6,7 +6,6 @@ The main goal is to explain the purpose, the benefits and how to use it.
 - [What is Docker Compose](#what-is-docker-compose)
 - [Why use Docker Compose?](#why-use-docker-compose)
 - [Compose File](#compose-file)
-- [Running some code](#running-some-code)
 
 
 ## What is Docker Compose?
@@ -24,9 +23,32 @@ For example, you can have a Compose file defining a database service (like MySQL
 Another ver common usage of the Compose is during some integration tests of your CI pipeline. By suing docker-compose, you can start all your containers in your CI tool and run a set of tests to validate that all the components that your application is builded from are working correctly together. This is a very common and import step of any mature CI pipeline.
 
 ## Compose file
-The docker-compose.yaml file is where all the definition that your docker-compose command use goes. By being a yaml file, its structure is easily undestandable.
+The docker-compose.yaml file is where all the definition that your docker-compose command use goes. By being a yaml file, its structure is easily undestandable and well known for most Developers.
 
+The compose file starts with the defitionn of the version to ve used. The latests is the version 3. After the version, you can state the services that compose will run, which is a container running by the Compose.
 
+The example below is also [here](artifacts/docker-compose.yaml)
+
+```docker-file.yaml
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+  redis:
+    image: "redis:alpine"
+```
+
+This file describe two services to be started. The `web` one, which requires a build based on this [Dockerfile](artifacts/Dockerfile) stored in the same folder. The second service is called `redis` and is based fom the `redis:alpine` image.
+
+We will not go into a lot of details around the web and the redis images here, but it's a simple webserver that will count the number of hits.
+
+By having the `docker-compose.yaml` file in place, we can just run the following command to build/start the containers: `docker-compose up`. By invoking this command, the docker-compose will create a new network to be shared between all the containers and will make the name of each service resolvable through DNS, so every container can communicate with the others by using their service name.
+
+This is just the basics around the `docker-compose.yaml` file, but a detailed documentation is available [here](https://docs.docker.com/compose/compose-file/).
+
+## Running some code
 
 ## Appendix
 - [Docker Compose - Getting Started](https://docs.docker.com/compose/gettingstarted/)
