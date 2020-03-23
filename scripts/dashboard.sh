@@ -1,4 +1,5 @@
-BASEDIR=$PWD
+BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[1;34m'
@@ -12,6 +13,7 @@ else
 fi
 
 mkdir ${BASEDIR}/results
+
 curl ${TOKEN} ${GITHUB_URL}/pulls?state=open --silent| \
     grep "\"number\":"| \
     cut -f2 -d":"| \
@@ -21,10 +23,19 @@ curl ${TOKEN} ${GITHUB_URL}/pulls?state=open --silent| \
 > ${BASEDIR}/prids-authored.txt
 cat ${BASEDIR}/prids.txt|while read PRID
 do
-    PR_AUTHOR=`curl ${TOKEN} ${GITHUB_URL}/pulls/${PRID} --silent| \
+    PR_INFO=`curl ${TOKEN} ${GITHUB_URL}/pulls/${PRID} --silent`
+    PR_AUTHOR=`echo ${PR_INFO}| \
         jq -r .user.login| \
         tr '[:upper:]' '[:lower:]'`
-    echo "${PRID};${PR_AUTHOR}" >> ${BASEDIR}/prids-authored.txt
+    PR_LABELS=`echo ${PR_INFO}| \
+        jq .labels| \
+        grep name`
+    if echo ${PR_LABELS}|grep "ready to review" > /dev/null 2>&1
+    then
+        echo "${PRID};${PR_AUTHOR};REVIEW" >> ${BASEDIR}/prids-authored.txt
+    else
+        echo "${PRID};${PR_AUTHOR}" >> ${BASEDIR}/prids-authored.txt
+    fi
 done
 cat ${BASEDIR}/students.txt|while read STUDENT
 do
@@ -41,25 +52,30 @@ do
     cat ${BASEDIR}/students.txt|while read STUDENT
     do
         echo "" > ${BASEDIR}/flag.txt
-        ls -l ${STUDENT} > /dev/null 2>&1
-        if [ $? -eq 0 ]
+        if ls -l ${STUDENT} > /dev/null 2>&1
         then
             echo -e "${GREEN}** ${LAB} already delivered by ${STUDENT} **${NC}"
             DONE=`cat ${BASEDIR}/results/${LAB}.txt`
             echo "${DONE}D;" > ${BASEDIR}/results/${LAB}.txt
             continue
         else
-            cat ${BASEDIR}/prids-authored.txt|grep ${STUDENT}|cut -f1 -d";"|while read PRID
+            cat ${BASEDIR}/prids-authored.txt|grep ${STUDENT}|cut -f1,3 -d";"|while read PRID_INFO
             do
-                IS_THIS_LAB=`curl ${TOKEN} ${GITHUB_URL}/pulls/${PRID}/files --silent| \
+                PRID=`echo ${PRID_INFO}|cut -f1 -d";"`
+                if IS_THIS_LAB=`curl ${TOKEN} ${GITHUB_URL}/pulls/${PRID}/files --silent| \
                     grep raw| \
                     grep ${LAB}`
-                if [ $? -eq 0 ]
                 then
                     echo -e "${BLUE}** ${LAB} in PR by ${STUDENT} **${NC}"
                     sed -i "/^${PRID};/d" ${BASEDIR}/prids-authored.txt
                     DONE=`cat ${BASEDIR}/results/${LAB}.txt`
-                    echo "${DONE}P;" > ${BASEDIR}/results/${LAB}.txt
+
+                    if echo ${PRID_INFO}|grep "REVIEW" > /dev/null 2>&1
+                    then
+                        echo "${DONE}R;" > ${BASEDIR}/results/${LAB}.txt
+                    else
+                        echo "${DONE}P;" > ${BASEDIR}/results/${LAB}.txt
+                    fi
                     echo "TRUE" > ${BASEDIR}/flag.txt
                     break
                 fi
