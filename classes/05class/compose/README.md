@@ -27,7 +27,7 @@ The docker-compose.yaml file is where all the definition that your docker-compos
 
 The compose file starts with the defitionn of the version to be used. The latests is the version 3. After the version, you can state the services that compose will run, which is a container container image with any additional configuration, like environment variables, volume mounts, etc.
 
-The example below is also [here](artifacts/docker-compose.yaml)
+The example below is also [here](artifacts/class/docker-compose.yaml)
 
 ```docker-file.yaml
 version: '3'
@@ -40,7 +40,7 @@ services:
     image: "redis:alpine"
 ```
 
-This file describe two services to be started. The `web` one, which requires a build based on this [Dockerfile](artifacts/Dockerfile) stored in the same folder. The second service is called `redis` and is based fom the `redis:alpine` image.
+This file describe two services to be started. The `web` one, which requires a build based on this [Dockerfile](artifacts/class/Dockerfile) stored in the same folder. The second service is called `redis` and is based fom the `redis:alpine` image.
 
 This is just the basics around the `docker-compose.yaml` file, but a detailed documentation is available [here](https://docs.docker.com/compose/compose-file/).
 
@@ -49,8 +49,6 @@ We will not go into a lot of details around the web and the redis images here, b
 By having the `docker-compose.yaml` file in place, we can just run the following command to build/start the containers in deatch mode: `docker-compose up 0d`. By invoking this command, the docker-compose will create a new docker network to be shared between all the containers and will make the name of each service resolvable through DNS, so every container can communicate with the others by using their service name. You can check the status of each container by running `docker-compose ps` and to stop the containers, just run `docker-compose down` in the same folder.
 
 A list of all options of the `docker-compose` can be found [here](https://docs.docker.com/compose/reference/).
-
-## Running some code
 
 ## Appendix
 - [Docker Compose - Getting Started](https://docs.docker.com/compose/gettingstarted/)

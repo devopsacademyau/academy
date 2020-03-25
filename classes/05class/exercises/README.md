@@ -5,3 +5,7 @@ For instructions on how to submit your work, [please check the main repository R
 ## Make
 
 - [Basic Makefile](/classes/05class/exercises/c05-make01/README.md)
+
+## Dokcer Compose 
+
+- [Basic Compose](/classes/05class/exercises/c05-compose01/README.md)

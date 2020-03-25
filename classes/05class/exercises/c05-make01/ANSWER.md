@@ -5,7 +5,21 @@
 - [Makefile](Makefile)
 
 ## Command Execution Output
-- [output.txt](output.txt)
+
+- Execution and output of the command `make build`
+```
+Insert command and output here
+```
+
+- Execution and output of the command `make push`
+```
+Insert command and output here
+```
+
+- Execution and output of the command `make run`
+```
+Insert command and output here
+```
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 

@@ -1,4 +1,4 @@
-# Make (c05-make01)
+# Basic Makefile (c05-make01)
 
 In this exercise, you'll create a Makefile to execute docker commands to build, publish and run a docker image.
 
