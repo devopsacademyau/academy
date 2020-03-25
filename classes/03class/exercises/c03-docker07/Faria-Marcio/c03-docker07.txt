@@ -1,0 +1,4 @@
+#Execution of the curl command accessing the website and it's output
+
+$ curl http://54.252.215.209
+24
