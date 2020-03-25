@@ -1,0 +1,37 @@
+#Commands executed to run both containers
+
+#Exercise02:v1
+    $ sudo docker run -dit --rm -p 8081:80 fariamarcio/devops_academy:exercise02v1
+	Unable to find image 'fariamarcio/devops_academy:exercise02v1' locally
+	exercise02v1: Pulling from fariamarcio/devops_academy
+	c9b1b535fdd9: Pull complete 
+	8f37b2be62f6: Pull complete 
+	badbb502951e: Pull complete 
+	a27b80e2bf04: Pull complete 
+	2c005fed9a91: Pull complete 
+	0cdc7fba98c0: Pull complete 
+	Digest: sha256:7aebe01e86f120d8c65fb670179ea204dec71214f1134aa31696c858081d906e
+	Status: Downloaded newer image for fariamarcio/devops_academy:exercise02v1
+	1b41e1c53eee69c4b00f4450c6ebff26cb9cffb48271c62d823114701dd17655
+
+#Exercise02:v2
+    $ sudo docker run -dit --rm -p 8082:80 -v "${PWD}/../../../docker/artifacts/c03-docker02:/usr/local/apache2/htdocs/" fariamarcio/devops_academy:exercise02v02
+	Unable to find image 'fariamarcio/devops_academy:exercise02v02' locally
+	exercise02v02: Pulling from fariamarcio/devops_academy
+	c9b1b535fdd9: Already exists 
+	8f37b2be62f6: Already exists 
+	badbb502951e: Already exists 
+	a27b80e2bf04: Already exists 
+	2c005fed9a91: Already exists 
+	d28acdddef19: Pull complete 
+	Digest: sha256:e76e1c65b7df6e6ffe7318f7453ea822d0d1661dddbe6b08b3585351e39a4d3a
+	Status: Downloaded newer image for fariamarcio/devops_academy:exercise02v02
+	8d1dbf1c22517963be281e07cbf422eb21f652cf59ecfa4c499ef972ae261708
+
+#Testing
+    $ curl http://localhost:8081
+	<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+
+    $ curl http://localhost:8082
+	<h1><b>TEST FARIA-MARCIO:</b> DevOps Academy - Docker - Exercise c03-docker02</h1>
+

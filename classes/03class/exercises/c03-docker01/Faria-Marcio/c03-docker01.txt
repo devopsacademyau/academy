@@ -1,0 +1,43 @@
+$ sudo docker image build -t da-terraform:c03-docker-e01 .
+
+Sending build context to Docker daemon   2.56kB
+Step 1/4 : FROM alpine:3.9.5
+ ---> 82f67be598eb
+Step 2/4 : MAINTAINER Marcio Faria <marciodefaria@gmail.com>
+ ---> Using cache
+ ---> 72dad359c7ef
+Step 3/4 : RUN apk add wget unzip 	&& wget -q https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip 	&& unzip terraform_0.12.20_linux_amd64.zip -d /usr/local/bin/ 	&& rm -f terraform_0.12.20_linux_amd64.zip 	&& apk del wget unzip
+ ---> Running in 308aa2aac896
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/community/x86_64/APKINDEX.tar.gz
+(1/2) Installing unzip (6.0-r4)
+(2/2) Installing wget (1.20.3-r0)
+Executing busybox-1.29.3-r10.trigger
+OK: 6 MiB in 16 packages
+Archive:  terraform_0.12.20_linux_amd64.zip
+  inflating: /usr/local/bin/terraform  
+(1/2) Purging unzip (6.0-r4)
+(2/2) Purging wget (1.20.3-r0)
+Executing busybox-1.29.3-r10.trigger
+OK: 6 MiB in 14 packages
+Removing intermediate container 308aa2aac896
+ ---> 48026be4f424
+Step 4/4 : CMD ["terraform", "-v"]
+ ---> Running in 6a2213169bfb
+Removing intermediate container 6a2213169bfb
+ ---> 67a46b70980f
+Successfully built 67a46b70980f
+Successfully tagged da-terraform:c03-docker-e01
+
+
+
+$ sudo docker run -it da-terraform:c03-docker-e01
+Terraform v0.12.20
+
+
+
+$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+da-terraform        c03-docker-e01      67a46b70980f        About a minute ago   57.3MB
+alpine              3.9.5               82f67be598eb        6 weeks ago          5.53MB
+alpine              latest              e7d92cdc71fe        7 weeks ago          5.59MB

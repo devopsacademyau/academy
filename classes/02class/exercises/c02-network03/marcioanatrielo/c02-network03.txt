@@ -1,0 +1,17 @@
+# Exercise c02-network03 
+
+Based on Sydney region: ap-southeast-2
+
+VPC ID: vpc-0c9124eda0e459981
+Tenancy: default
+State: available
+Default VPC : No
+IPv4 CIDR : 10.0.0.0/16
+Classic link: Disabled
+DNS resolution: Enabled
+Network ACL: acl-0307abe60fb4d940a
+DNS hostnames: Disabled
+DHCP options set: dopt-3487c653
+ClassicLink DNS Support:  Disabled
+Route table: rtb-0aa2c84dea2a2eff8
+Owner: 650909960884

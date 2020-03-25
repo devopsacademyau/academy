@@ -1,0 +1,8 @@
+Class 02 - Exercise Network 04
+
+Create an Internet Gateway called devopsacademy-igw and attach it to your devopsacademy-vpc VPC.
+
+Post how did you accomplish that on AWS console.
+
+Under VPC, select 'Internet Gateways', press 'Create internet gateway', give it a name tag and press create.
+Select the created gateway, press 'Actions' --> 'Attach to VPC', select the VPC 'devopsacademy-vpc'  and press attach.

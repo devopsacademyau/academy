@@ -1,0 +1,105 @@
+Class 02 - Exercise Network 04
+
+Create 2 subnets (private and public) per Availability Zone (6 subnets in total) with following details:
+
+name: <private/public>- -- e.g.: private-a private-b
+VPC: use the VPC created on last exercise
+AZ: refer to the name -- e.g.: subnet private-a will be Availability Zone A ap-southeast-2a
+IPv4 CIDR: make it room for at least 250 hosts
+Post details from subnets created.
+
+PRIVATE A 
+Subnet ID: subnet-05decff5fdf1bcf01
+State: available
+VPC: vpc-068099807f07cd4cb | devopsacademy-vpc
+IPv4 CIDR: 10.0.0.0/24
+Available IPv4 Addresses: 251
+IPv6 CIDR: -
+Availability Zone: ap-southeast-2a (apse2-az1)
+Route Table: rtb-05dee17137953c5f3
+Network ACL: acl-0786746dd41059c05
+Default subnet: No
+Auto-assign public IPv4 address: No
+Auto-assign IPv6 address: No
+Outpost ID: -
+Owner: 160372566358
+
+PRIVATE B 
+Subnet ID: subnet-04be08a718d8601ef
+State: available
+VPC: vpc-068099807f07cd4cb | devopsacademy-vpc
+IPv4 CIDR: 10.0.1.0/24
+Available IPv4 Addresses: 251
+IPv6 CIDR: -
+Availability Zone: ap-southeast-2b (apse2-az3)
+Route Table: rtb-05dee17137953c5f3
+Network ACL: acl-0786746dd41059c05
+Default subnet: No
+Auto-assign public IPv4 address: No
+Auto-assign IPv6 address: No
+Outpost ID: -
+Owner: 160372566358
+
+PRIVATE C
+Subnet ID: subnet-00e57bbb51a574f1e
+State: available
+VPC: vpc-068099807f07cd4cb | devopsacademy-vpc
+IPv4 CIDR: 10.0.2.0/24
+Available IPv4 Addresses: 251
+IPv6 CIDR: -
+Availability Zone: ap-southeast-2c (apse2-az2)
+Route Table: rtb-05dee17137953c5f3
+Network ACL: acl-0786746dd41059c05
+Default subnet: No
+Auto-assign public IPv4 address: No
+Auto-assign IPv6 address: No
+Outpost ID: -
+Owner: 160372566358
+
+PUBLIC A
+Subnet ID: subnet-02646579c87a142b3
+State: available
+VPC: vpc-068099807f07cd4cb | devopsacademy-vpc
+IPv4 CIDR: 10.0.3.0/24
+Available IPv4 Addresses: 251
+IPv6 CIDR: -
+Availability Zone: ap-southeast-2a (apse2-az1)
+Route Table: rtb-05dee17137953c5f3
+Network ACL: acl-0786746dd41059c05
+Default subnet: No
+Auto-assign public IPv4 address: No
+Auto-assign IPv6 address: No
+Outpost ID: -
+Owner: 160372566358
+
+PUBLIC B 
+Subnet ID: subnet-093848f6a1d91bfb6
+State: available
+VPC: vpc-068099807f07cd4cb | devopsacademy-vpc
+IPv4 CIDR: 10.0.4.0/24
+Available IPv4 Addresses: 251
+IPv6 CIDR: -
+Availability Zone: ap-southeast-2b (apse2-az3)
+Route Table: rtb-05dee17137953c5f3
+Network ACL: acl-0786746dd41059c05
+Default subnet: No
+Auto-assign public IPv4 address: No
+Auto-assign IPv6 address: No
+Outpost ID: -
+Owner: 160372566358
+
+PUBLIC C
+Subnet ID: subnet-0dde04eaf5c4694e7
+State: available
+VPC: vpc-068099807f07cd4cb | devopsacademy-vpc
+IPv4 CIDR: 10.0.5.0/24
+Available IPv4 Addresses: 251
+IPv6 CIDR: -
+Availability Zone: ap-southeast-2c (apse2-az2)
+Route Table: rtb-05dee17137953c5f3
+Network ACL: acl-0786746dd41059c05
+Default subnet: No
+Auto-assign public IPv4 address: No
+Auto-assign IPv6 address: No
+Outpost ID: -
+Owner: 160372566358

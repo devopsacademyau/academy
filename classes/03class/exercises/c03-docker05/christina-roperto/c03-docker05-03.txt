@@ -1,0 +1,6 @@
+Containing the command to list all images on your local as well as it's output.
+
+$ docker image ls -a
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+christinaroperto/exercise02   v2                  b33b39451b3f        24 hours ago        165MB
+christinaroperto/exercise02   v1                  bac5efb17c5f        24 hours ago        165MB

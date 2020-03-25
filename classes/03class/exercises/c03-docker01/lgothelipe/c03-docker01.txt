@@ -1,0 +1,55 @@
+c03-docker01
+
+$ docker image build -t da-terraform:c03-docker-e01 .
+Sending build context to Docker daemon  2.048kB
+Step 1/4 : FROM alpine:3.9.5
+3.9.5: Pulling from library/alpine
+9123ac7c32f7: Pull complete
+Digest: sha256:115731bab0862031b44766733890091c17924f9b7781b79997f5f163be262178
+Status: Downloaded newer image for alpine:3.9.5
+ ---> 82f67be598eb
+Step 2/4 : WORKDIR /usr
+---> Running in 1d9a26f808de
+Removing intermediate container 1d9a26f808de
+---> faea658263f0
+Step 3/4 : RUN apk add wget unzip     && wget -O terraform.zip https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip     && unzip terraform.zip -d /usr/local/bin/     && rm -f terraform.zip     && apk del wget unzip
+---> Running in 3a7dbfab3f34
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/community/x86_64/APKINDEX.tar.gz
+(1/2) Installing unzip (6.0-r4)
+(2/2) Installing wget (1.20.3-r0)
+Executing busybox-1.29.3-r10.trigger
+OK: 6 MiB in 16 packages
+--2020-03-04 05:52:08--  https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
+Resolving releases.hashicorp.com... 151.101.81.183, 2a04:4e42:13::439
+Connecting to releases.hashicorp.com|151.101.81.183|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 16207833 (15M) [application/zip]
+Saving to: 'terraform.zip'
+2020-03-04 05:52:18 (1.55 MB/s) - 'terraform.zip' saved [16207833/16207833]
+Archive:  terraform.zip
+inflating: /usr/local/bin/terraform
+(1/2) Purging unzip (6.0-r4)    
+(2/2) Purging wget (1.20.3-r0) 
+Executing busybox-1.29.3-r10.trigger  
+OK: 6 MiB in 14 packages 
+Removing intermediate container 3a7dbfab3f34 
+---> f724b404486f  
+Step 4/4 : CMD ["terraform", "-v"]
+---> Running in 1f9b13bd4924  
+Removing intermediate container 1f9b13bd4924   
+---> c052badb9dd3    
+Successfully built c052badb9dd3             
+Successfully tagged da-terraform:c03-docker-e01   
+
+
+$ docker run -it da-terraform:c03-docker-e01  
+Terraform v0.12.20
+
+
+$ docker images 
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE   
+da-terraform        c03-docker-e01      c052badb9dd3        6 days ago          57.3MB   
+da-example          v1                  e35327a3d2a5        7 days ago          165MB   
+httpd               2.4.41              c5a012f9cf45        13 days ago         165MB  
+alpine              3.9.5               82f67be598eb        6 weeks ago         5.53MB     
