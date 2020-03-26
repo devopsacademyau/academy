@@ -221,6 +221,9 @@ It will use the file `labs.txt`and `students.txt`from the `scripts/` folder (TO 
 
 Run:  `make dashboard`
 
+Optionally you can pass the Github User and Token, so the API calls are not throttled.
+
+Run:  `make dashboard GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
 
 ## Presentation format
 
