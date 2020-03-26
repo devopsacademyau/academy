@@ -1,0 +1,19 @@
+1. Cause the file includes sensitive data(password), which shouldn't be added to git repo.
+
+2. It's not enough, because the file can be still found in the git history
+
+3. No, he file can be still found in the git history
+
+4. We need to remove them from the git history
+
+5. Run
+- git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch PATH-TO-THE-FILE" \
+  --prune-empty --tag-name-filter cat -- --all
+- git push origin --force --all # force-push your local changes to overwrite your GitHub repository
+- git push origin --force --tags #If need to remove from tagged releases
+
+6. We need to ask other developers to rebase, not merge, any branches they created off of the old repository history. 
+Reason: One merge commit could reintroduce some or all of the history that we just went to the trouble of purging.
+
+Ref:https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository
