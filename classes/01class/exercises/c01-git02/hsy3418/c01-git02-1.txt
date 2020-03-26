@@ -1,8 +1,0 @@
-Yes and no, 
-Yes because git records logs of updates applied to tips of branches and other commit references, 
-even when the commits are not referenced by any branches. command to see the logs: git reflog
-No because if we squash commits using git rebase -i, it creates a new history by combining multiple 
-commits into one new commit, so the old commits won't be shown in the history unless you want to check 
-the logs of the updates you made by running git reflog.
-
-references: https://www.atlassian.com/git/tutorials/rewriting-history
