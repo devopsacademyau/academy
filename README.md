@@ -118,21 +118,16 @@ The content can be accessed through each specific README link below.
     - AWS CLI
     - AWS S3 (Simple Storage Service)
       - Website
-      > - AWS Cloudfront
-      > - AWS WAF (Web Application Firewall)
-    - MakeFile
     - IaC - Terraform
     - AWS RDS (Relational Database Service)
     - Project #1 Kick-off
 - [Class 05](classes/05class/README.md)
+    - Docker
+    - Make
+    - Docker-Compose
+    - 3 Musketeers
     - CI/CD Concepts
-      - AWS CodeBuild
-    - Pipelines
-      - AWS CodePipeline
-      - AWS CodeDeploy (with Terraform)
-      - Github Actions ??
-    - Docker Compose
-    - 3 Musketeers (Docker, Docker-Compose, Make)
+    - GitHub Actions
 - [Class 06](classes/06class/README.md)
     - Project #1 Delivery
     - Introduction Serverless
