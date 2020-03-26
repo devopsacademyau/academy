@@ -25,20 +25,12 @@ Major steps: Find the create bucket service and create a bucket by using
 
 - Connect to the EC2 
 a. $ssh -i ~/downloads/ec2test.pem ec2-user@ec2-18-222-169-134.us-east-2.compute.amazonaws.com
-b. create a ~/.aws folder
-c. create a file in under ~/.aws 
-d. Put below text into the file
-[profile a_role]
-
-role_arn = arn:aws:iam::607961847144:instance-profile/a_role
-
-credential_source = Ec2InstanceMetadata
-e. access bucket images
+b. access bucket images
     $ aws s3 ls s3://academy-exe-bucket
     reponse:
     2020-03-26 09:40:26     915108 Screen Shot 2020-03-26 at 4.03.12 pm.png
     2020-03-26 10:32:51     915108 apic.png
-d. Try to delete a object(should be denied)
+c. Try to delete a object(should be denied)
     $aws s3 rm s3://academy-exe-bucket/apic.png
 reponse:
     delete failed: s3://academy-exe-bucket/apic.png An error occurred (AccessDenied) when calling the DeleteObject operation: Access Denied
