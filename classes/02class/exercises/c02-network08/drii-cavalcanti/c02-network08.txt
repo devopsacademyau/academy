@@ -1,0 +1,15 @@
+1. What is the difference between inbound x outbound?
+   The difference between inboud(ingress) and outbound(egress) is the direction of the traffic based on the point-of-view of the subnets interface. In other words, inbound is the traffic that an network receives and outbound is the traffic that an network sends.
+    
+2. What is going to happen by default? Everything allowed or denied?
+   As ACL rules are read in ascending order, network ACL allows all inbound and outbound traffic due to rule #101
+
+3. How would you block SSH connection comming from the network 172.16.200.200/24?
+   Inbound
+   Rule#   Type	             Protocol	Port Range	 Source	                Allow/Deny
+   1       SSH               TCP        22           172.16.200.200/24	    DENY
+
+4. How would you block access from your network to an external network 180.200.50.0/24?
+   Outbound   
+   Rule#   Type	             Protocol	Port Range	 Destination	        Allow/Deny
+   2       All IPv4 traffic  All        All          180.200.50.0/24	    DENY

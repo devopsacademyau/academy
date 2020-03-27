@@ -80,8 +80,8 @@ If you need help in any of these topics, [a tutorial is available on the pre-cla
 - Amazon Web Services (AWS)
     - Cloud concepts
     - Identity and Access Management (IAM) / CloudTrail / CloudWatch
-    - VPC / Subnet / route table / network acl / security group
-    - EC2 / auto-scaling group / load-balancer
+    - VPC / Subnet / Route table / Network ACL / Security Group
+    - EC2 / Auto-scaling Group / Load Balancer
     - Simple Storage Service (S3)
     - RDS / DynamoDB
     - Cloudfront / WAF
@@ -99,36 +99,51 @@ The content can be accessed through each specific README link below.
     - Git
 - [Class 02](classes/02class/README.md)
     - Agile Methodologies
-    - AWS Network Deep Dive
+    - Networking Introduction
+    - AWS VPC
 - [Class 03](classes/03class/README.md)
     - AWS EC2
         - Load Balancing
         - Auto Scaling Group
+    - AWS CloudWatch
     - AWS Route 53
     - Container - Docker
         - Repositories
         - Images
         - Dockerfile
         - AWS ECS
+        - AWS ECR
 - [Class 04](classes/04class/README.md)
-    - Project #1 Kick-off
-    - AWS - IAM
-    - AWS - CLI
-    - AWS - S3
-    - AWS - RDS
+    - AWS IAM (Identity and Access Management)
+    - AWS CLI
+    - AWS S3 (Simple Storage Service)
+      - Website
     - IaC - Terraform
-    - MakeFile
+    - AWS RDS (Relational Database Service)
+    - Project #1 Kick-off
 - [Class 05](classes/05class/README.md)
-    - CI/CD Concepts
-    - Pipelines
+    - Docker
+    - Make
+    - Docker-Compose
     - 3 Musketeers
+    - CI/CD Concepts
+    - GitHub Actions
 - [Class 06](classes/06class/README.md)
     - Project #1 Delivery
+    - Introduction Serverless
+    - AWS Lambda
+    - AWS API Gateway
     - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
-    - Serverless
+    - AWS DynamoDB
+    - AWS KMS (Key Management Service)
+    - AWS SSM - Parameter Store
+    - AWS SNS
+    - AWS SQS
 - [Class 08](classes/08class/README.md)
     - Project #2 Delivery
+    - Next steps
+    - Course Closure
 
 
 ## Exercises
