@@ -17,4 +17,4 @@ pitchme_to_readme:
 	bash scripts/pitchme_to_readme.sh
 
 rtr-cleanup:
-	$(ROOT_DIR)/scripts/rtr-cleanup.sh
+	$(ROOT_DIR)/scripts/rtr-cleanup.sh ${GH_USER} ${GH_TOKEN}

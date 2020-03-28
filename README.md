@@ -227,9 +227,13 @@ Example:
 
 ## Clean up Ready to Review tag from Closed PRs
 
-Set the environment variables GH_USER and GH_TOKEN with a GitHub User and Token with proper permissions to the repository.
+To clean up the `Read to Review` tags of the closed PRs, the below make target can be executed.
 
 Run:  `make rtr-cleanup`
+
+Optionally you can pass the Github User and Token, so the API calls are not throttled.
+
+Run:  `make rtr-cleanup GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
 
 # Authors
 
