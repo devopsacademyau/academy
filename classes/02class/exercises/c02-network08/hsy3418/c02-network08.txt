@@ -1,0 +1,30 @@
+- What is the difference between inbound x outbound?
+Inbound: traffic initiate from external.
+
+Outbound: traffic initiate from internal.
+In the view of a server firewall, 
+inbound means other server or client in front of the wall, 
+initiate connection with own server. On the other hand, 
+outbound means your server behind the wall, initiates connection to other server or client.
+
+- What is going to happen by default? Everything allowed or denied?
+Everything is allowed.
+
+- How would you block SSH connection comming from the network 172.16.200.0/24?
+I will create an inbound Rule
+Rule number: 10
+Type: SSH
+Protocol: TCP
+Port range: 22
+Source: 172.16.200.0/24
+Allow/Deny: Deny
+
+- How would you block access from your network to an external network 180.200.50.0/24?
+Create an outbound rule
+Rule number: 11
+Type: All IPv4 traffic
+Protocol: All
+Port range: All
+Destination: 180.200.50.0/24
+Allow/Deny: Deny
+
