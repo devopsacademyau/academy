@@ -49,7 +49,7 @@ Workflows are created in the `.github/workflows` directory in the root of the re
 
 Workflows must have at least one job, with a set of steps that perform individual tasks. Steps can run commands or use an action. You can create your own actions or use actions shared by the GitHub community and customize them as needed.
 
-The workflow can be configured to start when a GitHub event occurs, on a schedule, or from an external event. For example in this repository we have [this](https://github.com/devopsacademyau/academy/blob/master/.github/workflows/label.yaml) and [this](https://github.com/devopsacademyau/academy/blob/master/.github/workflows/stale.yaml) workflows. The first one adds labels whenever a new pull request is created or updated with new commits and the second runs based on a cron schedule.
+The workflow can be configured to start when a GitHub event occurs, on a schedule, or from an external event. For example in this repository we have [this label.yaml](https://github.com/devopsacademyau/academy/blob/master/.github/workflows/label.yaml) and [this stale.yml](https://github.com/devopsacademyau/academy/blob/master/.github/workflows/stale.yml) workflows. The first one adds labels whenever a new pull request is created or updated with new commits and the second runs based on a cron schedule.
 
 Both examples above have a single job with a single step as an action. Another example, but this one using commands instead of actions would be the one below:
 ```yaml
