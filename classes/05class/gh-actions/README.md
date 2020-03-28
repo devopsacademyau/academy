@@ -148,8 +148,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Authenticates
-          mypasssword: ${{ secrets.mypassword }}
-          myusername: ${{ secrets.myusername }}
+         env:  # as environment variables
+           mypasssword: ${{ secrets.mypassword }}
+           myusername: ${{ secrets.myusername }}
+         with:  # as input
+           mypasssword: ${{ secrets.mypassword }}
+           myusername: ${{ secrets.myusername }}
         run: docker login -u $myusername -p $mypassword
       - run: ./build.sh
         working-directory: ./scripts
