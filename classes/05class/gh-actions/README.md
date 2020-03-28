@@ -8,6 +8,7 @@ The main goal is to explain the purpose, the benefits and how to use it.
   - [Runners](#runners)
   - [Workflow](#workflow)
   - [Job](#job)
+  - [Action](#action)
   - [Step](#step)
 - [Creating a Workflow](#creating-a-workflow)
 - [Using Environment Variables](#using-environment-variables) 
@@ -51,7 +52,11 @@ A step is an individual task that can run commands or actions. A job is a compos
 For example, you can compile your application in one step and build a container in a nother step, everything being part of a single Job.
 
 ## Creating a Workflow
-Workflows are created in the `.github/workflows` directory in the root of the repository. You can have multiple workflows per repository.
+Workflows are created in the `.github/workflows` directory in the root of the repository. You can have multiple workflows per repository and they follow a structure similar to the one in the below diagram.
+<p align="center">
+    <img src="assets/diagram.png">
+</p>
+
 
 Workflows must have at least one job, with a set of steps that perform individual tasks. Steps can run commands or use an action. You can create your own actions or use actions shared by the GitHub community and customize them as needed.
 
@@ -94,6 +99,32 @@ jobs:
       - run: make publish
         working-directory: ./scripts
 ```
+
+Since some jobs may have depend on other jobs completion in order to run, you can create that dependency by sing the `needs` option, like the examploe below.
+
+```yaml
+name: Builder
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - run: make build
+        working-directory: ./scripts
+      - run: make test
+        working-directory: ./scripts
+      - run: make publish
+        working-directory: ./scripts
+  alert:
+    needs: build
+    steps:
+      - run: make alert
+        working-directory: ./scripts
+```
+
+With that config, the job `alert` will only start when the job `build` has successfully completed.
 
 Another option would be to run a container as one of the steps of your Job. The code below is an example of that option. 
 
@@ -142,7 +173,7 @@ A secret can be created inside the `Settings` section of your repository, under 
     <img src="assets/secrets.png">
 </p>
 
-With the secret created you can use it in your workflow. For example, your secret can be used as an Environment Variable on your step, like the example below:
+With the secret created you can use it in your workflow. For example, your secret can be used as an Environment Variable or Inputs on your step, like the example below:
 
 ```yaml
 name: Build
@@ -186,3 +217,5 @@ To get more information about a specific workflow execution, by clicking on it y
 
 ## Appendix
 - [GitHub Actions](https://help.github.com/en/actions)
+- [Workflow Syntax](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions)
+- [Context and Expression](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions)
