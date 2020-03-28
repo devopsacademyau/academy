@@ -1,0 +1,25 @@
+- access to your public instance using SSH
+$ssh -i ~/downloads/awskey.pem ec2-user@ec2-54-252-216-254.ap-southeast-2.compute.amazonaws.com
+The first ssh couldn't get through, after troubleshooting, I found missing adding 0.0.0.0/0 target to IGW 
+into the routetable of the public subnet. After adding the routes, got the following response:
+SIYUANs-MBP:~ siyuanhu$ ssh -i ~/downloads/awskey.pem ec2-user@ec2-54-252-216-254.ap-southeast-2.compute.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+
+
+- FROM your PUBLIC instance, SSH to your private one
+add the key to from my local to the public instance
+$scp -i ~/downloads/awskey.pem ~/downloads/awskey.pem ec2-user@ec2-54-252-216-254.ap-southeast-2.compute.amazonaws.com:~/
+and ssh into the public ec2.
+$ssh -i awskey.pem ec2-user@10.0.1.10
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+
