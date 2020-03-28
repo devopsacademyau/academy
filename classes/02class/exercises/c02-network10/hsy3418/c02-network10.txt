@@ -1,0 +1,19 @@
+In AWS console, navigate to
+EC2>network interface>create network interface
+
+Select subnet private-a for this ENI
+Put 10.0.1.10 as a custom IPv4 address
+and select defaut security group
+
+details
+Network interface ID:eni-0dd768ac575ff00d9
+Subnet ID:subnet-070400bde1b434b2f
+VPC ID:vpc-098614659e38900e0
+Availability Zone:ap-southeast-2a
+MAC address:06:6c:23:53:d6:8a
+Description:-
+Security groups:default. 
+Network interface owner:607961847144
+Status:available
+Primary private IPv4 IP:10.0.1.10
+Private DNS (IPv4):ip-10-0-1-10.ap-southeast-2.compute.internal
