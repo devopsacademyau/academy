@@ -21,6 +21,12 @@ GitHub Actions(GH Actions) is a a feature in GitHub that helps the automation th
 
 With GH Actions we can build end to end continuous integration(CI) and continuous deployment(CD) of the code being developed.
 
+The building blocks for GitHub Actions are:
+- Runner
+- Workflows
+- Job
+- Action 
+- Step
 ### Runners
 Workflows run in Linux, macOS, Windows, and containers on GitHub-hosted machines, called `Runners`. Alternatively, you can also host your own runners to run workflows on machines you own or manage, called `self-hosted Runners`. The type of host you'll use as well as if will be sed the GitHub-hosted or the self-hosted will be based on the requirements you'll have. Our usage here in the DevOps Academy will be mainly with GitHub-hosted Linux and containers.
 
