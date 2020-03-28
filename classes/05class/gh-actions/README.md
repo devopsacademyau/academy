@@ -32,7 +32,7 @@ For example, a workflow can be initiated when a new Pull request is created in t
 The worflow is defined in a yaml file with at least one job. This file lives in the root of your GitHub repository in the `.github/workflows` directory.
 
 ### Job
-A job is a set of steps that is executed on the same runner. You can define dependencies between jobs in the same workflow. You can have multiple jobsrunning in parallel or run sequentially depending on the status of a previous job. 
+A job is a set of steps that are executed on the same runner. You can define dependencies between jobs in the same workflow. You can have multiple jobs running in parallel or sequentially depending on the status of a previous job. 
 
 For example, a workflow can have two sequential jobs that build and test code, where the test job only runs if the build step completed successfully. For GitHub-hosted runners, each job in a workflow runs in a fresh instance of a virtual environment.
 
@@ -176,4 +176,3 @@ To get more information about a specific workflow execution, by clicking on it y
 
 ## Appendix
 - [GitHub Actions](https://help.github.com/en/actions)
-
