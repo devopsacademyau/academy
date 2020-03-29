@@ -29,7 +29,7 @@ As you can see the Makefile can be very complex and it can be used for multiple 
 ## Running some Code
 Let's get our hands into the Make utility and see how it works.
 
-The Make file is, basically, made of targets and instructions, and the syntax follow the below:
+The Make file is basically composed of targets and instructions, and the syntax follows the below:
 
 ```Makefile
 target: pre-requisites
