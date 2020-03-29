@@ -172,7 +172,8 @@ Creating file
 ```
 Noticed that by executing the command `FILE=out.txt make create_file`, the file `out.txt` was created. Also, because we defined a default value of `output.txt` in the Makfile for the `$FILE` variable (FILE ?= output.txt), by not specifying a value during the make execution, make uses this default value.
 
-## Mixing Together
+## Mixing Together Make and Docker-Compose
+
 Now that we know a few things about the Make utility and the Makefile, let's mix it with some other tool that we've been learning in the past few classes.
 
 A good example would be to use a Makefile to interact with your docker containers. Consider that in order to build and test your container it requires a few long commands and sometimes some changes in variables that your container need. In that case, the Make tool could improve the deveoper and operation experience by reducing the required commands. Take [this Makefile](artifacts/mixing/Makefile) as example:
