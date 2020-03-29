@@ -25,6 +25,7 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
 - [Contributors and Instructors](#contributors-and-instructors)
   - [Create a dashboard (CSV file) about  exercise submissions](#create-a-dashboard-csv-file-about-exercise-submissions)
   - [Presentation format](#presentation-format)
+  - [Clean up Ready to Review tag from Closed PRs](#clean-up-ready-to-review-tag-from-closed-prs)
 - [Authors](#authors)
   - [Caio Trevisan](#caio-trevisan)
   - [Denis Storti](#denis-storti)
@@ -255,6 +256,16 @@ Run:  `make dashboard GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
     * Offline: use a [Docker container](https://github.com/kns-it/Docker-GitPitch/), run `make presentation` and `open http://localhost:9000/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`
     For running in a specific folder: `FOLDER_NAME=class2 make presentation`
 
+
+## Clean up Ready to Review tag from Closed PRs
+
+To clean up the `Read to Review` tags of the closed PRs, the below make target can be executed.
+
+Run:  `make rtr-cleanup`
+
+Optionally you can pass the Github User and Token, so the API calls are not throttled.
+
+Run:  `make rtr-cleanup GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
 
 # Authors
 
