@@ -53,6 +53,9 @@ We will not go into a lot of details around the web and the redis images here, b
 
 By having the `docker-compose.yaml` file in place, we can just run the following command to build/start the containers in deatch mode: `docker-compose up 0d`. By invoking this command, the docker-compose will create a new docker network to be shared between all the containers and will make the name of each service resolvable through DNS, so every container can communicate with the others by using their service name. You can check the status of each container by running `docker-compose ps` and to stop the containers, just run `docker-compose down` in the same folder.
 
+You can also run a single service defined in `docker-compose.yaml` by using the command `docker-compose run`.
+
+Example: `docker-compose run --rm redis`
 A list of all options of the `docker-compose` can be found [here](https://docs.docker.com/compose/reference/).
 
 ## Appendix
