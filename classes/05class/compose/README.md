@@ -20,7 +20,9 @@ Because the Compose tool makes easy to run multiple containers in the same machi
 
 For example, you can have a Compose file defining a database service (like MySQL) and the application being developed. Whenever new code needs to be tested, Compose can be used used to run both services locally and the feedback from the code being developed can be gathered really quickly.
 
-Another ver common usage of the Compose is during some integration tests of your CI pipeline. By suing docker-compose, you can start all your containers in your CI tool and run a set of tests to validate that all the components that your application is builded from are working correctly together. This is a very common and import step of any mature CI pipeline.
+Another common usage of the Compose is during some **integration tests** of your CI pipeline. 
+
+By using docker-compose, you can start all your containers in your CI tool and run a set of tests to validate that all the components that your application is built from are working correctly together. This is a very common and important step of any mature CI pipeline.
 
 ## Compose file
 The docker-compose.yaml file is where all the definition that your docker-compose command use goes. By being a yaml file, its structure is easily undestandable and well known for most Developers.
