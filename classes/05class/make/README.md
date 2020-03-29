@@ -14,7 +14,7 @@ The main goal is to explain the purpose, the benefits and how to use it.
 
 ## What is Make?
 Make is a tool to execute a sequence of commands (like a recipe) based on targets defined in a specific file.
-Commonly used to compile and build applications from its source code, the make utility has became very popular in the DevOps community, being used to create scripts for automation.
+Commonly used to compile and build applications from its source code, the make utility has become very popular in the DevOps community, being used to create scripts for automation.
 
 ## Why use Make?
 One of the biggest benefits of the Make utility is the ability to run in multiple platforms and shells. For example, if an engineer creates automations using bash scripts, another engineer using a different shell, like zsh, might have problems executing those scripts locally.
