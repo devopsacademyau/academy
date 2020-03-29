@@ -96,7 +96,7 @@ remove_file:
 	rm output.txt
 ```
 
-Now we have three different targets that can be invoked by running `make create_file`, `make write_to_file` and `make remove_file`.
+Now we have three different targets that can be invoked by running `make create_file`, `make write_to_file` and `make remove_file`. Or in a shorter way `make create_file write_to_file remove_file`.
 
 Because we have multiple targets, by executing the `make` without any target, only the first target described in the Makefile will be executed. If you want to change the target to be executed when no target is informed, you can make use of the `.DEFAULT_GOAL` option in the beggining of the Makefile:
 
