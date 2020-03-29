@@ -44,7 +44,7 @@ A job is a set of steps that are executed on the same runner. You can define dep
 For example, a workflow can have two sequential jobs that build and test code, where the test job only runs if the build step completed successfully. For GitHub-hosted runners, each job in a workflow runs in a fresh instance of a virtual environment.
 
 ### Action
-Action is an individual tasks that you combine as steps to create a job. Actions are the smallest portable building block of a workflow. You can create your own actions, use actions shared from the GitHub community, and customize public actions. To use an action in a workflow, you must include it as a step.
+Action is an individual tasks that you combine as steps to create a job. Actions are the smallest portable building block of a workflow. You can create your own actions, use actions shared from the [GitHub Community Marketplace](https://github.com/marketplace?type=actions), and customize public actions. To use an action in a workflow, you must include it as a step.
 
 ### Step
 A step is an individual task that can run commands or actions. A job is a composed by one or more steps. Each step in a job executes on the same runner, allowing the actions in that job to share information using the filesystem. 
