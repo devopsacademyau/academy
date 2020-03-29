@@ -25,7 +25,10 @@ Another ver common usage of the Compose is during some integration tests of your
 ## Compose file
 The docker-compose.yaml file is where all the definition that your docker-compose command use goes. By being a yaml file, its structure is easily undestandable and well known for most Developers.
 
-The compose file starts with the defitionn of the version to be used. The latests is the version 3. After the version, you can state the services that compose will run, which is a container container image with any additional configuration, like environment variables, volume mounts, etc.
+The compose file starts with the definition of the version to be used. The latest is version 3. 
+
+After the version, you can state the services that compose will run, which is a container image with any additional configuration, like environment variables, volume mounts, etc.
+
 
 The example below is also [here](artifacts/class/docker-compose.yaml)
 
