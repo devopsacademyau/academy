@@ -3,6 +3,11 @@ export REPO_NAME?=academy
 export BRANCH_NAME?=
 export FOLDER_NAME?=
 
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+
+dashboard:   # Creates a scorecard dashboard in CSV. You can pass GH_USER and GH_TOKEN to authenticate in GitHub
+	$(ROOT_DIR)/scripts/dashboard.sh ${GH_USER} ${GH_TOKEN}
+
 presentation:
 	docker-compose up -d
 	sleep 5

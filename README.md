@@ -23,6 +23,7 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
     - [Available labs](#available-labs)
   - [Projects](#projects)
 - [Contributors and Instructors](#contributors-and-instructors)
+  - [Create a dashboard (CSV file) about  exercise submissions](#create-a-dashboard-csv-file-about-exercise-submissions)
   - [Presentation format](#presentation-format)
 - [Authors](#authors)
   - [Caio Trevisan](#caio-trevisan)
@@ -229,9 +230,25 @@ Example:
 
 # Contributors and Instructors
 
+## Create a dashboard (CSV file) about  exercise submissions
+
+It will use the file `labs.txt`and `students.txt`from the `scripts/` folder (TO BE IMPROVED FOR FLEXIBILITY).
+
+Run:  `make dashboard`
+
+Optionally you can pass the Github User and Token, so the API calls are not throttled.
+
+Run:  `make dashboard GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
+
 ## Presentation format
 
 * We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
+
+* Generate the presentation by running: 
+  * `make presentation`
+* Generate a README.md file from the PITCHME.md file:
+  * `make pitchme_to_readme`
+
 * For GitPitch, use PITCHME.md files and subfolders using query string "p=FOLDERNAME" with the class name
 * GitPitch can run either online (out-of-the-box for Github public repos):
     * Online: access `https://gitpitch.com/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`. Folder must contain a PITCHME.md file.
