@@ -11,7 +11,7 @@ The main goal is to explain the purpose, the benefits and how to use it.
 ## What is Docker Compose?
 Compose is a tool for defining and running multiples docker containers that needs to interact between each other. It's a very popular tool for development as well as for CI workflows.
 
-The Compose tool is used by creating a file called `docker.compose.yaml`, where all the containers will be defined. Once you have created this file, you can bring all containers running by execuring the command `docker-compose up`.
+The Compose tool is used by creating a file called `docker-compose.yaml`, where all the containers will be defined. Once you have created this file, you can bring all containers running by executing the command `docker-compose up`.
 
 If you still don't have Docker Compose installed on your machine, you can follow the steps [here](https://docs.docker.com/compose/install/) to have it installed. 
 
