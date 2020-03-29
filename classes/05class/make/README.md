@@ -24,7 +24,7 @@ By using make, the same script can be used in any Linux and MacOS operating syst
 ## Makefile
 The Makefile contains the targets and instructions that will be used when the Make utility is executed. It can contain variables, conditions (`if` and `else`) and loops (like `for`).
 
-As you can see the Makefile can be very complex and it can be used for multiple purposes. For this course and the pupose of what we'll be mostly using, we'll only cover the basics of it.
+As you can see the Makefile can be very complex and it can be used for multiple purposes. For this course and the purpose of what we'll be mostly using, we'll only cover the basics of it.
 
 ## Running some Code
 Let's get our hands into the Make utility and see how it works.
