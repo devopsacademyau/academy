@@ -61,7 +61,12 @@ say_helloworld:
 ```
 For more details of the reason behind that, you can check [this link](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html)
 
-Because there is a single target, if the target is not specified, the single target is execued anyway.
+Because there is a single target, if the target is not specified, the first target of the `Makefile` will be executed.
+
+There is a convention to create the first target as `all`, so when running just `make` it will invoke several targets:
+
+```Makefile
+all: target1 target2 target3
 
 Additionally, in the Makefile when executing a command you can use the `@` symbol preceding the command to not output the command execution in the console. Without the `@`, the output would be the following:
 ```shell
