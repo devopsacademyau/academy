@@ -80,7 +80,7 @@ $
 Let's move to an example with multiple targets now. Consider the folowing Makefile:
 
 ```Makefile
-.PHONY: create_file
+.PHONY: create_file write_to_file remove_file
 create_file:
 	@echo "Creating file"
 	@touch output.txt
