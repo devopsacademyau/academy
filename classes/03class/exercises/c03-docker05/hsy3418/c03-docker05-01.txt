@@ -1,0 +1,25 @@
+$docker pull hsy3418/exercise02:v1
+v1: Pulling from hsy3418/exercise02
+aad63a933944: Pull complete 
+29ade582b51e: Pull complete 
+7e41ad5b6f9c: Pull complete 
+ebf61b47b4ca: Pull complete 
+9c060bce4eae: Pull complete 
+b03c38e0261c: Pull complete 
+Digest: sha256:4af2b3216c9e16ce3c602cfce55bd4fe9fb067c46cfcb224412e594c289d87be
+Status: Downloaded newer image for hsy3418/exercise02:v1
+docker.io/hsy3418/exercise02:v1
+
+
+$docker pull hsy3418/exercise02:v2
+docker pull hsy3418/exercise02:v2
+v2: Pulling from hsy3418/exercise02
+aad63a933944: Already exists 
+29ade582b51e: Already exists 
+7e41ad5b6f9c: Already exists 
+ebf61b47b4ca: Already exists 
+9c060bce4eae: Already exists 
+108ce92e38e1: Pull complete 
+Digest: sha256:349c1fbd05cab106ba48884fcd96f10e16194ed4badcf608b7571af8d8a6ef1f
+Status: Downloaded newer image for hsy3418/exercise02:v2
+docker.io/hsy3418/exercise02:v2

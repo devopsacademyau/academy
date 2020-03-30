@@ -1,0 +1,4 @@
+$docker images -a
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+hsy3418/exercise02                   v1                  62796ea1c150        16 hours ago        107MB
+hsy3418/exercise02                   v2                  78ce239e66d7        17 hours ago        107MB
