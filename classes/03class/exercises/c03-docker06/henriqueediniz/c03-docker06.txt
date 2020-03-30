@@ -1,0 +1,16 @@
+👽 henriquediniz docker image build -t hello-name:v1 .
+Sending build context to Docker daemon  2.048kB
+Step 1/2 : FROM alpine:3.9.5
+3.9.5: Pulling from library/alpine
+9123ac7c32f7: Pull complete 
+Digest: sha256:115731bab0862031b44766733890091c17924f9b7781b79997f5f163be262178
+Status: Downloaded newer image for alpine:3.9.5
+ ---> 82f67be598eb
+Step 2/2 : ENTRYPOINT ["echo", "Hello"]
+ ---> Running in 71aa03f2f6f5
+Removing intermediate container 71aa03f2f6f5
+ ---> b07fdcf609f8
+Successfully built b07fdcf609f8
+Successfully tagged hello-name:v1
+👽 henriquediniz docker run -it hello-name:v1 Henrique
+Hello Henrique
