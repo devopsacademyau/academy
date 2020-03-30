@@ -1,0 +1,5 @@
+docker images -a     
+REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE
+henriquediniz/exercise02   v2                  949bc9e9cf66        7 days ago          109MB
+henriquediniz/exercise02   v1                  d360639af03c        7 days ago          109MB
+postgres                   11                  55ff21ffc6d1        3 months ago        332MB

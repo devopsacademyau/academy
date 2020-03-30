@@ -1,0 +1,29 @@
+docker run -dit -p 8081:80 henriquediniz/exercise02:v1 
+Unable to find image 'henriquediniz/exercise02:v1' locally
+v1: Pulling from henriquediniz/exercise02
+c9b1b535fdd9: Pull complete 
+8f37b2be62f6: Pull complete 
+badbb502951e: Pull complete 
+a27b80e2bf04: Pull complete 
+2c005fed9a91: Pull complete 
+e628a7478a7e: Pull complete 
+b62f996736ce: Pull complete 
+Digest: sha256:9626272d8251bf25e48d3d8668d8f66acad2f1ee61b64241aabbb1209147c5af
+Status: Downloaded newer image for henriquediniz/exercise02:v1
+4e33548a78edebb70eac17398af7affbc4e7d2b662d946c9a55c7ca4d01434ab
+academy on  master took 36s 
+👽 henriquediniz pwd                                                                               
+/Users/henriquediniz/Projects/academy-contino/academy
+academy on  master 
+👽 henriquediniz docker run --volume /Users/henriquediniz/Projects/academy-contino/academy/classes/03class/docker/artifacts/c03-docker02/:/usr/local/apache2/htdocs/ -dit -p 8082:80 henriquediniz/exercise02:v2 
+Unable to find image 'henriquediniz/exercise02:v2' locally
+v2: Pulling from henriquediniz/exercise02
+c9b1b535fdd9: Already exists 
+8f37b2be62f6: Already exists 
+badbb502951e: Already exists 
+a27b80e2bf04: Already exists 
+2c005fed9a91: Already exists 
+a6f5932d63a5: Pull complete 
+Digest: sha256:19447c46b868d50e6081cc53bd97736c7915c5e7b4cad74e35ccf22d6a255ca9
+Status: Downloaded newer image for henriquediniz/exercise02:v2
+ae86c16a59fd26b34daddb61632683b085e9a234cda4bd14327386fe9dd08b99
