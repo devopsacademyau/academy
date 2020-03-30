@@ -1,0 +1,8 @@
+#stop cotainer
+$ docker container stop $(docker container ls -aq)
+
+#remove stoped container
+$ docker container prune
+
+#remove stoped image
+$ docker image prune -a
