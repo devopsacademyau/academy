@@ -32,5 +32,5 @@ ip-192-168-2-145.ap-southeast-2.compute.internal
 ip-192-168-1-66.ap-southeast-2.compute.internal
 	ubuntu@ip-192-168-101-164:~$ curl http://intra.faria
 ip-192-168-2-145.ap-southeast-2.compute.internal
-	ubuntu@ip-192-168-101-164:~$http://intra.faria
+	ubuntu@ip-192-168-101-164:~$ curl http://intra.faria
 ip-192-168-1-66.ap-southeast-2.compute.internal
