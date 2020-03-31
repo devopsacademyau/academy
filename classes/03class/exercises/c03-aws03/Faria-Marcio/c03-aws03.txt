@@ -26,11 +26,11 @@
 #Result:
 
    --> I connected in my public EC2 instance and through it I accessed the private route53 hostname for my private instances:
-	ubuntu@ip-192-168-101-164:~$ curb.amazonaws.comfaria-197225106.ap-southeast-2.elb
+	ubuntu@ip-192-168-101-164:~$ curl http://intra.faria
 ip-192-168-2-145.ap-southeast-2.compute.internal
-	ubuntu@ip-192-168-101-164:~$ curb.amazonaws.comfaria-197225106.ap-southeast-2.elb
+	ubuntu@ip-192-168-101-164:~$ curl http://intra.faria
 ip-192-168-1-66.ap-southeast-2.compute.internal
-	ubuntu@ip-192-168-101-164:~$ curlb.amazonaws.comaria-197225106.ap-southeast-2.elb
+	ubuntu@ip-192-168-101-164:~$ curl http://intra.faria
 ip-192-168-2-145.ap-southeast-2.compute.internal
-	ubuntu@ip-192-168-101-164:~$ curb.amazonaws.comfaria-197225106.ap-southeast-2.elb
+	ubuntu@ip-192-168-101-164:~$http://intra.faria
 ip-192-168-1-66.ap-southeast-2.compute.internal
