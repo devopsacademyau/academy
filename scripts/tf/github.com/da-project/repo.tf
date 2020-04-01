@@ -3,6 +3,7 @@ resource "github_repository" "repo" {
 
   private      = false
   has_projects = true
+  has_issues   = true
 
   template {
     owner      = "devopsacademyau"
