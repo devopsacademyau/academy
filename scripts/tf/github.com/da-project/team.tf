@@ -10,7 +10,6 @@ resource "github_team_membership" "member" {
   role     = "maintainer"
 }
 
-
 resource "github_team_repository" "team_repo" {
   team_id    = github_team.team.id
   repository = github_repository.repo.name

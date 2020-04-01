@@ -5,8 +5,7 @@ variable "members" {
   type = list
 }
 variable "github_organization" {
-  default = "devopsacademyau"
 }
 variable "github_token" {
 }
-
+variable "admins_team_id"{}

@@ -10,6 +10,12 @@ resource "github_repository" "repo" {
   }
 }
 
+resource "github_team_repository" "admins_access" {
+  team_id    = var.admins_team_id
+  repository = github_repository.repo.name
+  permission = "admin"
+}
+
 resource "github_repository_file" "README" {
   repository = github_repository.repo.name
   file       = "README.md"
