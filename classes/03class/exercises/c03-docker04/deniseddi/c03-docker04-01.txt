@@ -1,0 +1,15 @@
+1. Commands used to clean up containers and imagesfrom my local (I've used them a bit during the previous docker exercises):
+
+•   For each container I first stopped, then deleted like so:
+denisegomes$ docker stop <container ID>
+denisegomes$ docker rm <container ID>
+
+•	For images:
+denisegomes$ docker rmi <image ID>
+
+and, when I got a conflict message: 
+denisegomes$ docker rmi -f <image ID> 
+
+
+
+

@@ -1,0 +1,41 @@
+### Exercise 5.1 - Docker
+Ran the existing command from my inital containers created in Exercise 2 but pulled it from my Docker Hub repoistry 
+I ensued that I was logged into Docker CLI and ran the following
+
+
+##Pulling images
+1 = docker pull starkmatt/exercise02:v1
+2 = docker pull starkmatt/exercise02:v2
+
+
+➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker pull starkmatt/exercise02:v1
+v1: Pulling from starkmatt/exercise02
+c9b1b535fdd9: Already exists 
+8f37b2be62f6: Already exists 
+badbb502951e: Already exists 
+a27b80e2bf04: Already exists 
+2c005fed9a91: Already exists 
+9fb6cb8a52df: Pull complete 
+Digest: sha256:045d5f2862e5e529f0dea391c705f5b4cba5b940e370ad05b192d421b6b9264e
+Status: Downloaded newer image for starkmatt/exercise02:v1
+
+
+➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker pull starkmatt/exercise02:v2
+v2: Pulling from starkmatt/exercise02
+c9b1b535fdd9: Already exists 
+8f37b2be62f6: Already exists 
+badbb502951e: Already exists 
+a27b80e2bf04: Already exists 
+2c005fed9a91: Already exists 
+Digest: sha256:b8d253f4711797adcff1d6d1e367fb07861edb737492de58472d6dfaa1b9bf68
+Status: Downloaded newer image for starkmatt/exercise02:v2
+
+
+
+## Running images
+
+➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker run -dp 8081:80 starkmatt/exercise02:v1
+c28514e6680d64c065b0b0795d7d52af6bf8a71495c9b46ad70288b803a86686
+
+➜  starkmatt git:(starkmatt/c03-docker05) ✗ docker run -dp 8082:80 -v /root/academy/classes/03class/docker/artifacts/c03-docker02:/usr/local/apache2/htdocs -it exercise02:v2
+1e9c9e890027a14ce7dde5d95e1a58e9fec58c0ba8c03b7c04eae9d3ab29a5b0

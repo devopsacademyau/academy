@@ -1,0 +1,14 @@
+-- QUESTIONS
+    What is the difference between inbound x outbound?
+	The Network ACL inbound rules are used for treating the connections that are made to the subnet and The Network ACL outbound rules are used for treating the connections that are made from the subnet.
+
+    What is going to happen by default? Everything allowed or denied?
+	Everything allowed
+
+    How would you block SSH connection comming from the network 172.16.200.200/24?
+	I would add a new Network ACL inbound rule with a number less than 100 and with the following details: 
+		SSH (22)    TCP (6)    22    172.16.200.200/24    DENY
+
+    How would you block access from your network to an external network 180.200.50.0/24?
+	I would add a new Network ACL outbound rule with a number less than 100 and with the following details: 
+		All Traffic    ALL    ALL    180.200.50.0/24    DENY

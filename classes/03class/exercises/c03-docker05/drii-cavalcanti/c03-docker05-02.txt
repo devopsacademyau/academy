@@ -1,0 +1,1 @@
+The first time you run an image, the run command looks for it on your local system. If the image isn’t there, then docker gets it from the hub.

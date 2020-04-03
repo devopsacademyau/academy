@@ -1,0 +1,63 @@
+-------
+v1
+-------
+
+*henriquediniz docker build -t exercise02:v1 -f Dockerfile.v1 .
+Sending build context to Docker daemon  3.584kB
+Step 1/4 : FROM httpd:2.4.41-alpine
+ ---> cb171b88ec92
+Step 2/4 : ADD https://raw.githubusercontent.com/devopsacademyau/academy/master/classes/03class/docker/artifacts/c03-docker02/index.html /usr/local/apache2/htdocs/
+Downloading      57B
+ ---> 294f96411c1b
+Step 3/4 : RUN chmod 755 -R /usr/local/apache2/htdocs
+ ---> Running in c119a249f63d
+Removing intermediate container c119a249f63d
+ ---> 92a7e4907f15
+Step 4/4 : EXPOSE 80
+ ---> Running in af92d47e9169
+Removing intermediate container af92d47e9169
+ ---> d360639af03c
+Successfully built d360639af03c
+Successfully tagged exercise02:v1
+
+henriquediniz docker run -dit --rm -p 8081:80 exercise02:v1
+9844e93870c0f5e193485c43825e2e4c151cddb0cfa7adfc6161b68058792fcf
+
+--------
+v2
+--------
+
+henriquediniz docker build -t exercise02:v2 -f Dockerfile.v2 .
+Sending build context to Docker daemon  4.608kB
+Step 1/3 : FROM httpd:2.4.41-alpine
+ ---> cb171b88ec92
+Step 2/3 : RUN rm -rf /usr/local/apache2/htdocs/
+ ---> Running in 35d7503446f9
+Removing intermediate container 35d7503446f9
+ ---> d2e16c461081
+Step 3/3 : EXPOSE 80
+ ---> Running in b41de7fc5434
+Removing intermediate container b41de7fc5434
+ ---> 949bc9e9cf66
+Successfully built 949bc9e9cf66
+Successfully tagged exercise02:v2
+
+
+--------------------------------------------------------------------------------
+
+henriquediniz curl localhost:8082
+<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+academy/classes/03class/exercises/c03-docker02/henriqueediniz on  henriqueediniz/c03-docker02 [?] 
+henriquediniz curl localhost:8081
+<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+
+
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+exercise02                  v2                  949bc9e9cf66        6 minutes ago       109MB
+exercise02                  v1                  d360639af03c        27 minutes ago      109MB
+
+
+Explain any difference between the responses of the webservers before and after changing the file locally:
+
+The container v1 get the html file local and the container v2 get it from the folder c03-docker02 
+as it was mounted on /usr/local/apache2/htdocs before run the container. 

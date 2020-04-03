@@ -1,0 +1,56 @@
+
+- Create an Auto Scaling Group.How did you achieve that?
+
+    On AWS console, 
+    1.Create Auto Scaling group -> Create new launch configuration: 
+    Selected the Amazon Linux 2 AMI (free tier), Family: General Purpose, Type: t2.nano (free tier).
+
+    On Configure details under Advanced Details, added the user-data script. IP address type: Assign a public IP address to every instance.
+    Left the default storage (8GiB), Volume type: General Purpose. 
+
+    2.Configure Security Group. 
+    Add Rule: Type: Custom TCP Rule, Protocol: TCP, Port Range: 80, Source 0.0.0.0/0.(1st time I don’t think it worked because it was referring to a different VPC ID - default?. So I cancelled it, created a new security group first allowing connection from anywhere to port 80 and attached to VPC "devopsacademy-vpc". An earlier error also said that in order to connect this instance, the AMI requires port 22. So I did that.)
+
+    3.Review -> Create launch configuration 
+    Selected existing keypair: "denise_admin_keypair3"
+
+    4.Create Auto scaling group
+    Start with 2 instances (desired capacity)
+    (Size: min1/max2/Des2)
+    Network (VPC): devopsacademy-vpc
+    Subnet: public-a, public-b, previously created.
+
+    5. Configure scaling policies 
+    Scale between 1 and 2 instances (min/max)
+    Scale Group size, Average CPU utilization, 80, 60 seconds to warm up after scaling.
+    (Because one instance was being terminated and I was only able to access one instance through browser, I later deleted this policy and kept original size of desired 2 instances.)
+
+    6.No notification added, no tags added.
+    Review details -> Create auto scaling group -> Close 
+
+- Access through your browser each instance IP on port 80 http://<instance-ip> and post the hostname of each one.
+     
+    Instance 1
+    http://13.239.30.182/
+    ip-10-0-3-92.ap-southeast-2.compute.internal
+
+    Instance 2
+    http://13.239.40.208/
+    ip-10-0-1-77.ap-southeast-2.compute.internal
+
+- Details of the security group used:
+
+    Group ID:sg-0a4f7e086c889b942
+    VPC ID: vpc-017bb80047b1a21b3
+    Owner: 148202060271
+    Group name: sg_for_my_asg
+
+    Inbound Rules
+    Type   Protocol     Port Range     Source 
+    HTTP    TCP             80          0.0.0.0/0
+    SSH     TCP             22          121.211.57.221/32 (My IP)
+ 
+- what this line is doing? curl https://169.254.169.254/latest/meta-data/hostname > index.html
+
+    It is writing my instance metadata (hostname) in a new file “index.html”. 
+    The instance metadata is available from my running instance. According to AWS docs,Amazon EC2 Instances have metadata they can retrieve by accessing a web server on a link-local address, 169.254.169.254. 

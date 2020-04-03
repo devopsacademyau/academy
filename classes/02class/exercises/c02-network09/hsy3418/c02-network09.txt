@@ -1,0 +1,15 @@
+Open the AWS console
+Navigate to VPC -> Security Groups -> Create Security Group
+Enter the name:public-sg
+Enter description: SSH access from home to AWS
+Select the VPC.
+After it being created
+Choose Actions, Edit inbound rules, Add rule
+
+Type           | Protocol | PortRange | Source          |  Description
+Custom TCP Rule|   TCP    |  22       | 49.184.198.42/32| SSH access from home to AWS
+
+Create another one and add rule
+
+Type           | Protocol | PortRange | Source              |  Description
+Custom TCP Rule|   TCP    |  22       | sg-0b327ddbcf01f6eeb| SSH access only from public instances on AWS

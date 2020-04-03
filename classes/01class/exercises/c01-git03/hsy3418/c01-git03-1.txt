@@ -1,0 +1,24 @@
+1.
+Before adding big file was 96 K, after adding big file is 20M, the file itself is 10M.
+2.
+The file has been created a copy and be added to ./.git/objects
+
+3.
+3.1 If the file has been added to the most recent commit but not pushed to git hub
+# Stage our giant file for removal, but leave it on disk
+git rm --cached big_file
+# Amend the previous commit with your change, Simply making a new commit won't work, as you need
+# to remove the file from the unpushed history as well
+git commit --amend -CHEAD
+
+3.1 If the file has been added to the earlier commit, need to remove it from the history
+We can run:
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch PATH-TO-THE-FILE" \
+  --prune-empty --tag-name-filter cat -- --all
+
+Consequences: The git filter-branch command andrewrite your repository's history, which changes the SHAs for existing commits.
+
+Ref:
+https://help.github.com/en/github/managing-large-files/removing-files-from-a-repositorys-history#removing-a-file-that-was-added-in-an-earlier-commit
+

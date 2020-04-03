@@ -1,0 +1,92 @@
+
+Questions
+Create a file c01-git04-1.txt answering the questions below. Include details and commands used.
+
+Commands used:
+$ touch my_env.txt
+$ code .
+$ git add my_env.txt
+$ git commit -m "secret file"
+$ git log
+commit 782506c1923e6a947c791b3a43840ae1ce60085f (HEAD -> master)
+Author: deniseh <deniseddi@hotmail.com>
+Date:   Mon Mar 2 21:06:23 2020 +1100
+
+    secret file
+...
+
+1.	Let's suppose you remotely pushed your my_env.txt file. A colleague asks you to remove this information from Git. What's your colleague worried about?
+That you exposed sensitive information, since the file contains password details that others could see (steal). 
+
+2.	If you modify the file in your workspace, then push it, will it be enough? (It's not). Why?
+I don’t think so. Because you can still access the information using git log and restore the original file.
+
+3.	If you delete the file and push it, then create a new one with the rest of the information, is it enough? (It's not). Why?
+It is not enough because similar to above, the sensitive information can still be tracked through git. 
+
+4.	How to fix this? How do you remove something from Git history?
+“To entirely remove unwanted files from a repository's history you can use either the git filter-branch command or the BFG Repo-Cleaner
+
+5.	Which commands would you use? What are the consequences for other developers?
+
+$ git filter-branch --index-filter 'git rm --cached --ignore-unmatch FILENAME' HEAD
+$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
+
+or
+
+$ git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA" \
+  --prune-empty --tag-name-filter cat -- --all
+
+Github help docs recommends that once you're happy with the state of your repository, force-push your local changes to overwrite your GitHub repository, as well as all the branches you've pushed up:
+
+$ git push origin --force --all
+
+Your collaborators (other developers) would have to rebase, not merge as they might get conflicts when merging with your branch. Others developers might still have a copy of the my_env.txt file. One merge commit could reintroduce some or all of the old history that you just went to the trouble of purging.
+
+
+Giving it a go. Delete file permanently, rewrite commits:
+
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ git branch
+* master
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ git filter-branch --index-filter 'git rm --cached --ignore-unmatch my_env.txt' HEAD
+Rewrite 06e3b71ca8e37d0cd07205d5a2913b0a8ab88768 (1/5) (0 seconds passed, reRewrite 8012deb83d1558f76aece9045261ab02585514c6 (2/5) (0 seconds passed, reRewrite ed1504c725b813d5e76261ce18d7eb389f11cd89 (3/5) (0 seconds passed, reRewrite 3dc9cc75c6750373c4b76dbacabd805ffb09fd45 (4/5) (0 seconds passed, reRewrite 782506c1923e6a947c791b3a43840ae1ce60085f (5/5) (1 seconds passed, remaining 0 predicted)    rm 'my_env.txt'
+
+Ref 'refs/heads/master' was rewritten
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ ls
+README.md
+Denises-MacBook-Pro:git_test_bigfile denisegomes$ git log
+commit 0c376624260c6d2c0c30a309a0f2e08ca05f5785 (HEAD -> master)
+Author: deniseh <deniseddi@hotmail.com>
+Date:   Mon Mar 2 21:06:23 2020 +1100
+
+    secret file
+
+commit 3dc9cc75c6750373c4b76dbacabd805ffb09fd45
+Author: deniseh <deniseddi@hotmail.com>
+Date:   Mon Mar 2 16:03:16 2020 +1100
+
+    Revert "Add big file"
+
+    This reverts commit 8012deb83d1558f76aece9045261ab02585514c6.
+
+commit ed1504c725b813d5e76261ce18d7eb389f11cd89
+Author: deniseh <deniseddi@hotmail.com>
+Date:   Mon Mar 2 16:01:31 2020 +1100
+
+    Revert "adding README"
+
+    This reverts commit 06e3b71ca8e37d0cd07205d5a2913b0a8ab88768.
+
+commit 8012deb83d1558f76aece9045261ab02585514c6
+Author: deniseh <deniseddi@hotmail.com>
+Date:   Mon Mar 2 16:00:47 2020 +1100
+
+    Add big file
+
+commit 06e3b71ca8e37d0cd07205d5a2913b0a8ab88768
+Author: deniseh <deniseddi@hotmail.com>
+Date:   Mon Mar 2 15:59:58 2020 +1100
+
+    adding README
+Denises-MacBook-Pro:git_test_bigfile denisegomes$

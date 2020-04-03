@@ -1,0 +1,37 @@
+Create an Application Load Balancer with the following details and post:
+how did you achieve that?
+1.Navigate to ec2 service ->  Load Balancers -> Create Load Balancer.
+2. Choose create Application Load Balancer
+   - name :aca-alb
+   - scheme: internet-facing
+   - ip address type: ipv4
+   - Listener : Http -> Port 80
+   - AZs and subnets: ap-southeast-2a(public-a),ap-southeast-2b(public-b)
+3. config routing
+   - name:acatg
+   - Target type: Instance
+   - protocal: Http
+   - Port: 80
+4. Register targets:
+   - Assign two instances that created by ASG 
+5. Confirm creation             
+
+- access through your browser your load balancer CNAME record and keep refreshing the browser. What do you see?
+The hostnames keep switching between two.
+
+- details of the security group used
+Group ID:sg-0c7454b0f62c6df0c
+Group Name:load-balancer-sg-allow-all-traffice
+VPC ID:vpc-098614659e38900e0
+Description:Allow all traffic from anywhere
+Owner:607961847144
+Inbound rule count:1
+Outbound rule count:1
+
+Inbound rule:
+Type          Protocol  Port Range    Source 
+All traffic    All      All           0.0.0.0/0
+
+
+- public load balancer A record
+http://aca-alb-1607358942.ap-southeast-2.elb.amazonaws.com/

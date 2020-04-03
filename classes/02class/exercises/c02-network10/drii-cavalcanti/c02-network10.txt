@@ -1,0 +1,9 @@
+Network interfaces > Create Network Interface
+-----------------------------------------------------------------------------------
+Description:      ENI-devopsacademy
+Subnet*:          subnet-03ac4dcbe8d745183-private-a
+IPv4 address:     10.0.0.5
+Security groups*: private-sg | SSH access only from public instances on AWS
+
+
+

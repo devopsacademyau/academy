@@ -1,0 +1,63 @@
+Create a new EC2 Instance inside the default VPC with an public IP address and connect to it though SSH
+
+I follow the https://aws.amazon.com/ec2/getting-started/ to create a EC2 new instance
+
+1. Login to the AWS console and find the EC2 service
+2. Select Launch instance and follow the steps:
+   - Step1: Choose an AMI: Amazon Linux 2 AMI  
+   - Step2: Choose an instance type: t2.micro
+   - Step3: Configure instance details: select default VPC network and select one subnet and enable auto-assign public IP
+   - Step4: Leave other options as default and create a new SSH key pair and download the key
+3. Wait for the instance to be running and run from my local machine
+  $ ssh -i ~/downloads/ec2test.pem ec2-user@ec2-18-222-169-134.us-east-2.compute.amazonaws.com   
+  but got an error the key file is too open, so change the permission
+  $ chmod 400 ec2test.pem 
+  and run the ssh command again, and receive the following response
+
+22-169-134.us-east-2.compute.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+1 package(s) needed for security, out of 7 available
+Run "sudo yum update" to apply all updates.
+
+
+----
+
+Create a new EC2 instance in the same VPC but with private address only and connect to it
+
+Did some reading from https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html
+A private IP means the instance is not reachable over the internet, but can still communicate with the instances 
+within the same VPC.
+
+Follow the same step as above but disable Auto-assign Public IP
+
+After the instance up and running, run below from my local machine:
+$ssh -i ~/downloads/ec2test.pem ec2-user@172.31.30.168
+this can't be achieved cause 172.31.30.168 is a private address and can't be reached from outside of the VPC.
+
+So attempt to conect to the new instance from the old instance, cause they are in the same VPC. For doing that,
+I copied key file from my local to the old ec2 instance by running:
+$scp -i ~/downloads/ec2test.pem ~/downloads/ec2test.pem ec2-user@ec2-18-222-169-134.us-east-2.compute.amazonaws.com:~/
+
+Then SSH to that instance again, then run:
+$ssh -i ~/downloads/ec2test.pem ec2-user@172.31.30.168
+
+and receives following response:
+[ec2-user@ip-172-31-39-31 ~]$ ssh -i ~/ec2test.pem ec2-user@172.31.30.168
+The authenticity of host '172.31.30.168 (172.31.30.168)' can't be established.
+ECDSA key fingerprint is SHA256:Mldejy8j2xs5iMXXZcnJylJS2VS4gpX/k0fqpsQ36JA.
+ECDSA key fingerprint is MD5:5b:64:98:4a:29:95:fa:af:04:6c:44:0d:45:91:87:5e.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '172.31.30.168' (ECDSA) to the list of known hosts.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+
+

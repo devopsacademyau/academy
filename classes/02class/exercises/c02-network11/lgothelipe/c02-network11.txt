@@ -1,0 +1,41 @@
+# post if you had to do any troubleshooting or if that worked straight away
+
+It worked straight away, I've just double checked the EC2 configuration to put on the right security groups and subnets.
+Instead upload the .pem file, this time I've just copied the key file text and created a .pem file using VIM on the public EC2
+
+1. Connecting to the public EC2 via Putty
+
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+No packages needed for security; 24 packages available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-16-20-45 ~]$
+
+
+2. Connecting to the private EC2:
+
+[ec2-user@ip-172-16-20-45 ~]$ vim key.pem
+[ec2-user@ip-172-16-20-45 ~]$ chmod 400 key.pem
+[ec2-user@ip-172-16-20-45 ~]$ ssh -i key.pem ec2-user@172.16.10.10
+The authenticity of host '172.16.10.10 (172.16.10.10)' can't be established.
+ECDSA key fingerprint is SHA256:Oarb+zNpWMMxEr0oDAogNsFLnxzMj8KXWH/URJF6WTo.
+ECDSA key fingerprint is MD5:92:93:62:d1:37:ce:6b:88:7b:1e:b8:51:f3:68:db:d5.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '172.16.10.10' (ECDSA) to the list of known hosts.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-172-16-10-56 ~]$
+
+Connected from public EC2 (172.16.20.0/24) to private EC2 (172.16.10.0/24)
+
+

@@ -1,0 +1,32 @@
+$ chmod 400 sydney-key-pair.pem
+$ ssh -i "sydney-key-pair.pem" ec2-user@13.211.71.135
+    Last login: Tue Mar 24 02:31:54 2020 from 204.184.2.123.sta.dodo.net.au
+
+        __|  __|_  )
+        _|  (     /   Amazon Linux 2 AMI
+        ___|\___|___|
+
+    https://aws.amazon.com/amazon-linux-2/
+    No packages needed for security; 6 packages available
+    Run "sudo yum update" to apply all updates.
+$ ssh ec2-user@10.0.0.128
+    Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+$ touch sydney-key-pair.pem
+$ vim sydney-key-pair.pem 
+$ chmod 400 sydney-key-pair.pem 
+$ ssh -i "sydney-key-pair.pem" ec2-user@10.0.0.128
+
+        __|  __|_  )
+        _|  (     /   Amazon Linux 2 AMI
+        ___|\___|___|
+
+    https://aws.amazon.com/amazon-linux-2/
+
+$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+
+I had to add my public IP to my private security group:
+-----------------------Inbound Rules-----------------------------------------------------------------
+Type         Protocol  Port Range    Source             Description 
+All traffic  All       All           13.211.71.135/32   SSH access only from public instances on AWS
+All traffic  All       All           10.0.1.121/32      SSH access only from public instances on AWS

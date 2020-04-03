@@ -26,7 +26,7 @@ Your team needs to run a pilot migration to AWS cloud considering the following 
 - The application needs to be high available.
 - The application needs to support peaks of up to 10 times the average load (scalability).
 - The infrastructure needs to be reproducible and version controlled in case the CEO decides to expand the business to other parts of the world (consider infra as code).
-- There must be an easy and secure way of developing, with fast feedback  (consider CI/CD practices and using CodePipeline)
+- There must be an easy and secure way of developing, with fast feedback  (consider CI/CD practices or at least automation scripts)
 
 Your team will need to present a 10-min demo of the solution + 10 min questions to the board in 4 weeks, they want to see:
 - A solution diagram containing all the components of the solution and explaining the data flow. Expect basic questions about the architecture and technologies chosen.
@@ -37,7 +37,7 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 
 ## Assumptions
 - As it is a pilot migration to AWS, data migration is out of scope
-- Testers were contracted to develop unit/service/integration tests for this pipeline, so you don't need to write tests but consider including this step in your CI pipeline!
+- Testers were contracted to develop unit/service/integration tests for this pipeline, so you don't need to write tests but consider including this step in your CI pipeline or automation scripts!
 - Consider the application as stateless for this pilot. In Wordpress some files may be stored locally on the server (e.g. on image upload)
 - For this pilot you don't need to create the Infra as Code for the CI pipeline
 - Single Github repo.
@@ -66,23 +66,22 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 
 ## Suggested technologies:
 - VCS → Github
-- Infra as Code → Cloudformation, Terraform
+- Infra as Code → Terraform
 - Pipeline tool → CodePipeline, CircleCI, TravisCI
 - Containerization → Docker / Docker-compose
 - Relational Database → RDS MySQL
 - Container orchestrator → ECS
-- CDN → Cloudfront
 
 ## Suggested timeline:
 - Week 0:
   - Breakdown Stories (planning) in Trello and start working
 - Week 1:
   - Containerize application using Docker
-  - Start CI pipeline 
+  - Start CI pipeline / automation scripts
 - Week 2 (class 5):
-  - Infrastructure as code working via pipeline
+  - Infrastructure as code working
 - Week 3:
-  - Application deployed to AWS using pipeline successfully
+  - Application deployed to AWS using pipeline/scripts successfully
   - Start presentation material and refine documentation (double check if you're attending all requirements)
 - Week 4 (class 6):
   - Presentation (demo)

@@ -1,0 +1,36 @@
+#Route53
+
+
+#Create a private or public hosted zone and post:
+
+   --> On AWS console --> Services --> Route 53 --> Hosted Zones --> Create Hosted Zone:
+	Domain Name: faria.
+	Type: Private Hosted Zone for Amazon VPC
+	Associated VPC: devopsacademy-.. | vpc-04386a3405acb18af | ap-southeast-2
+
+   --> On Hosted Zone --> Selected faria --> Go to Record Set --> Create Record Set:
+	Name: intra.faria
+	Type: A - IPv4 address
+	Alias: Yes
+	Alias Target: dualstack.internal-alb-faria-197225106.ap-southeast-2.elb.amazonaws.com.
+
+
+
+#Post here any findings, how option you decided to go with, records created, domain created, and anything else that you find interesting:
+
+   - As I had deleted my NAT gateways, Load Balancers, and Auto Scalling Groups, I needed to recreate them and well as reconfigure my Route Table to use the new NGW.
+   - The trickest part was to find out that I needed to enable DNS hostnames in my VPC. It took my a while to realize that.
+
+
+
+#Result:
+
+   --> I connected in my public EC2 instance and through it I accessed the private route53 hostname for my private instances:
+	ubuntu@ip-192-168-101-164:~$ curl http://intra.faria
+ip-192-168-2-145.ap-southeast-2.compute.internal
+	ubuntu@ip-192-168-101-164:~$ curl http://intra.faria
+ip-192-168-1-66.ap-southeast-2.compute.internal
+	ubuntu@ip-192-168-101-164:~$ curl http://intra.faria
+ip-192-168-2-145.ap-southeast-2.compute.internal
+	ubuntu@ip-192-168-101-164:~$ curl http://intra.faria
+ip-192-168-1-66.ap-southeast-2.compute.internal

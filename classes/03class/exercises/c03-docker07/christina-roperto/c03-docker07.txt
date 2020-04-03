@@ -1,0 +1,6 @@
+c03-docker07: Containing the execution of the curl command accessing the website and it's output. Use only TEXT for the command output, don't include images (JPEG, PNG, etc)
+
+I set the value from the DNS to c03-aws03.devops.geral.net (done in c03-aws03)
+
+$ curl c03-aws03.devops.geral.net
+43

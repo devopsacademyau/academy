@@ -1,0 +1,14 @@
+➜  starkmatt git:(starkmatt/c03-docker06) ? docker build -t hello-name:v1 -f DockerFile .
+Sending build context to Docker daemon   2.56kB
+Step 1/2 : FROM alpine:3.9.5
+ ---> 82f67be598eb
+Step 2/2 : ENTRYPOINT ["/bin/echo","Hello"]
+ ---> Running in b1851637d23f
+Removing intermediate container b1851637d23f
+ ---> 7775974c18c2
+Successfully built 7775974c18c2
+Successfully tagged hello-name:v1
+
+
+➜  starkmatt git:(starkmatt/c03-docker06) ✗ docker run -it hello-name:v1 Matt            
+Hello Matt

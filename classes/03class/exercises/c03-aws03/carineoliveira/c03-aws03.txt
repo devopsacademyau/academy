@@ -1,0 +1,46 @@
+Class 03 - Exercise AWS 03
+
+Create a private or public hosted zone and post:
+
+- how did you achieve that?
+
+    I have searched for Route 53 on the Services menu, selected Hosted zones and pressed Create Hosted Zone with the following details:
+        Domain Name: carine 
+        Type: Private Hosted Zone for Amazon VPC
+        VPC ID: selected the VPC used in the previous exercise
+
+
+- create a friendly CNAME record to your load balancer A record
+
+    After creating the hosted zone, I have additionally created a Record Set where I provided the following details:
+        Name: carine
+        Type: A - IPv4 address 
+        Alias: Yes
+        Alias Target: selected the load balancer created on the previous exercise
+        Routing Policy: Simple
+
+
+- if you decide to go with public zone, you will have to own a domain (free domains at http://www.dot.tk/en/index.html?lang=en)
+    
+    Not applicable
+
+- if you decide to go with private zone, you will need to test the friendly record from an instance running on your VPC.
+
+        carineoliveira@Carines-MBP downloads % ssh -i "academy-key-pair.pem" ec2-user@ec2-13-210-18-191.ap-southeast-2.compute.amazonaws.com
+        Last login: Mon Mar 30 02:46:17 2020 from 195.18.254.125.static.comindico.com.au
+
+            __|  __|_  )
+            _|  (     /   Amazon Linux 2 AMI
+            ___|\___|___|
+
+        https://aws.amazon.com/amazon-linux-2/
+        [ec2-user@ip-172-31-2-77 ~]$ curl http://academy.carine
+        ip-172-31-2-77.ap-southeast-2.compute.internal[ec2-user@ip-172-31-2-77 ~]$ 
+
+
+- Post here any findings, how option you decided to go with, records created, domain created, and anything else that you find interesting.
+    
+    I have got the error message “502 Bad Gateway” when executing the command curl http://academy.carine. from my instance. 
+    I also noticed that my target group was displaying an unhealthy status and I believe is was because of the same check failed code [502].
+    To solve the issue I had to add an outbound rule for ports 80 / 443 on the security group that I used on the instance
+    

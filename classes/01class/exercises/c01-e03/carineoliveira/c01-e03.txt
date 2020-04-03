@@ -1,0 +1,39 @@
+Exercise Class 01 - Exercise 03
+
+
+Started creating a VPC using UI: https://ap-southeast-2.console.aws.amazon.com/vpc/home?region=ap-southeast-2#wizardSelector:
+
+- Launch VPC Wizard;
+- Select VPC with Public and Private Subnets;
+- VPC Name: VPC Academy - IPv4 CIDR block: 10.0.0.0/16 
+- Subnets: Public subnet's IPv4 CIDR: 10.0.0.0/24 - Private subnet's IPv4 CIDR: 10.0.1.0/24
+- Specify the details of your NAT instance (Instance rates applyUse a NAT gateway instead): Instance type: t2.micro | Key pair name: dmin-key-pair-ap-southeast-2
+- Press "Create VPC" button to create and launch VPC.
+
+
+1 - Create a new EC2 Instance inside the default VPC with an public IP address and connect to it though SSH
+
+- Using the AWS UI on build a solution choose "Launch a vitual machine";
+- Select "Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-0f767afb799f45102 (64-bit x86) / ami-077007384e83bf4cc (64-bit Arm)";
+- Select the intance type "t2.micro";
+- Select network use VPC created "VPC Name: VPC Academy",
+- Select a public subnet;
+- select a existing key pair that was created: "admin-key-pair-ap-southeast-2"
+- Launch instance
+
+
+2 - Create a new EC2 instance in the same VPC but with private address only and connect to it
+- Repeat the steps above and select the privete subnet when configuring the instance network. 
+
+
+++ Adding the command to run instance using SSH ++
+
+Carines-MBP:downloads carineoliveira$ ssh -i "admin-key-pair-ap-southeast-2.pem" ec2-user@ec2-52-63-89-119.ap-southeast-2.compute.amazonaws.com
+Last login: Sat Feb 29 13:12:12 2020 from 220.240.200.80
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+[ec2-user@ip-10-0-0-78 ~]$ 

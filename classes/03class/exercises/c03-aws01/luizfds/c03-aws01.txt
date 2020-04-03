@@ -1,0 +1,53 @@
+- how did you achieve that?
+    1. I Openned the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
+    2. In the navigation pane, I chose Launch Templates, Create launch template.
+    3. I named as `devopsacademy-launch-template` and gave it a brief description of the launch template version.
+    4. For Launch template contents, I provided the following information:
+        AMI ID: Amazon Linux 2 AMI (HVM), SSD Volume Type
+        Instance type: t2.micro (Free tier)
+        Key pair name: I selected one created in previous classes
+        Networking platform: Virtual Private Cloud (VPC)
+        Security groups: auto-scaling-sg (Created with a rule to allow inbound connections from anywhere on port 80)
+        Storage (volumes): default
+        Instance tags: `Name: devopsacademy-asg`
+        Advanced details/User data: 
+            ```#! /bin/bash
+            yum update -y
+            yum install -y httpd
+            curl 169.254.169.254/latest/meta-data/hostname > index.html
+            mv index.html /var/www/html/
+            systemctl start httpd```
+    5. I chose Create launch template, then I selected it and from `Actions` I clicked on `Create Auto Scaling Group`.
+    6. From Create Auto Scaling Group panel, I provided the following information:
+        Group name: devopsacademy-asg
+        Launch Template: lt-0cd7e9f3f1479ae34
+        Launch Template Version: default
+        Fleet Composition: Adhere to the launch template
+        Network:
+            VPC: devopsacademy-vpc
+            Subnets: public-a, public-b
+        Health checks:
+            Health check type: EC2
+            Health check grace period: 300 seconds
+        Group size (Minimum/Maximum/Desired): `1/2/2`
+
+- access through your browser each instance IP on port 80 `http://<instance-ip>` and post the hostname of each one
+    http://13.239.22.29/
+        ip-10-0-1-229.ap-southeast-2.compute.internal
+    http://3.106.121.219/
+        ip-10-0-11-193.ap-southeast-2.compute.internal
+        
+- details of the security group used
+    Group name: auto-scaling-sg
+    Group description: auto-scaling-sg
+    Group ID: sg-09a160c95fd893acf
+    VPC ID: vpc-0fb0464639ce57474
+    Inbound: 
+        Type: HTTP
+        Protocol: TCP
+        Port Range: 80
+        Source: Anywhere
+
+- what this line is doing? `curl https://169.254.169.254/latest/meta-data/hostname > index.html`
+    It's creating a new file called `index.html` and writing on it my instance metadata retrieved from the IP address `https://169.254.169.254/latest/meta-data/hostname`, btw this IP is a link-local address and is valid only from the instance. 
+    References: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html

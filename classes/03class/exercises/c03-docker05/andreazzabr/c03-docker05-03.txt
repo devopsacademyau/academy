@@ -1,0 +1,10 @@
+c03-docker05-03.txt
+
+: Containing the command to list all images on your local as well as it's output. 
+
+
+anderson@andreazza:~/academy$ sudo docker images
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+andreazzabr/exercise02   v2                  468cd0f1c804        39 hours ago        109MB
+andreazzabr/exercise02   v1                  d6634860db86        40 hours ago        109MB
+anderson@andreazza:~/academy$ 
