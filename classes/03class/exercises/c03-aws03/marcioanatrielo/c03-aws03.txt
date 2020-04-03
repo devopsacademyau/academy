@@ -1,0 +1,48 @@
+### OPTIONAL - Create a private or public hosted zone and post:
+
+
+ - how did you achieve that?
+
+ AWS Console > Services > Networking & Content Delivery > Route 53 > DNS management > Get started now 
+
+	Step1: Create Hosted Zone 
+
+		Domaim Name: veeirtual.com.
+		Type: NS
+			ns-366.awsdns-45.com. 
+			ns-730.awsdns-27.net. 
+			ns-1287.awsdns-32.org. 
+			ns-1830.awsdns-36.co.uk.
+
+
+	Step2: Create Record Set
+
+	- create a friendly CNAME record to your load balancer A record
+
+		www.veeirtual.com. CNAME  devopsacademy-alb-550875590.ap-southeast-2.elb.amazonaws.com
+
+		www1.veeirtual.com. CNAME 10.0.12.122
+
+		www2.veeirtual.com. CNAME 10.0.10.211
+
+
+	- if you decide to go with public zone, you will have to own a domain (free domains at http://www.dot.tk/en/index.html?lang=en)
+
+		veeirtual.com. NS ns-366.awsdns-45.com.	ns-730.awsdns-27.net. ns-1287.awsdns-32.org. ns-1830.awsdns-36.co.uk.
+
+		veeirtual.com. SOA  ns-366.awsdns-45.com. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
+
+	- if you decide to go with private zone, you will need to test the friendly record from an instance running on your VPC.
+
+
+ - Post here any findings, how option you decided to go with, records created, domain created, and anything else that you find interesting.
+
+		veeirtual.com. NS ns-366.awsdns-45.com.	ns-730.awsdns-27.net. ns-1287.awsdns-32.org. ns-1830.awsdns-36.co.uk.
+
+		veeirtual.com. SOA  ns-366.awsdns-45.com. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
+
+		www.veeirtual.com. CNAME  devopsacademy-alb-550875590.ap-southeast-2.elb.amazonaws.com
+
+		www1.veeirtual.com. CNAME 10.0.12.122
+
+		www2.veeirtual.com. CNAME 10.0.10.211
