@@ -1,0 +1,29 @@
+
+# Exercise  answers c02-network07 
+
+How did you accomplish both instructions?
+
+ Aws console - vpc - route tables - new route table - Name tag - vpc.
+
+   Select RT - Routes tab - edit routes - add route - 0.0.0.0/0 - target - select gateway - save.
+
+Why did you add 0.0.0.0 route to the IGW on public route table?
+
+ To provide access to my public hosts to access internet. 
+
+Why did you add 0.0.0.0 route to the NGW on private route table?
+
+ To provide access to my private hosts to access internet
+
+What is the difference of IGW and NGW?
+
+- IGW provide access to public-hosts to the internet
+- NGW provide access to private-hosts to the internet
+
+Can you delete the destination route to your VPC network? Why?
+
+ Local network? No, becouse I will lost locally machines access.
+
+What happens if you do not associate your route table with any subnets?
+
+ That subnets will be implicit associated with the main route table.
