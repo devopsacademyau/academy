@@ -1,6 +1,6 @@
 ### Create an Auto Scaling Group 
 
-Details:
+Activity Details: 
 
   # How did you achieve that?
 	
