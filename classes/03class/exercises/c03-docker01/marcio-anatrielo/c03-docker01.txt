@@ -1,0 +1,66 @@
+### AWS Create Dockerfile (c03-docker01) 
+
+# Step:01 
+╭─root@devops-virtual-machine /home/marcio/academy  ‹marcio-anatrielo/c03-docker01*› 
+╰─➤  docker build -t da-terrrafrom:c03-docker-e01 .  
+
+Sending build context to Docker daemon  45.22MB
+Step 1/5 : FROM alpine:latest
+latest: Pulling from library/alpine
+aad63a933944: Pull complete 
+Digest: sha256:b276d875eeed9c7d3f1cfa7edb06b22ed22b14219a7d67c52c56612330348239
+Status: Downloaded newer image for alpine:latest
+ ---> a187dde48cd2
+Step 2/5 : RUN wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
+ ---> Running in 67ad8b415d0a
+Connecting to releases.hashicorp.com (151.101.81.183:443)
+saving to 'terraform_0.12.20_linux_amd64.zip'
+terraform_0.12.20_li   1% |                                |  228k  0:01:08 ETA
+terraform_0.12.20_li   7% |**                              | 1261k  0:00:23 ETA
+terraform_0.12.20_li  14% |****                            | 2333k  0:00:17 ETA
+terraform_0.12.20_li  23% |*******                         | 3773k  0:00:12 ETA
+terraform_0.12.20_li  38% |************                    | 6061k  0:00:08 ETA
+terraform_0.12.20_li  51% |****************                | 8077k  0:00:05 ETA
+terraform_0.12.20_li  58% |******************              | 9213k  0:00:05 ETA
+terraform_0.12.20_li  61% |*******************             | 9661k  0:00:05 ETA
+terraform_0.12.20_li  63% |********************            |  9.8M  0:00:05 ETA
+terraform_0.12.20_li  71% |**********************          | 10.9M  0:00:04 ETA
+terraform_0.12.20_li  76% |************************        | 11.8M  0:00:03 ETA
+terraform_0.12.20_li  84% |***************************     | 13.1M  0:00:02 ETA
+terraform_0.12.20_li  93% |******************************  | 14.5M  0:00:00 ETA
+terraform_0.12.20_li 100% |********************************| 15.4M  0:00:00 ETA
+'terraform_0.12.20_linux_amd64.zip' saved
+Removing intermediate container 67ad8b415d0a
+ ---> 3912ae92138a
+Step 3/5 : RUN unzip terraform_0.12.20_linux_amd64.zip
+ ---> Running in d04c1c214feb
+Archive:  terraform_0.12.20_linux_amd64.zip
+  inflating: terraform
+Removing intermediate container d04c1c214feb
+ ---> 3a9b8ebda5e4
+Step 4/5 : RUN rm terraform_0.12.20_linux_amd64.zip
+ ---> Running in 75007ffd31f0
+Removing intermediate container 75007ffd31f0
+ ---> 3916102b3f0e
+Step 5/5 : CMD ./terraform --version
+ ---> Running in 351db4efb079
+Removing intermediate container 351db4efb079
+ ---> df89cdb2ac37
+Successfully built df89cdb2ac37
+Successfully tagged da-terrrafrom:c03-docker-e01
+
+
+# Step:02 
+╭─root@devops-virtual-machine /home/marcio/academy  ‹marcio-anatrielo/c03-docker01*› 
+╰─➤  docker run -it da-terrrafrom:c03-docker-e01
+Terraform v0.12.20
+
+# Step:03
+
+╭─root@devops-virtual-machine /home/marcio/academy  ‹marcio-anatrielo/c03-docker01*› 
+╰─➤  docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+da-terrrafrom       c03-docker-e01      df89cdb2ac37        4 minutes ago       72.2MB
+<none>              <none>              899dac4b29c3        18 minutes ago      140MB
+node                current-slim        6d9a17519d40        5 days ago          140MB
+alpine              latest              a187dde48cd2        12 days ago         5.6MB 
