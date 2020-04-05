@@ -1,0 +1,33 @@
+
+$ aws s3 mb s3://lgothelipe
+make_bucket: lgothelipe
+
+$ aws s3 ls
+2020-04-05 10:34:46 lgothelipe
+
+$ aws s3 cp classes/04class/aws_iam_storage/assets/index.html s3://lgothelipe/
+upload: classes\04class\aws_iam_storage\assets\index.html to s3://lgothelipe/index.html
+
+$ aws s3 website s3://lgothelipe/ --index-document index.html
+
+$ aws s3api put-bucket-policy --bucket lgothelipe --policy file://classes/04class/aws_iam_storage/assets/s3_bucket_policy.json
+
+#s3_bucket_policy.json:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::lgothelipe/*"
+        }
+    ]
+}
+
+$ curl https://lgothelipe.s3-ap-southeast-2.amazonaws.com/index.html
+<html>
+        <body>
+                Welcome to DevOps Academy! :)
+        </body>
+</html>
