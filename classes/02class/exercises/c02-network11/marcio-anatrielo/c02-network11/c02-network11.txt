@@ -4,7 +4,7 @@
 
 
 
-# launch an EC2 instance on a public subnet
+# Launch an EC2 instance on a public subnet
 
 - Instance:  i-04d96583f31beff77 (Devops-Public-EC2)Private IP: 10.0.10.12
 
