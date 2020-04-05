@@ -4,7 +4,9 @@
  Answers:
 
    - How did you achieve that?
-	
+
+Follow steps to achive this exercise to install application load balancer: 
+
 	AWS Console > EC2 > Load Balancer > Create Load Balancer > Load balancer type: HTTP > 
 	
 	#Step 1: Configure Load Balancer
@@ -15,7 +17,7 @@
 	IPv4 address: public-b
 	
 	#Step 2: Configure Security Settings
-	HTTP: 80 only 
+	HTTP: 80 only - Allow port 
 	
 	#Step 3: Configure Security Groups
 	Name: devopsacademy-asg
@@ -45,7 +47,9 @@
 
 
    - Details of the security group used
-	
+
+This is the only port with will be enable to have access on this instance 
+
 	Name: sg-0d0904c0d9c82db0e 
 	Group Name: devopsacademy-asg
 	
@@ -53,9 +57,9 @@
 	   Type: HTTP			
 	   Protocol:TCP		
 	   Port Range: 80 
-	   Source: 0.0.0.0/0	
+	   Source: devopsacademy-asg - Based on best pratics this group is setting to provide move security for our enviroment. 	
 	   	
 
-   - Public load balancer A record
+   -Public load balancer A record
 	
 	Address: devopsacademy-alb-550875590.ap-southeast-2.elb.amazonaws.com
