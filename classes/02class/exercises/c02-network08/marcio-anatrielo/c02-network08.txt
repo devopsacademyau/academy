@@ -1,0 +1,36 @@
+
+# Answer for exercise c02-network08 
+
+What is the difference between inbound x outbound? 
+
+Inbound - Define the traffic allowed or deny for incoming requestion to the network. 
+Outbound - Define the traffic allowed our deny for out coming requestion witch is going out to the network.
+
+What is going to happen by default?
+
+ It is deny
+
+Everything allowed or denied? 
+
+Allowed base rule 101
+
+How would you block SSH connection comming from the network 172.16.200.0/24? 
+
+Create a new Inbound Rule:  
+Rule: 10
+Type: SSH (22)
+Protocol: TCP (6)
+Port: 22
+Source: 172.16.200.0/24
+Action: DENY
+
+How would you block access from your network to an external network 180.200.50.0/24?
+
+Create a new Outbound Rule:
+Rule: 10
+Type: ALL Trraffic
+Protocol: ALL
+Port: ALL
+Source: 180.200.50.0/24
+Action: DENY
+
