@@ -1,0 +1,36 @@
+I used this doc to understand how to move my image to dockerhub:
+https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html
+
+#v1
+
+academy on  henriqueediniz/c03-docker03 
+👽 henriquediniz docker tag d360639af03c henriquediniz/exercise02:v1
+academy on  henriqueediniz/c03-docker03 
+👽 henriquediniz docker push henriquediniz/exercise02:v1           
+The push refers to repository [docker.io/henriquediniz/exercise02]
+24a61161740d: Pushed 
+bd0091539ec2: Pushed 
+b64dd1b17dce: Mounted from library/httpd 
+3924f7d08fde: Mounted from library/httpd 
+535f972b218c: Mounted from library/httpd 
+d66bb18f34c6: Mounted from library/httpd 
+5216338b40a7: Mounted from library/httpd 
+v1: digest: sha256:9626272d8251bf25e48d3d8668d8f66acad2f1ee61b64241aabbb1209147c5af size: 1776
+
+#v2
+
+academy on  henriqueediniz/c03-docker03 [?] took 26s 
+👽 henriquediniz docker tag 949bc9e9cf66 henriquediniz/exercise02:v2
+academy on  henriqueediniz/c03-docker03 [?] 
+👽 henriquediniz docker push henriquediniz/exercise02:v2            
+The push refers to repository [docker.io/henriquediniz/exercise02]
+4b4a4e799154: Pushed 
+b64dd1b17dce: Layer already exists 
+3924f7d08fde: Layer already exists 
+535f972b218c: Layer already exists 
+d66bb18f34c6: Layer already exists 
+5216338b40a7: Layer already exists 
+v2: digest: sha256:19447c46b868d50e6081cc53bd97736c7915c5e7b4cad74e35ccf22d6a255ca9 size: 1569
+
+
+dockerhub repo: https://hub.docker.com/r/henriquediniz/exercise02

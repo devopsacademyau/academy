@@ -1,0 +1,45 @@
+Class 03 - Exercise AWS 02
+
+Create an Application Load Balancer with the following details and post:
+
+- how did you achieve that?
+    Under EC2 -> Load Balancers -> Create Load Balancer
+    Application Load Balancer -> Create with the following details:
+        Name: aws02-lb
+        Scheme: internet-facing
+        IP address type: ipv4
+        Listeners: HTTP - Port 80
+        Availability Zones: 
+            VPC: same used on previous exercise c03-aws01
+            Availability zones: same used on previous exercise c03-aws01
+        Security Group: same used on previous exercise c03-aws01 with the inbound rules
+        Target group:
+            Name: aws02-target-group
+            Target type: Instance
+            Protocol: HTTP
+            Port: 80
+            Register targets: select the instaces created on the previous exercise c03-aws01 by Auto Scaling Group.
+
+
+- access through your browser your load balancer CNAME record and keep refreshing the browser. What do you see?
+
+    I see the hostname alternating between 'ip-172-31-14-130.ap-southeast-2.compute.internal' and 'ip-172-31-41-131.ap-southeast-2.compute.internal'
+
+- details of the security group used
+
+    Security group name: aws01-sg
+    Security group ID: sg-051891e06cdf27fc1
+    Description: sg to aws01 exercise
+    VPC ID: vpc-0e11c713736b79230 
+    Owner: 160372566358
+    Inbound rules count: 2 Permission entries
+        Type    Protocol    Port range      Source      Description - optional
+        HTTP	TCP	        80	            0.0.0.0/0	-
+        HTTP	TCP	        80	            ::/0	    -
+    Outbound rules count: 1 Permission entry
+        Type            Protocol    Port range      Source      Description - optional
+        All Traffic	    All	        All	            0.0.0.0/0	-
+
+- public load balancer A record
+
+    DNS nameaws02-lb-1340745341.ap-southeast-2.elb.amazonaws.com 
