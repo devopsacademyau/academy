@@ -36,3 +36,8 @@ resource "aws_iam_role_policy" "rpols3read" {
     }
  POLICY
 }
+
+resource "aws_iam_instance_profile" "instprof" {
+  name = "s3readprofile"
+  role = aws_iam_role.roles3read.name
+}

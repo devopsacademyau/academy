@@ -12,6 +12,18 @@ Resource actions are indicated with the following symbols:
 
 Terraform will perform the following actions:
 
+  # aws_iam_instance_profile.instprof will be created
+  + resource "aws_iam_instance_profile" "instprof" {
+      + arn         = (known after apply)
+      + create_date = (known after apply)
+      + id          = (known after apply)
+      + name        = "s3readprofile"
+      + path        = "/"
+      + role        = "roles3readonly"
+      + roles       = (known after apply)
+      + unique_id   = (known after apply)
+    }
+
   # aws_iam_role.roles3read will be created
   + resource "aws_iam_role" "roles3read" {
       + arn                   = (known after apply)
@@ -71,13 +83,13 @@ Terraform will perform the following actions:
       + cpu_threads_per_core         = (known after apply)
       + get_password_data            = false
       + host_id                      = (known after apply)
-      + iam_instance_profile         = "roles3readonly"
+      + iam_instance_profile         = "s3readprofile"
       + id                           = (known after apply)
       + instance_state               = (known after apply)
       + instance_type                = "t2.micro"
       + ipv6_address_count           = (known after apply)
       + ipv6_addresses               = (known after apply)
-      + key_name                     = (known after apply)
+      + key_name                     = "bastion"
       + network_interface_id         = (known after apply)
       + password_data                = (known after apply)
       + placement_group              = (known after apply)
@@ -181,7 +193,9 @@ Terraform will perform the following actions:
       + id                     = (known after apply)
       + ingress                = [
           + {
-              + cidr_blocks      = []
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
               + description      = "SSH"
               + from_port        = 22
               + ipv6_cidr_blocks = []
@@ -198,7 +212,7 @@ Terraform will perform the following actions:
       + vpc_id                 = (known after apply)
     }
 
-Plan: 5 to add, 0 to change, 0 to destroy.
+Plan: 6 to add, 0 to change, 0 to destroy.
 
 ------------------------------------------------------------------------
 
