@@ -1,0 +1,136 @@
+#With the output of the terraform plan command:
+
+Denises-MacBook-Pro:deniseddi denisegomes$ terraform plan
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+aws_iam_role.ec2-role: Refreshing state... [id=ec2-role]
+aws_security_group.da-sg-test: Refreshing state... [id=sg-0be128430a6d825eb]
+aws_s3_bucket.da_s3_test: Refreshing state... [id=da-s3-test]
+aws_iam_role_policy.ec2-role-policy: Refreshing state... [id=ec2-role:ec2-role-policy]
+aws_iam_instance_profile.test-profile: Refreshing state... [id=ec2-role]
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+  ~ update in-place
+
+Terraform will perform the following actions:
+
+  # aws_instance.da-ec2-instance will be created
+  + resource "aws_instance" "da-ec2-instance" {
+      + ami                          = "ami-08fdde86b93accf1c"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = (known after apply)
+      + availability_zone            = "ap-southeast-2c"
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + iam_instance_profile         = "ec2-role"
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.micro"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+      + key_name                     = (known after apply)
+      + network_interface_id         = (known after apply)
+      + password_data                = (known after apply)
+      + placement_group              = (known after apply)
+      + primary_network_interface_id = (known after apply)
+      + private_dns                  = (known after apply)
+      + private_ip                   = (known after apply)
+      + public_dns                   = (known after apply)
+      + public_ip                    = (known after apply)
+      + security_groups              = [
+          + "da-sg-test",
+        ]
+      + source_dest_check            = true
+      + subnet_id                    = (known after apply)
+      + tags                         = {
+          + "Name" = "da-ec2-instance"
+        }
+      + tenancy                      = (known after apply)
+      + volume_tags                  = (known after apply)
+      + vpc_security_group_ids       = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_security_group.da-sg-test will be updated in-place
+  ~ resource "aws_security_group" "da-sg-test" {
+        arn                    = "arn:aws:ec2:ap-southeast-2:148202060271:security-group/sg-0be128430a6d825eb"
+        description            = "Allow inbound traffic"
+        egress                 = []
+        id                     = "sg-0be128430a6d825eb"
+      ~ ingress                = [
+          + {
+              + cidr_blocks      = []
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+        name                   = "da-sg-test"
+        owner_id               = "148202060271"
+        revoke_rules_on_delete = false
+        tags                   = {
+            "Name" = "da-sg-test"
+        }
+        vpc_id                 = "vpc-23122844"
+    }
+
+Plan: 1 to add, 1 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
