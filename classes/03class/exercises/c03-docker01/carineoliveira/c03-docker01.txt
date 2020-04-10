@@ -1,0 +1,58 @@
+Class 03 Exercise Docker 01
+
+Create a new docker image named da-terraform with the tag c03-docker-e01 that will have the following pre requisites:
+
+    - Final image is based from alpine. You can make use of multi-stage build using any image you want on other stages.
+    - Terraform cli installed (version 0.12.20)
+    - Make sure that the final image is smaller than 80Mb
+    - When the image runs, it should output the version of the terraform cli tool:
+        $ docker run -it da-terraform:c03-docker-e01
+        Terraform v0.12.20
+        $
+
+- Inform the commands used to build and execute the image, as well as the output of container execution.
+
+    - CREATE IMAGE
+
+    carineoliveira@Carines-MBP carineoliveira % docker build --tag da-terraform:c03-docker-e01 .
+    Sending build context to Docker daemon  4.096kB
+    Step 1/5 : FROM alpine:latest
+    ---> a187dde48cd2
+    Step 2/5 : RUN wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
+    ---> Running in 1fe6be3c4eae
+    Connecting to releases.hashicorp.com (151.101.81.183:443)
+    saving to 'terraform_0.12.20_linux_amd64.zip'
+    terraform_0.12.20_li  19% |******                          | 3040k  0:00:04 ETA
+    terraform_0.12.20_li  54% |*****************               | 8672k  0:00:01 ETA
+    terraform_0.12.20_li  90% |*****************************   | 14.0M  0:00:00 ETA
+    terraform_0.12.20_li 100% |********************************| 15.4M  0:00:00 ETA
+    'terraform_0.12.20_linux_amd64.zip' saved
+    Removing intermediate container 1fe6be3c4eae
+    ---> ee925302fd03
+    Step 3/5 : RUN unzip terraform_0.12.20_linux_amd64.zip
+    ---> Running in 7c8451cd3f6d
+    Archive:  terraform_0.12.20_linux_amd64.zip
+    inflating: terraform
+    Removing intermediate container 7c8451cd3f6d
+    ---> 6e83dd898a97
+    Step 4/5 : RUN rm terraform_0.12.20_linux_amd64.zip
+    ---> Running in bbab43a44e8e
+    Removing intermediate container bbab43a44e8e
+    ---> 3d50ec5c8412
+    Step 5/5 : CMD ./terraform --version
+    ---> Running in 198a455ce046
+    Removing intermediate container 198a455ce046
+    ---> 4a855f08c452
+    Successfully built 4a855f08c452
+    Successfully tagged da-terraform:c03-docker-e01
+
+    RUN IMAGE
+
+    carineoliveira@Carines-MBP carineoliveira % docker run -it da-terraform:c03-docker-e01      
+    Terraform v0.12.20
+
+    SIZE
+
+    carineoliveira@Carines-MBP carineoliveira % docker image ls                                 
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    da-terraform        c03-docker-e01      4a855f08c452        3 minutes ago       72.2MB
