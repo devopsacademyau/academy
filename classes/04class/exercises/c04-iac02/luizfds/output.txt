@@ -1,0 +1,738 @@
+➜  luizfds git:(luizfds/c04-iac02) ✗ terraform plan -var-file="main.tfvars"     
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+data.aws_availability_zones.available: Refreshing state...
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_eip.devopsacademy_nateip will be created
+  + resource "aws_eip" "devopsacademy_nateip" {
+      + allocation_id     = (known after apply)
+      + association_id    = (known after apply)
+      + domain            = (known after apply)
+      + id                = (known after apply)
+      + instance          = (known after apply)
+      + network_interface = (known after apply)
+      + private_dns       = (known after apply)
+      + private_ip        = (known after apply)
+      + public_dns        = (known after apply)
+      + public_ip         = (known after apply)
+      + public_ipv4_pool  = (known after apply)
+      + vpc               = true
+    }
+
+  # aws_internet_gateway.devopsacademy_igw will be created
+  + resource "aws_internet_gateway" "devopsacademy_igw" {
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "devopsacademy-igw"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_nat_gateway.devopsacademy_ngw will be created
+  + resource "aws_nat_gateway" "devopsacademy_ngw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Name" = "devopsacademy-ngw"
+        }
+    }
+
+  # aws_route_table.devopsacademy_ngw_crt will be created
+  + resource "aws_route_table" "devopsacademy_ngw_crt" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "devopsacademy-ngw-crt"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table.devopsacademy_public_crt will be created
+  + resource "aws_route_table" "devopsacademy_public_crt" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "devopsacademy-public-crt"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_ngw[0] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_ngw" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_ngw[1] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_ngw" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_ngw[2] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_ngw" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_public_subnets[0] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_public_subnets[1] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_public_subnets[2] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_security_group.allow_ssl will be created
+  + resource "aws_security_group" "allow_ssl" {
+      + arn                    = (known after apply)
+      + description            = "DAC04IaC02 Security Group"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "DAC04IaC02-SG"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "DAC04IaC02-SG"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # aws_subnet.private_subnet[0] will be created
+  + resource "aws_subnet" "private_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.0.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private-1"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.private_subnet[1] will be created
+  + resource "aws_subnet" "private_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.10.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private-2"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.private_subnet[2] will be created
+  + resource "aws_subnet" "private_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2c"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.20.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private-3"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public_subnet[0] will be created
+  + resource "aws_subnet" "public_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.1.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-1"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public_subnet[1] will be created
+  + resource "aws_subnet" "public_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.11.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-2"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public_subnet[2] will be created
+  + resource "aws_subnet" "public_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2c"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.21.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-3"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_vpc.devopsacademy_vpc will be created
+  + resource "aws_vpc" "devopsacademy_vpc" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = false
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = true
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "devopsacademy-iac"
+        }
+    }
+
+Plan: 19 to add, 0 to change, 0 to destroy.
+
+Warning: Interpolation-only expressions are deprecated
+
+  on _provider.tf line 2, in provider "aws":
+   2:     region = "${var.aws_region}"
+
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 24 more similar warnings elsewhere)
+
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
+➜  luizfds git:(luizfds/c04-iac02) ✗ 
+➜  luizfds git:(luizfds/c04-iac02) ✗ 
+➜  luizfds git:(luizfds/c04-iac02) ✗ 
+➜  luizfds git:(luizfds/c04-iac02) ✗ 
+➜  luizfds git:(luizfds/c04-iac02) ✗ 
+➜  luizfds git:(luizfds/c04-iac02) ✗ 
+➜  luizfds git:(luizfds/c04-iac02) ✗ 
+➜  luizfds git:(luizfds/c04-iac02) ✗ terraform apply -var-file="main.tfvars"  
+data.aws_availability_zones.available: Refreshing state...
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_eip.devopsacademy_nateip will be created
+  + resource "aws_eip" "devopsacademy_nateip" {
+      + allocation_id     = (known after apply)
+      + association_id    = (known after apply)
+      + domain            = (known after apply)
+      + id                = (known after apply)
+      + instance          = (known after apply)
+      + network_interface = (known after apply)
+      + private_dns       = (known after apply)
+      + private_ip        = (known after apply)
+      + public_dns        = (known after apply)
+      + public_ip         = (known after apply)
+      + public_ipv4_pool  = (known after apply)
+      + vpc               = true
+    }
+
+  # aws_internet_gateway.devopsacademy_igw will be created
+  + resource "aws_internet_gateway" "devopsacademy_igw" {
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "devopsacademy-igw"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_nat_gateway.devopsacademy_ngw will be created
+  + resource "aws_nat_gateway" "devopsacademy_ngw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Name" = "devopsacademy-ngw"
+        }
+    }
+
+  # aws_route_table.devopsacademy_ngw_crt will be created
+  + resource "aws_route_table" "devopsacademy_ngw_crt" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "devopsacademy-ngw-crt"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table.devopsacademy_public_crt will be created
+  + resource "aws_route_table" "devopsacademy_public_crt" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "devopsacademy-public-crt"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_ngw[0] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_ngw" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_ngw[1] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_ngw" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_ngw[2] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_ngw" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_public_subnets[0] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_public_subnets[1] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.devopsacademy_crta_public_subnets[2] will be created
+  + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_security_group.allow_ssl will be created
+  + resource "aws_security_group" "allow_ssl" {
+      + arn                    = (known after apply)
+      + description            = "DAC04IaC02 Security Group"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "DAC04IaC02-SG"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "DAC04IaC02-SG"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # aws_subnet.private_subnet[0] will be created
+  + resource "aws_subnet" "private_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.0.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private-1"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.private_subnet[1] will be created
+  + resource "aws_subnet" "private_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.10.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private-2"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.private_subnet[2] will be created
+  + resource "aws_subnet" "private_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2c"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.20.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private-3"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public_subnet[0] will be created
+  + resource "aws_subnet" "public_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.1.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-1"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public_subnet[1] will be created
+  + resource "aws_subnet" "public_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.11.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-2"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public_subnet[2] will be created
+  + resource "aws_subnet" "public_subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2c"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.21.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-3"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_vpc.devopsacademy_vpc will be created
+  + resource "aws_vpc" "devopsacademy_vpc" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = false
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = true
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "devopsacademy-iac"
+        }
+    }
+
+Plan: 19 to add, 0 to change, 0 to destroy.
+
+
+Warning: Interpolation-only expressions are deprecated
+
+  on _provider.tf line 2, in provider "aws":
+   2:     region = "${var.aws_region}"
+
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 24 more similar warnings elsewhere)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_eip.devopsacademy_nateip: Creating...
+aws_security_group.allow_ssl: Creating...
+aws_vpc.devopsacademy_vpc: Creating...
+aws_eip.devopsacademy_nateip: Creation complete after 0s [id=eipalloc-0d0fe8302f7e1a1cf]
+aws_security_group.allow_ssl: Creation complete after 2s [id=sg-05848a2e9472e7df9]
+aws_vpc.devopsacademy_vpc: Creation complete after 3s [id=vpc-0e436adf444fedf2b]
+aws_subnet.private_subnet[2]: Creating...
+aws_internet_gateway.devopsacademy_igw: Creating...
+aws_subnet.private_subnet[1]: Creating...
+aws_subnet.public_subnet[2]: Creating...
+aws_subnet.private_subnet[0]: Creating...
+aws_subnet.public_subnet[0]: Creating...
+aws_subnet.public_subnet[1]: Creating...
+aws_internet_gateway.devopsacademy_igw: Creation complete after 1s [id=igw-0683afe5169a15da6]
+aws_route_table.devopsacademy_public_crt: Creating...
+aws_subnet.private_subnet[1]: Creation complete after 1s [id=subnet-01282f50d8ed2007e]
+aws_subnet.private_subnet[0]: Creation complete after 1s [id=subnet-01a6f211bacb9bdda]
+aws_subnet.private_subnet[2]: Creation complete after 1s [id=subnet-0a50cf23ab1de10b4]
+aws_nat_gateway.devopsacademy_ngw: Creating...
+aws_subnet.public_subnet[1]: Creation complete after 1s [id=subnet-0ab4a1090586492b8]
+aws_subnet.public_subnet[0]: Creation complete after 1s [id=subnet-0ee120e2f26eedc29]
+aws_subnet.public_subnet[2]: Creation complete after 1s [id=subnet-0f552b6e270a5df13]
+aws_route_table.devopsacademy_public_crt: Creation complete after 1s [id=rtb-0754545141a7ee4de]
+aws_route_table_association.devopsacademy_crta_public_subnets[0]: Creating...
+aws_route_table_association.devopsacademy_crta_public_subnets[1]: Creating...
+aws_route_table_association.devopsacademy_crta_public_subnets[2]: Creating...
+aws_route_table_association.devopsacademy_crta_public_subnets[1]: Creation complete after 0s [id=rtbassoc-00732573236add506]
+aws_route_table_association.devopsacademy_crta_public_subnets[2]: Creation complete after 0s [id=rtbassoc-08cbf8a80c2749090]
+aws_route_table_association.devopsacademy_crta_public_subnets[0]: Creation complete after 0s [id=rtbassoc-0e6bab0ae9c4982dc]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [10s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [20s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [30s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [40s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [50s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [1m0s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [1m10s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [1m20s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [1m30s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Still creating... [1m40s elapsed]
+aws_nat_gateway.devopsacademy_ngw: Creation complete after 1m46s [id=nat-03f3293ffe7655a6a]
+aws_route_table.devopsacademy_ngw_crt: Creating...
+aws_route_table.devopsacademy_ngw_crt: Creation complete after 1s [id=rtb-0cffe14cf31ef7845]
+aws_route_table_association.devopsacademy_crta_ngw[0]: Creating...
+aws_route_table_association.devopsacademy_crta_ngw[2]: Creating...
+aws_route_table_association.devopsacademy_crta_ngw[1]: Creating...
+aws_route_table_association.devopsacademy_crta_ngw[2]: Creation complete after 0s [id=rtbassoc-09c7b70f16455bf49]
+aws_route_table_association.devopsacademy_crta_ngw[1]: Creation complete after 0s [id=rtbassoc-0cdbdf2c10216047b]
+aws_route_table_association.devopsacademy_crta_ngw[0]: Creation complete after 0s [id=rtbassoc-0125a403414dddd67]
+
+Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: ./critical/terraform.tfstate
+
+Outputs:
+
+private_subnets = {
+  "subnet-01282f50d8ed2007e" = "10.0.10.0/24"
+  "subnet-01a6f211bacb9bdda" = "10.0.0.0/24"
+  "subnet-0a50cf23ab1de10b4" = "10.0.20.0/24"
+}
+public_subnets = {
+  "subnet-0ab4a1090586492b8" = "10.0.11.0/24"
+  "subnet-0ee120e2f26eedc29" = "10.0.1.0/24"
+  "subnet-0f552b6e270a5df13" = "10.0.21.0/24"
+}
+security_group = sg-05848a2e9472e7df9
+vpc_cidr_block = 10.0.0.0/16
+vpc_id = vpc-0e436adf444fedf2b
