@@ -1,4 +1,4 @@
-➜  luizfds git:(luizfds/c04-iac02) ✗ terraform plan -var-file="main.tfvars"     
+➜  luizfds git:(luizfds/c04-iac02) ✗ terraform plan -var-file="main.tfvars"          
 Refreshing Terraform state in-memory prior to plan...
 The refreshed state will be used to calculate this plan, but will not be
 persisted to local or remote state storage.
@@ -114,13 +114,6 @@ Terraform will perform the following actions:
       + subnet_id      = (known after apply)
     }
 
-  # aws_route_table_association.devopsacademy_crta_ngw[2] will be created
-  + resource "aws_route_table_association" "devopsacademy_crta_ngw" {
-      + id             = (known after apply)
-      + route_table_id = (known after apply)
-      + subnet_id      = (known after apply)
-    }
-
   # aws_route_table_association.devopsacademy_crta_public_subnets[0] will be created
   + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
       + id             = (known after apply)
@@ -129,13 +122,6 @@ Terraform will perform the following actions:
     }
 
   # aws_route_table_association.devopsacademy_crta_public_subnets[1] will be created
-  + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
-      + id             = (known after apply)
-      + route_table_id = (known after apply)
-      + subnet_id      = (known after apply)
-    }
-
-  # aws_route_table_association.devopsacademy_crta_public_subnets[2] will be created
   + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
       + id             = (known after apply)
       + route_table_id = (known after apply)
@@ -185,7 +171,7 @@ Terraform will perform the following actions:
       + map_public_ip_on_launch         = false
       + owner_id                        = (known after apply)
       + tags                            = {
-          + "Name" = "private-1"
+          + "Name" = "private-a"
         }
       + vpc_id                          = (known after apply)
     }
@@ -203,25 +189,7 @@ Terraform will perform the following actions:
       + map_public_ip_on_launch         = false
       + owner_id                        = (known after apply)
       + tags                            = {
-          + "Name" = "private-2"
-        }
-      + vpc_id                          = (known after apply)
-    }
-
-  # aws_subnet.private_subnet[2] will be created
-  + resource "aws_subnet" "private_subnet" {
-      + arn                             = (known after apply)
-      + assign_ipv6_address_on_creation = false
-      + availability_zone               = "ap-southeast-2c"
-      + availability_zone_id            = (known after apply)
-      + cidr_block                      = "10.0.20.0/24"
-      + id                              = (known after apply)
-      + ipv6_cidr_block                 = (known after apply)
-      + ipv6_cidr_block_association_id  = (known after apply)
-      + map_public_ip_on_launch         = false
-      + owner_id                        = (known after apply)
-      + tags                            = {
-          + "Name" = "private-3"
+          + "Name" = "private-b"
         }
       + vpc_id                          = (known after apply)
     }
@@ -239,7 +207,7 @@ Terraform will perform the following actions:
       + map_public_ip_on_launch         = true
       + owner_id                        = (known after apply)
       + tags                            = {
-          + "Name" = "public-1"
+          + "Name" = "public-a"
         }
       + vpc_id                          = (known after apply)
     }
@@ -257,25 +225,7 @@ Terraform will perform the following actions:
       + map_public_ip_on_launch         = true
       + owner_id                        = (known after apply)
       + tags                            = {
-          + "Name" = "public-2"
-        }
-      + vpc_id                          = (known after apply)
-    }
-
-  # aws_subnet.public_subnet[2] will be created
-  + resource "aws_subnet" "public_subnet" {
-      + arn                             = (known after apply)
-      + assign_ipv6_address_on_creation = false
-      + availability_zone               = "ap-southeast-2c"
-      + availability_zone_id            = (known after apply)
-      + cidr_block                      = "10.0.21.0/24"
-      + id                              = (known after apply)
-      + ipv6_cidr_block                 = (known after apply)
-      + ipv6_cidr_block_association_id  = (known after apply)
-      + map_public_ip_on_launch         = true
-      + owner_id                        = (known after apply)
-      + tags                            = {
-          + "Name" = "public-3"
+          + "Name" = "public-b"
         }
       + vpc_id                          = (known after apply)
     }
@@ -304,7 +254,7 @@ Terraform will perform the following actions:
         }
     }
 
-Plan: 19 to add, 0 to change, 0 to destroy.
+Plan: 15 to add, 0 to change, 0 to destroy.
 
 Warning: Interpolation-only expressions are deprecated
 
@@ -321,7 +271,7 @@ expressions when the template includes multiple interpolation sequences or a
 mixture of literal strings and interpolations. This deprecation applies only
 to templates that consist entirely of a single interpolation sequence.
 
-(and 24 more similar warnings elsewhere)
+(and 26 more similar warnings elsewhere)
 
 
 ------------------------------------------------------------------------
@@ -330,14 +280,7 @@ Note: You didn't specify an "-out" parameter to save this plan, so Terraform
 can't guarantee that exactly these actions will be performed if
 "terraform apply" is subsequently run.
 
-➜  luizfds git:(luizfds/c04-iac02) ✗ 
-➜  luizfds git:(luizfds/c04-iac02) ✗ 
-➜  luizfds git:(luizfds/c04-iac02) ✗ 
-➜  luizfds git:(luizfds/c04-iac02) ✗ 
-➜  luizfds git:(luizfds/c04-iac02) ✗ 
-➜  luizfds git:(luizfds/c04-iac02) ✗ 
-➜  luizfds git:(luizfds/c04-iac02) ✗ 
-➜  luizfds git:(luizfds/c04-iac02) ✗ terraform apply -var-file="main.tfvars"  
+➜  luizfds git:(luizfds/c04-iac02) ✗ terraform apply -var-file="main.tfvars"
 data.aws_availability_zones.available: Refreshing state...
 
 An execution plan has been generated and is shown below.
@@ -447,13 +390,6 @@ Terraform will perform the following actions:
       + subnet_id      = (known after apply)
     }
 
-  # aws_route_table_association.devopsacademy_crta_ngw[2] will be created
-  + resource "aws_route_table_association" "devopsacademy_crta_ngw" {
-      + id             = (known after apply)
-      + route_table_id = (known after apply)
-      + subnet_id      = (known after apply)
-    }
-
   # aws_route_table_association.devopsacademy_crta_public_subnets[0] will be created
   + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
       + id             = (known after apply)
@@ -462,13 +398,6 @@ Terraform will perform the following actions:
     }
 
   # aws_route_table_association.devopsacademy_crta_public_subnets[1] will be created
-  + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
-      + id             = (known after apply)
-      + route_table_id = (known after apply)
-      + subnet_id      = (known after apply)
-    }
-
-  # aws_route_table_association.devopsacademy_crta_public_subnets[2] will be created
   + resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
       + id             = (known after apply)
       + route_table_id = (known after apply)
@@ -518,7 +447,7 @@ Terraform will perform the following actions:
       + map_public_ip_on_launch         = false
       + owner_id                        = (known after apply)
       + tags                            = {
-          + "Name" = "private-1"
+          + "Name" = "private-a"
         }
       + vpc_id                          = (known after apply)
     }
@@ -536,25 +465,7 @@ Terraform will perform the following actions:
       + map_public_ip_on_launch         = false
       + owner_id                        = (known after apply)
       + tags                            = {
-          + "Name" = "private-2"
-        }
-      + vpc_id                          = (known after apply)
-    }
-
-  # aws_subnet.private_subnet[2] will be created
-  + resource "aws_subnet" "private_subnet" {
-      + arn                             = (known after apply)
-      + assign_ipv6_address_on_creation = false
-      + availability_zone               = "ap-southeast-2c"
-      + availability_zone_id            = (known after apply)
-      + cidr_block                      = "10.0.20.0/24"
-      + id                              = (known after apply)
-      + ipv6_cidr_block                 = (known after apply)
-      + ipv6_cidr_block_association_id  = (known after apply)
-      + map_public_ip_on_launch         = false
-      + owner_id                        = (known after apply)
-      + tags                            = {
-          + "Name" = "private-3"
+          + "Name" = "private-b"
         }
       + vpc_id                          = (known after apply)
     }
@@ -572,7 +483,7 @@ Terraform will perform the following actions:
       + map_public_ip_on_launch         = true
       + owner_id                        = (known after apply)
       + tags                            = {
-          + "Name" = "public-1"
+          + "Name" = "public-a"
         }
       + vpc_id                          = (known after apply)
     }
@@ -590,25 +501,7 @@ Terraform will perform the following actions:
       + map_public_ip_on_launch         = true
       + owner_id                        = (known after apply)
       + tags                            = {
-          + "Name" = "public-2"
-        }
-      + vpc_id                          = (known after apply)
-    }
-
-  # aws_subnet.public_subnet[2] will be created
-  + resource "aws_subnet" "public_subnet" {
-      + arn                             = (known after apply)
-      + assign_ipv6_address_on_creation = false
-      + availability_zone               = "ap-southeast-2c"
-      + availability_zone_id            = (known after apply)
-      + cidr_block                      = "10.0.21.0/24"
-      + id                              = (known after apply)
-      + ipv6_cidr_block                 = (known after apply)
-      + ipv6_cidr_block_association_id  = (known after apply)
-      + map_public_ip_on_launch         = true
-      + owner_id                        = (known after apply)
-      + tags                            = {
-          + "Name" = "public-3"
+          + "Name" = "public-b"
         }
       + vpc_id                          = (known after apply)
     }
@@ -637,7 +530,7 @@ Terraform will perform the following actions:
         }
     }
 
-Plan: 19 to add, 0 to change, 0 to destroy.
+Plan: 15 to add, 0 to change, 0 to destroy.
 
 
 Warning: Interpolation-only expressions are deprecated
@@ -655,7 +548,7 @@ expressions when the template includes multiple interpolation sequences or a
 mixture of literal strings and interpolations. This deprecation applies only
 to templates that consist entirely of a single interpolation sequence.
 
-(and 24 more similar warnings elsewhere)
+(and 26 more similar warnings elsewhere)
 
 Do you want to perform these actions?
   Terraform will perform the actions described above.
@@ -664,34 +557,28 @@ Do you want to perform these actions?
   Enter a value: yes
 
 aws_eip.devopsacademy_nateip: Creating...
-aws_security_group.allow_ssl: Creating...
 aws_vpc.devopsacademy_vpc: Creating...
-aws_eip.devopsacademy_nateip: Creation complete after 0s [id=eipalloc-0d0fe8302f7e1a1cf]
-aws_security_group.allow_ssl: Creation complete after 2s [id=sg-05848a2e9472e7df9]
-aws_vpc.devopsacademy_vpc: Creation complete after 3s [id=vpc-0e436adf444fedf2b]
-aws_subnet.private_subnet[2]: Creating...
+aws_security_group.allow_ssl: Creating...
+aws_eip.devopsacademy_nateip: Creation complete after 0s [id=eipalloc-088bac59381430d85]
+aws_security_group.allow_ssl: Creation complete after 2s [id=sg-001c60296fc7c6b02]
+aws_vpc.devopsacademy_vpc: Creation complete after 2s [id=vpc-0c7ebb75ce792f92a]
 aws_internet_gateway.devopsacademy_igw: Creating...
 aws_subnet.private_subnet[1]: Creating...
-aws_subnet.public_subnet[2]: Creating...
 aws_subnet.private_subnet[0]: Creating...
 aws_subnet.public_subnet[0]: Creating...
 aws_subnet.public_subnet[1]: Creating...
-aws_internet_gateway.devopsacademy_igw: Creation complete after 1s [id=igw-0683afe5169a15da6]
+aws_internet_gateway.devopsacademy_igw: Creation complete after 1s [id=igw-0cc03cf24d25a9e91]
 aws_route_table.devopsacademy_public_crt: Creating...
-aws_subnet.private_subnet[1]: Creation complete after 1s [id=subnet-01282f50d8ed2007e]
-aws_subnet.private_subnet[0]: Creation complete after 1s [id=subnet-01a6f211bacb9bdda]
-aws_subnet.private_subnet[2]: Creation complete after 1s [id=subnet-0a50cf23ab1de10b4]
+aws_subnet.private_subnet[0]: Creation complete after 2s [id=subnet-0a03963a72ef7605b]
+aws_subnet.private_subnet[1]: Creation complete after 2s [id=subnet-027e05950944c34eb]
 aws_nat_gateway.devopsacademy_ngw: Creating...
-aws_subnet.public_subnet[1]: Creation complete after 1s [id=subnet-0ab4a1090586492b8]
-aws_subnet.public_subnet[0]: Creation complete after 1s [id=subnet-0ee120e2f26eedc29]
-aws_subnet.public_subnet[2]: Creation complete after 1s [id=subnet-0f552b6e270a5df13]
-aws_route_table.devopsacademy_public_crt: Creation complete after 1s [id=rtb-0754545141a7ee4de]
+aws_subnet.public_subnet[1]: Creation complete after 2s [id=subnet-0f4aea8a01f9c3dce]
+aws_subnet.public_subnet[0]: Creation complete after 2s [id=subnet-03ac6536f3072060c]
+aws_route_table.devopsacademy_public_crt: Creation complete after 1s [id=rtb-0591b2f530f0789c7]
 aws_route_table_association.devopsacademy_crta_public_subnets[0]: Creating...
 aws_route_table_association.devopsacademy_crta_public_subnets[1]: Creating...
-aws_route_table_association.devopsacademy_crta_public_subnets[2]: Creating...
-aws_route_table_association.devopsacademy_crta_public_subnets[1]: Creation complete after 0s [id=rtbassoc-00732573236add506]
-aws_route_table_association.devopsacademy_crta_public_subnets[2]: Creation complete after 0s [id=rtbassoc-08cbf8a80c2749090]
-aws_route_table_association.devopsacademy_crta_public_subnets[0]: Creation complete after 0s [id=rtbassoc-0e6bab0ae9c4982dc]
+aws_route_table_association.devopsacademy_crta_public_subnets[0]: Creation complete after 1s [id=rtbassoc-0eedbb37be66194c8]
+aws_route_table_association.devopsacademy_crta_public_subnets[1]: Creation complete after 1s [id=rtbassoc-05cbd97563f5b7981]
 aws_nat_gateway.devopsacademy_ngw: Still creating... [10s elapsed]
 aws_nat_gateway.devopsacademy_ngw: Still creating... [20s elapsed]
 aws_nat_gateway.devopsacademy_ngw: Still creating... [30s elapsed]
@@ -702,17 +589,15 @@ aws_nat_gateway.devopsacademy_ngw: Still creating... [1m10s elapsed]
 aws_nat_gateway.devopsacademy_ngw: Still creating... [1m20s elapsed]
 aws_nat_gateway.devopsacademy_ngw: Still creating... [1m30s elapsed]
 aws_nat_gateway.devopsacademy_ngw: Still creating... [1m40s elapsed]
-aws_nat_gateway.devopsacademy_ngw: Creation complete after 1m46s [id=nat-03f3293ffe7655a6a]
+aws_nat_gateway.devopsacademy_ngw: Creation complete after 1m47s [id=nat-0b229d016c9d2e3e7]
 aws_route_table.devopsacademy_ngw_crt: Creating...
-aws_route_table.devopsacademy_ngw_crt: Creation complete after 1s [id=rtb-0cffe14cf31ef7845]
-aws_route_table_association.devopsacademy_crta_ngw[0]: Creating...
-aws_route_table_association.devopsacademy_crta_ngw[2]: Creating...
+aws_route_table.devopsacademy_ngw_crt: Creation complete after 1s [id=rtb-0b6a229377c184bc4]
 aws_route_table_association.devopsacademy_crta_ngw[1]: Creating...
-aws_route_table_association.devopsacademy_crta_ngw[2]: Creation complete after 0s [id=rtbassoc-09c7b70f16455bf49]
-aws_route_table_association.devopsacademy_crta_ngw[1]: Creation complete after 0s [id=rtbassoc-0cdbdf2c10216047b]
-aws_route_table_association.devopsacademy_crta_ngw[0]: Creation complete after 0s [id=rtbassoc-0125a403414dddd67]
+aws_route_table_association.devopsacademy_crta_ngw[0]: Creating...
+aws_route_table_association.devopsacademy_crta_ngw[0]: Creation complete after 0s [id=rtbassoc-000c702baae2d409e]
+aws_route_table_association.devopsacademy_crta_ngw[1]: Creation complete after 0s [id=rtbassoc-0ec736a08833c6d60]
 
-Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 15 added, 0 changed, 0 destroyed.
 
 The state of your infrastructure has been saved to the path
 below. This state is required to modify and destroy your
@@ -724,15 +609,14 @@ State path: ./critical/terraform.tfstate
 Outputs:
 
 private_subnets = {
-  "subnet-01282f50d8ed2007e" = "10.0.10.0/24"
-  "subnet-01a6f211bacb9bdda" = "10.0.0.0/24"
-  "subnet-0a50cf23ab1de10b4" = "10.0.20.0/24"
+  "subnet-027e05950944c34eb" = "10.0.10.0/24"
+  "subnet-0a03963a72ef7605b" = "10.0.0.0/24"
 }
 public_subnets = {
-  "subnet-0ab4a1090586492b8" = "10.0.11.0/24"
-  "subnet-0ee120e2f26eedc29" = "10.0.1.0/24"
-  "subnet-0f552b6e270a5df13" = "10.0.21.0/24"
+  "subnet-03ac6536f3072060c" = "10.0.1.0/24"
+  "subnet-0f4aea8a01f9c3dce" = "10.0.11.0/24"
 }
-security_group = sg-05848a2e9472e7df9
+security_group = sg-001c60296fc7c6b02
 vpc_cidr_block = 10.0.0.0/16
-vpc_id = vpc-0e436adf444fedf2b
+vpc_id = vpc-0c7ebb75ce792f92a
+➜  luizfds git:(luizfds/c04-iac02) ✗ 

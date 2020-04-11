@@ -13,24 +13,24 @@ resource "aws_vpc" "devopsacademy_vpc" {
 }
 
 resource "aws_subnet" "private_subnet" {
-  count                   = "${length(data.aws_availability_zones.available.names)}"
+  count                   = "${length(data.aws_availability_zones.available.names) - 1}"
   vpc_id                  = "${aws_vpc.devopsacademy_vpc.id}"
-  cidr_block              = "10.0.${10 * count.index}.0/24"
+  cidr_block              = "${element(var.private_subnets.*.cidr_block, count.index)}"
   availability_zone       = "${data.aws_availability_zones.available.names[count.index]}"
   map_public_ip_on_launch = false
   tags = {
-    Name = "private-${count.index + 1}"
+    Name = "${element(var.private_subnets.*.name, count.index)}"
   }
 }
 
 resource "aws_subnet" "public_subnet" {
-  count                   = "${length(data.aws_availability_zones.available.names)}"
+  count                   = "${length(data.aws_availability_zones.available.names) - 1}"
   vpc_id                  = "${aws_vpc.devopsacademy_vpc.id}"
-  cidr_block              = "10.0.${10 * count.index + 1}.0/24"
+  cidr_block              = "${element(var.public_subnets.*.cidr_block, count.index)}"
   availability_zone       = "${data.aws_availability_zones.available.names[count.index]}"
   map_public_ip_on_launch = true
   tags = {
-    Name = "public-${count.index + 1}"
+    Name = "${element(var.public_subnets.*.name, count.index)}"
   }
 }
 

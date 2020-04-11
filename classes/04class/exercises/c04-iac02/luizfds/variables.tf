@@ -12,3 +12,17 @@ variable "devopsacademy_vpc" {
     instance_tenancy     = string
   })
 }
+
+variable "public_subnets" {
+  type = list(object({
+    name       = string
+    cidr_block = string
+  }))
+}
+
+variable "private_subnets" {
+  type = list(object({
+    name       = string
+    cidr_block = string
+  }))
+}
