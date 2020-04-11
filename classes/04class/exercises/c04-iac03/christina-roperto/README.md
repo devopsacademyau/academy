@@ -1,0 +1,2 @@
+# Describe below why some changes just updated the resource being changed and the other required a full replacement of the resource.
+Because some resources in AWS can't be changed once they are created (eg: S3 bucket name, vpc and subnet cidr, nat gateway) and the only way to change them is to replace them (destroying the existing resources and creating new ones). When we replace those resources, the other resources that associated with them will subsequently need to be replaced as well.
