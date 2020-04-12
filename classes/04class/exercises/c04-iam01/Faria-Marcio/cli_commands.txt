@@ -6,8 +6,8 @@
         "User": {
             "Path": "/",
             "UserName": "user_readonly_S3",
-            "UserId": "AIDASFEAXOREF6A7XON5S",
-            "Arn": "arn:aws:iam::148446344264:user/user_readonly_S3",
+            "UserId": "AIDXXXXXXOREF6A7XON5S",
+            "Arn": "arn:aws:iam::111111111111:user/user_readonly_S3",
             "CreateDate": "2020-04-12T04:48:29+00:00"
         }
     }
@@ -20,8 +20,8 @@
     {
     "Policy": {
         "PolicyName": "S3readOnly",
-        "PolicyId": "ANPASFEAXOREBI3XC3ADD",
-        "Arn": "arn:aws:iam::148446344264:policy/S3readOnly",
+        "PolicyId": "XXXXXXEAXOREBI3XC3ADD",
+        "Arn": "arn:aws:iam::111111111111:policy/S3readOnly",
         "Path": "/",
         "DefaultVersionId": "v1",
         "AttachmentCount": 0,
@@ -34,7 +34,7 @@
 
 
 #3) Attach the policy to the user_readonly_S3 user
- --    $ aws iam attach-user-policy --policy-arn arn:aws:iam::148446344264:policy/S3readOnly --user-name user_readonly_S3
+ --    $ aws iam attach-user-policy --policy-arn arn:aws:iam::111111111111:policy/S3readOnly --user-name user_readonly_S3
 
 
 #4) Create a new Access Key (and secret) for the user_readonly_S3 user.
@@ -44,9 +44,9 @@
     {
         "AccessKey": {
             "UserName": "user_readonly_S3",
-            "AccessKeyId": "AKIASFEAXOREF4SIM3VI",
+            "AccessKeyId": "XXXXXXEAXOREF4SIM3VI",
             "Status": "Active",
-            "SecretAccessKey": "CCTifZ6K58I6Vmvno735sj6i0r0xwWB0yoy2luL+",
+            "SecretAccessKey": "XXXXXXXXXXI6Vmvno735sj6i0r0xwWB0yoy2luL+",
             "CreateDate": "2020-04-12T05:28:06+00:00"
         }
     }
@@ -54,8 +54,8 @@
 
 #5) Configure a new AWS CLI profile called s3ReadOnlyProfile using the credentials from the previous step
     $ aws configure --profile s3ReadOnlyProfile
-    AWS Access Key ID [None]: AKIASFEAXOREF4SIM3VI
-    AWS Secret Access Key [None]: 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
+    AWS Access Key ID [None]: XXXXXXEAXOREF4SIM3VI
+    AWS Secret Access Key [None]: XXXXXXXXXXI6Vmvno735sj6i0r0xwWB0yoy2luL+
     Default region name [None]: ap-southeast-2
     Default output format [None]: 
 
