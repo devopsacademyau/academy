@@ -1,0 +1,53 @@
+Class 03 - Exercise Docker 05
+
+PULL V1
+
+    carineoliveira@Carines-MBP carineoliveira % docker pull carineoliveira/c03-docker03:v1
+    v1: Pulling from carineoliveira/c03-docker03
+    aad63a933944: Pull complete 
+    29ade582b51e: Pull complete 
+    7e41ad5b6f9c: Pull complete 
+    ebf61b47b4ca: Pull complete 
+    9c060bce4eae: Pull complete 
+    0b0bad3cb28f: Pull complete 
+    Digest: sha256:ec19a80701a59668dc08f203a2d066456319016596525e9f08aa7f6375a62001
+    Status: Downloaded newer image for carineoliveira/c03-docker03:v1
+    docker.io/carineoliveira/c03-docker03:v1
+
+RUN V1 
+
+    carineoliveira@Carines-MBP carineoliveira % docker run -p 8081:80 carineoliveira/c03-docker03:v1
+    AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+    AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+    [Fri Apr 10 09:29:06.130586 2020] [mpm_event:notice] [pid 1:tid 139996825693512] AH00489: Apache/2.4.41 (Unix) configured -- resuming normal operations
+    [Fri Apr 10 09:29:06.130707 2020] [core:notice] [pid 1:tid 139996825693512] AH00094: Command line: 'httpd -D FOREGROUND'
+    172.17.0.1 - - [10/Apr/2020:09:29:16 +0000] "GET / HTTP/1.1" 200 52
+
+PULL V2
+
+    carineoliveira@Carines-MBP academy % docker pull carineoliveira/c03-docker03:v2
+    v2: Pulling from carineoliveira/c03-docker03
+    aad63a933944: Already exists 
+    29ade582b51e: Already exists 
+    7e41ad5b6f9c: Already exists 
+    ebf61b47b4ca: Already exists 
+    9c060bce4eae: Already exists 
+    Digest: sha256:68d080f9344c2302b6387337c4c54d1fc09ab2791037c34e281fc8d82f9de43c
+    Status: Downloaded newer image for carineoliveira/c03-docker03:v2
+    docker.io/carineoliveira/c03-docker03:v2
+
+RUN V2
+
+    carineoliveira@Carines-MBP carineoliveira % docker run -p 8082:80 -v "${PWD}/../../../docker/artifacts/c03-docker02:/usr/local/apache2/htdocs/" carineoliveira/c03-docker03:v2
+    AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+    AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+    [Fri Apr 10 09:40:53.562188 2020] [mpm_event:notice] [pid 1:tid 140348264762696] AH00489: Apache/2.4.41 (Unix) configured -- resuming normal operations
+    [Fri Apr 10 09:40:53.562282 2020] [core:notice] [pid 1:tid 140348264762696] AH00094: Command line: 'httpd -D FOREGROUND'
+    172.17.0.1 - - [10/Apr/2020:09:41:00 +0000] "GET / HTTP/1.1" 304 -
+
+LIST IMAGES
+
+    carineoliveira@Carines-MBP academy % docker images
+    REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+    carineoliveira/c03-docker03   v1                  c03148a53d14        About an hour ago   107MB
+    carineoliveira/c03-docker03   v2                  12d8c48e5e4c        2 hours ago         107MB
