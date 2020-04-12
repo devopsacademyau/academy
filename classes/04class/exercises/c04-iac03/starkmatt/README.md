@@ -5,8 +5,10 @@
 
 ## Questions:
 - Describe below why some changes just updated the resource being changed and the other required a full replacement of the resource.
-    - The VPC Cidr / Subnet Cidr changed without any issues because the change was made on the variable value itself, hence the data would be called the same way initally.
-    - The Subnet name couldn't because the variable name had changed, meaning that we needed to go back into the VPC.tf to change the variable name from ${var.private_subnet-b} to ${var.private_subnet-b1}  
+    - Initally when making a change to the CIDR block and planning via Terrform I had no errors appear. After speaking with Caio it made sense logically that when changing the network CIDR block, the subnets also had to change also.
+AWS would error out as the CIDR block is different to the subnets allocated
+ 
+    - Changing the Value of the subnet variable won't cause any issues as the .tf file is reading the value from the variable.tf 
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
