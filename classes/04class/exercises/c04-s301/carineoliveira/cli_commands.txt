@@ -1,0 +1,30 @@
+1. Create a new bucket with name <your_github_username> 
+
+carineoliveira@Carines-MBP carineoliveira % aws s3api create-bucket --bucket carineoliveira --region ap-southeast-2 --create-bucket-configuration LocationConstraint=ap-southeast-2
+{
+    "Location": "http://carineoliveira.s3.amazonaws.com/"
+}
+
+
+2. Upload the file in /classes/04class/aws_iam_storage/assets/index.html to the root of the S3 bucket.
+
+carineoliveira@Carines-MBP carineoliveira % aws s3 cp "${PWD}/../../../../../classes/04class/aws_iam_storage/assets/index.html"  s3://carineoliveira
+upload: ../../../aws_iam_storage/assets/index.html to s3://carineoliveira/index.html
+carineoliveira@Carines-MBP carineoliveira % 
+
+3. Enable the S3 website in the bucket
+4. Apply any other commands needed to access the website URL (via CLI only)
+5. Tip: use the policy s3_bucket_policy.json in the assets folder.
+    - changed the Resource value of s3_bucket_policy.json to match my S3
+
+carineoliveira@Carines-MBP carineoliveira % aws s3api put-bucket-policy --bucket carineoliveira --policy file://s3_bucket_policy.json
+
+
+6. Check the result via the website URL created for the bucket
+
+carineoliveira@Carines-MBP carineoliveira % curl http://carineoliveira.s3-ap-southeast-2.amazonaws.com/index.html
+<html>
+        <body>
+                Welcome to DevOps Academy! :)
+        </body>
+</html>%                                                                                                                                                                                                          
