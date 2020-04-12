@@ -1,0 +1,19 @@
+Class 03 - Exercise Docker 06
+
+BUILD IMAGE 
+
+    carineoliveira@Carines-MBP carineoliveira % docker build -t hello-name:v1 .  
+    Sending build context to Docker daemon  3.072kB
+    Step 1/2 : FROM httpd:2.4.41-alpine
+    ---> 54b0995a6305
+    Step 2/2 : ENTRYPOINT [ "echo","Hello" ]
+    ---> Running in 8a231f2c6b58
+    Removing intermediate container 8a231f2c6b58
+    ---> 546c89c5f54c
+    Successfully built 546c89c5f54c
+    Successfully tagged hello-name:v1
+
+RUN IMAGE 
+
+    carineoliveira@Carines-MBP carineoliveira % docker run -it hello-name:v1 Carine
+    Hello Carine
