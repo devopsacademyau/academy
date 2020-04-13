@@ -34,7 +34,6 @@ module "y2020-feb-project1-group3" {
   admins_team_id      = module.team-admins.team_id
   members             = [
     "andreazzabr",
-    "henriqueediniz",
     "hsy3418",
     "carineoliveira"
   ]
