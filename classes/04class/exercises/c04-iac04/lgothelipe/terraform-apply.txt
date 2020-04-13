@@ -1,4 +1,5 @@
-PS C:\Test\c04-iac04> terraform apply -var-file="main.tfvars"
+$ terraform apply -var-file="main.tfvars"
+
 
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
@@ -7,7 +8,54 @@ Resource actions are indicated with the following symbols:
 
 Terraform will perform the following actions:
 
-  # data.aws_instance.devops will be read during apply
+  # module.app_load_balancer.aws_lb.devops_alb will be created
+  + resource "aws_lb" "devops_alb" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "devops-alb"
+      + security_groups            = (known after apply)
+      + subnets                    = [
+          + "subnet-0a446d9e47b3ea3ac",
+          + "subnet-0ffe987e71765b443",
+        ]
+      + tags                       = {
+          + "Environment" = "devops_exercise"
+        }
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id = (known after apply)
+          + subnet_id     = (known after apply)
+        }
+    }
+
+  # module.app_load_balancer.aws_lb_listener.devops_alb will be created
+  + resource "aws_lb_listener" "devops_alb" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.auto_scalling.data.aws_instance.devops will be read during apply
   # (config refers to values not yet known)
  <= data "aws_instance" "devops"  {
       + ami                         = (known after apply)
@@ -53,7 +101,7 @@ Terraform will perform the following actions:
         }
     }
 
-  # aws_autoscaling_group.devops will be created
+  # module.auto_scalling.aws_autoscaling_group.devops will be created
   + resource "aws_autoscaling_group" "devops" {
       + arn                       = (known after apply)
       + availability_zones        = [
@@ -83,7 +131,7 @@ Terraform will perform the following actions:
         }
     }
 
-  # aws_autoscaling_policy.decrease will be created
+  # module.auto_scalling.aws_autoscaling_policy.decrease will be created
   + resource "aws_autoscaling_policy" "decrease" {
       + adjustment_type         = "ChangeInCapacity"
       + arn                     = (known after apply)
@@ -96,7 +144,7 @@ Terraform will perform the following actions:
       + scaling_adjustment      = -1
     }
 
-  # aws_autoscaling_policy.increase will be created
+  # module.auto_scalling.aws_autoscaling_policy.increase will be created
   + resource "aws_autoscaling_policy" "increase" {
       + adjustment_type         = "ChangeInCapacity"
       + arn                     = (known after apply)
@@ -109,78 +157,7 @@ Terraform will perform the following actions:
       + scaling_adjustment      = 1
     }
 
-  # aws_launch_template.launch_temp will be created
-  + resource "aws_launch_template" "launch_temp" {
-      + arn                                  = (known after apply)
-      + default_version                      = (known after apply)
-      + id                                   = (known after apply)
-      + image_id                             = "ami-0970010f37c4f9c8d"
-      + instance_initiated_shutdown_behavior = "terminate"
-      + instance_type                        = "t2.micro"
-      + latest_version                       = (known after apply)
-      + name                                 = "devops_01"
-      + user_data                            = "ICAgICMhIC9iaW4vYmFzaA0KICAgIHl1bSB1cGRhdGUgLXkNCiAgICB5dW0gaW5zdGFsbCAteSBodHRwZA0KICAgIGVjaG8gRGV2T3BzIGV4ZXJjaXNlIGMwNC1pYWMwNCEhID4gaW5kZXguaHRtbA0KICAgIG12IGluZGV4Lmh0bWwgL3Zhci93d3cvaHRtbC8NCiAgICBzeXN0ZW1jdGwgc3RhcnQgaHR0cGQNCg=="
-      + vpc_security_group_ids               = (known after apply)
-
-      + metadata_options {
-          + http_endpoint               = (known after apply)
-          + http_put_response_hop_limit = (known after apply)
-          + http_tokens                 = (known after apply)
-        }
-
-      + placement {
-          + availability_zone = "ap-southeast-2a"
-        }
-    }
-
-  # aws_lb.devops_alb will be created
-  + resource "aws_lb" "devops_alb" {
-      + arn                        = (known after apply)
-      + arn_suffix                 = (known after apply)
-      + dns_name                   = (known after apply)
-      + drop_invalid_header_fields = false
-      + enable_deletion_protection = false
-      + enable_http2               = true
-      + id                         = (known after apply)
-      + idle_timeout               = 60
-      + internal                   = false
-      + ip_address_type            = (known after apply)
-      + load_balancer_type         = "application"
-      + name                       = "devops-alb"
-      + security_groups            = (known after apply)
-      + subnets                    = [
-          + "subnet-0a446d9e47b3ea3ac",
-          + "subnet-0ffe987e71765b443",
-        ]
-      + tags                       = {
-          + "Environment" = "devops_exercise"
-        }
-      + vpc_id                     = (known after apply)
-      + zone_id                    = (known after apply)
-
-      + subnet_mapping {
-          + allocation_id = (known after apply)
-          + subnet_id     = (known after apply)
-        }
-    }
-
-  # aws_lb_listener.devops_alb will be created
-  + resource "aws_lb_listener" "devops_alb" {
-      + arn               = (known after apply)
-      + id                = (known after apply)
-      + load_balancer_arn = (known after apply)
-      + port              = 80
-      + protocol          = "HTTP"
-      + ssl_policy        = (known after apply)
-
-      + default_action {
-          + order            = (known after apply)
-          + target_group_arn = (known after apply)
-          + type             = "forward"
-        }
-    }
-
-  # aws_lb_target_group.devops_target will be created
+  # module.auto_scalling.aws_lb_target_group.devops_target will be created
   + resource "aws_lb_target_group" "devops_target" {
       + arn                                = (known after apply)
       + arn_suffix                         = (known after apply)
@@ -215,7 +192,7 @@ Terraform will perform the following actions:
         }
     }
 
-  # aws_lb_target_group_attachment.devops_attach will be created
+  # module.auto_scalling.aws_lb_target_group_attachment.devops_attach will be created
   + resource "aws_lb_target_group_attachment" "devops_attach" {
       + id               = (known after apply)
       + port             = 80
@@ -223,7 +200,55 @@ Terraform will perform the following actions:
       + target_id        = (known after apply)
     }
 
-  # aws_security_group.alb will be created
+  # module.default_vpc.aws_default_vpc.default will be created
+  + resource "aws_default_vpc" "default" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = (known after apply)
+      + cidr_block                       = (known after apply)
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = (known after apply)
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = (known after apply)
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = (known after apply)
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "Default VPC"
+        }
+    }
+
+  # module.ec2_template.aws_launch_template.launch_temp will be created
+  + resource "aws_launch_template" "launch_temp" {
+      + arn                                  = (known after apply)
+      + default_version                      = (known after apply)
+      + id                                   = (known after apply)
+      + image_id                             = "ami-0970010f37c4f9c8d"
+      + instance_initiated_shutdown_behavior = "terminate"
+      + instance_type                        = "t2.micro"
+      + latest_version                       = (known after apply)
+      + name                                 = "devops_01"
+      + user_data                            = "ICAgICMhIC9iaW4vYmFzaA0KICAgIHl1bSB1cGRhdGUgLXkNCiAgICB5dW0gaW5zdGFsbCAteSBodHRwZA0KICAgIGVjaG8gRGV2T3BzIGV4ZXJjaXNlIGMwNC1pYWMwNCEhID4gaW5kZXguaHRtbA0KICAgIG12IGluZGV4Lmh0bWwgL3Zhci93d3cvaHRtbC8NCiAgICBzeXN0ZW1jdGwgc3RhcnQgaHR0cGQNCg=="
+      + vpc_security_group_ids               = (known after apply)
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + placement {
+          + availability_zone = "ap-southeast-2a"
+        }
+    }
+
+  # module.security_groups.aws_security_group.alb will be created
   + resource "aws_security_group" "alb" {
       + arn                    = (known after apply)
       + description            = "Allow HTTP inbound traffic"
@@ -267,7 +292,7 @@ Terraform will perform the following actions:
       + vpc_id                 = (known after apply)
     }
 
-  # aws_security_group.allow_alb will be created
+  # module.security_groups.aws_security_group.allow_alb will be created
   + resource "aws_security_group" "allow_alb" {
       + arn                    = (known after apply)
       + description            = "Allow ALB inbound traffic"
@@ -309,30 +334,6 @@ Terraform will perform the following actions:
       + vpc_id                 = (known after apply)
     }
 
-  # module.default_vpc.aws_default_vpc.default will be created
-  + resource "aws_default_vpc" "default" {
-      + arn                              = (known after apply)
-      + assign_generated_ipv6_cidr_block = (known after apply)
-      + cidr_block                       = (known after apply)
-      + default_network_acl_id           = (known after apply)
-      + default_route_table_id           = (known after apply)
-      + default_security_group_id        = (known after apply)
-      + dhcp_options_id                  = (known after apply)
-      + enable_classiclink               = (known after apply)
-      + enable_classiclink_dns_support   = (known after apply)
-      + enable_dns_hostnames             = (known after apply)
-      + enable_dns_support               = true
-      + id                               = (known after apply)
-      + instance_tenancy                 = (known after apply)
-      + ipv6_association_id              = (known after apply)
-      + ipv6_cidr_block                  = (known after apply)
-      + main_route_table_id              = (known after apply)
-      + owner_id                         = (known after apply)
-      + tags                             = {
-          + "Name" = "Default VPC"
-        }
-    }
-
 Plan: 11 to add, 0 to change, 0 to destroy.
 
 Do you want to perform these actions?
@@ -342,45 +343,46 @@ Do you want to perform these actions?
   Enter a value: yes
 
 module.default_vpc.aws_default_vpc.default: Creating...
-aws_security_group.alb: Creating...
-aws_security_group.alb: Creation complete after 2s [id=sg-03ca88d394cbb5c3a]
-aws_security_group.allow_alb: Creating...
-aws_lb.devops_alb: Creating...
-module.default_vpc.aws_default_vpc.default: Creation complete after 3s [id=vpc-04e80fd715164a1e2]
-aws_lb_target_group.devops_target: Creating...
-aws_lb_target_group.devops_target: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:232684571994:targetgroup/devops-tg/e7391628cd64799b]
-aws_security_group.allow_alb: Creation complete after 3s [id=sg-064fdbb4862d430fb]
-aws_launch_template.launch_temp: Creating...
-aws_launch_template.launch_temp: Creation complete after 0s [id=lt-0575d03ef20d7b9c1]
-aws_autoscaling_group.devops: Creating...
-aws_lb.devops_alb: Still creating... [10s elapsed]
-aws_autoscaling_group.devops: Still creating... [10s elapsed]
-aws_lb.devops_alb: Still creating... [20s elapsed]
-aws_autoscaling_group.devops: Still creating... [20s elapsed]
-aws_lb.devops_alb: Still creating... [30s elapsed]
-aws_autoscaling_group.devops: Still creating... [30s elapsed]
-aws_lb.devops_alb: Still creating... [40s elapsed]
-aws_autoscaling_group.devops: Creation complete after 39s [id=devops_c04_iac04]
-data.aws_instance.devops: Refreshing state...
-aws_autoscaling_policy.increase: Creating...
-aws_autoscaling_policy.decrease: Creating...
-aws_autoscaling_policy.decrease: Creation complete after 1s [id=asg-policy-down]
-aws_autoscaling_policy.increase: Creation complete after 1s [id=asg-policy-up]
-aws_lb_target_group_attachment.devops_attach: Creating...
-aws_lb_target_group_attachment.devops_attach: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:232684571994:targetgroup/devops-tg/e7391628cd64799b-20200413024943482100000002]
-aws_lb.devops_alb: Still creating... [50s elapsed]
-aws_lb.devops_alb: Still creating... [1m0s elapsed]
-aws_lb.devops_alb: Still creating... [1m10s elapsed]
-aws_lb.devops_alb: Still creating... [1m20s elapsed]
-aws_lb.devops_alb: Still creating... [1m30s elapsed]
-aws_lb.devops_alb: Still creating... [1m40s elapsed]
-aws_lb.devops_alb: Still creating... [1m50s elapsed]
-aws_lb.devops_alb: Still creating... [2m0s elapsed]
-aws_lb.devops_alb: Still creating... [2m10s elapsed]
-aws_lb.devops_alb: Still creating... [2m20s elapsed]
-aws_lb.devops_alb: Creation complete after 2m24s [id=arn:aws:elasticloadbalancing:ap-southeast-2:232684571994:loadbalancer/app/devops-alb/0ca85e86a5bdfd4b]
-aws_lb_listener.devops_alb: Creating...
-aws_lb_listener.devops_alb: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:232684571994:listener/app/devops-alb/0ca85e86a5bdfd4b/86ecba80f5724c26]
+module.security_groups.aws_security_group.alb: Creating...
+module.security_groups.aws_security_group.alb: Creation complete after 2s [id=sg-08221f58ce108d256]
+module.security_groups.aws_security_group.allow_alb: Creating...
+module.app_load_balancer.aws_lb.devops_alb: Creating...
+module.default_vpc.aws_default_vpc.default: Creation complete after 2s [id=vpc-04e80fd715164a1e2]
+module.auto_scalling.aws_lb_target_group.devops_target: Creating...
+module.auto_scalling.aws_lb_target_group.devops_target: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:232684571994:targetgroup/devops-tg/f22610b5090609ab]
+module.security_groups.aws_security_group.allow_alb: Creation complete after 2s [id=sg-0863a1d8945b0d89e]
+module.ec2_template.aws_launch_template.launch_temp: Creating...
+module.ec2_template.aws_launch_template.launch_temp: Creation complete after 1s [id=lt-033d70ee9582a44b4]
+module.auto_scalling.aws_autoscaling_group.devops: Creating...
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [10s elapsed]
+module.auto_scalling.aws_autoscaling_group.devops: Still creating... [10s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [20s elapsed]
+module.auto_scalling.aws_autoscaling_group.devops: Still creating... [20s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [30s elapsed]
+module.auto_scalling.aws_autoscaling_group.devops: Still creating... [30s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [40s elapsed]
+module.auto_scalling.aws_autoscaling_group.devops: Still creating... [40s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [50s elapsed]
+module.auto_scalling.aws_autoscaling_group.devops: Creation complete after 48s [id=devops_c04_iac04]
+module.auto_scalling.data.aws_instance.devops: Refreshing state...
+module.auto_scalling.aws_autoscaling_policy.decrease: Creating...
+module.auto_scalling.aws_autoscaling_policy.increase: Creating...
+module.auto_scalling.aws_autoscaling_policy.decrease: Creation complete after 1s [id=asg-policy-down]
+module.auto_scalling.aws_autoscaling_policy.increase: Creation complete after 1s [id=asg-policy-up]
+module.auto_scalling.aws_lb_target_group_attachment.devops_attach: Creating...
+module.auto_scalling.aws_lb_target_group_attachment.devops_attach: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:232684571994:targetgroup/devops-tg/f22610b5090609ab-20200413140357545800000002]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [1m0s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [1m10s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [1m20s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [1m30s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [1m40s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [1m50s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [2m0s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [2m10s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Still creating... [2m20s elapsed]
+module.app_load_balancer.aws_lb.devops_alb: Creation complete after 2m24s [id=arn:aws:elasticloadbalancing:ap-southeast-2:232684571994:loadbalancer/app/devops-alb/e2ad385ae8d151c5]
+module.app_load_balancer.aws_lb_listener.devops_alb: Creating...
+module.app_load_balancer.aws_lb_listener.devops_alb: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:232684571994:listener/app/devops-alb/e2ad385ae8d151c5/d7772a1a622bdeaa]
 
 Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
 
@@ -393,4 +395,4 @@ State path: terraform.tfstate
 
 Outputs:
 
-alb_fqdn = devops-alb-1819301656.ap-southeast-2.elb.amazonaws.com
+alb_fqdn = devops-alb-1411289275.ap-southeast-2.elb.amazonaws.com
