@@ -7,7 +7,7 @@ resource "aws_vpc" "my_vpc" {
 }
 
 resource "aws_subnet" "my_subnets" {
-    count = 4
+    count = length(var.subnets)
     vpc_id = aws_vpc.my_vpc.id
     cidr_block = var.subnets[count.index].cidr
     map_public_ip_on_launch = var.subnets[count.index].public 
@@ -18,7 +18,7 @@ resource "aws_subnet" "my_subnets" {
 }
 
 resource "aws_internet_gateway" "my_internet_gateway" {
-  vpc_id = "${aws_vpc.my_vpc.id}"
+  vpc_id = aws_vpc.my_vpc.id
 
   tags = {
     Name = "c04-iac02"
