@@ -3,9 +3,13 @@
 I need to add/delete changes to my running application as automated as possible.
  
 ***Contents***
-- [Pipeline]()
-- [Continuous Integration]()
-- [Continuous Deployment]()
+- [Pipeline](#what-is-a-pipeline)
+  - [Example](#example)
+- [Continuous Integration](#what-is-continuous-integration)
+- [Continuous Deployment](#what-is-continuous-deployment)
+- [Creating a pipeline](#creating-a-pipeline)
+  - [CICD Tools](#cicd-tools)
+- [References](#references)
 
 ## What is a Pipeline?
 
@@ -89,7 +93,8 @@ Production deployments can use some strategies to help minimise downtime if unex
 
 ![canary](/classes/05class/cicd/assets/canary.png)
 
-# How to create your pipeline
+
+## Creating a pipeline
 
 As mentioned before, a pipeline is just a series of multiple scripts, often bash or powershell, that are chained with each other and expects a successfully result from the first step to continue.
 
@@ -103,7 +108,7 @@ Therefore, triggers to start simple scripts or fully automated pipelines can be 
   - develop an application that will consume a webhook and will trigger the first script once new code is available
 - use cicd tools available in the market
 
-## CICD Tools
+### CICD Tools
 
 - [Jenkins](https://jenkins.io/)
 Oldest and most famous open-source tool available. Requires quite a lot of effort to manage your own environment. You need to run your own instances, install software and maintain the pipelines.
@@ -123,7 +128,7 @@ Best overall fully managed paid solution in the market. It can be quite expensiv
 - [AWS CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html)
 AWS feature for creating pipelines on their environment. Requires the use of other tools like CodeCommit and CodeBuild to use.
 
-## Rerences
+## References
 
 - [The Phoenix Project](http://itrevolution.com/books/phoenix-project-devops-book/)
 - [CI Essentials](https://codeship.com/continuous-integration-essentials)
