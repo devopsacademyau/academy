@@ -96,11 +96,14 @@ resource "aws_launch_configuration" "autoscale_launch" {
   security_groups = ["${aws_security_group.sec_web.id}"]
   # key_name                    = "${aws_key_pair.auth.id}"
   associate_public_ip_address = true
-  user_data                   = <<-EOF
-              #!/bin/bash
-              sudo apt-get -y update
-              sudo apt-get -y install nginx
-              EOF
+  user_data                   = <<EOF
+    #! /bin/bash
+    yum update -y
+    yum install -y httpd
+    echo Welcome to the end of exercise c04-iac04 > index.html
+    mv index.html /var/www/html/
+    systemctl start httpd
+ EOF
   lifecycle {
     create_before_destroy = true
   }

@@ -1,5 +1,3 @@
-# public_key_path = "/Users/luiz/.ssh/id_rsa"
-# key_name        = "devopsacademy"
 aws_region      = "ap-southeast-2"
 aws_amis = {
   ap-southeast-2 = "ami-0970010f"

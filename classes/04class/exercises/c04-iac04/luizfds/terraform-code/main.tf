@@ -1,8 +1,6 @@
 module "iac_04_module" {
   source = "./iac-04-module"
 
-  # public_key_path = var.public_key_path
-  # key_name        = var.key_name
   aws_region      = var.aws_region
   aws_amis        = var.aws_amis
   vpc_id          = var.vpc_id

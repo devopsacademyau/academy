@@ -1,10 +1,10 @@
-➜  terraform-code git:(luizfds/c04-iac04) ✗ terraform apply -var-file="main.tfvars"  
-module.iac_04_module.data.aws_subnet.subnet_b: Refreshing state...
-module.iac_04_module.data.aws_subnet.subnet_a: Refreshing state...
+➜  terraform-code git:(luizfds/c04-iac04) ✗ terraform apply -var-file="main.tfvars"
 module.iac_04_module.data.aws_vpc.default: Refreshing state...
-module.iac_04_module.data.aws_subnet.subnet_c: Refreshing state...
-module.iac_04_module.data.aws_availability_zones.available: Refreshing state...
 module.iac_04_module.data.aws_ami.amazon: Refreshing state...
+module.iac_04_module.data.aws_availability_zones.available: Refreshing state...
+module.iac_04_module.data.aws_subnet.subnet_a: Refreshing state...
+module.iac_04_module.data.aws_subnet.subnet_c: Refreshing state...
+module.iac_04_module.data.aws_subnet.subnet_b: Refreshing state...
 
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
@@ -131,7 +131,7 @@ Terraform will perform the following actions:
       + key_name                    = (known after apply)
       + name                        = (known after apply)
       + security_groups             = (known after apply)
-      + user_data                   = "4bf43398a1ebec4c22a155c00ab04709fbaf9b51"
+      + user_data                   = "6f39b55997170bda1998de9b3040814bbc9d4886"
 
       + ebs_block_device {
           + delete_on_termination = (known after apply)
@@ -363,13 +363,13 @@ Do you want to perform these actions?
 module.iac_04_module.aws_security_group.sec_alb: Creating...
 module.iac_04_module.aws_security_group.sec_web: Creating...
 module.iac_04_module.aws_lb_target_group.alb_target_group: Creating...
-module.iac_04_module.aws_lb_target_group.alb_target_group: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:709308406413:targetgroup/alb-target-group/7e4621ebf3036887]
-module.iac_04_module.aws_security_group.sec_alb: Creation complete after 2s [id=sg-0dbe343fddddcd35a]
-module.iac_04_module.aws_security_group.sec_web: Creation complete after 2s [id=sg-017dff599503a0a57]
+module.iac_04_module.aws_lb_target_group.alb_target_group: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:709308406413:targetgroup/alb-target-group/e2a58080356c9572]
+module.iac_04_module.aws_security_group.sec_alb: Creation complete after 2s [id=sg-096669ab1dbd08acb]
+module.iac_04_module.aws_security_group.sec_web: Creation complete after 2s [id=sg-04d6d873133f5348a]
 module.iac_04_module.aws_launch_configuration.autoscale_launch: Creating...
-module.iac_04_module.aws_lb.alb: Creating...
 module.iac_04_module.aws_elb.elb: Creating...
-module.iac_04_module.aws_launch_configuration.autoscale_launch: Creation complete after 1s [id=terraform-20200413074618910700000001]
+module.iac_04_module.aws_lb.alb: Creating...
+module.iac_04_module.aws_launch_configuration.autoscale_launch: Creation complete after 1s [id=terraform-20200413075731771800000001]
 module.iac_04_module.aws_elb.elb: Creation complete after 2s [id=elb]
 module.iac_04_module.aws_autoscaling_group.autoscale_group: Creating...
 module.iac_04_module.aws_lb.alb: Still creating... [10s elapsed]
@@ -379,13 +379,13 @@ module.iac_04_module.aws_autoscaling_group.autoscale_group: Still creating... [2
 module.iac_04_module.aws_lb.alb: Still creating... [30s elapsed]
 module.iac_04_module.aws_autoscaling_group.autoscale_group: Still creating... [30s elapsed]
 module.iac_04_module.aws_lb.alb: Still creating... [40s elapsed]
-module.iac_04_module.aws_autoscaling_group.autoscale_group: Creation complete after 39s [id=tf-asg-20200413074621380500000002]
+module.iac_04_module.aws_autoscaling_group.autoscale_group: Creation complete after 39s [id=tf-asg-20200413075734117300000002]
 module.iac_04_module.aws_autoscaling_attachment.alb_autoscale: Creating...
-module.iac_04_module.aws_autoscaling_policy.asg_policy_increase: Creating...
 module.iac_04_module.aws_autoscaling_policy.asg_policy_decrease: Creating...
-module.iac_04_module.aws_autoscaling_attachment.alb_autoscale: Creation complete after 1s [id=tf-asg-20200413074621380500000002-20200413074700636200000003]
-module.iac_04_module.aws_autoscaling_policy.asg_policy_decrease: Creation complete after 1s [id=asg-policy-decrease]
+module.iac_04_module.aws_autoscaling_policy.asg_policy_increase: Creating...
 module.iac_04_module.aws_autoscaling_policy.asg_policy_increase: Creation complete after 1s [id=asg-policy-increase]
+module.iac_04_module.aws_autoscaling_attachment.alb_autoscale: Creation complete after 1s [id=tf-asg-20200413075734117300000002-20200413075813382700000003]
+module.iac_04_module.aws_autoscaling_policy.asg_policy_decrease: Creation complete after 1s [id=asg-policy-decrease]
 module.iac_04_module.aws_lb.alb: Still creating... [50s elapsed]
 module.iac_04_module.aws_lb.alb: Still creating... [1m0s elapsed]
 module.iac_04_module.aws_lb.alb: Still creating... [1m10s elapsed]
@@ -396,9 +396,9 @@ module.iac_04_module.aws_lb.alb: Still creating... [1m50s elapsed]
 module.iac_04_module.aws_lb.alb: Still creating... [2m0s elapsed]
 module.iac_04_module.aws_lb.alb: Still creating... [2m10s elapsed]
 module.iac_04_module.aws_lb.alb: Still creating... [2m20s elapsed]
-module.iac_04_module.aws_lb.alb: Creation complete after 2m24s [id=arn:aws:elasticloadbalancing:ap-southeast-2:709308406413:loadbalancer/app/alb/8373c0d7f9b38cad]
+module.iac_04_module.aws_lb.alb: Creation complete after 2m23s [id=arn:aws:elasticloadbalancing:ap-southeast-2:709308406413:loadbalancer/app/alb/e580db543fd1699e]
 module.iac_04_module.aws_lb_listener.alb_listener: Creating...
-module.iac_04_module.aws_lb_listener.alb_listener: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:709308406413:listener/app/alb/8373c0d7f9b38cad/1c343d3415598887]
+module.iac_04_module.aws_lb_listener.alb_listener: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:709308406413:listener/app/alb/e580db543fd1699e/8f1b46a9bfc156a6]
 
 Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
 
@@ -411,4 +411,4 @@ State path: ./terraform.tfstate
 
 Outputs:
 
-alb_dns_name = alb-1326045140.ap-southeast-2.elb.amazonaws.com
+alb_dns_name = alb-164351631.ap-southeast-2.elb.amazonaws.com
