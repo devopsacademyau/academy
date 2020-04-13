@@ -7,8 +7,9 @@
 
 ## Questions:
 - What is the benefit of having the Terraform code for the resources within the module you've created?
-    - Answer here
-
+    - Resources are much faster to be deployed 
+    - Version control of every deployments
+    - Single source of truth by checking the state files
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
