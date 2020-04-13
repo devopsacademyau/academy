@@ -3,12 +3,14 @@ This class is a general overview of the Docker Compose tool.
 The main goal is to explain the purpose, the benefits and how to use it.
 
 ***Contents***
-- [What is Docker Compose](#what-is-docker-compose)
-- [Why use Docker Compose?](#why-use-docker-compose)
-- [Compose File](#compose-file)
-
+- [Docker Compose](#docker-compose)
+  - [What is Docker Compose?](#what-is-docker-compose)
+  - [Why use Docker Compose?](#why-use-docker-compose)
+  - [Compose file](#compose-file)
+  - [Appendix](#appendix)
 
 ## What is Docker Compose?
+
 Compose is a tool for defining and running multiples docker containers that needs to interact between each other. It's a very popular tool for development as well as for CI workflows.
 
 The Compose tool is used by creating a file called `docker-compose.yaml`, where all the containers will be defined. Once you have created this file, you can bring all containers running by executing the command `docker-compose up`.
@@ -25,6 +27,7 @@ Another common usage of the Compose is during some **integration tests** of your
 By using docker-compose, you can start all your containers in your CI tool and run a set of tests to validate that all the components that your application is built from are working correctly together. This is a very common and important step of any mature CI pipeline.
 
 ## Compose file
+
 The docker-compose.yaml file is where all the definition that your docker-compose command use goes. By being a yaml file, its structure is easily undestandable and well known for most Developers.
 
 The compose file starts with the definition of the version to be used. The latest is version 3. 
@@ -51,7 +54,11 @@ This is just the basics around the `docker-compose.yaml` file, but a detailed do
 
 We will not go into a lot of details around the web and the redis images here, but it's a simple webserver that will count the number of hits.
 
-By having the `docker-compose.yaml` file in place, we can just run the following command to build/start the containers in deatch mode: `docker-compose up 0d`. By invoking this command, the docker-compose will create a new docker network to be shared between all the containers and will make the name of each service resolvable through DNS, so every container can communicate with the others by using their service name. You can check the status of each container by running `docker-compose ps` and to stop the containers, just run `docker-compose down` in the same folder.
+By having the `docker-compose.yaml` file in place, we can just run the following command to build/start the containers in detach mode: `docker-compose up -d`. 
+
+By invoking this command, the docker-compose will create a new docker network to be shared between all the containers and will make the name of each service resolvable through DNS, so every container can communicate with the others by using their service name.
+
+You can check the status of each container by running `docker-compose ps` and to stop the containers, just run `docker-compose down` in the same folder.
 
 You can also run a single service defined in `docker-compose.yaml` by using the command `docker-compose run`.
 
@@ -59,4 +66,5 @@ Example: `docker-compose run --rm redis`
 A list of all options of the `docker-compose` can be found [here](https://docs.docker.com/compose/reference/).
 
 ## Appendix
+
 - [Docker Compose - Getting Started](https://docs.docker.com/compose/gettingstarted/)
