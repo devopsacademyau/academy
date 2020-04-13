@@ -26,3 +26,11 @@ c03-docker04
 c03-docker05
 c03-docker06
 c03-docker07
+c04-iac01
+c04-iac02
+c04-iac03
+c04-iac04
+c04-iam01
+c04-rds01
+c04-rds02
+c04-s301
