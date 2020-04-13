@@ -1,6 +1,6 @@
 # Changing Values (c04-iac03)
 
-Using the same code created in the [previous exercise](../c04-iac01), modify the following values from your input variables:
+Using the same code created in the [previous exercise](../c04-iac02), modify the following values from your input variables:
 - VPC CIDR
 - Subnet 1 CIDR
 - Subnet 2 Name

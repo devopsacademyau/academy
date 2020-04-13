@@ -6,7 +6,7 @@ Create a new docker image named `da-terraform` with the tag `c03-docker-e01` tha
  - Make sure that the final image is smaller than 80Mb
  - When the image runs, it should output the version of the terraform cli tool: 
  ```bash
- $ docker run -it da-terrrafrom:c03-docker-e01
+ $ docker run -it da-terraform:c03-docker-e01
  Terraform v0.12.20
  $
  ```
