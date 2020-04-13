@@ -1,0 +1,2 @@
+curl devops-alb-1819301656.ap-southeast-2.elb.amazonaws.com
+DevOps exercise c04-iac04!!
