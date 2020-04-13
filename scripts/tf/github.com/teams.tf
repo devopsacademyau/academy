@@ -71,10 +71,6 @@ module "team-students" {
       role: "member"
     },
     {
-      name: "henriqueediniz",
-      role: "member"
-    },
-    {
       name: "hsy3418",
       role: "member"
     },
