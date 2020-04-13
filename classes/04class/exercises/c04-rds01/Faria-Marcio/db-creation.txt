@@ -35,6 +35,19 @@
         }
     }
 
+
+# Creating EC2 Secutiry Group 
+    $ aws ec2 create-security-group --group-name private-sg-rds --description "Private SG for RDS"
+# Output
+    {
+        "GroupId": "sg-06702c080456e135c"
+    }
+
+
+# Adding Inbound rule to the security group
+    $ aws ec2 authorize-security-group-ingress --group-id sg-06702c080456e135c --protocol tcp --port 3306 --cidr 54.79.98.96/24
+
+
 # Creating the Database
     $ aws rds create-db-instance --db-name devopsacademy --db-instance-identifier devopsacademy --allocated-storage 20 --db-instance-class db.t2.micro --engine mysql --master-username devops --master-user-password devopsacademy --vpc-security-group-ids sg-06702c080456e135c --db-subnet-group-name private-rds --no-publicly-accessible
 
