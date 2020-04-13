@@ -1,0 +1,264 @@
+➜  luizfds git:(luizfds/c04-iac02) ✗ terraform plan -var-file="main.tfvars" 
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+aws_eip.devopsacademy_nateip: Refreshing state... [id=eipalloc-0d72972bbed8742dc]
+data.aws_availability_zones.available: Refreshing state...
+aws_vpc.devopsacademy_vpc: Refreshing state... [id=vpc-0bea8887702f44e59]
+aws_security_group.allow_ssl: Refreshing state... [id=sg-0eb8cf42d29388e04]
+aws_subnet.private_subnet[0]: Refreshing state... [id=subnet-0dbd34baa1e260876]
+aws_subnet.public_subnet[0]: Refreshing state... [id=subnet-08d06df7f63987a66]
+aws_internet_gateway.devopsacademy_igw: Refreshing state... [id=igw-07f1c7305b697a35a]
+aws_subnet.public_subnet[1]: Refreshing state... [id=subnet-0589aa6c3dba984b2]
+aws_subnet.private_subnet[1]: Refreshing state... [id=subnet-042f2e6ccc62f2571]
+aws_route_table.devopsacademy_public_crt: Refreshing state... [id=rtb-069dc2dd61d16469b]
+aws_nat_gateway.devopsacademy_ngw: Refreshing state... [id=nat-03ed86cc060d0b62a]
+aws_route_table_association.devopsacademy_crta_public_subnets[1]: Refreshing state... [id=rtbassoc-03464536d10da4b75]
+aws_route_table_association.devopsacademy_crta_public_subnets[0]: Refreshing state... [id=rtbassoc-05a2eb335462cb777]
+aws_route_table.devopsacademy_ngw_crt: Refreshing state... [id=rtb-01c64c33cc4323d89]
+aws_route_table_association.devopsacademy_crta_ngw[0]: Refreshing state... [id=rtbassoc-07718ef0dfb463d07]
+aws_route_table_association.devopsacademy_crta_ngw[1]: Refreshing state... [id=rtbassoc-050e7d48e0b702aca]
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  ~ update in-place
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # aws_internet_gateway.devopsacademy_igw will be updated in-place
+  ~ resource "aws_internet_gateway" "devopsacademy_igw" {
+        id       = "igw-07f1c7305b697a35a"
+        owner_id = "709308406413"
+        tags     = {
+            "Name" = "devopsacademy-igw"
+        }
+      ~ vpc_id   = "vpc-0bea8887702f44e59" -> (known after apply)
+    }
+
+  # aws_nat_gateway.devopsacademy_ngw must be replaced
+-/+ resource "aws_nat_gateway" "devopsacademy_ngw" {
+        allocation_id        = "eipalloc-0d72972bbed8742dc"
+      ~ id                   = "nat-03ed86cc060d0b62a" -> (known after apply)
+      ~ network_interface_id = "eni-08fbdf6c91f945e72" -> (known after apply)
+      ~ private_ip           = "10.0.0.141" -> (known after apply)
+      ~ public_ip            = "13.237.36.194" -> (known after apply)
+      ~ subnet_id            = "subnet-0dbd34baa1e260876" -> (known after apply) # forces replacement
+        tags                 = {
+            "Name" = "devopsacademy-ngw"
+        }
+    }
+
+  # aws_route_table.devopsacademy_ngw_crt must be replaced
+-/+ resource "aws_route_table" "devopsacademy_ngw_crt" {
+      ~ id               = "rtb-01c64c33cc4323d89" -> (known after apply)
+      ~ owner_id         = "709308406413" -> (known after apply)
+      ~ propagating_vgws = [] -> (known after apply)
+      ~ route            = [
+          - {
+              - cidr_block                = "0.0.0.0/0"
+              - egress_only_gateway_id    = ""
+              - gateway_id                = ""
+              - instance_id               = ""
+              - ipv6_cidr_block           = ""
+              - nat_gateway_id            = "nat-03ed86cc060d0b62a"
+              - network_interface_id      = ""
+              - transit_gateway_id        = ""
+              - vpc_peering_connection_id = ""
+            },
+            {
+                cidr_block                = "0.0.0.0/0"
+                egress_only_gateway_id    = ""
+                gateway_id                = (known after apply)
+                instance_id               = ""
+                ipv6_cidr_block           = ""
+                nat_gateway_id            = ""
+                network_interface_id      = ""
+                transit_gateway_id        = ""
+                vpc_peering_connection_id = ""
+            },
+        ]
+        tags             = {
+            "Name" = "devopsacademy-ngw-crt"
+        }
+      ~ vpc_id           = "vpc-0bea8887702f44e59" -> (known after apply) # forces replacement
+    }
+
+  # aws_route_table.devopsacademy_public_crt must be replaced
+-/+ resource "aws_route_table" "devopsacademy_public_crt" {
+      ~ id               = "rtb-069dc2dd61d16469b" -> (known after apply)
+      ~ owner_id         = "709308406413" -> (known after apply)
+      ~ propagating_vgws = [] -> (known after apply)
+        route            = [
+            {
+                cidr_block                = "0.0.0.0/0"
+                egress_only_gateway_id    = ""
+                gateway_id                = "igw-07f1c7305b697a35a"
+                instance_id               = ""
+                ipv6_cidr_block           = ""
+                nat_gateway_id            = ""
+                network_interface_id      = ""
+                transit_gateway_id        = ""
+                vpc_peering_connection_id = ""
+            },
+        ]
+        tags             = {
+            "Name" = "devopsacademy-public-crt"
+        }
+      ~ vpc_id           = "vpc-0bea8887702f44e59" -> (known after apply) # forces replacement
+    }
+
+  # aws_route_table_association.devopsacademy_crta_ngw[0] must be replaced
+-/+ resource "aws_route_table_association" "devopsacademy_crta_ngw" {
+      ~ id             = "rtbassoc-07718ef0dfb463d07" -> (known after apply)
+      ~ route_table_id = "rtb-01c64c33cc4323d89" -> (known after apply)
+      ~ subnet_id      = "subnet-0dbd34baa1e260876" -> (known after apply) # forces replacement
+    }
+
+  # aws_route_table_association.devopsacademy_crta_ngw[1] must be replaced
+-/+ resource "aws_route_table_association" "devopsacademy_crta_ngw" {
+      ~ id             = "rtbassoc-050e7d48e0b702aca" -> (known after apply)
+      ~ route_table_id = "rtb-01c64c33cc4323d89" -> (known after apply)
+      ~ subnet_id      = "subnet-042f2e6ccc62f2571" -> (known after apply) # forces replacement
+    }
+
+  # aws_route_table_association.devopsacademy_crta_public_subnets[0] must be replaced
+-/+ resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
+      ~ id             = "rtbassoc-05a2eb335462cb777" -> (known after apply)
+      ~ route_table_id = "rtb-069dc2dd61d16469b" -> (known after apply)
+      ~ subnet_id      = "subnet-08d06df7f63987a66" -> (known after apply) # forces replacement
+    }
+
+  # aws_route_table_association.devopsacademy_crta_public_subnets[1] must be replaced
+-/+ resource "aws_route_table_association" "devopsacademy_crta_public_subnets" {
+      ~ id             = "rtbassoc-03464536d10da4b75" -> (known after apply)
+      ~ route_table_id = "rtb-069dc2dd61d16469b" -> (known after apply)
+      ~ subnet_id      = "subnet-0589aa6c3dba984b2" -> (known after apply) # forces replacement
+    }
+
+  # aws_subnet.private_subnet[0] must be replaced
+-/+ resource "aws_subnet" "private_subnet" {
+      ~ arn                             = "arn:aws:ec2:ap-southeast-2:709308406413:subnet/subnet-0dbd34baa1e260876" -> (known after apply)
+        assign_ipv6_address_on_creation = false
+        availability_zone               = "ap-southeast-2a"
+      ~ availability_zone_id            = "apse2-az3" -> (known after apply)
+        cidr_block                      = "10.0.0.0/24"
+      ~ id                              = "subnet-0dbd34baa1e260876" -> (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+        map_public_ip_on_launch         = false
+      ~ owner_id                        = "709308406413" -> (known after apply)
+        tags                            = {
+            "Name" = "private-a"
+        }
+      ~ vpc_id                          = "vpc-0bea8887702f44e59" -> (known after apply) # forces replacement
+    }
+
+  # aws_subnet.private_subnet[1] must be replaced
+-/+ resource "aws_subnet" "private_subnet" {
+      ~ arn                             = "arn:aws:ec2:ap-southeast-2:709308406413:subnet/subnet-042f2e6ccc62f2571" -> (known after apply)
+        assign_ipv6_address_on_creation = false
+        availability_zone               = "ap-southeast-2b"
+      ~ availability_zone_id            = "apse2-az1" -> (known after apply)
+        cidr_block                      = "10.0.10.0/24"
+      ~ id                              = "subnet-042f2e6ccc62f2571" -> (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+        map_public_ip_on_launch         = false
+      ~ owner_id                        = "709308406413" -> (known after apply)
+        tags                            = {
+            "Name" = "private-b"
+        }
+      ~ vpc_id                          = "vpc-0bea8887702f44e59" -> (known after apply) # forces replacement
+    }
+
+  # aws_subnet.public_subnet[0] must be replaced
+-/+ resource "aws_subnet" "public_subnet" {
+      ~ arn                             = "arn:aws:ec2:ap-southeast-2:709308406413:subnet/subnet-08d06df7f63987a66" -> (known after apply)
+        assign_ipv6_address_on_creation = false
+        availability_zone               = "ap-southeast-2a"
+      ~ availability_zone_id            = "apse2-az3" -> (known after apply)
+      ~ cidr_block                      = "10.0.1.0/24" -> "192.168.1.0/24" # forces replacement
+      ~ id                              = "subnet-08d06df7f63987a66" -> (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+        map_public_ip_on_launch         = true
+      ~ owner_id                        = "709308406413" -> (known after apply)
+        tags                            = {
+            "Name" = "public-a"
+        }
+      ~ vpc_id                          = "vpc-0bea8887702f44e59" -> (known after apply) # forces replacement
+    }
+
+  # aws_subnet.public_subnet[1] must be replaced
+-/+ resource "aws_subnet" "public_subnet" {
+      ~ arn                             = "arn:aws:ec2:ap-southeast-2:709308406413:subnet/subnet-0589aa6c3dba984b2" -> (known after apply)
+        assign_ipv6_address_on_creation = false
+        availability_zone               = "ap-southeast-2b"
+      ~ availability_zone_id            = "apse2-az1" -> (known after apply)
+        cidr_block                      = "10.0.11.0/24"
+      ~ id                              = "subnet-0589aa6c3dba984b2" -> (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+        map_public_ip_on_launch         = true
+      ~ owner_id                        = "709308406413" -> (known after apply)
+      ~ tags                            = {
+          ~ "Name" = "public-b" -> "subnet-public-b"
+        }
+      ~ vpc_id                          = "vpc-0bea8887702f44e59" -> (known after apply) # forces replacement
+    }
+
+  # aws_vpc.devopsacademy_vpc must be replaced
+-/+ resource "aws_vpc" "devopsacademy_vpc" {
+      ~ arn                              = "arn:aws:ec2:ap-southeast-2:709308406413:vpc/vpc-0bea8887702f44e59" -> (known after apply)
+        assign_generated_ipv6_cidr_block = false
+      ~ cidr_block                       = "10.0.0.0/16" -> "192.168.0.0/16" # forces replacement
+      ~ default_network_acl_id           = "acl-0057f6dc0c949ce4c" -> (known after apply)
+      ~ default_route_table_id           = "rtb-01a9ad72bceae2893" -> (known after apply)
+      ~ default_security_group_id        = "sg-0b508347713e001c6" -> (known after apply)
+      ~ dhcp_options_id                  = "dopt-1bfdda7c" -> (known after apply)
+        enable_classiclink               = false
+      ~ enable_classiclink_dns_support   = false -> (known after apply)
+        enable_dns_hostnames             = true
+        enable_dns_support               = true
+      ~ id                               = "vpc-0bea8887702f44e59" -> (known after apply)
+        instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      ~ main_route_table_id              = "rtb-01a9ad72bceae2893" -> (known after apply)
+      ~ owner_id                         = "709308406413" -> (known after apply)
+        tags                             = {
+            "Name" = "devopsacademy-iac"
+        }
+    }
+
+Plan: 12 to add, 1 to change, 12 to destroy.
+
+Warning: Interpolation-only expressions are deprecated
+
+  on _provider.tf line 2, in provider "aws":
+   2:     region = "${var.aws_region}"
+
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 26 more similar warnings elsewhere)
+
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
+➜  luizfds git:(luizfds/c04-iac02) ✗ 
