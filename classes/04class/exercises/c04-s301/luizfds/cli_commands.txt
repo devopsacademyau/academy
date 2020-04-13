@@ -12,7 +12,7 @@ aws s3 website s3://luizfds/ --index-document index.html
 
 aws s3api put-bucket-policy --bucket luizfds --policy file://s3bucketpolicy.json
 
-curl https://luizfds.s3-ap-southeast-2.amazonaws.com/index.html
+curl http://luizfds.s3-website-ap-southeast-2.amazonaws.com/
 <html>
         <body>
                 Welcome to DevOps Academy! :)
