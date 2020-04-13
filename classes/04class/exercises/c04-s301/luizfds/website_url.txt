@@ -1,1 +1,1 @@
-https://luizfds.s3-ap-southeast-2.amazonaws.com/index.html
+http://luizfds.s3-website-ap-southeast-2.amazonaws.com/
