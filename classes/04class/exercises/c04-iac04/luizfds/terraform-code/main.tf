@@ -1,10 +1,13 @@
-module "website_s3_bucket" {
+module "iac_04_module" {
   source = "./iac-04-module"
 
-  bucket_name = "luizfds-devopsacademy"
-
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
-  }
+  # public_key_path = var.public_key_path
+  # key_name        = var.key_name
+  aws_region      = var.aws_region
+  aws_amis        = var.aws_amis
+  vpc_id          = var.vpc_id
+  subnets         = var.subnets
+  instance_type   = var.instance_type
+  min_size        = var.min_size
+  max_size        = var.max_size
 }

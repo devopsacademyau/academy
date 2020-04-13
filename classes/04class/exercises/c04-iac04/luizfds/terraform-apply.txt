@@ -1,0 +1,414 @@
+➜  terraform-code git:(luizfds/c04-iac04) ✗ terraform apply -var-file="main.tfvars"  
+module.iac_04_module.data.aws_subnet.subnet_b: Refreshing state...
+module.iac_04_module.data.aws_subnet.subnet_a: Refreshing state...
+module.iac_04_module.data.aws_vpc.default: Refreshing state...
+module.iac_04_module.data.aws_subnet.subnet_c: Refreshing state...
+module.iac_04_module.data.aws_availability_zones.available: Refreshing state...
+module.iac_04_module.data.aws_ami.amazon: Refreshing state...
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.iac_04_module.aws_autoscaling_attachment.alb_autoscale will be created
+  + resource "aws_autoscaling_attachment" "alb_autoscale" {
+      + alb_target_group_arn   = (known after apply)
+      + autoscaling_group_name = (known after apply)
+      + id                     = (known after apply)
+    }
+
+  # module.iac_04_module.aws_autoscaling_group.autoscale_group will be created
+  + resource "aws_autoscaling_group" "autoscale_group" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = (known after apply)
+      + force_delete              = false
+      + health_check_grace_period = 300
+      + health_check_type         = (known after apply)
+      + id                        = (known after apply)
+      + launch_configuration      = (known after apply)
+      + load_balancers            = [
+          + "elb",
+        ]
+      + max_size                  = 3
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = (known after apply)
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + target_group_arns         = (known after apply)
+      + vpc_zone_identifier       = [
+          + "subnet-082db150",
+          + "subnet-33736d7a",
+          + "subnet-e722cf81",
+        ]
+      + wait_for_capacity_timeout = "10m"
+
+      + tag {
+          + key                 = "Name"
+          + propagate_at_launch = true
+          + value               = "autoscale"
+        }
+    }
+
+  # module.iac_04_module.aws_autoscaling_policy.asg_policy_decrease will be created
+  + resource "aws_autoscaling_policy" "asg_policy_decrease" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = (known after apply)
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "asg-policy-decrease"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.iac_04_module.aws_autoscaling_policy.asg_policy_increase will be created
+  + resource "aws_autoscaling_policy" "asg_policy_increase" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = (known after apply)
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "asg-policy-increase"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 1
+    }
+
+  # module.iac_04_module.aws_elb.elb will be created
+  + resource "aws_elb" "elb" {
+      + arn                         = (known after apply)
+      + availability_zones          = (known after apply)
+      + connection_draining         = false
+      + connection_draining_timeout = 300
+      + cross_zone_load_balancing   = true
+      + dns_name                    = (known after apply)
+      + id                          = (known after apply)
+      + idle_timeout                = 60
+      + instances                   = (known after apply)
+      + internal                    = (known after apply)
+      + name                        = "elb"
+      + security_groups             = (known after apply)
+      + source_security_group       = (known after apply)
+      + source_security_group_id    = (known after apply)
+      + subnets                     = [
+          + "subnet-082db150",
+          + "subnet-33736d7a",
+          + "subnet-e722cf81",
+        ]
+      + zone_id                     = (known after apply)
+
+      + health_check {
+          + healthy_threshold   = 2
+          + interval            = 30
+          + target              = "HTTP:80/"
+          + timeout             = 3
+          + unhealthy_threshold = 2
+        }
+
+      + listener {
+          + instance_port     = 80
+          + instance_protocol = "http"
+          + lb_port           = 80
+          + lb_protocol       = "http"
+        }
+    }
+
+  # module.iac_04_module.aws_launch_configuration.autoscale_launch will be created
+  + resource "aws_launch_configuration" "autoscale_launch" {
+      + arn                         = (known after apply)
+      + associate_public_ip_address = true
+      + ebs_optimized               = (known after apply)
+      + enable_monitoring           = true
+      + id                          = (known after apply)
+      + image_id                    = "ami-0970010f37c4f9c8d"
+      + instance_type               = "t2.micro"
+      + key_name                    = (known after apply)
+      + name                        = (known after apply)
+      + security_groups             = (known after apply)
+      + user_data                   = "4bf43398a1ebec4c22a155c00ab04709fbaf9b51"
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + no_device             = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.iac_04_module.aws_lb.alb will be created
+  + resource "aws_lb" "alb" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "alb"
+      + security_groups            = (known after apply)
+      + subnets                    = [
+          + "subnet-082db150",
+          + "subnet-33736d7a",
+          + "subnet-e722cf81",
+        ]
+      + tags                       = {
+          + "Name" = "alb"
+        }
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id = (known after apply)
+          + subnet_id     = (known after apply)
+        }
+    }
+
+  # module.iac_04_module.aws_lb_listener.alb_listener will be created
+  + resource "aws_lb_listener" "alb_listener" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.iac_04_module.aws_lb_target_group.alb_target_group will be created
+  + resource "aws_lb_target_group" "alb_target_group" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + deregistration_delay               = 300
+      + id                                 = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = "alb-target-group"
+      + port                               = 80
+      + protocol                           = "HTTP"
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + tags                               = {
+          + "name" = "alb_target_group"
+        }
+      + target_type                        = "instance"
+      + vpc_id                             = "vpc-81383de6"
+
+      + health_check {
+          + enabled             = true
+          + healthy_threshold   = 3
+          + interval            = 10
+          + matcher             = (known after apply)
+          + path                = "/"
+          + port                = "80"
+          + protocol            = "HTTP"
+          + timeout             = 5
+          + unhealthy_threshold = 10
+        }
+
+      + stickiness {
+          + cookie_duration = 1800
+          + enabled         = true
+          + type            = "lb_cookie"
+        }
+    }
+
+  # module.iac_04_module.aws_security_group.sec_alb will be created
+  + resource "aws_security_group" "sec_alb" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "sec_alb"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + vpc_id                 = "vpc-81383de6"
+    }
+
+  # module.iac_04_module.aws_security_group.sec_web will be created
+  + resource "aws_security_group" "sec_web" {
+      + arn                    = (known after apply)
+      + description            = "Used for autoscale group"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "sec_web"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + vpc_id                 = "vpc-81383de6"
+    }
+
+Plan: 11 to add, 0 to change, 0 to destroy.
+
+
+Warning: Interpolation-only expressions are deprecated
+
+  on _provider.tf line 3, in provider "aws":
+   3:   region = "${var.aws_region}"
+
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 10 more similar warnings elsewhere)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.iac_04_module.aws_security_group.sec_alb: Creating...
+module.iac_04_module.aws_security_group.sec_web: Creating...
+module.iac_04_module.aws_lb_target_group.alb_target_group: Creating...
+module.iac_04_module.aws_lb_target_group.alb_target_group: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:709308406413:targetgroup/alb-target-group/7e4621ebf3036887]
+module.iac_04_module.aws_security_group.sec_alb: Creation complete after 2s [id=sg-0dbe343fddddcd35a]
+module.iac_04_module.aws_security_group.sec_web: Creation complete after 2s [id=sg-017dff599503a0a57]
+module.iac_04_module.aws_launch_configuration.autoscale_launch: Creating...
+module.iac_04_module.aws_lb.alb: Creating...
+module.iac_04_module.aws_elb.elb: Creating...
+module.iac_04_module.aws_launch_configuration.autoscale_launch: Creation complete after 1s [id=terraform-20200413074618910700000001]
+module.iac_04_module.aws_elb.elb: Creation complete after 2s [id=elb]
+module.iac_04_module.aws_autoscaling_group.autoscale_group: Creating...
+module.iac_04_module.aws_lb.alb: Still creating... [10s elapsed]
+module.iac_04_module.aws_autoscaling_group.autoscale_group: Still creating... [10s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [20s elapsed]
+module.iac_04_module.aws_autoscaling_group.autoscale_group: Still creating... [20s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [30s elapsed]
+module.iac_04_module.aws_autoscaling_group.autoscale_group: Still creating... [30s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [40s elapsed]
+module.iac_04_module.aws_autoscaling_group.autoscale_group: Creation complete after 39s [id=tf-asg-20200413074621380500000002]
+module.iac_04_module.aws_autoscaling_attachment.alb_autoscale: Creating...
+module.iac_04_module.aws_autoscaling_policy.asg_policy_increase: Creating...
+module.iac_04_module.aws_autoscaling_policy.asg_policy_decrease: Creating...
+module.iac_04_module.aws_autoscaling_attachment.alb_autoscale: Creation complete after 1s [id=tf-asg-20200413074621380500000002-20200413074700636200000003]
+module.iac_04_module.aws_autoscaling_policy.asg_policy_decrease: Creation complete after 1s [id=asg-policy-decrease]
+module.iac_04_module.aws_autoscaling_policy.asg_policy_increase: Creation complete after 1s [id=asg-policy-increase]
+module.iac_04_module.aws_lb.alb: Still creating... [50s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [1m0s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [1m10s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [1m20s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [1m30s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [1m40s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [1m50s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [2m0s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [2m10s elapsed]
+module.iac_04_module.aws_lb.alb: Still creating... [2m20s elapsed]
+module.iac_04_module.aws_lb.alb: Creation complete after 2m24s [id=arn:aws:elasticloadbalancing:ap-southeast-2:709308406413:loadbalancer/app/alb/8373c0d7f9b38cad]
+module.iac_04_module.aws_lb_listener.alb_listener: Creating...
+module.iac_04_module.aws_lb_listener.alb_listener: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:709308406413:listener/app/alb/8373c0d7f9b38cad/1c343d3415598887]
+
+Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: ./terraform.tfstate
+
+Outputs:
+
+alb_dns_name = alb-1326045140.ap-southeast-2.elb.amazonaws.com
