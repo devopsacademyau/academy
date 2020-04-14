@@ -1,0 +1,257 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+[0m[1maws_vpc.my_vpc: Refreshing state... [id=vpc-025132b0f205d5077][0m
+[0m[1maws_eip.my_elastic_IP: Refreshing state... [id=eipalloc-01b69b6b53d57b144][0m
+[0m[1maws_internet_gateway.my_internet_gateway: Refreshing state... [id=igw-0d6012fb27f844c10][0m
+[0m[1maws_subnet.my_subnets[0]: Refreshing state... [id=subnet-0b356d82e6a3f4eef][0m
+[0m[1maws_subnet.my_subnets[3]: Refreshing state... [id=subnet-0bb35c98f3de157b1][0m
+[0m[1maws_subnet.my_subnets[2]: Refreshing state... [id=subnet-0843acc3f2bd7c69e][0m
+[0m[1maws_subnet.my_subnets[1]: Refreshing state... [id=subnet-05200cb95b348cc61][0m
+[0m[1maws_route_table.my_igw_route_table: Refreshing state... [id=rtb-0a059f0bdd81e3a58][0m
+[0m[1maws_nat_gateway.my_nat_gateway: Refreshing state... [id=nat-01670e634d7c5e78b][0m
+[0m[1maws_route_table.my_nat_route_table: Refreshing state... [id=rtb-03c91677515bb647e][0m
+[0m[1maws_route_table_association.my_route_table_association_public_2: Refreshing state... [id=rtbassoc-07f8ec3226f27d22d][0m
+[0m[1maws_route_table_association.my_route_table_association_public_1: Refreshing state... [id=rtbassoc-0617497bc745af4e2][0m
+[0m[1maws_route_table_association.my_route_table_association_private_1: Refreshing state... [id=rtbassoc-08a0deb497c03b8ca][0m
+[0m[1maws_route_table_association.my_route_table_association_private_2: Refreshing state... [id=rtbassoc-0f1654dd97e21b3bb][0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[31m-[0m/[32m+[0m destroy and then create replacement
+[0m
+Terraform will perform the following actions:
+
+[1m  # aws_internet_gateway.my_internet_gateway[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_internet_gateway" "my_internet_gateway" {
+      [32m+[0m [0m[1m[0mid[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m     = {
+          [32m+[0m [0m"Name" = "c04-iac02"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m   = (known after apply)
+    }
+
+[1m  # aws_nat_gateway.my_nat_gateway[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_nat_gateway" "my_nat_gateway" {
+      [32m+[0m [0m[1m[0mallocation_id[0m[0m        = "eipalloc-01b69b6b53d57b144"
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                 = {
+          [32m+[0m [0m"Name" = "c04-iac02"
+        }
+    }
+
+[1m  # aws_route_table.my_igw_route_table[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table" "my_igw_route_table" {
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpropagating_vgws[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mroute[0m[0m            = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_block                = "0.0.0.0/0"
+              [32m+[0m [0megress_only_gateway_id    = ""
+              [32m+[0m [0mgateway_id                = (known after apply)
+              [32m+[0m [0minstance_id               = ""
+              [32m+[0m [0mipv6_cidr_block           = ""
+              [32m+[0m [0mnat_gateway_id            = ""
+              [32m+[0m [0mnetwork_interface_id      = ""
+              [32m+[0m [0mtransit_gateway_id        = ""
+              [32m+[0m [0mvpc_peering_connection_id = ""
+            },
+        ]
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Name" = "c04-iac02"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m           = (known after apply)
+    }
+
+[1m  # aws_route_table.my_nat_route_table[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table" "my_nat_route_table" {
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpropagating_vgws[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mroute[0m[0m            = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_block                = "0.0.0.0/0"
+              [32m+[0m [0megress_only_gateway_id    = ""
+              [32m+[0m [0mgateway_id                = (known after apply)
+              [32m+[0m [0minstance_id               = ""
+              [32m+[0m [0mipv6_cidr_block           = ""
+              [32m+[0m [0mnat_gateway_id            = ""
+              [32m+[0m [0mnetwork_interface_id      = ""
+              [32m+[0m [0mtransit_gateway_id        = ""
+              [32m+[0m [0mvpc_peering_connection_id = ""
+            },
+        ]
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Name" = "c04-iac02"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m           = (known after apply)
+    }
+
+[1m  # aws_route_table_association.my_route_table_association_private_1[0m must be [1m[31mreplaced[0m[0m
+[0m[31m-[0m/[32m+[0m[0m resource "aws_route_table_association" "my_route_table_association_private_1" {
+      [33m~[0m [0m[1m[0mid[0m[0m             = "rtbassoc-08a0deb497c03b8ca" [33m->[0m [0m(known after apply)
+      [33m~[0m [0m[1m[0mroute_table_id[0m[0m = "rtb-03c91677515bb647e" [33m->[0m [0m(known after apply)
+      [33m~[0m [0m[1m[0msubnet_id[0m[0m      = "subnet-0843acc3f2bd7c69e" [33m->[0m [0m(known after apply) [31m# forces replacement[0m[0m
+    }
+
+[1m  # aws_route_table_association.my_route_table_association_private_2[0m must be [1m[31mreplaced[0m[0m
+[0m[31m-[0m/[32m+[0m[0m resource "aws_route_table_association" "my_route_table_association_private_2" {
+      [33m~[0m [0m[1m[0mid[0m[0m             = "rtbassoc-0f1654dd97e21b3bb" [33m->[0m [0m(known after apply)
+      [33m~[0m [0m[1m[0mroute_table_id[0m[0m = "rtb-03c91677515bb647e" [33m->[0m [0m(known after apply)
+      [33m~[0m [0m[1m[0msubnet_id[0m[0m      = "subnet-0bb35c98f3de157b1" [33m->[0m [0m(known after apply) [31m# forces replacement[0m[0m
+    }
+
+[1m  # aws_route_table_association.my_route_table_association_public_1[0m must be [1m[31mreplaced[0m[0m
+[0m[31m-[0m/[32m+[0m[0m resource "aws_route_table_association" "my_route_table_association_public_1" {
+      [33m~[0m [0m[1m[0mid[0m[0m             = "rtbassoc-0617497bc745af4e2" [33m->[0m [0m(known after apply)
+      [33m~[0m [0m[1m[0mroute_table_id[0m[0m = "rtb-0a059f0bdd81e3a58" [33m->[0m [0m(known after apply)
+      [33m~[0m [0m[1m[0msubnet_id[0m[0m      = "subnet-0b356d82e6a3f4eef" [33m->[0m [0m(known after apply) [31m# forces replacement[0m[0m
+    }
+
+[1m  # aws_route_table_association.my_route_table_association_public_2[0m must be [1m[31mreplaced[0m[0m
+[0m[31m-[0m/[32m+[0m[0m resource "aws_route_table_association" "my_route_table_association_public_2" {
+      [33m~[0m [0m[1m[0mid[0m[0m             = "rtbassoc-07f8ec3226f27d22d" [33m->[0m [0m(known after apply)
+      [33m~[0m [0m[1m[0mroute_table_id[0m[0m = "rtb-0a059f0bdd81e3a58" [33m->[0m [0m(known after apply)
+      [33m~[0m [0m[1m[0msubnet_id[0m[0m      = "subnet-05200cb95b348cc61" [33m->[0m [0m(known after apply) [31m# forces replacement[0m[0m
+    }
+
+[1m  # aws_subnet.my_subnets[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "my_subnets" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m               = "ap-southeast-2a"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                      = "10.0.3.0/24"
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m         = true
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {
+          [32m+[0m [0m"Name" = "c04-iac02"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                          = (known after apply)
+    }
+
+[1m  # aws_subnet.my_subnets[1][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "my_subnets" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m               = "ap-southeast-2b"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                      = "10.0.4.0/24"
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m         = true
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {
+          [32m+[0m [0m"Name" = "c04-iac02"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                          = (known after apply)
+    }
+
+[1m  # aws_subnet.my_subnets[2][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "my_subnets" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m               = "ap-southeast-2a"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                      = "10.0.0.0/24"
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m         = false
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {
+          [32m+[0m [0m"Name" = "c04-iac02"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                          = (known after apply)
+    }
+
+[1m  # aws_subnet.my_subnets[3][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "my_subnets" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m               = "ap-southeast-2b"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                      = "10.0.1.0/24"
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m         = false
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {
+          [32m+[0m [0m"Name" = "c04-iac02"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                          = (known after apply)
+    }
+
+[1m  # aws_vpc.my_vpc[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_vpc" "my_vpc" {
+      [32m+[0m [0m[1m[0marn[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0massign_generated_ipv6_cidr_block[0m[0m = false
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                       = "10.0.0.0/16"
+      [32m+[0m [0m[1m[0mdefault_network_acl_id[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_route_table_id[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_security_group_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdhcp_options_id[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0menable_classiclink[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0menable_classiclink_dns_support[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0menable_dns_hostnames[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0menable_dns_support[0m[0m               = true
+      [32m+[0m [0m[1m[0mid[0m[0m                               = (known after apply)
+      [32m+[0m [0m[1m[0minstance_tenancy[0m[0m                 = "default"
+      [32m+[0m [0m[1m[0mipv6_association_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mmain_route_table_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                             = {
+          [32m+[0m [0m"Name" = "devopsacademy-iac"
+        }
+    }
+
+[0m[1mPlan:[0m 13 to add, 0 to change, 4 to destroy.[0m
+[33m
+[1m[33mWarning: [0m[0m[1mQuoted type constraints are deprecated[0m
+
+[0m  on variables.tf line 2, in variable "vpc_cidr":
+   2:   type = [4m"string"[0m
+[0m
+Terraform 0.11 and earlier required type constraints to be given in quotes,
+but that form is now deprecated and will be removed in a future version of
+Terraform. To silence this warning, remove the quotes around "string".
+[0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on vpc.tf line 21, in resource "aws_internet_gateway" "my_internet_gateway":
+  21:   vpc_id = [4m"${aws_vpc.my_vpc.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+[0m[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
