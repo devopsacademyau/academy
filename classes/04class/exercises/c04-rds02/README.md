@@ -1,4 +1,4 @@
-# Descirbe the RDS Instance (c04-rds02)
+# Describe the RDS Instance (c04-rds02)
 
 In this exercise, we'll use the same database created in the [last exercise](../c04/rds01).
 
