@@ -23,5 +23,5 @@ Your Makefile should have the following steps:
         - with the instructions to build your docker image
     - Makefile
         - with the three phony targets mentioned above 
-    - output.txt 
+    - output.txt
         - with the execution and outputs of the following command: `make build`, `make push`, `make run`
