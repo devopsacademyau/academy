@@ -1,4 +1,4 @@
-$ aws rds describe-db-instances
+$ aws rds describe-db-instances --db-instance-identifier rds01
 {
     "DBInstances": [
         {
