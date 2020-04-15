@@ -13,7 +13,6 @@
   - 2 route table public/private
   - 2 nacl public/private (ALLOW ALL is not permitted)
   - internet gateway
-  - nat gateway (optional)
 
 done:
   - I can run a instance on public subnet and another one on private subnet
