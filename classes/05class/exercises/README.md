@@ -9,3 +9,8 @@ For instructions on how to submit your work, [please check the main repository R
 ## Docker Compose 
 
 - [Basic Compose](/classes/05class/exercises/c05-compose01/README.md)
+
+## 3 Musketeers exercises
+
+- [Mixing Make and Docker](/classes/05class/exercises/c05-3m01/README.md)
+- [Creating S3 buckets in AWS using full 3 Muskeeters approach](/classes/05class/exercises/c05-3m02/README.md)
