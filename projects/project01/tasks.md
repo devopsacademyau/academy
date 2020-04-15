@@ -1,7 +1,3 @@
-
-
-
-
 # project 1 steps
 
 - all cards to be considered completed needs to have developed code and proper documentation commited to master branch
@@ -132,6 +128,7 @@ done:
   - service needs 2 task definitions running
   - don't expose task definition to port 80 on host
 
+
 ## AWS Certificate Manager (ACM)
   - this task should be done on the AWS final account where the group will make the demonstration (ONLY ONCE)
   - generate a new managed certificate manually through the console:
@@ -144,13 +141,6 @@ done:
   - no terraform code for this task in specific
   - certificate request created and validate status is `ISSUED`
 
-
-## APPLICATION LOAD BALANCER
-
-
-done:
-  - send ALB CNAME record to one of the instructors to create a friendly name
-  - add ACM certificate to ALB
 
 ## SCRIPTING
   - local automation should use 3Muskeeters pattern
@@ -173,7 +163,18 @@ done:
   good to have:
     - deployment updating TD/service via `make deploy`
 
+
+## APPLICATION LOAD BALANCER
+WIP
+
+done:
+  - send ALB CNAME record to one of the instructors to create a friendly name
+  - add ACM certificate to ALB
+
+
 ## CICD
+WIP
+
   - create a github action that:
     - every pull request will run `make build`
     - build step needs to build image and push to ECR tagged with commit SHORT_SHA for reference
