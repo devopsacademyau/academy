@@ -34,3 +34,8 @@ c04-iam01
 c04-rds01
 c04-rds02
 c04-s301
+c05-actions01
+c05-actions02
+c05-compose01
+c05-make01
+c05-3m01
