@@ -132,8 +132,25 @@ done:
   - service needs 2 task definitions running
   - don't expose task definition to port 80 on host
 
+## AWS Certificate Manager (ACM)
+  - this task should be done on the AWS final account where the group will make the demonstration (ONLY ONCE)
+  - generate a new managed certificate manually through the console:
+    - request certificate (public)
+    - add domain names `*.<your-group-name>.devopsacademy.com` (i.e. *.group1.devopsacademy.com.au)
+    - chose DNS validation
+    - send the CNAME record that needs to be created to one of the DA instructors
+
+done:
+  - no terraform code for this task in specific
+  - certificate request created and validate status is `ISSUED`
+
 
 ## APPLICATION LOAD BALANCER
+
+
+done:
+  - send ALB CNAME record to one of the instructors to create a friendly name
+  - add ACM certificate to ALB
 
 ## SCRIPTING
   - local automation should use 3Muskeeters pattern
