@@ -144,7 +144,7 @@ done:
 
 ## SCRIPTING
   - local automation should use 3Muskeeters pattern
-  - Makefile containing at least targets for: `build` `deploy`
+  - Makefile containing at least targets for: `build` `deploy-tf` `apply` `plan`
   - targets should call docker-compose to execute code
   - terraform state file can be managed locally individual by each student
     - if groups decide to use a shared aws account, use S3 bucket as backend to share the state
@@ -152,9 +152,13 @@ done:
     - build docker image
     - tag new image with commit SHORT_SHA (last 5 digits)
     - push image to ECR
-  - deploy:
+  - deploy-wp:
     - update task definition revision with new container image tag
     - update service to use new task definition
+  - plan
+    - runs the terraform plan and generate an output file to be used in the apply command
+  - apply
+    - run the terraform apply command
   
 done:
   minimum:
@@ -176,8 +180,8 @@ done:
 WIP
 
   - create a github action that:
-    - every pull request will run `make build`
-    - build step needs to build image and push to ECR tagged with commit SHORT_SHA for reference
+    - every pull request that makes change to the files related to the container will run `make build`
+    - build step needs to build image and push to ECR tagging the image with commit SHORT_SHA for reference
   - create a github action that:
     - every push to `master` branch will run `make deploy`
     - deploy step will update task definition / service with new container image tag
