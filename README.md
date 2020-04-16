@@ -4,16 +4,18 @@
     <img src="docs/logo.png" width="300">
 </p>
 
-This non-profit repository intention is to help the community to learn the DevOps methodology and culture throughout a series of classes and hands-on laboratories and become ready to start working as Automation/Cloud/DevOps Engineer.
+This repository's intention is to help the community in learning the DevOps methodologies and culture throughout a series of classes and hands-on exercises. The content of the classes that will be presented has been designed in a way to prepare you for working as an Automation/Cloud/DevOps Engineer.
 
-Feel free to contribute with content (PR), help peer reviewing code or just going through the exercises!
+These classes start with explaining different concepts at a high level and then goes into some detail. Some of the main topics currently being covered can be seen [here](#content).
 
-If you want to make part of the team behind this, get in touch on help@devopsacademy.com.au.
+There will also be some new content coming in the future, more details can be found at the bottom of the file in the [Future Work](#future-work) section.
+
+Feel free to contribute to this repository with content through Pull Requests, help peer reviewing code or just going through the exercises!
+
+If you want to be part of the team behind this, get in touch on help@devopsacademy.com.au.
 
 # Table of Content
 
-- [DevOps Academy](#devops-academy)
-- [Table of Content](#table-of-content)
 - [How it Works](#how-it-works)
 - [Requirements](#requirements)
 - [Content](#content)
@@ -40,6 +42,12 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
 To complete the DevOps Academy, you will have to go through 8 classes with hands-on exercises. For each exercise, you will have to submit your code via pull requests to this repository as per [instructions](#exercises). The last two labs are complete projects based on current industry needs.
 
 You will also be required to peer review at least 5 pull requests from other students to finish this course.
+
+There will be 2 modes of learning the content in these classes:
+
+1. Self-learning. Where you go through all the classes on your own pace and submit the exercises when you're ready.
+
+2. Face-to-Face Classes or Virtual Classes. Where the instructors will go through the content of each class and answer any questions or concerns you might have. To sign up for the classes you can email help@devopsacademy.com to get the presentation dates and the availability for the upcoming class.
 
 # Requirements
 
@@ -266,6 +274,28 @@ Run:  `make rtr-cleanup`
 Optionally you can pass the Github User and Token, so the API calls are not throttled.
 
 Run:  `make rtr-cleanup GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
+
+# Future Work
+
+New content in the future will cover some of the following topics:
+
+* Kubernetes 101
+    - What are the kubernetes basic concepts (i.e: cluster,master,node,namespace)?
+    - What are the Kubernetes main components? (i.e: master node, scheduler, ETCD, worker nodes)
+    - Kubernetes Architecture and how are the main components connected to each other.
+    - Key terminologies/resources such as deployments, daemon sets and stateful sets  
+
+* Google Cloud Platform (GCP)
+  - Compare the GCP resources to their equivalent in AWS  
+  - Networking in GCP and its differences to AWS
+
+* Infrastructure as Code (IaaC)
+  - What is IaaC?
+  - What does it solve?
+  - Benefits
+  - Tools
+
+We are always open to suggestions about specific topics so if you have one in mind feel free to contact us at help@devopsacademy.com.au and provide your suggestion.
 
 # Authors
 
