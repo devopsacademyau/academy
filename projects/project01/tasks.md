@@ -163,14 +163,14 @@ done:
   good to have:
     - deployment updating TD/service via `make deploy`
 
-
 ## APPLICATION LOAD BALANCER
-WIP
+  - Create a load balance that only listen to port 443
+  - Requests to the load balance must be redirected to the Containers running on the ECS cluster
+  - Load balancer must be publicly accessible
+  - Security group should only allow TCP connection on port 443
 
-done:
-  - send ALB CNAME record to one of the instructors to create a friendly name
-  - add ACM certificate to ALB
-
+done: 
+  - By accessing https://loadbalanceurl I can get a response from the container
 
 ## CICD
 WIP
