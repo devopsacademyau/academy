@@ -1,0 +1,20 @@
+aws s3 mb s3://luizfds
+make_bucket: luizfds
+
+aws s3 ls
+2020-02-26 21:55:33 cf-templates-1ixf35kizg77c-ap-southeast-2
+2020-04-13 00:10:47 luizfds
+
+aws s3 cp /classes/04class/aws_iam_storage/assets/index.html s3://luizfds/
+upload: classes/04class/aws_iam_storage/assets/index.html to s3://luizfds/index.html
+
+aws s3 website s3://luizfds/ --index-document index.html
+
+aws s3api put-bucket-policy --bucket luizfds --policy file://s3bucketpolicy.json
+
+curl http://luizfds.s3-website-ap-southeast-2.amazonaws.com/
+<html>
+        <body>
+                Welcome to DevOps Academy! :)
+        </body>
+</html>%  
