@@ -1,0 +1,35 @@
+##Exercise 7
+- VPC Dashboard service, and on the left hand side select Route Tables
+
+- Then select my Public RT, and added the following 0.0.0.0/0 | target devopsacademy-igw igw-080859d0d893c8a00
+
+- After associating, I then selected my private route table added the same details as above but I selected the NAT Gateway as the target | devopsacademy-ngw nat-07d1ac4edb3e79d4b
+
+- After creating RT's, I then went into Subnet Associations and selected Private Subnets for the Private RT, and Public Subnets for the Public RT
+
+Why did you add 0.0.0.0 route to the IGW on public route table?
+0.0.0.0 was used so it covers awhole range of addresses so they're able to access the Public Instance
+As per AWS Networking rules, an Internet Gateway is needed for accessibility from the public network into the AWS Environment.
+
+Why did you add 0.0.0.0 route to the NGW on private route table?
+A Nat Gateway is needed for the private network for accessibility, once the public subnet is accessible you're able to route to the Private subnet.
+
+
+What is the difference of IGW and NGW
+- Internet Gateway gives access public subnet access to the internet.
+- NAT Gateway gives Internet access but under strict rules.
+Those are having a one way connection out but not back in, you're able to use an ACL to control the traffic to and from the subnet in which the NAT Gateway is located
+
+
+Can you delete the destination route to your VPC network? Why?
+
+Default VPC is created for customers by AWS on 172.31.0.0/16.
+They state that "A default VPC is suitable for getting started quickly, and for launching public instances such as a blog or simple website"
+If there is already a default VPC in the region, you cannot create another one
+
+What happens if you do not associate your route table with any subnets?
+The RT will only associate the main route table and VPC which was created initally.
+When creating RT's to specific subnets you need to be sure you're allocating them accordingly.
+If none is associated the the route table will not be used and the main route table will be used instead
+
+

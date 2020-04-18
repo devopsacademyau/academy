@@ -1,0 +1,11 @@
+Command to list all images on your local as well as it's output:
+
+$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+lgothelipe/exercise02   v1                  29883b7de332        56 minutes ago      109MB
+lgothelipe/exercise02   v2                  1abb830a8477        8 days ago          109MB
+
+$ docker ps
+CONTAINER ID        IMAGE                      COMMAND              CREATED             STATUS              PORTS                  NAMES
+6330fdf6d0b1        lgothelipe/exercise02:v2   "httpd-foreground"   7 minutes ago       Up 7 minutes        0.0.0.0:8082->80/tcp   quirky_rhodes
+ce5c679ab1e5        lgothelipe/exercise02:v1   "httpd-foreground"   11 minutes ago      Up 11 minutes       0.0.0.0:8081->80/tcp   clever_kapitsa

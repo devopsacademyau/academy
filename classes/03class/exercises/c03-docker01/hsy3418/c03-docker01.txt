@@ -1,0 +1,34 @@
+$docker image build -t da-terraform:c03-docker-e01 .
+
+Sending build context to Docker daemon   2.56kB
+Step 1/6 : FROM alpine:3.11.5
+ ---> a187dde48cd2
+Step 2/6 : WORKDIR /tmp
+ ---> Using cache
+ ---> b0c1c4162dac
+Step 3/6 : RUN apk add wget unzip
+ ---> Using cache
+ ---> baaa6d4c55ae
+Step 4/6 : RUN wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
+ ---> Running in 814e7853eace
+Removing intermediate container 814e7853eace
+ ---> 1ad1e678aa9d
+Step 5/6 : RUN unzip ./terraform_0.12.20_linux_amd64.zip -d /usr/local/bin/
+ ---> Running in 3130500705ec
+Archive:  ./terraform_0.12.20_linux_amd64.zip
+  inflating: /usr/local/bin/terraform  
+Removing intermediate container 3130500705ec
+ ---> aa2f7b6225e3
+Step 6/6 : CMD ["terraform", "-v"]
+ ---> Running in 8875f0fb1195
+Removing intermediate container 8875f0fb1195
+ ---> f30174e95007
+Successfully built f30174e95007
+Successfully tagged da-terraform:c03-docker-e01
+
+SIYUANs-MBP:hsy3418 siyuanhu$ docker run -it da-terraform:c03-docker-e01
+Terraform v0.12.20
+
+$docker images
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+da-terraform                         c03-docker-e01      f30174e95007        2 minutes ago       74.6MB

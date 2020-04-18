@@ -1,0 +1,66 @@
+Class 03 - Exercise Docker 04
+
+LIST IMAGES
+
+    carineoliveira@Carines-MBP carineoliveira % docker images
+    REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+    carineoliveira/c03-docker03   v1                  c03148a53d14        About an hour ago   107MB
+    carineoliveira/c03-docker03   v2                  12d8c48e5e4c        About an hour ago   107MB
+    exercise02                    v2                  12d8c48e5e4c        About an hour ago   107MB
+    exercise02                    v1                  65682c829874        2 hours ago         107MB
+    httpd                         2.4.41-alpine       54b0995a6305        2 weeks ago         107MB
+    
+REMOVE DOCKERS CONTAINERS 
+
+    carineoliveira@Carines-MBP carineoliveira % docker rm $(docker ps -a -q)
+    0ec3910d7739
+    3d2577dfd0ea
+    53f0ba636f3c
+    692f15182b5f
+    83edea315768
+    be739cfe1fc1
+    766825e6511b
+    ec7696251fd0
+    6d6ad73bd22a
+    b205e06df4d3
+    0fd0adc00d76
+    8ef9e8702786
+
+REMOVE IMAGES
+
+    carineoliveira@Carines-MBP carineoliveira % docker rmi $(docker images -a -q)
+    Untagged: carineoliveira/c03-docker03:v1
+    Untagged: carineoliveira/c03-docker03@sha256:ec19a80701a59668dc08f203a2d066456319016596525e9f08aa7f6375a62001
+    Deleted: sha256:c03148a53d14753ddbe2ed2e8df55d59bd5631b113feff709ed647e7e38fcbf6
+    Deleted: sha256:9ddf9c1a6b7f70c0ea65357b625be8c0296275b9b13b3bb219a1f02c356ff2a1
+    Deleted: sha256:a01f6f9cfc5f7ebdf72ab7601d88ff601bb9addfd762407fcbfc00593493e475
+    Untagged: exercise02:v1
+    Deleted: sha256:65682c829874974f283b2bd546e4426ea04e5c1fa5e0a91ee8c355e93f3152cf
+    Deleted: sha256:3cce317eae9f715ce29f36f8409b39fcd1a18bf4e8c57041631869d1a16cdc6f
+    Deleted: sha256:d1e8e88a56b2115b64620ce668b007341ade57eea0dc338db42628cad1ea062b
+    Error response from daemon: conflict: unable to delete 9ddf9c1a6b7f (cannot be forced) - image has dependent child images
+    Error response from daemon: conflict: unable to delete 12d8c48e5e4c (must be forced) - image is referenced in multiple repositories
+    Error response from daemon: conflict: unable to delete 12d8c48e5e4c (must be forced) - image is referenced in multiple repositories
+    Error response from daemon: conflict: unable to delete 3cce317eae9f (cannot be forced) - image has dependent child images
+    Error response from daemon: conflict: unable to delete 54b0995a6305 (cannot be forced) - image has dependent child images
+    carineoliveira@Carines-MBP carineoliveira % docker images                    
+    REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+    carineoliveira/c03-docker03   v2                  12d8c48e5e4c        About an hour ago   107MB
+    exercise02                    v2                  12d8c48e5e4c        About an hour ago   107MB
+    httpd                         2.4.41-alpine       54b0995a6305        2 weeks ago         107MB
+    carineoliveira@Carines-MBP carineoliveira % docker rmi $(docker images -a -q) --force
+    Untagged: carineoliveira/c03-docker03:v2
+    Untagged: carineoliveira/c03-docker03@sha256:68d080f9344c2302b6387337c4c54d1fc09ab2791037c34e281fc8d82f9de43c
+    Untagged: exercise02:v2
+    Deleted: sha256:12d8c48e5e4ccad94e55420465b8956b9ed7bdd0cae817b692fa0493f0dcd88b
+    Untagged: httpd:2.4.41-alpine
+    Untagged: httpd@sha256:06ad90574c3a152ca91ba9417bb7a8f8b5757b44d232be12037d877e9f8f68ed
+    Deleted: sha256:54b0995a630527d5e8db6dfee1fedace23d145d7b916a455e0c8380db974d81c
+    Deleted: sha256:7cc2d2925b2b34f2dd686affc440499fa783c4ab357be56c5c49344dbd40d5ce
+    Deleted: sha256:72a14eca8a5cfa546ea7c391135969bf4a05ffa19518ff4441f66cadcc906fd9
+    Deleted: sha256:09427ece5b0c3fb84f7f65b61418e9a0cf31671722149b3d4688d29a61f8c0e4
+    Deleted: sha256:606838becbce6cc233c0d188ba9c137e32692aa75cedf12fda078512dfc8845c
+    Deleted: sha256:beee9f30bc1f711043e78d4a2be0668955d4b761d587d6f60c2c8dc081efb203
+    Error: No such image: 12d8c48e5e4c
+
+

@@ -1,0 +1,13 @@
+1. Did you notice any difference in the size of the repo before and after adding the big file?
+   Yes, the size improves as commits are asked. It means that even if we remove the files from the project with a commit, the files still exist in the repository history.
+
+2. What is the reason for this problem?
+   It happens because git keeps track of each and every line change we made.
+
+3. How do you remove something from Git history? Which commands would you use? What are the consequences?
+   As the changes are in the remote repository, we will need to drop/remove the hash
+   - git rebase -i HEAD~X
+   - include drop in the line with the hash to be deleted 
+   - git push --force
+   The side effect is once we have re-written the git history, we cannot go back to any previous versions or commits.
+   

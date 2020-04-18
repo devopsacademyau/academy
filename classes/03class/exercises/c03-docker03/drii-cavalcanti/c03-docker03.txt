@@ -1,0 +1,18 @@
+$ sudo docker images
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    exercise02          v1                  8057ab9f269e        7 minutes ago       109MB
+    exercise02          v2                  cb171b88ec92        2 months ago        109MB
+    httpd               2.4.41-alpine       cb171b88ec92        2 months ago        109MB
+$ sudo docker tag 8057ab9f269e driicavalcanti/exercise02:v1
+$ sudo docker tag cb171b88ec92 driicavalcanti/exercise02:v2
+$ sudo docker push driicavalcanti/exercise02
+    The push refers to repository [docker.io/driicavalcanti/exercise02]
+    ef7b7d2ec725: Pushed 
+    57937e925ecd: Pushed 
+    b64dd1b17dce: Pushed 
+    3924f7d08fde: Pushed 
+    535f972b218c: Pushed 
+    d66bb18f34c6: Pushed 
+    5216338b40a7: Pushed 
+    v1: digest: sha256:ee677fb42374b022766d71fc6141badbde467494bc57d65c8ad0da527ebafa65 size: 1776
+    v2: digest: sha256:cd9cb9f0148b56a4d8f4f58be6a59d9c23d4c8d6c88f4a53736e6c7ca66b742c size: 1362

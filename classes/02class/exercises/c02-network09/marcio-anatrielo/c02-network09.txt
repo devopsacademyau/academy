@@ -1,0 +1,29 @@
+
+
+# Answer for execise c02-network09 
+
+Description: SSH access from home to AWS
+
+Type: SSH
+Protocol: TCP
+Port Range: 22
+Source: 149.167.10.156/32
+
+When I create this rule to provide access from home to AWS becouse SG is state full both way will be allow to access. 
+
+
+
+Description: SSH access only from public instances on AWS
+
+Type: SSH
+Protocol: TCP
+Port Range: 22
+Source: devopsacademy-sg
+
+Save rules
+
+The system will create 03 rules base on this request. 
+
+
+
+

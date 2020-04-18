@@ -23,7 +23,9 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
     - [Available labs](#available-labs)
   - [Projects](#projects)
 - [Contributors and Instructors](#contributors-and-instructors)
+  - [Create a dashboard (CSV file) about  exercise submissions](#create-a-dashboard-csv-file-about-exercise-submissions)
   - [Presentation format](#presentation-format)
+  - [Clean up Ready to Review tag from Closed PRs](#clean-up-ready-to-review-tag-from-closed-prs)
 - [Authors](#authors)
   - [Caio Trevisan](#caio-trevisan)
   - [Denis Storti](#denis-storti)
@@ -80,8 +82,8 @@ If you need help in any of these topics, [a tutorial is available on the pre-cla
 - Amazon Web Services (AWS)
     - Cloud concepts
     - Identity and Access Management (IAM) / CloudTrail / CloudWatch
-    - VPC / Subnet / route table / network acl / security group
-    - EC2 / auto-scaling group / load-balancer
+    - VPC / Subnet / Route table / Network ACL / Security Group
+    - EC2 / Auto-scaling Group / Load Balancer
     - Simple Storage Service (S3)
     - RDS / DynamoDB
     - Cloudfront / WAF
@@ -99,36 +101,51 @@ The content can be accessed through each specific README link below.
     - Git
 - [Class 02](classes/02class/README.md)
     - Agile Methodologies
-    - AWS Network Deep Dive
+    - Networking Introduction
+    - AWS VPC
 - [Class 03](classes/03class/README.md)
     - AWS EC2
         - Load Balancing
         - Auto Scaling Group
+    - AWS CloudWatch
     - AWS Route 53
     - Container - Docker
         - Repositories
         - Images
         - Dockerfile
         - AWS ECS
+        - AWS ECR
 - [Class 04](classes/04class/README.md)
-    - Project #1 Kick-off
-    - AWS - IAM
-    - AWS - CLI
-    - AWS - S3
-    - AWS - RDS
+    - AWS IAM (Identity and Access Management)
+    - AWS CLI
+    - AWS S3 (Simple Storage Service)
+      - Website
     - IaC - Terraform
-    - MakeFile
+    - AWS RDS (Relational Database Service)
+    - Project #1 Kick-off
 - [Class 05](classes/05class/README.md)
-    - CI/CD Concepts
-    - Pipelines
+    - Docker
+    - Make
+    - Docker-Compose
     - 3 Musketeers
+    - CI/CD Concepts
+    - GitHub Actions
 - [Class 06](classes/06class/README.md)
     - Project #1 Delivery
+    - Introduction Serverless
+    - AWS Lambda
+    - AWS API Gateway
     - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
-    - Serverless
+    - AWS DynamoDB
+    - AWS KMS (Key Management Service)
+    - AWS SSM - Parameter Store
+    - AWS SNS
+    - AWS SQS
 - [Class 08](classes/08class/README.md)
     - Project #2 Delivery
+    - Next steps
+    - Course Closure
 
 
 ## Exercises
@@ -214,15 +231,41 @@ Example:
 
 # Contributors and Instructors
 
+## Create a dashboard (CSV file) about  exercise submissions
+
+It will use the file `labs.txt`and `students.txt`from the `scripts/` folder (TO BE IMPROVED FOR FLEXIBILITY).
+
+Run:  `make dashboard`
+
+Optionally you can pass the Github User and Token, so the API calls are not throttled.
+
+Run:  `make dashboard GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
+
 ## Presentation format
 
 * We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
+
+* Generate the presentation by running: 
+  * `make presentation`
+* Generate a README.md file from the PITCHME.md file:
+  * `make pitchme_to_readme`
+
 * For GitPitch, use PITCHME.md files and subfolders using query string "p=FOLDERNAME" with the class name
 * GitPitch can run either online (out-of-the-box for Github public repos):
     * Online: access `https://gitpitch.com/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`. Folder must contain a PITCHME.md file.
     * Offline: use a [Docker container](https://github.com/kns-it/Docker-GitPitch/), run `make presentation` and `open http://localhost:9000/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`
     For running in a specific folder: `FOLDER_NAME=class2 make presentation`
 
+
+## Clean up Ready to Review tag from Closed PRs
+
+To clean up the `Read to Review` tags of the closed PRs, the below make target can be executed.
+
+Run:  `make rtr-cleanup`
+
+Optionally you can pass the Github User and Token, so the API calls are not throttled.
+
+Run:  `make rtr-cleanup GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
 
 # Authors
 

@@ -1,0 +1,71 @@
+#EXERCISE02:v1
+
+$ sudo docker image build -t exercise02:v1 -f Dockerfile.v1 .
+
+	Sending build context to Docker daemon  4.096kB
+	Step 1/4 : FROM httpd:2.4.41-alpine
+	 ---> cb171b88ec92
+	Step 2/4 : MAINTAINER Marcio Faria <marciodefaria@gmail.com>
+	 ---> Running in 0aaeecb5869c
+	Removing intermediate container 0aaeecb5869c
+	 ---> f12f4f3469cd
+	Step 3/4 : COPY index.html /usr/local/apache2/htdocs/
+	 ---> 89915346ffc0
+	Step 4/4 : EXPOSE 80
+	 ---> Running in 9057263f8208
+	Removing intermediate container 9057263f8208
+	 ---> bb6af7c05c15
+	Successfully built bb6af7c05c15
+	Successfully tagged exercise02:v1
+
+$ sudo docker run -dit --rm -p 8081:80 exercise02:v1
+	d61bc69a0c65755d9a381460ba5ae3ea38e83afdd4e0f30fd684d4becc66b301
+
+http://localhost:8081/ on Firefox
+	DevOps Academy - Docker - Exercise c03-docker02
+
+$ curl http://localhost:8081
+	<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+
+
+#EXERCISE02:v2
+
+$  sudo docker image build -t exercise02:v2 -f Dockerfile.v2 .
+	Sending build context to Docker daemon  4.608kB
+	Step 1/4 : FROM httpd:2.4.41-alpine
+	 ---> cb171b88ec92
+	Step 2/4 : MAINTAINER Marcio Faria <marciodefaria@gmail.com>
+	 ---> Using cache
+	 ---> f12f4f3469cd
+	Step 3/4 : RUN rm -rf /usr/local/apache2/htdocs/
+	 ---> Running in 4a3f695b09a7
+	Removing intermediate container 4a3f695b09a7
+	 ---> 6c4b39b0dd4f
+	Step 4/4 : EXPOSE 80
+	 ---> Running in 2923ddd5113c
+	Removing intermediate container 2923ddd5113c
+	 ---> cb55d7a4eee3
+	Successfully built cb55d7a4eee3
+	Successfully tagged exercise02:v2
+
+$ sudo docker run -dit --rm -p 8082:80 -v "${PWD}/../../../docker/artifacts/c03-docker02:/usr/local/apache2/htdocs/" exercise02:v2
+	0b38084f04bf01e991f8383ef3d6d580a649a5bb1bac1795a59ad5db71bec39f
+
+http://localhost:8082/ on Firefox
+	DevOps Academy - Docker - Exercise c03-docker02
+
+$ curl http://localhost:8082
+	<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+
+
+#Now change the content of the file classes/03class/docker/artifacts/c03-docker02/index.html, and without stoping the running containers, check if anything changed when accessing both URLs again:
+
+http://localhost:8081/ on Firefox
+	DevOps Academy - Docker - Exercise c03-docker02
+
+http://localhost:8082/ on Firefox
+	TEST FARIA-MARCIO: DevOps Academy - Docker - Exercise c03-docker02
+
+
+#Explain any difference between the responses of the webservers before and after changing the file locally:
+	The docker image exercise02:v1, Dockerfile.v1 created a new copy of the physical index.html file from classes/03class/docker/artifacts/c03-docker02/ to its internal folder /usr/local/apache2/htdocs/, so any change in the original file will not have any effect on the copied file while the docker image exercise02:v2, Dockerfile.v2 made a reference from classes/03class/docker/artifacts/c03-docker02/ to its internal folder /usr/local/apache2/htdocs/, thus any change in the original index.html file will be reflected in v2 docker image.
