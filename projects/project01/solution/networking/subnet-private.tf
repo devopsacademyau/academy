@@ -96,3 +96,15 @@ resource "aws_network_acl_rule" "private_nacl_ingress_all_local" {
   from_port      = 0
   to_port        = 0
 }
+
+resource "aws_network_acl_rule" "private_nacl_custom" {
+  count          = length(var.private_nacl_custom)
+  network_acl_id = aws_network_acl.private_nacl.id
+  rule_number    = count.index + 200
+  egress         = var.private_nacl_custom[count.index].type == "egress" ? true : false
+  protocol       = var.private_nacl_custom[count.index].protocol
+  rule_action    = "allow"
+  cidr_block     = var.private_nacl_custom[count.index].cidr
+  from_port      = var.private_nacl_custom[count.index].from_port
+  to_port        = var.private_nacl_custom[count.index].to_port
+}

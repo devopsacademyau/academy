@@ -52,7 +52,7 @@ resource "aws_internet_gateway" "igw" {
   tags = {
     Name = "${var.project-name}-igw"
   }
-}
+} 
 
 resource "aws_network_acl" "public_nacl" {
   vpc_id     = aws_vpc.default.id
@@ -86,4 +86,16 @@ resource "aws_network_acl_rule" "public_nacl_ingress_all_private" {
   )
   from_port      = 0
   to_port        = 0
+}
+
+resource "aws_network_acl_rule" "public_nacl_custom" {
+  count          = length(var.public_nacl_custom)
+  network_acl_id = aws_network_acl.public_nacl.id
+  rule_number    = count.index + 200
+  egress         = var.public_nacl_custom[count.index].type == "egress" ? true : false
+  protocol       = var.public_nacl_custom[count.index].protocol
+  rule_action    = "allow"
+  cidr_block     = var.public_nacl_custom[count.index].cidr
+  from_port      = var.public_nacl_custom[count.index].from_port
+  to_port        = var.public_nacl_custom[count.index].to_port
 }

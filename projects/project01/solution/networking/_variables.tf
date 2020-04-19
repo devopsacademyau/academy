@@ -19,3 +19,13 @@ variable "netnum-public" {
   type = number
   default = 128
 }
+
+variable "private_nacl_custom" {
+  type = list(map(string))
+  default = []
+}
+
+variable "public_nacl_custom" {
+  type = list(map(string))
+  default = []
+}
