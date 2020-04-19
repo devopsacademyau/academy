@@ -1,1 +1,2 @@
-project_name = "group3"
+project_name = "solution"
+app_name     = "wordpress"

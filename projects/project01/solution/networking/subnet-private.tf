@@ -4,7 +4,7 @@ resource "aws_subnet" "private" {
 
   cidr_block = cidrsubnet(aws_vpc.default.cidr_block,
     var.newbits,
-    count.index + var.netnum-private,
+    count.index + var.netnum_private,
   )
 
   availability_zone       = data.aws_availability_zones.available.names[count.index]
@@ -12,7 +12,7 @@ resource "aws_subnet" "private" {
 
   tags = {
 
-    Name = "${var.project-name}-private-${data.aws_availability_zones.available.names[count.index]}"
+    Name = "${var.project_name}-private-${data.aws_availability_zones.available.names[count.index]}"
   }
 
   depends_on = [aws_nat_gateway.nat_gw]
@@ -22,7 +22,7 @@ resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.default.id
 
   tags = {
-    Name = "${var.project-name}-private-rt"
+    Name = "${var.project_name}-private-rt"
   }
 }
 
@@ -53,7 +53,7 @@ resource "aws_eip" "nat_eip" {
   vpc   = true
 
   tags = {
-    Name = "${var.project-name}-nat-eip"
+    Name = "${var.project_name}-nat-eip"
   }
 }
 
@@ -62,7 +62,7 @@ resource "aws_nat_gateway" "nat_gw" {
   subnet_id     = aws_subnet.public[0].id
 
   tags = {
-    Name = "${var.project-name}-natgw"
+    Name = "${var.project_name}-natgw"
   }
 }
 
@@ -71,7 +71,7 @@ resource "aws_network_acl" "private_nacl" {
   subnet_ids = aws_subnet.private.*.id
 
   tags = {
-    Name = "${var.project-name}-private-nacl"
+    Name = "${var.project_name}-private-nacl"
   }
 }
 
@@ -107,4 +107,13 @@ resource "aws_network_acl_rule" "private_nacl_custom" {
   cidr_block     = var.private_nacl_custom[count.index].cidr
   from_port      = var.private_nacl_custom[count.index].from_port
   to_port        = var.private_nacl_custom[count.index].to_port
+}
+
+resource "aws_db_subnet_group" "db_private_subnet" {
+  name       = "${var.project_name}-db-subnet"
+  subnet_ids = aws_subnet.private.*.id
+
+  tags = {
+    Name = "${var.project_name}-db-subnet"
+  }
 }

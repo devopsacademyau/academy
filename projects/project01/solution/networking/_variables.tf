@@ -1,7 +1,7 @@
-variable "project-name" {
+variable "project_name" {
   type = string
 }
-variable "vpc-cidr" {
+variable "vpc_cidr" {
   type = string
 }
 
@@ -10,12 +10,12 @@ variable "newbits" {
   default = 8
 }
 
-variable "netnum-private" {
+variable "netnum_private" {
   type = number
   default = 0
 }
 
-variable "netnum-public" {
+variable "netnum_public" {
   type = number
   default = 128
 }

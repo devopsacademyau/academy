@@ -4,14 +4,14 @@ resource "aws_subnet" "public" {
 
   cidr_block = cidrsubnet(aws_vpc.default.cidr_block,
     var.newbits,
-    count.index + var.netnum-public,
+    count.index + var.netnum_public,
   )
 
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "${var.project-name}-public-${data.aws_availability_zones.available.names[count.index]}"
+    Name = "${var.project_name}-public-${data.aws_availability_zones.available.names[count.index]}"
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.default.id
 
   tags = {
-    Name = "${var.project-name}-public-rt"
+    Name = "${var.project_name}-public-rt"
   }
 }
 
@@ -50,7 +50,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.default.id
 
   tags = {
-    Name = "${var.project-name}-igw"
+    Name = "${var.project_name}-igw"
   }
 } 
 
@@ -59,7 +59,7 @@ resource "aws_network_acl" "public_nacl" {
   subnet_ids = aws_subnet.public.*.id
 
   tags = {
-    Name = "${var.project-name}-public-nacl"
+    Name = "${var.project_name}-public-nacl"
   }
 }
 
@@ -82,7 +82,7 @@ resource "aws_network_acl_rule" "public_nacl_ingress_all_private" {
   rule_action    = "allow"
   cidr_block     = cidrsubnet(aws_vpc.default.cidr_block,
     1,
-    var.netnum-private,
+    var.netnum_private,
   )
   from_port      = 0
   to_port        = 0
