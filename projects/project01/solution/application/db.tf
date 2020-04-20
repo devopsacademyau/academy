@@ -9,6 +9,8 @@ resource "aws_rds_cluster" "default" {
   backup_retention_period = var.db.backup_retention
   apply_immediately       = true
 
+  skip_final_snapshot     = true
+
   lifecycle {
     ignore_changes = [master_password]
   }

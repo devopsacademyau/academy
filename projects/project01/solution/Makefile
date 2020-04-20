@@ -9,4 +9,4 @@ apply: plan
 	terraform apply .terraform-plan
 
 destroy:
-	terraform destroy
+	terraform destroy -var-file=$(TF_VARS_FILE) 

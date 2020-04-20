@@ -34,9 +34,9 @@ module "application" {
 
   ecs_nodes = {
     asg = {
-      instance_type_1 = "t3.large"
-      instance_type_2 = "t2.large"
-      instance_type_3 = "m2.xlarge"
+      instance_type_1 = "t3.medium"
+      instance_type_2 = "t2.medium"
+      instance_type_3 = "m3.medium"
 
       spot_instance_pools = 3
       on_demand_base_capacity = 0
@@ -49,7 +49,7 @@ module "application" {
       default_cooldown = 300
       health_check_grace_period = 180
     }
-    
+
     lc = {
       ebs_root_size = 30
     }
