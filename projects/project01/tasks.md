@@ -86,15 +86,16 @@ done:
 ## EFS
   - use vpc from network stack
   - at least one mount target (AZ)
-  - security group allowing only ECS instances to access it
+  - security group allowing only ECS instances to access it (ingress tcp 2049 from ecs cluster nodes security group id)
   - no lifecycle policy
   - throughput mode bursting
   - performance mode general purpose
-  - no need for encryption
+  - encryption enabled
   - no need for IAM authentication
-  - add one access point:
+  <!-- access points are not available in terraform 20/04/2020
+    - add one access point:
     - name wordpress
-    - path `/wordpress`
+    - path `/wordpress` -->
 
 done:
   - efs is available in at least one AZ
