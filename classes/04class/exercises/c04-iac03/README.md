@@ -1,16 +1,16 @@
-# Changing Values (c04-iac03)
+# C04-IAC03
 
-Using the same code created in the [previous exercise](../c04-iac02), modify the following values from your input variables:
-- VPC CIDR
-- Subnet 1 CIDR
-- Subnet 2 Name
+## Command Execution Output
+- [output.txt](output.txt)
 
-Execute the `terraform plan` command.
-## Submit a PR with the following files:
-- README.md based on the [ANSWER.md file](ANSWER.md) with a link to all files from your answer. Also answer the questions from this file.
-- output.txt with the output of the `terraform plan` command
+## Questions:
+- Describe below why some changes just updated the resource being changed and the other required a full replacement of the resource.
+    - VPC has been destroyed and recreated again, cause the cidr block has been change. 
+    - Two public subnets and two private subnets have been recreated, cause since the VPC has been recreated, the VPC id has been changed.
+    - Routing table for the subnets are recreated, cause all of the subnets are recreated.
+    - NAT gatway need to be replaced, cause the subnet has be recreated
+    - Internet gateway is updated in place, cause it's the attributes for the IGW remain same.
 
-Your state file should not be include in your PR.
 
-## References
-- [Terraform AWS Resources](https://www.terraform.io/docs/providers/aws/index.html)
+***
+Answer for exercise [c04-iac03](https://github.com/devopsacademyau/academy/blob/c41e824fb2a2c55e3a30b2371a87e3a7551b6741/classes/04class/exercises/c04-iac03/README.md)

@@ -8,4 +8,4 @@
  - [CI/CD](/classes/05class/cicd/README.md)
  - [Github Actions](/classes/05class/gh-actions/README.md)
 
-## [Exercises](/classes/05class/3exercises/README.md)
+## [Exercises](/classes/05class/exercises/README.md)

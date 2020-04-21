@@ -1,0 +1,1 @@
+curl https://starkmatt-s3.s3-ap-southeast-2.amazonaws.com/index.html
