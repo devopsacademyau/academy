@@ -16,14 +16,14 @@ aws ec2 authorize-security-group-ingress \
     --group-id sg-07b6ea2ad1175ef17 \
     --protocol tcp \
     --port 22 \
-    --cidr 101.116.46.174/24
+    --cidr 101.116.46.174/32
 
 # DevOpsAcademyRDS
 aws ec2 authorize-security-group-ingress \
     --group-id sg-0e9fbfe79714d1db5 \
     --protocol tcp \
     --port 3306 \
-    --cidr 101.116.46.174/24
+    --cidr 172.31.0.0/20
 
 aws rds create-db-instance \
     --db-name devopsacademy \
