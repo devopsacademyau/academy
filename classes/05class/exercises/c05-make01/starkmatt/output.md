@@ -1,7 +1,9 @@
-###Output of each Make command
+## Command Execution Output
 
-###Make Build
-➜  starkmatt git:(starkmatt/c05-make01) ✗ make build
+- Execution and output of the command `make build`
+
+starkmatt git:(starkmatt/c05-make01) ✗ make build
+n and output of the command `make build`
 echo This image was created by Matt, based on 28b1f1e > index.html
 docker build -t make01:28b1f1e . 
 Sending build context to Docker daemon  5.632kB
@@ -20,12 +22,12 @@ Removing intermediate container 4f60eeb825f3
 Successfully built 14ebbfbaf653
 Successfully tagged make01:28b1f1e
 
-###Make run
+- Execution and output of the command `make push`
 ➜  starkmatt git:(starkmatt/c05-make01) ✗ make run
 docker run -t -d make01:28b1f1e /bin/sh
 bb4db9f59d79a317fe23625473319a7803618488ddf01e895c8276cad73f0
 
-###Make Push
+- Execution and output of the command `make run`
 ➜  starkmatt git:(starkmatt/c05-make01) ✗ make push
 docker tag make01:28b1f1e starkmatt/make01:28b1f1e
 docker push starkmatt/make01:28b1f1e
