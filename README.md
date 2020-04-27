@@ -16,6 +16,7 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
 - [Table of Content](#table-of-content)
 - [How it Works](#how-it-works)
 - [Requirements](#requirements)
+- [Live/Online Applications](#applications)
 - [Content](#content)
   - [Classes](#classes)
   - [Exercises](#exercises)
@@ -41,6 +42,13 @@ To complete the DevOps Academy, you will have to go through 8 classes with hands
 
 You will also be required to peer review at least 5 pull requests from other students to finish this course.
 
+From time to time we also run the live/online classes of the Academy content with a selected group of students. Those classes uses this same repository and have no additional content. The only benefit is to have the opportunity to interact with a group of students as well as with the instructors in a more structured learning process. 
+
+Because in this live/online mode the classes occurs every fortnighly, the pace of the exercises completion are based on the course schedule, so students requires a considerable amount of hours available during the week to be able to keep the course pace and complete exercises. 
+
+Also, considering the limited number of stundets that are accepted for each live/online term, we ask people to only apply for those classes if they will be able to commit to have a 100% class attendance and are willing to invest their time in the learning process by doing the exercises and complete th group projects.
+
+
 # Requirements
 
 Please find below the requirements to complete this course:
@@ -55,6 +63,22 @@ Please find below the requirements to complete this course:
 
 If you need help in any of these topics, [a tutorial is available on the pre-class](classes/00pre-class/README.md):
 
+# Live/Online Applications
+
+If you intend to apply for the Live/Online classes, you'll need to fill the form available [here](https://www.devopsacademy.com.au), and as part of your application, you'll need to submit a PR to this repository under the applications folder following the instructions below. If there is no form available on the link provided, there is no scheduled classes in place. Reach out to any of us through our Slack channel to get more information on next Live/Online classes.
+
+- Make sure you have all the Requirements mentioned above installed on the machine you'll use for the course. 
+- Fork this Repository
+- Go into the applications folder and execute the `application.sh` script. This script will generate an `output.txt` file with information about the following tools:
+    - your computer os version
+    - git version
+    - docker version
+    - aws cli version
+    - terraform version
+- Rename the output.txt file to [your_git_account_username].txt
+- Create a PR on this repository from your forked repo including only the file with your GitHub user account name.
+
+If you need instructions on how to fork a repository and how to create a PR from your fork, take a look on [this](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) and [this](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) tutorials.
 
 # Content
 
