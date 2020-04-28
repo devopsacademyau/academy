@@ -46,7 +46,7 @@ From time to time we also run the live/online classes of the Academy content wit
 
 Because in this live/online mode the classes occurs every fortnighly, the pace of the exercises completion are based on the course schedule, so students requires a considerable amount of hours available during the week to be able to keep the course pace and complete exercises. 
 
-Also, considering the limited number of stundets that are accepted for each live/online term, we ask people to only apply for those classes if they will be able to commit to have a 100% class attendance and are willing to invest their time in the learning process by doing the exercises and complete th group projects.
+Also, considering the limited number of students that are accepted for each live/online term, we ask people to only apply for those classes if they will be able to commit to have a 100% class attendance and are willing to invest their time in the learning process by doing the exercises and complete th group projects.
 
 
 # Requirements
@@ -65,7 +65,11 @@ If you need help in any of these topics, [a tutorial is available on the pre-cla
 
 # Live/Online Applications
 
-If you intend to apply for the Live/Online classes, you'll need to fill the form available [here](https://www.devopsacademy.com.au), and as part of your application, you'll need to submit a PR to this repository under the applications folder following the instructions below. If there is no form available on the link provided, there is no scheduled classes in place. Reach out to any of us through our Slack channel to get more information on next Live/Online classes.
+If you intend to apply for the Live/Online classes, you'll need to fill the form available [here](https://www.devopsacademy.com.au), and as part of your application, you'll need to submit a PR to this repository under the applications folder following the instructions below. 
+
+Your application will only be reviewed once you have create a Pull Request with your requirements. It's essential that you have a proper environment setup before being able to undergo the DevOps Academy.
+
+If there is no form available on the link provided, there is no scheduled classes in place. Reach out to any of us through our Slack channel to get more information on next Live/Online classes.
 
 - Make sure you have all the Requirements mentioned above installed on the machine you'll use for the course. 
 - Fork this Repository
