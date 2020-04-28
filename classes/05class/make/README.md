@@ -183,9 +183,9 @@ Now that we know a few things about the Make utility and the Makefile, let's mix
 
 A good example would be to use a Makefile to interact with your docker containers. Consider that in order to build and test your container it requires a few long commands and sometimes some changes in variables that your container need. In that case, the Make tool could improve the deveoper and operation experience by reducing the required commands. Take [this Makefile](artifacts/mixing/Makefile) as example:
 
-In this case, you can build your container with a quick `make build` command. To run the container, instead of a very long command  with multiple options, a `make run` can get your application ready to be tested. You can even pass some additional environment variables to your container through the make command execution, if required, as long as the Makefile is ready to understand those variables. And the image can be easyly tagged and published in your container registry with a simple `make publish` command.
+In this case, you can build your container with a quick `make build` command. To run the container, instead of a very long command  with multiple options, a `make run` can get your application ready to be tested. You can even pass some additional environment variables to your container through the make command execution, if required, as long as the Makefile is ready to understand those variables. And the image can be easily tagged and published in your container registry with a simple `make publish` command.
 
-As you can see, the make tool can help you in many ways and it integrates very well with manu tools from the DevOps toolset, including containers, cloud providers cli like the aws cli and IaC cli, like terraform.
+As you can see, the make tool can help you in many ways and it integrates very well with many tools from the DevOps toolset, including containers, cloud providers cli like the aws cli and IaC cli, like terraform.
 
 ## Appendix
 - [Make documentation](https://www.gnu.org/software/make/manual/html_node/index.html#toc-Overview-of-make)
