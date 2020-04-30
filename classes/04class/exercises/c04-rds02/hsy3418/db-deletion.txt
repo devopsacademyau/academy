@@ -1,43 +1,20 @@
-aws rds create-db-subnet-group --db-subnet-group-name rds-sg-2 --db-subnet-group-description "RDS subnet group" --subnet-ids subnet-0b57c62a72e64fb00 subnet-0bd3c901a15d9f794
-
-{
-    "DBSubnetGroup": {
-        "DBSubnetGroupName": "rds-sg-2",
-        "DBSubnetGroupDescription": "RDS subnet group",
-        "VpcId": "vpc-0fff9894f7942170e",
-        "SubnetGroupStatus": "Complete",
-        "Subnets": [
-            {
-                "SubnetIdentifier": "subnet-0bd3c901a15d9f794",
-                "SubnetAvailabilityZone": {
-                    "Name": "ap-southeast-2b"
-                },
-                "SubnetStatus": "Active"
-            },
-            {
-                "SubnetIdentifier": "subnet-0b57c62a72e64fb00",
-                "SubnetAvailabilityZone": {
-                    "Name": "ap-southeast-2a"
-                },
-                "SubnetStatus": "Active"
-            }
-        ],
-        "DBSubnetGroupArn": "arn:aws:rds:ap-southeast-2:607961847144:subgrp:rds-sg-2"
-    }
-}
-
-aws rds create-db-instance --db-name devopsacademy --db-instance-identifier db --allocated-storage 20 --db-instance-class db.t2.micro  --engine mysql --master-username admin --master-user-password admin123  --db-subnet-group-name rds-sg-2 --no-publicly-accessible
-
+aws rds delete-db-instance --db-instance-identifier db --skip-final-snapshot 
 {
     "DBInstance": {
         "DBInstanceIdentifier": "db",
         "DBInstanceClass": "db.t2.micro",
         "Engine": "mysql",
-        "DBInstanceStatus": "creating",
+        "DBInstanceStatus": "deleting",
         "MasterUsername": "admin",
         "DBName": "devopsacademy",
+        "Endpoint": {
+            "Address": "db.c9vfyasssvzc.ap-southeast-2.rds.amazonaws.com",
+            "Port": 3306,
+            "HostedZoneId": "Z32T0VRHXEXS0V"
+        },
         "AllocatedStorage": 20,
-        "PreferredBackupWindow": "15:29-15:59",
+        "InstanceCreateTime": "2020-04-30T10:42:18.437Z",
+        "PreferredBackupWindow": "15:59-16:29",
         "BackupRetentionPeriod": 10,
         "DBSecurityGroups": [],
         "VpcSecurityGroups": [
@@ -52,6 +29,7 @@ aws rds create-db-instance --db-name devopsacademy --db-instance-identifier db -
                 "ParameterApplyStatus": "in-sync"
             }
         ],
+        "AvailabilityZone": "ap-southeast-2a",
         "DBSubnetGroup": {
             "DBSubnetGroupName": "rds-sg-2",
             "DBSubnetGroupDescription": "RDS subnet group",
@@ -74,10 +52,9 @@ aws rds create-db-instance --db-name devopsacademy --db-instance-identifier db -
                 }
             ]
         },
-        "PreferredMaintenanceWindow": "fri:17:44-fri:18:14",
-        "PendingModifiedValues": {
-            "MasterUserPassword": "****"
-        },
+        "PreferredMaintenanceWindow": "wed:12:13-wed:12:43",
+        "PendingModifiedValues": {},
+        "LatestRestorableTime": "2020-04-30T10:42:40.404Z",
         "MultiAZ": false,
         "EngineVersion": "5.7.22",
         "AutoMinorVersionUpgrade": true,
@@ -93,7 +70,7 @@ aws rds create-db-instance --db-name devopsacademy --db-instance-identifier db -
         "StorageType": "gp2",
         "DbInstancePort": 0,
         "StorageEncrypted": false,
-        "DbiResourceId": "db-G6KOSHRTITCUHENTRG5JNGMRUM",
+        "DbiResourceId": "db-GPGSGVCY4OCRFUN5QYUTBRUNUQ",
         "CACertificateIdentifier": "rds-ca-2019",
         "DomainMemberships": [],
         "CopyTagsToSnapshot": false,
