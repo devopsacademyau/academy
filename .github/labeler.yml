@@ -27,4 +27,4 @@ ready to review:
     - projects/**/*
 
 CONTENT:
-    - ! */*/exercises/*/**/*
+    - */*/exercises/*/README.md
