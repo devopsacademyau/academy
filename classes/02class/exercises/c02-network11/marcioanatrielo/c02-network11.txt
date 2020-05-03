@@ -181,4 +181,3 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 9 packets transmitted, 9 received, 0% packet loss, time 8100ms
 rtt min/avg/max/mdev = 0.830/0.914/1.352/0.160 ms
 [ec2-user@ip-10-0-11-252 ~]$
-
