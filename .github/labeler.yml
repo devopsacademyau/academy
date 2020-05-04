@@ -25,6 +25,3 @@ class08:
 ready to review:
     - classes/**/*
     - projects/**/*
-
-CONTENT:
-    - ^((?!exercises\/c\d\d\-[a-z]+\d\d\/[a-zA-Z0-9_|-]+\/).)*$
