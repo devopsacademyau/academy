@@ -27,4 +27,4 @@ ready to review:
     - projects/**/*
 
 CONTENT:
-    - ! projects/**/*
+    - /^((?!exercises\/c\d\d\-[a-z]+\d\d\/[a-zA-Z0-9_|-]+\/).)*$/gm
