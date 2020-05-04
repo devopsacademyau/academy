@@ -1,2 +1,2 @@
-- regExp: "/^((?!exercises\/c\d\d\-[a-z]+\d\d\/[a-zA-Z0-9_|-]+\/).)*$/gm"
+- regExp: "^((?!exercises\/c[0-9]+\-[a-z0-9]+\/[a-zA-Z0-9_|-]+\/).)*$"
   labels: ["content"]
