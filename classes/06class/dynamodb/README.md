@@ -1,80 +1,282 @@
-# Lambda Functions
-This class is an introduction to Lambda Functions.
-The main goal is to explain the purpose, the benefits and how to use it.
+# AWS Dynamo DB
 
-***Contents***
-- [What is Lambda Functions?](#what-is-lambda-functions)
-- [Benefits](#benefits)
-- [Lambda Invocation](#lambda-invocation)
-- [Event Sources](#event-sources)
-- [Execution Role](#execution-role)
-- [Common Use Cases](#common-use-cases)
+- [AWS Dynamo DB](#aws-dynamo-db)
+- [What's AWS DynamoDB?](#whats-aws-dynamodb)
+- [Why AWS DynamoDB?](#why-aws-dynamodb)
+- [Main building blocks](#main-building-blocks)
+  - [Tables, Items, and Attributes](#tables-items-and-attributes)
+  - [Example: Table Students](#example-table-students)
+  - [Primary Key](#primary-key)
+  - [Indexes](#indexes)
+    - [Secondary Index](#secondary-index)
+- [Consistency Model](#consistency-model)
+- [Provisioned capacity mode: Read Capacity Units (RCUs) and Write Capacity Units (WCUs)](#provisioned-capacity-mode-read-capacity-units-rcus-and-write-capacity-units-wcus)
+- [Appendix](#appendix)
+  - [Attribute Types](#attribute-types)
+  - [DynamoDB Streams](#dynamodb-streams)
 
+# What's AWS DynamoDB?
 
-## What is Lambda Functions?
-Lambda Functions is one of the services part of the AWS Compute Services Family. Similar to the EC2 service, where you can run your application code, the purpose of the Lambda Function service is also to run application code, but in a different way. 
+Amazon DynamoDB is a NoSQL database for storing key-value and document data.
 
-With Lambda Functions, your code does not need a server. At least nothing that you need to provision or manage. That's why Lambda Functions is a serverless service. You upload your code (list of languages can be found [here](https://aws.amazon.com/lambda/faqs/)) and your code will be executed when invoked.
+It is a serverless service as well, meaning you do need to manage any servers to scale and operate DynamoDB.
 
-## Benefits
+You can scale up or scale down your tables' throughput capacity without downtime.
 
-The biggest benefit of using Lambda Function is the fact that you only pay for what you use. For services like EC2, you pay for the time your instance is up, which already provide you with a lot of cost benefits, since you can turn some of your servers down when your application load is reduced.
+DynamoDB provides on-demand **backup** capability. It allows you to create full backups of your tables for long-term retention and archival for regulatory compliance needs.
 
-This cost reduction that can be achieved with EC2 instances can be even more benefitial when using Lambda Functions to run your applications, since you'll only pay for the time your application is being executed. If your application has no requests, there is no invocations of your Lambda Function and no costs to you.
+# Why AWS DynamoDB?
 
-It's important to make clear that in order to move your application to a service like this, some code transformations might be required, so it will require somework to just move an existing application running on VMs to run on this AWS service.
+- **No servers to manage**: DynamoDB is serverless with no servers to provision, patch, or manage and no software to install, maintain, or operate. 
+- **Performance at scale**: single-digit millisecond response times at any scale. DynamoDB global tables replicate your data across multiple AWS Regions to give you fast, local access to data for your globally distributed applications.
+- Support to **ACID transactions**
+- Encryption at Rest
+- DynamoDB Streams offers a mechanism to fan-out changes in items so you can easily integrate with other services
 
-## Lambda Invocation
+Good use cases for DynamoDB include:
+- Serverless Web Apps
+- Mobile Backends
+- Microservices
 
-Lambda Functions can be invoked in many ways. Those ways can be either Synchronous or Asynchronous.
+# Main building blocks
 
-In the Synchronous mode is when you directly invoke your lambda function and waits for a response from the execution. By invoking a lambda from the aws cli, like the example below, you're using the asynchronous mode.
-```bash
-aws lambda invoke --function-name my-function --payload '{ "key": "value" }' response.json
+## Tables, Items, and Attributes
+
+The following are the basic DynamoDB components:
+
+**Tables**: DynamoDB stores data in tables which is just a collection of data. 
+
+**Items**: Each table contains zero or more items. An item is a group of attributes that is uniquely identifiable among all of the other items. 
+
+In DynamoDB, there is __no limit__ to the number of items you can store in a table.
+
+**Attributes** – Each item is composed of one or more attributes. Each attribute has Name and Type. 
+
+There are several attribute types, like Bool:
+
+```
+"BOOL": true
+```
+
+and String:
+```
+"S": "Hello"
+```
+
+Check the [other Attribute Types here](#attribute-types).
+
+## Example: Table Students
+
+This is how an item is stored in DynamoDB. Notice that the attribute types are stored along with the item as the Table does not have a schema itself.
+
+```
 {
-    "ExecutedVersion": "$LATEST",
-    "StatusCode": 200
+  "active": {
+    "BOOL": true
+  },
+  "courses": {
+    "SS": [
+      "devopsacademy2020",
+      "python2020",
+      "softwarearchitecture2020"
+    ]
+  },
+  "id": {
+    "S": "123123"
+  },
+  "name": {
+    "S": "Denis"
+  }
 }
 ```
 
-In the Asynchronous mode, the Lambda Function is normally invoked by an event in the AWS ecosystem. An event like a new file in a S3 bucket, a new update on your dynamodb or new new message ina SQS queue are good examples of asynchronous Lambda invocation. 
+It means that in the same table it is possible for the same attribute to have two different attribute types. For example, `active` can be a Boolean or a Number in different items:
 
-In this mode, the Lambda is invoked similar to the synchronous mode, but in this case, there is no wait for the Lambda response. For this kind of invocation, Lambda places the event in a queue and only returns a success reponse without any additional information.
+![](./assets/items_example.png)
 
-It's still possible to invoke a Lambda function in this mode using the cli by using the `--invocation-type Event` parameter when invoking a function. In the example below, using the same function, you can see a differnt response from previous example.
+## Primary Key
 
-```bash
-$ aws lambda invoke --function-name my-function  --invocation-type Event --payload '{ "key": "value" }' response.json
+When you create a table, in addition to the table name, you must specify the primary key of the table.
+
+A table must have a Primary Key which is a special Attribute responsible to uniquely identify each item of a Table.
+
+DynamoDB supports two different kinds of primary keys:
+
+- **Partition key**: A simple primary key. No two items can have the same partition key value.
+- **Partition key and sort key**: A combination of two keys. It's possible for two items to have the same partition key value. However, those two items must have different sort key values.
+
+You can query the Table by passing just the **partition key** and it will fetch all sort keys for you, but it does not work the other way around, e.g., the partition key is mandatory when querying by primary key.
+
+Partition Keys and Sort Keys can be:
+- String
+- Binary
+- Number
+
+## Indexes
+
+It is possible to create other indexes than Primary Key to offer flexibility and efficiency for you queries.
+
+Consider the previous example. Let's say the `partition key  = id`  and `sort key = name`.
+
+What if you want to query by course?
+
+```
 {
-    "StatusCode": 202
+  "active": {
+    "BOOL": true
+  },
+  "courses": {
+    "SS": [
+      "devopsacademy2020",
+      "python2020",
+      "softwarearchitecture2020"
+    ]
+  },
+  "id": {
+    "S": "123123"
+  },
+  "name": {
+    "S": "Denis"
+  }
 }
 ```
 
-More details around those two types of invocation can be found [here](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html) and [here](https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html).
+There would be no choice unless you do a full scan in the Table to find the item. This is **not recommended**, as full scans may have poor performance depending on the number of items you can in the table. 
 
-## Event Sources
+So the choice would creating a Secondary Index.
 
-There are multiple events that can be used to invoke a Lambda Function. Common event sources are S3 events (like a new file upload), a new message in a SNS Topic, a new message in a SQS queue, API Gateway requests and DynamoDB events(like new item), but there are many more. [Here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html) you can find a list of AWS services that integrates with Lambda with examples.
+### Secondary Index
 
-A Lambda can have one or more events configured to trigger it. Once the event happens, the function is executed.
+There are two types of secondary indexes: 
+- Local Secondary Index (LSI): An index that **has the same partition key** as the table, but a different sort key.
+- Global Secondary Index (GSI): An index with a partition key and sort key that can be different from those on the table.
 
-## Execution Role
+In our example, we want to query by `course` and as it is not the partition key, we don't have a choice but create a GSI.
 
-Because the Lambda Function may need to interact with other AWS services, like createing a file in S3, interacting with DynamoDB or even logging the execution, it's possible to configure a role to be used by the Lambda during it's execution.
+Another important consideration is that LSIs can only be created at Table creation time, meaning that after the table creation there is no way to add a LSI, you would need to go with GSI or recreate the Table.
 
-This role is similar any other role in AWS and is created throught the IAM and policies attached to it. A single Execution Role can be attached to a Lambda Function, so make sure that all permissions that will be required by the Lambda to successfully interact with AWS services are included in the Role configured in the Function.
+Each table in DynamoDB has a limit of **20 GSIs** (default limit) and **5 LSIs** per table.
 
-## Common Use Cases
+![](assets/ddb_indexes.png)
 
-Lambda Functions can be used for pretty much anything. From executing a daily job in your AWS Account, like shutting down instances that do not have a specific tag, to run an entire website, Lambda Function is one of the most powerfull services provided by AWS.
+# Consistency Model
 
-Some of the most common use cases are described below:
+**Writing to a Table**
 
-- Real Time Data Processing
-    - Use AWS Lambda to thumbnail images, transcode videos, index files, process logs, validate content, and aggregate and filter data in real-time.
-- Real Time Data Streaming
-    - Use AWS Lambda and Amazon Kinesis to process real-time streaming data for application activity tracking, transaction order processing, click stream analysis, data cleansing, metrics generation, log filtering, indexing, social media analysis, and IoT device data telemetry and metering
-- Web Applications
-    - Use AWS Lambda with other AWS services to build powerful web applications that automatically scale up and down and run in a highly available configuration across multiple data centers 
-- Operations Tasks
-    - Use AWS Lambda to automate common task to manage your AWS environment, like cleaning up unused EIP or EBS volumes or shutting down resources that were not created with the right tags.
+When your application writes data to a DynamoDB table and receives an HTTP 200 response (OK), the write has occurred and is durable. 
+
+The data is eventually consistent across all storage locations, usually within one second or less.
+
+**Reading from a Table**
+
+DynamoDB supports eventually consistent and strongly consistent reads.
+
+Read operations (such as GetItem, Query, and Scan) provide a ConsistentRead parameter. If you set this parameter to true, DynamoDB uses strongly consistent reads during the operation.
+
+- Eventually Consistent Reads
+
+When you read data from a DynamoDB table, the response might not reflect the results of a recently completed write operation. 
+
+The response might include some **stale data**.
+
+- Strongly Consistent Reads
+
+When you request a strongly consistent read, DynamoDB returns the most recent data (not stale data).
+
+Strongly consistent reads have the following drawbacks:
+- are not supported on global secondary indexes
+- use more throughput capacity than eventually consistent reads
+- may have higher latency than eventually consistent reads.
+
+Obs: DynamoDB uses eventually consistent reads, unless you specify otherwise.
+
+# Provisioned capacity mode: Read Capacity Units (RCUs) and Write Capacity Units (WCUs)
+
+For many cases the on-demand capacity mode will be enough for not worrying about capacity.
+
+If you choose provisioned mode (instead of on-demand), you specify the number of reads and writes per second that you require for your application.
+
+Provisioned mode is a good option if you have predictable application traffic or can forecast capacity requirements to control costs.
+
+- One *read capacity unit* represents one strongly consistent read **per second**, or *two* eventually consistent reads **per second**, for an item up to **4 KB** in size.
+
+- One *write capacity unit* represents one write **per second** for an item up to **1 KB** in size.
+
+You can calculate the capacity needed based on the demand expected in your application.
+
+There is also Auto Scaling for provisioned capacity, that will increase/decrease you RCU/WCUs based on utilization automatically, leading to savings.
+
+# Appendix
+
+- [Developer Guide](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
+
+## Attribute Types
+
+**B** - An attribute of type Binary. For example: 
+```
+"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"
+```
+
+**BOOL** - An attribute of type Boolean. For example: 
+```
+"BOOL": true
+```
+
+**BS** - An attribute of type Binary Set. For example: 
+```
+"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]
+```
+
+**L** - An attribute of type List. For example: 
+```
+"L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"N", "3.14159"}]
+```
+
+**M** - An attribute of type Map. For example:
+```
+"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}
+```
+
+**N** - An attribute of type Number. For example: 
+```
+"N": "123.45"
+```
+
+Numbers are sent across the network to DynamoDB as strings, to maximize compatibility across languages and libraries. However, DynamoDB treats them as number type attributes for mathematical operations.
+
+**NS** - An attribute of type Number Set. For example:
+```
+"NS": ["42.2", "-19", "7.5", "3.14"]
+```
+Numbers are sent across the network to DynamoDB as strings, to maximize compatibility across languages and libraries. However, DynamoDB treats them as number type attributes for mathematical operations.
+
+**NULL** - An attribute of type Null. For example: 
+```
+"NULL": true
+```
+
+**S** - An attribute of type String. For example:
+```
+"S": "Hello"
+```
+
+**SS** - An attribute of type String Set. For example:
+```
+"SS": ["Giraffe", "Hippo" ,"Zebra"]
+```
+
+## DynamoDB Streams
+
+DynamoDB Streams is an optional feature that captures data modification events in DynamoDB tables. The data about these events appear in the stream in near-real time, and in the order that the events occurred.
+
+Each event is represented by a stream record. If you enable a stream on a table, DynamoDB Streams writes a stream record whenever one of the following events occurs:
+
+- A **new item** is added to the table: The stream captures an image of the entire item, including all of its attributes.
+
+- An **item is updated**: The stream captures the "before" and "after" image of any attributes that were modified in the item.
+
+- An **item is deleted** from the table: The stream captures an image of the entire item before it was deleted.
+
+Stream records have a lifetime of **24 hours**; after that, they are automatically removed from the stream.
+
+![](assets/ddb_streams.png)
