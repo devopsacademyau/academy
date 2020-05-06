@@ -50,7 +50,7 @@ There will be 2 modes of learning the content in these classes:
 
 2. Face-to-Face Classes or Virtual Classes. Where the instructors will go through the content of each class and answer any questions or concerns you might have. To sign up for the classes you can email help@devopsacademy.com to get the presentation dates and the availability for the upcoming class. 
 
-**The first round of classes has been completed and there is currently no future classes planned. We are working on the plan of the new term and will update this README with those dates as soon as it becomes available. If you are interested in joining the upcoming classes, email us at help@devopsacademy.com.au.**
+**The first round of classes has been completed and we are starting our second round of classes on the 2nd of June 2020. If you are interested in joining the upcoming classes, email us at help@devopsacademy.com.au or come and chat to us on our [Slack channel](https://join.slack.com/t/devopsacademyau/shared_invite/zt-ajsfpwsj-GcTGG6tpZp~MOZd2DM92QA).**
 
 From time to time we also run the live/online classes of the Academy content with a selected group of students. Those classes uses this same repository and have no additional content. The only benefit is to have the opportunity to interact with a group of students as well as with the instructors in a more structured learning process. 
 
