@@ -16,7 +16,7 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
 - [Table of Content](#table-of-content)
 - [How it Works](#how-it-works)
 - [Requirements](#requirements)
-- [Live/Online Applications](#applications)
+- [Live/Online Applications](#liveonline-applications)
 - [Content](#content)
   - [Classes](#classes)
   - [Exercises](#exercises)
@@ -65,11 +65,13 @@ If you need help in any of these topics, [a tutorial is available on the pre-cla
 
 # Live/Online Applications
 
-If you intend to apply for the Live/Online classes, you'll need to fill the form available [here](https://www.devopsacademy.com.au), and as part of your application, you'll need to submit a PR to this repository under the applications folder following the instructions below. 
+If you intend to apply for the Live/Online classes, you'll need to fill the form available [here](https://devopsacademy.com.au/), and as part of your application, you'll need to submit a PR to this repository under the applications folder following the instructions below. 
 
 Your application will only be reviewed once you have create a Pull Request with your requirements. It's essential that you have a proper environment setup before being able to undergo the DevOps Academy.
 
-If there is no form available on the link provided, there is no scheduled classes in place. Reach out to any of us through our Slack channel to get more information on next Live/Online classes.
+If there is no form available on the link provided, there is no scheduled classes in place. Reach out to any of us through our [Slack channel](https://join.slack.com/t/devopsacademyau/shared_invite/zt-ajsfpwsj-GcTGG6tpZp~MOZd2DM92QA) to get more information on next Live/Online classes.
+
+## How to Submit a PR as part of your application
 
 - Make sure you have all the Requirements mentioned above installed on the machine you'll use for the course. 
 - Fork this Repository
