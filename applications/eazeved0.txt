@@ -1,0 +1,12 @@
+## uname
+Linux G22XFV2 5.3.0-46-generic #38-Ubuntu SMP Fri Mar 27 17:37:05 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+## git 
+git version 2.20.1
+## docker 
+Docker version 19.03.6, build 369ce74a3c
+## terraform 
+Terraform v0.11.11
+
+Your version of Terraform is out of date! The latest version
+is 0.12.24. You can update by downloading from www.terraform.io/downloads.html
+## aws 
