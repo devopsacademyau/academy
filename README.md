@@ -4,11 +4,13 @@
     <img src="docs/logo.png" width="300">
 </p>
 
-This non-profit repository intention is to help the community to learn the DevOps methodology and culture throughout a series of classes and hands-on laboratories and become ready to start working as Automation/Cloud/DevOps Engineer.
+This repository's intention is to help the community in learning the DevOps methodologies and culture throughout a series of classes and hands-on exercises. The content of the classes that will be presented has been designed in a way to prepare you for working as an Automation/Cloud/DevOps Engineer.
 
-Feel free to contribute with content (PR), help peer reviewing code or just going through the exercises!
+These classes start with explaining different concepts at a high level and then goes into some detail. Some of the main topics currently being covered can be seen [here](#content).
 
-If you want to make part of the team behind this, get in touch on help@devopsacademy.com.au.
+Feel free to contribute to this repository with content through Pull Requests, help peer reviewing code or just going through the exercises!
+
+If you want to be part of the team behind this, get in touch on help@devopsacademy.com.au.
 
 # Table of Content
 
@@ -41,6 +43,14 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
 To complete the DevOps Academy, you will have to go through 8 classes with hands-on exercises. For each exercise, you will have to submit your code via pull requests to this repository as per [instructions](#exercises). The last two labs are complete projects based on current industry needs.
 
 You will also be required to peer review at least 5 pull requests from other students to finish this course.
+
+There will be 2 modes of learning the content in these classes:
+
+1. Self-learning. Where you go through all the classes on your own pace and submit the exercises when you're ready.
+
+2. Face-to-Face Classes or Virtual Classes. Where the instructors will go through the content of each class and answer any questions or concerns you might have. To sign up for the classes you can email help@devopsacademy.com to get the presentation dates and the availability for the upcoming class. 
+
+**The first round of classes has been completed and we are starting our second round of classes on the 2nd of June 2020. If you are interested in joining the upcoming classes, email us at help@devopsacademy.com.au or come and chat to us on our [Slack channel](https://join.slack.com/t/devopsacademyau/shared_invite/zt-ajsfpwsj-GcTGG6tpZp~MOZd2DM92QA).**
 
 From time to time we also run the live/online classes of the Academy content with a selected group of students. Those classes uses this same repository and have no additional content. The only benefit is to have the opportunity to interact with a group of students as well as with the instructors in a more structured learning process. 
 
