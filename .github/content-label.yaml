@@ -1,2 +1,2 @@
-- regExp: "^((?!exercises\/[a-zA-Z0-9|-]+\/[a-zA-Z0-9_|-]+\/).)*$"
+- regExp: "^((?!(exercises\/[a-zA-Z0-9|-]+\/[a-zA-Z0-9_|-]+\/)|(^applications\/)).)*$"
   labels: ["REPO-CONTENT"]
