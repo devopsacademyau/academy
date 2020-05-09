@@ -8,13 +8,18 @@
 - Execution and output of the command `docker-compose ps`
 
 ```
-Insert command and output here
+ ~/Pr/academy/c/05/e/c05-c/hsy3418  on feature/c05-compose01 !1  docker-compose ps                                       ok  at 23:27:29 
+    Name                   Command               State          Ports        
+-----------------------------------------------------------------------------
+hsy3418_db_1    docker-entrypoint.sh --def ...   Up      3306/tcp, 33060/tcp 
+hsy3418_web_1   docker-php-entrypoint apac ...   Up      0.0.0.0:8100->80/tcp
 ```
 
 - Execution and output of the command `curl http://localhost:8100`
 
 ```
-Insert command and output here
+ ~/Pr/academy  on feature/c05-compose01 ?1  curl http://localhost:8100                                          
+Connected Successfully%
 ```
 
 <!-- Don't change anything below this point-->

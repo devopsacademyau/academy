@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin123
-      MYSQL_DATABASE: db1
+      MYSQL_DATABASE: db
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin123
 
@@ -18,10 +18,11 @@ services:
     volumes: 
       - ./src:/var/www/html:rw
     ports:
-      - 8100:8100 
+      - 8100:80 
     restart: always
     environment:
-      DB_HOST: db:3306
+      DB_HOST: db
       DB_USER: admin
       DB_PASS: admin123
-      DB_NAME: db1
+      DB: db
+    
