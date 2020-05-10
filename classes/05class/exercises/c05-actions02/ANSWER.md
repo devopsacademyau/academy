@@ -13,4 +13,4 @@ Please provide the following:
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
-Answer for exercise [c05-actions01](https://github.com/devopsacademyau/academy/blob/ffa4bc2adf95f943306a897b7b08a040b19fbbdb/classes/05class/exercises/c05-actions02/README.md)
+Answer for exercise [c05-actions01](https://github.com/devopsacademyau/academy/blob/b5dbe6a3266facbde88e657573d1fa946150b51f/classes/05class/exercises/c05-actions02/README.md)
