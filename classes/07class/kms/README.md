@@ -69,7 +69,7 @@ With that approach, by using AWS IAM it's possible to create policies to restric
 ## Key's Management
 For the AWS managed key (service's defaults), there is nothing to do. Keys will be fully managed by AWS and will be rotated every three years. There is no way to change/rotate/expire/delete those keys.
 
-For Customer Managed Keys (created by users), there is minimum management, but you have more control over the key lifecycle. For example, its possible to expire and delete a customer manager key. The key rotation can be done by the use or can be configured to be rotated automatically by AWS, which will rotate the key every year. 
+For Customer Managed Keys (created by users), there is minimum management, but you have more control over the key lifecycle. For example, it's possible to expire and delete a customer manager key. The key rotation can be done by the user or can be configured to be rotated automatically by AWS, which will rotate the key every year. 
 
 The example below shows a key that will be automatically rotated by AWS:
 
