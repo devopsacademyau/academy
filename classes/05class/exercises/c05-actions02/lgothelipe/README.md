@@ -1,4 +1,4 @@
-# C05-ACTIONS01
+# C05-ACTIONS02
 
 Please provide the following:
 
@@ -11,4 +11,4 @@ Please provide the following:
 
 
 ***
-Answer for exercise [c05-actions01](https://github.com/devopsacademyau/academy/blob/b5dbe6a3266facbde88e657573d1fa946150b51f/classes/05class/exercises/c05-actions02/README.md)
+Answer for exercise [c05-actions02](https://github.com/devopsacademyau/academy/blob/b5dbe6a3266facbde88e657573d1fa946150b51f/classes/05class/exercises/c05-actions02/README.md)
