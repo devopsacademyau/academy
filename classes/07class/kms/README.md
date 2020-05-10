@@ -20,7 +20,7 @@ KMS purpose is to encrypt data. Many services in AWS provides an encryption opti
 This helps enhance the data security, since only people with permission to read the data `and` with access to the key used to encrypt the data will be able to properly read it.
 
 ## Types of Keys
-AWS works with two types of keys. The `Symmetric` have a single encryption key that is used for both encryption and decryption operations. The `Asymmetric` have a public and a private key pair that can be used for encrypt/decrypt or sign/verify operations. Asymmetric keys are not available in all regions yet.
+AWS works with two types of keys. The `Symmetric` has a single encryption key that is used for both encryption and decryption operations. The `Asymmetric` have a public and a private key pair that can be used for encrypting/decrypting or signing/verifying operations. Asymmetric keys are not available in all regions yet.
 
 For each type of key a list of types and algorithms are supported and can be found in the [KMS FAQ page](https://aws.amazon.com/kms/faqs/).
 
