@@ -46,7 +46,7 @@ Using the console, it's easier to see which key is being used in the case that n
 
 Because it's not possible to have a lot of controls over the service default's key, it's recommended to have your own keys to increase the security being applied to the resources. 
 
-The terraform code below is using a custom key to encrypt the ebs volume.
+The terraform code below is using a custom key to encrypt the EBS volume.
 
 ```terraform
 resource "aws_kms_key" "my_key" {
