@@ -25,7 +25,7 @@ AWS works with two types of keys. The `Symmetric` has a single encryption key th
 For each type of key a list of types and algorithms are supported and can be found in the [KMS FAQ page](https://aws.amazon.com/kms/faqs/).
 
 ## How to use KMS?
-KMS is easy to use and in most cases you can encrypt/decrypt your data without having to interact with the KMS service directly. When creating resources(through console, API or terraform) you can specify if encryption is enabled or disabled. In this situation, you're already making use of KMS indirectly.
+KMS is easy to use and in most cases you can encrypt/decrypt your data without having to interact with the KMS service directly. When creating resources (through the console, API or terraform) you can specify if encryption is enabled or disabled. In this situation, you're already making use of KMS indirectly.
 
 For example, when creating an EBS volume in terraform:
 ```terraform
