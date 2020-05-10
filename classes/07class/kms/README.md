@@ -82,7 +82,7 @@ resource "aws_kms_key" "my_key" {
 
 Because customer-managed keys can be expired and deleted, is important to note that the key deletion action is destructive and potentially dangerous and must be done only when you are absolutely sure that there is no data encrypted with that key.
 
-Any data encrypted with a deleted key can no longer be recoverable and becames useless.
+Any data encrypted with a deleted key can no longer be recoverable and becomes useless.
 
 Because of this risk, any key deletion action can only be done after a waiting period that the key will need to wait before being deleted. This helps the identification of data still encrypted with the key being deleted.
 
