@@ -39,7 +39,7 @@ resource "aws_ebs_volume" "example" {
   }
 }
 ```
-In the example above, the EBS volume being created will use a KMS key to be ecnrypted. Since we're not specyifying the key to be used through the `kms_key_id` argument, the resource will be created using the default KMS key for it's service(ebs in this case).
+In the example above, the EBS volume being created will use a KMS key to be encrypted. Since we're not specifying the key to be used through the `kms_key_id` argument, the resource will be created using the default KMS key for its service (EBS in this case).
 
 Using the console, it's easier to see which key is being used in the case that no key is provided:
 ![kms-key](assets/kms-key.png)
