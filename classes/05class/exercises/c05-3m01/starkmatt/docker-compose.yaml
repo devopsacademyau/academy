@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+
+ aws:
+     build: .
+     env_file: .env
+     working_dir: /code
+     volumes:
+     - .:/code
