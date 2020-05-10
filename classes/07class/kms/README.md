@@ -11,7 +11,7 @@ The main goal is to explain the purpose, the benefits and how to use it.
 - [Main AWS Services Integrated with KMS](#main-aws-services-integrated-with-kms)
 
 ## What is AWS KMS?
-AWS KMS(Key Management Service) helps you to centrally manage and store you cryptographic keys and control their usae across serveral AWS services and in applications. It's a managed regional service, which means that the HA across AZ is already handled by AWS and keys can only be used inside the region it exists.
+AWS KMS(Key Management Service) helps you to centrally manage and store you cryptographic keys and control their usage across several AWS services and in applications. It's a managed regional service, which means that the HA across AZ is already handled by AWS and keys can only be used inside the region it exists.
 
 
 ## Purpose of KMS
