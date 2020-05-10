@@ -80,7 +80,7 @@ resource "aws_kms_key" "my_key" {
 }
 ```
 
-Because customer managed keys can be expired and deleted, is important to note that the key deletion action is destructive and potentially dangerous and must be done only when you have absolute sure that there is no data encrypted with that key.
+Because customer-managed keys can be expired and deleted, is important to note that the key deletion action is destructive and potentially dangerous and must be done only when you are absolutely sure that there is no data encrypted with that key.
 
 Any data encrypted with a deleted key can no longer be recoverable and becames useless.
 
