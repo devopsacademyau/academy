@@ -15,7 +15,7 @@ AWS KMS(Key Management Service) helps you to centrally manage and store you cryp
 
 
 ## Purpose of KMS
-KMS purpose is to encrypt data. Many services in AWS provides an encryption option which will make the data be encrypted when is handled by an AWS service like S3, DynamoDB, EBS and RDS. [Here](https://aws.amazon.com/kms/features/) you can find a list of all services that integrates with KMS. 
+KMS purpose is to encrypt data. Many services in AWS provide an encryption option which will make the data be encrypted when it is handled by an AWS service like S3, DynamoDB, EBS and RDS. [Here](https://aws.amazon.com/kms/features/) you can find a list of all services that integrate with KMS. 
 
 This helps enhance the data security, since only people with permission to read the data `and` with access to the key used to encrypt the data will be able to properly read it.
 
