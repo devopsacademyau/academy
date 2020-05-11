@@ -1,2 +1,4 @@
 FROM httpd:2.4.41-alpine
-
+# rm to delete a directory recursively and forcibly including its content
+RUN rm -rf /usr/local/apache2/htdocs/
+EXPOSE 80
