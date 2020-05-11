@@ -4,30 +4,33 @@ $ cd docker
 $ touch Dockerfile
 $ vi Dockerfile
     FROM alpine:3.7
-    RUN apk add terraform
+    COPY --from=hashicorp/terraform:0.12.20 /bin/terraform /bin/
+    COPY . .
     CMD terraform --version
 $ sudo docker build -t da-terraform:c03-docker-e01 . 
-    Sending build context to Docker daemon  2.048kB
-    Step 1/3 : FROM alpine:3.7
+    Sending build context to Docker daemon  3.072kB
+    Step 1/4 : FROM alpine:3.7
     3.7: Pulling from library/alpine
     5d20c808ce19: Pull complete 
     Digest: sha256:8421d9a84432575381bfabd248f1eb56f3aa21d9d7cd2511583c68c9b7511d10
     Status: Downloaded newer image for alpine:3.7
     ---> 6d1ef012b567
-    Step 2/3 : RUN apk add terraform
-    ---> Running in 3c8906011cae
-    fetch http://dl-cdn.alpinelinux.org/alpine/v3.7/main/x86_64/APKINDEX.tar.gz
-    fetch http://dl-cdn.alpinelinux.org/alpine/v3.7/community/x86_64/APKINDEX.tar.gz
-    (1/1) Installing terraform (0.11.0-r0)
-    Executing busybox-1.27.2-r11.trigger
-    OK: 79 MiB in 14 packages
-    Removing intermediate container 3c8906011cae
-    ---> d78c9f91bb9d
-    Step 3/3 : CMD terraform --version
-    ---> Running in a34d4b38f3f3
-    Removing intermediate container a34d4b38f3f3
-    ---> 7ca972e5355a
-    Successfully built 7ca972e5355a
+    Step 2/4 : COPY --from=hashicorp/terraform:0.12.20 /bin/terraform /bin/
+    0.12.20: Pulling from hashicorp/terraform
+    c9b1b535fdd9: Pull complete 
+    de7e97a272b4: Pull complete 
+    96f252e89940: Pull complete 
+    Digest: sha256:5e19b9bab0b6d079cae8822be22cd7010f65177356600154b77fc4fc81bdde31
+    Status: Downloaded newer image for hashicorp/terraform:0.12.20
+    ---> 440caf7e26c8
+    Step 3/4 : COPY . .
+    ---> bc53d8e1d298
+    Step 4/4 : CMD terraform --version
+    ---> Running in b2cada36d90f
+    Removing intermediate container b2cada36d90f
+    ---> 84d47915eb90
+    Successfully built 84d47915eb90
     Successfully tagged da-terraform:c03-docker-e01
 $ sudo docker run -it da-terraform:c03-docker-e01
-    Terraform v0.11.0
+    Terraform v0.12.20
+

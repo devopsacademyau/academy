@@ -1,3 +1,4 @@
 FROM alpine:3.7
-RUN apk add terraform
+COPY --from=hashicorp/terraform:0.12.20 /bin/terraform /bin/
+COPY . .
 CMD terraform --version
