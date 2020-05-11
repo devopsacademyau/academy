@@ -1,0 +1,10 @@
+## uname
+Darwin Kernel Version 19.2.0: Sat Nov  9 03:47:04 PST 2019; root:xnu-6153.61.1~20/RELEASE_X86_64 x86_64
+## git 
+git version 2.21.0 (Apple Git-122.2)
+## docker 
+Docker version 19.03.8, build afacb8b
+## terraform 
+Terraform v0.12.24
+## aws 
+aws-cli/2.0.12 Python/3.7.4 Darwin/19.2.0 botocore/2.0.0dev16
