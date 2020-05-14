@@ -12,4 +12,4 @@
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
-Answer for exercise [c06-serverless01](https://github.com/devopsacademyau/academy/blob/57dd95ac0a36e2553a4a3ed1b2c471d7dc6d489b/classes/06class/exercises/c06-serverless01/README.md)
+Answer for exercise [c06-serverless01](https://github.com/devopsacademyau/academy/blob/7b1df818545f88b2a507687fa1f93375b623db97/classes/06class/exercises/c06-serverless01/README.md)

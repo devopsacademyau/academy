@@ -1,6 +1,6 @@
 # Creating a POST API using API Gateway, Lambda and DynamoDB
 
-For this exercise you will create an API for CRUD operation (Create, Read, Update and Delete). This is a common scenario that we see in several software projects.
+For this exercise you will create a POST API for creating a record in the database using APIs. This is a common scenario that we see in several software projects.
 
 For that you will use:
 - AWS API Gateway, Lambda, DynamoDB, KMS, SSM

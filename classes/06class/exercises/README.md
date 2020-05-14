@@ -4,4 +4,4 @@ For instructions on how to submit your work, [please check the main repository R
 
 ## Creating an API to create To-Do items
 
-- [Creating a simple CRUD API (API Gateway, Lambda, DynamoDB, KMS, SSM)](/classes/06class/exercises/c06-serverless01/README.md)
+- [Creating a POST API using API Gateway, Lambda and DynamoDB](/classes/06class/exercises/c06-serverless01/README.md)
