@@ -1,10 +1,9 @@
-# C06-serverless01
+# c06-serverless01
 
 ## Make
-- [Dockerfile](Dockerfile)
-- [scripts/create_bucket.sh](scripts/create_bucket.sh)
-- [scripts/delete_bucket.sh](scripts/delete_bucket.sh)
-- [.env](.env)
+- [_provider.tf](_provider.tf)
+- [main.tf](main.tf)
+- [output.tf](output.tf)
 - [Makefile](Makefile)
 - [output.md](output.md)
 
@@ -13,4 +12,4 @@
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
-Answer for exercise [c05-3m01](<WIP>)
+Answer for exercise [c06-serverless01](https://github.com/devopsacademyau/academy/blob/57dd95ac0a36e2553a4a3ed1b2c471d7dc6d489b/classes/06class/exercises/c06-serverless01/README.md)
