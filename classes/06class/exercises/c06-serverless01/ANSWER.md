@@ -1,6 +1,7 @@
 # c06-serverless01
 
-## Make
+## Creating a POST API using API Gateway, Lambda and DynamoDB
+
 - [_provider.tf](_provider.tf)
 - [main.tf](main.tf)
 - [output.tf](output.tf)
