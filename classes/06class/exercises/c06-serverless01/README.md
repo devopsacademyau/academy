@@ -25,7 +25,7 @@ Requirements:
    3. *Tip: Lambda permissions: Lambda will need `dynamodb:PutItem` access*. Lambda will also need to grant invokeFunction permission to the API Gateway.
 4. **SSM Parameter store**: Use parameter store to store and retrieve the value of `DB_NAME` in your 3 Musketeers scripts.
 5. **KMS Key**: Create a new key used for encrypting the DynamoDB table. 
-   1. *Tip: lambda will need to have access to Encrypt the Table using this key. This needs to be described in the KMS Key policy.*
+   1. *Tip: lambda will require access to Encrypt the data using this key. This needs to be described in the KMS Key policy.*
 6. **DynamoDB**: 
    1. Table name must be `DA_Serverless`
    2. Create a table like the following:
@@ -36,7 +36,7 @@ Requirements:
    3. Use the CMK Key created before to encrypt the DynamoDB table at rest. `Encryption Type` should show `KMS` in the console for the Table.
 7. **3 Musketeers**:
    1. Make targets:
-      1. `deploy`: It will deploy the solution in Terraform, creating all resources listed above
+      1. `deploy`: It will deploy the solution using Terraform, creating all resources listed above
       2. `clean`: It will destroy all resources created.
 
 You can test your endpoint using:
