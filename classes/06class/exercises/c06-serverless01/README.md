@@ -21,7 +21,7 @@ Requirements:
    3. Authentication: Use API Key to protect your API. Push the value of the API key to SSM parameter store after creation.
 3. **Lambda**: 
    1. Source code is provided for you in Python (it is in the `src/lambda.zip`). Check it in [src/ folder](./src). You will point to this zip file in your terraform Lambda resource.
-   2. This lambda will have a environment variable called `DB_NAME`. Make sure the value for this variable is fetched from SSM Parameter Store for deployment.
+   2. This lambda will have an environment variable called `DB_NAME`. Make sure the value for this variable is fetched from SSM Parameter Store for deployment.
    3. *Tip: Lambda permissions: Lambda will need `dynamodb:PutItem` access*. Lambda will also need to grant invokeFunction permission to the API Gateway.
 4. **SSM Parameter store**: Use parameter store to store and retrieve the value of `DB_NAME` in your 3 Musketeers scripts.
 5. **KMS Key**: Create a new key used for encrypting the DynamoDB table. 
