@@ -4,11 +4,13 @@
     <img src="docs/logo.png" width="300">
 </p>
 
-This non-profit repository intention is to help the community to learn the DevOps methodology and culture throughout a series of classes and hands-on laboratories and become ready to start working as Automation/Cloud/DevOps Engineer.
+This repository's intention is to help the community in learning the DevOps methodologies and culture throughout a series of classes and hands-on exercises. The content of the classes that will be presented has been designed in a way to prepare you for working as an Automation/Cloud/DevOps Engineer.
 
-Feel free to contribute with content (PR), help peer reviewing code or just going through the exercises!
+These classes start with explaining different concepts at a high level and then goes into some detail. Some of the main topics currently being covered can be seen [here](#content).
 
-If you want to make part of the team behind this, get in touch on help@devopsacademy.com.au.
+Feel free to contribute to this repository with content through Pull Requests, help peer reviewing code or just going through the exercises!
+
+If you want to be part of the team behind this, get in touch on help@devopsacademy.com.au.
 
 # Table of Content
 
@@ -16,6 +18,7 @@ If you want to make part of the team behind this, get in touch on help@devopsaca
 - [Table of Content](#table-of-content)
 - [How it Works](#how-it-works)
 - [Requirements](#requirements)
+- [Live/Online Applications](#liveonline-applications)
 - [Content](#content)
   - [Classes](#classes)
   - [Exercises](#exercises)
@@ -41,6 +44,21 @@ To complete the DevOps Academy, you will have to go through 8 classes with hands
 
 You will also be required to peer review at least 5 pull requests from other students to finish this course.
 
+There will be 2 modes of learning the content in these classes:
+
+1. Self-learning. Where you go through all the classes on your own pace and submit the exercises when you're ready.
+
+2. Face-to-Face Classes or Virtual Classes. Where the instructors will go through the content of each class and answer any questions or concerns you might have. To sign up for the classes you can email help@devopsacademy.com to get the presentation dates and the availability for the upcoming class. 
+
+**The first round of classes has been completed and we are starting our second round of classes on the 2nd of June 2020. If you are interested in joining the upcoming classes, email us at help@devopsacademy.com.au or come and chat to us on our [Slack channel](https://join.slack.com/t/devopsacademyau/shared_invite/zt-ajsfpwsj-GcTGG6tpZp~MOZd2DM92QA).**
+
+From time to time we also run the live/online classes of the Academy content with a selected group of students. Those classes uses this same repository and have no additional content. The only benefit is to have the opportunity to interact with a group of students as well as with the instructors in a more structured learning process. 
+
+Because in this live/online mode the classes occurs every fortnighly, the pace of the exercises completion are based on the course schedule, so students requires a considerable amount of hours available during the week to be able to keep the course pace and complete exercises. 
+
+Also, considering the limited number of students that are accepted for each live/online term, we ask people to only apply for those classes if they will be able to commit to have a 100% class attendance and are willing to invest their time in the learning process by doing the exercises and complete th group projects.
+
+
 # Requirements
 
 Please find below the requirements to complete this course:
@@ -55,6 +73,28 @@ Please find below the requirements to complete this course:
 
 If you need help in any of these topics, [a tutorial is available on the pre-class](classes/00pre-class/README.md):
 
+# Live/Online Applications
+
+If you intend to apply for the Live/Online classes, you'll need to fill the form available [here](https://devopsacademy.com.au/), and as part of your application, you'll need to submit a PR to this repository under the applications folder following the instructions below. 
+
+Your application will only be reviewed once you have create a Pull Request with your requirements. It's essential that you have a proper environment setup before being able to undergo the DevOps Academy.
+
+If there is no form available on the link provided, there is no scheduled classes in place. Reach out to any of us through our [Slack channel](https://join.slack.com/t/devopsacademyau/shared_invite/zt-ajsfpwsj-GcTGG6tpZp~MOZd2DM92QA) to get more information on next Live/Online classes.
+
+## How to Submit a PR as part of your application
+
+- Make sure you have all the Requirements mentioned above installed on the machine you'll use for the course. 
+- Fork this Repository
+- Go into the applications folder and execute the `application.sh` script. This script will generate an `output.txt` file with information about the following tools:
+    - your computer os version
+    - git version
+    - docker version
+    - aws cli version
+    - terraform version
+- Rename the output.txt file to [your_git_account_username].txt
+- Create a PR on this repository from your forked repo including only the file with your GitHub user account name.
+
+If you need instructions on how to fork a repository and how to create a PR from your fork, take a look on [this](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) and [this](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) tutorials.
 
 # Content
 

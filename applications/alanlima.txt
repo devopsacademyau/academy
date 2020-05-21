@@ -1,0 +1,10 @@
+## uname
+Linux ALAN-LIMA 4.19.84-microsoft-standard #1 SMP Wed Nov 13 11:44:37 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+## git 
+git version 2.25.1
+## docker 
+Docker version 19.03.8, build afacb8b7f0
+## terraform 
+Terraform v0.12.24
+## aws 
+aws-cli/2.0.10 Python/3.8.2 Linux/4.19.84-microsoft-standard botocore/2.0.0dev14

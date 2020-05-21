@@ -2,7 +2,11 @@
 
 Using 3Musketeers (don't use marketplace actions), create a workflow that will:
 
-- build a container image with a `Hello <username>`
+- build a simple container image. Something like this is enough:
+  ``` 
+    FROM httpd:2.4.41
+    RUN echo "This is my GH actions exercise" > /usr/local/apache2/htdocs/index.html
+  ```
 - tag the container image with the commit `SHORT_SHA` (SHORT_SHA's are usually the last 4-6 digits of the commit SHA) i.e `my-image:123456`
 - push to dockerhub
 - comment to the PR the new image name with tag pushed to Dockerhub
@@ -15,7 +19,6 @@ Please follow the below steps to complete this task:
 - Raise a PR with some `Dockerfile` changes
 - Check if image gets deployed to Dockerhub
 - Check if PR gets commented with new image name/tag
-
 
 - Create a PR to add a new folder with your github username on the PLAYGROUND repository root `/`. 
 - You should be able to merge your own PR without an approval. (let us know if not)
