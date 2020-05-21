@@ -5,22 +5,18 @@
 # file with configuration.  For more information, see:
 # https://github.com/actions/labeler/blob/master/README.md
 
-
-name: PR Comment
+name: PR Comments
 on: 
-   pull_request: 
+  pull_request: 
     paths: 
-     - starkmatt/
-
-
+        - starkmatt/**
 jobs:
-  comment:
-
+  PR-Commenter:
+    name: PR
     runs-on: ubuntu-latest
-
     steps:
-    - uses: mshick/add-pr-comment@v1
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        message: Great PR! Doing some great work
-        allow-repeats: false
+      - uses: mshick/add-pr-comment@v1
+        with:
+            repo-token: ${{ secrets.SM_GIT_HUB_TOKEN }}
+            message: Great PR Matteh!
+            allow-repeats: false 

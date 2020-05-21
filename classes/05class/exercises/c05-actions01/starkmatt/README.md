@@ -4,7 +4,9 @@ Please provide the following:
 
 - link to an open PR on the PLAYGROUND repository containing an automated comment from your GH Actions workflow.
 
-https://github.com/devopsacademyau/playground/pull/5
+https://github.com/devopsacademyau/playground/pull/51
+
+Finally working!
 
 - attach to this PR the GH Actions workflow yaml file used:
   - [gh-actions-workflow.yaml](gh-actions-workflow.yaml)
