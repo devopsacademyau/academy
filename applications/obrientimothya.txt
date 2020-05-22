@@ -5,9 +5,6 @@ git version 2.24.3 (Apple Git-128)
 ## docker 
 Docker version 19.03.8, build afacb8b
 ## terraform 
-Terraform v0.12.24
-
-Your version of Terraform is out of date! The latest version
-is 0.12.25. You can update by downloading from https://www.terraform.io/downloads.html
+Terraform v0.12.25
 ## aws 
 aws-cli/2.0.5 Python/3.7.4 Darwin/19.4.0 botocore/2.0.0dev9
