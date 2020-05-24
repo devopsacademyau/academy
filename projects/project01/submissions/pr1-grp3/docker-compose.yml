@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  git:
+    image: bitnami/git:2.26.2
+    working_dir: /opt/app
+    volumes:
+      - .:/opt/app:rw
+  terraform:
+    image: hashicorp/terraform:0.12.24
+    working_dir: /opt/app
+    volumes:
+      - ${HOME}/.aws:/root/.aws
+      - ./:/opt/app:rw

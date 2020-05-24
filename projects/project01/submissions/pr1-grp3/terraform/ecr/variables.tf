@@ -1,0 +1,1 @@
+variable "projectname" {type = string}

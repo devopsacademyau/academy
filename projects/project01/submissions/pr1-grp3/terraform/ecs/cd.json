@@ -1,0 +1,36 @@
+[
+    {
+    "name":"wordpress",
+    "links": null,
+    "image": "${containerimage}",
+    "essential": true,
+    "memory": 512,
+    "mountPoints": [
+        {
+            "sourceVolume": "wordpress",
+            "containerPath": "/var/www/html",
+            "readOnly"     : false
+        }
+    ],
+    "portMappings": [
+        {
+        "protocol": "tcp",
+        "containerPort": 80
+        }
+    ],
+    "secrets": [{
+        "name": "WORDPRESS_DB_HOST",
+        "valueFrom": "${db_host_arn}"
+    },{
+        "name": "WORDPRESS_DB_USER",
+        "valueFrom": "${db_user_arn}"
+    },{
+        "name": "WORDPRESS_DB_PASSWORD",
+        "valueFrom": "${db_passowrd_arn}"
+    },{
+        "name": "WORDPRESS_DB_NAME",
+        "valueFrom": "${db_name_arn}"
+    }
+    ]
+    }
+]  
