@@ -1,0 +1,14 @@
+## uname
+Linux Mohammad 4.4.0-18362-Microsoft #836-Microsoft Mon May 05 16:04:00 PST 2020 x86_64 x86_64 x86_64 GNU/Linux
+## git 
+git version 2.25.1
+## docker 
+
+The command 'docker' could not be found in this WSL 1 distro.
+We recommend to convert this distro to WSL 2 and activate
+the WSL integration in Docker Desktop settings.
+
+See https://docs.docker.com/docker-for-windows/wsl/ for details.
+
+## terraform 
+## aws 
