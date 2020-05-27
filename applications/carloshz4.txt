@@ -11,3 +11,4 @@ Your version of Terraform is out of date! The latest version
 is 0.12.25. You can update by downloading from www.terraform.io/downloads.html
 ## aws 
 aws-cli/1.16.54 Python/2.7.5 Linux/3.10.0-1062.4.1.el7.x86_64 botocore/1.12.92
+
