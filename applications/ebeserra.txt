@@ -1,0 +1,10 @@
+## uname
+Darwin Marianas-MBP.gateway 18.7.0 Darwin Kernel Version 18.7.0: Mon Feb 10 21:08:45 PST 2020; root:xnu-4903.278.28~1/RELEASE_X86_64 x86_64
+## git 
+git version 2.20.1 (Apple Git-117)
+## docker 
+Docker version 19.03.8, build afacb8b
+## terraform 
+Terraform v0.12.25
+## aws 
+aws-cli/1.18.67 Python/3.8.3 Darwin/18.7.0 botocore/1.16.17
