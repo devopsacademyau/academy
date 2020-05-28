@@ -34,6 +34,17 @@ beee9f30bc1f: Pushed
 4e24982: digest: sha256:564a70c9997d173727d55a72d5ed17c0a9675706224c59ea94c0998377a7ba7c size: 1569
 
 #Output of command "make run"
-\$ make run
+
+<!-- \$ make run
 docker run -p 80 -d portoddi/make01:4e24982
-203202a88413f720660dc4034717660a5919386b980f5ae307bc88e061c6887b
+203202a88413f720660dc4034717660a5919386b980f5ae307bc88e061c6887b -->
+
+# Output without detaching the container
+
+\$ make run
+docker run -p 80 portoddi/make01:dd2d4f0
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Mon May 11 06:20:13.006856 2020][mpm_event:notice] [pid 1:tid 139903113719112] AH00489: Apache/2.4.41 (Unix) configured -- resuming normal operations
+[Mon May 11 06:20:13.009952 2020][core:notice] [pid 1:tid 139903113719112] AH00094: Command line: 'httpd -D FOREGROUND'
+[Mon May 11 06:20:26.306513 2020][mpm_event:notice] [pid 1:tid 139903113719112] AH00492: caught SIGWINCH, shutting down gracefully
