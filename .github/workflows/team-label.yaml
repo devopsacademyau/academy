@@ -1,5 +1,5 @@
 on: pull_request
-name: team-label
+name: TeamLabeler
 jobs:
   team-labeler:
     runs-on: ubuntu-latest
