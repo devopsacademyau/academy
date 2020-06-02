@@ -1,0 +1,52 @@
+aws iam create-user --user-name user_readonly_S3
+{
+    "User": {
+        "Path": "/",
+        "UserName": "user_readonly_S3",
+        "UserId": "AIDA55SATRLRNRIGAZG4N",
+        "Arn": "arn:aws:iam::956839463650:user/user_readonly_S3",
+        "CreateDate": "2020-04-12T07:46:43Z"
+    }
+}
+
+
+aws iam create-policy --policy-name S3readOnly --policy-document file://S3readOnlyPolicy.json
+{
+    "Policy": {
+        "PolicyName": "S3readOnly",
+        "PolicyId": "ANPA55SATRLRE6EOYTUHX",
+        "Arn": "arn:aws:iam::956839463650:policy/S3readOnly",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "CreateDate": "2020-04-12T09:37:29Z",
+        "UpdateDate": "2020-04-12T09:37:29Z"
+    }
+}
+
+aws iam attach-user-policy --policy-arn arn:aws:iam::956839463650:policy/S3readOnly --user-name user_readonly_S3
+
+
+aws iam create-access-key --user-name user_readonly_S3
+{
+    "AccessKey": {
+        "UserName": "user_readonly_S3",
+        "AccessKeyId": "AKIA55SATRLRF2HTU6VW",
+        "Status": "Active",
+        "SecretAccessKey": "xxxxxx",
+        "CreateDate": "2020-04-12T09:06:25Z"
+    }
+}
+
+aws configure --profile s3ReadOnlyProfile
+AWS Access Key ID [None]: AKIA55SATRLRF2HTU6VW
+AWS Secret Access Key [None]: xxxxxx
+Default region name [None]:
+Default output format [None]:
+
+
+
+aws s3 ls devops-iac01 --profile s3ReadOnlyProfile
+2020-04-09 15:24:08       5602 adipose.jpeg
