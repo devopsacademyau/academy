@@ -9,13 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: hashicorp/setup-terraform@v1
 
-    - name: Run Terraform
-      run: |
-        cd scripts/tf/github.com
-        terraform init
-        terraform plan
+    - name: Run Terraform plan
+      run: make gh-plan
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
