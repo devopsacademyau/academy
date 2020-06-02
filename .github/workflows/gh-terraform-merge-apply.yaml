@@ -1,5 +1,7 @@
-on: 
-  merge:
+on:
+  push:
+    branches:
+      - master
     paths:
     - 'scripts/tf/github.com/**/*'
     
