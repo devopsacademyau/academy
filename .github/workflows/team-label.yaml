@@ -1,9 +1,9 @@
-name: ClassLabeler
-on: [pull_request]
+on: pull_request
+name: TeamLabeler
 jobs:
-  label:
+  team-labeler:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v2
+    - uses: JulienKode/team-labeler-action@v0.1.0
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
