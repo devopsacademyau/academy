@@ -6,3 +6,14 @@ services:
       - "GP_GITHUB_AS_DEFAULT=true"
     ports:
       - 9000:9000
+  gh-terraform:
+    image: hashicorp/terraform:0.12.26
+    working_dir: /work
+    volumes:
+      - ${PWD}/scripts/tf/github.com:/work
+      - ${HOME}/.aws:/root/.aws
+    environment:
+      - TF_VAR_github_token
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+    
