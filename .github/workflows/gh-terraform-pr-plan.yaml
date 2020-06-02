@@ -1,0 +1,18 @@
+on: 
+  pull_request:
+    paths:
+    - 'scripts/tf/github.com/**/*'
+    
+name: GH Terraform Plan
+jobs:
+  gh-terraform:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Run Terraform plan
+      run: make gh-plan
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
