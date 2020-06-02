@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo "## uname" > output.txt
 uname -a >> output.txt
 echo "## git " >> output.txt
