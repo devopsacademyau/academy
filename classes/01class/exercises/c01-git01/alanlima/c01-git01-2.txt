@@ -1,0 +1,6 @@
+git checkout -b bugfix
+git commit
+git checkout master
+git commit
+git checkout bugfix
+git rebase master
