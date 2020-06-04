@@ -1,0 +1,18 @@
+# How to compare two different local repositories using git diff? How about remote ones, can you do the same?
+
+In order to do that, we need to add the other repository using `git remote add` command following by `git diff` command.
+Following the order to execute the comparison:
+
+```
+git remote add -f <name> <path/to/repo>
+git diff master remotes/<name>/master
+```
+
+The `-f` flag on `git remote add` indicates that the git will fetch the remote changes.
+
+The same procedure can be executed for remote repository. Just replaces `<path/to/repo>` to `<link/to/repo>`.
+
+Once finished, the remote repository can be removed using the command `git remote rm <name>`.
+
+Ref:
+https://stackoverflow.com/questions/1968512/getting-the-difference-between-two-repositories
