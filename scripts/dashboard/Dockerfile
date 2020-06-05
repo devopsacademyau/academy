@@ -1,2 +1,2 @@
 FROM python:3
-RUN pip3 install gspread csv
+RUN pip3 install gspread
