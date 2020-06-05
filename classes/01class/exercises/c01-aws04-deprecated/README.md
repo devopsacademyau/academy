@@ -1,4 +1,4 @@
-# Tools in use (C01-E01)
+# Tools in use (c01-aws04 - deprecated)
 
 - Use the aws cli tool to output the version of the tool in use. Output this version to a file named c01-e01.txt
 - Append to the same file the version of the docker installed on your machine.
