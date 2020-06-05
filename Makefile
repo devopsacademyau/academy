@@ -8,10 +8,8 @@ RUNNER = docker-compose run --rm
 TF_VAR_github_token?=
 
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-dashboard:   # Creates a scorecard dashboard in CSV. You can pass GH_USER and GH_TOKEN to authenticate in GitHub
-	$(ROOT_DIR)/scripts/dashboard.sh ${GH_USER} ${GH_TOKEN}
 
-new_dashboard:
+dashboard:
 	$(RUNNER) python-da /app/scripts/dashboard/run.sh
 
 
