@@ -12,8 +12,8 @@ dashboard:   # Creates a scorecard dashboard in CSV. You can pass GH_USER and GH
 	$(ROOT_DIR)/scripts/dashboard.sh ${GH_USER} ${GH_TOKEN}
 
 new_dashboard:
-	docker build -t python:da ./scripts/dashboard -f ./scripts/dashboard/Dockerfile
-	docker run -v ${PWD}/scripts/dashboard:/app python:da /app/run.sh
+	$(RUNNER) python-da /app/scripts/dashboard/run.sh
+
 
 presentation:
 	docker-compose up -d

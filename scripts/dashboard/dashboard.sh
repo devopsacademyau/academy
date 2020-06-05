@@ -49,7 +49,7 @@ do
     > ${BASEDIR}/results/${LAB}.txt
     CLASS=`echo $LAB|cut -c2-3`
     echo "***** Checking for deliveries of $LAB *****"
-    cd ${BASEDIR}/../classes/${CLASS}class/exercises/${LAB}
+    cd ${BASEDIR}/../../classes/${CLASS}class/exercises/${LAB}
     DONE=""
     cat ${BASEDIR}/students.txt|while read STUDENT
     do
