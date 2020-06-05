@@ -11,6 +11,12 @@ ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 dashboard:   # Creates a scorecard dashboard in CSV. You can pass GH_USER and GH_TOKEN to authenticate in GitHub
 	$(ROOT_DIR)/scripts/dashboard.sh ${GH_USER} ${GH_TOKEN}
 
+new_dashboard:
+	cd scripts/dashboard
+	docker build -t python:da .
+	./dashboard.sh
+	docker run -v ${PWD}:/app python:da /app/run.sh
+
 presentation:
 	docker-compose up -d
 	sleep 5

@@ -1,0 +1,18 @@
+on: 
+  pull_request:
+    paths:
+    - 'scripts/dashboard/**'
+    
+name: Dashboard Generation
+jobs:
+  dashboard:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Update Dashboard Sheet
+      run: make new_dashboard
+      env:
+        GOOGLE_KEY: ${{ secrets.DASHBOARD_GOOGLE_KEY }}
+        SHEET_KEY: ${{ secrets.DASHBOARD_SHEET_KEY }}
+        WKS_NAME: "Sheet1"
