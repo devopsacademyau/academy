@@ -8,6 +8,8 @@ wks_name = os.environ['WKS_NAME']
 gc = gspread.service_account()
 
 sheet = gc.open_by_key(sheek_key)
+worksheet_list = sheet.worksheets()
+
 wks = sheet.worksheet(wks_name)
 
 with open('result.csv', newline='') as csvfile:

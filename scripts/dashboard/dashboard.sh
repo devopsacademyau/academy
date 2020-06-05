@@ -8,10 +8,10 @@ GITHUB_URL="https://api.github.com/repos/devopsacademyau/academy"
 if [ "${GH_USER}" == "" ] || [ "${GH_TOKEN}" == "" ]
 then
     TOKEN=""
-    echo ** NO AUTH **
+    echo -e "${RED}** NO AUTH **${NC}"
 else
     TOKEN="-u ${GH_USER}:${GH_TOKEN}"
-    echo ** Using GitHub token **
+    echo -e "${GREEN}** Using GitHub token **${NC}"
 fi
 
 mkdir ${BASEDIR}/results
