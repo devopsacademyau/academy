@@ -1,7 +1,5 @@
 on: 
-  pull_request:
-    paths:
-    - 'scripts/dashboard/**'
+  pull_request
     
 name: Dashboard Generation
 jobs:
