@@ -2,7 +2,11 @@ import gspread
 import csv
 import os
 import math
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 from datetime import date
+from matplotlib.font_manager import FontProperties
 
 print("*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***")
 print("Updating Dashboard Worksheet")
@@ -68,3 +72,36 @@ while cell_row < 100:
 print("ProgressionData Worksheet update completed")
 print("*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***\n\n")
 
+print("*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***")
+print("Creating Chart")
+
+df = pd.DataFrame(wks.get_all_records())
+
+
+# Plot Style
+plt.style.use('ggplot')
+plt.figure(figsize=(12,5))
+plt.xticks(rotation=30)
+
+# create a color palette
+palette = plt.get_cmap('Dark2')
+
+# multiple line plot
+num = 0
+for column in df.drop('Dates', axis=1):
+  num += 1
+  plt.plot(df['Dates'], df[column], marker = '', color=palette(num), linewidth=1, alpha=0.9, label=column)
+
+# Add legend
+fontP = FontProperties()
+fontP.set_size('small')
+plt.legend(bbox_to_anchor=(1.01,0.5), loc="center left", prop=fontP)
+
+# Add titles
+plt.title("Exercises Completion Progress", loc='center', fontsize=14, fontweight=0, color='orange')
+plt.xlabel("Dates")
+plt.ylabel("% Completed")
+plt.savefig('chart.png', bbox_inches='tight')
+
+print("Chart creation completed")
+print("*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***\n\n")
