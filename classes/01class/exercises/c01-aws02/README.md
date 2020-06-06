@@ -12,7 +12,7 @@
 
 
 ### Tip:
-You can access the file on the S3 bucket by creating an IAM role with S3 policy and attaching it to your EC2 instance. One of the best practices when creating IAM policies is to grant least privilege to the users. The objective is to initially give the users only the access/permission they need to complete the intended task and grant additional permissions as necessary later. This is more secure than starting with permissions that are too lenient and then trying to tighten them later. 
+You can access the file on the S3 bucket by creating an IAM role with a S3 policy(you can use the `AmazonS3ReadOnlyAccess`) and attaching it to your EC2 instance. One of the best practices when creating IAM policies is to grant least privilege to the users. The objective is to initially give the users only the access/permission they need to complete the intended task and grant additional permissions as necessary later. This is more secure than starting with permissions that are too lenient and then trying to tighten them later. 
 
 
 **Why using least privilege is important:**
