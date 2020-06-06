@@ -1,7 +1,6 @@
 c01-aws01
 c01-aws02
 c01-git01
-c01-git02
 c01-git03
 c01-git04
 c02-network01
