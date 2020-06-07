@@ -1,6 +1,5 @@
-c01-e01
-c01-e03
-c01-e04
+c01-aws01
+c01-aws02
 c01-git01
 c01-git02
 c01-git03
@@ -39,3 +38,4 @@ c05-actions02
 c05-compose01
 c05-make01
 c05-3m01
+c06-serverless01

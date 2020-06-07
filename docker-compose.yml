@@ -16,4 +16,14 @@ services:
       - TF_VAR_github_token
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
+  python-da:
+    build: ./scripts/dashboard
+    volumes:
+      - ${PWD}:/app
+    environment:
+      - GOOGLE_KEY
+      - SHEET_KEY
+      - WKS_NAME
+      - GH_USER
+      - GH_TOKEN
     

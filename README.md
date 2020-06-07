@@ -273,13 +273,27 @@ Example:
 
 ## Create a dashboard (CSV file) about  exercise submissions
 
-It will use the file `labs.txt`and `students.txt`from the `scripts/` folder (TO BE IMPROVED FOR FLEXIBILITY).
+It will use the file `labs.txt`and `students.txt`from the `scripts/dashboard` folder.
+It runs through GitHub Actions, based on the cron definition of the [dashboard,yaml](.github/workflow/dahboard.yaml) and updates the spreadsheet with the latest information.
 
-Run:  `make dashboard`
+It can also be executed manually with the following commands:
 
-Optionally you can pass the Github User and Token, so the API calls are not throttled.
+```
+make dashboard \
+  GOOGLE_KEY=[GOOGLE_KEY] \
+  SHEET_KEY=[SHEET_KEY] \
+  WKS_NAME="Dashboard" \
+  GH_USER=[GH_USER] \
+  GH_TOKEN=[GH_TOKEN]
+```
 
-Run:  `make dashboard GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
+| VARIABLE | DESCRIPTION   |
+|----------|:-------------|
+| GOOGLE_KEY | Google Service Account key with permissions to the spreadhseet |
+| SHEET_KEY | The Sheet ID   |
+| WKS_NAME | The Worksheet Name |
+| GH_USER | GutHubs user with permission to query the repository |
+| GH_TOKEN | The token from the GitHub user above |
 
 ## Presentation format
 
