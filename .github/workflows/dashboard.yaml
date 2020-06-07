@@ -1,6 +1,8 @@
 on:
-  schedule:
-  - cron: "0 0 * * *"
+  pull_request
+  # on: 
+  # schedule:
+  # - cron: "0 1 * * 1,5"
     
 name: Dashboard Generation
 jobs:
@@ -17,3 +19,23 @@ jobs:
         WKS_NAME: "Dashboard"
         GH_USER: ${{ secrets.DASHBOARD_GH_USER }}
         GH_TOKEN: ${{ secrets.DASHBOARD_GH_TOKEN }}
+    - name: Slack notification
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      uses: cemkiy/action-slacker@master
+      with:
+        # requirements fields for slack
+        channel: '#automation-test'
+        icon_url: 'slack user icon url'
+        username: 'slack username'
+        # attachment fields(not required)
+        fallback: 'Required plain-text summary of the attachment.'
+        color: '#36a64f'
+        pretext: 'Optional text that appears above the attachment block'
+        author_name: 'DevOpsAcademyBot'
+        title: 'Slack API Documentation'
+        title_link: 'https://api.slack.com/'
+        text: 'Optional text that appears within the attachment'
+        image_url: 'http://my-website.com/path/to/image.jpg'
+        footer: 'Slack API'
+        footer_icon: 'https://platform.slack-edge.com/img/default_application_icon.png'
