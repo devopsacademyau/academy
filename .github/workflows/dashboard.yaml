@@ -16,10 +16,9 @@ jobs:
       env:
         GOOGLE_KEY: ${{ secrets.DASHBOARD_GOOGLE_KEY }}
         SHEET_KEY: ${{ secrets.DASHBOARD_SHEET_KEY }}
-        WKS_NAME: "Dashboard"
         GH_USER: ${{ secrets.DASHBOARD_GH_USER }}
         GH_TOKEN: ${{ secrets.DASHBOARD_GH_TOKEN }}
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID_KIKO }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KIKO }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
