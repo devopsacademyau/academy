@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /app/scripts/dashboard
 
-aws s3 cp chart.png s3://devopsacademy.com.au/progression-chart/chart.png
+aws s3 cp ./chart.png s3://devopsacademy.com.au/progression-chart/chart.png
 aws s3api put-object-acl --bucket devopsacademy.com.au --key progression-chart/chart/png --acl public-read
 
 curl -X POST -H 'Content-type: application/json' \
