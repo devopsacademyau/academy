@@ -5,7 +5,7 @@ echo $GOOGLE_KEY |base64 -d > ~/.config/gspread/service_account.json
 ./dashboard.sh
 python3 dashboard.py
 
-aws s3 ls
+aws s3 cp scripts/dashboard/chart.png s3://devopsacademy.com.au/progression-chart/chart.png
 
 curl -X POST -H 'Content-type: application/json' \
   ${SLACK_WEBHOOK} \
@@ -26,7 +26,7 @@ curl -X POST -H 'Content-type: application/json' \
         "text": "Updated Progression"
       },
       "block_id": "image4",
-      "image_url": "http://placekitten.com/500/500",
+      "image_url": "http://devopsacademy.com.au/progression-chart/chart.png",
       "alt_text": "Labs Progression"
     }
   ]
