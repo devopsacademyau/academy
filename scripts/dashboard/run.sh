@@ -5,6 +5,8 @@ echo $GOOGLE_KEY |base64 -d > ~/.config/gspread/service_account.json
 ./dashboard.sh
 python3 dashboard.py
 
+aws s3 ls
+
 curl -X POST -H 'Content-type: application/json' \
   ${SLACK_WEBHOOK} \
   --data '{
@@ -14,7 +16,7 @@ curl -X POST -H 'Content-type: application/json' \
       "type": "section",
       "text": {
         "type": "mrkdwn",
-        "text": "*Updated Labs Progression! Lets get those lines to infinity and beyond!*"
+        "text": ":siren-alert: *Updated Labs Progression! Lets get those lines to infinity and beyond!* :siren-alert:"
       }
     },
     {

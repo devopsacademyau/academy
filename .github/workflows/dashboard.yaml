@@ -20,4 +20,6 @@ jobs:
         GH_USER: ${{ secrets.DASHBOARD_GH_USER }}
         GH_TOKEN: ${{ secrets.DASHBOARD_GH_TOKEN }}
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
