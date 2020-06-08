@@ -97,13 +97,16 @@ fontP = FontProperties()
 fontP.set_size('small')
 plt.legend(bbox_to_anchor=(1.01,0.5), loc="center left", prop=fontP)
 
-# Set Y range
-plt.ylim(-1, 100)
 
 # Add titles
 plt.title("Exercises Completion Progress", loc='center', fontsize=14, fontweight=0, color='orange')
 plt.xlabel("Dates")
 plt.ylabel("% Completed")
+
+# Set Y range
+plt.ylim(-1, 100)
+
+# Save chart
 plt.savefig('chart.png', bbox_inches='tight')
 
 print("Chart creation completed")
