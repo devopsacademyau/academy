@@ -19,4 +19,5 @@ jobs:
         WKS_NAME: "Dashboard"
         GH_USER: ${{ secrets.DASHBOARD_GH_USER }}
         GH_TOKEN: ${{ secrets.DASHBOARD_GH_TOKEN }}
+        SLAK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
