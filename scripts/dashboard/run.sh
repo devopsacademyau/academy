@@ -5,7 +5,7 @@ echo $GOOGLE_KEY |base64 -d > ~/.config/gspread/service_account.json
 ./dashboard.sh
 python3 dashboard.py
 
-aws s3 cp scripts/dashboard/chart.png s3://devopsacademy-labschart/progression-chart/chart.png
+aws s3 cp chart.png s3://devopsacademy-labschart/progression-chart/chart.png
 aws s3api put-object-acl --bucket devopsacademy-labschart --key progression-chart/chart/png --acl public-read
 
 curl -X POST -H 'Content-type: application/json' \
