@@ -1,9 +1,12 @@
 #!/bin/bash
 cd /app/scripts/dashboard
 
+echo "Saving files to S3"
 aws s3 cp ./chart.png s3://devopsacademy.com.au/progression-chart/chart.png
 aws s3api put-object-acl --bucket devopsacademy.com.au --key progression-chart/chart/png --acl public-read
 
+
+echo "Publishing Slack message"
 curl -X POST -H 'Content-type: application/json' \
   ${SLACK_WEBHOOK} \
   --data '{
