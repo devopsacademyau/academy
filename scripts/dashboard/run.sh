@@ -16,7 +16,7 @@ curl -X POST -H 'Content-type: application/json' \
       "type": "section",
       "text": {
         "type": "mrkdwn",
-        "text": ":siren-alert: *Updated Labs Progression! Lets get those lines to infinity and beyond!* :siren-alert:"
+        "text": ":siren-alert: *Updated Labs Progression!* :siren-alert:\n:baby-yoda: Those lines to the top we need to get. Yes, hrrmmm."
       }
     },
     {
