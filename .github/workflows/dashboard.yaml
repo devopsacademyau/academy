@@ -19,18 +19,4 @@ jobs:
         WKS_NAME: "Dashboard"
         GH_USER: ${{ secrets.DASHBOARD_GH_USER }}
         GH_TOKEN: ${{ secrets.DASHBOARD_GH_TOKEN }}
-    - name: Slack notification
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      uses: cemkiy/action-slacker@master
-      with:
-        # requirements fields for slack
-        channel: '#automation-test'
-        icon_url: 'slack user icon url'
-        username: 'slack username'
-        # author_name: 'DevOpsAcademyBot'
-        title: '*Lab Progression Update*'
-        text: 'To infinity and beyond!'
-        image_url: 'http://my-website.com/path/to/image.jpg'
-        footer: 'Slack API'
-        footer_icon: 'https://platform.slack-edge.com/img/default_application_icon.png'
+

@@ -26,4 +26,5 @@ services:
       - WKS_NAME
       - GH_USER
       - GH_TOKEN
+      - SLACK_WEBHOOK
     
