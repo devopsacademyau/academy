@@ -1,0 +1,14 @@
+# level intro4
+# 1. Checkout a new branch named bugFix
+$ git checkout -b bugFix
+
+# 2. Commit once
+$ git commit -m "do 1st commit on bugFix"
+
+# 3. Go back to master and commit again
+$ git checkout master
+$ git commit -m "do 1st commit on master"
+
+# 4. Check out bugFix and rebase onto master
+$ git checkout bugFix
+$ git rebase master
