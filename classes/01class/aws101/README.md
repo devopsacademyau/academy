@@ -12,6 +12,8 @@
 
 ### General Cloud Concepts
 
+![IMAGE](assets/cloud.png)
+
 - Someone’s else computer with:
     - “Infinite” resources
         - Most of the services can scale to unlimited values and also very fast
