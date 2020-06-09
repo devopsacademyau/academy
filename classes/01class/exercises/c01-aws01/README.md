@@ -1,7 +1,7 @@
 ## EC2 (c01-aws01)
 
 - Use the CLI to create a new EC2 Instance inside the default VPC with a public IP address and connect to it though SSH.
-- Create nother EC2, also using the CLI instance in the same VPC but with private address only and connect to it.
+- Create another EC2, also using the CLI instance in the same VPC but with private address only and connect to it.
 
 ## Submit a PR with the folowing file:
 - README.md based on the [ANSWER.md](ANSWER.md) file with the commands requested. 
