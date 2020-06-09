@@ -1,0 +1,46 @@
+$ terraform apply
+var.cidr_vpc
+  CIDR block for the VPC. Eg. 10.0.0.0/24
+
+  Enter a value: 10.0.0.0/24
+
+var.scale_down
+  Auto Scaling Group policy - scaling down. Eg 1 or -1
+
+  Enter a value: 1
+
+var.scale_up
+  Auto Scaling Group policy - scaling up. Eg 1
+
+  Enter a value: 1
+
+data.aws_availability_zones.available: Refreshing state...
+data.aws_ami.amazon_owned: Refreshing state...
+aws_vpc.this: Refreshing state... [id=vpc-0ec9815808e1b9e07]
+aws_internet_gateway.igw: Refreshing state... [id=igw-0347c836c3b3189df]
+aws_subnet.public[1]: Refreshing state... [id=subnet-040264d51264b9ee9]
+aws_subnet.public[0]: Refreshing state... [id=subnet-0b6669cb1beda2fe3]
+module.ec2_cluster.aws_lb_target_group.this: Refreshing state... [id=arn:aws:elasticloadbalancing:ap-southeast-2:956839463650:targetgroup/tf-20200604005735165200000001/65080724213c5bdd]
+module.ec2_cluster.aws_security_group.asg: Refreshing state... [id=sg-0026f6257cdbb2322]
+aws_route_table.public: Refreshing state... [id=rtb-029061884959e229c]
+module.ec2_cluster.aws_launch_configuration.this: Refreshing state... [id=terraform-20200604005737056200000003]
+module.ec2_cluster.aws_lb.this: Refreshing state... [id=arn:aws:elasticloadbalancing:ap-southeast-2:956839463650:loadbalancer/app/lb-tf/db4b20d9913ebba3]
+aws_main_route_table_association.public_main: Refreshing state... [id=rtbassoc-0c637e5a5559c9f9a]
+aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-07f5a72852ddaf19b]
+aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0af8056040f7131b3]
+module.ec2_cluster.aws_autoscaling_group.this: Refreshing state... [id=tf-asg-20200604005737608900000004]
+module.ec2_cluster.aws_lb_listener.this: Refreshing state... [id=arn:aws:elasticloadbalancing:ap-southeast-2:956839463650:listener/app/lb-tf/db4b20d9913ebba3/e16cddf3d2ffd4d9]
+module.ec2_cluster.aws_autoscaling_policy.down: Refreshing state... [id=asg-scaling-down]
+module.ec2_cluster.aws_autoscaling_policy.up: Refreshing state... [id=asg-scaling-up]
+module.ec2_cluster.aws_cloudwatch_metric_alarm.cpu_low: Refreshing state... [id=c04_iac04_ec2_cpu_low]
+module.ec2_cluster.aws_cloudwatch_metric_alarm.cpu_high: Refreshing state... [id=c04_iac04_ec2_cpu_high]
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+auto_scaling_policy = {
+  "scaling_down" = -1
+  "scaling_up" = 1
+}
+dns_name = http://lb-tf-1246095879.ap-southeast-2.elb.amazonaws.com

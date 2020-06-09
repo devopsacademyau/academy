@@ -1,0 +1,10 @@
+## uname
+Darwin Wanders-MacBook-Pro.local 19.4.0 Darwin Kernel Version 19.4.0: Wed Mar  4 22:47:48 PST 2020; root:xnu-6153.101.6~16/RELEASE_X86_64 x86_64
+## git 
+git version 2.24.3 (Apple Git-128)
+## docker 
+Docker version 19.03.8, build afacb8b
+## terraform 
+Terraform v0.12.25
+## aws 
+aws-cli/2.0.16 Python/3.7.4 Darwin/19.4.0 botocore/2.0.0dev20
