@@ -12,8 +12,6 @@
 
 ### General Cloud Concepts
 
-![IMAGE](assets/cloud.png)
-
 - Someone’s else computer with:
     - “Infinite” resources
         - Most of the services can scale to unlimited values and also very fast
@@ -33,6 +31,8 @@
         - Components are not changed/upgraded. They are fully replaced and nothing is expected to be lost
     - Automation
         - Automation is an important factor to be able to recreate environments faster and without human errors
+
+![IMAGE](assets/cloud.png)
 
 ### Cloud Benefits
 
