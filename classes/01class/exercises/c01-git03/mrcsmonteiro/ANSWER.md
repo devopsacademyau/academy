@@ -49,7 +49,7 @@ $ git gc --prune=now
 * https://rtyley.github.io/bfg-repo-cleaner/
 
 4. What are the consequences of the previous action?
-- Git has been designed to 'keep track of everything', so the best bet is to be careful when staging, commiting, and especially pushing files to remote repositories. Resources like 'git filter-branch' and 'BFG' are available to fix mistakes and rewrite history, but they should be used carefully as they eliminate commits from the git history, making it impossible to 'travel back in time' and recover deleted snapshots. When a bad commit is pushed to a remote repository, the situation is even worse. The admins of the remote repositories need to be contacted to remove cached views and references to the compromised data in pull requests. Branches created off the old (tainted) repository should be rebased, not merged. 
+- Git has been designed to 'keep track of everything', so the best bet is to be careful when staging, committing, and especially pushing files to remote repositories. Resources like 'git filter-branch' and 'BFG' are available to fix mistakes and rewrite history, but they should be used carefully as they eliminate commits from the git history, making it impossible to 'travel back in time' and recover deleted snapshots. When a bad commit is pushed to a remote repository, the situation is even worse. The admins of the remote repositories need to be contacted to remove cached views and references to the compromised data in pull requests. Branches created off the old (tainted) repository should be rebased, not merged. 
 
 ***
 Answer for exercise [c01-git03](https://github.com/devopsacademyau/academy/blob/23cc1dfa31e85651e3cdc1b0ef38da21518841ba/classes/01class/exercises/c01-git03/README.md)
