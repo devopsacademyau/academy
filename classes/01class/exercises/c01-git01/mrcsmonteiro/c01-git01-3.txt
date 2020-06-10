@@ -1,7 +1,0 @@
-# level rampup4
-# 1. Reverse the most recent commit on local branch
-$ git reset HEAD~1
-
-# 2. Reverse the most recent commit on pushed (remote) branch
-$ git checkout pushed
-$ git revert HEAD
