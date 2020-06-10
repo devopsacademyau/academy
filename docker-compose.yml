@@ -23,7 +23,6 @@ services:
     environment:
       - GOOGLE_KEY
       - SHEET_KEY
-      - WKS_NAME
       - GH_USER
       - GH_TOKEN
   aws-cli:

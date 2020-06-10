@@ -282,7 +282,6 @@ It can also be executed manually with the following commands:
 make dashboard \
   GOOGLE_KEY=[GOOGLE_KEY] \
   SHEET_KEY=[SHEET_KEY] \
-  WKS_NAME="Dashboard" \
   GH_USER=[GH_USER] \
   GH_TOKEN=[GH_TOKEN]
 ```
