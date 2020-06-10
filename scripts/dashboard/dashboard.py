@@ -27,6 +27,7 @@ print("*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *
 print("*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***")
 print("Updating ProgressionData Worksheet")
 current_day = date.today().strftime("%d-%b")
+chart_day = date.today().strftime("%Y-%m-%d")
 print("Date being inserted in the worksheet:", current_day)
 
 wks_name = "Dashboard"
@@ -111,7 +112,7 @@ plt.axis([0, 10, 0, 100])
 
 
 # Save chart
-plt.savefig('chart.png', bbox_inches='tight')
+plt.savefig('chart-${chart_day}.png', bbox_inches='tight')
 
 print("Chart creation completed")
 print("*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***\n\n")
