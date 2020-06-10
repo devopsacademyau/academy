@@ -3,6 +3,7 @@ cd /app/scripts/dashboard
 
 DATE=$(date +%Y-%m-%d)
 echo "Saving files to S3"
+ls -la
 aws s3 cp ./chart.png s3://devopsacademy.com.au/progression-chart/chart-${DATE}.png
 aws s3api put-object-acl --bucket devopsacademy.com.au --key progression-chart/chart-${DATE}.png --acl public-read
 
