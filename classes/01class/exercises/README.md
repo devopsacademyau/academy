@@ -5,9 +5,9 @@ For instructions on how to submit your work, [please check the main repository R
 ## Git
 
 - [Merging and Rebasing (c01-git01)](/classes/01class/exercises/c01-git01/README.md)
-- [Everyday questions (c01-git02)](/classes/01class/exercises/c01-git02/README.md)
 - [Big file (c01-git03)](/classes/01class/exercises/c01-git03/README.md)
 - [Secrets (c01-git04)](/classes/01class/exercises/c01-git04/README.md)
+- [Everyday questions (Optional)](/classes/01class/exercises/c01-git02/README.md)
 
 ## AWS
 

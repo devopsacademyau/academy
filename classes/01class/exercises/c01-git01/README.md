@@ -1,12 +1,15 @@
 ## Merging and Rebasing (c01-git01)
 
-1. Access https://learngitbranching.js.org/ (TIP: if you want to start over, just type `reset`)
+1. Access https://learngitbranching.js.org/ (**TIP**: if you want to start over, just type `reset`. To dismiss tutorial screens, type `Esc`)
 2. Merging exercise:
    1. type `level intro3`
-   2. Submission: Include your commands on a file **c01-git01-1.txt**
 3. Rebasing exercise:
    1. type `level intro4`
-   2. Submission: Include your commands on a file **c01-git01-2.txt**
-4. Revert and reset: 
+4. Revert and reset:
    1. type `level rampup4`
-   2. Submission: Include your commands on a file **c01-git01-3.txt**
+
+## Submit a PR with the following files
+
+> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)s
+
+- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing your answers.

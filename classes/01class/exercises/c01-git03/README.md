@@ -19,7 +19,13 @@ Perform the following commands:
 
 **Questions**
 
-Create a file **c01-git03-1.txt** answering the questions below. Include details and commands used.
 1. Did you notice any difference in the size of the repo before and after adding the big file?
-1. What is the reason for this problem?
-1. How do you remove something from Git history? Which commands would you use? What are the consequences?
+2. What is the reason for this problem?
+3. How do you remove something from Git history after it is pushed to the remote repository? Which commands would you use? 
+4. What are the consequences of the previous action?
+
+## Submit a PR with the following files
+
+> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)
+
+- **README.md**: copy from file [ANSWER.md](ANSWER.md), answering the questions

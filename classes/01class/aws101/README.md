@@ -47,13 +47,14 @@
 
 - Availability Zone
     - Consider it as a Datacenter
-    - Currently at 69
+    - Currently at 76
 - Region
-    - A geographical location with 2 or more Azs
-    - Currently at 22
+    - A geographical location with 2 or more AZs
+    -  AZ’s are physically separated by many kilometers, from any other AZ, although all are within 100 km (60 miles) of each other.
+    - Currently at 24
 - Edge Location
     - AWS Endpoint used for caching content(CDN)
-    - Currently at 205
+    - Currently at 216 (Edge locations + Regional Edge caches)
 
 <p align="center">
     <img src="../../img/aws_regions.jpg">
@@ -84,6 +85,7 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
 - Lambda
     - Serverless code execution
     - https://aws.amazon.com/lambda/faqs/
+
 #### Database
 - RDS
     - Managed Relational Database Service
@@ -97,6 +99,7 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
 - DocumentDB
     - Managed Document Database
     - https://aws.amazon.com/documentdb/faqs/
+
 #### Storage
 - S3
     - Unlimited object storage
@@ -107,6 +110,7 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
 - EFS
     - Managed Elastic File System(NFS)
     - https://aws.amazon.com/efs/faq/
+
 #### Networking
 - VPC
     - Virtual Private Cloud (Isolated Network for your workload)
@@ -120,6 +124,7 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
 - API Gateway
     - Reverse proxy for your API services(Lambda functions)
     - https://aws.amazon.com/api-gateway/faqs/
+
 #### Management
 - CloudWatch
     - Managed Monitoring service
@@ -133,22 +138,24 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
 - SystemManager
     - Central Management of several AWS resources
     - https://aws.amazon.com/systems-manager/faq/
+
 #### Messaging
 - SQS
     - Managed message queue service
     - https://aws.amazon.com/sqs/faqs/
 - SNS
-    - ManagedNotification service
+    - Managed Notification service
     - https://aws.amazon.com/sns/faqs/
 - SES
     - Managed Email Service
     - https://aws.amazon.com/ses/faqs/
+
 #### Security/Compliance
 - IAM
     - Identity Manager
     - https://aws.amazon.com/iam/faqs/
 - Certificate Manager
-    - Maages SSL certificates
+    - Manages SSL certificates
     - https://aws.amazon.com/certificate-manager/faqs/
 - KMS
     - Criptographic Key Management
@@ -156,6 +163,7 @@ Image from this [link](https://aws.amazon.com/about-aws/global-infrastructure/).
 - WAF
     - Web Application Firewall
     - https://aws.amazon.com/waf/faqs/
+
 #### Development Tools
 - Code*
     - Several services relate to versioning, build and deploy process as a managed service
