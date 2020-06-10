@@ -1,0 +1,6 @@
+git checkout -b bugFix 
+git commit -m "commit once"
+git checkout master
+git commit -m "commit again"
+git checkout bugFix 
+git rebase master
