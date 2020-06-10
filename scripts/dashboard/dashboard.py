@@ -107,9 +107,6 @@ plt.ylabel("% Completed")
 #plt.ylim((-1, 100))
 plt.axis([0, 10, 0, 100])
 
-
-
-
 # Save chart
 plt.savefig('chart.png', bbox_inches='tight')
 
