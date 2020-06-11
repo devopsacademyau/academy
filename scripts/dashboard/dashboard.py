@@ -77,7 +77,6 @@ print("Creating Chart")
 
 df = pd.DataFrame(wks.get_all_records())
 
-
 # Plot Style
 plt.style.use('ggplot')
 plt.figure(figsize=(12,5))
@@ -101,6 +100,11 @@ plt.legend(bbox_to_anchor=(1.01,0.5), loc="center left", prop=fontP)
 plt.title("Exercises Completion Progress", loc='center', fontsize=14, fontweight=0, color='orange')
 plt.xlabel("Dates")
 plt.ylabel("% Completed")
+
+# Set Y range
+plt.axis([0, 10, -1, 100])
+
+# Save chart
 plt.savefig('chart.png', bbox_inches='tight')
 
 print("Chart creation completed")
