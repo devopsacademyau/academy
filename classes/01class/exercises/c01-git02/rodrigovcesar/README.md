@@ -4,7 +4,7 @@
 
 1. Is it possible to see the inner commit of squashed commit with `git rebase`?
 ```
-Yes, using `git reflog`. Just to show one example, I made a test making 3 commits and then rebasing `HEAD~2`. The results I got was:
+Yes, using `git reflog`. Just to show one example, I made a test making 3 commits and then rebasing `HEAD~2`. The results I have got were:
 
 `
 5daa9b6 (HEAD -> master) HEAD@{0}: rebase -i (finish): returning to refs/heads/master
