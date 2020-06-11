@@ -19,6 +19,7 @@ If you want to be part of the team behind this, get in touch on help@devopsacade
 - [How it Works](#how-it-works)
 - [Requirements](#requirements)
 - [Live/Online Applications](#liveonline-applications)
+  - [How to Submit a PR as part of your application](#how-to-submit-a-pr-as-part-of-your-application)
 - [Content](#content)
   - [Classes](#classes)
   - [Exercises](#exercises)
@@ -142,7 +143,9 @@ The content can be accessed through each specific README link below.
 - [Class 02](classes/02class/README.md)
     - Agile Methodologies
     - Networking Introduction
-    - AWS VPC
+      - AWS VPC
+    - AWS IAM (Identity and Access Management)
+    - AWS CLI
 - [Class 03](classes/03class/README.md)
     - AWS EC2
         - Load Balancing
@@ -153,31 +156,28 @@ The content can be accessed through each specific README link below.
         - Repositories
         - Images
         - Dockerfile
-        - AWS ECS
-        - AWS ECR
-- [Class 04](classes/04class/README.md)
-    - AWS IAM (Identity and Access Management)
-    - AWS CLI
-    - AWS S3 (Simple Storage Service)
-      - Website
-    - IaC - Terraform
-    - AWS RDS (Relational Database Service)
-    - Project #1 Kick-off
-- [Class 05](classes/05class/README.md)
-    - Docker
     - Make
     - Docker-Compose
+- [Class 04](classes/04class/README.md)
+    - AWS ECS
+    - AWS ECR
+    - AWS S3 (Simple Storage Service)
+      - Website
+    - AWS RDS (Relational Database Service)
+    - IaC - Terraform
+    - Project #1 Kick-off
+- [Class 05](classes/05class/README.md)
     - 3 Musketeers
     - CI/CD Concepts
-    - GitHub Actions
+      - GitHub Actions
+    - Serverless introduction
+    - AWS Lambda
 - [Class 06](classes/06class/README.md)
     - Project #1 Delivery
-    - Introduction Serverless
-    - AWS Lambda
     - AWS API Gateway
+    - AWS DynamoDB
     - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
-    - AWS DynamoDB
     - AWS KMS (Key Management Service)
     - AWS SSM - Parameter Store
     - AWS SNS
