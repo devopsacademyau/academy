@@ -23,9 +23,11 @@ b4c12f3 HEAD@{4}: commit: First commit
 ```
 git diff branch1 branch2
 
+Yes, following the same pattern above and using the correct paths for local and remote branches - E.g.:
+
+`git diff rodrigovcesar/c01-git02 upstream/master`
+
 ```
 
-<!-- Don't change anything below this point-->
-<!-- Before commiting, remove both commented lines--> 
 ***
 Answer for exercise [c01-git02](https://github.com/devopsacademyau/academy/blob/c54d252bda58575e9dc9f92718237bed58aae772/classes/01class/exercises/c01-git02/README.md)
