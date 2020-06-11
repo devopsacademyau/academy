@@ -1,32 +1,17 @@
 #!/bin/bash
 cd /app/scripts/dashboard
 
-DATE=$(date +%Y-%m-%d)
+CHART_DATE=$(date +%Y-%m-%d)
 echo "Saving files to S3"
-aws s3 cp ./chart.png s3://devopsacademy.com.au/progression-chart/chart.png
+aws s3 cp ./chart.png s3://devopsacademy.com.au/progression-chart/chart-${CHART_DATE}.png
+
+echo "Preparing the json payload"
+sed -i "s,PUBLISH_URL,$PUBLISH_URL,g" slack_payload.json
+sed -i "s,SLACK_CHANNEL,$SLACK_CHANNEL,g" slack_payload.json
+sed -i "s,CHART_DATE,$CHART_DATE,g" slack_payload.json
+sed -i "s,PUBLISH_URL,$PUBLISH_URL,g"
 
 echo "Publishing Slack message"
 curl -X POST -H 'Content-type: application/json' \
   ${SLACK_WEBHOOK} \
-  --data '{
-  "channel": "test-automation",
-  "blocks": [
-    {
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": ":siren-alert: *Labs Progression Update!* :siren-alert:\n:baby-yoda: Those lines to the top of the chart we need to get. Yes, hrrmmm."
-      }
-    },
-    {
-      "type": "image",
-      "title": {
-        "type": "plain_text",
-        "text": "Updated Progression"
-      },
-      "block_id": "image4",
-      "image_url": "https://devopsacademy.com.au/progression-chart/chart.png",
-      "alt_text": "Labs Progression"
-    }
-  ]
-}'
+  -d @slack_payload.json
