@@ -1,17 +1,32 @@
-## Everyday questions (c01-git02 - optional)
+# c01-git02
+
+## Answers
 
 1. Is it possible to see the inner commit of squashed commit with `git rebase`?
-Yes. Using `git reflog` we can see the full history and go back to any of those squashed commits if needed.
+```
+Yes. Using git reflog --all we can see the full history.
+```
 
 2. How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
-We can compare two local repositories using `git diff --no-index {path to the first repo} {path to the second repo}. 
-If I have to compare two distinct remote repos, I would rather clone them both and compare in the same way as two local repos.
+```
+We can compare two local repositories using git diff --no-index {path to the first repo} {path to the second repo}
+We can add any number of remotes to our local repo and compare using the same git diff command. Below is an example.
 
-3. (Optional) Install [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh) and activate the git plugin
-Done. It came with git pluging activated by default.
-
-## Submit a PR with the following files
-
-> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)
-
-- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing the answers.
+➜  bigfiletest git:(master) git remote add -f remote1 git@github.com:devopsacademyau/academy.git
+➜  bigfiletest git:(master) git remote add -f remote2 git@github.com:jayanath/ghost-blog-in-aws.git
+➜  bigfiletest git:(master) git remote -v
+remote1	git@github.com:devopsacademyau/academy.git (fetch)
+remote1	git@github.com:devopsacademyau/academy.git (push)
+remote2	git@github.com:jayanath/ghost-blog-in-aws.git (fetch)
+remote2	git@github.com:jayanath/ghost-blog-in-aws.git (push)
+➜  bigfiletest git:(master)
+➜  bigfiletest git:(master)
+➜  bigfiletest git:(master) git diff master remotes/remote1/master
+➜  bigfiletest git:(master) git diff master remotes/remote2/master
+➜  bigfiletest git:(master) git diff remotes/remote1/master remotes/remote2/master
+➜  bigfiletest git:(master)
+➜  bigfiletest git:(master) git remote rm remote1
+➜  bigfiletest git:(master) git remote rm remote2
+```
+***
+Answer for exercise [c01-git02](https://github.com/devopsacademyau/academy/blob/c54d252bda58575e9dc9f92718237bed58aae772/classes/01class/exercises/c01-git02/README.md)
