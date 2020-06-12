@@ -5,7 +5,7 @@
 
 on:
   schedule:
-  - cron: "50 12 * * 1,5"
+  - cron: "0 10 * * 1,6"
 
 name: Dashboard Generation
 jobs:
