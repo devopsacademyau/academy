@@ -8,7 +8,7 @@
 
 2. If you modify the file in your workspace, then commit and push it, will it be enough to erase this password information from the repository? (It's not). Why?
 
-**No, because git keep a copy on history.**
+   **No, because git keep a copy on history.**
 
 3. If you delete the file and push it, then create a new one with the rest of the information, is it enough? (It's not). Why?
 
@@ -18,7 +18,7 @@
 4. How to fix this? How do you remove something from Git history when it is in the remote repository?
 
     **First of all you have to change the leaked data, then work to remove it from the history.**
-   **To remove data from Git history you may use the open source tool BFG Repo-Cleaner or git filter-branch**
+    **To remove data from Git history you may use the open source tool BFG Repo-Cleaner or git filter-branch**
 
 
 
@@ -43,12 +43,6 @@
     `git push origin --force --tags`
 
     **The command above will force-push against your Git tags**
-
-
-
-
-
-
 
 
 ***
