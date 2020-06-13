@@ -1,11 +1,6 @@
-
-# on:
-#   schedule:
-#   - cron: "0 10 * * 1,5"
-
 on:
   schedule:
-  - cron: "0 16 * * 1,6"
+  - cron: "0 10 * * 1,5"
 
 name: Dashboard Generation
 jobs:
