@@ -16,15 +16,95 @@ $ aws s3 ls s3://mrcsmonteiro-devops-academy-bucket
 
 - Commands to allow the EC2 instance to access the files in S3:
 ```
-$ aws ec2 associate-iam-instance-profile --instance-id i-00078c13bff5b2222 --iam-instance-profile Name=S3Access4EC2
+$ cat << EOF > DevOps-Academy-S3-Access.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": "arn:aws:s3:::*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::mrcsmonteiro-devops-academy-bucket",
+                "arn:aws:s3:::mrcsmonteiro-devops-academy-bucket/*"
+            ]
+        }
+    ]
+}
+EOF
+
+$ cat << EOF > DevOps-Academy-EC2-Trust-Policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+
+$ aws iam create-role --role-name DevOps-Academy-S3-Access-Role --assume-role-policy-document file://DevOps-Academy-EC2-Trust-Policy.json
+
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "DevOps-Academy-S3-Access-Role",
+        "RoleId": "AROASFVNJCSCD4NJYHELK",
+        "Arn": "arn:aws:iam::149613515908:role/DevOps-Academy-S3-Access-Role",
+        "CreateDate": "2020-06-13T03:07:23+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "ec2.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        }
+    }
+}
+
+$ aws iam put-role-policy --role-name DevOps-Academy-S3-Access-Role --policy-name DevOps-Academy-S3-Access-Policy --policy-document file://DevOps-Academy-S3-Access.json
+
+$ aws iam create-instance-profile --instance-profile-name DevOpsAcademyS3Access
+
+{
+    "InstanceProfile": {
+        "Path": "/",
+        "InstanceProfileName": "DevOpsAcademyS3Access",
+        "InstanceProfileId": "AIPASFVNJCSCNFNA3QNWW",
+        "Arn": "arn:aws:iam::149613515908:instance-profile/DevOpsAcademyS3Access",
+        "CreateDate": "2020-06-13T01:57:39+00:00",
+        "Roles": []
+    }
+}
+
+$ aws iam add-role-to-instance-profile --instance-profile-name DevOpsAcademyS3Access --role-name DevOps-Academy-S3-Access-Role
+
+$ aws ec2 associate-iam-instance-profile --instance-id i-08124090dfbf29c4d --iam-instance-profile Name=DevOpsAcademyS3Access
 
 {
     "IamInstanceProfileAssociation": {
-        "AssociationId": "iip-assoc-08a1154d4fb0b242f",
-        "InstanceId": "i-00078c13bff5b2222",
+        "AssociationId": "iip-assoc-0aa548cce669dcdd9",
+        "InstanceId": "i-08124090dfbf29c4d",
         "IamInstanceProfile": {
-            "Arn": "arn:aws:iam::149613515908:instance-profile/S3Access4EC2",
-            "Id": "AIPASFVNJCSCIJA7CHB2K"
+            "Arn": "arn:aws:iam::149613515908:instance-profile/DevOpsAcademyS3Access",
+            "Id": "AIPASFVNJCSCL7MGLBFSF"
         },
         "State": "associating"
     }
@@ -33,16 +113,25 @@ $ aws ec2 associate-iam-instance-profile --instance-id i-00078c13bff5b2222 --iam
 
 - Commands to copy the S3 file to a folder inside the instace (executed from inside the EC2 Instance):
 ```
-[ec2-user@ip-172-31-35-234 ~]$ aws s3 cp s3://mrcsmonteiro-devops-academy-bucket/file.txt .
+# Instance assuming role added to instance profile and attached to itself:
+[ec2-user@ip-172-31-46-215 ~]$ aws sts get-caller-identity
+{
+    "Account": "149613515908",
+    "UserId": "AROASFVNJCSCD4NJYHELK:i-08124090dfbf29c4d",
+    "Arn": "arn:aws:sts::149613515908:assumed-role/DevOps-Academy-S3-Access-Role/i-08124090dfbf29c4d"
+}
+
+[ec2-user@ip-172-31-46-215 ~]$ aws s3 cp s3://mrcsmonteiro-devops-academy-bucket/file.txt .
 download: s3://mrcsmonteiro-devops-academy-bucket/file.txt to ./file.txt
 
-[ec2-user@ip-172-31-35-234 ~]$ ls -l file.txt
--rw-rw-r-- 1 ec2-user ec2-user 0 Jun 12 10:30 file.txt
+[ec2-user@ip-172-31-46-215 ~]$ ls -l
+total 0
+-rw-rw-r-- 1 ec2-user ec2-user 0 Jun 13 03:47 file.txt
 ```
 
 - Add a brief descrition of the challenges you faced:
 ```
-I had an IAM Role with S3 Read Only permissions on my AWS account, so I just had to browse the AWS docos a bit to find the CLI commands to attach it to the instance.
+Understand how policies are configured via CLI and steps to create IAM role with assume role policy for EC2, inline bucket policy, instance profile with IAM role added to it and associated with EC2 instance that will access S3 following defined policies.
 ```
 
 ***
