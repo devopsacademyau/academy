@@ -16,6 +16,13 @@ It significantly increases the size of the repository with each new version.
 3. How do you remove something from Git history after it is pushed to the remote repository? Which commands would you use? 
 ```
 git filter-branch --tree-filter 'rm -rf path/to/the/bigfile' HEAD
+
+With the above command, git will rewrite the history by
+ - checking out each commit in the entire history 
+ - applying filter, which is 'rm -rf path/to/the/bigfile'
+ - adding changes to the index (doing an automated git add)
+ - committing the new index 
+
 git push
 
 ```
