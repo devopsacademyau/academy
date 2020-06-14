@@ -5,7 +5,7 @@ module "team-external-students" {
   group_name          = "external-students"
   members             = [
     {
-      name: "carloshz",
+      name: "carloshz4",
       role: "member"
     },
     {
