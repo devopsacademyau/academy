@@ -24,7 +24,7 @@ chmod 400 da.pem
     `--group-name SSHOpen \`
     `--protocol tcp \`
     `--port 22 \`
-    `--cidr 0.0.0.0/0`
+    `--cidr 27.33.248.152/32`
 
 **Create the VM**
 
