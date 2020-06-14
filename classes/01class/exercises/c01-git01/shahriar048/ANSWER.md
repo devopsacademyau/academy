@@ -14,7 +14,12 @@ git merge bugFix
 
 2. Commands typed to solve the "Rebasing" exercise
 ```
-
+git checkout -b bugFix
+git commit
+git checkout master
+git commit
+git checkout bugFix
+git rebase master
 
 ```
 
