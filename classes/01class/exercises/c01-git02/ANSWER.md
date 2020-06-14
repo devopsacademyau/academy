@@ -8,7 +8,7 @@
 
 ```
 
-2. How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
+2. How to compare two different local branches using `git diff`? How about remote ones, can you do the same?
 ```
 
 
