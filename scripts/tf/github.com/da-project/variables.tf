@@ -9,3 +9,8 @@ variable "github_organization" {
 variable "github_token" {
 }
 variable "admins_team_id"{}
+
+variable "parent_team_id" {
+  type = string
+  default = ""
+}
