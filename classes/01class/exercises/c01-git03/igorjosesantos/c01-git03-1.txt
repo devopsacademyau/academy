@@ -7,5 +7,14 @@ A: Git stores a copy of the additions/changes inside the .git folder
 Q: How do you remove something from Git history? Which commands would you use? What are the consequences?
 A: Using the commands below:
 
-git reflog expire --expire=now --all
-git gc --prune=now 
+To completely remove files from the repository
+
+$ git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch <FILE_TO_DELETE>" \
+  --prune-empty --all
+
+To remove a secret from a configuration file
+
+$ git filter-branch --tree-filter \
+  "sed -i 's/12hgjg324g23g413gjh1234/AWS_TOKEN/g' secrets.json" \
+  --all
