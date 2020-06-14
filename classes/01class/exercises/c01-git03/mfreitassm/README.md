@@ -12,13 +12,13 @@ A file copy was stored on the folder /.git/objects as history.
 
 3. How do you remove something from Git history after it is pushed to the remote repository? Which commands would you use? 
 
-Git history need to be rewrited.
-git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch file.txt" HEAD 
+Git history will need to be rewrited.
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD 
 git push -all
 
 4. What are the consequences of the previous action?
 
-The file won't be able to recovered also the rewritten history will have different object names for all objects and will not join with the original branch. It won't be able to easily send and distribute the rewritten branch at the top of the original branch.
+The file will not be able to recovered also the rewritten history will have different object names for all objects and will not join with the original branch. It will not sbe able to easily send and distribute the rewritten branch at the top of the original branch.
 
 
 ***
