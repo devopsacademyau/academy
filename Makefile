@@ -39,12 +39,16 @@ init:
 .PHONY: init
 
 plan: .env-TF_VAR_github_token
-	$(RUNNER) gh-terraform plan -out=.terraform-plan
+	$(RUNNER) gh-terraform plan -parallelism=1 -out=.terraform-plan
 .PHONY: plan
 
 apply:
-	$(RUNNER) gh-terraform apply .terraform-plan
+	$(RUNNER) gh-terraform apply -parallelism=1 .terraform-plan
 .PHONY: apply
+
+shell:
+	$(RUNNER) --entrypoint "" gh-terraform sh
+.PHONY: shell
 
 .env-%:
 	@ if [ "${${*}}" = "" ]; then \

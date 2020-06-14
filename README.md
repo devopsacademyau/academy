@@ -190,13 +190,31 @@ The content can be accessed through each specific README link below.
 
 ## Exercises
 
-For each class **exercise**:
+We highly recommend doing the exercises from this repository. However, you will first need to raise a Pull Request from a [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) to add yourself permission to push branches.
+
+- Create a new branch from `master`
+- Open the file [/scripts/tf/github.com/team-external-students.tf](/scripts/tf/github.com/team-external-students.tf)
+- Add your GitHub username in an alphabetical order (that will help you avoid merge conflicts)
+```
+{
+  name: "caiocezart",
+  role: "member"
+}
+```
+- Save, add and commit the change
+- Raise a Pull Request
+- Send a message on our [Slack workspace](https://join.slack.com/t/devopsacademyau/shared_invite/zt-ajsfpwsj-GcTGG6tpZp~MOZd2DM92QA) and one of us will review as soon as possible
+
+As soon as the pull request is approved, the automation will give you `Write` permission and you will be able to push branches to the repository.
+
+
+### For each class **exercise**:
+
 1. Clone this repository
    
 ```bash
 git clone <repo-url>
 ```
-- [OR fork it to your own GitHub account and clone from there](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
 
 2. Switch to **master** branch and **pull** it 
 
