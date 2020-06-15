@@ -1,8 +1,7 @@
-# on:
-#   schedule:
-#   - cron: "0 10 * * 1,5"
+on:
+  schedule:
+  - cron: "0 10 * * 1,5"
 
-on: [pull_request]
 name: Dashboard Generation
 jobs:
   dashboard:
