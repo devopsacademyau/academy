@@ -11,6 +11,8 @@ sed -i "s,SLACK_CHANNEL,$SLACK_CHANNEL,g" slack_payload.json
 sed -i "s,CHART_DATE,$CHART_DATE,g" slack_payload.json
 sed -i "s,PUBLISH_URL,$PUBLISH_URL,g"  slack_payload.json
 
+cat ./slack_payload.json
+
 echo "Publishing Slack message"
 curl -X POST -H 'Content-type: application/json' \
   ${SLACK_WEBHOOK} \
