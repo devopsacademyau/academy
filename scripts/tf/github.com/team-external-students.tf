@@ -15,6 +15,10 @@ module "team-external-students" {
     {
       name: "rodrigovcesar",
       role: "member"
+    },
+    {
+      name: "roperto",
+      role: "member"
     }
   ]
 }
