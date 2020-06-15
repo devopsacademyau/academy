@@ -29,7 +29,6 @@ services:
     image: amazon/aws-cli
     volumes:
       - ${PWD}:/app
-      # - ${HOME}/.aws:/root/.aws
     environment:
       - SLACK_WEBHOOK
       - SLACK_CHANNEL
