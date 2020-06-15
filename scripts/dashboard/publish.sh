@@ -7,7 +7,6 @@ echo ${CHART_DATE}
 
 ls -la
 
-ls -la /root/.aws
 echo "Saving files to S3"
 aws s3 cp ./chart.png s3://devopsacademy.com.au/progression-chart/chart-${CHART_DATE}.png
 
