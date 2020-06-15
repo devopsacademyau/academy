@@ -1,0 +1,29 @@
+Did you notice any difference in the size of the repo before and after adding the big file?
+
+  R: Yes, size increased from 88K to 201M, which is an increase of around double the size of the large file created. Even after resetting to previous commit the size was 201M.
+
+What is the reason for this problem?
+
+  R: this is probably because when commiting the file is added to the repo history.  After resetting to previous commit the following can be done to prune the file from history: 
+
+  git reflog expire --expire=now --all
+  git gc --prune=now --aggressive
+
+
+How do you remove something from Git history after it is pushed to the remote repository? Which commands would you use?
+
+  R: To remove the lastest commit from history do:
+
+	- Make sure you are in the right branch
+          
+          git branch
+          git checkout <yourbranch>
+
+        - Revert the lastest commit from the remote repo:
+ 
+          git revert HEAD 
+
+What are the consequences of the previous action?
+
+  R: it'll create a new commit with the changes to be reverted.
+
