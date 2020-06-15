@@ -4,11 +4,11 @@
 
 ### 1. Did you notice any difference in the size of the repo before and after adding the big file?
 
-Yes, size increased from 88K to 201M, which is an increase of around double the size of the large file created. Even after resetting to previous commit the size was 201M.
+Yes, size increased from 88K to 201M, which is an increase of around double the size of the large file created. Even after resetting to previous commit the size was still 201M.
 
 ### 2. What is the reason for this problem?
 
-This is probably because when commiting the file is added to the repo history.  After resetting to previous commit the following can be done to prune the file from history:
+This is because when commiting the file is added to the repo's history.  After resetting to previous commit the following can be done to prune the file from history:
 
 ```
   git reflog expire --expire=now --all
