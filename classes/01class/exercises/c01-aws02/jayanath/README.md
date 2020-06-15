@@ -26,27 +26,39 @@ upload: ./coffee.json to s3://devops-academy-rocks-9930.com/coffee.json
 
 - Commands to allow the EC2 instance to access the files in S3:
 ```
-// need a bucket policy to provide access to our account
-// using CanonicalUser ID to avoid account ID on the repo in plain text
-> aws s3api put-bucket-policy --bucket devops-academy-rocks-9930.com --policy file://devops-bucket-policy.json
-    devops-bucket-policy.json content:
-    {
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "CanonicalUser": "2ea65f81fa3eb67b5cc6ca452212d4496fe3c05346d024356a755db3b2738895"
-            },
-            "Action": [
-                "s3:GetObject"
-            ],
-            "Resource": "arn:aws:s3:::devops-academy-rocks-9930.com/*"
-        }
-    ]
-    }
+// we will use an instance profile with permissions to access S3
+// and associate that to our EC2
 
-// attach S3ReadOnly policy to the instance profile role
+// create a role to be used with an instance profile
+> aws iam create-role --role-name ec2ManagerRole --assume-role-policy-document file://./assume_role_policy.json
+
+// content of the assume_role_policy.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+    {
+        "Effect": "Allow",
+        "Principal": {
+        "Service": [
+            "ec2.amazonaws.com"
+        ]
+        },
+        "Action": [
+        "sts:AssumeRole"
+        ]
+    }
+    ]
+}
+
+// attach S3ReadOnly managed policy to the role
 > aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess --role-name ec2ManagerRole
+
+// create instance profile for the EC2 and attach our role
+> aws iam create-instance-profile --instance-profile-name ec2Manager
+> aws iam add-role-to-instance-profile --instance-profile-name ec2Manager --role-name ec2ManagerRole
+
+// associate instance profile to our EC2
+> aws ec2 associate-iam-instance-profile --instance-id i-00b83a4dd2b959bb6 --iam-instance-profile Name=ec2Manager 
 
 // trying to access s3 buckets from our instance
 > ssh ec2-user@3.104.66.194                                                                                     
@@ -84,9 +96,8 @@ upload: ./coffee.json to s3://devops-academy-rocks-9930.com/coffee.json
 - Add a brief descrition of the challenges you faced:
 ```
 1. Creating S3 from AWS CLI in outside region us-east-1 needs location constraints specified.
-2. Had to create a bucket policy and secure the bucket to be private
-3. Had to use canonical user ID to avoid using AWS account ID
-4. Had to attach S3ReadOnly managed policy to our instance profile role
+2. Secure the bucket to be private.
+3. Use an instance profile with a role with appropriate permissions to access S3.
 
 ```
  
