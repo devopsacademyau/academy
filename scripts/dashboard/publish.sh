@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo
 cd /app/scripts/dashboard
 
 export CHART_DATE=$(date +%Y-%m-%d)
