@@ -29,12 +29,13 @@ services:
     image: amazon/aws-cli
     volumes:
       - ${PWD}:/app
-      - ${HOME}/.aws:/root/.aws
+      # - ${HOME}/.aws:/root/.aws
     environment:
       - SLACK_WEBHOOK
       - SLACK_CHANNEL
       - PUBLISH_URL
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
+      - AWS_DEFAULT_REGION
     entrypoint:
       - bash
