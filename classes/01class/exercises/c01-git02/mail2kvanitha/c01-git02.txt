@@ -3,14 +3,18 @@
 ## Answers
 
 1. Is it possible to see the inner commit of squashed commit with `git rebase`?
+Yes, it is possible to see the inner commit of squashed commit with git rebase -i HEAD~n, where n is the number of commit before the current commit.
 ```
 
 
 ```
 
 2. How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
-```
+Two different local repositories can be compared using git diff <local_repo_path1> <local_repo_path2>
 
+The same can be dont between remote repository and local repo branch. The command for the same is
+git diff <local_master> <origin/master>
+```
 
 ```
 
