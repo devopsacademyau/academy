@@ -3,6 +3,9 @@ set -euo
 cd /app/scripts/dashboard
 
 export CHART_DATE=$(date +%Y-%m-%d)
+echo ${CHART_DATE}
+
+ls -la
 echo "Saving files to S3"
 aws s3 cp ./chart.png s3://devopsacademy.com.au/progression-chart/chart-${CHART_DATE}.png
 
