@@ -81,7 +81,7 @@ git push -all --force
 
 1. What are the consequences of the previous action?
 
-It rewrites the whole history, which changes all the commit ids and will definately affect other users of the same repository. 
+It rewrites the whole history, which changes all the commit ids and will definately affect other users by losing syncronims of other users local and remote branches, all the git history commits will have different ids, so all their local work will be unable to be pushed to remote, they will have to update their local with the new history to be able to keep going using the same repository.
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
