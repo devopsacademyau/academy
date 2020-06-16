@@ -77,7 +77,7 @@ git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_f
 
 If you want to push it to remote repo just do git push
 
-git push -all
+git push -all --force
 
 1. What are the consequences of the previous action?
 
