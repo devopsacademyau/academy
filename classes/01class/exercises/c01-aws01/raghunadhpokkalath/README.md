@@ -272,15 +272,16 @@ Create new security group  to allow ssh only from same VPC
 > aws ec2 create-security-group --group-name ec2-sg-private --description "EC2 Security Group Private connection"
 
 {
-    "GroupId": "sg-04a824ffed232066c"
+    "GroupId": "sg-0dbf5b68aeffca1e1"
 }
-Add CIDR to security group to allow ssh connection only from same VPC
 
-> aws ec2 authorize-security-group-ingress --group-id sg-04a824ffed232066c --protocol tcp --port 22 --cidr 172.31.0.0/16
+Add First EC2 instance security group as source group  to restrict the connection 
+
+> aws ec2 authorize-security-group-ingress --group-id sg-0dbf5b68aeffca1e1 --protocol tcp --port 22 --source-group  sg-0c43ee1f951df16a7 
 
 Create second EC2 instance with new security group and no public ip address 
 
-aws ec2 run-instances --image-id ami-03686c686b463366b --count 1 --instance-type t1.micro  --security-group-ids sg-04a824ffed232066c --no-associate-public-ip-address --key-name EC2KeyPair 
+aws ec2 run-instances --image-id ami-03686c686b463366b --count 1 --instance-type t1.micro  --security-group-ids sg-0dbf5b68aeffca1e1 --no-associate-public-ip-address --key-name EC2KeyPair 
 
 
 {
@@ -289,10 +290,10 @@ aws ec2 run-instances --image-id ami-03686c686b463366b --count 1 --instance-type
         {
             "AmiLaunchIndex": 0,
             "ImageId": "ami-03686c686b463366b",
-            "InstanceId": "i-0074ea0331289b25d",
+            "InstanceId": "i-09c7c30f39defe543",
             "InstanceType": "t1.micro",
             "KeyName": "EC2KeyPair",
-            "LaunchTime": "2020-06-16T02:39:36+00:00",
+            "LaunchTime": "2020-06-16T12:22:00+00:00",
             "Monitoring": {
                 "State": "disabled"
             },
@@ -301,8 +302,8 @@ aws ec2 run-instances --image-id ami-03686c686b463366b --count 1 --instance-type
                 "GroupName": "",
                 "Tenancy": "default"
             },
-            "PrivateDnsName": "ip-172-31-42-9.ap-southeast-2.compute.internal",
-            "PrivateIpAddress": "172.31.42.9",
+            "PrivateDnsName": "ip-172-31-41-54.ap-southeast-2.compute.internal",
+            "PrivateIpAddress": "172.31.41.54",
             "ProductCodes": [],
             "PublicDnsName": "",
             "State": {
@@ -314,14 +315,14 @@ aws ec2 run-instances --image-id ami-03686c686b463366b --count 1 --instance-type
             "VpcId": "vpc-07151f902b212800d",
             "Architecture": "x86_64",
             "BlockDeviceMappings": [],
-            "ClientToken": "cf4f9401-67f8-4978-82b3-749672ae6e90",
+            "ClientToken": "aac10ef4-9239-4622-932b-ffa435801e7f",
             "EbsOptimized": false,
             "Hypervisor": "xen",
             "NetworkInterfaces": [
                 {
                     "Attachment": {
-                        "AttachTime": "2020-06-16T02:39:36+00:00",
-                        "AttachmentId": "eni-attach-0f5540b42cbe21248",
+                        "AttachTime": "2020-06-16T12:22:00+00:00",
+                        "AttachmentId": "eni-attach-04e72410a34626c42",
                         "DeleteOnTermination": true,
                         "DeviceIndex": 0,
                         "Status": "attaching"
@@ -330,20 +331,20 @@ aws ec2 run-instances --image-id ami-03686c686b463366b --count 1 --instance-type
                     "Groups": [
                         {
                             "GroupName": "ec2-sg-private",
-                            "GroupId": "sg-04a824ffed232066c"
+                            "GroupId": "sg-0dbf5b68aeffca1e1"
                         }
                     ],
                     "Ipv6Addresses": [],
-                    "MacAddress": "06:1c:86:62:55:e4",
-                    "NetworkInterfaceId": "eni-0948699391eeaabdf",
+                    "MacAddress": "06:f4:89:77:67:74",
+                    "NetworkInterfaceId": "eni-09c0bcddb96e99abd",
                     "OwnerId": "361529347535",
-                    "PrivateDnsName": "ip-172-31-42-9.ap-southeast-2.compute.internal",
-                    "PrivateIpAddress": "172.31.42.9",
+                    "PrivateDnsName": "ip-172-31-41-54.ap-southeast-2.compute.internal",
+                    "PrivateIpAddress": "172.31.41.54",
                     "PrivateIpAddresses": [
                         {
                             "Primary": true,
-                            "PrivateDnsName": "ip-172-31-42-9.ap-southeast-2.compute.internal",
-                            "PrivateIpAddress": "172.31.42.9"
+                            "PrivateDnsName": "ip-172-31-41-54.ap-southeast-2.compute.internal",
+                            "PrivateIpAddress": "172.31.41.54"
                         }
                     ],
                     "SourceDestCheck": true,
@@ -358,7 +359,7 @@ aws ec2 run-instances --image-id ami-03686c686b463366b --count 1 --instance-type
             "SecurityGroups": [
                 {
                     "GroupName": "ec2-sg-private",
-                    "GroupId": "sg-04a824ffed232066c"
+                    "GroupId": "sg-0dbf5b68aeffca1e1"
                 }
             ],
             "SourceDestCheck": true,
@@ -383,18 +384,18 @@ aws ec2 run-instances --image-id ami-03686c686b463366b --count 1 --instance-type
         }
     ],
     "OwnerId": "361529347535",
-    "ReservationId": "r-053a181eaa124d6cb"
+    "ReservationId": "r-0c9c55f29d799620c"
 }
 
 
 verify no public ip is available
-> aws ec2 describe-instances --instance-ids i-0074ea0331289b25d --query 'Reservations[0].Instances[0].PublicIpAddress'
+> aws ec2 describe-instances --instance-ids i-09c7c30f39defe543 --query 'Reservations[0].Instances[0].PublicIpAddress'
 
 null
 
 Get the private ip address
->aws ec2 describe-instances --instance-ids i-0074ea0331289b25d --query 'Reservations[0].Instances[0].PrivateIpAddress'
-"172.31.42.9"
+>aws ec2 describe-instances --instance-ids i-09c7c30f39defe543 --query 'Reservations[0].Instances[0].PrivateIpAddress'
+"172.31.41.54"
 
 
 ```
@@ -409,7 +410,7 @@ Identity added: EC2KeyPair.pem (EC2KeyPair.pem)
 
  Connect to First EC2 instance using ssh agent forward
 >ssh -A  ec2-user@3.25.132.226
-Last login: Tue Jun 16 02:41:29 2020 from 89.95.96.58.static.exetel.com.au
+Last login: Tue Jun 16 08:09:39 2020 from 89.95.96.58.static.exetel.com.au
 
        __|  __|_  )
        _|  (     /   Amazon Linux AMI
@@ -419,17 +420,22 @@ https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
 5 package(s) needed for security, out of 7 available
 Run "sudo yum update" to apply all updates.
 
-
 Connect to second EC2 instance
-> ssh  ec2-user@172.31.42.9
+> ssh  ec2-user@172.31.41.54
 
-[ec2-user@ip-172-31-47-59 ~]$ ssh  ec2-user@172.31.42.9
+The authenticity of host '172.31.41.54 (172.31.41.54)' can't be established.
+ECDSA key fingerprint is SHA256:2amuhgaJDn0V4b6cN2eEcNd6m6Zgmam34wd/ByAAIok.
+ECDSA key fingerprint is MD5:fd:bb:b1:be:14:a6:da:e4:a7:4c:a5:75:04:f5:05:27.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '172.31.41.54' (ECDSA) to the list of known hosts.
 
        __|  __|_  )
        _|  (     /   Amazon Linux AMI
       ___|\___|___|
 
 https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+[ec2-user@ip-172-31-41-54 ~]$ 
+
 
 
 
