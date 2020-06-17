@@ -45,7 +45,7 @@ Paste the content below:
 Run the follow command to create the role
 `aws iam create-role --role-name ec2-read-s3-role --assume-role-policy-document file:///home/fer/ec2-read-s3-role.json`
 
-`````bash
+````bash
 {
     "Role": {
         "Path": "/",
@@ -141,6 +141,7 @@ Associate the profile to instance.
 Run the following command to check the profile association
 
 `aws ec2 describe-iam-instance-profile-associations`
+
 ````bash
 {
     "IamInstanceProfileAssociations": [
@@ -210,14 +211,21 @@ total 4
 
 Learn about IAM, Roles, Policies, Profiles, Association, ARN, how to find ARNs, how to create JSON files for roles and policies.
 
-First Learn basics about IAM and roles:
+Learn basics about IAM and roles:
+
 role - it is like a "user" that assume an AWS resouce (EC2 here)
+
 policie - it is like a permission to access a service with the AWS (Read access to a S3 bucket here)
+
 Remember: A role contains policies. 
+
 A instance need to be associate with a profile with the role assignement.
+
 Once the instance is associated, the aws cli is allowed to run access services as described on the policies. 
+
 Instructions to create JSON files for roles and polices.
 https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
+
 You can use The Visual Editor and the managed policies on AWS portal as reference to write your policies.
 
 
