@@ -21,10 +21,10 @@ aws ec2 create-security-group \
     "GroupId": "sg-0619b1745d16f5cb6"
 }
 
->>>Command to add a rule in that security group that allows SSH access from anywhere.
+>>>Command to add a rule in that security group that allows SSH access from a specific IP address only(enhanced security)
 aws ec2 authorize-security-group-ingress \
 --group-id sg-0619b1745d16f5cb6 \
---protocol tcp --port 22 --cidr 0.0.0.0/0
+--protocol tcp --port 22 --cidr 192.168.64.9/32
 
 >>>Command to launch an instance into your public subnet, using the security group and key pair you've created.The ami id should be according to your region and by default, a public ip will be assigned to your instance. 
 aws ec2 run-instances \
@@ -271,24 +271,39 @@ Linux ip-172-31-32-188.ap-southeast-2.compute.internal 4.14.177-139.254.amzn2.x8
 
 - Commands to create the second EC2 instance and any additional resource required:
 ```
+>>>Command to Create a security group in your VPC
+aws ec2 create-security-group \
+--group-name C01-AWS01PVTSSHAccess \
+--description "Security group for Private EC2 SSH access"
+
+>The command returns:
+{
+    "GroupId": "sg-0348e6d08da772513"
+}
+>>>Command to add a rule in that security group that allows SSH access from the public instance security group only.
+aws ec2 authorize-security-group-ingress \
+--group-id sg-0348e6d08da772513 \
+--protocol tcp --port 22 --source-group sg-0619b1745d16f5cb6
+
 >>>Command to launch a private instance[no-associate-public-ip-address] into your subnet, using the security group and key pair you've created.The ami id should be according to your region. 
 Can use the same security group,key-pair or create new one .
 aws ec2 run-instances \
 --image-id ami-088ff0e3bde7b3fdf --count 1 \
 --instance-type t2.micro --key-name C01-AWS01KeyPair \
---security-group-ids sg-0619b1745d16f5cb6
---no-associate-public-ip-address 
+--no-associate-public-ip-address \
+--security-group-ids sg-0348e6d08da772513
 
 >It returns a json with instance parameters:
+{
     "Groups": [],
     "Instances": [
         {
             "AmiLaunchIndex": 0,
             "ImageId": "ami-088ff0e3bde7b3fdf",
-            "InstanceId": "i-089b910f9af45f6b1",
+            "InstanceId": "i-0c27680525237fac6",
             "InstanceType": "t2.micro",
             "KeyName": "C01-AWS01KeyPair",
-            "LaunchTime": "2020-06-15T07:38:35+00:00",
+            "LaunchTime": "2020-06-17T06:55:43+00:00",
             "Monitoring": {
                 "State": "disabled"
             },
@@ -297,8 +312,8 @@ aws ec2 run-instances \
                 "GroupName": "",
                 "Tenancy": "default"
             },
-            "PrivateDnsName": "ip-172-31-40-65.ap-southeast-2.compute.internal",
-            "PrivateIpAddress": "172.31.40.65",
+            "PrivateDnsName": "ip-172-31-43-203.ap-southeast-2.compute.internal",
+            "PrivateIpAddress": "172.31.43.203",
             "ProductCodes": [],
             "PublicDnsName": "",
             "State": {
@@ -310,14 +325,14 @@ aws ec2 run-instances \
             "VpcId": "vpc-12497675",
             "Architecture": "x86_64",
             "BlockDeviceMappings": [],
-            "ClientToken": "62bb88ee-1bd5-44c6-a3be-97ebf42c73f5",
+            "ClientToken": "8f7c7c55-0707-416c-a3a9-dc85bb8fe93b",
             "EbsOptimized": false,
             "Hypervisor": "xen",
             "NetworkInterfaces": [
                 {
                     "Attachment": {
-                        "AttachTime": "2020-06-15T07:38:35+00:00",
-                        "AttachmentId": "eni-attach-09320b3f48e4caab9",
+                        "AttachTime": "2020-06-17T06:55:43+00:00",
+                        "AttachmentId": "eni-attach-0a37c5a1be2614281",
                         "DeleteOnTermination": true,
                         "DeviceIndex": 0,
                         "Status": "attaching"
@@ -325,21 +340,94 @@ aws ec2 run-instances \
                     "Description": "",
                     "Groups": [
                         {
-                            "GroupName": "C01-AWS01SSHAccess",
-                            "GroupId": "sg-0619b1745d16f5cb6"
+                            "GroupName": "C01-AWS01PVTSSHAccess",
+                            "GroupId": "sg-0348e6d08da772513"
                         }
                     ],
                     "Ipv6Addresses": [],
-                    "MacAddress": "06:63:91:06:02:00",
-                    "NetworkInterfaceId": "eni-0bc57b1cee3fa6cad",
+                    "MacAddress": "06:26:4e:9c:26:2e",
+                    "NetworkInterfaceId": "eni-0eacb704e8a6b2b0a",
                     "OwnerId": "438549961569",
-                    "PrivateDnsName": "ip-172-31-40-65.ap-southeast-2.compute.internal",
-                    "PrivateIpAddress": "172.31.40.65",
+                    "PrivateDnsName": "ip-172-31-43-203.ap-southeast-2.compute.internal",
+                    "PrivateIpAddress": "172.31.43.203",
                     "PrivateIpAddresses": [
                         {
                             "Primary": true,
-                            "PrivateDnsName": "ip-172-31-40-65.ap-southeast-2.compute.internal",
-                            "PrivateIpAddress": "172.31.40.65"
+                            "PrivateDnsName": "ip-172-31-43-203.ap-southeast-2.compute.internal",
+                            "PrivateIpAddress": "172.31.43.203"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-53b6a71a",
+                    "VpcId": "vpc-12497675",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-088ff0e3bde7b3fdf",
+            "InstanceId": "i-0c27680525237fac6",
+            "InstanceType": "t2.micro",
+            "KeyName": "C01-AWS01KeyPair",
+            "LaunchTime": "2020-06-17T06:55:43+00:00",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "ap-southeast-2b",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-172-31-43-203.ap-southeast-2.compute.internal",
+            "PrivateIpAddress": "172.31.43.203",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-53b6a71a",
+            "VpcId": "vpc-12497675",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "8f7c7c55-0707-416c-a3a9-dc85bb8fe93b",
+            "EbsOptimized": false,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2020-06-17T06:55:43+00:00",
+                        "AttachmentId": "eni-attach-0a37c5a1be2614281",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching"
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "C01-AWS01PVTSSHAccess",
+                            "GroupId": "sg-0348e6d08da772513"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "06:26:4e:9c:26:2e",
+                    "NetworkInterfaceId": "eni-0eacb704e8a6b2b0a",
+                    "OwnerId": "438549961569",
+                    "PrivateDnsName": "ip-172-31-43-203.ap-southeast-2.compute.internal",
+                    "PrivateIpAddress": "172.31.43.203",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-43-203.ap-southeast-2.compute.internal",
+                            "PrivateIpAddress": "172.31.43.203"
                         }
                     ],
                     "SourceDestCheck": true,
@@ -353,8 +441,8 @@ aws ec2 run-instances \
             "RootDeviceType": "ebs",
             "SecurityGroups": [
                 {
-                    "GroupName": "C01-AWS01SSHAccess",
-                    "GroupId": "sg-0619b1745d16f5cb6"
+                    "GroupName": "C01-AWS01PVTSSHAccess",
+                    "GroupId": "sg-0348e6d08da772513"
                 }
             ],
             "SourceDestCheck": true,
@@ -379,7 +467,7 @@ aws ec2 run-instances \
         }
     ],
     "OwnerId": "438549961569",
-    "ReservationId": "r-0a7b30b9fd486a5e8"
+    "ReservationId": "r-018cc4ea3eda6df30"
 }
 
 Once the instance is in running state, proceed further
