@@ -224,6 +224,8 @@ A instance need to be associate with a profile with the role assignement.
 
 **profile** - applies the role with the policies to a EC2 instance
 
+**ARN** - Amazon Resource Names uniquely identify AWS resources.
+
 Once the instance is associated, the aws cli is allowed to run access services as described on the policies. 
 
 Instructions to create JSON files for roles and polices.
