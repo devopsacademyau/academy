@@ -3,20 +3,31 @@
 ## Commands Execution Output
 
 - Commands to create the S3 Bucket and to copy the file to the bucket:
-**Create the bucket with Make Bucket command in Au region**
-aws s3 mb s3://frdvo --region ap-southeast-2
-**Output**
+
+Create the bucket with mb command in Au region
+
+`aws s3 mb s3://frdvo --region ap-southeast-2`
+
+````bash
 make_bucket: frdvo
-**Check the file on bucket with LiSt**
-aws s3 ls frdvo
-**Output**
+````
+
+Check the file on bucket with ls
+
+`aws s3 ls frdvo`
+
+````bash
 2020-06-15 11:47:02         26 file.txt
+````
 
 - Commands to allow the EC2 instance to access the files in S3:
 
-**Create the role ec2-read-s3-role that will allow to put S3ReadOnlyInt policy**
-vim ec2-read-s3-role.json
-#paste the content below
+Create a JSON file with the role **ec2-read-s3-role** that apply to EC2 instances and will have a policy to allow S3 read only access
+
+`nano ec2-read-s3-role.json`
+
+Paste the content below:
+````bash
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -29,9 +40,12 @@ vim ec2-read-s3-role.json
     }
   ]
 }
-**Run the follow command to create the role**
-aws iam create-role --role-name ec2-read-s3-role --assume-role-policy-document file:///home/fer/ec2-read-s3-role.json
-**Output**
+````
+
+Run the follow command to create the role
+`aws iam create-role --role-name ec2-read-s3-role --assume-role-policy-document file:///home/fer/ec2-read-s3-role.json`
+
+`````bash
 {
     "Role": {
         "Path": "/",
@@ -53,8 +67,13 @@ aws iam create-role --role-name ec2-read-s3-role --assume-role-policy-document f
         }
     }
 }
-**Create a policy based on AmazonS3ReadOnlyAccess that allows read only access to our bucket**
-vim S3ReadOnlyInt.json
+````
+
+Create a JSON file with a policy based on AmazonS3ReadOnlyAccess that allows read only access to our bucket> it will allow get (to dowload the files), list files, from the frdvo bucket and the objects inside frvdo/*
+
+`nano S3ReadOnlyInt.json`
+
+````bash
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -72,13 +91,17 @@ vim S3ReadOnlyInt.json
         }
     ]
 }
+````
 
-**Put role in the policy**
-aws iam put-role-policy --role-name ec2-read-s3-role --policy-name S3ReadOnlyInt --policy-document file:///home/fer/S3ReadOnlyInt.json
+Run the command to put the role in the policy
 
-**Create a instance profile**
-aws iam create-instance-profile --instance-profile-name frdvo-bucket-access-from-ec2
-**Output**
+`aws iam put-role-policy --role-name ec2-read-s3-role --policy-name S3ReadOnlyInt --policy-document file:///home/fer/S3ReadOnlyInt.json`
+
+Create a instance profile
+
+`aws iam create-instance-profile --instance-profile-name frdvo-bucket-access-from-ec2`
+
+````bash
 {
     "InstanceProfile": {
         "Path": "/",
@@ -89,12 +112,19 @@ aws iam create-instance-profile --instance-profile-name frdvo-bucket-access-from
         "Roles": []
     }
 }
-**Add role to intance profile**
-aws iam add-role-to-instance-profile --instance-profile-name frdvo-bucket-access-from-ec2 --role-name ec2-read-s3-role
+````
 
-**Associate profile to instance**
-aws ec2 associate-iam-instance-profile --instance-id i-02f268a05455dc892 --iam-instance-profile Name=frdvo-bucket-access-from-ec2
-**Output**
+Add role to intance profile
+
+`aws iam add-role-to-instance-profile --instance-profile-name frdvo-bucket-access-from-ec2 --role-name ec2-read-s3-role`
+
+Associate the profile to instance.
+
+*Because we can perform S3 copy from any instance from the previous exercise I recommend to use the Jump Box instance, it is ready to go. To use the internal instance you need to configure the network to allow access to the internal S3 endpoint.*
+
+`aws ec2 associate-iam-instance-profile --instance-id i-02f268a05455dc892 --iam-instance-profile Name=frdvo-bucket-access-from-ec2`
+
+````bash
 {
     "IamInstanceProfileAssociation": {
         "AssociationId": "iip-assoc-0ec762d0482b52b82",
@@ -106,9 +136,12 @@ aws ec2 associate-iam-instance-profile --instance-id i-02f268a05455dc892 --iam-i
         "State": "associating"
     }
 }
+````
 
-**Check the profile association**
-aws ec2 describe-iam-instance-profile-associations
+Run the following command to check the profile association
+
+`aws ec2 describe-iam-instance-profile-associations`
+````bash
 {
     "IamInstanceProfileAssociations": [
         {
@@ -122,11 +155,13 @@ aws ec2 describe-iam-instance-profile-associations
         }
     ]
 }
-
-
+````
 
 - Commands to copy the S3 file to a folder inside the instace (executed from inside the EC2 Instance):
 
+`ssh -i dajb.pem ec2-user@3.25.62.164`
+
+````bash
 Last login: Mon Jun 15 11:00:38 2020 from 203.194.9.96
 
        __|  __|_  )
@@ -136,22 +171,40 @@ Last login: Mon Jun 15 11:00:38 2020 from 203.194.9.96
 https://aws.amazon.com/amazon-linux-2/
 4 package(s) needed for security, out of 8 available
 Run "sudo yum update" to apply all updates.
-**Check if the restritive role is working**
-[ec2-user@ip-172-31-36-240 ~]$ aws s3 ls
-**Output**
+````
+
+I will list all S3 buckets to check if the restritive role is working
+
+`aws s3 ls`
+
+````bash
 An error occurred (AccessDenied) when calling the ListBuckets operation: Access Denied
-**Yes, it is working. now check if I can list the bucket**
-[ec2-user@ip-172-31-36-240 ~]$ aws s3 ls frdvo
+````
+
+Yes, it is restrict.  Mow check if I can list the frdvo bucket
+
+`aws s3 ls frdvo`
+
+````bash
 2020-06-15 02:17:02         26 file.txt
-**Copy the file**
-[ec2-user@ip-172-31-36-240 ~]$ aws s3 cp s3://frdvo/file.txt file.txt
-**Output**
+````
+
+Copy the file
+
+`aws s3 cp s3://frdvo/file.txt file.txt`
+
+````bash
 download: s3://frdvo/file.txt to ./file.txt
-**Check filesize**
-[ec2-user@ip-172-31-36-240 ~]$ ls -l
+````
+
+Check the downloaded file size
+
+`ls -l`
+
+````bash
 total 4
 -rw-rw-r-- 1 ec2-user ec2-user 26 Jun 15 02:17 file.txt
-
+````
 
 - Add a brief descrition of the challenges you faced:
 
