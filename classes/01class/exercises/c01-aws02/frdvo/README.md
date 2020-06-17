@@ -43,6 +43,7 @@ Paste the content below:
 ````
 
 Run the follow command to create the role
+
 `aws iam create-role --role-name ec2-read-s3-role --assume-role-policy-document file:///home/fer/ec2-read-s3-role.json`
 
 ````bash
@@ -209,17 +210,19 @@ total 4
 
 - Add a brief descrition of the challenges you faced:
 
-Learn about IAM, Roles, Policies, Profiles, Association, ARN, how to find ARNs, how to create JSON files for roles and policies.
+I had to learn about IAM, Roles, Policies, Profiles, Association, ARN, how to find ARNs, how to create JSON files for roles and policies.
 
-Learn basics about IAM and roles:
+IAM basics and roles and policies:
 
-role - it is like a "user" that assume an AWS resouce (EC2 here)
+**role** - it is like a "user" that assume an AWS resouce (EC2 here)
 
-policie - it is like a permission to access a service with the AWS (Read access to a S3 bucket here)
+**policy** - it is like a permission to access a service with the AWS (Read access to a S3 bucket here)
 
 Remember: A role contains policies. 
 
 A instance need to be associate with a profile with the role assignement.
+
+**profile** - applies the role with the policies to a EC2 instance
 
 Once the instance is associated, the aws cli is allowed to run access services as described on the policies. 
 
