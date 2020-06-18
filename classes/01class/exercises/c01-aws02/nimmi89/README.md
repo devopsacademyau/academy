@@ -155,6 +155,49 @@ S3 File Successfully copied into Ec2 folder!!!!!!!!!
 [ec2-user@ip-172-31-32-188 ~]$ cd myEc2Folder/
 [ec2-user@ip-172-31-32-188 myEc2Folder]$ ls
 index.html
+
+>>>Command to upload a file into S3 bucket from the instance
+Without the permissions, the action is not successful
+[ec2-user@ip-172-31-32-188 ~]$ aws s3 cp file.txt s3://c01-aws02-bucket/
+upload failed: ./file.txt to s3://c01-aws02-bucket/file.txt An error occurred (AccessDenied) when calling the PutObject operation: Access Denied
+[ec2-user@ip-172-31-32-188 ~]$ logout
+Connection to 54.252.231.101 closed.
+
+>>>Create a policy to upload object onto bucket[Giving only the required privileges]
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "s3:PutObject",
+            "Resource": "*"
+        }
+    ]
+}
+
+>>>Attach the policy to the Ec2 role ,ssh into instance and copy file into s3 bucket
+aws iam attach-role-policy --role-name S3AccessRole --policy-arn arn:aws:iam::438549961569:policy/s3UploadObject
+ssh -i /home/nimmi/C01-AWS01KeyPair.pem ec2-user@54.252.231.101
+Last login: Thu Jun 18 12:56:48 2020 from 14-201-149-89.static.tpgi.com.au
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+4 package(s) needed for security, out of 10 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-32-188 ~]$ aws s3 cp file.txt s3://c01-aws02-bucket/
+upload: ./file.txt to s3://c01-aws02-bucket/file.txt
+[ec2-user@ip-172-31-32-188 ~]$ logout
+
+ aws s3 ls s3://c01-aws02-bucket/
+2020-06-18 22:57:54          0 file.txt
+2020-06-17 18:23:50         73 index.html
+
+Upload of object into s3 from Ec2 successful!!!!!!!!!!!
+
 ```
 
 - Add a brief descrition of the challenges you faced:
