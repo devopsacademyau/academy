@@ -37,12 +37,14 @@ Create security group for EC2
 
 Add CIDR to security group to allow ssh connection
 
-> aws ec2 authorize-security-group-ingress --group-id sg-0c43ee1f951df16a7 --protocol tcp --port 22 --cidr 58.96.95.0/24
+> aws ec2 authorize-security-group-ingress --group-id sg-0c43ee1f951df16a7 --protocol tcp --port 22 --cidr 58.96.95.89/32
+
+Remove CIDR with range of /24 (This was fixed after the review comment)
+> aws ec2 revoke-security-group-ingress --group-id sg-0c43ee1f951df16a7 --protocol tcp --port 22 --cidr 58.96.95.0/24
 
 Verify Security Group
 
 > aws ec2 describe-security-groups --group-ids sg-0c43ee1f951df16a7 
-
 {
     "SecurityGroups": [
         {
@@ -54,7 +56,7 @@ Verify Security Group
                     "IpProtocol": "tcp",
                     "IpRanges": [
                         {
-                            "CidrIp": "58.96.95.0/24"
+                            "CidrIp": "58.96.95.89/32"
                         }
                     ],
                     "Ipv6Ranges": [],
