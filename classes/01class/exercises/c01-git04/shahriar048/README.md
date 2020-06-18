@@ -15,9 +15,25 @@
 > We need to rewrite the history and force push.
 
 5. Which commands would you use? Explain what the command does.
+
 ```
-git filter-branch --index-filter "git rm --cached --ignore-unmatch my_env.txt" # deletes my_env.txt from all commits
-git push origin --force --all # force pushes to remote
+# Using `filter-branch`
+
+# delete my_env.txt
+git filter-branch --index-filter "git rm --cached --ignore-unmatch my_env.txt"
+
+# force push to remote
+git push origin --force --all
+```
+
+```
+# Using `filter-repo` (recommended approach)
+
+# delete my_env.txt
+git filter-repo --invert-path --path my_env.txt
+
+# force push to remote
+git push origin --force --all
 ```
 
 ***
