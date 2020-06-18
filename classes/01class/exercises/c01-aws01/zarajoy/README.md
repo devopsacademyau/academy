@@ -1,6 +1,9 @@
+# C01-AWS01
+
+
 - Use the CLI to create a new EC2 Instance inside the default VPC with a public IP address and connect to it though SSH.
 - Commands to create the first EC2 instance and any additional resource required:
-
+```
 z@bacon:~$ aws ec2 create-key-pair --key-name aws01kp --query 'KeyMaterial' --output text > aws01kp.pem
 z@bacon:~$ chmod 400 aws01kp.pem
 z@bacon:~$  aws ec2 describe-key-pairs --key-name aws01kp
@@ -162,10 +165,10 @@ z@bacon:~$ aws ec2 run-instances --image-id ami-088ff0e3bde7b3fdf --instance-typ
     "OwnerId": "512742231244",
     "ReservationId": "r-07cc8f6e71d7afe6e"
 }
-
+```
 
 - Commands to connect to the first EC2 instance:
-
+```
 z@bacon:~$ ssh -i awskp01.pem ec2-user@13.239.28.37
 Warning: Identity file awskp01.pem not accessible: No such file or directory.
 The authenticity of host '13.239.28.37 (13.239.28.37)' can't be established.
@@ -199,10 +202,11 @@ https://aws.amazon.com/amazon-linux-2/
 Run "sudo yum update" to apply all updates.
 [ec2-user@ip-172-31-36-157 ~]$ 
 
-
+```
 
 - Create another EC2, also using the CLI instance in the same VPC but with private address only and connect to it.
 - Commands to create the second EC2 instance and any additional resource required:
+```
 z@bacon:~$ aws ec2 create-key-pair --key-name paws01kp --query 'KeyMaterial' --output text > paws01kp.pem
 z@bacon:~$ sudo chmod 400 paws01kp.pem
 [sudo] password for z: 
@@ -354,7 +358,9 @@ z@bacon:~$ aws ec2 run-instances --image-id ami-088ff0e3bde7b3fdf --instance-typ
     "OwnerId": "512742231244",
     "ReservationId": "r-05d1863c7d002fa30"
 }
+```
 - Commands to connect to the second EC2 instance:
+```
 z@bacon:~$ eval 'ssh-agent'
 SSH_AUTH_SOCK=/tmp/ssh-22FZ7c7j6uMf/agent.203040; export SSH_AUTH_SOCK;
 SSH_AGENT_PID=203041; export SSH_AGENT_PID;
@@ -390,7 +396,7 @@ https://aws.amazon.com/amazon-linux-2/
 Run "sudo yum update" to apply all updates.
 [ec2-user@ip-172-31-36-157 ~]$ 
 
-
+```
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
