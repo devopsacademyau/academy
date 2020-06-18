@@ -1,0 +1,25 @@
+on:
+  schedule:
+  - cron: "0 10 * * 1,5"
+
+name: Dashboard Generation
+jobs:
+  dashboard:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Update Dashboard Sheet
+      run: make dashboard
+      env:
+        GOOGLE_KEY: ${{ secrets.DASHBOARD_GOOGLE_KEY }}
+        SHEET_KEY: ${{ secrets.DASHBOARD_SHEET_KEY }}
+        GH_USER: ${{ secrets.DASHBOARD_GH_USER }}
+        GH_TOKEN: ${{ secrets.DASHBOARD_GH_TOKEN }}
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: "ap-southeast-2"
+        SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+        PUBLISH_URL: ${{ secrets.PUBLISH_URL }}
+

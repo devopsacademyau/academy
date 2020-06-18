@@ -1,0 +1,8 @@
+version: '3'
+services:
+  musketeers:
+    build: .
+    working_dir: /opt/app
+    env_file: .env
+    volumes:
+    - .:/opt/app

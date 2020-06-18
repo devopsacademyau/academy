@@ -1,0 +1,43 @@
+$ terraform plan -var-file main.tfvars | grep created    
+  # aws_eip.devopsacademy-eip-iac will be created
+  # aws_internet_gateway.devopsacademy-igw-iac will be created
+  # aws_nat_gateway.devopsacademy-nat-iac will be created
+  # aws_route_table.devopsacademy-private-rt-iac will be created
+  # aws_route_table.devopsacademy-public-rt-iac will be created
+  # aws_route_table_association.private-rt-iac[0] will be created
+  # aws_route_table_association.private-rt-iac[1] will be created
+  # aws_route_table_association.private-rt-iac[2] will be created
+  # aws_route_table_association.public-rt-iac[0] will be created
+  # aws_route_table_association.public-rt-iac[1] will be created
+  # aws_route_table_association.public-rt-iac[2] will be created
+  # aws_security_group.devopsacademy_private_sg_iac will be created
+  # aws_security_group.devopsacademy_public_sg_iac will be created
+  # aws_subnet.private-subnet-iac[0] will be created
+  # aws_subnet.private-subnet-iac[1] will be created
+  # aws_subnet.private-subnet-iac[2] will be created
+  # aws_subnet.public-subnet-iac[0] will be created
+  # aws_subnet.public-subnet-iac[1] will be created
+  # aws_subnet.public-subnet-iac[2] will be created
+  # aws_vpc.devopsacademy-vpc-iac will be created
+
+############## After changes ##############
+
+$ terraform plan -var-file main.tfvars | grep 'created\|destroyed\|replaced'
+  # aws_nat_gateway.devopsacademy-nat-iac must be replaced
+  # aws_route_table.devopsacademy-private-rt-iac must be replaced
+  # aws_route_table.devopsacademy-public-rt-iac must be replaced
+  # aws_route_table_association.private-rt-iac[0] must be replaced
+  # aws_route_table_association.private-rt-iac[1] must be replaced
+  # aws_route_table_association.private-rt-iac[2] must be replaced
+  # aws_route_table_association.public-rt-iac[0] must be replaced
+  # aws_route_table_association.public-rt-iac[1] must be replaced
+  # aws_route_table_association.public-rt-iac[2] must be replaced
+  # aws_security_group.devopsacademy_private_sg_iac must be replaced
+  # aws_security_group.devopsacademy_public_sg_iac must be replaced
+  # aws_subnet.private-subnet-iac[0] must be replaced
+  # aws_subnet.private-subnet-iac[1] must be replaced
+  # aws_subnet.private-subnet-iac[2] must be replaced
+  # aws_subnet.public-subnet-iac[0] must be replaced
+  # aws_subnet.public-subnet-iac[1] must be replaced
+  # aws_subnet.public-subnet-iac[2] must be replaced
+  # aws_vpc.devopsacademy-vpc-iac must be replaced

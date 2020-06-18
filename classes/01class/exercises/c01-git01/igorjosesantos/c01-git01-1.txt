@@ -1,0 +1,5 @@
+git checkout -b bugFix
+git commit -m "fixes a bug"
+git checkout master
+git commit -m "adds a feature"
+git merge bugFix

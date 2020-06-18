@@ -1,0 +1,5 @@
+git checkout -b bugFix
+git commit -m "First commit from bugFix branch"
+git checkout master
+git commit -m "First commit from master branch"
+git merge bugFix

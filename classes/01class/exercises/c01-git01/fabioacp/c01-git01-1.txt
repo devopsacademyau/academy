@@ -1,0 +1,5 @@
+git checkout -b bugFix
+git commit -m "first-commit"
+git checkout master
+git commit -m "second-commit"
+git merge bugFix

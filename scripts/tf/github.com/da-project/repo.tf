@@ -21,6 +21,12 @@ resource "github_repository_file" "README" {
   repository = github_repository.repo.name
   file       = "README.md"
   content    = var.group_name
+  lifecycle {
+    ignore_changes = [
+      content,
+      file,
+    ]
+  }
 }
 
 resource "github_repository_file" "CODEOWNERS" {

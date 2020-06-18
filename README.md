@@ -19,6 +19,7 @@ If you want to be part of the team behind this, get in touch on help@devopsacade
 - [How it Works](#how-it-works)
 - [Requirements](#requirements)
 - [Live/Online Applications](#liveonline-applications)
+  - [How to Submit a PR as part of your application](#how-to-submit-a-pr-as-part-of-your-application)
 - [Content](#content)
   - [Classes](#classes)
   - [Exercises](#exercises)
@@ -142,7 +143,9 @@ The content can be accessed through each specific README link below.
 - [Class 02](classes/02class/README.md)
     - Agile Methodologies
     - Networking Introduction
-    - AWS VPC
+      - AWS VPC
+    - AWS IAM (Identity and Access Management)
+    - AWS CLI
 - [Class 03](classes/03class/README.md)
     - AWS EC2
         - Load Balancing
@@ -153,31 +156,28 @@ The content can be accessed through each specific README link below.
         - Repositories
         - Images
         - Dockerfile
-        - AWS ECS
-        - AWS ECR
-- [Class 04](classes/04class/README.md)
-    - AWS IAM (Identity and Access Management)
-    - AWS CLI
-    - AWS S3 (Simple Storage Service)
-      - Website
-    - IaC - Terraform
-    - AWS RDS (Relational Database Service)
-    - Project #1 Kick-off
-- [Class 05](classes/05class/README.md)
-    - Docker
     - Make
     - Docker-Compose
+- [Class 04](classes/04class/README.md)
+    - AWS ECS
+    - AWS ECR
+    - AWS S3 (Simple Storage Service)
+      - Website
+    - AWS RDS (Relational Database Service)
+    - IaC - Terraform
+    - Project #1 Kick-off
+- [Class 05](classes/05class/README.md)
     - 3 Musketeers
     - CI/CD Concepts
-    - GitHub Actions
+      - GitHub Actions
+    - Serverless introduction
+    - AWS Lambda
 - [Class 06](classes/06class/README.md)
     - Project #1 Delivery
-    - Introduction Serverless
-    - AWS Lambda
     - AWS API Gateway
+    - AWS DynamoDB
     - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
-    - AWS DynamoDB
     - AWS KMS (Key Management Service)
     - AWS SSM - Parameter Store
     - AWS SNS
@@ -190,13 +190,31 @@ The content can be accessed through each specific README link below.
 
 ## Exercises
 
-For each class **exercise**:
+We highly recommend doing the exercises from this repository. However, you will first need to raise a Pull Request from a [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) to add yourself permission to push branches.
+
+- Create a new branch from `master`
+- Open the file [/scripts/tf/github.com/team-external-students.tf](/scripts/tf/github.com/team-external-students.tf)
+- Add your GitHub username in an alphabetical order (that will help you avoid merge conflicts)
+```
+{
+  name: "caiocezart",
+  role: "member"
+}
+```
+- Save, add and commit the change
+- Raise a Pull Request
+- Send a message on our [Slack workspace](https://join.slack.com/t/devopsacademyau/shared_invite/zt-ajsfpwsj-GcTGG6tpZp~MOZd2DM92QA) and one of us will review as soon as possible
+
+As soon as the pull request is approved, the automation will give you `Write` permission and you will be able to push branches to the repository.
+
+
+### For each class **exercise**:
+
 1. Clone this repository
    
 ```bash
 git clone <repo-url>
 ```
-- [OR fork it to your own GitHub account and clone from there](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
 
 2. Switch to **master** branch and **pull** it 
 
@@ -273,13 +291,27 @@ Example:
 
 ## Create a dashboard (CSV file) about  exercise submissions
 
-It will use the file `labs.txt`and `students.txt`from the `scripts/` folder (TO BE IMPROVED FOR FLEXIBILITY).
+It will use the file `labs.txt`and `students.txt`from the `scripts/dashboard` folder.
+It runs through GitHub Actions, based on the cron definition of the [dashboard,yaml](.github/workflow/dahboard.yaml) and updates the spreadsheet with the latest information.
 
-Run:  `make dashboard`
+It can also be executed manually with the following commands:
 
-Optionally you can pass the Github User and Token, so the API calls are not throttled.
+```
+make dashboard \
+  GOOGLE_KEY=[GOOGLE_KEY] \
+  SHEET_KEY=[SHEET_KEY] \
+  WKS_NAME="Dashboard" \
+  GH_USER=[GH_USER] \
+  GH_TOKEN=[GH_TOKEN]
+```
 
-Run:  `make dashboard GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
+| VARIABLE | DESCRIPTION   |
+|----------|:-------------|
+| GOOGLE_KEY | Google Service Account key with permissions to the spreadhseet |
+| SHEET_KEY | The Sheet ID   |
+| WKS_NAME | The Worksheet Name |
+| GH_USER | GutHubs user with permission to query the repository |
+| GH_TOKEN | The token from the GitHub user above |
 
 ## Presentation format
 
