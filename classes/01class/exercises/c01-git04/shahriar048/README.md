@@ -30,7 +30,7 @@ git push origin --force --all
 # Using `filter-repo` (recommended approach)
 
 # delete my_env.txt
-git filter-repo --invert-path --path my_env.txt
+git filter-repo --invert-path --path "my_env.txt"
 
 # force push to remote
 git push origin --force --all
