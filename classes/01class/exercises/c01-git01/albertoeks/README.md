@@ -24,3 +24,12 @@ $ git checkout bugfix
 $ git rebase master
 
 ```
+
+3. Commands typed to solve the "Revert and reset" exercise
+
+```
+$ git reset HEAD~1
+$ git checkout pushed
+$ git revert HEAD
+
+```
