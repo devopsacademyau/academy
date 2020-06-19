@@ -22,10 +22,11 @@ z@bacon:~$ aws s3 ls zarajoy-aws02-bucket
 - Commands to allow the EC2 instance to access the files in S3:
 
 https://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-access-s3-bucket/
+
 https://aws.amazon.com/premiumsupport/knowledge-center/iam-assume-role-cli/
+
 https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html
 
-https://www.concurrencylabs.com/blog/publish-jmeter-test-results-to-cloudwatch-logs-manual-steps/
 https://aws.amazon.com/blogs/security/organize-your-permissions-by-using-separate-managed-policies/
 
 ```
@@ -153,6 +154,7 @@ download: s3://zarajoy-aws02-bucket/upload.txt to ./upload.txt
 - Add a brief description of the challenges you faced:
 ```
 alot of the documentation is for console rather than CLI. Involved following a guide for console but having to find each command as CLI.
+Was stuck for the longest time on creating the  role-policy-document.json (i excluded the many errors i got from the answer) until i found https://www.concurrencylabs.com/blog/publish-jmeter-test-results-to-cloudwatch-logs-manual-steps/. It helped me with the JSON and manged Policies.
 ```
 
 <!-- Don't change anything below this point-->
