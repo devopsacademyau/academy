@@ -171,7 +171,7 @@ Connection to 54.252.231.101 closed.
             "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": "s3:PutObject",
-            "Resource": "*"
+            "Resource": "arn:aws:s3:::c01-aws02-bucket/*"
         }
     ]
 }
