@@ -24,7 +24,8 @@ aws ec2 create-security-group \
 >>>Command to add a rule in that security group that allows SSH access from a specific IP address only(enhanced security)
 aws ec2 authorize-security-group-ingress \
 --group-id sg-0619b1745d16f5cb6 \
---protocol tcp --port 22 --cidr 192.168.64.9/32
+--protocol tcp --port 22 --cidr 14.201.149.89/32
+
 
 >>>Command to launch an instance into your public subnet, using the security group and key pair you've created.The ami id should be according to your region and by default, a public ip will be assigned to your instance. 
 aws ec2 run-instances \
