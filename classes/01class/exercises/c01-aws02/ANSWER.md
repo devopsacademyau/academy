@@ -17,7 +17,7 @@ Add your commands and their outputs here
 Add your commands and their outputs here
 ```
 
-- Add a brief descrition of the challenges you faced:
+- Add a brief description of the challenges you faced:
 ```
 Add comments here
 ```

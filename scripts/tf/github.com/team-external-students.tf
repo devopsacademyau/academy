@@ -5,7 +5,15 @@ module "team-external-students" {
   group_name          = "external-students"
   members             = [
     {
+      name: "albertoeks",
+      role: "member"
+    },
+    {
       name: "carloshz4",
+      role: "member"
+    },
+    {
+      name: "maladham80",
       role: "member"
     },
     {
@@ -22,3 +30,4 @@ module "team-external-students" {
     }
   ]
 }
+

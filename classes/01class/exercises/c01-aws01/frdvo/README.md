@@ -4,31 +4,35 @@
 
 - Commands to create the first EC2 instance and any additional resource required:
 
-### Check the current region
-$ aws configure get region
-ap-southeast-2
-**Generate SSH Key for JumpBox**
-`aws ec2 create-key-pair --key-name dajb --output text > dajb.pem`
-**#protect the key, read only, only to my user**
-chmod 400 da.pem
-**Create Security Group**
+Check the current region:
+
+`$ aws configure get region ap-southeast-2`
+
+Generate SSH Key for JumpBox:
+
+`aws ec2 create-key-pair --key-name dajb --query 'KeyMaterial' --output text > dajb.pem`
+
+Protect the key to be acessible only to my user:
+
+`chmod 600 da.pem`
+
+Create a Security Group with port 22 open to the world:
+
 `aws ec2 create-security-group --group-name SSHOpen --description "SG with port 22 open to the world"`
+```bash
 {
     "GroupId": "sg-063fc9a232e4e2a60"
 }
+````
 
+Add a rule to allow Port TCP 22 inbound connections from my IP address only
 
+`aws ec2 authorize-security-group-ingress --group-name SSHOpen --protocol tcp --port 22 --cidr 27.33.248.152/32`
 
-**Add rule to allow Port TCP 22 inbond connections**
-`aws ec2 authorize-security-group-ingress \`
-    `--group-name SSHOpen \`
-    `--protocol tcp \`
-    `--port 22 \`
-    `--cidr 27.33.248.152/32`
-
-**Create the VM**
+Create the VM
 
 `aws ec2 run-instances --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 --instance-type t2.micro --count 1 --key-name da --security-group-ids sg-063fc9a232e4e2a60 --associate-public-ip-address`
+```bash
 {
     "Groups": [],
     "Instances": [
@@ -131,10 +135,13 @@ chmod 400 da.pem
     "OwnerId": "165765640813",
     "ReservationId": "r-069bd5f33d2bc601a"
 }
-
+````
 - Commands to connect to the first EC2 instance:
-**GET IP Address**
+
+Grab the instance Public IP Address
+
 `aws ec2 describe-instances --query "Reservations[].Instances[].[InstanceId, PublicIpAddress]"`
+```bash
 [
     [
         "i-0cede1a195229c66b",
@@ -145,15 +152,12 @@ chmod 400 da.pem
         "3.25.62.164"
     ]
 ]
-**CONNECT**
-ssh -i da.pem ec2-user@3.25.62.164
-ec2-user@3.25.62.164: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
-cat dajp.pem
-cp dajp.pem dajp.pem.old
-chmod u+w da.pem
-vim dajp.pem - trim the key only
-ssh -i da.pem ec2-user@3.25.62.164
+````
+Use SSH to connect
 
+'ssh -i dajp.pem ec2-user@3.25.62.164'
+
+````bash
        __|  __|_  )
        _|  (     /   Amazon Linux 2 AMI
       ___|\___|___|
@@ -163,29 +167,35 @@ https://aws.amazon.com/amazon-linux-2/
 Run "sudo yum update" to apply all updates.
 [ec2-user@ip-172-31-36-240 ~]$ exit
 
+````
 
 - Commands to create the second EC2 instance and any additional resource required:
 
-**Generate SSH Key for Internal Servers**
-`aws ec2 create-key-pair --key-name daint --output text > daint.pem`
-**#protect the key, read only, only to my user**
-chmod 600 daint.pem
-**Create Security Group**
-`aws ec2 create-security-group --group-name SSHInternal0_Only --description "SG with po
+Following the reference video recomentation I will Generate SSH Key for Internal Servers, if the jump box certificate get compromissed, we have a second protective layer
+
+
+`aws ec2 create-key-pair --key-name dajbint --query 'KeyMaterial' --output text > daint.pem`
+
+
+Create the internal Security Group
+
+`aws ec2 create-security-group --group-name SSHInternal_Only --description "SG with po
 rt 22 open to JP SG"`
+
+````bash
 {
     "GroupId": "sg-0a37cdb946425fad7"
 }
+````
 
-**Allow Port 22 ingress only from the bastion host**
-`aws ec2 authorize-security-group-ingress \`
-    `--group-name SSHInternal0_Only \`
-    `--protocol tcp \`
-    `--port 22 \`
-    `--source-group sg-063fc9a232e4e2a60`
+Add a rule the internal Security Group to allow Port 22 ingress only from the Jump Box security as recomended on reference video
 
-**Create VM without external IP**
-aws ec2 run-instances --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 --instance-type t2.micro --count 1 --key-name daint --security-group-ids sg-0a37cdb946425fad7 --no-associate-public-ip-address
+`aws ec2 authorize-security-group-ingress --group-name SSHInternal_Only --protocol tcp  --port 22 --source-group sg-063fc9a232e4e2a60`
+
+Create the internal VM without external IP address
+
+`aws ec2 run-instances --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 --instance-type t2.micro --count 1 --key-name daint --security-group-ids sg-0a37cdb946425fad7 --no-associate-public-ip-address`
+````bash
 {
     "Groups": [],
     "Instances": [
@@ -232,7 +242,7 @@ aws ec2 run-instances --image-id resolve:ssm:/aws/service/ami-amazon-linux-lates
                     "Description": "",
                     "Groups": [
                         {
-                            "GroupName": "SSHInternal0_Only",
+                            "GroupName": "SSHInternal_Only",
                             "GroupId": "sg-0a37cdb946425fad7"
                         }
                     ],
@@ -260,7 +270,7 @@ aws ec2 run-instances --image-id resolve:ssm:/aws/service/ami-amazon-linux-lates
             "RootDeviceType": "ebs",
             "SecurityGroups": [
                 {
-                    "GroupName": "SSHInternal0_Only",
+                    "GroupName": "SSHInternal_Only",
                     "GroupId": "sg-0a37cdb946425fad7"
                 }
             ],
@@ -288,9 +298,16 @@ aws ec2 run-instances --image-id resolve:ssm:/aws/service/ami-amazon-linux-lates
     "OwnerId": "165765640813",
     "ReservationId": "r-0bcfb66ef8c5318b2"
 }
+````
 - Commands to connect to the second EC2 instance:
-**Connect to Jumpbox and map port to the second host**
-ssh -i dajb.pem -L 2022:172.31.45.51:22 ec2-user@3.25.62.164
+
+On recommended video the instructor shows the allow agent forwarding on Putty, I know how to do that on Linux using the ssh config file, but it will be quicker to use the ssh -L to map a local port to a remote address inside the private network.
+
+Connect to Jump Box and map the SSH port to the internal instance IP
+
+`ssh -i dajb.pem -L 2022:172.31.45.51:22 ec2-user@3.25.62.164`
+
+````bash
 Last login: Sun Jun 14 10:57:19 2020 from 27-33-248-152.tpgi.com.au
 
        __|  __|_  )
@@ -301,8 +318,13 @@ https://aws.amazon.com/amazon-linux-2/
 4 package(s) needed for security, out of 8 available
 Run "sudo yum update" to apply all updates.
 [ec2-user@ip-172-31-36-240 ~]$
-**In a new terminal connect to the port mapping using the internal key**
-ssh -i daint.pem -p 2022 ec2-user@localhost
+````
+
+Open a new terminal tab connect to the local port mapped to internal host using the internal key
+
+`ssh -i daint.pem -p 2022 ec2-user@localhost`
+
+````bash
 The authenticity of host '[localhost]:2022 ([127.0.0.1]:2022)' can't be established.
 ECDSA key fingerprint is SHA256:RXOZLAwrXR+E5bfYuVrxM6RWF8GchFDDrUZO67+D3ko.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
@@ -314,5 +336,8 @@ Warning: Permanently added '[localhost]:2022' (ECDSA) to the list of known hosts
 
 https://aws.amazon.com/amazon-linux-2/
 [ec2-user@ip-172-31-45-51 ~]$
+````
+Well done, I'm connected to the internal EC2 instance!
+
 ***
 Answer for exercise [c01-aws01](https://github.com/devopsacademyau/academy/blob/635775538e8ad7793b305f48064b09e23c626fb7/classes/01class/exercises/c01-aws01/README.md)
