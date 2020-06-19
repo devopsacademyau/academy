@@ -155,6 +155,7 @@ download: s3://zarajoy-aws02-bucket/upload.txt to ./upload.txt
 ```
 alot of the documentation is for console rather than CLI. Involved following a guide for console but having to find each command as CLI.
 Was stuck for the longest time on creating the  role-policy-document.json (i excluded the many errors i got from the answer) until i found https://www.concurrencylabs.com/blog/publish-jmeter-test-results-to-cloudwatch-logs-manual-steps/. It helped me with the JSON and manged Policies.
+All in all middle exercise just took a long time to get my head around all the parts.
 ```
 
 <!-- Don't change anything below this point-->
