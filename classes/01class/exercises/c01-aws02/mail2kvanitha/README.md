@@ -5,29 +5,29 @@
 - Commands to create the S3 Bucket and to copy the file to the bucket:
 1. TO CREATE BUCKET: 
    aws s3 mb s3://mail2kvanitha --region ap-southeast-2
-	192-168-1-106:AWS_Console vanithak$ aws s3 mb s3://mail2kvanitha --region ap-southeast-2
-	make_bucket: mail2kvanitha
+        192-168-1-106:AWS_Console vanithak$ aws s3 mb s3://mail2kvanitha --region ap-southeast-2
+        make_bucket: mail2kvanitha
 
 2. LIST BUSCKET
    aws s3 ls
-	192-168-1-106:AWS_Console vanithak$ aws s3 ls
-	2020-06-20 11:32:52 mail2kvanitha
+        192-168-1-106:AWS_Console vanithak$ aws s3 ls
+        2020-06-20 11:32:52 mail2kvanitha
 
 3. COPY FILE TO BUCKET:
    touch test.txt and echo "Welcome to S3 Object" to test.txt
-	192-168-1-106:AWS_Console vanithak$ touch test.txt
-	192-168-1-106:AWS_Console vanithak$ echo "Welcome to AWS S3" > test.txt 
-	192-168-1-106:AWS_Console vanithak$ more test.txt 
-	Welcome to AWS S3
+        192-168-1-106:AWS_Console vanithak$ touch test.txt
+        192-168-1-106:AWS_Console vanithak$ echo "Welcome to AWS S3" > test.txt 
+        192-168-1-106:AWS_Console vanithak$ more test.txt 
+        Welcome to AWS S3
 
    aws s3 cp test.txt s3://mail2kvanitha/
-  	192-168-1-106:AWS_Console vanithak$ aws s3 cp test.txt s3://mail2kvanitha/
-	upload: ./test.txt to s3://mail2kvanitha/test.txt                
+        192-168-1-106:AWS_Console vanithak$ aws s3 cp test.txt s3://mail2kvanitha/
+        upload: ./test.txt to s3://mail2kvanitha/test.txt                
 
    aws s3 ls s3://mail2kvanitha
-	192-168-1-106:AWS_Console vanithak$ aws s3 ls s3://mail2kvanitha/
-	2020-06-20 11:49:56         18 test.txt
-	
+        192-168-1-106:AWS_Console vanithak$ aws s3 ls s3://mail2kvanitha/
+        2020-06-20 11:49:56         18 test.txt
+        
 ```
 Add your commands and their outputs here
 Please see above for comamnds and their outputs.
@@ -35,7 +35,7 @@ Please see above for comamnds and their outputs.
 
 - Commands to allow the EC2 instance to access the files in S3:
 1. CREATE JSON file policy document that grants read access to EC2 instance to access S3
-	192-168-1-106:AWS_Console vanithak$ more ec2tos3-read-role.json 
+        192-168-1-106:AWS_Console vanithak$ more ec2tos3-read-role.json 
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -94,7 +94,7 @@ aws iam create-role --role-name ec2tos3-read-role --assume-role-policy-document 
 }
 
 4. Attach the policy to the role. 
-	aws iam put-role-policy --role-name ec2tos3-read-role --policy-name S3ReadOnlyAccess —policy-document file:////Users/vanithak/AWS/AWS_Console/S3ReadOnlyAccess.json
+        aws iam put-role-policy --role-name ec2tos3-read-role --policy-name S3ReadOnlyAccess —policy-document file:////Users/vanithak/AWS/AWS_Console/S3ReadOnlyAccess.json
 
 5. Create Instance profile for EC2 instance
 192-168-1-106:AWS_Console vanithak$ aws iam create-instance-profile --instance-profile-name ec2tos3-instance-profile
@@ -164,7 +164,6 @@ download: s3://mail2kvanitha/test.txt to ./test.txt
 ```
 
 - Add a brief description of the challenges you faced:
-Challenge is to get the exact commands to get the read only access for the EC2 instance to S3 bucket and its objects.
 ```
 Add comments here
 ```
