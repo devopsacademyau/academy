@@ -1,0 +1,12 @@
+192-168-1-106:S3ReadOnly vanithak$ aws --version
+aws-cli/2.0.6 Python/3.7.4 Darwin/18.7.0 botocore/2.0.0dev10
+192-168-1-106:S3ReadOnly vanithak$
+
+192-168-1-106:S3ReadOnly vanithak$ docker --version
+Docker version 19.03.8, build afacb8b
+192-168-1-106:S3ReadOnly vanithak$ 
+
+
+192-168-1-106:S3ReadOnly vanithak$ terraform --version
+Terraform v0.12.25
+192-168-1-106:S3ReadOnly vanithak$ 
