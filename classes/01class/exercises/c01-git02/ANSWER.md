@@ -17,4 +17,4 @@
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
-Answer for exercise [c01-git02](https://github.com/devopsacademyau/academy/blob/e0e0ef5ae3dbd9196ca6df297c531235381d6f79/classes/01class/exercises/c01-git02/README.md)
+Answer for exercise [c01-git02](https://github.com/devopsacademyau/academy/blob/5e1ec235517f206c8d4a11a37388fcfd0220d194/classes/01class/exercises/c01-git02/README.md)
