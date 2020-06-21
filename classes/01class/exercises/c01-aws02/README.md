@@ -1,8 +1,8 @@
 ## S3 (C01-aws02)
 
 - Use the CLI to create a S3 bucket and upload a file to it.
-- Access the file on the S3 bucket from any the EC2 instance created in the previous exercise.
-- Submit a PR to the DevOpsAcademy repo under the `/classes/01class/exercises/c01-aws02/<github-username>` folder of this class with a brief description of what you did to achieve this objective. The file containing the solution you used must be named README.md
+- Access the file on the S3 bucket from any of the EC2 instances created in the previous exercise.
+- Submit a PR to the DevOpsAcademy repo under the `/classes/01class/exercises/c01-aws02/<github-username>` folder of this class with a brief description of what you did to achieve this objective (using AWS CLI). The file containing the solution you used must be named README.md
 
 ## Submit a PR with the folowing file:
 - README.md based on the [ANSWER.md](ANSWER.md) file with the commands requested. 
