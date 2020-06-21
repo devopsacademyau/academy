@@ -5,8 +5,7 @@
 1. Is it possible to see the inner commit of squashed commit with `git rebase`?
 
 ```
-If you are trying to see the local commits, then yes. You could use git reflog to retrieve information
-about commits (and basically all the movements of the HEAD) for your device.
+If you are trying to see the local commits, then yes. You could use git reflog to retrieve information about commits (and basically all the movements of the HEAD) for your device.
 
 ```
 
@@ -16,7 +15,7 @@ about commits (and basically all the movements of the HEAD) for your device.
 To compare two different local repositories you can use git diff id1 id2, where id is the hash value (at least the first 4 digits)
 of the commits you are trying to compare.
 
-To compare local repositories, you need add the path to the third argument passed to the git command, i.e.
+To compare local repositories, you need to add the path to the third argument passed to the git command, i.e.
 git diff feernandobraga/c01-git02 origin/master
 In this example, origin/master refers to the repo's remote master branch.
 
