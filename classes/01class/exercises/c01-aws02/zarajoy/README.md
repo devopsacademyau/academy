@@ -6,17 +6,19 @@
 
 https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/create-bucket.html
 ```
-z@bacon:~$ aws s3api create-bucket --bucket zarajoy-aws02-bucket --region ap-southeast-2 --create-bucket-configuration LocationConstraint=ap-southeast-2
+z@baacon:~$ aws s3api create-bucket --bucket zjdoa-bucket --region ap-southeast-2 --create-bucket-configuration LocationConstraint=ap-southeast-2
+
 {
-    "Location": "http://zarajoy-aws02-bucket.s3.amazonaws.com/"
+    "Location": "http://zjdoa-bucket.s3.amazonaws.com/"
 }
-z@bacon:~$ aws s3 cp ./Documents/upload.txt s3://zarajoy-aws02-bucket
 
-upload: Documents/upload.txt to s3://zarajoy-aws02-bucket/upload.txt
+z@bacon:~$ aws s3 cp ./Documents/upload.txt s3://zjdoa-bucket
 
-z@bacon:~$ aws s3 ls zarajoy-aws02-bucket
+upload: Documents/upload.txt to s3://zjdoa-bucket/upload.txt    
+z@bacon:~$ aws s3 ls zjdoa-bucket
 
-2020-06-19 12:53:14         16 upload.txt
+2020-06-21 11:31:01         16 upload.txt
+
 ```
 
 - Commands to allow the EC2 instance to access the files in S3:
@@ -31,31 +33,18 @@ https://aws.amazon.com/blogs/security/organize-your-permissions-by-using-separat
 
 ```
 //create the role-policy-document.json file
-z@bacon:~$ vim assume_role_policy.json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-// to save and exit esc :w +enter :x+enter
+z@bacon:~$ vim assume-role-policy.json
 
-//create IAM role and link policy document created above
-z@bacon:~$ aws iam create-role --role-name access-zarajoy-aws02-bucket --assume-role-policy-document file://assume_role_policy.json
+//create the role
+z@bacon:~$ aws iam create-role --role-name access-zjdoa-bucket --assume-role-policy-document file://assume-role-policy.json
+
 {
     "Role": {
         "Path": "/",
-        "RoleName": "access-zarajoy-aws02-bucket",
-        "RoleId": "AROAXOYORRTGGTDS34HA4",
-        "Arn": "arn:aws:iam::512742231244:role/access-zarajoy-aws02-bucket",
-        "CreateDate": "2020-06-19T04:26:36Z",
+        "RoleName": "access-zjdoa-bucket",
+        "RoleId": "AROAXOYORRTGIACR76FXF",
+        "Arn": "arn:aws:iam::512742231244:role/access-zjdoa-bucket",
+        "CreateDate": "2020-06-21T01:32:39Z",
         "AssumeRolePolicyDocument": {
             "Version": "2012-10-17",
             "Statement": [
@@ -72,24 +61,45 @@ z@bacon:~$ aws iam create-role --role-name access-zarajoy-aws02-bucket --assume-
     }
 }
 
-z@bacon:~$ aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess --role-name access-zarajoy-aws02-bucket
+//waas requested to create my own policy insteaad of using aaws manaaged policy
+z@bacon:~$ vim ROpolicy.json
+//put below into editor aand save - allows listing of objects and fetching of objects to my bucket
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::zjdoa-bucket",
+                "arn:aws:s3:::zjdoa-bucket/*"
+            ]
+        }
+    ]
+}
 
-z@bacon:~$ aws iam create-instance-profile --instance-profile-name access-zarajoy-aws02-bucket-profile 
+//attach newly created policy to my role
+z@bacon:~$ aws iam put-role-policy --role-name access-zjdoa-bucket --policy-name ROpolicy --policy-document file://ROpolicy.json
+
+z@bacon:~$ aws iam create-instance-profile --instance-profile-name ROaccess-zjdoa-bucket
 
 {
     "InstanceProfile": {
         "Path": "/",
-        "InstanceProfileName": "access-zarajoy-aws02-bucket-profile",
-        "InstanceProfileId": "AIPAXOYORRTGKW77SFKKZ",
-        "Arn": "arn:aws:iam::512742231244:instance-profile/access-zarajoy-aws02-bucket-profile",
-        "CreateDate": "2020-06-19T05:07:15Z",
+        "InstanceProfileName": "ROaccess-zjdoa-bucket",
+        "InstanceProfileId": "AIPAXOYORRTGEWRCD3DT6",
+        "Arn": "arn:aws:iam::512742231244:instance-profile/ROaccess-zjdoa-bucket",
+        "CreateDate": "2020-06-21T01:38:37Z",
         "Roles": []
     }
 }
 
-z@bacon:~$ aws iam add-role-to-instance-profile --instance-profile-name access-zarajoy-aws02-bucket-profile --role-name access-zarajoy-aws02-bucket
+z@bacon:~$ aws iam add-role-to-instance-profile --instance-profile-name ROaccess-zjdoa-bucket --role-name access-zjdoa-bucket
 
-//get instance ID
+//get instanceID
 z@bacon:~$ aws ec2 describe-instances --query "Reservations[].Instances[].[InstanceId, PublicIpAddress]"
 
 [
@@ -103,15 +113,14 @@ z@bacon:~$ aws ec2 describe-instances --query "Reservations[].Instances[].[Insta
     ]
 ]
 
-z@bacon:~$ aws ec2 associate-iam-instance-profile --instance-id i-00cb16d60056e7353 --iam-instance-profile Name=access-zarajoy-aws02-bucket-profile
-
+z@bacon:~$ aws ec2 associate-iam-instance-profile --instance-id i-00cb16d60056e7353 --iam-instance-profile Name=ROaccess-zjdoa-bucket
 {
     "IamInstanceProfileAssociation": {
-        "AssociationId": "iip-assoc-022df6c548ed6a91c",
+        "AssociationId": "iip-assoc-0d87a8c4260217f07",
         "InstanceId": "i-00cb16d60056e7353",
         "IamInstanceProfile": {
-            "Arn": "arn:aws:iam::512742231244:instance-profile/access-zarajoy-aws02-bucket-profile",
-            "Id": "AIPAXOYORRTGKW77SFKKZ"
+            "Arn": "arn:aws:iam::512742231244:instance-profile/ROaccess-zjdoa-bucket",
+            "Id": "AIPAXOYORRTGEWRCD3DT6"
         },
         "State": "associating"
     }
@@ -121,24 +130,9 @@ z@bacon:~$ aws ec2 associate-iam-instance-profile --instance-id i-00cb16d60056e7
 
 - Commands to copy the S3 file to a folder inside the instace (executed from inside the EC2 Instance):
 ```
-
-z@bacon:~$ aws ec2 describe-instances --query "Reservations[].Instances[].[InstanceId, PublicIpAddress]"
-
-[
-    [
-        "i-00cb16d60056e7353",
-        "13.239.28.37"
-    ],
-    [
-        "i-01610e356354f203d",
-        null
-    ]
-]
-
-
+//connect to public ec2 (c01-aaws01)
 z@bacon:~$ ssh ec2-user@13.239.28.37
-
-Last login: Thu Jun 18 06:31:00 2020 from 180-150-38-8.b49626.bne.nbn.aussiebb.net
+Last login: Fri Jun 19 05:19:35 2020 from 180-150-38-8.b49626.bne.nbn.aussiebb.net
 
        __|  __|_  )
        _|  (     /   Amazon Linux 2 AMI
@@ -146,9 +140,10 @@ Last login: Thu Jun 18 06:31:00 2020 from 180-150-38-8.b49626.bne.nbn.aussiebb.n
 
 https://aws.amazon.com/amazon-linux-2/
 
-[ec2-user@ip-172-31-36-157 ~]$ aws s3 cp s3://zarajoy-aws02-bucket/upload.txt .
+//try to copy file from the bucket while connected via ec2
+[ec2-user@ip-172-31-36-157 ~]$ aws s3 cp s3://zjdoa-bucket/upload.txt .
+download: s3://zjdoa-bucket/upload.txt to ./upload.txt           
 
-download: s3://zarajoy-aws02-bucket/upload.txt to ./upload.txt   
 ```
 
 - Add a brief description of the challenges you faced:
