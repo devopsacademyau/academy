@@ -1,5 +1,4 @@
-﻿
-# C01-AWS02
+﻿# C01-AWS02
 
 ## Commands Execution Output
 
@@ -21,9 +20,21 @@ total 8
 ```
 
 - Commands to allow the EC2 instance to access the files in S3:
-```
+ 
+**JSON**
 
-*I`ve used the console to create the role.(Ec2ReadyOnlyToS3)*
+     {  "Version":  "2012-10-17",  "Statement":  [  {  "Effect":  "Allow",  "Principal":  {  "Service":  "ec2.amazonaws.com"  },  "Action":  "sts:AssumeRole"  }  ]  }
+
+```
+Create role:
+
+$aws iam create-role --role-name Ec2ReadyOnlyToS3 --assume-role-policy-document file://fileabove.json 
+
+Attach Role Policy
+
+$aws iam attach-role-policy --role-name Ec2ReadyOnlyToS3 --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+
+Instance Profile
 
 aws iam create-instance-profile --instance-profile-name Ec2ReadyOnlyToS3InstanceProfile
 
