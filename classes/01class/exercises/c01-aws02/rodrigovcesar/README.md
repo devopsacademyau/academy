@@ -89,14 +89,13 @@ aws ec2 describe-instances --query "Reservations[].Instances[].[InstanceId, Publ
     ]
 ]
 
-# In my case I want to link this instance profile with the private EC2, which does not have the public IP.
 
 
-aws ec2 associate-iam-instance-profile --instance-id i-0c0dcd57c54d427e9 --iam-instance-profile Name="read-bucket-ec2"
+aws ec2 associate-iam-instance-profile --instance-id i-02f593918dfdbae4c --iam-instance-profile Name="read-bucket-ec2"
 {
     "IamInstanceProfileAssociation": {
-        "AssociationId": "iip-assoc-0176d3bec4acb79c4",
-        "InstanceId": "i-0c0dcd57c54d427e9",
+        "AssociationId": "iip-assoc-0e14ce95a0b136103",
+        "InstanceId": "i-02f593918dfdbae4c",
         "IamInstanceProfile": {
             "Arn": "arn:aws:iam::102825027349:instance-profile/read-bucket-ec2",
             "Id": "AIPARP4GZM4KYXBAOE6X3"
@@ -111,12 +110,36 @@ aws ec2 associate-iam-instance-profile --instance-id i-0c0dcd57c54d427e9 --iam-i
 
 - Commands to copy the S3 file to a folder inside the instace (executed from inside the EC2 Instance):
 ```
-Add your commands and their outputs here
+ssh -A ec2-user@13.236.162.87
+Last login: Sun Jun 21 04:33:20 2020 from 122-150-73-147.sta.wbroadband.net.au
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+4 package(s) needed for security, out of 10 available
+Run "sudo yum update" to apply all updates.
+
+[ec2-user@ip-172-31-32-150 ~]$ aws s3 ls s3://devopsacademy-rodrigo
+2020-06-20 08:14:27         29 file_for_s3.txt
+
+[ec2-user@ip-172-31-32-150 ~]$ mkdir S3Test
+
+[ec2-user@ip-172-31-32-150 ~]$ aws s3 cp s3://devopsacademy-rodrigo/file_for_s3.txt ./S3Test/file_for_s3.txt
+download: s3://devopsacademy-rodrigo/file_for_s3.txt to S3Test/file_for_s3.txt
+
+[ec2-user@ip-172-31-32-150 ~]$ cat ./S3Test/file_for_s3.txt
+Content of the file for test
+
+
 ```
 
 - Add a brief description of the challenges you faced:
 ```
-Add comments here
+The creation for the bucket was fine, but my first challenge was about the Role, because I was trying to understand what was the difference with a User. From what I saw, they are similar, except the first one is to exactly assign for services such as EC2.
+
+On my second challenge, I was trying to get the S3 file in the private instance, but I had a timeout connection. I even saw one tutorial talking about it, but since we are going to have a class about networks soon, I decided to switch to the public instance for this exercise.  
 ```
 
 
