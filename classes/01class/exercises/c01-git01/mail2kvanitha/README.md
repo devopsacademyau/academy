@@ -2,25 +2,25 @@
 
 ## Commands executed
 
-1. Commands typed to solve the "Merging" exercise
+Commands typed to solve the "Merging" exercise
 git checkout master
-git merge <branch-name>
-git checkout <branch-name>
+git merge branch-name
+git checkout branch-name
 git merge master
 
 ```
 
-2. Commands typed to solve the "Rebasing" exercise
+Commands typed to solve the "Rebasing" exercise
 git checkout -b branch-name
 git commit
 git checkout master
 git commit
-git checkout <branch_name>
+git checkout branch_name
 git rebase master 
 
 ```
 
-3. Commands typed to solve the "Revert and reset" exercise
+Commands typed to solve the "Revert and reset" exercise
 git reset master
 git checkout pushed
 git revert pushed
