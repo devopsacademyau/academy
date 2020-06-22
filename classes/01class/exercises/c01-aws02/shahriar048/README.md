@@ -134,7 +134,7 @@ download: s3://my-unique-bucket-048/myFile.txt to ./myFileEC2.txt
 The main challenge was to understand the concepts of roles, policies, instance profiles and how they fit in all together to get the job done, i.e. creating the necessary access rights in this case. Another interesting learning experience is how the policies are declared in the form of JSON. 
 ```
 
-<!-- Don't change anything below this point-->
-<!-- Before commiting, remove both commented lines--> 
+
+
 ***
 Answer for exercise [c01-aws02](https://github.com/devopsacademyau/academy/blob/635775538e8ad7793b305f48064b09e23c626fb7/classes/01class/exercises/c01-aws02/README.md)
