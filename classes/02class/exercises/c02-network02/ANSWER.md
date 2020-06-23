@@ -4,21 +4,21 @@
 
 - Answers for `10.0.0.0/16`:
 
-|Network|Host Range|Usable Hosts|Broadcast|AWS Reserved|
-|-|-|-|-|-|
-|
-|
-|
-|
+|Subnet|Network|Host Range|Usable Hosts|Broadcast|AWS Reserved|
+|-|-|-|-|-|-|
+|subnet-a| | | | |
+|subnet-b| | | | |
+|subnet-c| | | | |
+|subnet-d| | | | |
 
 - Answers for `192.168.0.0/24`:
 
-|Network|Host Range|Usable Hosts|Broadcast|AWS Reserved|
-|-|-|-|-|-|
-|
-|
-|
-|
+|Subnet|Network|Host Range|Usable Hosts|Broadcast|AWS Reserved|
+|-|-|-|-|-|-|
+|subnet-a| | | | |
+|subnet-b| | | | |
+|subnet-c| | | | |
+|subnet-d| | | | |
 
 <!-- Don't change anything below this point-->
 ***

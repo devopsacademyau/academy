@@ -34,3 +34,9 @@ Add the following routes to your new route tables:
 - What is the difference of IGW and NGW?
 - Can you delete the destination route to your VPC network? Why?
 - What happens if you do not associate your route table with any subnets?
+
+## Submit a PR with the following files
+
+> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)s
+
+- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing your answers.

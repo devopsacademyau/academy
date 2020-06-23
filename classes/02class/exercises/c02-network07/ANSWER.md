@@ -25,11 +25,34 @@ Add your commands and their outputs here
 
 - Answer the following questions:
   - How did you accomplish both instructions?
+    ```
+    Add your answer here
+    ```
+
   - Why did you add 0.0.0.0 route to the IGW on public route table?
+    ```
+    Add your answer here
+    ```
+
   - Why did you add 0.0.0.0 route to the NGW on private route table?
+    ```
+    Add your answer here
+    ```
+    
   - What is the difference of IGW and NGW?
+    ```
+    Add your answer here
+    ```
+    
   - Can you delete the destination route to your VPC network? Why?
+    ```
+    Add your answer here
+    ```
+    
   - What happens if you do not associate your route table with any subnets?
+    ```
+    Add your answer here
+    ```
 
 
 - Any extra challenges faced?

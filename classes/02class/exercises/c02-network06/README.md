@@ -9,3 +9,9 @@ Be aware that NAT Gateway is out of the free-tier. If you just use it while you 
 Create a NAT Gateway called `devopsacademy-ngw` and attach it to one of your public subnets (any) with an Elastic IP. 
 
 #### DO NOT FORGET TO DELETE YOUR RESOURCES ONCE YOU FINISH
+
+## Submit a PR with the following files
+
+> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)s
+
+- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing your answers.

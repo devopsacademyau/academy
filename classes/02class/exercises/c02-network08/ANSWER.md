@@ -4,7 +4,15 @@
 
 - Answer the following questions
   - What is the difference between inbound x outbound?
+    ```
+    Add your answer here
+    ```
+    
   - What is going to happen by default? Everything allowed or denied?
+    ```
+    Add your answer here
+    ```
+    
 
 - Commands for creating a NACL to block SSH connection comming from the network `172.16.200.0/24`?
 
@@ -19,7 +27,6 @@ Add your commands and their outputs here
 ```
 
 - Any extra challenges faced?
-
 
 <!-- Don't change anything below this point-->
 ***

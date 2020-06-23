@@ -10,3 +10,9 @@ Create 2 subnets (private and public) per Availability Zone (6 subnets in total)
 - VPC: use the VPC created on last exercise
 - AZ: refer to the name -- e.g.: subnet `private-a` will be `Availability Zone A` `ap-southeast-2a`
 - IPv4 CIDR: make it room for at least 250 hosts
+
+## Submit a PR with the following files
+
+> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)s
+
+- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing your answers.

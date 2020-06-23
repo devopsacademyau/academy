@@ -26,5 +26,8 @@ However this time, use your custom created subnets instead of the AWS default on
 
 You can leave the vpc, subnets, route tables, internet gateway, network acl
 
+## Submit a PR with the following files
 
+> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)s
 
+- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing your answers.
