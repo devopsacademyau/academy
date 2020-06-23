@@ -30,8 +30,8 @@
         
 ```
 Add your commands and their outputs here
-Please see above for comamnds and their outputs.
 ```
+Please see above for comamnds and their outputs.
 
 - Commands to allow the EC2 instance to access the files in S3:
 1. CREATE JSON file policy document that grants read access to EC2 instance to access S3
@@ -153,6 +153,7 @@ Add your commands and their outputs here
 - Commands to copy the S3 file to a folder inside the instace (executed from inside the EC2 Instance):
 ```
 Add your commands and their outputs here
+```
 192-168-1-106:S3ReadOnly vanithak$ aws s3 ls s3://mail2kvanitha
 2020-06-20 11:49:56         18 test.txt
 192-168-1-106:S3ReadOnly vanithak$ aws s3 cp s3://mail2kvanitha/test.txt .
@@ -161,13 +162,13 @@ download: s3://mail2kvanitha/test.txt to ./test.txt
 -rw-r--r--  1 vanithak  staff  18 20 Jun 11:49 test.txt
 192-168-1-106:S3ReadOnly vanithak$ 
 
-```
+
 
 - Add a brief description of the challenges you faced:
 ```
 Add comments here
 ```
-
+Granting access through AWS console is easier than doing it through command line. The steps to follow to get access from ec2 instance to S3 is so long and requires more understanding.
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
