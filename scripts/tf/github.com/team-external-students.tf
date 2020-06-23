@@ -27,6 +27,10 @@ module "team-external-students" {
     {
       name: "roperto",
       role: "member"
+    },
+    {
+      name: "ramiray",
+      role: "member"
     }
   ]
 }
