@@ -18,6 +18,16 @@
 
 > You are able to remove anything from git history, but it depends on what you want. On this case with the big file from previous exercise.
 
+Assuming that we want just to fix last commit:
+
+```
+git rebase -i
+
+```
+
+After that, you will be able to choose which commit to you want or change.
+Otherwise, You will need to (rewriting history) - file need to be just in the last commit.
+
 ```
 git rm --cached file.txt
 git commit --amend -CHEAD --allow-empty
@@ -47,6 +57,7 @@ Parameters:
 4. What are the consequences of the previous action?
 
 > Those commands remove the file from local repository on your computer and github, we need to pay attention when run any of those commands. It will affect everybody working on this remote repository. Is recommended that all opened PR must be closed before do that.
+> Another way is just perform a rebase command in the branch if you do not want rewriting the whole history.
 
 ---
 
