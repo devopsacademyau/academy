@@ -1,7 +1,5 @@
 # AWS VPC + subnets
 
-Commit all your answers to a text file `c02-network11.txt` under your folder name.
-
 Everything is to be done preferable on Sydney region `ap-southeast-2`
 
 ## EC2
@@ -19,8 +17,6 @@ Repeat exercise from last class where you have to:
 
 However this time, use your custom created subnets instead of the AWS default ones.
 
-#### post if you had to do any troubleshooting or if that worked straight away
-
 
 #### DO NOT FORGET TO DELETE YOUR RESOURCES ONCE YOU FINISH:
 
@@ -30,5 +26,8 @@ However this time, use your custom created subnets instead of the AWS default on
 
 You can leave the vpc, subnets, route tables, internet gateway, network acl
 
+## Submit a PR with the following files
 
+> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)s
 
+- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing your answers.
