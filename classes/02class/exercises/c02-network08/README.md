@@ -1,7 +1,5 @@
 # AWS VPC + subnets
 
-Commit all your answers to a text file `c02-network08.txt` under your folder name.
-
 Everything is to be done preferable on Sydney region `ap-southeast-2`
 
 ## Network ACL (NACL's)

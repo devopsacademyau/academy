@@ -1,7 +1,5 @@
 # AWS VPC + subnets
 
-Commit all your answers to a text file `c02-network11.txt` under your folder name.
-
 Everything is to be done preferable on Sydney region `ap-southeast-2`
 
 ## EC2
@@ -18,8 +16,6 @@ Repeat exercise from last class where you have to:
 - from the PRIVATE instance, try to ping 8.8.8.8 to check internet connection through NATGW
 
 However this time, use your custom created subnets instead of the AWS default ones.
-
-#### post if you had to do any troubleshooting or if that worked straight away
 
 
 #### DO NOT FORGET TO DELETE YOUR RESOURCES ONCE YOU FINISH:

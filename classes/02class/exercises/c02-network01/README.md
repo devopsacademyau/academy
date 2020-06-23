@@ -1,8 +1,5 @@
 # IP Addressing
 
-Commit all your answers to a text file `c02-network01.txt` under your folder name.
-
-
 ### For each given an IPv4 address and network prefix (CIDR), please determine:
 
 - IP in binary

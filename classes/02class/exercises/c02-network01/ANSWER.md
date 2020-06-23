@@ -44,4 +44,4 @@ hosts: ``
 
 <!-- Don't change anything below this point-->
 ***
-Answer for exercise [c02-network01](https://github.com/devopsacademyau/academy/blob/2c681013824a95a86aa9c311b63878f0cebc6602/classes/02class/README.md)
+Answer for exercise [c02-network01](https://github.com/devopsacademyau/academy/blob/eecbfa22b853daf8020a2f50f7b24393bbe316ba/classes/02class/exercises/c02-network01/README.md)

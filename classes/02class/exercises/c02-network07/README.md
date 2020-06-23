@@ -1,7 +1,5 @@
 # AWS VPC + subnets
 
-Commit all your answers to a text file `c02-network07.txt` under your folder name.
-
 Everything is to be done preferable on Sydney region `ap-southeast-2`
 
 ## Route Table (rt)
@@ -11,9 +9,6 @@ Create the above route tables and associate with referred subnets:
 |route table|subnet|
 |devopsacademy-rt-public|all public subnets|
 |devopsacademy-rt-private|all private subnets|
-
-#### Post how did you accomplish that on AWS console.
-
 
 ## Routes
 
