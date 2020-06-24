@@ -12,10 +12,12 @@ module "team-external-students" {
       name: "carloshz4",
       role: "member"
     },
+   
     {
       name: "ebeserra"
       role: "member"
     },
+   
     {
       name: "maladham80",
       role: "member"
