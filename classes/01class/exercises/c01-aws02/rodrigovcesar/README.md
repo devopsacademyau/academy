@@ -51,12 +51,20 @@ aws iam create-role --role-name EC2S3Role --assume-role-policy-document=file://r
 
 cat restrictedS3Policy.json 
 {
-  "Version": "2012-10-17",
-  "Statement": {
-    "Effect": "Allow",
-    "Action": "s3:ListBucket",
-    "Resource": "arn:aws:s3:::devopsacademy-rodrigo"
-  }
+    "Version": "2012-10-17",
+    "Statement": [
+        {            
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::devopsacademy-rodrigo/*",
+                "arn:aws:s3:::devopsacademy-rodrigo"
+            ]
+        }
+    ]
 }
 
 
