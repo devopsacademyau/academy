@@ -4,6 +4,7 @@ For instructions on how to submit your work, [please check the main repository R
 
 ## Networking
 
+- [IAM and CLI](/classes/02class/exercises/c04-iam01/README.md)
 - [IP Addressing](/classes/02class/exercises/c02-network01/README.md)
 - [Subnetting](/classes/02class/exercises/c02-network02/README.md)
 - [AWS VPC + subnets - VPC](/classes/02class/exercises/c02-network03/README.md)
