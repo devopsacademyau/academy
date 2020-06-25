@@ -3,15 +3,15 @@
 ## Commands Execution Output
 
 - Commands to create the S3 Bucket and to copy the file to the bucket:
-#1. TO CREATE BUCKET: 
+# 1. TO CREATE BUCKET: 
    > aws s3 mb s3://mail2kvanitha --region ap-southeast-2
         make_bucket: mail2kvanitha
 
-#2. LIST BUSCKET
+# 2. LIST BUSCKET
    > aws s3 ls
         2020-06-20 11:32:52 mail2kvanitha
 
-#3. COPY FILE TO BUCKET:
+# 3. COPY FILE TO BUCKET:
    > echo "Welcome to AWS S3" > test.txt 
    > aws s3 cp test.txt s3://mail2kvanitha/
         upload: ./test.txt to s3://mail2kvanitha/test.txt                
@@ -25,7 +25,7 @@ Add your commands and their outputs here
 Please see above for comamnds and their outputs.
 
 - Commands to allow the EC2 instance to access the files in S3:
-#1. CREATE JSON file policy document that grants read access to EC2 instance to access S3
+# 1. CREATE JSON file policy document that grants read access to EC2 instance to access S3
   > more ec2tos3-read-role.json 
      {
        "Version": "2012-10-17",
