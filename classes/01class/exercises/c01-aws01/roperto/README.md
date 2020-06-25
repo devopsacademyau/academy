@@ -54,7 +54,6 @@ EC2_PRIVATE=$(aws ec2 run-instances \
         --instance-type t2.nano \
         --key-name "$KEY_NAME" \
         --security-group-ids "$PRIVATE_SECURITY_GROUP" \
-        --associate-public-ip-address \
         --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=cli-private-test}]' \
         --query 'Instances[*].InstanceId' --output text)
 EC2_PRIVATE_IP=$(aws ec2 describe-instances --instance-ids "$EC2_PRIVATE" --query 'Reservations[-1].Instances[-1].PrivateIpAddress' --output text)
