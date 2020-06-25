@@ -5,8 +5,12 @@ module "team-reviewers" {
   group_name          = "reviewers"
   members             = [
     {
+      name: "deniseddi",
+      role: "member"
+    },
+    {
       name: "starkmatt",
       role: "member"
-    }
+    },
   ]
 }
