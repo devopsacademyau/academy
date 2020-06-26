@@ -1,20 +1,11 @@
 module "team-instructors" {
   source              = "./da-teams"
-  github_token        = var.github_token
-  github_organization = var.github_organization
   group_name          = "instructors"
+  group_role          = "maintainer"
   members             = [
-    {
-      name: "caiocezart",
-      role: "maintainer"
-    },
-    {
-      name: "denstorti",
-      role: "maintainer"
-    },
-    {
-      name: "kikobr82",
-      role: "maintainer"
-    }
+    "caiocezart",
+    "denstorti",
+    "kikobr82",
+    "omarst9"
   ]
 }
