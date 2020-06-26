@@ -3,9 +3,7 @@
 ## Commands Execution Output
 
 - Commands for creating a new VPC:
-```
-Add your commands and their outputs here
-```
+
 >  aws ec2 create-vpc --cidr-block 10.10.0.0/16 --no-amazon-provided-ipv6-cidr-block
 
      {
