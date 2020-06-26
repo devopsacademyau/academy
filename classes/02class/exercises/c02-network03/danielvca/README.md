@@ -26,6 +26,8 @@ VpcId: vpc-0c2c93451cdd28192
 Had to run another command to name the VPC aws ec2 create-tags
 --resources vpc-0c2c93451cdd28192 --tags Key=Name,Value=devopsacademy-vpc
 ```
+[https://cloudaffaire.com/how-to-create-a-custom-vpc-using-aws-cli/](https://cloudaffaire.com/how-to-create-a-custom-vpc-using-aws-cli/)
+
 <!-- Don't change anything below this point-->
 ***
 Answer for exercise [c02-network03](https://github.com/devopsacademyau/academy/blob/893381c6f0b69434d9e8597d3d4b1c17f9bc1371/classes/02class/exercises/c02-network03/README.md)
