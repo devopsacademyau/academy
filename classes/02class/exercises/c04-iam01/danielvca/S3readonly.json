@@ -7,7 +7,7 @@
                 "s3:Get*",
                 "s3:List*"
             ],
-            "Resource": "*"
+            "Resource": ["arn:aws:s3:::devopsacademydaniel"]
         }
     ]
 }
