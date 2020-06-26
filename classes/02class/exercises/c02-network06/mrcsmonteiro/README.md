@@ -49,5 +49,36 @@ aws ec2 create-nat-gateway \
     --allocation-id eipalloc-064d879b3be84c839 \
     --tag-specifications ResourceType=natgateway,Tags=[{Key=Name,Value=devopsacademy-ngw}]
 
+UPDATE: Tag-on-create works using single quotes:
+
+aws ec2 create-nat-gateway \
+    --subnet-id subnet-012cc488da2a78bcd \
+    --allocation-id eipalloc-0415c38ba25aa7fee \
+    --tag-specifications 'ResourceType=natgateway,Tags=[{Key=Name,Value=devopsacademy-ngw}]'
+
+{
+    "ClientToken": "fb9a682c-dbbd-4527-a720-584b18e0807d",
+    "NatGateway": {
+        "CreateTime": "2020-06-26T17:51:16+00:00",
+        "NatGatewayAddresses": [
+            {
+                "AllocationId": "eipalloc-0415c38ba25aa7fee"
+            }
+        ],
+        "NatGatewayId": "nat-066f1e749b6091775",
+        "State": "pending",
+        "SubnetId": "subnet-012cc488da2a78bcd",
+        "VpcId": "vpc-0721e28436cea8410",
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "devopsacademy-ngw"
+            }
+        ]
+    }
+}
+
+Thanks Kiko!
+
 ***
 Answer for exercise [c02-network06](https://github.com/devopsacademyau/academy/blob/893381c6f0b69434d9e8597d3d4b1c17f9bc1371/classes/02class/exercises/c02-network06/README.md)
