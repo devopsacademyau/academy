@@ -18,7 +18,7 @@ Add your commands and their outputs here
          }
      }
 
-#Attach Internet Gateway to Devopsacademy-vpc VPC:
+# Attach Internet Gateway to Devopsacademy-vpc VPC:
 
 > aws ec2 attach-internet-gateway --internet-gateway-id igw-0d2c772e61b970c7e --vpc-id vpc-0d4cd22a6e87c698a
 
