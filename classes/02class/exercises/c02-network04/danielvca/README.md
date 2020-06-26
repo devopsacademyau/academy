@@ -200,6 +200,9 @@ aws ec2 associate-route-table  \
 --route-table-id rtb-0117d88753e0834e8
 
 ```
+
+![enter image description here](https://danielandrade.info/contino/awsnetwork.png)
+
 Reference:
 [https://cloudaffaire.com/how-to-create-a-custom-vpc-using-aws-cli/](https://cloudaffaire.com/how-to-create-a-custom-vpc-using-aws-cli/)
 
