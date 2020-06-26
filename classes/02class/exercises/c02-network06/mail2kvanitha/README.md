@@ -16,14 +16,6 @@
          "Domain": "vpc"
      }
 
-# ASSOCIATE IP WITH NETWORK INTERFACE OR INSTANCE ID
-
-> aws ec2 associate-address --network-interface-id eni-0afa47fab318b4a0a --allocation-id eipalloc-0fdc3348a65a44a19
-
-     {
-         "AssociationId": "eipassoc-0d9af7544dfb6f50c"
-     }
-
 # CREATE NAT GATEWAY BY ASSIGNING PUBLIC SUBNET TO NAT Gateway
 
 > aws ec2 create-nat-gateway --subnet-id subnet-0ccb8adf5a16bde13 --allocation-id eipalloc-0fdc3348a65a44a19
@@ -52,33 +44,32 @@
 
 > aws ec2 describe-nat-gateways
 
-     {
-         "NatGateways": [
-             {
-                 "CreateTime": "2020-06-26T12:05:25+00:00",
-                 "DeleteTime": "2020-06-26T12:07:07+00:00",
-                 "FailureCode": "Resource.AlreadyAssociated",
-                 "FailureMessage": "Elastic IP address [eipalloc-0fdc3348a65a44a19] is already associated",
-                 "NatGatewayAddresses": [
-                     {
-                         "AllocationId": "eipalloc-0fdc3348a65a44a19",
-                         "NetworkInterfaceId": "eni-0259b3c67bb25a389",
-                         "PrivateIp": "10.10.11.178"
-                     }
-                 ],
-                 "NatGatewayId": "nat-07e99502bd3b011b7",
-                 "State": "pending",
-                 "SubnetId": "subnet-0ccb8adf5a16bde13",
-                 "VpcId": "vpc-0d4cd22a6e87c698a",
-                 "Tags": [
-                    {
-                         "Key": "Name",
-                         "Value": "devopsacademy-ngw"
-                     }
-                 ]
-             }
-         ]
-      }
+    {
+      "NatGateways": [
+        {
+            "CreateTime": "2020-06-26T15:35:21+00:00",
+            "NatGatewayAddresses": [
+                {
+                    "AllocationId": "eipalloc-0fdc3348a65a44a19",
+                    "NetworkInterfaceId": "eni-086b286ac51ce8bde",
+                    "PrivateIp": "10.10.11.85",
+                    "PublicIp": "52.65.114.229"
+                }
+            ],
+            "NatGatewayId": "nat-07e99502bd3b011b7",
+            "State": "available",
+            "SubnetId": "subnet-0ccb8adf5a16bde13",
+            "VpcId": "vpc-0d4cd22a6e87c698a",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "devopsacademy-ngw"
+                }
+            ]
+          }
+       ]
+     }
+
 
 > aws ec2 describe-subnets --subnet-id subnet-0ccb8adf5a16bde13
 
