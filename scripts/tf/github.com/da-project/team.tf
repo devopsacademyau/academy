@@ -1,6 +1,7 @@
 resource "github_team" "team" {
   name    = var.group_name
   privacy = "closed"
+  parent_team_id = var.parent_team_id == "" ? null : var.parent_team_id
 }
 
 resource "github_team_membership" "member" {

@@ -1,0 +1,9 @@
+version: '3'
+services:
+  c05_3m01:
+    build: .
+    working_dir: /code
+    env_file: .env
+    volumes:
+      - ~/.aws/credentials:/root/.aws/credentials
+      - .:/code

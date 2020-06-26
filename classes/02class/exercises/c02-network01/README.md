@@ -1,9 +1,6 @@
 # IP Addressing
 
-Commit all your answers to a text file `c02-network01.txt` under your folder name.
-
-
-### For each given an IPv4 address and network prefix (CIDR), please determine:
+### For each given IPv4 address and network prefix (CIDR), please determine:
 
 - IP in binary
 - subnet in binary
@@ -24,3 +21,9 @@ hosts: `251`
 - 249.165.166.135/30
 - 236.68.223.18/32
 - 172.31.0.0/16
+
+## Submit a PR with the following files
+
+> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)s
+
+- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing your answers.

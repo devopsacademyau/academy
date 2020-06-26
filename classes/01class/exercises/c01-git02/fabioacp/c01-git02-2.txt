@@ -1,0 +1,13 @@
+2. How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
+I am not sure if we can compare "two different local repositories" using `git diff` but we can compare branches, files and commits within a local and tracked remote repository.
+
+Comparing branches:
+- local 
+`git diff <local branch1>..<local branch2>`
+This example introduces the dot operator. The two dots in this example indicate the diff input is the tips of both branches. The same effect happens if the dots are omitted and a space is used between the branches. Additionally, there is a three dot operator:
+
+`git diff <local branch1>...<local branch2>`
+The three dot operator initiates the diff by changing the first input parameter branch1. It changes branch1 into a ref of the shared common ancestor commit between the two diff inputs, the shared ancestor of branch1 and other-feature-branch. The last parameter input parameter remains unchanged as the tip of other-feature-branch.
+
+- remote
+git diff <local branch> <remote>/<remote branch>

@@ -23,11 +23,11 @@ resource "github_team_repository" "playground-instructors_access" {
   permission = "admin"
 }
 
-resource "github_team_repository" "playground-students_access" {
-  team_id    = module.team-students.team_id
-  repository = github_repository.playground-repository.name
-  permission = "admin"
-}
+# resource "github_team_repository" "playground-students_access" {
+#   team_id    = module.team-students.team_id
+#   repository = github_repository.playground-repository.name
+#   permission = "admin"
+# }
 
 resource "github_repository_file" "playground-README" {
   repository = github_repository.playground-repository.name

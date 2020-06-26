@@ -2,4 +2,5 @@
 
 ## Agenda
 
- WIP
+ - [KMS](kms/README.md)
+ - [SSM](ssm/README.md)

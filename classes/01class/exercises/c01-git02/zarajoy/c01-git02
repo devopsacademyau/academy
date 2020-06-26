@@ -1,0 +1,25 @@
+1. Is it possible to see the inner commit of squashed commit with `git rebase`?
+```
+yes - the git reflog command will show all actions within git (as long as the entries are not wiped / expired?) including commits squashed with a rebase.
+
+git reflog
+
+```
+
+2. How to compare two different local repositories using `git diff`? How about remote ones, can you do the same?
+```
+git-diff commands shows changes between commits, commit and working tree, etc.
+
+for comparing between two different local repos;
+git diff [--no-index] <pathtobranch1> <pathtobranch2>
+
+for comparing a remote repo;
+git diff <remote>/<remote branch> <local branch>
+
+
+```
+
+<!-- Don't change anything below this point-->
+<!-- Before commiting, remove both commented lines--> 
+***
+Answer for exercise [c01-git02](https://github.com/devopsacademyau/academy/blob/c54d252bda58575e9dc9f92718237bed58aae772/classes/01class/exercises/c01-git02/README.md)

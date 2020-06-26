@@ -1,0 +1,10 @@
+## uname
+MINGW64_NT-10.0 RIOJA 2.9.0(0.318/5/3) 2018-01-12 23:37 x86_64 Msys
+## git 
+git version 2.16.1.windows.4
+## docker 
+Docker version 19.03.5, build 633a0ea
+## terraform 
+Terraform v0.12.25
+## aws 
+aws-cli/2.0.16 Python/3.7.7 Windows/10 botocore/2.0.0dev20
