@@ -9,11 +9,9 @@
    The reason for that is the command that I executed only pointed the HEAD to a previous position within the git history, but since git keeps a log/history of all my changes, the file was kept so I could also point my HEAD back to the position where/when the file existed, in case I wanted to revert my previous "git reset --hard HEAD^" action.
 
 3. How do you remove something from Git history after it is pushed to the remote repository? Which commands would you use?
-   To remove something from Git history, we need to re-write all commits starting from when the object(file.txt) we want to remove was added.
-   To do so, we use the following command:
-   git filter-branch --index-filter 'git rm --cached --ignore-unmatch file.txt' HEAD
-   After that, we force the update to the remote via: git push --force
-   A more extreme approach would be deleting the .git directory from the local repository (rm -rf .git), re-create it (git init; git add -A; git commit -m "Initial commit") and force push it to the remote repository
+
+   You could perform this task by using git filter-repo.
+   The command would be: git filter-repo --force --path file.txt --invert-paths
 
 4. What are the consequences of the previous action?
    As a consequence, the command changes the commits starting from when/where the file was added, and therefore, all developers that are working on the same project, will have to pull the changes. Another consequence is that there's no way to roll-back this operation. The file is gone for good.
