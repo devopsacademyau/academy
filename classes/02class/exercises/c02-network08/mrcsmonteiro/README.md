@@ -10,9 +10,9 @@
     
   - What is going to happen by default? Everything allowed or denied?
     ```
-    NACLs allow inbound and outbound traffic by default.
+    * VPCs come automatically with modifiable NACLs that allow all inbound and outbound traffic by default.
+    * Custom NACLs deny all inbound and outbound traffic by default, unless specific rules are added.
     ```
-    
 
 - Commands for creating a NACL to block SSH connection comming from the network `172.16.200.0/24`?
 
