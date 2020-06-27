@@ -5,11 +5,11 @@
 - Commands for creating a new VPC:
 ```bash
 #Create VPC without IPv6, with tenancy default
-aws ec2 create-vpc --cidr-block 172.16.0.0/16 --no-amazon-provided-ipv6-cidr-block --instance-tenancy default
+`aws ec2 create-vpc --cidr-block 172.16.0.0/16 --no-amazon-provided-ipv6-cidr-block --instance-tenancy default'
 #Tag VPC with Name: devopsacademy-vpc
-aws ec2 create-tags --tags Key=Name,Value=devopsacademy-vpc --resources vpc-0a2b7db4956438d22
+'aws ec2 create-tags --tags Key=Name,Value=devopsacademy-vpc --resources vpc-0a2b7db4956438d22'
 #Check the VPC
-aws ec2 describe-vpcs --vpc-id vpc-0a2b7db4956438d22
+'aws ec2 describe-vpcs --vpc-id vpc-0a2b7db4956438d22'
 ```
 
 Add your commands and their outputs here
@@ -74,7 +74,8 @@ Add your commands and their outputs here
 ```
 
 - Any extra challenges faced?
-First challenge was to find how to name a VPC using AWS CLI. After I realized you need to use tags, I fouind there is no option to create and name the VPC in one go.
+
+`First challenge was to find how to name a VPC using AWS CLI. After I realized you need to use tags, I found there is no option to create and name the VPC in one go.`
 
 
 <!-- Don't change anything below this point-->
