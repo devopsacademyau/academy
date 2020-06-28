@@ -45,6 +45,10 @@
         }
     }
 
+## give the ENI a name
+> aws ec2 create-tags \
+    --resources eni-026389c444ebacbb6 \
+    --tags Key=Name,Value=devopsacademy-ENI
 ```
 
 - Any extra challenges faced?
