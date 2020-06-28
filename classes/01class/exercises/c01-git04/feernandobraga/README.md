@@ -23,19 +23,19 @@ This still not enough as anyone with access to the remote repository can retriev
 4. How to fix this? How do you remove something from Git history when it is in the remote repository?
 
 ```
-We fix this in the same way we took care of the large text file in the previous exercise. We do it through git filter-branch, which will alter all commits where the my_env.txt file appears.
+We can fix this by using git filter-repo
 ```
 
 5. Which commands would you use? Explain what the command does.
 
 ```
 The command I would use is:
-git filter-branch --force --index-filter "git rm --cached --ignore-unmatch my_env.txt" --prune-empty --tag-name-filter cat -- --all
+git filter-repo --path "my_env.txt" --invert-paths
 
 Then:
 git push --force
 
-The two commands above will erase the history of commits where the file my_env.txt is contained including the staging area. Next, it forces an update to the remote repository
+The two commands above will erase the history of commits where the file my_env.txt is contained. Next, it forces an update to the remote repository
 ```
 
 ---
