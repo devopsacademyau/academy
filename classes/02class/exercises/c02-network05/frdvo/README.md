@@ -4,19 +4,8 @@
 
 - Commands for creating the internet gateway:
 ```
-#Create Internet Gateway
-aws ec2 create-internet-gateway
+$ aws ec2 create-internet-gateway
 
-#Tag Internet Gateway
-aws ec2 create-tags --resources igw-0116304685cc6f00b --tags Key=Name,Value=devopsacademy-igw
-
-#Attach Internet Gateway
-aws ec2 attach-internet-gateway --internet-gateway-id igw-0116304685cc6f00b --vpc-id vpc-0a2b7db4956438d22
-```
-Add your commands and their outputs here
-```bash
- 🐳 :: 📦 2  📑 :: 1   👉 /home/fer/repos/academy/classes/02class/exercises/c02-network05  
-  frdvo/c02-network05  fer 🐧  >  aws ec2 create-internet-gateway
 {
     "InternetGateway": {
         "Attachments": [],
@@ -24,12 +13,34 @@ Add your commands and their outputs here
         "Tags": []
     }
 }
- 🐳 :: 📦 2  📑 :: 1   👉 /home/fer/repos/academy/classes/02class/exercises/c02-network05  
-  frdvo/c02-network05  fer 🐧  >  aws ec2 create-tags --resources igw-0116304685cc6f00b --tags Key=Name,Value=devopsacademy-igw
- 🐳 :: 📦 2  📑 :: 1   👉 /home/fer/repos/academy/classes/02class/exercises/c02-network05  
-  frdvo/c02-network05  fer 🐧  >  aws ec2 attach-internet-gateway --internet-gateway-id igw-0116304685cc6f00b --vpc-id vpc-0a2b7db4956438d22
- 🐳 :: 📦 2  📑 :: 1   👉 /home/fer/repos/academy/classes/02class/exercises/c02-network05  
-  frdvo/c02-network05  fer 🐧  >  
+
+$ frdvo/c02-network05  fer 🐧  >  aws ec2 create-tags --resources igw-0116304685cc6f00b --tags Key=Name,Value=devopsacademy-igw
+
+$ aws ec2 attach-internet-gateway --internet-gateway-id igw-0116304685cc6f00b --vpc-id vpc-0a2b7db4956438d22
+
+$ aws ec2 describe-internet-gateways --internet-gateway-ids igw-0116304685cc6f00b
+
+{
+    "InternetGateways": [
+        {
+            "Attachments": [
+                {
+                    "State": "available",
+                    "VpcId": "vpc-0a2b7db4956438d22"
+                }
+            ],
+            "InternetGatewayId": "igw-0116304685cc6f00b",
+            "OwnerId": "165765640813",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "devopsacademy-igw"
+                }
+            ]
+        }
+    ]
+}
+
 ````
 
 - Any extra challenges faced?
