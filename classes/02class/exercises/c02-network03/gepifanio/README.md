@@ -7,19 +7,20 @@
 aws ec2 create-vpc \
     --cidr-block 10.0.0.0/16
     --instance-tenancy default
+    --no-amazon-provided-ipv6-cidr-block
 
 {
     "Vpc": {
         "CidrBlock": "10.0.0.0/16",
-        "DhcpOptionsId": "dopt-d786e8af",
+        "DhcpOptionsId": "dopt-3f381258",
         "State": "pending",
-        "VpcId": "vpc-07d40c0436aaf08f7",
+        "VpcId": "vpc-018717ea8ed22e6ae",
         "OwnerId": "873547843801",
         "InstanceTenancy": "default",
         "Ipv6CidrBlockAssociationSet": [],
         "CidrBlockAssociationSet": [
             {
-                "AssociationId": "vpc-cidr-assoc-0b4fbe498d5949404",
+                "AssociationId": "vpc-cidr-assoc-037d474c38c1ca313",
                 "CidrBlock": "10.0.0.0/16",
                 "CidrBlockState": {
                     "State": "associated"
@@ -30,12 +31,15 @@ aws ec2 create-vpc \
     }
 }
 
-aws ec2 create-tags --resources vpc-07d40c0436aaf08f7 --tags Key=Name,Value=devopsacademy-vpc
+aws ec2 create-tags --resources vpc-018717ea8ed22e6ae --tags Key=Name,Value=devopsacademy-vpc
 
 ```
 
 - Any extra challenges faced?
 
+Yes, struggling myselft to create the VPC in the right region, realized that I needed to change the region with `aws configure` command first. Had to redo everthing. 
+
+Also, the vpc creation dont allow you to name the vpc, makes no much sense.
 
 <!-- Don't change anything below this point-->
 ***
