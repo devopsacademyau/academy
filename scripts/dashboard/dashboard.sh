@@ -16,7 +16,7 @@ fi
 
 mkdir ${BASEDIR}/results
 
-curl ${TOKEN} ${GITHUB_URL}/pulls?state=open --silent| \
+curl ${TOKEN} "${GITHUB_URL}/pulls?state=open&per_page=100" --silent| \
     grep "\"number\":"| \
     cut -f2 -d":"| \
     cut -f1 -d ","| \

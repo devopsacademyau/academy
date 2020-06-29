@@ -102,7 +102,8 @@ plt.xlabel("Dates")
 plt.ylabel("% Completed")
 
 # Set Y range
-plt.axis([0, 10, -1, 100])
+axes = plt.gca()
+axes.set_ylim([0, 100])
 
 # Save chart
 plt.savefig('chart.png', bbox_inches='tight')
