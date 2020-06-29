@@ -5,6 +5,9 @@
 - Commands for creating the internet gateway:
 
 create-internet-gateway: Creates an internet gateway for use with a VPC. After creating the internet gateway, you attach it to a VPC using AttachInternetGateway 
+
+https://docs.aws.amazon.com/cli/latest/reference/ec2/create-internet-gateway.html
+
 ```
 z@bacon:~$ aws ec2 create-internet-gateway
 {
