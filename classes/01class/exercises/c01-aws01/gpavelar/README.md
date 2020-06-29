@@ -25,8 +25,6 @@ aws ec2 describe-key-pairs --key-name devops-class --output table
 |+--------------------------------------------------------------+---------------+-------------------------+|
 ||  0c:87:be:21:9d:aa:8d:45:d5:93:eb:11:3b:33:32:10:a8:fc:fa:c6 |  devops-class |  key-0a0f1ba7fa681e9fc  ||
 |+--------------------------------------------------------------+---------------+-------------------------+|
-# output
-sg-076a9212c8d1a8a45
 
 # Set the permissions of your private key
 chmod 400 DevOps-academy.pem
@@ -37,15 +35,23 @@ aws ec2 create-security-group --group-name devops-develop --description "DevOps 
 # Describe security groups
 aws ec2 describe-security-groups --group-names devops-develop
 
+# output
+sg-076a9212c8d1a8a45
+
+# Creating new group
+aws ec2 create-security-group --group-name devops-testing --description "DevOps Testing group" --vpc-id vpc-37d4dd50
+
+# output
+sg-01ce2ac7ace7e617a
+
 # Command executed
 aws ec2 run-instances \
   --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 \
   --count 1 \
   --instance-type t2.micro \
   --key-name devops-class \
-  --user-data file://devopsdata.txt \
   --subnet-id subnet-351ced53 \
-  --security-group-ids sg-076a9212c8d1a8a45
+  --security-group-ids sg-01ce2ac7ace7e617a
 
 
 ```
@@ -58,18 +64,15 @@ Used config:
 - --count: 1
 - --instance-type: t2.micro
 - --key-name: devops-class
-- --user-data: file://devopsdata.txt
 - --subnet-id: subnet-351ced53
-- --security-group-ids sg-076a9212c8d1a8a45
+- --security-group-ids sg-01ce2ac7ace7e617a
 
 ```bash
 
 # Authorize SSH
-# I performed the following command first and it didn't work...
-aws ec2 authorize-security-group-ingress --group-id sg-076a9212c8d1a8a45 --protocol tcp --port 22 --cidr 203.0.113.0/24
 
-# So, I performed this one
-aws ec2 authorize-security-group-ingress --group-id sg-076a9212c8d1a8a45 --protocol tcp --port 22 --cidr 0.0.0.0/0
+## New IP was 3.106.57.74, so It worked!
+aws ec2 authorize-security-group-ingress --group-id sg-076a9212c8d1a8a45 --protocol tcp --port 22 --cidr 3.106.57.74/32
 
 ```
 
@@ -387,12 +390,12 @@ Output:
 ```
 
 ```bash
-## Private IP - 172.31.3.15
-ssh -i /var/scratch/DevOps_Academy/DevOps-academy.pem  ec2-user@172.31.2.153
-ssh: connect to host 172.31.2.153 port 22: Connection timed out
+## Private IP - 172.31.3.15 (Private Instance)
+ssh -i /var/scratch/DevOps_Academy/DevOps-academy.pem  ec2-user@3.25.65.76
+ssh: connect to host 3.25.65.76 port 22: Connection timed out
 ```
 
-- It's not possible to connect via SSH, because it is not available to be accessed.
+- It's not possible to connect via SSH to the private, because it is not available to be accessed.
 
 So we will overcome this step using [SSH Agent](https://aws.amazon.com/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/). But we need to adapt the command because the OS ([ubuntu command here](https://blog.earth-works.com/2015/01/29/add-an-ec2-pem-key-to-ssh-on-linux-and-mac-os-x/))
 
