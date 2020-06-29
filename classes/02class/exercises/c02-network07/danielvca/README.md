@@ -11,9 +11,11 @@ aws ec2 create-route-table \
 
 - Commands for associating the route tables with subnets:
 ```
-aws ec2 attach-internet-gateway \
---vpc-id vpc-0c2c93451cdd28192 \
---internet-gateway-id igw-0047722be38dccb86
+
+aws ec2 associate-route-table  \
+--subnet-id subnet-0adbc66199ac20610 \
+--route-table-id rtb-0117d88753e0834e8
+
 ```
 
 - Commands for creating the following routes:
