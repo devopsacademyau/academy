@@ -162,17 +162,19 @@ $ aws ec2 create-route \
     
   - Can you delete the destination route to your VPC network? Why?
     ```
-    Sure you can, but it will disrupt the communication with the intended addresses.
+    - Every route table contains a local route for communication within the VPC.
+    - You cannot modify or delete these routes in a subnet route table or in the main route table.
+    - AWS doesn't allow the deletion of local routes, and if it was possible to do so, it would disrupt the communication between resources deployed in the same VPC or subnets.
     ```
     
   - What happens if you do not associate your route table with any subnets?
     ```
-    Hosts inside the subnets won't find their destination routes.
+    - A route table without any association is useless.
+    - The RT association must be in place to allow traffic from subnets or gateways to be routed according to the routes in the route table.
     ```
 
-
 - Any extra challenges faced?
-    Not for this exercise.
+    I got a better understanding on route table concepts, default behaviors and allowed actions.
 
 
 ***
