@@ -55,7 +55,7 @@ aws iam create-role --role-name Test-Role --assume-role-policy-document file://R
 
 ```
 
-Policy file used:
+`Role-Read-Trust-Policy.json` file used:
 
 ```json
 {
@@ -84,14 +84,30 @@ aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/ReadOnlyAccess -
 
 NONE
 
+## Detach last role policy from IAM role
+aws iam delete-role-policy --policy-name arn:aws:iam::aws:policy/ReadOnlyAccess --role-name Test-Role
+aws iam detach-role-policy \
+--role-name Test-Role \
+--policy-arn arn:aws:iam::aws:policy/ReadOnlyAccess
 
-## After this because I was already using a ReadOnly IAM role, I couldn't perform any more actions, example:
+## Atach a Amazon S3 ReadOnly Access
+aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess --role-name Test-Role
 
+## Listing Attached policies
+aws iam list-attached-role-policies --role-name Test-Role
+
+# output
+ATTACHEDPOLICIES        arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess  AmazonS3ReadOnlyAccess
+```
+
+New Policy from [AmazonS3ReadOnlyAccess](arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess)
+
+```bash
+## Now, checking informations
 aws iam list-access-keys
 
-An error occurred (AccessDenied) when calling the ListAccessKeys operation: User: arn:aws:iam::478433196210:user/testing is not authorized to perform: iam:ListAccessKeys on resource: user nulltesting
-
-## But, Because I was already using a ReadOnly IAM user, I could perform the following steps.
+# output
+ACCESSKEYMETADATA       AKI************    2020-06-08T15:50:08+00:00       Active  develop
 ```
 
 - Commands to copy the S3 file to a folder inside the instace (executed from inside the EC2 Instance):
@@ -101,6 +117,8 @@ An error occurred (AccessDenied) when calling the ListAccessKeys operation: User
 ### I'm already inside the EC2 instance, because I accessed it via SSH in the previous exercise.
 mkdir testing-dir
 aws s3 cp s3://mydevops-bucket/devops-classes/devops-aws.txt testing-dir
+
+# output
 download: s3://mydevops-bucket/devops-classes/devops-aws.txt to ./testing-dir
 ## If i want to keep the same-directory from s3 bucket
 ## I should use the following command
@@ -114,10 +132,8 @@ download: s3://mydevops-bucket/devops-classes/devops-aws.txt to devops-classes/d
 1. Execut the aws s3 sync
    It was not syncing my file to s3 bucket. So I prefered to use `aws s3 cp <local> <s3>` instead.
 
-```
-
+```bash
 ## output
-
 aws s3 sync "devops-classes/devops-rules.txt" s3://mydevops-bucket/devops-classes
 warning: Skipping file /home/devops-classes/devops-rules.txt/. File does not exist.
 
@@ -127,7 +143,7 @@ warning: Skipping file /home/devops-classes/devops-rules.txt/. File does not exi
    It seems to be simple when you already know how to do some tasks and steps. But There are a lot of details that you must know to accomplish some tasks on aws services.
 
 3. Policy to Create role
-   Find the correct policy file to allow create a example user
+   Find the correct policy file to allow create a example user. I mean, find the JSON file from each policy. But It was solved in the last class when Denis gave an example.
 
 ## S3 (C01-aws02)
 
