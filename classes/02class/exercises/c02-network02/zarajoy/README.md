@@ -25,7 +25,7 @@
 
 https://www.site24x7.com/tools/ipv4-subnetcalculator.html
 
-The first four IP addresses and the last IP address in each subnet CIDR block are not available for you to use, and cannot be assigned to an instance. These are the netowrk address, AWS VPC router reserverd address, AWS DNS server reserved address and an AWS reserved address for future use. Last address in a subnet is the broadcast addresss. 
+The first four IP addresses and the last IP address in each subnet CIDR block are not available for you to use, and cannot be assigned to an instance. These are the network address, AWS VPC router reserverd address, AWS DNS server reserved address and an AWS reserved address for future use. Last address in a subnet is the broadcast addresss. 
 
 <!-- Don't change anything below this point-->
 ***
