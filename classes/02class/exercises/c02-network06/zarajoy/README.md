@@ -97,6 +97,7 @@ z@bacon:~$ aws ec2 describe-nat-gateways
         }
     ]
 }
+z@bacon:~$ aws ec2 release-address --allocation-id  eipalloc-0137e5eb8fc7117a5
 
 ```
 
