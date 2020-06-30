@@ -22,7 +22,7 @@ z@bacon:~$ aws ec2 allocate-address --domain vpc
     "NetworkBorderGroup": "ap-southeast-2",
     "Domain": "vpc"
 }
-
+#attach to public-c
 z@bacon:~$ aws ec2 create-nat-gateway --subnet-id subnet-00649d5b0632cc2be --allocation-id eipalloc-0137e5eb8fc7117a5
 {
     "NatGateway": {
