@@ -4,6 +4,7 @@ module "team-reviewers" {
   group_role          = "member"
   members             = [
     "deniseddi",
-    "starkmatt"
+    "starkmatt",
+    "christina-roperto"
   ]
 }
