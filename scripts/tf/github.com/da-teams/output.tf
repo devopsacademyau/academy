@@ -1,3 +1,3 @@
-output "team_id" {
+output "id" {
   value = github_team.team.id
 }

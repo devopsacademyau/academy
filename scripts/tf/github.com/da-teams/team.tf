@@ -1,11 +1,16 @@
+locals {
+  members = { for v in var.members : v => v }
+}
+
 resource "github_team" "team" {
-  name    = var.group_name
-  privacy = "closed"
+  name           = var.group_name
+  privacy        = var.privacy
+  parent_team_id = var.parent_team_id
 }
 
 resource "github_team_membership" "member" {
-  count    = length(var.members)
+  for_each = local.members
   team_id  = github_team.team.id
-  username = var.members[count.index].name
-  role     = var.members[count.index].role
+  username = each.value
+  role     = var.group_role
 }

@@ -12,13 +12,13 @@ resource "github_repository" "playground-repository" {
 }
 
 resource "github_team_repository" "playground-admins_access" {
-  team_id    = module.team-admins.team_id
+  team_id    = module.team-admins.id
   repository = github_repository.playground-repository.name
   permission = "admin"
 }
 
 resource "github_team_repository" "playground-instructors_access" {
-  team_id    = module.team-instructors.team_id
+  team_id    = module.team-instructors.id
   repository = github_repository.playground-repository.name
   permission = "admin"
 }

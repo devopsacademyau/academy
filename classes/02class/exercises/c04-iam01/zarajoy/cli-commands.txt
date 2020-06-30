@@ -1,0 +1,72 @@
+z@bacon:~$ aws iam create-user --user-name user_ReadOnly_S3
+{
+    "User": {
+        "Path": "/",
+        "UserName": "user_ReadOnly_S3",
+        "UserId": "AIDAXOYORRTGL7S7Y4T5S",
+        "Arn": "arn:aws:iam::512742231244:user/user_ReadOnly_S3",
+        "CreateDate": "2020-06-29T02:50:15Z"
+    }
+}
+
+
+z@bacon:~$ vim S3ReadOnlyPolicyDoc.json
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*"
+            ]
+        }
+    ]
+}
+
+z@bacon:~$ aws iam create-policy --policy-name S3ReadOnly --policy-document file://S3ReadOnlyPolicyDoc.json
+{
+    "Policy": {
+        "PolicyName": "S3ReadOnly",
+        "PolicyId": "ANPAXOYORRTGLDPLXIA2T",
+        "Arn": "arn:aws:iam::512742231244:policy/S3ReadOnly",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "CreateDate": "2020-06-29T02:55:03Z",
+        "UpdateDate": "2020-06-29T02:55:03Z"
+    }
+}
+z@bacon:~$ aws iam attach-user-policy --policy-arn arn:aws:iam::512742231244:policy/S3ReadOnly --user-name user_ReadOnly_S3
+z@bacon:~$ aws iam create-access-key --user-name user_ReadOnly_S3 
+{
+    "AccessKey": {
+        "UserName": "user_ReadOnly_S3",
+        "AccessKeyId": "redacted",
+        "Status": "Active",
+        "SecretAccessKey": "redacted",
+        "CreateDate": "2020-06-29T02:59:28Z"
+    }
+}
+z@bacon:~$ aws configure --profile S3ReadOnlyProfile
+AWS Access Key ID [None]: redacted
+AWS Secret Access Key [None]: redacted 
+Default region name [None]: ap-southeast-2
+Default output format [None]: json
+z@bacon:~$ aws sts get-caller-identity --profile S3ReadOnlyProfile
+{
+    "UserId": "AIDAXOYORRTGL7S7Y4T5S",
+    "Account": "512742231244",
+    "Arn": "arn:aws:iam::512742231244:user/user_ReadOnly_S3"
+}
+z@bacon:~$ aws s3 ls --profile S3ReadOnlyProfile
+2020-06-19 12:48:59 zarajoy-aws02-bucket
+2020-06-08 14:52:18 zarajoybucket
+2020-06-21 11:30:28 zjdoa-bucket
+z@bacon:~$ 

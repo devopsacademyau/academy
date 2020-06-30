@@ -194,12 +194,17 @@ We highly recommend doing the exercises from this repository. However, you will 
 
 - Create a new branch from `master`
 - Open the file [/scripts/tf/github.com/team-external-students.tf](/scripts/tf/github.com/team-external-students.tf)
-- Add your GitHub username in an alphabetical order (that will help you avoid merge conflicts)
+- Add your GitHub username on the `members` variable in an alphabetical order (that will help you avoid merge conflicts)
+
+i.e: username is `caiocezart`
+
 ```
-{
-  name: "caiocezart",
-  role: "member"
-}
+members = [
+  "aaa",
+  "bbb",
+  "caiocezart",
+  "ccc"
+]
 ```
 - Save, add and commit the change
 - Raise a Pull Request

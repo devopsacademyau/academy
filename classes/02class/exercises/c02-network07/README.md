@@ -2,11 +2,12 @@
 
 Everything is to be done preferable on Sydney region `ap-southeast-2`
 
-## Route Table (rt)
+## Route Table (RT)
 
 Create the above route tables and associate with referred subnets:
 
 |route table|subnet|
+|---|---|
 |devopsacademy-rt-public|all public subnets|
 |devopsacademy-rt-private|all private subnets|
 
