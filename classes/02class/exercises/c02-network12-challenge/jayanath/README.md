@@ -17,7 +17,7 @@ For the exercises below, you should use all the custom created network resources
 Initiate peering connection from one VPC and accept the connection from the target VPC.
 Once this is done, everything else is figuring out how to allow traffic flow through NACLs, Security Groups
 on the both sides.
-Below are the steps and results of our peering work.
+Below are the steps and results of our VPC peering work.
 
 ## Worked with Marcos for this one.
 
@@ -129,9 +129,67 @@ Below are the steps and results of our peering work.
     --group-id sg-01331d649596fcd01 \
     --ip-permissions IpProtocol=tcp,FromPort=22,ToPort=22,UserIdGroupPairs='[{GroupId=sg-06519b6fe81ef49d3,Description="Allow VPC Peering SSH connection"}]'
 
-## step 07 - share the private keys between Marcos and Jay
+## step 07 - add entries into the NACL to restrict traffic
+## Reuse existing devopsacademy-nacl and update rules to be more restrictive.
+## Marcos' VPC CIDR Block: 10.11.0.0/16
+## Jay's VPC CIDR Block: 192.168.0.0/16
+## Jay's home IP  121.200.5.117/32
 
-## step 08 - connect to private instance on Marcos's VPC through peering
+# Inbound rules for ports 22 + ephemeral ports 1024-65535 (SSH return traffic)
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --ingress --rule-number 110 \
+    --protocol tcp --port-range From=22,To=22 --cidr-block 121.200.5.117/32 --rule-action allow
+
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --ingress --rule-number 120 \
+    --protocol tcp --port-range From=22,To=22 --cidr-block 192.168.0.0/16 --rule-action allow
+
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --ingress --rule-number 130 \
+    --protocol tcp --port-range From=1024,To=65535 --cidr-block 192.168.0.0/16 --rule-action allow
+
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --ingress --rule-number 140 \
+    --protocol tcp --port-range From=22,To=22 --cidr-block 10.11.0.0/16 --rule-action allow
+
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --ingress --rule-number 150 \
+    --protocol tcp --port-range From=1024,To=65535 --cidr-block 10.11.0.0/16 --rule-action allow
+
+## Outbound rules for ports 22 + ephemeral ports 1024-65535 (SSH return traffic)
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --egress --rule-number 100 \
+    --protocol tcp --port-range From=1024,To=65535 --cidr-block 192.168.0.0/16 --rule-action allow
+
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --egress --rule-number 110 \
+    --protocol tcp --port-range From=22,To=22 --cidr-block 192.168.0.0/16 --rule-action allow
+
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --egress --rule-number 120 \
+    --protocol tcp --port-range From=1024,To=65535 --cidr-block 121.200.5.117/32 --rule-action allow
+
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --egress --rule-number 130 \
+    --protocol tcp --port-range From=22,To=22 --cidr-block 10.11.0.0/16 --rule-action allow
+
+> aws ec2 create-network-acl-entry \
+    --network-acl-id acl-06e9d04a427fe2c15 \
+    --egress --rule-number 140 \
+    --protocol tcp --port-range From=1024,To=65535 --cidr-block 10.11.0.0/16 --rule-action allow
+
+## step 08 - share the private keys between Marcos and Jay
+
+## step 09 - connect to private instance on Marcos's VPC through peering
 
   ➜  jay ssh ec2-user@13.236.136.201
   Last login: Sat Jun 27 08:27:18 2020 from 121-200-5-117.79c805.syd.nbn.aussiebb.net
@@ -169,7 +227,7 @@ Below are the steps and results of our peering work.
   [ec2-user@ip-10-11-1-4 ~]$
   [ec2-user@ip-10-11-1-4 ~]$
 
-## step 09 - testing the connectivity from Marcos's end
+## step 10 - testing the connectivity from Marcos's end
 
   ssh -A ec2-user@3.25.64.226
   Last login: Sat Jun 27 08:47:30 2020 from 120-88-137-206.tpgi.com.au
@@ -195,13 +253,13 @@ Below are the steps and results of our peering work.
   https://aws.amazon.com/amazon-linux-2/
   [ec2-user@ip-192-168-10-10 ~]$
 
-## step 10 - mission accomplished! We could connect to private instances over VPC peering
+## step 11 - mission accomplished! We could connect to private instances over VPC peering
 
 ```
 
 - Any extra challenges faced?
 ```
-Tried to lock down NACL but had issues. Still need to figure out the underlying issues.
+Took a bit of time to lock down NACLs. Hopefully we got it right :-)
 
 ```
 
