@@ -3,6 +3,7 @@
 ## Answers
 
 1. Is it possible to see the inner commit of squashed commit with `git rebase`?
+
 The easiest way to see the inner commit of squashed commit is with "git reflog branchname" for the previous position of the beanch which is rebased. Find the SHA1 of the tip of the tip of the branch, just before the interactive rebase. With SHA1, we can use "git log -p" or "gitk" to view the commits and see the diffs. This is possible even after "git gc". Commit are reachable if they are reachable from anything in the reflogs and reflogs take 90 days to expire.
 ```
 
