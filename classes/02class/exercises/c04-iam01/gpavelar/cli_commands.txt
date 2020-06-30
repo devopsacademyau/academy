@@ -1,0 +1,53 @@
+## REMOVE COMMENTS
+
+## Creating user
+aws iam create-user --user-name user_readonly_S3
+
+## Creating policy
+vim S3readOnly.json
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ListObjectsInBucket",
+            "Effect": "Allow",
+            "Action": ["s3:ListBucket"],
+            "Resource": ["arn:aws:s3:::bucket-name"]
+        },
+        {
+            "Sid": "AllObjectActions",
+            "Effect": "Allow",
+            "Action": "s3:*Object",
+            "Resource": ["arn:aws:s3:::bucket-name/*"]
+        }
+    ]
+}
+```
+
+
+
+
+## Creating role
+aws iam create-role --role-name user_readonly_S3 
+
+
+
+
+--assume-role-policy-document file://Role-Read-Trust-Policy.json
+
+```
+
+Policy file used:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Principal": { "Service": "ec2.amazonaws.com" },
+    "Action": "sts:AssumeRole"
+  }
+}
+```
