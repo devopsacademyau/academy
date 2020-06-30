@@ -180,7 +180,6 @@ aws ec2 create-tags \
  --tags Key=Name,Value=private-c
 
 ```
-
 - Any extra challenges faced? Dividing the network into 8 subnets and assuring that there are atleast 250 hosts available for every subnet.
 
 <!-- Don't change anything below this point -->
