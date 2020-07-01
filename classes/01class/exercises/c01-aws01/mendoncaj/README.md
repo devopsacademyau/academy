@@ -2,6 +2,7 @@
 
 - Use the CLI to create a new EC2 Instance inside the default VPC with a public IP address and connect to it though SSH.
 
+> **Public instance**
 ```
 aws ec2 create-key-pair \
 --dry-run \
@@ -35,7 +36,9 @@ aws ec2 run-instances \
 --tag-specifications 'ResourceType=instance,Tags=[{Key=ref,Value=devops-academy}]'
 ```
 
-###############################################################################################
+- Create another EC2, also using the CLI instance in the same VPC but with private address only and connect to it.
+
+> **Private instance**
 
 ```
 aws ec2 create-key-pair \
@@ -77,8 +80,6 @@ aws ec2 run-instances \
 --tag-specifications 'ResourceType=instance,Tags=[{Key=ref,Value=devops-academy}]'
 ```
 
-- Create another EC2, also using the CLI instance in the same VPC but with private address only and connect to it.
-
 ## Submit a PR with the folowing file:
 - README.md based on the [ANSWER.md](ANSWER.md) file with the commands requested. 
 
@@ -88,7 +89,3 @@ aws ec2 run-instances \
 
 ## Aditional information
  - You'll need those instances for the [c01-aws02](../c01-aws02/README.md) exercise.
-
-
-
-
