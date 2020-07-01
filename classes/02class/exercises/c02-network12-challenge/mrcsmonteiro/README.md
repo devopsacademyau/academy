@@ -138,109 +138,112 @@ $ aws ec2 authorize-security-group-ingress \
 
 # 5. Verify applicable NACLs
 
-# Marcos' side configurations:
-# - A custom NACL was created for the private-a subnet, where the private instance was launched.
-# - The custom rules ALLOW SSH (22) + TCP Ephemeral Ports (1024-65535) inbound connections from 10.11.0.0/16 (Marcos' VPC) and 192.168.0.0/16 (Jay's VPC).
-# - The custom rules ALLOW SSH (22) + TCP Ephemeral Ports (1024-65535) outbound connections to 10.11.0.0/16 (Marcos' VPC) and 192.168.0.0/16 (Jay's VPC).
-# - All other subnets are using the default NACL, which allows all inbound and outbound traffic by default.
+# Marcos' side configurations (please see diagram 'DevOpsAcademy-VPC-Peering.png' for further details):
+
+# - NACL (default) for the public-a, public-b, and public-c subnets
+#	-> Inbound rules
+#		* Rule #100: SSH (22) 120.88.137.206/32 ALLOW            - Allows Marcos to SSH to the bastion host from his laptop with public IP
+#		* Rule #110: TCP (1024-65535) 10.11.1.0/24 ALLOW         - Allows return traffic (ephemeral ports) from subnet 'private-a' to public subnets
+#	-> Outbound rules
+#		* Rule #100: TCP (1024-65535) 120.88.137.206/32 ALLOW    - Allows return traffic (ephemeral ports) from subnet 'public-a' to Marcos' laptop
+#		* Rule #110: SSH (22) 10.11.1.0/24 ALLOW                 - Allows Marcos to SSH to his 'private-a' host from his bastion host
+
+# - NACL (custom) for the private-a, private-b, and private-c subnets
+#	-> Inbound rules
+#		* Rule #100: SSH (22) 10.11.11.0/24 ALLOW                - Allows Marcos to SSH to his 'private-a' host from his bastion host
+#		* Rule #110: SSH (22) 192.168.0.0/16 ALLOW               - Allows Jay to SSH to Marcos' 'private-a' host from any host in Jay's VPC 
+#		* Rule #120: TCP (1024-65535) 192.168.0.0/16 ALLOW       - Allows return traffic (ephemeral ports) from Marcos' subnet 'private-a' to Jay's entire VPC
+#	-> Outbound rules
+#		* Rule #100: TCP (1024-65535) 10.11.11.0/24 ALLOW        - Allows return traffic (ephemeral ports) from Marcos' subnet 'private-a' to Marcos' subnet 'public-a'
+#		* Rule #110: SSH (22) 192.168.0.0/16 ALLOW               - Allows Marcos to SSH to Jay's VPC hosts from Marcos' private host
+#		* Rule #120: TCP (1024-65535) 192.168.0.0/16 ALLOW       - Allows return traffic (ephemeral ports) from Marcos' private subnets to Jay's entire VPC
+
+$ aws ec2 create-tags \
+    --resources acl-0dfe3765315dc6f3f \
+    --tags Key=Name,Value="NACL for public subnets"
 
 $ aws ec2 create-network-acl \
     --vpc-id vpc-0721e28436cea8410
-
-{
-    "NetworkAcl": {
-        "Associations": [],
-        "Entries": [
-            {
-                "CidrBlock": "0.0.0.0/0",
-                "Egress": true,
-                "IcmpTypeCode": {},
-                "PortRange": {},
-                "Protocol": "-1",
-                "RuleAction": "deny",
-                "RuleNumber": 32767
-            },
-            {
-                "CidrBlock": "0.0.0.0/0",
-                "Egress": false,
-                "IcmpTypeCode": {},
-                "PortRange": {},
-                "Protocol": "-1",
-                "RuleAction": "deny",
-                "RuleNumber": 32767
-            }
-        ],
-        "IsDefault": false,
-        "NetworkAclId": "acl-05d6df652d4efea31",
-        "Tags": [],
-        "VpcId": "vpc-0721e28436cea8410",
-        "OwnerId": "149613515908"
-    }
-}
 
 $ aws ec2 create-tags \
     --resources acl-05d6df652d4efea31 \
     --tags Key=Name,Value="NACL for private subnets"
 
-# Marcos' private-a subnet
-# subnet-062fa33492cd979a6
-
 $ aws ec2 describe-network-acls
 
+# Replace ACL associations for private subnets
+
 $ aws ec2 replace-network-acl-association \
-    --association-id aclassoc-0353c0b77b2a78321 \
+    --association-id aclassoc-OLD \
     --network-acl-id acl-05d6df652d4efea31
 
 {
-    "NewAssociationId": "aclassoc-0b8dc907d25f1ce65"
+    "NewAssociationId": "aclassoc-NEW"
 }
 
 # NACL inbound & outbound rules to allow cross account SSH connections for instances deployed in peered VPCs (same region)
-# Marcos' VPC CIDR Block: 10.11.0.0/16
-# Jay's   VPC CIDR Block: 192.168.0.0/16
+# Marcos' VPC CIDR Block:                10.11.0.0/16
+# Marcos' subnet 'private-a' CIDR Block: 10.11.1.0/24
+# Jay's   VPC CIDR Block:                192.168.0.0/16
 
-# Inbound rules for ports 22 + ephemeral ports 1024-65535 (SSH return traffic)
+# NACL for public subnets
+# Inbound rules
+
+$ aws ec2 create-network-acl-entry \
+    --network-acl-id acl-0dfe3765315dc6f3f \
+    --ingress --rule-number 100 \
+    --protocol tcp --port-range From=22,To=22 --cidr-block 120.88.137.206/32 --rule-action allow
+
+$ aws ec2 create-network-acl-entry \
+    --network-acl-id acl-0dfe3765315dc6f3f \
+    --ingress --rule-number 110 \
+    --protocol tcp --port-range From=1024,To=65535 --cidr-block 10.11.1.0/24 --rule-action allow
+
+# Outbound rules
+
+$ aws ec2 create-network-acl-entry \
+    --network-acl-id acl-0dfe3765315dc6f3f \
+    --egress --rule-number 100 \
+    --protocol tcp --port-range From=1024,To=65535 --cidr-block 120.88.137.206/32 --rule-action allow
+
+$ aws ec2 create-network-acl-entry \
+    --network-acl-id acl-0dfe3765315dc6f3f \
+    --egress --rule-number 110 \
+    --protocol tcp --port-range From=22,To=22 --cidr-block 10.11.1.0/24 --rule-action allow
+
+# NACL for private subnets
+# Inbound rules
 
 $ aws ec2 create-network-acl-entry \
     --network-acl-id acl-05d6df652d4efea31 \
     --ingress --rule-number 100 \
-    --protocol tcp --port-range From=22,To=22 --cidr-block 10.11.0.0/16 --rule-action allow
+    --protocol tcp --port-range From=22,To=22 --cidr-block 10.11.11.0/24 --rule-action allow
 
 $ aws ec2 create-network-acl-entry \
     --network-acl-id acl-05d6df652d4efea31 \
     --ingress --rule-number 110 \
-    --protocol tcp --port-range From=1024,To=65535 --cidr-block 10.11.0.0/16 --rule-action allow
+    --protocol tcp --port-range From=22,To=22 --cidr-block 192.168.0.0/16 --rule-action allow
 
 $ aws ec2 create-network-acl-entry \
     --network-acl-id acl-05d6df652d4efea31 \
     --ingress --rule-number 120 \
-    --protocol tcp --port-range From=22,To=22 --cidr-block 192.168.0.0/16 --rule-action allow
-
-$ aws ec2 create-network-acl-entry \
-    --network-acl-id acl-05d6df652d4efea31 \
-    --ingress --rule-number 130 \
     --protocol tcp --port-range From=1024,To=65535 --cidr-block 192.168.0.0/16 --rule-action allow
 
-# Outbound rules for ports 22 + ephemeral ports 1024-65535 (SSH return traffic)
+# Outbound rules
 
 $ aws ec2 create-network-acl-entry \
     --network-acl-id acl-05d6df652d4efea31 \
     --egress --rule-number 100 \
-    --protocol tcp --port-range From=22,To=22 --cidr-block 10.11.0.0/16 --rule-action allow
+    --protocol tcp --port-range From=1024,To=65535 --cidr-block 10.11.11.0/24 --rule-action allow
 
 $ aws ec2 create-network-acl-entry \
     --network-acl-id acl-05d6df652d4efea31 \
     --egress --rule-number 110 \
-    --protocol tcp --port-range From=1024,To=65535 --cidr-block 10.11.0.0/16 --rule-action allow
-
-$ aws ec2 create-network-acl-entry \
-    --network-acl-id acl-05d6df652d4efea31 \
-    --egress --rule-number 120 \
     --protocol tcp --port-range From=22,To=22 --cidr-block 192.168.0.0/16 --rule-action allow
 
 $ aws ec2 create-network-acl-entry \
     --network-acl-id acl-05d6df652d4efea31 \
-    --egress --rule-number 130 \
+    --egress --rule-number 120 \
     --protocol tcp --port-range From=1024,To=65535 --cidr-block 192.168.0.0/16 --rule-action allow
 
 # 6. Marcos and Jay exchanged private keys to access each other's instances
