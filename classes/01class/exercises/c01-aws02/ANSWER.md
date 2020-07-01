@@ -12,7 +12,7 @@ Add your commands and their outputs here
 Add your commands and their outputs here
 ```
 
-- Commands to copy the S3 file to a folder inside the instace (executed from inside the EC2 Instance):
+- Commands to copy the S3 file to a folder inside the instance (executed from inside the EC2 Instance):
 ```
 Add your commands and their outputs here
 ```
@@ -23,6 +23,6 @@ Add comments here
 ```
 
 <!-- Don't change anything below this point-->
-<!-- Before commiting, remove both commented lines--> 
+<!-- Before committing, remove both commented lines--> 
 ***
 Answer for exercise [c01-aws02](https://github.com/devopsacademyau/academy/blob/635775538e8ad7793b305f48064b09e23c626fb7/classes/01class/exercises/c01-aws02/README.md)
