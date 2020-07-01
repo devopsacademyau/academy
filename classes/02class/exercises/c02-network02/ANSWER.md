@@ -5,7 +5,7 @@
 - Answers for `10.0.0.0/16`:
 
 |Subnet|Network|Host Range|Usable Hosts|Broadcast|AWS Reserved|
-|-|-|-|-|-|-|
+|---|---|---|---|---|---|
 |subnet-a| | | | |
 |subnet-b| | | | |
 |subnet-c| | | | |
@@ -14,7 +14,7 @@
 - Answers for `192.168.0.0/24`:
 
 |Subnet|Network|Host Range|Usable Hosts|Broadcast|AWS Reserved|
-|-|-|-|-|-|-|
+|---|---|---|---|---|---|
 |subnet-a| | | | |
 |subnet-b| | | | |
 |subnet-c| | | | |
