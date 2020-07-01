@@ -5,8 +5,7 @@
 - Commands for creating a new VPC:
 
   - `aws ec2 create-vpc --cidr-block 192.168.0.0/16 --no-amazon-provided-ipv6-cidr-block --instance-tenancy default`
-    - response:
-      -
+    - ## response:
       ```
       {
         "Vpc": {
@@ -30,6 +29,10 @@
         }
       }
       ```
+
+- Command for adding a name tag to it
+
+  - `aws ec2 create-tags --resources vpc-0c50c0a08b2a7dc7e --tags Key=Name,Value=devopsacademy-vpc`
 
 - ## Any extra challenges faced?
   ```
