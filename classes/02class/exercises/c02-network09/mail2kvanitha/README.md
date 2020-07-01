@@ -9,8 +9,9 @@
 |public-sg|inbound|Custom TCP Rule|22|`<your-home-ip-address>`|SSH access from home to AWS|
 |private-sg|inbound|Custom TCP Rule|22|`<public-sg-id>`|SSH access only from public instances on AWS|
 
-```
 ### Public Security Group
+
+```
 
  > aws ec2 create-security-group --description "Public Security Group" --group-name public-sg --vpc-id vpc-090b5559554353054
 
@@ -63,8 +64,12 @@
         }
     ]
   }
- 
+  
+```
+
 ### Private Security Group
+
+```
 
  > aws ec2 create-security-group --description "Private Security Group" --group-name private-sg --vpc-id vpc-090b5559554353054
 
@@ -121,10 +126,14 @@
 
 - Any extra challenges faced?
 
- May not be a challenge, but it will be good to have in AWS. I explored whether there is a way to find my home laptop IP address. But cant find any AWS command to get the IP address of my home laptop. 
- Wierd that there is a API from AWS that can find this but not any AWS command.
- So, we need to either script it to get this IP automatically and use it in our security group rules, or call the API in the browser (manual) to get this IP.
+```
+May not be a challenge, but it will be good to have in AWS. I explored whether there is a way to find my home laptop IP address. But cant find any AWS command to get the IP address of my home laptop. 
 
+Wierd that there is a API from AWS that can find this but not any AWS command.
+
+So, we need to either script it to get this IP automatically and use it in our security group rules, or call the API in the browser (manual) to get this IP.
+
+```
 
 <!-- Don't change anything below this point-->
 ***
