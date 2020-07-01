@@ -95,7 +95,7 @@ $ aws ec2 accept-vpc-peering-connection \
     }
 }
 
-# 3. Edit route tables to communication between private subnets (Jay & Marcos)
+# 3. Edit route tables to enable communication between private subnets (Jay & Marcos)
 
 # Marcos' commands
 
