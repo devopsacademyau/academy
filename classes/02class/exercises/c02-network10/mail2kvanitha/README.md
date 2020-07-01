@@ -69,8 +69,101 @@
 ```
 
 - Any extra challenges faced?
+```
+I created custom Security group "devopsacademy-ec2sg" and attached it to the VPC "devopsacademy-vpc". 
 
- I am unable to add Security group to the create-network-interface command. Whenever i add parameter "--groups sg-group-name" or "--group-ids sg-groupid", i am always getting groups or group-ids not found error. 
+The create network interface command doesnt let me to add security groups with "--groups security-group-name". I got security group doesnt exist error. 
+
+> aws ec2 modify-network-interface-attribute --network-interface-id eni-0cf59acd4e9e51b6a --groups devopsacademy-ec2sg
+
+   An error occurred (InvalidGroup.NotFound) when calling the ModifyNetworkInterfaceAttribute operation: The security group 'devopsacademy-ec2sg' does not exist
+
+But when i do describe security groups, i am able to view the security groups
+
+ > aws ec2 describe-security-groups --group-ids sg-0338d87ff2cb69501
+   {
+      "SecurityGroups": [
+          {
+            "Description": "devopsacademy-ec2sg created 2020-07-01T15:28:20.961+10:00",
+            "GroupName": "devopsacademy-ec2sg",
+            "IpPermissions": [
+                {
+                    "FromPort": 22,
+                    "IpProtocol": "tcp",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "ToPort": 22,
+                    "UserIdGroupPairs": []
+                }
+            ],
+            "OwnerId": "823151257518",
+            "GroupId": "sg-0338d87ff2cb69501",
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "UserIdGroupPairs": []
+                }
+            ],
+            "VpcId": "vpc-0d4cd22a6e87c698a"
+         }
+      ]
+   }
+
+ so, i created the network interface without --groups command. I observed that the default security group of the VPC is attached to the network interface. 
+ 
+ > aws ec2 describe-security-groups --group-ids sg-09d15149bddc33214
+   {
+     "SecurityGroups": [
+        {
+            "Description": "default VPC security group",
+            "GroupName": "default",
+            "IpPermissions": [
+                {
+                    "IpProtocol": "-1",
+                    "IpRanges": [],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "UserIdGroupPairs": [
+                        {
+                            "GroupId": "sg-09d15149bddc33214",
+                            "UserId": "823151257518"
+                        }
+                    ]
+                }
+            ],
+            "OwnerId": "823151257518",
+            "GroupId": "sg-09d15149bddc33214",
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1",
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": [],
+                    "UserIdGroupPairs": []
+                }
+            ],
+            "VpcId": "vpc-0d4cd22a6e87c698a"
+        }
+     ]
+  }
+
+```
 
 <!-- Don't change anything below this point-->
 ***
