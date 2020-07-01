@@ -19,7 +19,7 @@ Once this is done, everything else is figuring out how to allow traffic flow thr
 on the both sides.
 Below are the steps and results of our VPC peering work.
 
-## Worked with Marcos for this one.
+## Worked with Marcos (mrcsmonteiro) on this exercise.
 
 ## step 01 - initiate vpc peering request by Marcos
 > aws ec2 create-vpc-peering-connection \
@@ -111,7 +111,7 @@ Below are the steps and results of our VPC peering work.
       "Return": true
   }
 
-## step 04 - add route to Marcos's private subnet CIDR by Jay
+## step 04 - add route to Marcos' private subnet CIDR by Jay
 > aws ec2 create-route \
     --route-table-id rtb-043be3454bd489e40 \
     --destination-cidr-block 10.11.1.0/24 \
@@ -120,7 +120,7 @@ Below are the steps and results of our VPC peering work.
       "Return": true
   }
 
-## step 05 - add security group ingress rule to allow traffic from private security group from Marcos's VPC
+## step 05 - add security group ingress rule to allow traffic from private security group from Marcos' VPC
 ## over the VPC peering connection by Jay
 > aws ec2 authorize-security-group-ingress --group-id sg-06519b6fe81ef49d3 --ip-permissions IpProtocol=tcp,FromPort=22,ToPort=22,UserIdGroupPairs='[{GroupId=sg-01331d649596fcd01,Description="SSH access from private subnet over VPC peering"}]'
 
@@ -189,7 +189,7 @@ Below are the steps and results of our VPC peering work.
 
 ## step 08 - share the private keys between Marcos and Jay
 
-## step 09 - connect to private instance on Marcos's VPC through peering
+## step 09 - connect to private instance on Marcos' VPC through peering
 
   ➜  jay ssh ec2-user@13.236.136.201
   Last login: Sat Jun 27 08:27:18 2020 from 121-200-5-117.79c805.syd.nbn.aussiebb.net
@@ -227,7 +227,7 @@ Below are the steps and results of our VPC peering work.
   [ec2-user@ip-10-11-1-4 ~]$
   [ec2-user@ip-10-11-1-4 ~]$
 
-## step 10 - testing the connectivity from Marcos's end
+## step 10 - testing the connectivity from Marcos' end
 
   ssh -A ec2-user@3.25.64.226
   Last login: Sat Jun 27 08:47:30 2020 from 120-88-137-206.tpgi.com.au
@@ -259,7 +259,7 @@ Below are the steps and results of our VPC peering work.
 
 - Any extra challenges faced?
 ```
-Took a bit of time to lock down NACLs. Hopefully we got it right :-)
+Took a bit of time to lock down the NACL. Hopefully we got it right :-)
 
 ```
 
