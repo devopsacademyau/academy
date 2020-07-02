@@ -31,8 +31,6 @@ OWNER   gpavelardev     ***********
 aws s3 cp devops-classes/devops-rules.txt s3://mydevops-bucket/devops-classes
 ## Another test
 aws s3 cp devops-classes/devops-aws.txt s3://mydevops-bucket/devops-classes/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-
-
 ```
 
 - Commands to allow the EC2 instance to access the files in S3:
@@ -45,14 +43,16 @@ $ aws s3 ls
 # output
 Unable to locate credentials. You can configure credentials by running "aws configure".
 $ aws configure
-## Added my access key id and secret access key with a policy s3bucketreadonly.
+## Added my access key id and secret access key, region, etc.
 
-## I had already created the user with s3 interface on browser.
-
-## So, I also tried to create a IAM role using AWS CLI
 ## Creating role
 aws iam create-role --role-name Test-Role --assume-role-policy-document file://Role-Read-Trust-Policy.json
+# output
 
+ROLE arn:aws:iam::478433196210:role/Test-Role 2020-06-21T13:44:23+00:00 / AROAW6ZGXHCZNG4L6UYON Test-Role
+ASSUMEROLEPOLICYDOCUMENT 2012-10-17
+STATEMENT sts:AssumeRole Allow
+PRINCIPAL ec2.amazonaws.com
 ```
 
 `Role-Read-Trust-Policy.json` file used:
@@ -69,40 +69,62 @@ aws iam create-role --role-name Test-Role --assume-role-policy-document file://R
 ```
 
 ```bash
-# output
 
-ROLE arn:aws:iam::478433196210:role/Test-Role 2020-06-21T13:44:23+00:00 / AROAW6ZGXHCZNG4L6UYON Test-Role
-ASSUMEROLEPOLICYDOCUMENT 2012-10-17
-STATEMENT sts:AssumeRole Allow
-PRINCIPAL ec2.amazonaws.com
+## Creating my own policy
+aws iam create-policy --policy-name AmazonS3ReadOnlyAccess_test \
+--policy-document  file://my-own-s3-policy.json
+
+# output
+POLICY  arn:aws:iam::478433196210:policy/AmazonS3ReadOnlyAccess_test    0       2020-07-02T04:35:52+00:00       v1      True    /       0       ANPAW6ZGXHCZAWLMGHLPC   AmazonS3ReadOnlyAccess_test     2020-07-02T04:35:52+00:00
+
 
 ## Attach a managed policy to an IAM role
-
-aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/ReadOnlyAccess --role-name Test-Role
-
+aws iam attach-role-policy --role-name Test-Role --policy-arn arn:aws:iam::478433196210:policy/AmazonS3ReadOnlyAccess_test
 # output
-
 NONE
 
-## Detach last role policy from IAM role
-aws iam delete-role-policy --policy-name arn:aws:iam::aws:policy/ReadOnlyAccess --role-name Test-Role
-aws iam detach-role-policy \
---role-name Test-Role \
---policy-arn arn:aws:iam::aws:policy/ReadOnlyAccess
+```
 
-## Atach a Amazon S3 ReadOnly Access
-aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess --role-name Test-Role
+`my-own-s3-policy.json`
 
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:ListBucket"],
+      "Resource": ["arn:aws:s3:::mydevops-bucket", "arn:aws:s3:::mydevops-bucket/*"]
+    }
+  ]
+}
+```
+
+Changing wrong policies problems and remove policy from IAM ROLE
+
+```bash
 ## Listing Attached policies
 aws iam list-attached-role-policies --role-name Test-Role
 
 # output
 ATTACHEDPOLICIES        arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess  AmazonS3ReadOnlyAccess
-```
+ATTACHEDPOLICIES        arn:aws:iam::478433196210:policy/AmazonS3ReadOnlyAccess_test    AmazonS3ReadOnlyAccess_test
 
-New Policy from [AmazonS3ReadOnlyAccess](arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess)
+## Detach Old policy
+## Detaching role from policy
+aws iam detach-role-policy \
+--role-name Test-Role \
+--policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+# output
+NONE
 
-```bash
+## Listing Attached policies
+aws iam list-attached-role-policies --role-name Test-Role
+
+# output
+ATTACHEDPOLICIES        arn:aws:iam::478433196210:policy/AmazonS3ReadOnlyAccess_test    AmazonS3ReadOnlyAccess_test
+
 ## Now, checking informations
 aws iam list-access-keys
 
