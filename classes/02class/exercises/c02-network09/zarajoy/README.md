@@ -14,6 +14,7 @@ https://docs.aws.amazon.com/cli/latest/reference/ec2/authorize-security-group-in
 
 ```
 #create groups
+
 z@bacon:~$ aws ec2 create-security-group  --group-name public-sg --description "SSH access from home to AWS" --vpc-id vpc-09d2f2719d50d1f7f
 {
     "GroupId": "sg-02bf4e3d095f418fa"
