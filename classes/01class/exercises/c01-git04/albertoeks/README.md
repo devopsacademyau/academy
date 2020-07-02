@@ -19,18 +19,16 @@ Because we can get previous commits and see back the file with the password info
 
 4. How to fix this? How do you remove something from Git history when it is in the remote repository?
 ```
-In order to definitely remove some files from git, we can use git filter-branch command. As an additional step, we can also add it to .gitignore to make sure that it will not happen again.
+In order to definitely remove some files from git, we can use git filter-repo command. As an additional step, we can also add it to .gitignore to make sure that it will not happen again.
 ```
 
 5. Which commands would you use? Explain what the command does.
 ```
-Firstly, go to the repository's working directory. Then run the following command replacing PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA properly. With git filter-branch command you should be able to rewrite the history on git and with git rm command you achieve the deletion of the unwanted file
+Firstly, go to the repository's working directory. Then run the following command replacing PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA properly. With git filter-repo command you should be able to rewrite the history on git in a simpler and safer way. In order to keep all files except that path, just add --invert-paths.
 
-$ git filter-branch --force --index-filter \
-'git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA' \
---prune-empty --tag-name-filter cat -- --all 
+$ git filter-repo --path PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA --invert-paths
 
-Finally, run the command below to send the change to remote (As you now have a different hash commit, you must use force to be able to push)
+Finally, run the command below to send the change to remote (As you now have a different hash commit, you must use --force to be able to push)
 
 $ git push origin --force --all
 ```
