@@ -3,37 +3,11 @@
 ## Command Execution Output
 
 - [cli_commands.txt](cli_commands.txt)
-
-```bash
-## Creating user
-aws iam create-user --user-name user_readonly_S3
-# output
-USER    arn:aws:iam::478433196210:user/user_readonly_S3 2020-06-30T01:29:47+00:00       /       AIDAW6ZGXHCZPKJ6IB6AR   user_readonly_S3
-
-## Creating policy
-aws iam create-policy --policy-name S3readOnly --policy-document file://s3-policy-document.json
-
-# output
-POLICY  arn:aws:iam::478433196210:policy/S3readOnly     0       2020-06-30T02:14:21+00:00       v1      True    /       0       ANPAW6ZGXHCZDC7JHAP3C
-   S3readOnly      2020-06-30T02:14:21+00:00
-```
-
-File:
-
-```json
-{
-  "Statement": [
-    {
-      "Sid": "AllowEveryoneReadOnlyAccess",
-      "Effect": "Allow",
-      "Action": ["s3:Get*", "s3:List*"],
-      "Resource": ["arn:aws:iam::478433196210:user/user_readonly_S3"]
-    }
-  ]
-}
-```
+- [s3-policy-document.json](s3-policy-document.json)
 
 ## Errors
+
+I got some errors while doing the exercies, some mistakes about files and policies.
 
 - CreatePolicy:
 
@@ -68,7 +42,7 @@ File:
   | --policy-name     | Friendly name of the policy. IAM user, group, role, and policy (must be unique) |
   | --policy-document | Json policy document that you wuant to use as the content for the new policy.   |
 
-* aws iam attach-user-policy
+- aws iam attach-user-policy
 
   Attaches the specified managed policy to the specified user.
 
@@ -78,6 +52,23 @@ File:
   | :----------- | :------------------------------------------------------------------------------ |
   | --user-name  | Friendly name of the policy. IAM user, group, role, and policy (must be unique) |
   | --policy-arn | Json policy document that you wuant to use as the content for the new policy.   |
+
+- aws iam detach-user-policy
+
+  | Parameter    | Description                                                                     |
+  | :----------- | :------------------------------------------------------------------------------ |
+  | --user-name  | Friendly name of the policy. IAM user, group, role, and policy (must be unique) |
+  | --policy-arn | Json policy document that you wuant to use as the content for the new policy.   |
+
+- aws iam create-acess-key
+
+  Creates a new AWS secret access key and corresponding AWS access key ID for the specified user.
+
+  Arguments :
+
+  | Parameter   | Description                                               |
+  | :---------- | :-------------------------------------------------------- |
+  | --user-name | The name of the IAM user that the new key will belong to. |
 
 ---
 

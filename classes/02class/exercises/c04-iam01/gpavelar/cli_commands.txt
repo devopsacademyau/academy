@@ -1,53 +1,20 @@
-## REMOVE COMMENTS
-
 ## Creating user
 aws iam create-user --user-name user_readonly_S3
+USER    arn:aws:iam::478433196210:user/user_readonly_S3 2020-06-30T01:29:47+00:00       /       AIDAW6ZGXHCZPKJ6IB6AR   user_readonly_S3
 
-## Creating policy
-vim S3readOnly.json
+aws iam create-policy --policy-name S3readOnly --policy-document file://s3-policy-document.json
+POLICY  arn:aws:iam::478433196210:policy/S3readOnly     0       2020-07-02T06:22:25+00:00       v1      True    /       0       ANPAW6ZGXHCZDPHQALXW2   S3readOnly      2020-07-02T06:22:25+00:00
 
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "ListObjectsInBucket",
-            "Effect": "Allow",
-            "Action": ["s3:ListBucket"],
-            "Resource": ["arn:aws:s3:::bucket-name"]
-        },
-        {
-            "Sid": "AllObjectActions",
-            "Effect": "Allow",
-            "Action": "s3:*Object",
-            "Resource": ["arn:aws:s3:::bucket-name/*"]
-        }
-    ]
-}
-```
+aws iam attach-user-policy --user-name user_readonly_S3 --policy-arn arn:aws:iam::478433196210:policy/S3readOnly
 
+aws iam create-access-key --user-name user_readonly_S3
+ACCESSKEY       ABACATE******    2020-07-02T05:36:33+00:00 ABACATE******        Active  user_readonly_S3
 
+aws configure --profile s3ReadOnlyProfile
+AWS Access Key ID [None]: A*********************
+AWS Secret Access Key [None]: C*****************
+Default region name [None]: ap-southeast-2
+Default output format [None]: json
 
-
-## Creating role
-aws iam create-role --role-name user_readonly_S3 
-
-
-
-
---assume-role-policy-document file://Role-Read-Trust-Policy.json
-
-```
-
-Policy file used:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": {
-    "Effect": "Allow",
-    "Principal": { "Service": "ec2.amazonaws.com" },
-    "Action": "sts:AssumeRole"
-  }
-}
-```
+aws s3 ls --profile s3ReadOnlyProfile
+2020-06-20 13:00:33 mydevops-bucket
