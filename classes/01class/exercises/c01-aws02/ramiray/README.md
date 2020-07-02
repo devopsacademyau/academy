@@ -37,6 +37,60 @@ aws ec2 describe-instances --instance-ids i-08dbff420f93f73dd --region ap-southe
 
 "Arn": "arn:aws:iam::348662207501:instance-profile/Devopsacademyinstancerole"
 ```
+Command to create Role, Policy and Instance Profile:
+
+Role: Assume role policy details are provided in the json file.
+
+```
+aws iam create-role --role-name Devopsacademyinstancerole --assume-role-policy-document file://devopsacademytrustpolicy.json
+
+```
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "ec2.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole"
+      }
+    ]
+  }
+
+
+```
+```
+Attaching the s3readonlypolicy to the role: 
+
+```
+aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess --role-name Devopsacademyinstancerole
+
+```
+Creating instance profile to the ec2 
+
+```
+aws iam create-instance-profile --instance-profile-name Devopsacademyinstancerole
+
+aws iam add-role-to-instance-profile --role-name Devopsacademyinstancerole --instance-profile-name Devopsacademyinstancerole
+
+```
+associate instance profile to EC2
+
+```
+aws ec2 associate-iam-instance-profile --instance-id i-08dbff420f93f73dd --iam-instance-profile Name=Devopsacademyinstancerole
+
+```
+
+
+
+
+
+
+
+
+
 
 
 
