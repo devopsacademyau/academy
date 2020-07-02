@@ -2,10 +2,12 @@
 
 1. Merging Exercise:
 ```
+git branch bugFix
+git checkout bugFix
+git commit
 git checkout master
-git merge <branch-name>
-git checkout <branch-name>
-git merge master
+git commit
+git merge bugFix
 
 ```
 
