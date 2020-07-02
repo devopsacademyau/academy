@@ -6,7 +6,7 @@ Everything is to be done preferable on Sydney region `ap-southeast-2`
 
 #### Look for the network ACL created for your VPC and answer the following:
 
-Your ACL rule inbound and outbound should look like this:
+Your ACL has both inbound and outbound rules as follow:
 
 |Rule#|Type|Protocol|Port Range|Source|Allow/Deny|
 |-|-|-|-|-|-|
@@ -16,7 +16,7 @@ Your ACL rule inbound and outbound should look like this:
 
 - What is the difference between inbound x outbound?
 - What is going to happen by default? Everything allowed or denied?
-- How would you block SSH connection comming from the network `172.16.200.0/24`?
+- How would you block SSH an incoming connection from a network `172.16.200.0/24`?
 - How would you block access from your network to an external network `180.200.50.0/24`?
 
 ## Submit a PR with the following files
