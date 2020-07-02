@@ -68,20 +68,21 @@ Attaching the s3readonlypolicy to the role:
 aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess --role-name Devopsacademyinstancerole
 
 ```
-Creating instance profile to the ec2 
+
+
+Creating instance profile  and associating the instances to the ec2
+
+
 
 ```
 aws iam create-instance-profile --instance-profile-name Devopsacademyinstancerole
 
 aws iam add-role-to-instance-profile --role-name Devopsacademyinstancerole --instance-profile-name Devopsacademyinstancerole
 
-```
-associate instance profile to EC2
-
-```
 aws ec2 associate-iam-instance-profile --instance-id i-08dbff420f93f73dd --iam-instance-profile Name=Devopsacademyinstancerole
 
 ```
+
 
 
 
