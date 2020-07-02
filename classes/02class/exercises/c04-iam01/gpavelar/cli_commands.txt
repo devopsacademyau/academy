@@ -1,0 +1,20 @@
+## Creating user
+aws iam create-user --user-name user_readonly_S3
+USER    arn:aws:iam::478433196210:user/user_readonly_S3 2020-06-30T01:29:47+00:00       /       AIDAW6ZGXHCZPKJ6IB6AR   user_readonly_S3
+
+aws iam create-policy --policy-name S3readOnly --policy-document file://s3-policy-document.json
+POLICY  arn:aws:iam::478433196210:policy/S3readOnly     0       2020-07-02T06:22:25+00:00       v1      True    /       0       ANPAW6ZGXHCZDPHQALXW2   S3readOnly      2020-07-02T06:22:25+00:00
+
+aws iam attach-user-policy --user-name user_readonly_S3 --policy-arn arn:aws:iam::478433196210:policy/S3readOnly
+
+aws iam create-access-key --user-name user_readonly_S3
+ACCESSKEY       ABACATE******    2020-07-02T05:36:33+00:00 ABACATE******        Active  user_readonly_S3
+
+aws configure --profile s3ReadOnlyProfile
+AWS Access Key ID [None]: A*********************
+AWS Secret Access Key [None]: C*****************
+Default region name [None]: ap-southeast-2
+Default output format [None]: json
+
+aws s3 ls --profile s3ReadOnlyProfile
+2020-06-20 13:00:33 mydevops-bucket
