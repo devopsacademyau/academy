@@ -1,0 +1,34 @@
+Answers for 10.0.0.1/24:
+IP in binary: 00001010.00000000.00000000.00000001
+subnet in binary: 11111111.11111111.11111111.00000000
+subnet in decimals: 255.255.255.0
+private/public: private
+hosts: 254
+
+Answers for 192.168.0.1/16:
+IP in binary: 11000000.10101000.00000000.00000001
+subnet in binary: 11111111.11111111.00000000.00000000
+subnet in decimals: 255.255.0.0
+private/public: private
+hosts: 65534
+
+Answers for 249.165.166.135/30:
+IP in binary: 11111001..10100101.10100110.10000111
+subnet in binary: 11111111.11111111.11111111.11111100
+subnet in decimals: 255.255.255.252
+private/public: public
+hosts: 2
+
+Answers for 236.68.223.18/32:
+IP in binary: 11101100.1000100.11011111.00010010
+subnet in binary: 11111111.11111111.11111111.11111111
+subnet in decimals: 255.255.255.255
+private/public: multicast
+hosts: 1
+
+Answers for 172.31.0.0/16:
+IP in binary: 10101100.00011111.00000000.00000000
+subnet in binary: 11111111.11111111.00000000.00000000
+subnet in decimals: 255.255.0.0
+private/public: private
+hosts: 65534
