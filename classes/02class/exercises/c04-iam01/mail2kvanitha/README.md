@@ -8,7 +8,7 @@
   > aws iam create-user --user-name user_readonly_s3 --tags Key=Name,Value=s3readonlyuser 
 
      {
-      "User": {
+       "User": {
           "Path": "/",
           "UserName": "user_readonly_s3",
           "UserId": "AIDATPFLUM2ILGD4Y75Y2",
