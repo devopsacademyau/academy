@@ -5,14 +5,16 @@
 - Answer the following questions
   - What is the difference between inbound x outbound?
     ```
-    Inbound: it controls incoming traffic TO EC2 instances. Ex.: traffic from local ssh terminal to EC2 instance.
+    Inbound: it controls incoming traffic TO a specific device (host/server) from a remote location or other AWS resources. Ex.: traffic from local ssh terminal to EC2 instance.
 
-    Outbound: it controls outbound traffic FROM EC2 instances. Ex.: traffic from the EC2 instance to an external database.
+    Outbound: it controls outbound traffic FROM a device/host to a remote location or other AWS resources. Ex.: traffic from the EC2 instance to an external database.
     ```
     
   - What is going to happen by default? Everything allowed or denied?
     ```
-    The default NACL allows everything by default.
+    NACL evaluate traffic based on the rule number from the lowest number until the highest.
+    The first rule which matches the traffic direction will be used to determine if the connection will be allowed or denied.
+    The default NACL has a rule number 100 which allow everything. 
     ```
 
 - Commands for creating a NACL to block SSH connection comming from the network `172.16.200.0/24`?
