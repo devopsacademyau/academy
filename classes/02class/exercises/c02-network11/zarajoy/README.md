@@ -405,17 +405,51 @@ Run "sudo yum update" to apply all updates.
 - Commands for accessing your private instance from public one
 
 ```
+[ec2-user@ip-192-168-112-214 ~]$ ssh ec2-user@192.168.13.37
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+13 package(s) needed for security, out of 22 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-192-168-13-37 ~]$ 
 
 ```
 
 - Commands for testing ping to `8.8.8.8` from private instance
 
 ```
-Add your commands and their outputs here
+[ec2-user@ip-192-168-13-37 ~]$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=107 time=2.66 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=107 time=2.44 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=107 time=2.39 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=107 time=2.44 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=107 time=2.43 ms
+64 bytes from 8.8.8.8: icmp_seq=6 ttl=107 time=2.43 ms
+64 bytes from 8.8.8.8: icmp_seq=7 ttl=107 time=2.45 ms
+64 bytes from 8.8.8.8: icmp_seq=8 ttl=107 time=2.44 ms
+^C
+--- 8.8.8.8 ping statistics ---
+8 packets transmitted, 8 received, 0% packet loss, time 7011ms
+rtt min/avg/max/mdev = 2.391/2.465/2.663/0.077 ms
+[ec2-user@ip-192-168-13-37 ~]$ 
+
 ```
 
 - Any extra challenges faced?
 
+```
+[ec2-user@ip-192-168-112-214 ~]$ ssh 192.168.13.37
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+```
+kept getting the above until i changed it to 
+```
+[ec2-user@ip-192-168-112-214 ~]$ ssh ec2-user@192.168.13.37
+```
+I am not overly sure why...
 
 <!-- Don't change anything below this point-->
 ***
