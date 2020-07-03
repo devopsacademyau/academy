@@ -13,7 +13,7 @@ For the exercises below, you should use all the custom created network resources
   - open any security group to allow the SSH communication between the   instances
 
 ```
- 1. PROCESS to CREATE VPC PEERING
+1. PROCESS to CREATE VPC PEERING
 
  REQUESTER (ORIGIN) VPC DETAILS - 
   VPC-ID vpc-042fd98e61209aa1e 
@@ -40,9 +40,9 @@ For the exercises below, you should use all the custom created network resources
 
  > aws ec2 accept-vpc-peering-connection --vpc-peering-connection-id pcx-0df22d155cd076a47
 
- 2. ADD ROUTES FROM ORIGIN VPC TO TARGET VPC - ONLY FOR PRIVATE SUBNETS
+2. ADD ROUTES FROM ORIGIN VPC TO TARGET VPC - ONLY FOR PRIVATE SUBNETS
 
- Routes added at Origin VPC
+   Routes added at Origin VPC
  
  > aws ec2 describe-route-tables --route-table-ids rtb-0e10033c72864cbea 
 
@@ -113,12 +113,13 @@ For the exercises below, you should use all the custom created network resources
    }
 
 
- NETWORK ACL ENTRY AT TARGET 
- > aws ec2 describe-network-acls --network-acl-ids acl-034d97690fe6cf7f1
-   {
-    "NetworkAcls": [
-        {
-            "Associations": [
+3. NETWORK ACL ENTRY AT TARGET 
+ 
+   > aws ec2 describe-network-acls --network-acl-ids acl-034d97690fe6cf7f1
+     {
+      "NetworkAcls": [
+         {
+             "Associations": [
                 {
                     "NetworkAclAssociationId": "aclassoc-9d136de0",
                     "NetworkAclId": "acl-034d97690fe6cf7f1",
@@ -230,16 +231,15 @@ For the exercises below, you should use all the custom created network resources
              "VpcId": "vpc-059ada909ea0aa9a7",
              "OwnerId": "743552702304"
           }
-      ]
-  }
+       ]
+    }
 
+4. SECURITY GROUP DETAILS AT TARGET
 
- SECURITY GROUP DETAILA AT TARGET
+   > aws ec2 describe-security-groups --group-ids sg-013796d5fe013ffb9
 
- > aws ec2 describe-security-groups --group-ids sg-013796d5fe013ffb9
-
-   {
-    "SecurityGroups": [
+    {
+      "SecurityGroups": [
         {
             "Description": "Training Academy Public SG",
             "GroupName": "public-sg",
@@ -289,9 +289,9 @@ For the exercises below, you should use all the custom created network resources
               "VpcId": "vpc-059ada909ea0aa9a7"
           }
       ]
-  }
+   }
 
-  CONNECTION FROM ORIGIN EC2 VPC TO TARGET EC2 VPC
+5. CONNECTION FROM ORIGIN EC2 VPC TO TARGET EC2 VPC
   
   Copied the key file(.pem) of the Target EC2 instance to the Origin EC2 before initiating the connection. 
   
