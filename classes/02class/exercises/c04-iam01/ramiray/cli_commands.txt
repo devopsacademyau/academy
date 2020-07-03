@@ -1,0 +1,56 @@
+ aws iam create-user --user-name user_readonly_S3
+{
+    "User": {
+        "UserName": "user_readonly_S3",
+        "Path": "/",
+        "CreateDate": "2020-07-03T13:28:40Z",
+        "UserId": "AIDAVCLPDCQGZYBPPTKLR",
+        "Arn": "arn:aws:iam::348662207501:user/user_readonly_S3"
+    }
+}
+
+$ aws iam create-policy --policy-name S3readOnly --policy-document file://policy.json
+{
+    "Policy": {
+        "PolicyName": "S3readOnly",
+        "PermissionsBoundaryUsageCount": 0,
+        "CreateDate": "2020-07-03T13:33:37Z",
+        "AttachmentCount": 0,
+        "IsAttachable": true,
+        "PolicyId": "ANPAVCLPDCQGXPQZK6BJL",
+        "DefaultVersionId": "v1",
+        "Path": "/",
+        "Arn": "arn:aws:iam::348662207501:policy/S3readOnly",
+        "UpdateDate": "2020-07-03T13:33:37Z"
+    }
+}
+
+aws iam attach-user-policy --policy-arn arn:aws:iam::348662207501:policy/S3readOnly --user-name user_readonly_S3
+
+aws iam create-access-key --user-name user_readonly_S3
+
+$ aws iam create-access-key --user-name user_readonly_S3
+{
+    "AccessKey": {
+        "UserName": "user_readonly_S3",
+        "Status": "Active",
+        "CreateDate": "2020-07-03T13:39:34Z",
+        "SecretAccessKey": "qVjaysnyYvPKu2jA6DuFLsvZzP88W+rC4o1i2rJy",
+        "AccessKeyId": "AKIAVCLPDCQGYDSFQGFR"
+    }
+}
+
+aws configure --profile s3ReadOnlyProfile
+AWS Access Key ID [None]:
+AWS Secret Access Key [None]: qVjaysnyYvPKu2jA6DuFLsvZzP88W+rC4o1i2rJy
+Default region name [None]: ap-southeast-2
+Default output format [None]: json
+
+$ aws s3 ls --profile s3ReadOnlyProfile
+2020-06-11 11:48:29 aaryanbkt
+2020-06-15 21:49:01 cf-templates-12n15dvjhxpj4-ap-southeast-2
+2020-06-15 22:18:35 cf-templates-12n15dvjhxpj4-us-east-1
+2020-06-22 18:57:25 ramyadevopstest
+
+
+
