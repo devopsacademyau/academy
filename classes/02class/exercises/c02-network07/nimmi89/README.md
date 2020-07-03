@@ -130,6 +130,7 @@ aws ec2 associate-route-table \
 |devopsacademy-rt-public|0.0.0.0|`devopsacademy-igw`|
 |devopsacademy-rt-private|0.0.0.0|`devopsacademy-ngw`|
 
+```
 aws ec2 create-route /
  --route-table-id rtb-068b99ba337982448 /
  --destination-cidr-block 0.0.0.0/0 /
@@ -140,8 +141,6 @@ aws ec2 create-route /
  --destination-cidr-block 0.0.0.0/0 /
  --gateway-id nat-07e041dcaef2485c0
 
-```
-Add your commands and their outputs here
 ```
 
 - Answer the following questions:
@@ -164,23 +163,22 @@ Add your commands and their outputs here
     
   - What is the difference of IGW and NGW?
     ```
-    An Internet Gateway (IGW) is a logical connection between an Amazon VPC and the Internet.An Internet Gateway allows resources within your VPC to access the internet, and vice versa[provided route tables are configured].Only one can be associated with each VPC. 
+    An Internet Gateway (IGW) is a logical connection between an Amazon VPC and the Internet. An Internet Gateway allows resources within your VPC to access the internet, and vice versa[provided route tables are configured].Only one can be associated with each VPC. 
     
-    NAT Gateway allows resources in a private subnet to access the internet.It only works one way. The internet at large cannot get through your NAT to your private resources unless you explicitly allow it.
-    You'll need one in each AZ since they only operate in a single AZ
-
+    NAT Gateway allows resources in a private subnet to access the internet.It only works one way. An Internet IPv4 cannot initiate communication with private resources using AWS NAT gateway.
+    Even though with a single NAT Gateway all private subnets can reach the internet, having 1 NAT Gateway in each AZ is better for high-availability.If there is a single NAT Gateway and that AZ should fail, then all private instances would lose Internet access. 
  
     ```
     
   - Can you delete the destination route to your VPC network? Why?
     ```
-    No, the destination route to the VPC network cannot be deleted .It is for locally routable traffic
+    No, the destination route to the VPC network cannot be deleted. It is for locally routable traffic.
      
     ```
     
   - What happens if you do not associate your route table with any subnets?
     ```
-    Nothing happens. Route table by itself wont be of much use if not associated with any subnets
+    Nothing happens. Route table by itself wont be of much use if not associated with any subnets.
     
     ```
 
