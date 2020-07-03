@@ -2,8 +2,9 @@
 
 ## Command Execution Output
 - [cli_commands.txt](cli_commands.txt)
+
+- Command to create new user
 ```
->>Command to create new user
 aws iam create-user  --user-name user_readonly_S3
 >The command returns:
 {
@@ -16,8 +17,9 @@ aws iam create-user  --user-name user_readonly_S3
     }
 }
 ```
+
+- Policy file with required permissions
 ```
->Policy file with required permissions
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -33,8 +35,9 @@ aws iam create-user  --user-name user_readonly_S3
         }
     ]
 }
-
->Command to create a policy 
+```
+- Command to create a policy 
+```
 aws iam create-policy \
 --policy-name S3readOnly \
 --policy-document file://DAPolicy.json
@@ -54,8 +57,30 @@ aws iam create-policy \
     }
 }
 ```
+- Command to attach the policy to the user
+ ```
+    aws iam attach-user-policy \
+    --user-name user_readonly_S3 \
+    --policy-arn arn:aws:iam::438549961569:policy/S3readOnly
+ ```   
+- Command to create a new Access Key (and secret) for the new user
 ```
->>Command to configure a new AWS CLI profile
+    aws iam create-access-key \
+    --user-name user_readonly_S3
+    >The command returns:
+    {
+        "AccessKey": {
+            "UserName": "user_readonly_S3",
+            "AccessKeyId": "****************4NP3",
+            "Status": "Active",
+            "SecretAccessKey": "****************ddFD",
+            "CreateDate": "2020-07-02T08:38:46+00:00"
+        }
+    }
+```
+
+- Command to configure a new AWS CLI profile
+```
 aws configure --profile s3ReadOnlyProfile
 >The command returns:
 AWS Access Key ID [None]: ****************4NP3
@@ -63,11 +88,11 @@ AWS Secret Access Key [None]: ****************ddFD
 Default region name [None]: ap-southeast2
 Default output format [None]:
 ```
+
+- Command to check the new user's permissions to S3
 ```
->>Command to check the new user's permissions to S3
 aws s3 ls --profile s3ReadOnlyProfile
 >The command returns the list of buckets
-
 ```
 
 ***
