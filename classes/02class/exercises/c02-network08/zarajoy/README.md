@@ -10,7 +10,7 @@
     
   - What is going to happen by default? Everything allowed or denied?
     ```
-    NACL allow traffic in and out by default and must be configured to be more restrictive. 
+    The default network ACL is configured to allow all traffic to flow in and out of the subnets with which it is associated. Each network ACL also includes a rule whose rule number is an asterisk. This rule ensures that if a packet doesn't match any of the other numbered rules, it's denied.
     ```
     
 
