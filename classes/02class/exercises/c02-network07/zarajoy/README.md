@@ -419,9 +419,8 @@ z@bacon:~$ aws ec2 create-route  --route-table-id rtb-0f8fb399d2a29b2fa  --desti
     ```
     An Internet Gateway allows resources within your VPC to access the internet, and the internet to access your public subnet (and its resources)
 
-  NAT Gateway allows resources in a private subnet to access the internet.
-  It only works one way. The internet at large cannot get through your NAT to your private resources unless you explicitly allow it. A NAT gateway only exists in a single AZ so for all our 3 private subnets to access internet, we must have a NAT in each AZ.
-    ```
+  NAT Gateway allows resources in a private subnet to access the internet. A ressource from outside your network cannot initiate communication with private resourcess that are using a NAT gateway.
+
     
   Can you delete the destination route to your VPC network? Why?
     ```
