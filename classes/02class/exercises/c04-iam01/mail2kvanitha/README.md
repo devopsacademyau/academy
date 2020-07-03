@@ -2,11 +2,12 @@
 
 ## Command Execution Output
 - [cli_commands.txt](cli_commands.txt)
+
 1. CREATE IAM USER: 
 
   > aws iam create-user --user-name user_readonly_s3 --tags Key=Name,Value=s3readonlyuser 
 
-   {
+     {
       "User": {
           "Path": "/",
           "UserName": "user_readonly_s3",
@@ -20,7 +21,7 @@
               }
           ]
       }
-   }
+     }
 
 2. CREATE POLICY JASON FILE AND CREATE POLICY:
 
