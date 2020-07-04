@@ -20,4 +20,4 @@ Insert command and output here
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
-Answer for exercise [c03-compose01](https://github.com/devopsacademyau/academy/blob/c41e824fb2a2c55e3a30b2371a87e3a7551b6741/classes/03class/exercises/c03-compose01/README.md)
+Answer for exercise [c03-compose01](https://github.com/devopsacademyau/academy/blob/779217898c5e63d5f3ca13cba3ac877e03f63efc/classes/03class/exercises/c03-compose01/README.md)
