@@ -5,7 +5,7 @@
 - Answer the following questions
   - What is the difference between inbound x outbound?
     ```
-    Inbound is when a host is receiving a data, whereas outbond is when a host is sending data. For instance a http server receives inbound connections from clients, whereas a web browser makes outbound connection to a webserver. Important to remember NACLs are stateless, which means to a host accept connections, you have to open the inbound port and the outbound "high ports" to allow connections
+    Inbound is when a host is receiving a data, whereas outbond is when a host is sending data. For instance a http server receives inbound connections from clients, whereas a web browser makes outbound connection to a webserver. Important to remember NACLs are stateless, which means to a host accept connections, you have to open the inbound port and the outbound ephemeral ports to allow connections
     ```
     
   - What is going to happen by default? Everything allowed or denied?
