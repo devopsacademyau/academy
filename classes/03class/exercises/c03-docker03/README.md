@@ -5,4 +5,4 @@ For this exercise, We'll upload both images created on the previous exercise to 
 With your account created, use the docker cli to push both images to your DockerHub workspace.
 
 ## Submit a PR with the following files:
-- c03-docker03.txt: Containing the commands executed to push both images to DockerHub as well as the output from those commands.
+- README.md based on the [ANSWER.md file](ANSWER.md) with the command's outputs
