@@ -214,11 +214,17 @@ aws ec2 create-route --route-table-id rtb-024a69525b35bfded --destination-cidr-b
     
   - What happens if you do not associate your route table with any subnets?
     ```
-    It will be associate with the main route table
+    A route table without subnets won't route any requests from subnets (there is no use for it, basically).
+
     ```
 
 
 - Any extra challenges faced?
+```
+
+    It was complex to deal with many different resources ID. I'm keen to use an IaT tool to deploy the network in one goal.
+
+```
 
 
 <!-- Don't change anything below this point-->
