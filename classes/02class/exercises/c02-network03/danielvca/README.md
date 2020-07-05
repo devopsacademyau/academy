@@ -5,6 +5,9 @@
 
 - Commands for creating a new VPC:
 ```
+aws ec2 create-vpc \
+--cidr-block 10.0.0.0/16
+
 Vpc:  
 CidrBlock: 10.0.0.0/16  
 CidrBlockAssociationSet:  
