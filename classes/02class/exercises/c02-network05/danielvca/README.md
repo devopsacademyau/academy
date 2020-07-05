@@ -11,6 +11,16 @@ aws ec2 create-tags --resources igw-0047722be38dccb86 --tags Key=Name,Value=devo
 aws ec2 attach-internet-gateway \
 --vpc-id vpc-0c2c93451cdd28192 \
 --internet-gateway-id igw-0047722be38dccb86
+
+InternetGateways:
+- Attachments:
+  - State: available
+    VpcId: vpc-0c2c93451cdd28192
+  InternetGatewayId: igw-0047722be38dccb86
+  OwnerId: '646093908012'
+  Tags:
+  - Key: Name
+    Value: devopsacademy-igw
 ```
 
 
