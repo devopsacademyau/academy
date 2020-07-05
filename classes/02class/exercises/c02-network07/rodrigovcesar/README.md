@@ -183,7 +183,13 @@ aws ec2 create-route --route-table-id rtb-013716806215ecf49 --destination-cidr-b
     
   - What happens if you do not associate your route table with any subnets?
     ```
-    Nothing. A route table without any associated subnet is not useful. 
+    All VPCs have one main table route (RT) by default, controlling the routing for all subnets that are not explicitly associated with any RT.  
+    
+    Every subnet, when created and not explicitly assigned with any RT, is automatically associated with the main route table from the VPC - an implicity association.   
+    
+    A subnet can only be associated with one RT at a time, but you can associate multiple subnets with the same subnet RT.
+    
+    In this case, from what I understand,  creating a custom RT without any association will not produce any effect at all if you do not have an explicit association.     
     ```
 
 
