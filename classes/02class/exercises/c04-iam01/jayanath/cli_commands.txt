@@ -46,15 +46,12 @@
     --user-name user_readonly_S3 \
     --policy-arn arn:aws:iam::907095435092:policy/S3readOnly
 
-## below access key and secret access key were deleted before committing the code :-)
+## Output was altered by removing access keys before committing the code :-)
 > aws iam create-access-key --user-name user_readonly_S3
 
     {
         "AccessKey": {
-            "UserName": "user_readonly_S3",
-            "AccessKeyId": "AKIA5GMYZ45KP2FH5T6A",
             "Status": "Active",
-            "SecretAccessKey": "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",
             "CreateDate": "2020-06-29T11:15:28+00:00"
         }
     }
@@ -62,7 +59,6 @@
 > aws sts get-caller-identity
 
     {
-        "UserId": "AIDA5GMYZ45KCWKCMXDUP",
         "Account": "907095435092",
         "Arn": "arn:aws:iam::907095435092:user/user_readonly_S3"
     }
