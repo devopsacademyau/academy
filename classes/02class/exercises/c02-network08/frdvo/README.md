@@ -92,7 +92,7 @@ $aws ec2 describe-network-acls
     ]
 } 
  
-$aws ec2 create-network-acl-entry --network-acl-id acl-0e036e5c5c674f74b --ingress --rule-number 200 --protocol tcp --port-range From=22,To=22 --cidr-block 172.16.200.0/24 --rule-action deny
+$aws ec2 create-network-acl-entry --network-acl-id acl-0e036e5c5c674f74b --ingress --rule-number 90 --protocol tcp --port-range From=22,To=22 --cidr-block 172.16.200.0/24 --rule-action deny
 
 $aws ec2 describe-network-acls
 {
@@ -161,7 +161,7 @@ $aws ec2 describe-network-acls
                     },
                     "Protocol": "6",
                     "RuleAction": "deny",
-                    "RuleNumber": 200
+                    "RuleNumber": 90
                 },
                 {
                     "CidrBlock": "0.0.0.0/0",
@@ -184,7 +184,7 @@ $aws ec2 describe-network-acls
 - Commands for creating a NACL to block access from your network to an external network `180.200.50.0/24`?
 
 ```
-$aws ec2 create-network-acl-entry --network-acl-id acl-0e036e5c5c674f74b --egress --rule-number 300 --protocol -1 --cidr-block 180.200.50.0/24 --rule-action deny
+$aws ec2 create-network-acl-entry --network-acl-id acl-0e036e5c5c674f74b --egress --rule-number 85 --protocol -1 --cidr-block 180.200.50.0/24 --rule-action deny
 
 $aws ec2 describe-network-acls
 {
@@ -235,7 +235,7 @@ $aws ec2 describe-network-acls
                     "Egress": true,
                     "Protocol": "-1",
                     "RuleAction": "deny",
-                    "RuleNumber": 300
+                    "RuleNumber": 85
                 },
                 {
                     "CidrBlock": "0.0.0.0/0",
@@ -282,7 +282,7 @@ $aws ec2 describe-network-acls
 ```
 
 - Any extra challenges faced?
-All good in the hood!
+
 
 <!-- Don't change anything below this point-->
 ***
