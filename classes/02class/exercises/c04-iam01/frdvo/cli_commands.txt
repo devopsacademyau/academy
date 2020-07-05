@@ -1,0 +1,52 @@
+$ aws iam create-user --user-name user_readonly_s3
+{
+    "User": {
+        "Path": "/",
+        "UserName": "user_readonly_s3",
+        "UserId": "AIDASNGDG6JWZ7STMJPSL",
+        "Arn": "arn:aws:iam::165765640813:user/user_readonly_s3",
+        "CreateDate": "2020-07-05T13:35:23Z"
+    }
+}
+
+$ aws iam create-policy --policy-name S3readOnly --policy-document file:///home/fer/repos/academy/classes/02class/exercises/c04-iam01/frdvo/s3ro-policy.json
+{
+    "Policy": {
+        "PolicyName": "S3readOnly",
+        "PolicyId": "ANPASNGDG6JWRSHGPO5JU",
+        "Arn": "arn:aws:iam::165765640813:policy/S3readOnly",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "CreateDate": "2020-07-05T13:40:37Z",
+        "UpdateDate": "2020-07-05T13:40:37Z"
+    }
+}
+
+$ aws iam attach-user-policy --user-name user_readonly_s3 --policy-arn arn:aws:iam::165765640813:policy/s3readonly
+
+$ aws iam list-attached-user-policies --user-name user_readonly_s3
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "S3readOnly",
+            "PolicyArn": "arn:aws:iam::165765640813:policy/S3readOnly"
+        }
+    ]
+}
+
+$ aws iam create-access-key --user-name user_readonly_s3
+{
+    "AccessKey": {
+        "UserName": "user_readonly_s3",
+        "AccessKeyId": "<replaced>",
+        "Status": "Active",
+        "SecretAccessKey": "<replaced>",
+        "CreateDate": "2020-07-05T13:43:16Z"
+    }
+}
+aws s3 ls --profile s3readonlyprofile
+2020-06-15 11:43:44 frdvo
+
