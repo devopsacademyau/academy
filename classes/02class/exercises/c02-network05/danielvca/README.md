@@ -12,6 +12,8 @@ aws ec2 attach-internet-gateway \
 --vpc-id vpc-0c2c93451cdd28192 \
 --internet-gateway-id igw-0047722be38dccb86
 
+aws ec2 describe-internet-gateways --internet-gateway-ids igw-0047722be38dccb86
+
 InternetGateways:
 - Attachments:
   - State: available
