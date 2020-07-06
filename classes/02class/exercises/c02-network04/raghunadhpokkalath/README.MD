@@ -26,7 +26,7 @@ private subnet [CIDR - 10.0.1.0/24]
     }
 }
 
->aws ec2 create-tags --resources subnet-0b93b57d95a2de8d4 --tags Key=name,Value=private-subnet-2a
+> aws ec2 create-tags --resources subnet-0b93b57d95a2de8d4 --tags Key=Name,Value=private-subnet-2a
 
 >   aws ec2 describe-subnets --filters "Name=subnet-id,Values=subnet-0b93b57d95a2de8d4"
 
@@ -47,7 +47,7 @@ private subnet [CIDR - 10.0.1.0/24]
             "Ipv6CidrBlockAssociationSet": [],
             "Tags": [
                 {
-                    "Key": "name",
+                    "Key": "Name",
                     "Value": "private-subnet-2a"
                 }
             ],
@@ -76,9 +76,9 @@ public subnet [CIDR - 10.0.101.0/24]
         "SubnetArn": "arn:aws:ec2:ap-southeast-2:361529347535:subnet/subnet-0ff0ad4440d0df64e"
     }
 }
-> aws ec2 create-tags --resources subnet-0ff0ad4440d0df64e --tags Key=name,Value=public-subnet-2a
+> aws ec2 create-tags --resources subnet-0ff0ad4440d0df64e --tags Key=Name,Value=public-subnet-2a
 
-> aws ec2 describe-subnets --filters "Name=subnet-id,Values=subnet-0b93b57d95a2de8d4"
+> aws ec2 describe-subnets --filters "Name=subnet-id,Values=subnet-0ff0ad4440d0df64e"
 
 {
     "Subnets": [
@@ -97,7 +97,7 @@ public subnet [CIDR - 10.0.101.0/24]
             "Ipv6CidrBlockAssociationSet": [],
             "Tags": [
                 {
-                    "Key": "name",
+                    "Key": "Name",
                     "Value": "public-subnet-2a"
                 }
             ],
@@ -128,7 +128,7 @@ Private subnet [CIDR - 10.0.2.0/24]
     }
 }
 
-> aws ec2 create-tags --resources subnet-0b76d0885b48f0cfa --tags Key=name,Value=private-subnet-2b
+> aws ec2 create-tags --resources subnet-0b76d0885b48f0cfa --tags Key=Name,Value=private-subnet-2b
 
 > aws ec2 describe-subnets --filters "Name=subnet-id,Values=subnet-0b76d0885b48f0cfa"
 
@@ -149,7 +149,7 @@ Private subnet [CIDR - 10.0.2.0/24]
             "Ipv6CidrBlockAssociationSet": [],
             "Tags": [
                 {
-                    "Key": "name",
+                    "Key": "Name",
                     "Value": "private-subnet-2b"
                 }
             ],
@@ -180,7 +180,7 @@ raghunadhpokkalath@raghunadhs-MBP ~ % aws ec2 create-subnet --vpc-id vpc-076a05e
     }
 }
 
-> aws ec2 create-tags --resources subnet-0f3eb7a49a103114e --tags Key=name,Value=public-subnet-2b
+> aws ec2 create-tags --resources subnet-0f3eb7a49a103114e --tags Key=Name,Value=public-subnet-2b
 
 > aws ec2 describe-subnets --filters "Name=subnet-id,Values=subnet-0f3eb7a49a103114e"
 {
@@ -200,7 +200,7 @@ raghunadhpokkalath@raghunadhs-MBP ~ % aws ec2 create-subnet --vpc-id vpc-076a05e
             "Ipv6CidrBlockAssociationSet": [],
             "Tags": [
                 {
-                    "Key": "name",
+                    "Key": "Name",
                     "Value": "public-subnet-2b"
                 }
             ],
@@ -229,7 +229,7 @@ Private subnet [CIDR - 10.0.3.0/24]
         "SubnetArn": "arn:aws:ec2:ap-southeast-2:361529347535:subnet/subnet-0e22678e3713193d2"
     }
 }
-> aws ec2 create-tags --resources subnet-0e22678e3713193d2 --tags Key=name,Value=private-subnet-2c
+> aws ec2 create-tags --resources subnet-0e22678e3713193d2 --tags Key=Name,Value=private-subnet-2c
 
 > aws ec2 describe-subnets --filters "Name=subnet-id,Values=subnet-0e22678e3713193d2"
 {
@@ -249,7 +249,7 @@ Private subnet [CIDR - 10.0.3.0/24]
             "Ipv6CidrBlockAssociationSet": [],
             "Tags": [
                 {
-                    "Key": "name",
+                    "Key": "Name",
                     "Value": "private-subnet-2c"
                 }
             ],
@@ -257,7 +257,6 @@ Private subnet [CIDR - 10.0.3.0/24]
         }
     ]
 }
-
 
 Public subnet [CIDR - 10.0.210.0/24]     
 
@@ -279,7 +278,7 @@ Public subnet [CIDR - 10.0.210.0/24]
         "SubnetArn": "arn:aws:ec2:ap-southeast-2:361529347535:subnet/subnet-0b2095e1b5117df04"
     }
 }
-> aws ec2 create-tags --resources subnet-0b2095e1b5117df04 --tags Key=name,Value=public-subnet-2c
+> aws ec2 create-tags --resources subnet-0b2095e1b5117df04 --tags Key=Name,Value=public-subnet-2c
 
 > aws ec2 describe-subnets --filters "Name=subnet-id,Values=subnet-0b2095e1b5117df04"
 
@@ -300,7 +299,7 @@ Public subnet [CIDR - 10.0.210.0/24]
             "Ipv6CidrBlockAssociationSet": [],
             "Tags": [
                 {
-                    "Key": "name",
+                    "Key": "Name",
                     "Value": "public-subnet-2c"
                 }
             ],
