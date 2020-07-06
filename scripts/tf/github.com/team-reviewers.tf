@@ -5,6 +5,9 @@ module "team-reviewers" {
   members             = [
     "deniseddi",
     "starkmatt",
-    "christina-roperto"
+    "christina-roperto",
+    "roperto",
+    "luizfds",
+    "lgothelipe"
   ]
 }
