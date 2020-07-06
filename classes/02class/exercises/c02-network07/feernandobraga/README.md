@@ -114,9 +114,11 @@ response:
     "Return": true
 }
 
-aws ec2 create-route --route-table-id rtb-0e0fae42163550983 --destination-cidr-block 0.0.0.0/0 --gateway-id nat-0b08ff466280436f1
+aws ec2 create-route --route-table-id rtb-0e0fae42163550983 --destination-cidr-block 0.0.0.0/0 --gateway-id nat-0131db7adc4c2cdc8
 response:
-An error occurred (InvalidGatewayID.NotFound) when calling the CreateRoute operation: The gateway ID 'nat-0b08ff466280436f1' does not exist
+{
+    "Return": true
+}
 ```
 
 - Answer the following questions:
@@ -124,7 +126,7 @@ An error occurred (InvalidGatewayID.NotFound) when calling the CreateRoute opera
   - How did you accomplish both instructions?
 
     ```
-    I was only able to accomplish the first one (public RT -> Internet gateway), since the NAT gateway was meant to be deleted right after exercise #06
+    I had to create the NAT gateway again and then attached it to the appropriated routing table and destination.
     ```
 
   - Why did you add 0.0.0.0 route to the IGW on public route table?
@@ -149,7 +151,8 @@ An error occurred (InvalidGatewayID.NotFound) when calling the CreateRoute opera
   - Can you delete the destination route to your VPC network? Why?
 
     ```
-    AWS only allows you to delete it if they are detached from the VPC, otherwise you can't. The reason is that the VPCs need to know how/where to route the traffic between instances and/or external resources.
+    AWS does not allow you to delete local routes with destination pointing to local VPC, as it contains traffic rules used to route local traffic.
+
     ```
 
   - What happens if you do not associate your route table with any subnets?
