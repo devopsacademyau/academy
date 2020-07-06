@@ -30,7 +30,7 @@ Create VPC with default tenancy and no IPV6
 }
 
 AWS create tags as devopsacademy
-> aws ec2 create-tags --resources vpc-076a05ec0f3be4895 --tags Key=devopsacademy,Value=devopsacademy-vpc
+> aws ec2 create-tags --resources vpc-076a05ec0f3be4895 --tags Key=Name,Value=devopsacademy-vpc
 
 Verify using describe vpcs command to check if tags are created properly
 > aws ec2 describe-vpcs --vpc-ids vpc-076a05ec0f3be4895
@@ -58,6 +58,10 @@ Verify using describe vpcs command to check if tags are created properly
                 {
                     "Key": "devopsacademy",
                     "Value": "devopsacademy-vpc"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "devopsacademy-vpc"
                 }
             ]
         }
@@ -69,9 +73,8 @@ Verify using describe vpcs command to check if tags are created properly
 ```
 - Any extra challenges faced?
 ```
-I was  unable to create VPC with a name then I found out we dont have an option to pass name when creating VPC c aws will automatically create vpc id .
-We can only tag the VPC using tag-specifications.
-I was trying to --tag-specifications command with VPC creation but due to AWS cli issue I was not able to run that.THen I created VPC first and then created the tag later
+I was  unable to create VPC with a name then I found out we dont have an option to pass name when creating VPC . Aws will automatically create vpc id .We can only give the name to VPC using the tag option.
+I was trying to --tag-specifications command with VPC creation but due to AWS cli issue I was not able to run that.Then I created VPC first and then created the tag later
 ```
 
 <!-- Don't change anything below this point-->
