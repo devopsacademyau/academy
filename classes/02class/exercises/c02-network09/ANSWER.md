@@ -5,7 +5,7 @@
 - Commands for creating security groups for below table
 
 |Security Group Name|Rule|Type|Port Range|Source|Description
-|-|-|-|-|-|-|
+|---|---|---|---|---|---|
 |public-sg|inbound|Custom TCP Rule|22|`<your-home-ip-address>`|SSH access from home to AWS|
 |private-sg|inbound|Custom TCP Rule|22|`<public-sg-id>`|SSH access only from public instances on AWS|
 
