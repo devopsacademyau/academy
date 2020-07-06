@@ -19,6 +19,6 @@ You should have a similar behaviour when accessing both containers. You can use 
 Now change the content of the file classes/03class/docker/artifacts/c03-docker02/index.html, and without stoping the running containers, check if anything changed when accessing both URLs again.
 
 ## Submit a PR with the following files:
-- Dockerfile.v1: used to create the first image
-- Dockerfile.v2: used to create the second image
-- c03-docker02.txt: Containing the output of the curl commands executed before and after changing the file indicated. Explain any difference between the responses of the webservers before and after changing the file locally. 
+- README.md based on the [ANSWER.md file](ANSWER.md) with a link to the following files from your answer:
+  - Dockerfile.v1: used to create the first image
+  - Dockerfile.v2: used to create the second image
