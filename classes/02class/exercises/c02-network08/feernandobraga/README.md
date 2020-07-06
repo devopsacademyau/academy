@@ -3,6 +3,7 @@
 ## Commands Execution Output
 
 - Answer the following questions
+
   - What is the difference between inbound x outbound?
 
     ```
@@ -12,7 +13,7 @@
   - What is going to happen by default? Everything allowed or denied?
 
     ```
-    By default all traffic is allowed
+    Default NACLs allow for inbound and outbound traffic, whilst custom NACLs will deny all traffic by default.
     ```
 
 * Commands for creating a NACL to block SSH connection comming from the network `172.16.200.0/24`?
