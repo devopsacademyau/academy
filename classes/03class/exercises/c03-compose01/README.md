@@ -1,4 +1,4 @@
-# Basic Compose (c05-compose01)
+# Basic Compose (c03-compose01)
 
 In this exercise, you'll create a Docker Compose to run two images that will work together. One of the images will be a Apache WebServer with PHP and the other will be a MySQL Database.
 
