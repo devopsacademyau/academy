@@ -32,7 +32,7 @@
   - subnet in binary: `11111111.11111111.111111111.11111111` 
   - subnet in decimals: `255.255.255.255`
   - private/public: `public`
-  - hosts: `1`
+  - hosts: None (There will be only single ip and which refers to current host)
 
 - Answers for `172.31.0.0/16`:
 
