@@ -18,7 +18,7 @@ At this stage of the DevOps Academy we will start connecting the dots and unders
 
 The project #1 kickoff is coming soon and will use most of the concepts that we have seen so far.
 
-This article will cover what's the conect of Cattle and Pets and why you should chose one over the other. You'll learn how to implement both concepts using AWS services.
+This article will cover what's the concept of Cattle and Pets and why you should choose one over the other. You'll learn how to implement both concepts using AWS services.
 
 
 ## Pet vs Cattle
@@ -43,12 +43,12 @@ EC2 Auto Scaling ensures that you always have the number of instances needed to 
 
 You could probably have been asking yourself: if I have two servers running my website, how my clients will access both of them?
 
-This is where [Load Balancers](#aws-load-balancer) will help balancing requests through your array of servers created by an ASG. [Load Balancers](#aws-load-balancer) will be introduced later in this article.
+This is where [Load Balancers](#aws-load-balancer) will help to balance requests through your array of servers created by an ASG. [Load Balancers](#aws-load-balancer) will be introduced later in this article.
 
-ASG are described in 3 key components:
+ASG is described in 3 key components:
 
 - Groups
-  - a group treats an array of server as one logical resource. When creating a group you have to specify its minimum, maximum and desired number of EC2 instances.
+  - a group treats an array of servers as one logical resource. When creating a group you have to specify its minimum, maximum and desired number of EC2 instances.
     - minimum: have at least this minimum of EC2 instances online
     - maximum: have this maximum of EC2 instances online
     - desired: try to keep this desired number
@@ -65,19 +65,19 @@ There are no costs of creating an ASG by itself. The cost will only be related t
 
 Understanding your application is key when building an ASG. Ask yourself questions like:
 
-- what are the required software that my application need
+- what is the required software that my application need
 - does it need to do any pre-configuration before running the main application
 - how many instances do I need to have always running
 
-ASG as any other tool, is not a silver bullet for all the use cases. Applications that have persistent storage use could be hard to scale up and down as it need. In specific cases, the application might have to be re-designed to handle multiple access to its state.
+ASG as any other tool, is not a silver bullet for all the use cases. Applications that have persistent storage use could be hard to scale up and down as it needs. In specific cases, the application might have to be re-designed to handle multiple access to its state.
 
-The idea os scaling up and down based on needs is where the cloud computing shines and applications have to be developed with this mindset.
+The idea os scaling up and down based on needs is where cloud computing shines and applications have to be developed with this mindset.
 
 ### How it works
 
 Once you create an ASG, the group will make sure to have the set amount of instances requested at any point in time. A 1/1/1 ASG is a group with `minimum: 1` `maximum: 1` `desired: 1` EC2 instances, or basically just one instance.
 
-If you manually shutdown your instance, the ASG will identify the its instance is not healthy and will start a new one.
+If you manually shutdown your instance, the ASG will identify that the instance is not healthy and will start a new one.
 
 You can remove the instance from the ASG and start managing it manually if you wish so.
 
@@ -85,18 +85,18 @@ If those instances can be deleted and restarted at any time to maintain the desi
 
 ### Automating EC2 instances
 
-When thinking how to design an application/server to run from a dynamic instance, you will have to think if the required software change often or not.
+When thinking about how to design an application/server to run from a dynamic instance, you will have to think if the required software change often or not.
 
 
 #### AMI
 
 For example, my server needs an antivirus agent, nginx webserver and once it starts, it needs to deploy the application itself.
 
-Both the antivirus agent and the nginx webserver won't change their versions very often (less than once per week), so it will be a good idea to create a custom [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) with those softwares already installed. So when the ASG creates a new instance, those software will be there already.
+Both the antivirus agent and the nginx webserver won't change their versions very often (less than once per week), so it will be a good idea to create a custom [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) with that software already installed. So when the ASG creates a new instance, that software will be there already.
 
 #### UserData
 
-The application deployment gets a little bit trickier as you will expect that everytime a new server comes up, to go and pickup your latest code to be deployed. So this is not a good candidate to be part of the instance image.
+The application deployment gets a little bit trickier as you will expect that every time a new server comes up, to go and pick up your latest code to be deployed. So this is not a good candidate to be part of the instance image.
 
 The UserData is a script (bash or other languages) that you can make it run once your EC2 instance have the operational system ready to start.
 
@@ -126,9 +126,9 @@ This material will be focused only on the Application Load Balancer which is use
 
 The service can be found at Services > Compute > EC2 > Load Balancing > Load Balancers > Create Load Balancer > ALB
 
-An ALB can serve as a single point of contact for clients and distribute traffic across multiple targets, such as EC2 Instances, in multiple Availability Zones. When creating an ALB you will have to chose from 2 different types and in which Availability Zones your LB will be available:
+An ALB can serve as a single point of contact for clients and distribute traffic across multiple targets, such as EC2 Instances, in multiple Availability Zones. When creating an ALB you will have to choose from 2 different types and in which Availability Zones your LB will be available:
 
-- internet-facing: routes requests from public internet to targets
+- internet-facing: routes requests from the public internet to targets
 - internal: routes requests only from clients to targets using private IP addresses
 
 Basically an ALB has two main components: listeners and target groups.
@@ -137,9 +137,9 @@ Basically an ALB has two main components: listeners and target groups.
 
 #### listeners
 
-A listener tries to match requests from clients based on, among many types, protocol/port and path-based routing. For example a request on port `443` can redirect the traffic to an internal server running on port `80` or a request to `/admin` sends the traffic to a specifc EC2 Instance.
+A listener tries to match requests from clients based on, among many types, protocol/port and path-based routing. For example a request on port `443` can redirect the traffic to an internal server running on port `80` or a request to `/admin` sends the traffic to a specific EC2 Instance.
 
-Each listener rule consists in a priority of actions and one or more conditions. When the conditions for a rule are met, the traffic is then forwarded to a target group and the remaining rules are ignored.
+Each listener rule consists of a priority of actions and one or more conditions. When the conditions for a rule are met, the traffic is then forwarded to a target group and the remaining rules are ignored.
 
 #### target group
 
@@ -151,7 +151,7 @@ Those healthchecks can also be linked to an ASG to send termination requests if 
 
 ### AWS Certificate Manager
 
-If your service is being exposed through an ALB on port 443, a SSL certificate will need to be attached to the listener.
+If your service is being exposed through an ALB on port 443, an SSL certificate will need to be attached to the listener.
 
 AWS offers a service for generating SSL certificates for free if you are using with managed services like a load balancer.
 
@@ -161,10 +161,10 @@ Read more about AWS ACM and SSL certificates [here](https://aws.amazon.com/certi
 
 Route 53 (R53) is the DNS managed service offered by AWS. To consume this service you first need to create either private or public hosted zones.
 
-- public hosted zone: can be public accessible. You will need to own a domain and point the `ns` records to the zone created to be managed by AWS.
+- public hosted zone: can be publicly accessible. You will need to own a domain and point the `ns` records to the zone created to be managed by AWS.
 - private hosted zone: will only be resolved by local workloads running on your VPC.
 
-Unfortunately this is not included on the AWS free-tier. However the cost is only $1AUD/month per hosted zone.
+Unfortunately, this is not included on the AWS free-tier. However, the cost is only $1AUD/month per hosted zone.
 
 If you wish to try a public hosted zone, you can generate a free domain at `http://www.dot.tk/en/index.html?lang=en`, create a public hosted zone with the same name as your domain and follow the directions to create the `ns` records and managed your new domain through Route53.
 
