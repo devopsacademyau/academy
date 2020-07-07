@@ -13,7 +13,8 @@
     
   - What is going to happen by default? Everything allowed or denied?
     ```
-    By default is everything allowed.
+    
+    By default everything will be allowed as the rule 100 is allowing all the traffic coming from the VPC, and also the rule 101 is allowing everything from any source, and the `*` (star) means that is denying all connections inbound and outbound after the rule 101, which will still be allowed as the rule 101 allows everything, so the `*` (start) rule is not being activated in this case.
 
     ```
     
