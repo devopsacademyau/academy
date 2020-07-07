@@ -14,6 +14,9 @@ A file copy was stored on the folder /.git/objects as history.
 
 Git history will need to be rewrited.
 git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD 
+
+Git filter-branch will do is for each commit in the specified branch, apply filters to the snapshot, and create a new commit. The new commit’s parent will be the filtered version of the old commit’s parent. So it creates a parallel commit DAG.
+
 git push -all
 
 4. What are the consequences of the previous action?
