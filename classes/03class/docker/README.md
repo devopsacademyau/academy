@@ -99,7 +99,9 @@ Below you have some of the most common commands used in the docker client.
     - Execute an action related to containers
 - docker image [action]
     - Execute an action related to images
-
+- docker logs [container id]
+    - Fetch the logs of a container
+    
 Reference for all Docker client commands and options: [https://docs.docker.com/engine/reference/commandline/docker/](https://docs.docker.com/engine/reference/commandline/docker/)
 
 ## Registries
@@ -151,7 +153,7 @@ CMD [ "/app/app1.bin", "run" ]
 - CMD
   - Set a default command and default parameters which will be executed when Docker is run. Those values can be overwritten during the container execution
 - ENTRYPOINT
-  - Used when the container needs to be run as an executable. The command inside ENTRYPOINT instruction will can't be overwritten during container execution.
+  - Used when the container needs to be run as an executable.
 - WORKDIR
   - Sets the working directory to run the instructions: RUN, CMD, ENTRYPOINT, COPY and ADD
 
