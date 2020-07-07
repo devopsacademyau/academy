@@ -10,29 +10,29 @@
 |private-sg|inbound|Custom TCP Rule|22|`<public-sg-id>`|SSH access only from public instances on AWS|
 
 ```
-aws ec2 create-security-group --group-name public-sg --description "My public security group"
+aws ec2 create-security-group --group-name public-sg --vpc-id vpc-018717ea8ed22e6ae --description "My public security group"
 
 {
-    "GroupId": "sg-0f3d9cc0786fce034"
+    "GroupId": "sg-06d7c95453582cf5b"
 }
 
 aws ec2 authorize-security-group-ingress \
-    --group-name public-sg \
+    --group-id sg-06d7c95453582cf5b \
     --protocol tcp \
     --port 22 \
     --cidr 61.69.159.185/32
 
-aws ec2 create-security-group --group-name private-sg --description "My private security group"
+aws ec2 create-security-group --group-name private-sg --vpc-id vpc-018717ea8ed22e6ae --description "My private security group"
 
 {
-    "GroupId": "sg-01a4327c2d3ccea83"
+    "GroupId": "sg-0824e1528809be815"
 }
 
 aws ec2 authorize-security-group-ingress \
-    --group-name private-sg \
+    --group-id sg-0824e1528809be815 \
     --protocol tcp \
     --port 22 \
-    --source-group sg-0f3d9cc0786fce034
+    --source-group sg-06d7c95453582cf5b
 
 
 ```
