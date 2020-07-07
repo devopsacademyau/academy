@@ -1,20 +1,21 @@
-# C03-Docker01
-
-## Docker 
-- [Dockerfile](Dockerfile)
+# c03-aws03
 
 ## Command Execution Output
-- Command to build the image:
+- Command used to create the Route53 zone:
 ```
 Add command here
 ```
 
-- Command to run the image and its output.:
+- Command used to add any new records to the zone 
 ```
 Add command here
+```
+
+- Post any findings, how option you decided to go with, records created, domain created, and anything else that you find interesting.
+```
+Add your answer here
 ```
 
 <!-- Don't change anything below this point-->
-<!-- Before commiting, remove both commented lines--> 
 ***
-Answer for exercise [c03-docker01](https://github.com/devopsacademyau/academy/blob/af3225a3436f263164e8daebc6bbd1ef3122b900/classes/03class/exercises/c03-docker01/README.md)
+Answer for exercise [c03-aws03](https://github.com/devopsacademyau/academy/blob/aa1f1af00809616bdc1f8ba1d333b897c331d632/classes/03class/exercises/c03-aws03/README.md)
