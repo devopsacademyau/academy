@@ -1,16 +1,6 @@
 # Load Balancing
 
-Commit all your answers to a text file `c03-aws02.txt` under your folder name.
-
-
-### Create an Application Load Balancer with the following details and post:
-
-- how did you achieve that?
-- access through your browser your load balancer CNAME record and keep refreshing the browser. What do you see?
-- details of the security group used
-- public load balancer A record
-
-Details:
+Create an Application Load Balancer with the following details and post:
 
 - scheme: `public-facing`
 - listener:
@@ -27,3 +17,9 @@ Details:
 
 
 It might take a few minutes for the load balancer to be created and active.
+
+## Submit a PR with the following files
+
+> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)s
+
+- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing your answers.
