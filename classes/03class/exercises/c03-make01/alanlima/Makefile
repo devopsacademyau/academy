@@ -27,8 +27,3 @@ push:
 	docker push $(DOCKER_REPO)/$(IMAGE_NAME):$(COMMIT_SHA)
 	@echo "  ✅ All done"
 
-.PHONY: commit_hash
-commit_hash:
-	@git rev-parse --short HEAD
-
-	
