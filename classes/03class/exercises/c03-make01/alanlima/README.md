@@ -3,7 +3,6 @@
 ## Make
 - [Dockerfile](Dockerfile)
 - [Makefile](Makefile)
-- [output.md](output.md)
 
 ## Command Execution Output
 
