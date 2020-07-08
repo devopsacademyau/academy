@@ -45,6 +45,44 @@
     --hosted-zone-id Z0495682VQJK7N9GFOQI \
     --change-batch file://doa-r53-record.json
 
+## Find out the hosted zone of the ELB
+> aws elbv2 describe-load-balancers \
+    --load-balancer-arns arn:aws:elasticloadbalancing:ap-southeast-2:907095435092:loadbalancer/app/doa-alb/a7bfff31e9d009b3
+
+    {
+        "LoadBalancers": [
+            {
+                "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-southeast-2:907095435092:loadbalancer/app/doa-alb/a7bfff31e9d009b3",
+                "DNSName": "doa-alb-1952384790.ap-southeast-2.elb.amazonaws.com",
+                "CanonicalHostedZoneId": "Z1GM3OXH4ZPM65",
+                "CreatedTime": "2020-07-08T11:28:07.730000+00:00",
+                "LoadBalancerName": "doa-alb",
+                "Scheme": "internet-facing",
+                "VpcId": "vpc-007774900b7f4c596",
+                "State": {
+                    "Code": "active"
+                },
+                "Type": "application",
+                "AvailabilityZones": [
+                    {
+                        "ZoneName": "ap-southeast-2a",
+                        "SubnetId": "subnet-05ba54dadeae3a83c",
+                        "LoadBalancerAddresses": []
+                    },
+                    {
+                        "ZoneName": "ap-southeast-2b",
+                        "SubnetId": "subnet-068196b22d394d652",
+                        "LoadBalancerAddresses": []
+                    }
+                ],
+                "SecurityGroups": [
+                    "sg-06f9585a118ad6821"
+                ],
+                "IpAddressType": "ipv4"
+            }
+        ]
+    }
+
 ## Content of the doa-r53-record.json file
     {
     "Changes": [
@@ -88,9 +126,9 @@ There were few challenges when doing this using AWS CLI.
 1 - Needed to provide a --caller-reference for creating hosted zone. This value should be unique and the same value does not work
 even if we delete the hosted zone and try again.
 
-2 - Received below error and spent some time to figure out what is wrong.
+2 - Received below error which took a bit of time to figure out.
     An error occurred (InvalidChangeBatch) when calling the ChangeResourceRecordSets operation: [Tried to create an alias that targets doa-alb-1952384790.ap-southeast-2.elb.amazonaws.com., type A in zone Z0495682VQJK7N9GFOQI, but the alias target name does not lie within the target zone, Tried to create an alias that targets doa-alb-1952384790.ap-southeast-2.elb.amazonaws.com., type A in zone Z0495682VQJK7N9GFOQI, but that target was not found]
-I was using the hosted zone ID that I created for the hosted zone ID field of the Alias target. Then I had to use the console to figure out the hosted zone ID for the ELB DNS record. I could not find an easy way to retrieve that info using AWS CLI.
+I was using the hosted zone ID that I created for the hosted zone ID field of the ALIAS target :-)
 
 3 - Received the following error.
     An error occurred (InvalidChangeBatch) when calling the ChangeResourceRecordSets operation: [RRSet with DNS name doa. is not permitted in zone jayforweb.com.]
