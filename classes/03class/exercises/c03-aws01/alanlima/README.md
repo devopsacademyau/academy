@@ -196,6 +196,15 @@
     The IP 169.254.169.254 is a special address where we can retrieve the instance metadata from a running instance. The IP is a link-local-address and it valid only from the instance.
     ```
 
+### Tidy up commands
+
+```bash
+# --force-delete option will terminate all instaces created by ASG
+$ aws autoscaling delete-auto-scaling-group --auto-scaling-group-name asg-devops --force-delete
+
+$ aws autoscaling delete-launch-configuration --launch-configuration-name devops-init-instance-data
+```
+
 <!-- Don't change anything below this point-->
 ***
 Answer for exercise [c03-aws01](https://github.com/devopsacademyau/academy/blob/aa1f1af00809616bdc1f8ba1d333b897c331d632/classes/03class/exercises/c03-aws01/README.md)
