@@ -10,17 +10,17 @@ $ docker build -t hello-name:v1 .
 Sending build context to Docker daemon  3.584kB
 Step 1/2 : FROM alpine:3.12.0
  ---> a24bb4013296
-Step 2/2 : CMD echo "Hello Marcos"
- ---> Running in 716a378d4059
-Removing intermediate container 716a378d4059
- ---> 2270bf862cf2
-Successfully built 2270bf862cf2
+Step 2/2 : ENTRYPOINT ["echo", "Hello"]
+ ---> Running in dc2e9a8065de
+Removing intermediate container dc2e9a8065de
+ ---> 2ec9b9d09b6e
+Successfully built 2ec9b9d09b6e
 Successfully tagged hello-name:v1
 ```
 
 - Commands used to execute the image and the output of container execution:
 ```
-$ docker run hello-name:v1
+$ docker run hello-name:v1 Marcos
 Hello Marcos
 ```
 
