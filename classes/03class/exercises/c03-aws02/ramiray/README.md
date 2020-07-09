@@ -1,10 +1,8 @@
-Create Application Load Balancer .
+# c03-aws02
 
-Subnets :
-
-subnet-04c9d82c36567dcc6
-subnet-0ad9dc31135c0f2d8
-
+## Command Execution Output
+- Command used to create the Application Load Balancer (ALB)
+```
 1. Create Load-Balancer 
 
 $ aws elbv2 create-load-balancer --name ramyadevopsalb --subnets subnet-04c9d82c36567dcc6 subnet-0ad9dc31135c0f2d8 --security-groups sg-04c7c173261c8c2c1
@@ -42,9 +40,7 @@ $ aws elbv2 create-load-balancer --name ramyadevopsalb --subnets subnet-04c9d82c
     ]
 }
 
-2. Create Target Group :
-
-$ aws elbv2 create-target-group --name devops-target  --protocol HTTP --port 80 \
+2. $ aws elbv2 create-target-group --name devops-target  --protocol HTTP --port 80 \
 > --vpc-id vpc-0351acfbc7aed9c1f
 {
     "TargetGroups": [
@@ -98,7 +94,11 @@ aws elbv2 create-listener \
     ]
 }
 
-5. Security Group - Same details as previous exercise: 
+```
+
+- Details of the security group used
+```
+Security group was created in the previous exercises : 
 
 $ aws ec2 create-security-group --group-name my-devopssg --description "My security group" --vpc-id vpc-0351acfbc7aed9c1f
 {
@@ -149,3 +149,33 @@ $ aws ec2 describe-security-groups --group-ids sg-04c7c173261c8c2c1
     ]
 }
 
+
+```
+
+Questions:
+- Run a few times `curl <load-balancer-cname>` and explain what do you see?
+```
+$ curl ramyadevopsalb-1247553232.ap-southeast-2.elb.amazonaws.com
+    ip-172-16-40-186.ap-southeast-2.compute.internal
+
+$ `curl ramyadevopsalb-1247553232.ap-southeast-2.elb.amazonaws.com`
+    ip-172-16-98-42.ap-southeast-2.compute.internal
+
+
+$ `curl ramyadevopsalb-1247553232.ap-southeast-2.elb.amazonaws.com`
+    ip-172-16-98-42.ap-southeast-2.compute.internal
+
+
+$ `curl ramyadevopsalb-1247553232.ap-southeast-2.elb.amazonaws.com`
+    ip-172-16-40-186.ap-southeast-2.compute.internal
+
+$ `curl ramyadevopsalb-1247553232.ap-southeast-2.elb.amazonaws.com`
+    ip-172-16-40-186.ap-southeast-2.compute.internal: command not found
+
+ALB is sending traffic to both the ec2 and the curl command retrieve the ip from the metadata. 
+
+```
+
+<!-- Don't change anything below this point-->
+***
+Answer for exercise [c03-aws02](https://github.com/devopsacademyau/academy/blob/aa1f1af00809616bdc1f8ba1d333b897c331d632/classes/03class/exercises/c03-aws02/README.md)
