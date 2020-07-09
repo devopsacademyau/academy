@@ -43,6 +43,11 @@
     }
     ```
 
+  - Adding a name tag
+    ```
+    aws ec2 create-tags --resources eni-0e35adb278b6b26cd --tags Key=Name,Value=ENI-Private-a
+    ```
+
 - Any extra challenges faced?
 
   I had no idea what an ENI was.
