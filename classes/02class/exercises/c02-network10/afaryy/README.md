@@ -10,7 +10,7 @@ PRIVATE_SUBNET_A_NAME='da-c02-private-a';
 PRIVATE_SUBNET_A_ID=$(aws ec2 describe-subnets  \
     --filter "Name=tag:Name,Values=$PRIVATE_SUBNET_A_NAME" \
     --query 'Subnets[].SubnetId' --output text);
-ECHO $PRIVATE_SUBNET_A_ID
+echo $PRIVATE_SUBNET_A_ID
 
 # Set security group
 SG_NAME='da-c02-private-sg';
@@ -18,7 +18,7 @@ SG_ID=$(aws ec2 describe-security-groups  \
     --filter "Name=tag:Name,Values=$SG_NAME" \
     --query "SecurityGroups[0].GroupId" \
     --output text);
-ECHO $SG_ID
+echo $SG_ID
 
 # Create network interface
 NI_ID=$(aws ec2 create-network-interface \
@@ -27,7 +27,7 @@ NI_ID=$(aws ec2 create-network-interface \
     --private-ip-address 10.128.20.10 \
     --groups $SG_ID \
     --query NetworkInterface.NetworkInterfaceId --output text);
-ECHO $NI_ID
+echo $NI_ID
 
 # Check network interface
 aws ec2 describe-subnets --subnet-ids $PRIVATE_SUBNET_A_ID
@@ -74,7 +74,7 @@ aws ec2 delete-network-interface --network-interface-id $NI_ID
 ```
 
 - Any extra challenges faced?
-
+The more I did, the more I feel confidence. I need it. :)
 
 <!-- Don't change anything below this point-->
 ***
