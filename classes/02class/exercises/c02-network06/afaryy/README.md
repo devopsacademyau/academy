@@ -21,7 +21,6 @@ aws ec2 describe-addresses  --allocation-ids $EIP_ID
     ]
 }
 
-
 ```
 - Creating a NAT gateway and attach it to a subnet with an Elastic IP
 ```bash
@@ -29,7 +28,7 @@ PUBLIC_SUBNET_NAME='da-c02-public-a';
 SUBNET_ID=$(aws ec2 describe-subnets  \
     --filter "Name=tag:Name,Values=$PUBLIC_SUBNET_NAME" \
     --query 'Subnets[].SubnetId' --output text);
-ECHO $SUBNET_ID
+echo $SUBNET_ID
 
 NGW_ID=(aws ec2 create-nat-gateway \
     --subnet-id $SUBNET_ID \
