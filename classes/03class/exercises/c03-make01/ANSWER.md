@@ -24,4 +24,4 @@ Insert command and output here
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
-Answer for exercise [c03-make01](https://github.com/devopsacademyau/academy/blob/2ebc8b7a44410bb2bacf7d50f55a9ecfb6f20d1b/classes/03class/exercises/c03-make01/README.md)
+Answer for exercise [c03-make01](https://github.com/devopsacademyau/academy/blob/8b64a93a228398e7342afe7b845cd197b22afaf3/classes/03class/exercises/c03-make01/README.md)
