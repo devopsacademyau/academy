@@ -7,24 +7,20 @@
 - Commands used to build  the image:
 ```
 $ docker build -t hello-name:v1 .
-Sending build context to Docker daemon  3.072kB
+Sending build context to Docker daemon  3.584kB
 Step 1/2 : FROM alpine:3.12.0
-3.12.0: Pulling from library/alpine
-df20fa9351a1: Pull complete
-Digest: sha256:185518070891758909c9f839cf4ca393ee977ac378609f700f60a771a2dfe321
-Status: Downloaded newer image for alpine:3.12.0
  ---> a24bb4013296
-Step 2/2 : CMD echo "Hello ${NAME}"
- ---> Running in 0ba16e441add
-Removing intermediate container 0ba16e441add
- ---> 8aba9eaa09bb
-Successfully built 8aba9eaa09bb
+Step 2/2 : CMD echo "Hello Marcos"
+ ---> Running in 716a378d4059
+Removing intermediate container 716a378d4059
+ ---> 2270bf862cf2
+Successfully built 2270bf862cf2
 Successfully tagged hello-name:v1
 ```
 
 - Commands used to execute the image and the output of container execution:
 ```
-$ docker run -e NAME=Marcos hello-name:v1
+$ docker run hello-name:v1
 Hello Marcos
 ```
 
