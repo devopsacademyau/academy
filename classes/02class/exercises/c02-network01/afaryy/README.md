@@ -20,19 +20,19 @@
 
 - Answers for `249.165.166.135/30`:
 
-  - IP in binary: `11111001.10100101.10100110.100001 11`
-  - Netmask in binary: `11111111.11111111.11111111.111111 00` 
+  - IP in binary: `11111001.10100101.10100110.10000111`
+  - Netmask in binary: `11111111.11111111.11111111.11111100` 
   - Netmask in decimals: `255.255.255.252`
   - private/public: `public`
   - hosts: `2` (249.165.166.133-249.165.166.134)
 
-- Answers for `236.68.223.18/32`:
+- Answers for `236.68.223.18/32`: 
 
-  - IP in binary: `11111001.10100101.10100110.100001 11`
+  - IP in binary: `11101100.01000100.11011111.00010010`
   - Netmask in binary: `11111111.11111111.11111111.11111111` 
   - Netmask in decimals: `255.255.255.255`
   - private/public: `public`
-  - hosts: `1` (236.68.223.19)
+  - hosts: `1` (236.68.223.18, specific IP address)
 
 - Answers for `172.31.0.0/16`:
 
