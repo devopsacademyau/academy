@@ -58,3 +58,9 @@ aws iam attach-user-policy --policy-arn arn:aws:iam::016454647794:policy/S3readO
 
 
 aws iam create-access-key --user-name user_readonly_S3
+
+
+aws configure --profile s3ReadOnlyProfile
+
+
+aws s3 ls --profile s3ReadOnlyProfile
