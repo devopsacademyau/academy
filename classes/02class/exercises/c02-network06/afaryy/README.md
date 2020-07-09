@@ -4,7 +4,6 @@
 - Create an Elastic IP:
 ```bash
 export AWS_PROFILE=devopsacademyau
-aws sts get-caller-identity
 
 EIP_ID=$(aws ec2 allocate-address --domain vpc \
     --query AllocationId --output text)
