@@ -5,7 +5,7 @@
 - Commands executed to clean up both the images and the containers(running or exited) from your local:
 ```
 $ docker rmi -f $(docker images -a -q)
-$ docker system prune -a --volumes
+$ docker system prune --all --volumes
 ```
 
 - Command and it's output showing that there is no image or container on your local. Use only TEXT for the command output, don't include images (JPEG, PNG, etc):
