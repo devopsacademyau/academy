@@ -3,19 +3,59 @@
 ## Command Execution Output
 - Command used to create the Route53 zone:
 ```
-Add command here
+aws route53 create-hosted-zone \
+    --name guiepifanio.tk \
+    --caller-reference 2020-07-11-12:42
+
+{
+    "Location": "https://route53.amazonaws.com/2013-04-01/hostedzone/Z02477171TWZT0D909898",
+    "HostedZone": {
+        "Id": "/hostedzone/Z02477171TWZT0D909898",
+        "Name": "guiepifanio.tk.",
+        "CallerReference": "2020-07-11-12:42",
+        "Config": {
+            "PrivateZone": false
+        },
+        "ResourceRecordSetCount": 2
+    },
+    "ChangeInfo": {
+        "Id": "/change/C01256602MBRVHIBPBXIP",
+        "Status": "PENDING",
+        "SubmittedAt": "2020-07-10T14:42:32.570000+00:00"
+    },
+    "DelegationSet": {
+        "NameServers": [
+            "ns-792.awsdns-35.net",
+            "ns-1233.awsdns-26.org",
+            "ns-1734.awsdns-24.co.uk",
+            "ns-264.awsdns-33.com"
+        ]
+    }
+}
 
 ```
 
 - Command used to add any new records to the zone 
 ```
-Add command here
+aws route53 change-resource-record-sets --hosted-zone-id Z02477171TWZT0D909898 --change-batch '{ "Comment": "Testing creating a record set", 
+"Changes": [ { "Action": "CREATE", "ResourceRecordSet": { "Name": 
+"cname.guiepifanio.tk", "Type": "CNAME", "TTL": 
+120, "ResourceRecords": [ { "Value": "'"LB-devopsacademy-526560631.ap-southeast-2.elb.amazonaws.com"'" } ] } } ] }'
+
+{
+    "ChangeInfo": {
+        "Id": "/change/C020480634TGBVFJ1NCDN",
+        "Status": "PENDING",
+        "SubmittedAt": "2020-07-11T09:06:07.840000+00:00",
+        "Comment": "Testing creating a record set"
+    }
+}
 
 ```
 
 - Post any findings, how option you decided to go with, records created, domain created, and anything else that you find interesting.
 ```
-Add your answer here
+Couldnt figured out why is not working :/ 
 
 ```
 
