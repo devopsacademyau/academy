@@ -14,7 +14,7 @@ build:
 	@echo "> docker build -t ${DHUSER}/${IMAGE}:${SHA} ."
 	@echo
 	@docker build -t ${DHUSER}/${IMAGE}:${SHA} .
-	@ rm index.html
+	@rm index.html
 	@echo
 
 .PHONY: push
