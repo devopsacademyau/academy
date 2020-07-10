@@ -10,7 +10,7 @@ $ docker system prune --all --volumes
 
 - Command and it's output showing that there is no image or container on your local. Use only TEXT for the command output, don't include images (JPEG, PNG, etc):
 ```
-$ docker images ls --all
+$ docker image ls --all
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 fer@ping:~$
 ```
