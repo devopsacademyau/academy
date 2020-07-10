@@ -27,16 +27,22 @@ Digest: sha256:84b4bb4c993c028645870afa77cd23e83db77736c589dde17cd7b3b3427faebf
 Status: Downloaded newer image for mrcsmonteiro/exercise02:v2
 docker.io/mrcsmonteiro/exercise02:v2
 
-$ docker run -dit -p 8081:80 mrcsmonteiro/exercise02:v1
-93e4b179678474df5276f48942939b21b0bebf3b01567d4cca1eb9ff3fc82bd4
+$ docker run -d -p 8081:80 mrcsmonteiro/exercise02:v1
+d1287efc336c84633ed217b9e9d229362200b8dd0a0947e0d60f8c72a9cd290f
 
-$ docker run -v /home/marcos/Repos/DevOpsAcademy/academy/classes/03class/docker/artifacts/c03-docker02:/usr/local/apache2/htdocs/ -dit -p 8082:80 mrcsmonteiro/exercise02:v2
-ca08f3906f6f57d436491ea8095c351f0b33c8f67376ae76a171f445808462f4
+$ curl localhost:8081
+<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+
+$ docker run -v /home/marcos/Repos/DevOpsAcademy/academy/classes/03class/docker/artifacts/c03-docker02:/usr/local/apache2/htdocs/ -d -p 8082:80 mrcsmonteiro/exercise02:v2
+7f2408f1e845a43423fcc5ee6468ab82cea21e2e21e4f4e3e82c363a2beca355
+
+$ curl localhost:8082
+<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
 ```
 
 - A brief explanation of what happened when you executed the comands to run the containers:
 ```
-First I had to pull the images from Docker Hub. Since both versions share identical layers, when v2 was pulled the process skipped most part of them. All the configurations were preserved (htdocs empty for container v2), so I had to repeat the bind mount command for 'exercise02:v2' in order to view the index.html page. 
+First I had to pull the images from Docker Hub. Since both versions share many identical layers, when v2 was pulled the process skipped most part of them. All the configurations were preserved (htdocs empty for container v2), so I had to repeat the bind mount command for 'exercise02:v2' in order to view the index.html page. 
 ```
 
 - Command to list all images on your local as well as its output:
