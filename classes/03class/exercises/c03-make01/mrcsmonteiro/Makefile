@@ -46,9 +46,9 @@ run:
 .PHONY: cleanup
 cleanup:
 	@echo
-	@echo "############################"
-	@echo "# Cleaning up Containers.. #"
-	@echo "############################"
+	@echo "#############################"
+	@echo "# Cleaning up Containers... #"
+	@echo "#############################"
 	@echo
 	@echo "> docker container stop `docker ps -a -q`"
 	@echo
