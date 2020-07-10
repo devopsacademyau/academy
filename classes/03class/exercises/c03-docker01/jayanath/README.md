@@ -8,17 +8,20 @@
 ```
 > docker build -t da-terraform:c03-docker-e01 .
 
-> docker image ls da-terraform
+> docker images
 
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-da-terraform        c03-docker-e01      12291e0cc02b        11 minutes ago      76.7MB
+    REPOSITORY           TAG                 IMAGE ID            CREATED              SIZE
+    da-terraform         c03-docker-e01      698c8bbbfd96        About a minute ago   57.3MB
 
 ```
 
 - Command to run the image and its output.:
 ```
-➜ jayanath git:(jayanath/c03-docker01) ✗ docker run -it da-terraform:c03-docker-e01
-    Terraform v0.12.28
+> docker run -it da-terraform:c03-docker-e01
+    Terraform v0.12.20
+
+    Your version of Terraform is out of date! The latest version
+    is 0.12.28. You can update by downloading from https://www.terraform.io/downloads.html
 
 ```
 
