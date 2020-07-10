@@ -4,16 +4,23 @@
 # Building Docker Container... #
 ################################
 
-> docker build -t mrcsmonteiro/make01:c424165 .
+> docker build -t mrcsmonteiro/make01:5f38c2d .
 
-Sending build context to Docker daemon  6.656kB
+Sending build context to Docker daemon  8.192kB
 Step 1/2 : FROM httpd:2.4.41-alpine
+2.4.41-alpine: Pulling from library/httpd
+aad63a933944: Pull complete
+29ade582b51e: Pull complete
+7e41ad5b6f9c: Pull complete
+ebf61b47b4ca: Pull complete
+9c060bce4eae: Pull complete
+Digest: sha256:06ad90574c3a152ca91ba9417bb7a8f8b5757b44d232be12037d877e9f8f68ed
+Status: Downloaded newer image for httpd:2.4.41-alpine
  ---> 54b0995a6305
 Step 2/2 : COPY index.html /usr/local/apache2/htdocs/
- ---> Using cache
- ---> 9257087c2a7f
-Successfully built 9257087c2a7f
-Successfully tagged mrcsmonteiro/make01:c424165
+ ---> 88a1324e89b1
+Successfully built 88a1324e89b1
+Successfully tagged mrcsmonteiro/make01:5f38c2d
 
 ➜  mrcsmonteiro git:(mrcsmonteiro/c03-make01) ✗ make push
 
@@ -21,16 +28,16 @@ Successfully tagged mrcsmonteiro/make01:c424165
 # Pushing Image to Docker Hub... #
 ##################################
 
-> docker push mrcsmonteiro/make01:c424165
+> docker push mrcsmonteiro/make01:5f38c2d
 
 The push refers to repository [docker.io/mrcsmonteiro/make01]
-320dee3a0dd7: Pushed
-8e24b43b535f: Mounted from mrcsmonteiro/exercise02
-1dfb4a5d0ecd: Mounted from mrcsmonteiro/exercise02
-3313c0c04ade: Mounted from mrcsmonteiro/exercise02
-310889822143: Mounted from mrcsmonteiro/exercise02
-beee9f30bc1f: Mounted from mrcsmonteiro/exercise02
-c424165: digest: sha256:88f8831cc67e8f3fd1032466e837ee49d44e7fb82a1ef9854c043512ed0ec212 size: 1569
+1c154bff49d0: Pushed
+8e24b43b535f: Layer already exists
+1dfb4a5d0ecd: Layer already exists
+3313c0c04ade: Layer already exists
+310889822143: Layer already exists
+beee9f30bc1f: Layer already exists
+5f38c2d: digest: sha256:984fac30aff5ccae39cf7a888437cc8445788d3583c1782945c08b861b2014b1 size: 1569
 
 ➜  mrcsmonteiro git:(mrcsmonteiro/c03-make01) ✗ make run
 
@@ -38,12 +45,11 @@ c424165: digest: sha256:88f8831cc67e8f3fd1032466e837ee49d44e7fb82a1ef9854c043512
 # Running Docker Container... #
 ###############################
 
-> docker run -d -p 80 mrcsmonteiro/make01:c424165
+Type the local host port to be mapped: 8080
 
-bea934ee8d4fa4f9d5d516e3507d62e6d2702b08599604ce404cc2dfe0359c9b
+> docker run -d -p 8080:80 mrcsmonteiro/make01:5f38c2d
 
-➜  mrcsmonteiro git:(mrcsmonteiro/c03-make01) ✗ docker container ls
-CONTAINER ID        IMAGE                         COMMAND              CREATED             STATUS              PORTS                   NAMES
-bea934ee8d4f        mrcsmonteiro/make01:c424165   "httpd-foreground"   11 seconds ago      Up 8 seconds        0.0.0.0:32781->80/tcp   thirsty_kirch
-➜  mrcsmonteiro git:(mrcsmonteiro/c03-make01) ✗ curl localhost:32781
-This image was created by Marcos, based on the c424165.
+0180c3f030d9c43be227b789ecdc8b5945c0566892f99caeee66bda57093d36d
+
+➜  mrcsmonteiro git:(mrcsmonteiro/c03-make01) ✗ curl localhost:8080
+This image was created by Marcos, based on the 5f38c2d.

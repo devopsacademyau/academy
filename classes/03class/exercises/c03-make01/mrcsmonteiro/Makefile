@@ -1,4 +1,3 @@
-SHELL := /bin/bash
 IMAGE=make01
 SHA=`git rev-parse --short HEAD`
 DHUSER=mrcsmonteiro
@@ -37,9 +36,11 @@ run:
 	@echo "# Running Docker Container... #"
 	@echo "###############################"
 	@echo
-	@echo "> docker run -d -p 80 ${DHUSER}/${IMAGE}:${SHA}"
-	@echo
-	@docker run -d -p 80 ${DHUSER}/${IMAGE}:${SHA}
+	@read -p "Type the local host port to be mapped: " LHPORT; \
+	echo; \
+	echo "> docker run -d -p $$LHPORT:80 ${DHUSER}/${IMAGE}:${SHA}"; \
+	echo; \
+	docker run -d -p $$LHPORT:80 ${DHUSER}/${IMAGE}:${SHA}
 	@echo
 
 .PHONY: cleanup
@@ -51,13 +52,21 @@ cleanup:
 	@echo
 	@echo "> docker container stop `docker ps -a -q`"
 	@echo
-	@docker container stop `docker ps -a -q`
-	@echo
-	@echo "> docker container rm `docker ps -a -q`"
-	@echo
-	@docker container rm `docker ps -a -q`
-	@echo
+	@RC=`docker container ls -a | wc -l`; \
+	if [ $$RC -eq 1 ]; then echo "No containers to be cleaned up here!"; \
+	echo; \
+	else docker container stop `docker ps -a -q`; \
+	echo; \
+	echo "> docker container rm `docker ps -a -q`"; \
+	echo; \
+	docker container rm `docker ps -a -q`; \
+	echo; \
+	fi
 	@echo "> docker image rmi -f `docker images -q`"
 	@echo
-	@docker image rmi -f `docker images -q`
-	@echo
+	@RC=`docker image ls -a | wc -l`; \
+	if [ $$RC -eq 1 ]; then echo "No images to be cleaned up here!"; \
+	echo; \
+	else docker image rmi -f `docker images -q`; \
+	echo; \
+	fi
