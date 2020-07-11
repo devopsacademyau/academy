@@ -36,7 +36,9 @@
         --user-data file://user-data.txt \
         --image-id ami-088ff0e3bde7b3fdf \
         --instance-type t2.nano \
-        --security-groups sg-047873ff7ad58face
+        --security-groups sg-047873ff7ad58face \
+        --associate-public-ip-address \
+        --key-name kp-devops
         
     # Describe the launch configuration recent created
     $ aws autoscaling describe-launch-configurations \
