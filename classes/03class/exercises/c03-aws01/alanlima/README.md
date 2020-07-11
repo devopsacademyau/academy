@@ -13,10 +13,10 @@
     $ aws ec2 create-security-group \
         --group-name c03-aws01-sg \
         --description "Allow connection to port 80" \
-        --vpc-id vpc-08fb60055e82efe81 \
+        --vpc-id vpc-027019faaf6756407 \
         --tag-specifications "ResourceType=security-group,Tags=[{Key=Name,Value=c03-aws01-sg},{Key=DevopsClass,Value=c03}]"
 
-    GroupId: sg-07739f756a518e82e
+    GroupId: sg-047873ff7ad58face
     Tags:
     - Key: Name
     Value: c03-aws01-sg
@@ -25,7 +25,7 @@
 
     # Update the security group to allow ingress from anywhere to port 80
     $ aws ec2 authorize-security-group-ingress \
-        --group-id sg-07739f756a518e82e \
+        --group-id sg-047873ff7ad58face \
         --cidr 0.0.0.0/0 \
         --port 80 \
         --protocol tcp
@@ -35,8 +35,8 @@
         --launch-configuration-name devops-init-instance-data \
         --user-data file://user-data.txt \
         --image-id ami-088ff0e3bde7b3fdf \
-        --instance-type t2.micro \
-        --security-groups sg-07739f756a518e82e
+        --instance-type t2.nano \
+        --security-groups sg-047873ff7ad58face
         
     # Describe the launch configuration recent created
     $ aws autoscaling describe-launch-configurations \
@@ -45,22 +45,23 @@
 
     ```yaml
     LaunchConfigurations:
-    - BlockDeviceMappings: []
-    ClassicLinkVPCSecurityGroups: []
-    CreatedTime: '2020-07-08T22:04:09.980000+00:00'
-    EbsOptimized: false
-    ImageId: ami-088ff0e3bde7b3fdf
-    InstanceMonitoring:
+    - AssociatePublicIpAddress: true
+      BlockDeviceMappings: []
+      ClassicLinkVPCSecurityGroups: []
+      CreatedTime: '2020-07-11T08:16:54.104000+00:00'
+      EbsOptimized: false
+      ImageId: ami-088ff0e3bde7b3fdf
+      InstanceMonitoring:
         Enabled: true
-    InstanceType: t2.micro
-    KernelId: ''
-    KeyName: ''
-    LaunchConfigurationARN: arn:aws:autoscaling:ap-southeast-2:097922957316:launchConfiguration:57f72e70-835b-40d7-9217-53f150c72e91:launchConfigurationName/devops-init-instance-data
-    LaunchConfigurationName: devops-init-instance-data
-    RamdiskId: ''
-    SecurityGroups:
-    - sg-07739f756a518e82e
-    UserData: IyEgL2Jpbi9iYXNoCnl1bSB1cGRhdGUgLXkKeXVtIGluc3RhbGwgLXkgaHR0cGQKY3VybCAxNjkuMjU0LjE2OS4yNTQvbGF0ZXN0L21ldGEtZGF0YS9ob3N0bmFtZSA+IGluZGV4Lmh0bWwKbXYgaW5kZXguaHRtbCAvdmFyL3d3dy9odG1sLwpzeXN0ZW1jdGwgc3RhcnQgaHR0cGQ=
+      InstanceType: t2.nano
+      KernelId: ''
+      KeyName: kp-devops
+      LaunchConfigurationARN: arn:aws:autoscaling:ap-southeast-2:097922957316:launchConfiguration:a141c3e2-cdd0-4df7-b8dd-d17e0ed0c634:launchConfigurationName/devops-init-instance-data
+      LaunchConfigurationName: devops-init-instance-data
+      RamdiskId: ''
+      SecurityGroups:
+      - sg-047873ff7ad58face
+      UserData: IyEgL2Jpbi9iYXNoCnl1bSB1cGRhdGUgLXkKeXVtIGluc3RhbGwgLXkgaHR0cGQKY3VybCAxNjkuMjU0LjE2OS4yNTQvbGF0ZXN0L21ldGEtZGF0YS9ob3N0bmFtZSA+IGluZGV4Lmh0bWwKbXYgaW5kZXguaHRtbCAvdmFyL3d3dy9odG1sLwpzeXN0ZW1jdGwgc3RhcnQgaHR0cGQ=
     ```
 
     ```bash
@@ -69,7 +70,7 @@
         --auto-scaling-group-name asg-devops \
         --min-size 1 --max-size 2 --desired-capacity 2 \
         --launch-configuration-name devops-init-instance-data \
-        --vpc-zone-identifier "subnet-068860ac143dd2beb" \
+        --vpc-zone-identifier "subnet-0f82d6e49b9a6dafd,subnet-0299eb6eb289cef54" \
         --tags Key=DevopsClass,Value=c03 \
                Key=Name,Value=devops-asg
     
@@ -79,53 +80,54 @@
 
     ```yaml
     AutoScalingGroups:
-    - AutoScalingGroupARN: arn:aws:autoscaling:ap-southeast-2:097922957316:autoScalingGroup:a60f7e94-1562-4be3-947e-d4a55c656954:autoScalingGroupName/asg-devops
-    AutoScalingGroupName: asg-devops
-    AvailabilityZones:
-    - ap-southeast-2a
-    CreatedTime: '2020-07-08T22:04:38.385000+00:00'
-    DefaultCooldown: 300
-    DesiredCapacity: 2
-    EnabledMetrics: []
-    HealthCheckGracePeriod: 0
-    HealthCheckType: EC2
-    Instances:
-    - AvailabilityZone: ap-southeast-2a
+    - AutoScalingGroupARN: arn:aws:autoscaling:ap-southeast-2:097922957316:autoScalingGroup:00bd7b4f-1b19-4cb1-8dcf-c9e7aa203249:autoScalingGroupName/asg-devops
+      AutoScalingGroupName: asg-devops
+      AvailabilityZones:
+      - ap-southeast-2b
+      - ap-southeast-2a
+      CreatedTime: '2020-07-11T08:18:35.252000+00:00'
+      DefaultCooldown: 300
+      DesiredCapacity: 2
+      EnabledMetrics: []
+      HealthCheckGracePeriod: 0
+      HealthCheckType: EC2
+      Instances:
+      - AvailabilityZone: ap-southeast-2a
         HealthStatus: Healthy
-        InstanceId: i-047c38d32cab72b86
-        InstanceType: t2.micro
+        InstanceId: i-024583e16a4d10fed
+        InstanceType: t2.nano
         LaunchConfigurationName: devops-init-instance-data
-        LifecycleState: InService
+        LifecycleState: Pending
         ProtectedFromScaleIn: false
-    - AvailabilityZone: ap-southeast-2a
+      - AvailabilityZone: ap-southeast-2b
         HealthStatus: Healthy
-        InstanceId: i-0b79f5dbad02aa509
-        InstanceType: t2.micro
+        InstanceId: i-0351f0612a7f185a8
+        InstanceType: t2.nano
         LaunchConfigurationName: devops-init-instance-data
-        LifecycleState: InService
+        LifecycleState: Pending
         ProtectedFromScaleIn: false
-    LaunchConfigurationName: devops-init-instance-data
-    LoadBalancerNames: []
-    MaxSize: 2
-    MinSize: 1
-    NewInstancesProtectedFromScaleIn: false
-    ServiceLinkedRoleARN: arn:aws:iam::097922957316:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
-    SuspendedProcesses: []
-    Tags:
-    - Key: DevopsClass
+      LaunchConfigurationName: devops-init-instance-data
+      LoadBalancerNames: []
+      MaxSize: 2
+      MinSize: 1
+      NewInstancesProtectedFromScaleIn: false
+      ServiceLinkedRoleARN: arn:aws:iam::097922957316:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
+      SuspendedProcesses: []
+      Tags:
+      - Key: DevopsClass
         PropagateAtLaunch: true
         ResourceId: asg-devops
         ResourceType: auto-scaling-group
         Value: c03
-    - Key: Name
+      - Key: Name
         PropagateAtLaunch: true
         ResourceId: asg-devops
         ResourceType: auto-scaling-group
         Value: devops-asg
-    TargetGroupARNs: []
-    TerminationPolicies:
-    - Default
-    VPCZoneIdentifier: subnet-068860ac143dd2beb
+      TargetGroupARNs: []
+      TerminationPolicies:
+      - Default
+      VPCZoneIdentifier: subnet-0f82d6e49b9a6dafd,subnet-0299eb6eb289cef54
     ```
 
 - Command used to get each asg instance hostname through the webserver
@@ -134,38 +136,39 @@
     # List the 
     $ aws ec2 describe-instances \
         --filters "Name=tag-value,Values=c03" \
-        --query "Reservations[*].Instances[*].{Id:InstanceId,DnsName:PrivateDnsName,IpAddress:PublicIpAddress,State:State.Name}" \
+        --query "Reservations[*].Instances[*].{Id:InstanceId,DnsName:PrivateDnsName,IpAddress:PublicIpAddress,State:State.Name,Zone:Placement.AvailabilityZone}" \
         --output table
 
-    --------------------------------------------------------------------------------------------------------
-    |                                           DescribeInstances                                          |
-    +--------------------------------------------------+----------------------+----------------+-----------+
-    |                      DnsName                     |         Id           |   IpAddress    |   State   |
-    +--------------------------------------------------+----------------------+----------------+-----------+
-    |  ip-172-32-0-201.ap-southeast-2.compute.internal |  i-0b79f5dbad02aa509 |  3.24.178.58   |  running  |
-    |  ip-172-32-0-204.ap-southeast-2.compute.internal |  i-047c38d32cab72b86 |  54.253.71.189 |  running  |
-    +--------------------------------------------------+----------------------+----------------+-----------+
+    -----------------------------------------------------------------------------------------------------------------------------
+    |                                                     DescribeInstances                                                     |
+    +---------------------------------------------------+----------------------+-----------------+----------+-------------------+
+    |                      DnsName                      |         Id           |    IpAddress    |  State   |       Zone        |
+    +---------------------------------------------------+----------------------+-----------------+----------+-------------------+
+    |  ip-172-16-11-58.ap-southeast-2.compute.internal  |  i-0351f0612a7f185a8 |  54.252.147.208 |  running |  ap-southeast-2b  |
+    |  ip-172-16-10-150.ap-southeast-2.compute.internal |  i-024583e16a4d10fed |  13.239.98.213  |  running |  ap-southeast-2a  |
+    +---------------------------------------------------+----------------------+-----------------+----------+-------------------+
+
     
     # now we can confirm the hostname 
-    $ curl 3.24.178.58
-    ip-172-32-0-201.ap-southeast-2.compute.internal
+    $ curl http://54.252.147.208
+    ip-172-16-11-58.ap-southeast-2.compute.internal
 
-    $ curl 54.253.71.189
-    ip-172-32-0-204.ap-southeast-2.compute.internal
+    $ curl http://13.239.98.213
+    ip-172-16-10-150.ap-southeast-2.compute.internal
     ```
 
 - Details of the security group used on the asg
 
     ```bash
-    $ aws ec2 describe-security-groups --group-id sg-07739f756a518e82e
+    $ aws ec2 describe-security-groups --group-id sg-047873ff7ad58face
     ```
     ```yaml
     SecurityGroups:
     - Description: Allow connection to port 80
-    GroupId: sg-07739f756a518e82e
-    GroupName: c03-aws01-sg
-    IpPermissions:
-    - FromPort: 80
+      GroupId: sg-047873ff7ad58face
+      GroupName: c03-aws01-sg
+      IpPermissions:
+      - FromPort: 80
         IpProtocol: tcp
         IpRanges:
         - CidrIp: 0.0.0.0/0
@@ -173,20 +176,20 @@
         PrefixListIds: []
         ToPort: 80
         UserIdGroupPairs: []
-    IpPermissionsEgress:
-    - IpProtocol: '-1'
+      IpPermissionsEgress:
+      - IpProtocol: '-1'
         IpRanges:
         - CidrIp: 0.0.0.0/0
         Ipv6Ranges: []
         PrefixListIds: []
         UserIdGroupPairs: []
-    OwnerId: '097922957316'
-    Tags:
-    - Key: Name
-        Value: c03-aws01-sg
-    - Key: DevopsClass
+      OwnerId: '097922957316'
+      Tags:
+      - Key: DevopsClass
         Value: c03
-    VpcId: vpc-08fb60055e82efe81
+      - Key: Name
+        Value: c03-aws01-sg
+      VpcId: vpc-027019faaf6756407
     ```
 
 - what this line is doing? `curl https://169.254.169.254/latest/meta-data/hostname > index.html`
