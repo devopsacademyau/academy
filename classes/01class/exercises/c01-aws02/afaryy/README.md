@@ -1,5 +1,9 @@
 # C01-AWS02
 ## S3 (C01-aws02)
+- Use the CLI to create a S3 bucket and upload a file to it.
+- Access the file on the S3 bucket from any the EC2 instance created in the previous exercise.
+- Submit a PR to the DevOpsAcademy repo under the `/classes/01class/exercises/c01-aws02/<github-username>` folder of this class with a brief description of what you did to achieve this objective. The file containing the solution you used must be named README.md
+
 
 ## Commands Execution Output
 
@@ -45,8 +49,7 @@ $ cat da-c01aw02-S3ReadPolicy.json
             "Sid": "dac01aw02S31",
             "Effect": "Allow",
             "Action": [
-                "s3:GetObject",
-                "s3:GetBucketLocation"
+                "s3:GetObject"
             ],
             "Resource": [
                 "arn:aws:s3:::da-co1aws02bucket",
