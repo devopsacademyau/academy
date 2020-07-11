@@ -24,11 +24,6 @@ Add your commands and their outputs here
 ```
 
 - Answer the following questions:
-  - How did you accomplish both instructions?
-    ```
-    Add your answer here
-    ```
-
   - Why did you add 0.0.0.0 route to the IGW on public route table?
     ```
     Add your answer here
