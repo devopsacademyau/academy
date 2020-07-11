@@ -35,14 +35,14 @@ $ aws iam create-access-key --user-name user_readonly_S3
         "UserName": "user_readonly_S3",
         "Status": "Active",
         "CreateDate": "2020-07-03T13:39:34Z",
-        "SecretAccessKey": "qVjaysnyYvPKu2jA6DuFLsvZzP88W+rC4o1i2rJy",
-        "AccessKeyId": "AKIAVCLPDCQGYDSFQGFR"
+        "SecretAccessKey": "*****",
+        "AccessKeyId": "******"
     }
 }
 
 aws configure --profile s3ReadOnlyProfile
 AWS Access Key ID [None]:
-AWS Secret Access Key [None]: qVjaysnyYvPKu2jA6DuFLsvZzP88W+rC4o1i2rJy
+AWS Secret Access Key [None]: xxx
 Default region name [None]: ap-southeast-2
 Default output format [None]: json
 
