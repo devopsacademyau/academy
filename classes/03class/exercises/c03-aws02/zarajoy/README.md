@@ -4,27 +4,13 @@
 - Command used to create the Application Load Balancer (ALB)
 
 
-- scheme: `public-facing`
-- listener:
-  - `HTTP > PORT 80`
-- AZ:
-  - use same public AZ's from the last exercise
-- Security Group:
-  - accessible anywhere from the internet
-- target group:
-  - type: `instance`
-  - protocol: `http`
-  - port: `80`
-  - register instances created by ASG
-
-|SubnetID | Subnet Address | Host Address Range | Public/Private | SubnetID | RT |
-|-|-|-|-|-| - |
-|4|192.168.96.0/19|192.168.96.1 - 192.168.127.254|Public-a|subnet-0907f22726c996fd5| rtb-07a9d3ac37a9cb8e0
-|5|192.168.128.0/19 |192.168.128.1 - 192.168.159.254|Public-b|subnet-0abbcb057289b670d| rtb-07a9d3ac37a9cb8e0
-
+```
 From previous exercise:
 #Security group: `create a new one to allow connection from anywhere to port 80`
 z@bacon:~$ aws ec2 create-security-group  --group-name Autoscaling-group-c03   --description "create a security group to allow connection from anywhere to port 80"  --vpc-id vpc-09d2f2719d50d1f7f
+{
+    "GroupId": "sg-0b91305354d705dbb"
+}
 
 #create instances
 z@bacon:~$ aws ec2 describe-instances     --query 'Reservations[*].Instances[*].{Instance:InstanceId,Subnet:SubnetId,PublicIP:PublicIpAddress}'     --output json
@@ -44,10 +30,7 @@ z@bacon:~$ aws ec2 describe-instances     --query 'Reservations[*].Instances[*].
         }
     ]
 ]
-{
-    "GroupId": "sg-0b91305354d705dbb"
-}
-
+```
 https://docs.aws.amazon.com/cli/latest/reference/elb/create-load-balancer.html
 
 
@@ -55,7 +38,7 @@ https://docs.aws.amazon.com/elasticloadbalancing/latest/application/tutorial-app
 
 
 ```
-#crete load balancer
+#create load balancer
 z@bacon:~$ aws elbv2 help
 z@bacon:~$ aws elbv2 create-load-balancer --name c03-alb --subnets subnet-0907f22726c996fd5 subnet-0abbcb057289b670d --security-groups sg-0b91305354d705dbb
 {
