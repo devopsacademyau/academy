@@ -7,11 +7,19 @@
 - Command to build the image:
 ```
 docker build -t da-terraform:c03-docker-e01 .
+
+docker images |egrep "REPOSITORY|da-terraform"
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+da-terraform        c03-docker-e01      ec3cbdf038c8        16 hours ago        52.7MB
 ```
 
 - Command to run the image and its output.:
 ```
 docker run -it da-terraform:c03-docker-e01
+Terraform v0.12.20
+
+Your version of Terraform is out of date! The latest version
+is 0.12.28. You can update by downloading from https://www.terraform.io/downloads.html
 ```
 
 ***
