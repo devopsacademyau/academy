@@ -55,7 +55,11 @@ aws route53 change-resource-record-sets --hosted-zone-id Z02477171TWZT0D909898 -
 
 - Post any findings, how option you decided to go with, records created, domain created, and anything else that you find interesting.
 ```
-Couldnt figured out why is not working :/ 
+Alan Lima helped me to update the domain NameServer using the aws one, so now is working all good.
+
+curl cname.guiepifanio.tk
+ip-10-0-222-25.ap-southeast-2.compute.internal%
+
 
 ```
 
