@@ -5,6 +5,7 @@ module "team-external-students" {
   members             = [
     "afaryy",
     "albertoeks",
+    "anwickes",
     "carloshz4",
     "ebeserra",
     "maladham1980",
