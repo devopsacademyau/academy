@@ -108,11 +108,11 @@ In addition to maintaining the desired number of tasks in your service, you can 
 
 The Amazon Elastic Container Service (Amazon ECS) command line interface (CLI) provides high-level commands to simplify creating, updating, and monitoring clusters and tasks from a local development environment. The Amazon ECS CLI supports Docker Compose files, a popular open-source specification for defining and running multi-container applications. Use the ECS CLI as part of your everyday development and testing cycle as an alternative to the AWS Management Console.
 
-ECS CLI handles the ECS requests; however, you may need the AWS CLI to create other resources like IAM Roles.
+Follow the steps below to create an ECS Cluster with a Fargate Task using the ECS and AWS CLI. For this test only, ensure that the AWS profile loaded on the command line has full permission for the IAM and ECS services.
 
-Follow the steps below to create a Cluster with a Fargate Task using the ECS and AWS CLI. For this test only, ensure that the AWS profile loaded on the command line has full permission for the IAM and ECS services.
+Before you start, ensure that you are inside the folder `labs/`.
 
-Before you start, ensure that you are within the folder *labs/*
+Lastly, the commands below uses variable in order to demonstrate how to add these lines to a pipeline.
 
 **1. Create the task execution role using the AWS CLI.**
 
@@ -132,11 +132,15 @@ Before you start, ensure that you are within the folder *labs/*
 
     ecs-cli up --cluster-config tutorial --region ap-southeast-2
 
-**5. The command `ecs-cli up` creates a cloudformation that provisioned a VPC and two subnet for your ECS Cluster. Use the command below to export the generated VPC ID to a variable that will be used later on.**
+Cloudformation used to set up the environment
+
+![CF](assets/ecs-cli-cloudformation.png)
+
+**5. The command `ecs-cli up` creates a cloudformation that provisioned a VPC and two subnet for your ECS Cluster. Use the command below to export the generated VPC ID to a variable that will be used later in these steps.**
 
     VPC_ID=$(aws cloudformation describe-stack-resources --stack-name amazon-ecs-cli-setup-tutorial --logical-resource-id Vpc --region ap-southeast-2 --query 'StackResources[].PhysicalResourceId' --output text)
 
-**6. Retrieve the default security group ID from the VPC retrieved above.**
+**6. Retrieve the default Security Group ID from the VPC retrieved above.**
 
     SG_GROUP_ID=$(aws ec2 describe-security-groups --filters Name=vpc-id,Values=$VPC_ID Name=description,Values="default VPC security group" --region ap-southeast-2 --query 'SecurityGroups[].GroupId' --output text)
 
@@ -152,6 +156,8 @@ Before you start, ensure that you are within the folder *labs/*
 
 **9. Update the file `ecs-params.yml` with the subnets and security group.**
 
+When using the ecs-cli compose or ecs-cli compose service commands to manage your Amazon ECS tasks and services, there are certain fields in an Amazon ECS task definition that do not correspond to fields in a Docker compose file. You can specify those values using an ECS parameters file with the --ecs-params flag. By default, the command looks for an ECS parameters file in the current directory named ecs-params.yml. 
+
     sed -i "s/subnet ID 1/$SUBNET1/g"  ecs-params.yml
 
     sed -i "s/subnet ID 2/$SUBNET2/g"  ecs-params.yml
@@ -160,9 +166,11 @@ Before you start, ensure that you are within the folder *labs/*
 
 **10. Deploy the Compose File to a Cluster.**
 
-The folder labs contain the `docker-compose.yml` that uses a docker image for testing that is used when you run the `ecs-cli compose service up`. By default, the command looks for files called docker-compose.yml and ecs-params.yml in the current directory; you can specify a different docker compose file with the --file option, and a different ECS Params file with the --ecs-params option. By default, the resources created by this command have the current directory in their titles, but you can override that with the --project-name option. The --create-log-groups option creates the CloudWatch log groups for the container logs.
+The folder labs also contain the `docker-compose.yml`, which uses a docker image for testing when you run the `ecs-cli compose service up`. By default, the command looks for files called docker-compose.yml and ecs-params.yml in the current directory; you can specify a different docker compose file with the --file option..
 
     ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial 
+
+![Cluster](assets/ecs-cli-cluster.png)
 
 **11. View the Running Containers on a Cluster.**
 
@@ -172,21 +180,31 @@ In the above example, you can see the web container from your compose file, and 
 
 **12. View the Container Logs.**
 
-    ecs-cli logs --task-id 0c2862e6e39e4eff92ca3e4f843c5b9a --follow --cluster-config tutorial
+Replace the TASK_ID with the id from the previous command.
+
+    ecs-cli logs --task-id `TASK_ID` --follow --cluster-config tutorial
+
+The --follow option tells the Amazon ECS CLI to continuously poll for logs.
 
 **13. Scale the Tasks on the Cluster.**
 
 You can scale up your task count to increase the number of instances of your application with ecs-cli compose service scale. In this example, the running count of the application is increased to two.
 
-    ecs-cli compose --project-name tutorial service scale 2 --cluster-config tutorial --ecs-profile tutorial-profile
+    ecs-cli compose --project-name tutorial service scale 2 --cluster-config tutorial 
 
 Now you should see two more containers in your cluster:
 
-    ecs-cli compose --project-name tutorial service ps --cluster-config tutorial --ecs-profile tutorial-profile
+    ecs-cli compose --project-name tutorial service ps --cluster-config tutorial
+
+In addition, you can see the new task being provisioned as shown in the screenshot below
+
+![Scaling](assets/ecs-cli-scale.png)
 
 **14. View your Web Application.**
 
 Enter the IP address for the task in your web browser and you should see a webpage that displays the Simple PHP App web application.
+
+![Website](assets/ecs-cli-site.png)
 
 **15. Clean Up.**
 
