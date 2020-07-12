@@ -25,7 +25,7 @@
    da-terraform                  c03-docker-e01      c50fc0cc7915        2 days ago          56MB
    mail2kvanitha/devopsacademy   c03-docker01        c50fc0cc7915        2 days ago          56MB
 
- REMOVE THE CONTAINER LOCALLY
+ REMOVE THE IMAGE LOCALLY
  > docker image rm exercise02:v2
    Untagged: exercise02:v2
 
@@ -108,7 +108,8 @@
    e3553107e79d        c50fc0cc7915        "terraform -v"            38 minutes ago      Exited (0) 38 minutes ago                             jolly_lederberg
    a1c08b6e0cdc        e0694673648f        "httpd-foreground"        47 hours ago        Exited (0) About an hour ago                          infallible_curran
    2776f5b8dfc2        bda9d1507076        "httpd-foreground"        47 hours ago        Exited (0) About an hour ago                          fervent_darwin
-
+ 
+ CONFIRM IMAGES ARE CLEANED
  > docker images
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 
