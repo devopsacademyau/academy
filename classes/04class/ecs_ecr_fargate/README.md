@@ -13,7 +13,7 @@ This class is an introduction to the managed services ECS, ECR and Fargate, whic
     - [ECS Service](#ecs-service)
   - [CLIs](#clis)
     - [ECS CLI](#ecs-cli)
-    - [Copilot CLI](#copilot-cli)
+    - [Copilot CLI (Preview)](#copilot-cli-preview)
 - [ECR](#ecr)
   - [What's ECR](#whats-ecr)
   - [ECR Main Use Cases](#ecr-main-use-cases)
@@ -220,11 +220,38 @@ Reference:
 - [Docker Composer](https://docs.docker.com/compose/)
 - [How to Install ECS Cli](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html)
 
-### Copilot CLI
+### Copilot CLI (Preview)
+
+The AWS Copilot command line interface (CLI) provides application-first, high-level commands to simplify modeling, creating, releasing, and managing production-ready containerized applications on Amazon ECS from a local development environment. Provisioned with application templates, infrastructure as code, and CI/CD pipeline options, the AWS Copilot CLI aligns with application workflows that support modern application best practices. Use the AWS Copilot CLI as part of your everyday development and testing cycle as an alternative to the AWS Management Console.
+
+Use Copilot to:
+
+- Organize all your related micro-services in one application
+- Set up test and production environments, across regions and accounts
+- Set up production-ready, scalable ECS services and infrastructure
+- Set up CI/CD Pipelines for all of the micro-services
+- Monitor and debug your services from your terminal
+
+Example:
+
+    $ git clone git@github.com:aws-samples/aws-copilot-sample-service.git demo-app
+    $ cd demo-app
+    $ copilot init --app demo                \
+      --svc api                              \
+      --svc-type 'Load Balanced Web Service' \
+      --dockerfile './Dockerfile'            \
+      --deploy
+
+This will create a VPC, Application Load Balancer, an Amazon ECS Service with the sample app running on AWS Fargate. This process will take around 8 minutes to complete - at which point you'll get a URL for your sample app running!
+
+Or, you can use `copilot init` to deploy the application step by step.
+
+Reference:
+- [How to install the Copilot CLI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Copilot.html#copilot-install-homebrew)
+- [Git Hub](https://github.com/aws/copilot-cli)
 
 # ECR
 ## What's ECR
-
 ## ECR Main Use Cases
 
 # Fargate
