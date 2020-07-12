@@ -1,0 +1,18 @@
+{
+    "Comment": "Add CNAME to Load Balancer",
+    "Changes": [
+        {
+            "Action": "UPSERT",
+            "ResourceRecordSet": {
+                "Name": "c03aws03.devops.rocks",
+                "Type": "CNAME",
+                "TTL": 600,
+                "ResourceRecords": [
+                    {
+                        "Value": "devopsacademy-lb-1691285263.ap-southeast-2.elb.amazonaws.com"
+                    }
+                ]
+            }
+        }
+    ]
+}

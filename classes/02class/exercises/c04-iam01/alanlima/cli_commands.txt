@@ -1,0 +1,46 @@
+$ aws iam create-user --user-name user_readonly_s3
+User:
+  Arn: arn:aws:iam::097922957316:user/user_readonly_s3
+  CreateDate: '2020-07-05T10:04:44+00:00'
+  Path: /
+  UserId: AIDARNTFJYACJYTXZ5F4N
+  UserName: user_readonly_s3
+
+
+$ aws iam create-policy --policy-name s3readonly --policy-document file://s3readonly-policy.json
+Policy:
+  Arn: arn:aws:iam::097922957316:policy/s3readonly
+  AttachmentCount: 0
+  CreateDate: '2020-07-05T10:18:31+00:00'
+  DefaultVersionId: v1
+  IsAttachable: true
+  Path: /
+  PermissionsBoundaryUsageCount: 0
+  PolicyId: ANPARNTFJYACLHA23B2NC
+  PolicyName: s3readonly
+  UpdateDate: '2020-07-05T10:18:31+00:00'
+
+$ aws iam attach-user-policy --user-name user_readonly_s3 --policy-arn arn:aws:iam::097922957316:policy/s3readonly
+
+$ aws iam list-attached-user-policies --user-name user_readonly_s3
+AttachedPolicies:
+- PolicyArn: arn:aws:iam::097922957316:policy/s3readonly
+  PolicyName: s3readonly
+
+$ aws iam create-access-key --user-name user_readonly_s3
+AccessKey:
+  AccessKeyId: AKIARNTFJY*****
+  CreateDate: '2020-07-05T10:26:55+00:00'
+  SecretAccessKey: BS460PC/******
+  Status: Active
+  UserName: user_readonly_s3
+
+$ aws configure --profile s3readonlyprofile
+AWS Access Key ID [None]: AKIARNTFJY*****
+AWS Secret Access Key [None]: BS460PC/******
+Default region name [None]: ap-southeast-2
+Default output format [None]: json
+
+$ aws s3 ls --profile s3readonlyprofile
+2020-06-10 02:28:09 devops-c01-aws02
+

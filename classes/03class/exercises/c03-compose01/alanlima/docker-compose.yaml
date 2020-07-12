@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: tellnoone
+  web:
+    build:
+      context: ../../../compose/artifacts/c05-compose01
+      dockerfile: Dockerfile
+    ports:
+      - "8100:80"
+    volumes: 
+      - type: bind
+        source: ../../../compose/artifacts/c05-compose01/src
+        target: /var/www/html
+    environment: 
+      DB_USER: root
+      DB_PASS: tellnoone
+      DB_HOST: db
+      DB: db
+    depends_on:
+      - db

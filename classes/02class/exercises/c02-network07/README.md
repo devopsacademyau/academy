@@ -4,7 +4,7 @@ Everything is to be done preferable on Sydney region `ap-southeast-2`
 
 ## Route Table (RT)
 
-Create the above route tables and associate with referred subnets:
+Create the route tables below and associate with referred subnets:
 
 |route table|subnet|
 |---|---|
@@ -18,13 +18,13 @@ Add the following routes to your new route tables:
 - devopsacademy-rt-public
 
 |destination|target|
-|-|-|
+|---|---|
 |0.0.0.0|`devopsacademy-igw`|
 
 - devopsacademy-rt-private
 
 |destination|target|
-|-|-|
+|---|---|
 |0.0.0.0|`devopsacademy-ngw`|
 
 #### Then post your answers for the following:
