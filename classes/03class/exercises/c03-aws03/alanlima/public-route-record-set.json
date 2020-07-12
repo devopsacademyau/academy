@@ -1,0 +1,18 @@
+{
+    "Comment": "Add A to Load Balancer",
+    "Changes": [
+        {
+            "Action": "UPSERT",
+            "ResourceRecordSet": {
+                "Name": "alan-devops.tk",
+                "Type": "A",
+                "AliasTarget": {
+                    "HostedZoneId": "Z1GM3OXH4ZPM65",
+                    "DNSName": "devopsacademy-lb-1691285263.ap-southeast-2.elb.amazonaws.com",
+                    "EvaluateTargetHealth": false
+                }
+                
+            }
+        }
+    ]
+}
