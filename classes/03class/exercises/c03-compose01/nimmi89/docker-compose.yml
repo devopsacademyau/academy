@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+       
+  web:
+    build: 
+      context: ../../../compose/artifacts/c05-compose01/
+    ports:  
+      - "8100:80"
+    environment:
+      DB_USER: root
+      DB_PASS: secret
+      DB_HOST: db
+      DB: db 
+    volumes:
+      - ../../../compose/artifacts/c05-compose01/src:/var/www/html
+    depends_on:
+      - db
+    
+      
+
+
+   
