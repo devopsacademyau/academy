@@ -25,7 +25,7 @@ Output:
 ```
 
 ```
-$ `aws ec2 authorize-security-group-ingress --group-id sg-0d9198b56e119769d --protocol tcp --port 22 --cidr 0.0.0.0/0`
+$ `aws ec2 authorize-security-group-ingress --group-id sg-0d9198b56e119769d --protocol tcp --port 22 --cidr 194.193.191.30/32`
 $ `aws ec2 run-instances \
    	 --image-id ami-03686c686b463366b \
    	 --instance-type t2.micro \
@@ -163,13 +163,23 @@ Output:
 - Commands to create the second EC2 instance and any additional resource required:
 
 ```
+$ `aws ec2 create-security-group --group-name my-sg-2 --description "My security group 2" --vpc-id vpc-49e2eb2e`
+
+Output:
+    {
+        "GroupId": "sg-0eef4dc48d19491f1"
+    }
+```
+
+```
+$ `aws ec2 authorize-security-group-ingress --group-id sg-0eef4dc48d19491f1 --protocol tcp --port 22 --cidr 172.31.45.101/32`
 $ `aws ec2 run-instances \
   	  --image-id ami-03686c686b463366b \
     	--instance-type t2.micro \
     	--count 1 \
     	--subnet-id subnet-969e7cde \
     	--key-name MyKeyPair \
-    	--security-group-ids sg-0d9198b56e119769d \
+    	--security-group-ids sg-0eef4dc48d19491f1 \
     	--no-associate-public-ip-address`
 
 Output:
@@ -219,8 +229,8 @@ Output:
                         "Description": "",
                         "Groups": [
                             {
-                                "GroupName": "my-sg",
-                                "GroupId": "sg-0d9198b56e119769d"
+                                "GroupName": "my-sg-2",
+                                "GroupId": "sg-0eef4dc48d19491f1"
                             }
                         ],
                         "Ipv6Addresses": [],
@@ -247,8 +257,8 @@ Output:
                 "RootDeviceType": "ebs",
                 "SecurityGroups": [
                     {
-                        "GroupName": "my-sg",
-                        "GroupId": "sg-0d9198b56e119769d"
+                        "GroupName": "my-sg-2",
+                        "GroupId": "sg-0eef4dc48d19491f1"
                     }
                 ],
                 "SourceDestCheck": true,
