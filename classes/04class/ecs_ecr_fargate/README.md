@@ -93,7 +93,8 @@ When you run tasks using Amazon ECS, you place them on a cluster, which is a log
 
 ![ECS View](assets/ecs-cluster.png)
 
-*[Reference: Deploy dockerized services on AWS ECS cluster using cloudformation.](https://medium.com/@anupam.ncsu/deploy-dockerized-services-on-aws-ecs-cluster-using-cloudformation-9d6f9a703805)*
+*Reference: 
+- [Deploy dockerized services on AWS ECS cluster using cloudformation.](https://medium.com/@anupam.ncsu/deploy-dockerized-services-on-aws-ecs-cluster-using-cloudformation-9d6f9a703805)*
 
 
 ### ECS Service
@@ -217,9 +218,11 @@ Now, take down your cluster, which cleans up the resources that you created earl
 
     ecs-cli down --force --cluster-config tutorial
 
-Reference:
+
+References:
 - [Docker Composer](https://docs.docker.com/compose/)
 - [How to Install ECS Cli](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html)
+
 
 ### Copilot CLI (Preview)
 
@@ -247,7 +250,7 @@ This will create a VPC, Application Load Balancer, an Amazon ECS Service with th
 
 Or, you can use `copilot init` to deploy the application step by step.
 
-Reference:
+References:
 - [How to install the Copilot CLI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Copilot.html#copilot-install-homebrew)
 - [Git Hub](https://github.com/aws/copilot-cli)
 
@@ -277,10 +280,11 @@ You can control access to your repositories and the images within them with repo
 You can push and pull container images to your repositories. You can use these images locally on your development system, or you can use them in Amazon ECS task definitions and Amazon EKS pod specifications.
 
 References:
-[Registries](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html)
-[Authorization token](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth)
-[Repositories](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html)
-[Repository Policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html)
+- [Registries](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html)
+- [Authorization token](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth)
+- [Repositories](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html)
+- [Repository Policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html)
+
 
 ## Repository Policy Example
 
@@ -350,7 +354,7 @@ The interruption signal is sent via Amazon EventBridge and a SIGTERM signal to t
 It is important to remember that Fargate Spot is great for stateless, fault-tolerant workloads; however, it is not recommended to rely only on Fargate Spot for critical workloads, you can configure a mix of regular Fargate Tasks to avoid interruption.
 
 Reference:
-[YouTube - Scaling a Containerized Application Seamlessly with AWS Fargate](https://www.youtube.com/watch?v=HkBleSbYu4k)
+- [YouTube - Scaling a Containerized Application Seamlessly with AWS Fargate](https://www.youtube.com/watch?v=HkBleSbYu4k)
 
 # Deploying
 ## CDK
