@@ -115,39 +115,40 @@ Follow the steps below to create a Cluster with a Fargate Task using the ECS and
 Before you start, ensure that you are within the folder *labs/*
 
 **1. Create the task execution role using the AWS CLI.**
+
 *If you have already created the ECS task role in your account, you may skip the steps 1 and 2*
 
-  aws iam --region ap-southeast-2 create-role --role-name ecsTaskExecutionRole --assume-role-policy-document file://task-execution-assume-role.json
+    aws iam --region ap-southeast-2 create-role --role-name ecsTaskExecutionRole --assume-role-policy-document file://task-execution-assume-role.json
 
 **2. Attache the `AmazonECSTaskExecutionRolePolicy` policy to the role created above**
 
-  aws iam --region ap-southeast-2 attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+    aws iam --region ap-southeast-2 attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
 
 **3. Create a cluster configuration, which defines the AWS region to use, resource creation prefixes, and the cluster name to use with the Amazon ECS CLI:**
 
-  ecs-cli configure --cluster tutorial --default-launch-type FARGATE --config-name tutorial --region ap-southeast-2
+    ecs-cli configure --cluster tutorial --default-launch-type FARGATE --config-name tutorial --region ap-southeast-2
 
 **4. Create an Amazon ECS cluster with the ecs-cli up command. Because you specified Fargate as your default launch type in the cluster configuration, this command creates an empty cluster and a VPC configured with two public subnets.**
 
-  ecs-cli up --cluster-config tutorial --region ap-southeast-2
+    ecs-cli up --cluster-config tutorial --region ap-southeast-2
 
 **5. The command `ecs-cli up` creates a cloudformation that provisioned a VPC and two subnet for your ECS Cluster. Use the command below to export the generated VPC ID to a variable that will be used later on.**
 
-  VPC_ID=$(aws cloudformation describe-stack-resources --stack-name amazon-ecs-cli-setup-tutorial --logical-resource-id Vpc --region ap-southeast-2 --query 'StackResources[].PhysicalResourceId' --output text)
+    VPC_ID=$(aws cloudformation describe-stack-resources --stack-name amazon-ecs-cli-setup-tutorial --logical-resource-id Vpc --region ap-southeast-2 --query 'StackResources[].PhysicalResourceId' --output text)
 
 **6. Retrieve the default security group ID from the VPC retrieved above.**
 
-  SG_GROUP_ID=$(aws ec2 describe-security-groups --filters Name=vpc-id,Values=$VPC_ID Name=description,Values="default VPC security group" --region ap-southeast-2 --query 'SecurityGroups[].GroupId' --output text)
+    SG_GROUP_ID=$(aws ec2 describe-security-groups --filters Name=vpc-id,Values=$VPC_ID Name=description,Values="default VPC security group" --region ap-southeast-2 --query 'SecurityGroups[].GroupId' --output text)
 
 **7. Using AWS CLI, add a security group rule to allow inbound access on port 80 as it is required for the container used during this test.**
 
-  aws ec2 authorize-security-group-ingress --group-id $SG_GROUP_ID --protocol tcp --port 80 --cidr 0.0.0.0/0 --region ap-southeast-2
+    aws ec2 authorize-security-group-ingress --group-id $SG_GROUP_ID --protocol tcp --port 80 --cidr 0.0.0.0/0 --region ap-southeast-2
 
 **8. Collect the subnets ids to update the `ecs-params.yml`**
 
-  SUBNET1=$(aws cloudformation describe-stack-resources --stack-name amazon-ecs-cli-setup-tutorial --logical-resource-id PubSubnetAz1 --region ap-southeast-2 --query 'StackResources[].PhysicalResourceId' --output text)
+    SUBNET1=$(aws cloudformation describe-stack-resources --stack-name amazon-ecs-cli-setup-tutorial --logical-resource-id PubSubnetAz1 --region ap-southeast-2 --query 'StackResources[].PhysicalResourceId' --output text)
 
-  SUBNET2=$(aws cloudformation describe-stack-resources --stack-name amazon-ecs-cli-setup-tutorial --logical-resource-id PubSubnetAz2 --region ap-southeast-2 --query 'StackResources[].PhysicalResourceId' --output text)
+    SUBNET2=$(aws cloudformation describe-stack-resources --stack-name amazon-ecs-cli-setup-tutorial --logical-resource-id PubSubnetAz2 --region ap-southeast-2 --query 'StackResources[].PhysicalResourceId' --output text)
 
 **9. Update the file `ecs-params.yml` with the subnets and security group.**
 
@@ -161,27 +162,27 @@ Before you start, ensure that you are within the folder *labs/*
 
 The folder labs contain the `docker-compose.yml` that uses a docker image for testing that is used when you run the `ecs-cli compose service up`. By default, the command looks for files called docker-compose.yml and ecs-params.yml in the current directory; you can specify a different docker compose file with the --file option, and a different ECS Params file with the --ecs-params option. By default, the resources created by this command have the current directory in their titles, but you can override that with the --project-name option. The --create-log-groups option creates the CloudWatch log groups for the container logs.
 
-  ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial 
+    ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial 
 
 **11. View the Running Containers on a Cluster.**
 
-  ecs-cli compose --project-name tutorial service ps --cluster-config tutorial
+    ecs-cli compose --project-name tutorial service ps --cluster-config tutorial
 
 In the above example, you can see the web container from your compose file, and also the IP address and port of the web server. If you point your web browser at that address, you should see the PHP web application. Also in the output is the task-id value for the container. Copy the task ID as you use it in the next step.
 
 **12. View the Container Logs.**
 
-  ecs-cli logs --task-id 0c2862e6e39e4eff92ca3e4f843c5b9a --follow --cluster-config tutorial
+    ecs-cli logs --task-id 0c2862e6e39e4eff92ca3e4f843c5b9a --follow --cluster-config tutorial
 
 **13. Scale the Tasks on the Cluster.**
 
 You can scale up your task count to increase the number of instances of your application with ecs-cli compose service scale. In this example, the running count of the application is increased to two.
 
-  ecs-cli compose --project-name tutorial service scale 2 --cluster-config tutorial --ecs-profile tutorial-profile
+    ecs-cli compose --project-name tutorial service scale 2 --cluster-config tutorial --ecs-profile tutorial-profile
 
 Now you should see two more containers in your cluster:
 
-  ecs-cli compose --project-name tutorial service ps --cluster-config tutorial --ecs-profile tutorial-profile
+    ecs-cli compose --project-name tutorial service ps --cluster-config tutorial --ecs-profile tutorial-profile
 
 **14. View your Web Application.**
 
@@ -191,11 +192,11 @@ Enter the IP address for the task in your web browser and you should see a webpa
 
 When you are done with this tutorial, you should clean up your resources so they do not incur any more charges. First, delete the service so that it stops the existing containers and does not try to run any more tasks.
 
-  ecs-cli compose --project-name tutorial service down --cluster-config tutorial
+    ecs-cli compose --project-name tutorial service down --cluster-config tutorial
 
 Now, take down your cluster, which cleans up the resources that you created earlier with ecs-cli up.
 
-ecs-cli down --force --cluster-config tutorial --ecs-profile
+    ecs-cli down --force --cluster-config tutorial --ecs-profile
 
 Reference:
 - [Docker Composer](https://docs.docker.com/compose/)
