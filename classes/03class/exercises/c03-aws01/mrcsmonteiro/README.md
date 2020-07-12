@@ -59,7 +59,15 @@ $ aws ec2 create-tags \
 
 - what this line is doing? `curl https://169.254.169.254/latest/meta-data/hostname > index.html`
 ```
-It retrieves a top-level metadata (hostname in this case) and sends the output to the index.html file, which will be shown when the webserver's public IP is typed into a browser.
+It retrieves a top-level metadata (hostname in this case) and sends the output to the index.html file, which will be shown when the webserver's public IP is typed into a browser or 'curled'.
+
+# Output for the curl command against the two public IPs for the webservers from my laptop
+
+➜  ~ curl 3.25.84.248
+ip-10-11-11-70.ap-southeast-2.compute.internal
+
+➜  ~ curl 54.206.211.142
+ip-10-11-22-98.ap-southeast-2.compute.internal
 ```
 
 ***
