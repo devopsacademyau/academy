@@ -28,58 +28,6 @@ systemctl start httpd
 > aws autoscaling    create-auto-scaling-group --auto-scaling-group-name devopsacadmy-asg --launch-configuration-name  devopsacadmy-asg-launch-config --min-size 1 --max-size 2  --desired-capacity 2 --vpc-zone-identifier subnet-0f3eb7a49a103114e,subnet-0ff0ad4440d0df64e
 
 Verify autoscaling completed and instances are created
-
-
-    "AutoScalingGroups": [
-        {
-            "AutoScalingGroupName": "devopsacadmy-asg",
-            "AutoScalingGroupARN": "arn:aws:autoscaling:ap-southeast-2:361529347535:autoScalingGroup:8899db65-8167-4ac3-b040-aedc0372c971:autoScalingGroupName/devopsacadmy-asg",
-            "LaunchConfigurationName": "devopsacadmy-asg-launch-config",
-            "MinSize": 1,
-            "MaxSize": 2,
-            "DesiredCapacity": 2,
-            "DefaultCooldown": 300,
-            "AvailabilityZones": [
-                "ap-southeast-2b",
-                "ap-southeast-2a"
-            ],
-            "LoadBalancerNames": [],
-            "TargetGroupARNs": [],
-            "HealthCheckType": "EC2",
-            "HealthCheckGracePeriod": 0,
-            "Instances": [
-                {
-                    "InstanceId": "i-0b577c6727cdd496b",
-                    "InstanceType": "t2.nano",
-                    "AvailabilityZone": "ap-southeast-2b",
-                    "LifecycleState": "InService",
-                    "HealthStatus": "Healthy",
-                    "LaunchConfigurationName": "devopsacadmy-asg-launch-config",
-                    "ProtectedFromScaleIn": false
-                },
-                {
-                    "InstanceId": "i-0b601e4a953635c4f",
-                    "InstanceType": "t2.nano",
-                    "AvailabilityZone": "ap-southeast-2a",
-                    "LifecycleState": "InService",
-                    "HealthStatus": "Healthy",
-                    "LaunchConfigurationName": "devopsacadmy-asg-launch-config",
-                    "ProtectedFromScaleIn": false
-                }
-            ],
-            "CreatedTime": "2020-07-12T06:20:57.032000+00:00",
-            "SuspendedProcesses": [],
-            "VPCZoneIdentifier": "subnet-0f3eb7a49a103114e,subnet-0ff0ad4440d0df64e",
-            "EnabledMetrics": [],
-            "Tags": [],
-            "TerminationPolicies": [
-                "Default"
-            ],
-            "NewInstancesProtectedFromScaleIn": false,
-            "ServiceLinkedRoleARN": "arn:aws:iam::361529347535:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling"
-        }
-    ]
-}
 > aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name devopsacadmy-asg 
 {
     "AutoScalingGroups": [
