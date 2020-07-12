@@ -44,7 +44,7 @@
 - Command to list all images on your local as well as its output:
 ```
 
- > docker images
+ > docker images -a
    REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
    mail2kvanitha/devopsacademy   c03-docker03-e02    e0694673648f        2 days ago          107MB
    mail2kvanitha/devopsacademy   c03-docker03-e01    bda9d1507076        2 days ago          107MB
