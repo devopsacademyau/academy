@@ -16,11 +16,12 @@ This class is an introduction to the managed services ECS, ECR and Fargate, whic
     - [Copilot CLI (Preview)](#copilot-cli-preview)
 - [ECR](#ecr)
   - [What's ECR](#whats-ecr)
-  - [ECR Main Use Cases](#ecr-main-use-cases)
+  - [Repository Policy Example](#repository-policy-example)
+  - [Image Scanning](#image-scanning)
+  - [How to use](#how-to-use)
 - [Fargate](#fargate)
   - [What's Fargate](#whats-fargate)
   - [Fargate Spot](#fargate-spot)
-  - [Fargate Main Use Cases](#fargate-main-use-cases)
 - [Deploying](#deploying)
   - [CDK](#cdk)
     - [What's CDK](#whats-cdk)
@@ -214,7 +215,7 @@ When you are done with this tutorial, you should clean up your resources so they
 
 Now, take down your cluster, which cleans up the resources that you created earlier with ecs-cli up.
 
-    ecs-cli down --force --cluster-config tutorial --ecs-profile
+    ecs-cli down --force --cluster-config tutorial
 
 Reference:
 - [Docker Composer](https://docs.docker.com/compose/)
@@ -251,13 +252,105 @@ Reference:
 - [Git Hub](https://github.com/aws/copilot-cli)
 
 # ECR
+
+Parts of the tutorial below have been extracted from [Amazon ECR User Guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr-ug.pdf)
+
 ## What's ECR
-## ECR Main Use Cases
+
+Amazon Elastic Container Registry (Amazon ECR) is a managed AWS Docker registry service that is secure, scalable, and reliable. Amazon ECR supports private Docker repositories with resource-based permissions using AWS IAM so that specific users or Amazon EC2 instances can access repositories and images. Developers can use the Docker CLI to push, pull, and manage images.
+
+Amazon ECR contains the following components:
+
+- Registry
+An Amazon ECR registry is provided to each AWS account; you can create image repositories in your registry and store images in them. The URL for your default registry is https://aws_account_id.dkr.ecr.region.amazonaws.com.
+
+- Authorization token
+Your Docker client must authenticate to Amazon ECR registries as an AWS user before it can push and pull images.
+
+- Repository
+An Amazon ECR image repository contains your Docker or Open Container Initiative (OCI) images.
+
+- Repository policy
+You can control access to your repositories and the images within them with repository policies.
+
+- Image
+You can push and pull container images to your repositories. You can use these images locally on your development system, or you can use them in Amazon ECS task definitions and Amazon EKS pod specifications.
+
+References:
+[Registries](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html)
+[Authorization token](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth)
+[Repositories](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html)
+[Repository Policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html)
+
+## Repository Policy Example
+
+This example shows an Amazon ECR repository policy, which allows for a specific IAM user to describe the repository and the images within the repository.
+
+    {
+      "Version": "2008-10-17",
+      "Statement": [{
+        "Sid": "ECR Repository Policy",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::account-id:user/username"
+        },
+        "Action": [
+          "ecr:DescribeImages",
+          "ecr:DescribeRepositories"
+        ]
+      }]
+    }
+
+## Image Scanning
+
+Amazon ECR image scanning helps in identifying software vulnerabilities in your container images. Amazon ECR uses the Common Vulnerabilities and Exposures (CVEs) database from the open source Clair project and provides you with a list of scan findings. You can review the scan findings for information about the security of the container images that are being deployed. For more information about Clair, [see Clair on GitHub](https://github.com/quay/clair).
+
+How to create a repository that scans on push
+
+    aws ecr create-repository --repository-name NAME --image-scanning-configuration scanOnPush=true --region ap-southeast-2 
+
+How to update an existing repository to scan on push
+
+    aws ecr put-image-scanning-configuration --repository-name NAME --image-scanning-configuration scanOnPush=true --region 
+
+## How to use
+
+1. Retrieve an authentication token and authenticate your Docker client to your registry.
+
+      aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com
+
+2. Build your image.
+
+3. Tag your image to push the image to this repository.
+
+      docker tag IMAGE_NAME:latest ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com/IMAGE_NAME:latest
+
+4. Push this image to your ECR repository
+
+      docker push ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com/IMAGE_NAME:latest
 
 # Fargate
+
+Parts of the tutorial below have been extracted from [AWS Fargate](https://aws.amazon.com/fargate/faqs/)
+
 ## What's Fargate
+
+AWS Fargate is a serverless compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). Fargate makes it easy for you to focus on building your applications. Fargate removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design.
+
+![Fargate](assets/fargate-intro.png)
+
 ## Fargate Spot
-## Fargate Main Use Cases
+
+Fargate spot is similar to the concept used by EC2 Spot Instance as it uses spare capacity to spin tasks. However, when AWS needs the capacity back, tasks running on Fargate Spot will be interrupted with two minutes of notification. Fargate spot is designed for fault-tolerant workloads which can save up to 70% in cost.
+
+In addition, you can specify the minimum number of regular tasks that should run at all times and then add tasks running on Fargate Spot to improve service performance in a cost-efficient way.
+
+The interruption signal is sent via Amazon EventBridge and a SIGTERM signal to the running task to make sure that you can gracefully exit the container. Also, the service scheduler will attempt to spin new tasks on Fargate spot if capacity is available.
+
+It is important to remember that Fargate Spot is great for stateless, fault-tolerant workloads; however, it is not recommended to rely only on Fargate Spot for critical workloads, you can configure a mix of regular Fargate Tasks to avoid interruption.
+
+Reference:
+[YouTube - Scaling a Containerized Application Seamlessly with AWS Fargate](https://www.youtube.com/watch?v=HkBleSbYu4k)
 
 # Deploying
 ## CDK
