@@ -72,15 +72,8 @@ aws route53  get-change --id /change/C07888573JBCET5FJ32M3
     }
 }
 
->>SSH into instance to check the working
-{
-    "ChangeInfo": {
-        "Id": "/change/C07888573JBCET5FJ32M3",
-        "Status": "INSYNC",
-        "SubmittedAt": "2020-07-12T00:53:53.587000+00:00",
-        "Comment": "CREATE a record "
-    }
-}
+>> SSH into instance to check the working
+
 ssh ec2-user@13.210.164.11 -i /home/nimmi/C01-AWS01KeyPair.pem
 Last login: Sun Jul 12 00:58:21 2020 from 220.240.12.112
 
@@ -99,7 +92,7 @@ aws ec2 modify-vpc-attribute --vpc-id vpc-081afcee350babdf5 --enable-dns-hostnam
 
 aws ec2 modify-vpc-attribute --vpc-id vpc-081afcee350babdf5 --enable-dns-support "{\"Value\":true}"
 
->SSH again
+>> SSH again
 Last login: Sun Jul 12 01:16:00 2020 from 220.240.12.112
 
        __|  __|_  )
