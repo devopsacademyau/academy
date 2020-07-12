@@ -43,8 +43,13 @@
 
   Terraform v0.12.20
 
- Your version of Terraform is out of date! The latest version
- is 0.12.28. You can update by downloading from https://www.terraform.io/downloads.html
+  Your version of Terraform is out of date! The latest version
+  is 0.12.28. You can update by downloading from https://www.terraform.io/downloads.html
+
+
+  > docker image ls da-terraform:c03-docker-e01
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    da-terraform        c03-docker-e01      c50fc0cc7915        2 days ago          56MB
 
 ```
 
