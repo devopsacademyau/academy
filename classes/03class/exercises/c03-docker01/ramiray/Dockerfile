@@ -2,7 +2,7 @@
 ARG TERRAFORM_VERSION=0.12.20
 
 # Download and install Terraform binary
-FROM alpine:latest
+FROM alpine:3.7
 RUN apk update && apk add curl
 RUN curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \

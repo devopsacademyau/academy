@@ -11,6 +11,12 @@ docker build -t da-terraform:c03-docker-e01 .
 
 - Command to run the image and its output.:
 ```
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+
+da-terraform        c03-docker-e01      a316215c687d        5 hours ago         59.1MB
+
+
 docker run -it da-terraform:c03-docker-e01
 Terraform v0.12.20
 
