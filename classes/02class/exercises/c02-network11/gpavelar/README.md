@@ -6,57 +6,97 @@ For the exercises below, you should use all the custom created network resources
 
 - Commands for launching an EC2 instance on public subnet with public SG attached
 
-```
-Add your commands and their outputs here
+```bash
+## I ll be following the steps form class 01 - aws 101
+
+## Public subnets IDs: subnet-0f867dac87c7e75b4, subnet-01ef5462d19df360c, subnet-01ac1852278e631c7
+
+
+## Run instance on my subnet and public security group (SG)
+## SG = sg-0cff452c56f306f2c
+## subnet id = subnet-01ac1852278e631c7
+
+aws ec2 run-instances \
+  --image-id ami-020d764f9372da231 \
+  --count 1 \
+  --instance-type t2.micro \
+  --key-name devops-class \
+  --subnet-id subnet-08da4676baf658cb2 \
+  --security-group-ids sg-0cff452c56f306f2c
+
+## Output
+
+
+## Describe instance
+aws ec2 describe-instances \
+    --instance-ids  --output json
+
+# Output
+
 ```
 
 - Commands for launching an EC2 instance on private subnet using custom ENI and private SG attached
 
-```
-Add your commands and their outputs here
+```bash
+
+## Private subnets IDs: subnet-08da4676baf658cb2, subnet-09383d1e51392c852, subnet-0d78ad19a4b86f369
+
+## private security group = sg-0d571c8f620bcc7e0
+## private subnet = subnet-0d78ad19a4b86f369
+## ENI eni-03cf44676961d7903
+
+## Run instance
+aws ec2 run-instances \
+  --image-id ami-020d764f9372da231 \
+  --count 1 \
+  --instance-type t2.micro \
+  --key-name devops-class \
+  --network-interfaces '[{"NetworkInterfaceId":"eni-03cf44676961d7903","DeviceIndex":0}]'
+
+# Output
+
+
+# or
+## Attach network interface to an instance
+# aws ec2 attach-network-interface --network-interface-id <eni-isntance> --instance-id <instance_id> --device-index 0
+
+
 ```
 
 - Commands for accessing your public instance using ssh
 
-```
-Add your commands and their outputs here
+```bash
+## I already added my SSH Agent.
+ssh -A ec2-user@<ip>
+
+# Output
 ```
 
 - Commands for accessing your private instance from public one
 
-```
-Add your commands and their outputs here
+```bash
+
+## Ssh
+ssh ec2-user@<private-instance-ip>
+
+# Output
 ```
 
 - Commands for testing ping to `8.8.8.8` from private instance
 
-```
+```bash
+## Testing ping
+ping 8.8.8.8
+
+# output
 Add your commands and their outputs here
 ```
 
 - Any extra challenges faced?
 
-### Objectives
+  > 1. Know that there is a option on EC2 run-instances command that allow run instance using ENI. `--network-interfaces`. Format of this option as well.
 
-1. Test all previous step
-2. Launch EC2 instance.
-
-### Commands
-
-- aws ec2 create-security-group
-
-Creates a network ACL in a VPC. Network ACLs provide an optional layer of security (in addition to security groups) for the instances in your VPC.
-
-Obligatory arguments :
-
-| Parameter            | Description        |
-| :------------------- | :----------------- |
-| --description        |                    |
-| --group-name         |                    |
-| --vpc-id             | The ID of the VPC. |
-| --tag-specifications |                    |
-
-<!-- Don't change anything below this point-->
+  > 2. Check what is missing that my connection was not working. So, I created everything again rs.
 
 ---
 
