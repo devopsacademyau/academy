@@ -21,13 +21,13 @@
 ```shell script
 NACL=acl-0db01b37de932e6db
 
-aws ec2 create-network-acl-entry --rule-number 150 --cidr-block 172.16.200.0/24 --ingress --network-acl-id $NACL --protocol tcp --port-range From=22,To=22 --rule-action deny
+aws ec2 create-network-acl-entry --rule-number 50 --cidr-block 172.16.200.0/24 --ingress --network-acl-id $NACL --protocol tcp --port-range From=22,To=22 --rule-action deny
 ```
 
 - Commands for creating a NACL to block access from your network to an external network `180.200.50.0/24`?
 
 ```shell script
-aws ec2 create-network-acl-entry --rule-number 150 --cidr-block 180.200.50.0/24 --egress --network-acl-id $NACL --protocol -1 --port-range From=-1,To=-1 --rule-action deny
+aws ec2 create-network-acl-entry --rule-number 50 --cidr-block 180.200.50.0/24 --egress --network-acl-id $NACL --protocol -1 --port-range From=-1,To=-1 --rule-action deny
 ```
 
 - Any extra challenges faced?
