@@ -96,6 +96,7 @@ aws ec2 run-instances \
   --count 1 \
   --instance-type t2.micro \
   --key-name devops-class \
+  --security-group-ids sg-0d571c8f620bcc7e0
   --network-interfaces '[{"NetworkInterfaceId":"eni-03cf44676961d7903","DeviceIndex":0}]'
 
 # Output
