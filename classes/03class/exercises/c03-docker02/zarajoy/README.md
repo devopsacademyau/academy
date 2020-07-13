@@ -41,6 +41,7 @@ z@bacon:~/Documents/GitHub/academy$ curl http://localhost:8081
 z@bacon:~/Documents/GitHub/academy$ curl http://localhost:8082
 <h1>DevOps Academy - Docker - Exercise c03-docker02 changed by zara</h1>
 
+
 ```
 
 - Explain any difference between the responses of the webservers before and after changing the file locally:
