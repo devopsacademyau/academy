@@ -23,5 +23,5 @@ push:
 
 .PHONY: run
 run:
-	@echo "\033[1;33mLazy container runner to choose a port use\033[1;32m make run p=<Port Number>\033[0m\033[1;33m otherwise it will run on port 80\033[0m"
+	@echo "\033[1;33mI'm running the long Docker command for you😀💻... You can change the local port through the enviroment variable '"p"'\033[0m"
 	docker run --publish ${p}:80 ${CR_LOGIN}/${C_NAME}:${TAG}

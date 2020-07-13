@@ -45,13 +45,11 @@ Made with WSL2🐧💕🐳
 
 - Execution and output of the command `make run`
 ```
-$ make run p=5000
-Lazy container runner to choose a port use make run p=<Port Number> otherwise it will run on port 80
-docker run --publish 5000:80 frdvo/make01:af435c2
+$ p=12345
+$ make run
+I'm running the long Docker command for you😀💻... You can change the local port through the enviroment variable 'p'
+docker run --publish 12345:80 frdvo/make01:6bc6ef0
 AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
-AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
-[Sat Jul 11 07:17:49.108483 2020] [mpm_event:notice] [pid 1:tid 140610295315784] AH00489: Apache/2.4.41 (Unix) configured -- resuming normal operations
-[Sat Jul 11 07:17:49.108519 2020] [core:notice] [pid 1:tid 140610295315784] AH00094: Command line: 'httpd -D FOREGROUND'
 ```
 
 <!-- Don't change anything below this point-->
