@@ -9,9 +9,12 @@
 - Execution and output of the command `docker-compose ps`
 
 ```
-CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES  
-7fcb9be870ba devacademy_web "docker-php-entrypoi…" 5 minutes ago Up 5 minutes 0.0.0.0:8100->80/tcp devacademy_web_1  
-c0fbb1778d39 mysql:5.7 "docker-entrypoint.s…" 5 minutes ago Up 5 minutes 3306/tcp, 33060/tcp devacademy_db_1
+ocker-compose ps
+    Name                  Command               State          Ports        
+----------------------------------------------------------------------------
+devops_db_1    docker-entrypoint.sh mysqld      Up      3306/tcp, 33060/tcp 
+devops_web_1   docker-php-entrypoint apac ...   Up      0.0.0.0:8100->80/tcp
+
 ```
 
 - Execution and output of the command `curl http://localhost:8100`
