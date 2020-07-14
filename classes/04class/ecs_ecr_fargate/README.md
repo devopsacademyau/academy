@@ -344,11 +344,11 @@ This example shows an Amazon ECR repository policy, which allows for a specific 
 
 Amazon ECR image scanning helps in identifying software vulnerabilities in your container images. Amazon ECR uses the Common Vulnerabilities and Exposures (CVEs) database from the open source Clair project and provides you with a list of scan findings. You can review the scan findings for information about the security of the container images that are being deployed. For more information about Clair, [see Clair on GitHub](https://github.com/quay/clair).
 
-How to create a repository that scans on push
+How to create a repository that scans on push.
 
     aws ecr create-repository --repository-name NAME --image-scanning-configuration scanOnPush=true --region ap-southeast-2 
 
-How to update an existing repository to scan on push
+How to update an existing repository to scan on push.
 
     aws ecr put-image-scanning-configuration --repository-name NAME --image-scanning-configuration scanOnPush=true --region 
 
@@ -356,68 +356,70 @@ How to update an existing repository to scan on push
 
 1. Retrieve an authentication token and authenticate your Docker client to your registry.
 
-      aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com
+        aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com
 
 2. Build your image.
 
 3. Tag your image to push the image to this repository.
 
-      docker tag IMAGE_NAME:latest ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com/IMAGE_NAME:latest
+        docker tag IMAGE_NAME:latest ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com/IMAGE_NAME:latest
 
-4. Push this image to your ECR repository
+4. Push this image to your ECR repository.
 
-      docker push ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com/IMAGE_NAME:latest
+        docker push ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com/IMAGE_NAME:latest
 
 ## ECR Lab
 
-Let's create an ECR Repository and send push an image to Amazon ECR. 
+Let's create an ECR Repository and push an image to the newly created Repo. 
 
-In order to complete this lab, please ensure that your AWS CLI Profile has has permission to use Amazon ECR. Also, ensure that you are inside the folder `labs/ecr`
+In order to complete this lab, please ensure that your AWS CLI Profile has has permission to use Amazon ECR. Also, make sure that your command line is pointing to the folder `labs/ecr`.
 
-1. Create your repository
+1. Create your repository.
 
         aws ecr create-repository \
         --repository-name myrepo \
         --image-scanning-configuration scanOnPush=true \
         --region ap-southeast-2
 
-If you check the console, you should be able to see the new repository 
+Open the ECR console to see the new repository.
 
 ![ECR](assets/ecr-myrepo.png)
 
-2. Build the Dockerfile
+2. Build the Dockerfile.
 
         docker build -t myrepo .
 
-3. Get the repository URL
+3. Get the repository URL.
 
         ECR_URL=$(aws ecr describe-repositories --region ap-southeast-2 --repository-names myrepo --query 'repositories[].repositoryUri' --output text)
 
-4. Tag your image
+4. Tag your image.
 
         docker tag myrepo:latest "$ECR_URL":latest
 
-5. Check if the image has the new tag
+5. Check if the image has the new tag.
 
         docker images
 
-You should see something like this
+You should see something like:
 
-        `AWS_ACCOUNT.dkr.ecr.ap-southeast-2.amazonaws.com/myrepo   latest              ea8c3fb3cd86        9 hours ago         934MB`
+**AWS_ACCOUNT.dkr.ecr.ap-southeast-2.amazonaws.com/myrepo   latest              ea8c3fb3cd86        9 hours ago         934MB**
 
-6. Authenticate your docker client
+6. Authenticate your docker client.
 
         aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin $(echo $ECR_URL | cut -f1 -d"/")
 
-7. Push the image
+7. Push the image.
 
         docker push "$ECR_URL":latest
 
-Wait for the process to complete and open your repository using the console to see that the new image is available.
+Wait for the process to complete, and then open the ECR console to check if the new image is available.
 
 ![Image](assets/ecr-myrepo-image.png)
 
-Challenge: Using the AWS CLI, check if there is any vulnerability for this image
+**Challenges:** 
+1. Using the AWS CLI, check for any vulnerability to this image.
+2. Delete the repository using the AWS CLI
 
 # Deploying
 
@@ -504,34 +506,34 @@ Before we start, ensure that you have the latest version of the Docker Desktop E
 [Edge for Windows](https://docs.docker.com/docker-for-windows/edge-release-notes/)
 [Edge for Mac](https://docs.docker.com/docker-for-mac/edge-release-notes/)
 
-1. Setup the ECS using the docker command
+1. Setup the ECS context using the docker command.
    
         docker ecs setup
 
-PS: Leave the cluster name empty 
+PS: Leave the cluster name empty.
 
-2. Change the context to use AWS 
+2. Change the context to use AWS.
 
         docker context use aws
 
-3. Check the compose file used for this lab
+3. Check the compose file used for this lab.
     
         cat docker-compose.yaml
 
-4. Setup the environment
+4. Setup the environment.
 
         docker ecs compose up
 
-The up command will spin all the resources using the cloudformation
+The up command will spin all the resources using a cloudformation template.
 
 ![Cloudformation](assets/docker-compose-cloudformation.png)
 
-Wait for all lines to change to CREATE_COMPLETE and you are all set
+Wait for all lines to change to CREATE_COMPLETE and you are all set.
 
 ![CLI output](assets/docker-compose-cli-output.png)
 
-Challenge: Access the deployed frontend without using the task IP address.
+**Challenge:** Access the deployed frontend without using the public IP of the ECS Task.
 
-5. Destroy the environment
+1. Destroy the environment
 
         docker ecs compose down
