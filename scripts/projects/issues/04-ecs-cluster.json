@@ -1,0 +1,9 @@
+
+{
+  "title": "ECS Cluster",
+  "body": "**Objectives:**\r\n- Create a ECS Cluster\r\n- Cluster can be using Fargate or EC2 Instances\r\n- The cluster is high available across 2 AZs\r\n- Hosted in private Zone\r\n- Security Groups are created with least privileges\r\n- IAM roles required are associated with the cluster nodes\r\n\r\n**Acceptance Criteria:**\r\n- ECS cluster is visible from the AWS console\r\n- There is no SG with 0.0.0.0/0\r\n- The cluster can pull images from ECR\r\n- Documentation is updated with information related t the ECS cluster",
+  "labels": [
+      "terraform-code",
+      "application"
+  ]
+}
