@@ -3,7 +3,7 @@
 ## Command Execution Output
 - Command used to create the Application Load Balancer (ALB)
 ```
-Create an interent facing load balanceer
+Create an internet facing load balanceer
 
 > aws elbv2  create-load-balancer --name devopsacademylb --subnets subnet-0ff0ad4440d0df64e subnet-0f3eb7a49a103114e --security-groups sg-0cf92adc7a459216c --scheme internet-facing
 
