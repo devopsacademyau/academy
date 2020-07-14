@@ -88,6 +88,8 @@ Reference:
 
 ## Concepts
 
+![ECS View](assets/ecs-cluster.png)
+
 ### ECS Task
 
 To prepare your application to run on Amazon ECS, you create a task definition. The task definition is a text file, in JSON format, that describes one or more containers, up to a maximum of ten, that form your application. It can be thought of as a blueprint for your application. Task definitions specify various parameters for your application. Examples of task definition parameters include which containers to use, which launch type to use, which ports should be opened for your application, and what data volumes should be used with the containers in the task. The specific parameters available for the task definition depend on which launch type you are using. 
@@ -126,8 +128,6 @@ The screenshots below show some steps when the console is used to create the tas
 ### ECS Cluster
 
 When you run tasks using Amazon ECS, you place them on a cluster, which is a logical grouping of resources. When you use the Fargate launch type with tasks within your cluster, Amazon ECS manages your cluster resources. When you use the EC2 launch type, your clusters are a group of container instances that you manage. An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent. Amazon ECS downloads your container images from a registry that you specify, and runs those images within your cluster.
-
-![ECS View](assets/ecs-cluster.png)
 
 *Reference: 
 - [Deploy dockerized services on AWS ECS cluster using cloudformation.](https://medium.com/@anupam.ncsu/deploy-dockerized-services-on-aws-ecs-cluster-using-cloudformation-9d6f9a703805)*
