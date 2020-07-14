@@ -7,6 +7,11 @@ This class is an introduction to the managed services ECS, ECR and Fargate, whic
 - [ECS](#ecs)
   - [What's ECS](#whats-ecs)
   - [ECS Main Use Cases](#ecs-main-use-cases)
+  - [Deployment Types](#deployment-types)
+    - [Container Agent](#container-agent)
+    - [Fargate](#fargate)
+      - [What's Fargate](#whats-fargate)
+      - [Fargate Spot](#fargate-spot)
   - [Concepts](#concepts)
     - [ECS Task](#ecs-task)
     - [ECS Cluster](#ecs-cluster)
@@ -19,15 +24,13 @@ This class is an introduction to the managed services ECS, ECR and Fargate, whic
   - [Repository Policy Example](#repository-policy-example)
   - [Image Scanning](#image-scanning)
   - [How to use](#how-to-use)
-- [Fargate](#fargate)
-  - [What's Fargate](#whats-fargate)
-  - [Fargate Spot](#fargate-spot)
+  - [ECR Lab](#ecr-lab)
 - [Deploying](#deploying)
   - [CDK](#cdk)
     - [What's CDK](#whats-cdk)
-    - [Deploying ECS with CDK](#deploying-ecs-with-cdk)
-  - [Terraform](#terraform)
-    - [Deploying ECS with Terraform](#deploying-ecs-with-terraform)
+    - [CDK Sample](#cdk-sample)
+  - [Docker Compose and ECS - NEW](#docker-compose-and-ecs---new)
+    - [Let's play with Docker compose](#lets-play-with-docker-compose)
 
 # ECS
 
@@ -49,6 +52,39 @@ The are 3 common use cases for ECS.
 2. `Batch Jobs`, docker containers are particularly suited for batch job workloads. Batch jobs are often short-lived and embarrassingly parallel. You can package your batch processing application into a Docker image so that you can deploy it anywhere, such as in an Amazon ECS task.
 
 3. `Machine Learning`, another important use case for ECS is the ability to deploy custom ML environments that run consistently in different environments. [AWS Deep Learning Containers](https://aws.amazon.com/machine-learning/containers/) provides pre-packaged docker images with the required frameworks. E.g. TensorFlow and PyTorch
+
+## Deployment Types
+
+![Agent](assets/ecs-ec2-fargate.png)
+
+### Container Agent
+
+The Amazon ECS container agent allows container instances to connect to your cluster. The Amazon ECS container agent is included in the Amazon ECS-optimized AMIs, but you can also install it on any Amazon EC2 instance that supports the Amazon ECS specification. The Amazon ECS container agent is only supported on Amazon EC2 instances.
+
+The source code for the Amazon ECS container agent is available on [GitHub](https://github.com/aws/amazon-ecs-agent).
+
+### Fargate
+
+Parts of the tutorial below have been extracted from [AWS Fargate](https://aws.amazon.com/fargate/faqs/)
+
+#### What's Fargate
+
+AWS Fargate is a serverless compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). Fargate makes it easy for you to focus on building your applications. Fargate removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design.
+
+![Fargate](assets/fargate-intro.png)
+
+#### Fargate Spot
+
+Fargate spot is similar to the concept used by EC2 Spot Instance as it uses spare capacity to spin tasks. However, when AWS needs the capacity back, tasks running on Fargate Spot will be interrupted with two minutes of notification. Fargate spot is designed for fault-tolerant workloads which can save up to 70% in cost.
+
+In addition, you can specify the minimum number of regular tasks that should run at all times and then add tasks running on Fargate Spot to improve service performance in a cost-efficient way.
+
+The interruption signal is sent via Amazon EventBridge and a SIGTERM signal to the running task to make sure that you can gracefully exit the container. Also, the service scheduler will attempt to spin new tasks on Fargate spot if capacity is available.
+
+It is important to remember that Fargate Spot is great for stateless, fault-tolerant workloads; however, it is not recommended to rely only on Fargate Spot for critical workloads, you can configure a mix of regular Fargate Tasks to avoid interruption.
+
+Reference:
+- [YouTube - Scaling a Containerized Application Seamlessly with AWS Fargate](https://www.youtube.com/watch?v=HkBleSbYu4k)
 
 ## Concepts
 
@@ -112,7 +148,7 @@ The Amazon Elastic Container Service (Amazon ECS) command line interface (CLI) p
 
 Follow the steps below to create an ECS Cluster with a Fargate Task using the ECS and AWS CLI. For this test only, ensure that the AWS profile loaded on the command line has full permission for the IAM and ECS services.
 
-Before you start, ensure that you are inside the folder `labs/`.
+Before you start, ensure that you are inside the folder `labs/ecs`.
 
 Lastly, the commands below uses variable in order to demonstrate how to add these lines to a pipeline.
 
@@ -285,7 +321,6 @@ References:
 - [Repositories](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html)
 - [Repository Policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html)
 
-
 ## Repository Policy Example
 
 This example shows an Amazon ECR repository policy, which allows for a specific IAM user to describe the repository and the images within the repository.
@@ -333,32 +368,170 @@ How to update an existing repository to scan on push
 
       docker push ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com/IMAGE_NAME:latest
 
-# Fargate
+## ECR Lab
 
-Parts of the tutorial below have been extracted from [AWS Fargate](https://aws.amazon.com/fargate/faqs/)
+Let's create an ECR Repository and send push an image to Amazon ECR. 
 
-## What's Fargate
+In order to complete this lab, please ensure that your AWS CLI Profile has has permission to use Amazon ECR. Also, ensure that you are inside the folder `labs/ecr`
 
-AWS Fargate is a serverless compute engine for containers that works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). Fargate makes it easy for you to focus on building your applications. Fargate removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design.
+1. Create your repository
 
-![Fargate](assets/fargate-intro.png)
+        aws ecr create-repository \
+        --repository-name myrepo \
+        --image-scanning-configuration scanOnPush=true \
+        --region ap-southeast-2
 
-## Fargate Spot
+If you check the console, you should be able to see the new repository 
 
-Fargate spot is similar to the concept used by EC2 Spot Instance as it uses spare capacity to spin tasks. However, when AWS needs the capacity back, tasks running on Fargate Spot will be interrupted with two minutes of notification. Fargate spot is designed for fault-tolerant workloads which can save up to 70% in cost.
+![ECR](assets/ecr-myrepo.png)
 
-In addition, you can specify the minimum number of regular tasks that should run at all times and then add tasks running on Fargate Spot to improve service performance in a cost-efficient way.
+2. Build the Dockerfile
 
-The interruption signal is sent via Amazon EventBridge and a SIGTERM signal to the running task to make sure that you can gracefully exit the container. Also, the service scheduler will attempt to spin new tasks on Fargate spot if capacity is available.
+        docker build -t myrepo .
 
-It is important to remember that Fargate Spot is great for stateless, fault-tolerant workloads; however, it is not recommended to rely only on Fargate Spot for critical workloads, you can configure a mix of regular Fargate Tasks to avoid interruption.
+3. Get the repository URL
 
-Reference:
-- [YouTube - Scaling a Containerized Application Seamlessly with AWS Fargate](https://www.youtube.com/watch?v=HkBleSbYu4k)
+        ECR_URL=$(aws ecr describe-repositories --region ap-southeast-2 --repository-names myrepo --query 'repositories[].repositoryUri' --output text)
+
+4. Tag your image
+
+        docker tag myrepo:latest "$ECR_URL":latest
+
+5. Check if the image has the new tag
+
+        docker images
+
+You should see something like this
+
+        `AWS_ACCOUNT.dkr.ecr.ap-southeast-2.amazonaws.com/myrepo   latest              ea8c3fb3cd86        9 hours ago         934MB`
+
+6. Authenticate your docker client
+
+        aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin $(echo $ECR_URL | cut -f1 -d"/")
+
+7. Push the image
+
+        docker push "$ECR_URL":latest
+
+Wait for the process to complete and open your repository using the console to see that the new image is available.
+
+![Image](assets/ecr-myrepo-image.png)
+
+Challenge: Using the AWS CLI, check if there is any vulnerability for this image
 
 # Deploying
+
 ## CDK
+
+Parts of the tutorial below have been extracted from [Getting started with the AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/awscdk.pdf)
+
 ### What's CDK
-### Deploying ECS with CDK
-## Terraform
-### Deploying ECS with Terraform
+
+The AWS Cloud Development Kit (AWS CDK) lets you define your cloud infrastructure as code in one of five supported programming languages. It is intended for moderately to highly experienced AWS users.
+
+An AWS CDK app is an application written in TypeScript, JavaScript, Python, Java, or C# that uses the AWS CDK to define AWS infrastructure. An app defines one or more stacks. Stacks (equivalent to AWS CloudFormation stacks) contain constructs, each of which defines one or more concrete AWS resources, such as Amazon S3 buckets, Lambda functions, Amazon DynamoDB tables, and so on.
+
+New Release - AWS Solutions Constructs are vetted architecture patterns, available as an open-source extension of the AWS Cloud Development Kit, that can be easily assembled to create a production-ready workload. AWS Solutions Constructs are built and maintained by AWS, using best practices established by the AWS Well-Architected Framework
+
+References:
+- [AWS Solutions Constructs](https://aws.amazon.com/solutions/constructs/)
+
+### CDK Sample
+
+        from aws_cdk import (
+            aws_ec2 as ec2,
+            aws_ecs as ecs,
+            aws_ecs_patterns as ecs_patterns,
+            core,
+        )
+
+
+        class BonjourFargate(core.Stack):
+
+            def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
+                super().__init__(scope, id, *kwargs)
+
+                # Create VPC and Fargate Cluster
+                # NOTE: Limit AZs to avoid reaching resource quotas
+                vpc = ec2.Vpc(
+                    self, "MyVpc",
+                    max_azs=2
+                )
+
+                cluster = ecs.Cluster(
+                    self, 'Ec2Cluster',
+                    vpc=vpc
+                )
+
+                fargate_service = ecs_patterns.NetworkLoadBalancedFargateService(
+                    self, "FargateService",
+                    cluster=cluster,
+                    task_image_options={
+                        'image': ecs.ContainerImage.from_registry("amazon/amazon-ecs-sample")
+                    }
+                )
+
+                fargate_service.service.connections.security_groups[0].add_ingress_rule(
+                    peer = ec2.Peer.ipv4(vpc.vpc_cidr_block),
+                    connection = ec2.Port.tcp(80),
+                    description="Allow http inbound from VPC"
+                )
+
+                core.CfnOutput(
+                    self, "LoadBalancerDNS",
+                    value=fargate_service.load_balancer.load_balancer_dns_name
+                )
+
+        app = core.App()
+        BonjourFargate(app, "Bonjour")
+        app.synth()
+
+Reference:
+- [CDK Python - Deploying ECS and Fargate](https://github.com/aws-samples/aws-cdk-examples/blob/master/python/ecs/fargate-load-balanced-service/app.py)
+
+## Docker Compose and ECS - NEW
+
+Previously, taking a local Compose file and running it on Amazon ECS posed a challenge because of constructs in Amazon ECS that were not part of the Compose specification, but were necessary for the application to run in AWS. For example, in order to run a simple Compose file and deploy to Amazon ECS, a developer would first need to leave the Docker experience and configure an Amazon VPC, Amazon ECS Cluster, and Amazon ECS Task Definition to name just a few of the AWS resources needed. As part of the collaboration, developers can continue to leverage tools like the Docker CLI and Docker Compose without needing to setup those resources in AWS outside of the Docker experience because it is now handled natively. By creating and switching to a new context in Docker, a developer can simply issue an `up` command via Docker Compose, which will create those resources automatically in AWS. This provides an easy path for developers to deploy and run highly secure and scalable production applications in Amazon ECS.
+
+Reference:
+- [AWS and Docker collaborate to simplify the developer experience](https://aws.amazon.com/blogs/containers/aws-docker-collaborate-simplify-developer-experience/)
+- [Docker ECS Plugin](https://github.com/docker/ecs-plugin)
+
+### Let's play with Docker compose
+
+Before we start, ensure that you have the latest version of the Docker Desktop Edge and your console is pointing to the `labs/compose`
+
+[Edge for Windows](https://docs.docker.com/docker-for-windows/edge-release-notes/)
+[Edge for Mac](https://docs.docker.com/docker-for-mac/edge-release-notes/)
+
+1. Setup the ECS using the docker command
+   
+        docker ecs setup
+
+PS: Leave the cluster name empty 
+
+2. Change the context to use AWS 
+
+        docker context use aws
+
+3. Check the compose file used for this lab
+    
+        cat docker-compose.yaml
+
+4. Setup the environment
+
+        docker ecs compose up
+
+The up command will spin all the resources using the cloudformation
+
+![Cloudformation](assets/docker-compose-cloudformation.png)
+
+Wait for all lines to change to CREATE_COMPLETE and you are all set
+
+![CLI output](assets/docker-compose-cli-output.png)
+
+Challenge: Access the deployed frontend without using the task IP address.
+
+5. Destroy the environment
+
+        docker ecs compose down
