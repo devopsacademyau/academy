@@ -24,7 +24,7 @@ a80a3bc991f8        hello-world                   "/hello"                 2 day
 
 # Stop and remove the containers prior removing the images 
 
-docker stop $(docker ps -a -q)
+$ docker stop $(docker ps -a -q)
 e1546a000d7e
 5380b6372f97
 d2b3cd670fe2
@@ -40,7 +40,8 @@ eca974d2eda0
 a80a3bc991f8
 46873fbe9016
 06e6ad75cd62
-PS C:\Users\rramy\Desktop\Devopsacademy\academy\classes\03class\exercises\c03-docker04\ramiray> docker rm $(docker ps -a -q)     
+
+$ docker rm $(docker ps -a -q)     
 e1546a000d7e
 5380b6372f97
 d2b3cd670fe2
@@ -59,7 +60,7 @@ a80a3bc991f8
 
 # Removing all the images: 
 
-docker rmi -f $(docker images -a -q)
+$ docker rmi -f $(docker images -a -q)
 Untagged: exercise02:v2
 Untagged: ramiray/dockerexe:exercise02v2
 Untagged: ramiray/dockerexe@sha256:41c9b030d98c01efc465b97b094ff7924eabd36325dc8a7cc9388347cc8a213b
