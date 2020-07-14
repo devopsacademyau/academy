@@ -8,20 +8,20 @@
 ```
 docker build -t hello-name:v1 .
 
-Sending build context to Docker daemon  2.048kB
+Sending build context to Docker daemon  3.584kB
 Step 1/2 : FROM alpine:latest
  ---> a24bb4013296
-Step 2/2 : CMD echo "Hello $var"
- ---> Running in e729e7ef5cbe
-Removing intermediate container e729e7ef5cbe
- ---> 27c02b0a553f
-Successfully built 27c02b0a553f
+Step 2/2 : ENTRYPOINT ["echo", "Hello"]
+ ---> Running in 1e4bd8331acd
+Removing intermediate container 1e4bd8331acd
+ ---> de2318c4dff7
+Successfully built de2318c4dff7
 Successfully tagged hello-name:v1
 ```
 
 - Commands used to execute the image and the output of container execution:
 ```
-docker run --env var=Carlos hello-name:v1
+docker run hello-name:v1 Carlos
 Hello Carlos
 ```
 
