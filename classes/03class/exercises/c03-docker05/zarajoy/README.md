@@ -3,17 +3,80 @@
 ## Command Execution Output
 - Commands executed to run both containers:
 ```
-Add command here
+@bacon:~$ docker login --username zarajoy
+Password: 
+WARNING! Your password will be stored unencrypted in /home/z/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+
+z@bacon:~$ docker pull zarajoy/devops-academy:exercise02-v1
+exercise02-v1: Pulling from zarajoy/devops-academy
+aad63a933944: Pull complete 
+29ade582b51e: Pull complete 
+7e41ad5b6f9c: Pull complete 
+ebf61b47b4ca: Pull complete 
+9c060bce4eae: Pull complete 
+bd621c6a9086: Pull complete 
+Digest: sha256:1b62c8c0957f2e2b6a9af817ac7c3b9ad7bfa50678b19577216f111ac2ca011b
+Status: Downloaded newer image for zarajoy/devops-academy:exercise02-v1
+docker.io/zarajoy/devops-academy:exercise02-v1
+
+z@bacon:~$ docker pull zarajoy/devops-academy:exercise02-v2
+exercise02-v2: Pulling from zarajoy/devops-academy
+aad63a933944: Already exists 
+29ade582b51e: Already exists 
+7e41ad5b6f9c: Already exists 
+ebf61b47b4ca: Already exists 
+9c060bce4eae: Already exists 
+dc825f89dd59: Pull complete 
+Digest: sha256:7ab11bdd0e6aa4c43afee169e45e35f48c62404575c11b693c3adcc36c1b0adf
+Status: Downloaded newer image for zarajoy/devops-academy:exercise02-v2
+docker.io/zarajoy/devops-academy:exercise02-v2
+
+z@bacon:~$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+z@bacon:~$ docker image ls
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+zarajoy/devops-academy   exercise02-v2       a7a98839daaa        46 hours ago        107MB
+zarajoy/devops-academy   exercise02-v1       afa39ca8a43d        46 hours ago        107MB
+
+z@bacon:~$ docker run -d -p 8081:80 zarajoy/devops-academy:exercise02-v1
+8a53a1680eecf941cef370088cc2c573dd5a5d7f7ee32976d73f533051ea46b5
+@bacon:~$ docker run -v /home/z/Documents/GitHub/academy/classes/03class/docker/artifacts/c03-docker02:/usr/local/apache2/htdocs/ -d -p 8082:80 zarajoy/devops-academy:exercise02-v2
+447e81324333ca849bc4791e96cdc169add5ea1e1582e024902fa8edd5ad3f5f
+
+z@bacon:~$ docker ps 
+CONTAINER ID        IMAGE                                  COMMAND              CREATED             STATUS              PORTS                  NAMES
+447e81324333        zarajoy/devops-academy:exercise02-v2   "httpd-foreground"   3 seconds ago       Up 2 seconds        0.0.0.0:8082->80/tcp   modest_bouman
+8a53a1680eec        zarajoy/devops-academy:exercise02-v1   "httpd-foreground"   2 minutes ago       Up 2 minutes        0.0.0.0:8081->80/tcp   blissful_volhard
+
+z@bacon:~$ curl http://localhost:8081
+<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+z@bacon:~$ curl http://localhost:8082
+<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+
 ```
 
 - A brief explanation of what happened when you executed the comands to run the containers:
 ```
-Add answer here
+1. log in to docker hub (private repo - whoops) docker login --username
+2. pull the containers from docker hub to be local docker pull reponame:tagname
+3. RUN the images as per c03-docker02 (this time used volume instead of mount https://docs.docker.com/storage/bind-mounts/ ) docker run ...
+4. check the continers and images list. (docker ps and docker image ls)
+5. check they work. curl :) 
 ```
 
 - Command to list all images on your local as well as its output:
 ```
-Add command here
+z@bacon:~$ docker image ls
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+zarajoy/devops-academy   exercise02-v2       a7a98839daaa        46 hours ago        107MB
+zarajoy/devops-academy   exercise02-v1       afa39ca8a43d        46 hours ago        107MB
+
 ```
 
 <!-- Don't change anything below this point-->
