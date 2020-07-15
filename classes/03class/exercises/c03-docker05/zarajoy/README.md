@@ -63,11 +63,12 @@ z@bacon:~$ curl http://localhost:8082
 
 - A brief explanation of what happened when you executed the comands to run the containers:
 ```
-1. log in to docker hub (private repo - whoops) docker login --username
-2. pull the containers from docker hub to be local docker pull reponame:tagname
-3. RUN the images as per c03-docker02 (this time used volume instead of mount https://docs.docker.com/storage/bind-mounts/ ) docker run ...
-4. check the continers and images list. (docker ps and docker image ls)
-5. check they work. curl :) 
+
+1. I did not check local if the image existed as we made sure it did not in c03-docker04. Normally a check over local images would be done first.
+2. Pull the containers from docker hub to local.  $docker pull reponame:tagname. If  the image exists on the hub it will be downloaded.
+3. Create and RUN the images (as per c03-docker02 in this instance)
+4. PVT - check the continers and images list. (docker ps and docker image ls). In this case i also checked the images returned as expected using $curl.
+
 ```
 
 - Command to list all images on your local as well as its output:
