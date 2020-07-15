@@ -24,7 +24,7 @@ aws ec2 create-network-acl-entry --network-acl-id acl-3e73c758 --ingress --rule-
 - Commands for creating a NACL to block access from your network to an external network `180.200.50.0/24`?
 
 ```
-aws ec2 create-network-acl-entry --network-acl-id acl-3e73c758 --egress --rule-number 98 --protocol -1 --port-range From=53,To=53 --cidr-block 180.200.50.0/24 --rule-action DENY
+aws ec2 create-network-acl-entry --network-acl-id acl-3e73c758 --egress --rule-number 98 --protocol -1 --port-range  --cidr-block 180.200.50.0/24 --rule-action DENY
 ```
 
 - Any extra challenges faced?
