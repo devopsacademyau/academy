@@ -28,10 +28,14 @@ Successfully tagged exercise02:v1
 
 docker build -t exercise02:v2 -f classes/03class/exercises/c03-docker02/gepifanio/Dockerfile.v2 .
 
-Sending build context to Docker daemon  57.38MB
-Step 1/1 : FROM httpd:2.4.41-alpine
+Sending build context to Docker daemon  57.43MB
+Step 1/2 : FROM httpd:2.4.41-alpine
  ---> 54b0995a6305
-Successfully built 54b0995a6305
+Step 2/2 : RUN rm -rf /usr/local/apache2/htdocs/
+ ---> Running in fabeaa83f53d
+Removing intermediate container fabeaa83f53d
+ ---> e0256558b30d
+Successfully built e0256558b30d
 Successfully tagged exercise02:v2
 
 
