@@ -25,7 +25,7 @@ aws ec2 create-security-group --group-name private-sg --description "My private 
 }
 
 # Adding rules to SG
-aws ec2 authorize-security-group-ingress --group-id sg-09bccdac9778bb908 --protocol tcp --port 22 --cidr 10.0.0.237/32
+aws ec2 authorize-security-group-ingress --group-id sg-09bccdac9778bb908 --protocol tcp --port 22 --cidr 101.181.75.88/32
 
 aws ec2 authorize-security-group-ingress --group-id sg-0ceb8e72908d2449c --protocol tcp --port 22 --source-group sg-09bccdac9778bb908
 
@@ -54,7 +54,7 @@ aws ec2 authorize-security-group-ingress --group-id sg-0ceb8e72908d2449c --proto
                     "FromPort": 22, 
                     "IpRanges": [
                         {
-                            "CidrIp": "10.0.0.237/32"
+                            "CidrIp": "101.181.75.88/32"
                         }
                     ], 
                     "ToPort": 22, 
