@@ -66,7 +66,7 @@ z@bacon:~$ curl http://localhost:8082
 
 1. I did not check local if the image existed as we made sure it did not in c03-docker04. Normally a check over local images would be done first.
 2. Pull the containers from docker hub to local.  $docker pull reponame:tagname. If  the image exists on the hub it will be downloaded.
-3. Create and RUN the images (as per c03-docker02 in this instance)
+3. Create and RUN the Containers based off the images (as per c03-docker02 in this instance)
 4. PVT - check the continers and images list. (docker ps and docker image ls). In this case i also checked the images returned as expected using $curl.
 
 ```
