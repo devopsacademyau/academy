@@ -64,8 +64,8 @@ z@bacon:~$ curl http://localhost:8082
 - A brief explanation of what happened when you executed the comands to run the containers:
 ```
 
-1. I did not check local if the image existed as we made sure it did not in c03-docker04. Normally a check over local images would be done first.
-2. Pull the containers from docker hub to local.  $docker pull reponame:tagname. If  the image exists on the hub it will be downloaded.
+1. Check for local image. I did not check local if the image existed as we made sure it did not in c03-docker04. Normally a check over local images would be done first.
+2. Pull the images from docker hub to local if local image does not exist.  $docker pull reponame:tagname. If  the image exists on the hub it will be downloaded.
 3. Create and RUN the Containers based off the images (as per c03-docker02 in this instance)
 4. PVT - check the continers and images list. (docker ps and docker image ls). In this case i also checked the images returned as expected using $curl.
 
