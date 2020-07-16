@@ -109,6 +109,19 @@
    a1c08b6e0cdc        e0694673648f        "httpd-foreground"        47 hours ago        Exited (0) About an hour ago                          infallible_curran
    2776f5b8dfc2        bda9d1507076        "httpd-foreground"        47 hours ago        Exited (0) About an hour ago                          fervent_darwin
  
+ > docker container prune
+   WARNING! This will remove all stopped containers.
+   Are you sure you want to continue? [y/N] y
+   Deleted Containers:
+   52c2835c01f4473e1b5acd99caa5ec2bff65f8b1060a8547b89e341a0bfad5c1
+   c4b9d5a7a1e41c240f3e0840b676c300913387d6a25ed0f0da4b899857a7574a
+   e3553107e79d60b11863e54270ea83457166290d7784ba1c292f510d4bb269bf
+   a1c08b6e0cdccadef2718ef3fd4c5cff1c3b21ebfa05cc9ccf180a7f6fb0246e
+   2776f5b8dfc295f3a0c19490e50f91e10ca21260c5ec715b94d34224d9ccda7d
+   
+ > docker ps -a
+   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+ 
  CONFIRM IMAGES ARE CLEANED
  > docker images
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
