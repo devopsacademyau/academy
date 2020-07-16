@@ -22,7 +22,7 @@ systemctl start httpd
 Questions:
 
 - access through your browser each instance IP on port 80 `http://<instance-ip>` and post the hostname of each one
-- what this line is doing? `curl https://169.254.169.254/latest/meta-data/hostname > index.html`
+- what this line is doing? `curl 169.254.169.254/latest/meta-data/hostname > index.html`
 
 ## Submit a PR with the following files
 
