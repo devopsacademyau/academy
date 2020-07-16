@@ -22,6 +22,19 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 
 docker run guiepifanio/exercise02:v2
 
+Unable to find image 'guiepifanio/exercise02:v2' locally
+v2: Pulling from guiepifanio/exercise02
+aad63a933944: Already exists
+29ade582b51e: Already exists
+7e41ad5b6f9c: Already exists
+ebf61b47b4ca: Already exists
+9c060bce4eae: Already exists
+fa72938aec26: Pull complete
+Digest: sha256:b659c7fb10f86923d4bdb59a1366b4e425eceb85b7b2ba0b8e6dad1b217a1888
+Status: Downloaded newer image for guiepifanio/exercise02:v2
+AH00526: Syntax error on line 265 of /usr/local/apache2/conf/httpd.conf:
+DocumentRoot '/usr/local/apache2/htdocs' is not a directory, or is not readable
+
 ```
 
 - A brief explanation of what happened when you executed the comands to run the containers:
