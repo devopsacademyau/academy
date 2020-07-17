@@ -58,4 +58,4 @@ CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
 ***
 Answer for exercise [c03-docker05](https://github.com/devopsacademyau/academy/blob/af3225a3436f263164e8daebc6bbd1ef3122b900/classes/03class/exercises/c03-docker05/README.md)
 
-> Written with [StackEdit](https://stackedit.io/).
+
