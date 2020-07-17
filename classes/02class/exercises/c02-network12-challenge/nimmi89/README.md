@@ -67,12 +67,53 @@ For the exercises below, you should use all the custom created network resources
   - open any network ACL to allow the connection within the subnets -- try to   only open the mininum required
 
   ```
+  # Allow for requester ip[Ingress rules[port 22 and 1024-65535]]
   aws ec2 create-network-acl-entry \
   --network-acl-id acl-05783519e8a3187ca \
-  --ingress --rule-number 101 \
+  --ingress --rule-number 100 \
   --protocol tcp --port-range From=22,To=22 \
-  --cidr-block 172.32.0.208/32 \
+  --cidr-block 172.32.0.0/16 \
   --rule-action allow
+  
+  aws ec2 create-network-acl-entry \
+  --network-acl-id acl-05783519e8a3187ca \
+  --ingress --rule-number 110 \
+  --protocol tcp --port-range From=1024,To=65535 \
+  --cidr-block 172.32.0.0/16 \
+  --rule-action allow
+
+  # Allow for requester ip[Egress rules [port 22 and 1024-65535]]
+  aws ec2 create-network-acl-entry \
+  --network-acl-id acl-05783519e8a3187ca \
+  --egress --rule-number 100 \
+  --protocol tcp --port-range From=22,To=22 \
+  --cidr-block 172.32.0.0/16 \
+  --rule-action allow
+  
+  aws ec2 create-network-acl-entry \
+  --network-acl-id acl-05783519e8a3187ca \
+  --engress --rule-number 110 \
+  --protocol tcp --port-range From=1024,To=65535 \
+  --cidr-block 172.32.0.0/16 \
+  --rule-action allow
+
+  # Allow for home ip
+  aws ec2 create-network-acl-entry \
+  --network-acl-id acl-05783519e8a3187ca \
+  --ingress --rule-number 120 \
+  --protocol tcp --port-range From=22,To=22 \
+  --cidr-block 203.214.56.109/32 \
+  --rule-action allow
+  
+  aws ec2 create-network-acl-entry \
+  --network-acl-id acl-05783519e8a3187ca \
+  --egress --rule-number 120 \
+  --protocol tcp --port-range From=1024,To=65535 \
+  --cidr-block 203.214.56.109/32 \
+  --rule-action allow
+
+  > SSH and some others AWS service might need to establish a connection with a random port in order to allow the traffic. Thats is why ephemeral port range is given.
+
   ```
   - from an instance in one vpc, SSH to the other instance (will have to share   the ssh keys, create a new one just for this exercise -- pay attention to   security)
    ```
