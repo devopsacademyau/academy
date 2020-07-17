@@ -1,2 +1,4 @@
 FROM alpine:latest
-CMD ["date"]
+COPY --from=hashicorp/terraform:0.12.20 /bin/terraform /bin/
+RUN apk update
+CMD ["terraform", "-v"]
