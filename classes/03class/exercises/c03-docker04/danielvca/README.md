@@ -38,4 +38,4 @@ b276eb2d2053 fabricclusterazure:latest "httpd-foreground"
 <!-- Before commiting, remove both commented lines--> 
 ***
 Answer for exercise [c03-docker04](https://github.com/devopsacademyau/academy/blob/af3225a3436f263164e8daebc6bbd1ef3122b900/classes/03class/exercises/c03-docker04/README.md)
-> Written with [StackEdit](https://stackedit.io/).
+
