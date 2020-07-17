@@ -29,5 +29,3 @@ v2: digest: sha256:5173328eb8395bde23bc48dfa76aab8d8b54228820061632e9e99f2c2a3ab
 <!-- Before commiting, remove both commented lines--> 
 ***
 Answer for exercise [c03-docker03](https://github.com/devopsacademyau/academy/blob/af3225a3436f263164e8daebc6bbd1ef3122b900/classes/03class/exercises/c03-docker03/README.md)
-
-> Written with [StackEdit](https://stackedit.io/).
