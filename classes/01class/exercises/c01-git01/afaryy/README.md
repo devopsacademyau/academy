@@ -2,54 +2,53 @@
 
 ## Commands executed
 
+
 1. Commands typed to solve the "Merging" exercise
-```
---Make a new branch called bugFix and Checkout the bugFix branch
+
+```bash
+# Make a new branch called bugFix and Checkout the bugFix branch
 git checkout -b bugFix
 
---Commit once
+# Commit once
 git commit
 
---Go back to master with git checkout
+# Go back to master with git checkout
 git checkout master
 
---Commit another time
+# Commit another time
 git commit
 
---Merge the branch bugFix into master with git merge
+# Merge the branch bugFix into master with git merge
 git merge bugFix
 
---Merge the branch master into bugFix with git merge
-git checkout bugFix; git merge master
-
 ```
+
 
 2. Commands typed to solve the "Rebasing" exercise
-```
---Checkout a new branch named bugFix
+
+```bash
+# Checkout a new branch named bugFix
 git checkout -b bugFix
 
---Commit once
+# Commit once
 git commit
 
---Go back to master and commit again
+# Go back to master and commit again
 git checkout master; git commit
 
---Check out bugFix again and rebase onto master
+# Check out bugFix again and rebase onto master
 git checkout bugFix; git rebase master
-
---Check out master again and rebase onto bugFix
-git checkout master; git rebase bugFix
 
 ```
 
 3. Commands typed to solve the "Revert and reset" exercise
-```
---To reverse the most recent commit on both local(local branch) and pushed(remote branch). 
+
+```bash
+# To reverse the most recent commit on both local(local branch) and pushed(remote branch).
 git reset HEAD~1
 git checkout pushed; git revert HEAD
-
 ```
+
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines-->
