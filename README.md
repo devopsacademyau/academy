@@ -23,6 +23,7 @@ If you want to be part of the team behind this, get in touch on help@devopsacade
 - [Content](#content)
   - [Classes](#classes)
   - [Exercises](#exercises)
+    - [For each class **exercise**:](#for-each-class-exercise)
     - [Example of the submission process](#example-of-the-submission-process)
     - [Available labs](#available-labs)
   - [Projects](#projects)
@@ -150,7 +151,6 @@ The content can be accessed through each specific README link below.
     - AWS EC2
         - Load Balancing
         - Auto Scaling Group
-    - AWS CloudWatch
     - AWS Route 53
     - Container - Docker
         - Repositories
@@ -159,25 +159,26 @@ The content can be accessed through each specific README link below.
     - Make
     - Docker-Compose
 - [Class 04](classes/04class/README.md)
-    - AWS ECS
-    - AWS ECR
-    - AWS S3 (Simple Storage Service)
-      - Website
-    - AWS RDS (Relational Database Service)
+    - AWS ECS (Elastic Container Service)
+    - AWS ECR (Elastic Container Repository)
+    - AWS Fargate
     - IaC - Terraform
     - Project #1 Kick-off
 - [Class 05](classes/05class/README.md)
     - 3 Musketeers
+    - AWS S3 (Simple Storage Service)
+    - AWS RDS (Relational Database Service)
     - CI/CD Concepts
       - GitHub Actions
-    - Serverless introduction
-    - AWS Lambda
+    - AWS CloudWatch
 - [Class 06](classes/06class/README.md)
     - Project #1 Delivery
+    - Serverless introduction
+    - AWS Lambda
     - AWS API Gateway
-    - AWS DynamoDB
     - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
+    - AWS DynamoDB
     - AWS KMS (Key Management Service)
     - AWS SSM - Parameter Store
     - AWS SNS
