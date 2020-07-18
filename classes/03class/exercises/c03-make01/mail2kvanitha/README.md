@@ -9,7 +9,8 @@
 - Execution and output of the command `make build`
 ```
 
- > make build
+
+ > PORT=8081 make build
 
    SUCCESS - index.html created successfully
    -rw-r--r--  1 vanithak  staff  62 18 Jul 14:16 index.html
@@ -36,7 +37,7 @@
    Successfully tagged make01:346418e
    SUCCESS - Docker image created successfully
    make01              346418e             e335486f1c1d        Less than a second ago   107MB
-
+   SUCCESS - Removed the index.html file
 
 ```
 

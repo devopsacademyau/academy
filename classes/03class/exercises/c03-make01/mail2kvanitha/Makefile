@@ -19,6 +19,7 @@ build:
                                                          else  \
                                                             echo "ERROR - Unable to create image. Check the Dockerfile for any syntax errors" ; \
                                                          fi
+	@rm index.html ;  if [ $$? -eq 0 ]; then  echo "SUCCESS - Removed the index.html file" ; fi
 
 .PHONY: run
 run: build
