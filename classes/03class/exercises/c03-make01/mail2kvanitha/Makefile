@@ -24,7 +24,7 @@ build:
 .PHONY: run
 run: build
 	@echo "Creating Container ..."
-	@docker run --name $IMAGE_NAME -d -p $(PORT):80 $(IMAGE_NAME):$(TAG) ; if [ $$? -eq 0 ]; then \
+	@docker run --name $(IMAGE_NAME) -d -p $(PORT):80 $(IMAGE_NAME):$(TAG) ; if [ $$? -eq 0 ]; then \
                                                                         echo "SUCCESS - Docker Container successfully created and started" ; \
                                                                         docker container ps |grep $IMAGE_NAME ; \
                                                                         echo "INFO - Checking the Webserver" ; \
