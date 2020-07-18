@@ -1,36 +1,25 @@
-Make build
-docker build -t make01:COMMIT_SHA
+NAME ?= Guilherme
+COMMIT_SHA ?= ${shell git rev-parse --short HEAD}
+IMAGE_NAME ?= make01
+DOCKER_HUB_USERNAME ?= guiepifanio
+PORT_NUMBER ?= 80
 
-make publish
-
-docker tag bb38976d03cf guiepifanio/make01:COMMIT_SHA
-docker push guiepifanio/make01:COMMIT_SHA
-
-
-make run
-
-get commit sha
-git rev-parse --short HEAD
-
-tag
-commit sha
-
-
-# You have to define the values in {} or ()
-NAME ?= 
-SHA ?= ${shell git rev-parse --short HEAD}
-
-all: build push run 
+all: build push run clean_up
 
 .PHONY: all
 
 build:
-	echo "This image was created by ${NAME} based on the ${SHA}" > index.html
-	docker build -t make01:${SHA} .
+	echo "This image was created by ${NAME} based on the ${COMMIT_SHA}" > index.html
+	docker build -t ${IMAGE_NAME}:${COMMIT_SHA} .
+	docker tag ${IMAGE_NAME}:${COMMIT_SHA} ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${COMMIT_SHA}
 
 push:
-	docker tag make01:${SHA} portoddi/make01:${SHA}
-	docker push portoddi/make01:${SHA}
+	docker push ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${COMMIT_SHA}
 
 run:
-	docker run -p 80 -d portoddi/make01:${SHA}
+	docker run -p ${PORT_NUMBER} -d ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${COMMIT_SHA}
+
+clean_up:
+	docker container prune -f
+	docker image rm ${IMAGE_NAME}:${COMMIT_SHA}
+	docker image rm ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${COMMIT_SHA}
