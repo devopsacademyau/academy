@@ -1,5 +1,5 @@
 # Objective
-The `project.sh` script will create issues, based on files that exists in the `issues` folder, in gthe repository that is passed as variable `${PROJECT}`. After creating the issues, the script will convert it to cards in the Backlog column of the project with the same name as the repository name.
+The `project.sh` script will create issues, based on files that exists in the `issues` folder, in the repository that is passed as variable `${PROJECT}`. After creating the issues, the script will convert it to cards in the Backlog column of the project with the same name as the repository name.
 
 
 # How to use
