@@ -9,17 +9,13 @@
 docker build -t hello-name:v1 classes/03class/exercises/c03-docker06/gepifanio
 
 Sending build context to Docker daemon  4.096kB
-Step 1/3 : FROM alpine:3.12.0
+Step 1/2 : FROM alpine:3.12.0
  ---> a24bb4013296
-Step 2/3 : ENV NAME=Guilherme
- ---> Running in 14202835f831
-Removing intermediate container 14202835f831
- ---> 592bb07e88e0
-Step 3/3 : ENTRYPOINT echo "Hello ${NAME}"
- ---> Running in ee97dcb61e72
-Removing intermediate container ee97dcb61e72
- ---> 76d8a25008f8
-Successfully built 76d8a25008f8
+Step 2/2 : ENTRYPOINT echo Guilherme
+ ---> Running in f5b10cc2560d
+Removing intermediate container f5b10cc2560d
+ ---> 7758b741d289
+Successfully built 7758b741d289
 Successfully tagged hello-name:v1
 
 ```
@@ -29,7 +25,7 @@ Successfully tagged hello-name:v1
 
 docker run -it hello-name:v1
 
-Hello Guilherme
+Guilherme
 
 ```
 
