@@ -6,16 +6,17 @@
 ## Command Execution Output
 - Commands used to build  the image:
 ```
+
 docker build -t hello-name:v1 classes/03class/exercises/c03-docker06/gepifanio
 
-Sending build context to Docker daemon  4.096kB
+Sending build context to Docker daemon  3.584kB
 Step 1/2 : FROM alpine:3.12.0
  ---> a24bb4013296
-Step 2/2 : ENTRYPOINT echo Guilherme
- ---> Running in f5b10cc2560d
-Removing intermediate container f5b10cc2560d
- ---> 7758b741d289
-Successfully built 7758b741d289
+Step 2/2 : ENTRYPOINT ["echo", "Hello"]
+ ---> Running in 900b6d9cd3bf
+Removing intermediate container 900b6d9cd3bf
+ ---> 2e04d5ca9126
+Successfully built 2e04d5ca9126
 Successfully tagged hello-name:v1
 
 ```
@@ -23,9 +24,9 @@ Successfully tagged hello-name:v1
 - Commands used to execute the image and the output of container execution:
 ```
 
-docker run -it hello-name:v1
+docker run -it hello-name:v1 Guilherme
 
-Guilherme
+Hello Guilherme
 
 ```
 
