@@ -23,6 +23,7 @@ If you want to be part of the team behind this, get in touch on help@devopsacade
 - [Content](#content)
   - [Classes](#classes)
   - [Exercises](#exercises)
+    - [For each class **exercise**:](#for-each-class-exercise)
     - [Example of the submission process](#example-of-the-submission-process)
     - [Available labs](#available-labs)
   - [Projects](#projects)
@@ -150,7 +151,6 @@ The content can be accessed through each specific README link below.
     - AWS EC2
         - Load Balancing
         - Auto Scaling Group
-    - AWS CloudWatch
     - AWS Route 53
     - Container - Docker
         - Repositories
@@ -161,9 +161,7 @@ The content can be accessed through each specific README link below.
 - [Class 04](classes/04class/README.md)
     - AWS ECS
     - AWS ECR
-    - AWS S3 (Simple Storage Service)
-      - Website
-    - AWS RDS (Relational Database Service)
+    - AWS Fargate
     - IaC - Terraform
     - Project #1 Kick-off
 - [Class 05](classes/05class/README.md)
@@ -171,6 +169,10 @@ The content can be accessed through each specific README link below.
     - CI/CD Concepts
       - GitHub Actions
     - Serverless introduction
+    - AWS CloudWatch
+    - AWS S3 (Simple Storage Service)
+      - Website
+    - AWS RDS (Relational Database Service)
     - AWS Lambda
 - [Class 06](classes/06class/README.md)
     - Project #1 Delivery
