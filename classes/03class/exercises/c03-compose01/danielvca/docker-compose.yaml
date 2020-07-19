@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+
+    db:
+      image: mysql:5.7
+      restart: always
+      environment:
+          MYSQL_ROOT_PASSWORD: senha01234
+          MYSQL_DATABASE: db
+          MYSQL_USER: user
+          MYSQL_PASSWORD: senha01234
+
+    web:
+        build: .
+        restart: always
+        ports:
+            - "8100:80"
+        volumes:
+        - ./src:/var/www/html
+        environment:
+            DB_USER: user
+            DB_PASS: senha01234
+            DB_HOST: db
+            DB_NAME: db
