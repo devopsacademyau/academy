@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: example-root
+        MYSQL_PASSWORD: example-pass
+        MYSQL_ROOT_HOST: db
+        MYSQL_DATABASE: db
+        MYSQL_USER: root    
+  web:
+    build: 
+        context: ../../../compose/artifacts/c05-compose01/
+        dockerfile: Dockerfile
+    ports:
+        - "8100:80"
+    environment:
+        DB_USER: root
+        DB_PASS: example-pass
+        DB_HOST: db
+        DB: db
+    depends_on:
+        - db
+    volumes:
+        - ../../../compose/artifacts/c05-compose01/src/:/var/www/html/
