@@ -1,0 +1,2 @@
+FROM httpd:2.4.41-alpine
+COPY /artifacts/c03-docker02/index.html /usr/local/apache2/htdocs
