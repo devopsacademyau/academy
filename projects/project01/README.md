@@ -54,11 +54,10 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 - Project introduction (instructors)
 - Decide on teams (check with instructors)
 - Create Github repo (Automated) - Something like `202X-xxx-projectX-groupX`
-
+- Create channel in Slack with name (`202X-xxx-projectX-groupX`) - (check with instructors)
+  
 Your tasks:
 - [Create initial project backlog](../../scripts/projects/README.md)
-- Create channel in Slack with name (project_1_name1_name2_name3)
-
 
 ## Resources
 
