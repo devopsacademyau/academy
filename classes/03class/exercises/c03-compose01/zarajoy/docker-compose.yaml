@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqlrootpw
+
+  web:
+    build: .
+    restart: always
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - 8100:80
+    environment:
+      DB_USER: root
+      DB_PASS: mysqlrootpw
+      DB_HOST: db
+      DB: db
+    depends_on:
+      - db
