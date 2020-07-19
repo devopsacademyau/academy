@@ -1,0 +1,8 @@
+{
+  "title": "EFS",
+  "body": "**Objectives:**\r\n- Use vpc from network stack\r\n- Available in both AZs\r\n- Security group allowing only ECS instances to access it\r\n- No lifecycle policy\r\n- Throughput mode bursting\r\n- Performance mode general purpose\r\n- No need for encryption\r\n- No need for IAM authentication\r\n- Add one access point:\r\n- Name wordpress\r\n- Path `/wordpress`\r\n\r\n**Acceptance Criteria:**\r\n- EFS is available in at least two AZ\r\n- I can mount efs volume on an ec2 instance running on private subnet following instructions https://docs.aws.amazon.com/efs/latest/ug/mounting-fs.html\r\n- I CAN'T mount efs volume from instance on public subnet",
+  "labels": [
+    "terraform-code",
+    "application"
+  ]
+}

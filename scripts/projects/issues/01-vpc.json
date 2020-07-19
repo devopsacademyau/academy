@@ -1,0 +1,8 @@
+{
+  "title": "VPC",
+  "body": "**Objectives:**\r\n- New VPC with a /16 CIDR\r\n- 2 /24 public subnets(different AZs)\r\n- 2 /24 private subnets(different AZs)\r\n- 2 NACLs public/private (ALLOW ALL is not permitted)\r\n- Internet Gateway in place\r\n\r\n**Acceptance Criteria:**\r\n- Code is in Terraform and merged into master\r\n- I can run instances in public and private Subnet\r\n- I can't directly access the private instance from internet\r\n- I can ssh the private instance from the public one\r\n- No security groups or nacls have `ALLOW ALL`\r\n- I can access the public one using ssh from my local machine through internet\r\n- A README file is created documenting the VPC, the subnets and how to deploy the code",
+  "labels": [
+    "terraform-code",
+    "infra-structure"
+  ]
+}

@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  frontend:
+    image: carmenpuccio/frontend
+    ports:
+      - 80:80
+
+  backend:
+    image: carmenpuccio/backend

@@ -1,0 +1,8 @@
+{
+  "title": "ECR Repository",
+  "body": "**Objectives:**\r\n- Create a private ECR repository for hosting wordpress container image\r\n- The ECR Repository is not public\r\n\r\n**Acceptance Criteria:**\r\n- The ECR Repository is not public\r\n- I can push a container to that Registry\r\n- I can pull images from ECR from EC2 instances running on my VPC\r\n- The README contains the name of the repo and instructions to push/pull images from the repository",
+  "labels": [
+      "terraform-code",
+      "application"
+  ]
+}

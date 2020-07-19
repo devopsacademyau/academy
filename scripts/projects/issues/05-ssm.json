@@ -1,0 +1,8 @@
+{
+  "title": "SSM Parameters",
+  "body": "**Objectives:**\r\n- Generate 4 empty keys on SSM Parameter Store to be used for wordpress secrets.\r\n  - /wordpress/WORDPRESS_DB_HOST\r\n  - /wordpress/WORDPRESS_DB_USER\r\n  - /wordpress/WORDPRESS_DB_PASSWORD\r\n  - /wordpress/WORDPRESS_DB_NAME\r\n\r\n**Acceptance Criteria:**\r\n- Parameters are of type SecureString either with default or custom SSM Key\r\n- Terraform code for creating ssm parameters\r\n- Value of parameters to be manually changed through the console (terraform leave logging trace of the values)",
+  "labels": [
+      "terraform-code",
+      "application"
+  ]
+}

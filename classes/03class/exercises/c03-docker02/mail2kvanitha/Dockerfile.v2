@@ -1,0 +1,3 @@
+FROM httpd:2.4.41-alpine
+RUN rm -f /usr/local/apache2/htdocs/*
+EXPOSE 80

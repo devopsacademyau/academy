@@ -1,0 +1,7 @@
+{
+  "title": "Application Automation",
+  "body": "**Objectives:**\r\n- Must use 3Musketeers pattern\r\n- Should have at least following targets:\r\n- build:\r\n\t- Build the image using the Docker file created on #07\r\n- publish:\r\n\t- Publish the new image with the commit SHORT_SHA to ECR\r\n- deploy-wp:\r\n\t- Update the task definition with the new container built on previous\r\n\r\n**Acceptance:**\r\n- Task definition is being successfully updated and pushed to ECR\r\n- ECS Task is being updated with latest image when running make deploy-wp\r\n- A README file is updated with instructions on how to run the automation",
+  "labels": [
+    "automation"
+  ]
+}

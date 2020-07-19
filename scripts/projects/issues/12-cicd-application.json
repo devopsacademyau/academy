@@ -1,0 +1,7 @@
+{
+"title": "Application CICD",
+"body": "**Objectives:**\r\n- Create a workflow in GitHub Actions to build and push the image on every update in the application folder(PRs)\r\n- Create a workflow in GitHub Actions to deploy the new image when new application code is merged into master\r\n\r\n**Acceptance:**\r\n- Workflow must use the same targets created on #11\r\n- Workflows are running successfully and the application is being updated from events in GH",
+  "labels": [
+    "automation"
+  ]
+}

@@ -1,0 +1,7 @@
+## Set the base image to alpine 
+
+FROM httpd:2.4.41-alpine
+
+## Copy the file index.html 
+COPY index.html "/usr/local/apache2/htdocs/"
+EXPOSE 80

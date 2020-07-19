@@ -1,0 +1,7 @@
+{
+"title": "Terraform CICD",
+"body": "**Objectives:**\r\n- Create a workflow in GitHub Actions to run the make plan on every update in the terraform folder(PRs)\r\n- Create a workflow in GitHub Actions to run the make apply when new application code is merged into master\r\n\r\n**Acceptance:**\r\n- Workflow must use the same targets created on #10\r\n- Workflows are running successfully and the resources managed by terraform is being updated successfully",
+  "labels": [
+    "automation"
+  ]
+}

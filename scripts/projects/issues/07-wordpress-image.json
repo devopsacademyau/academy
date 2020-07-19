@@ -1,0 +1,7 @@
+{
+  "title": "Wordpress - Container Image",
+  "body": "**Objectives:**\r\n- Create a docker image with wordpress\r\n- Push the image to ECR Repository created on #2\r\n\r\n**Acceptance Criteria:**\r\n- The Dockerfile is not using latest tag\r\n- The documentation is updated with instruction on how to create the docker image\r\n- Image is being tagged with the commit SHORT_SHA\r\n ",
+  "labels": [
+      "application"
+  ]
+}

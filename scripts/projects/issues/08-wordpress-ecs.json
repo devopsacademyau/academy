@@ -1,0 +1,7 @@
+{
+  "title": "Wordpress - ECS Task and Service",
+  "body": "**Objectives:**\r\n- Task:\r\n\t- Uses custom image in ECR from #07\r\n\t- Uses EFS created #3\r\n\t- Consumes parameters from SSM created in #05\r\n\t- Memory is set to 128\r\n\t- Any required IAM role is associated with the task\r\n- Service:\r\n\t- Uses the task defined above\r\n\t- Service type is replica\r\n\t- Deployment type is configured for rolling update or blue/green\r\n\t- Should have two tasks running at the same time\r\n\r\n**Acceptance Criteria:**\r\n- Task is running succesfully(healthy state) in the cluster\r\n- Port being exposed at the host is random\r\n",
+  "labels": [
+      "application"
+  ]
+}

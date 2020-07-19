@@ -1,0 +1,8 @@
+{
+  "title": "RDS Aurora Database",
+  "body": "**Objectives:**\r\n- Create a RDS Aurora MySQL (5.7+) database to be used by Wordpress. Aurora can be Serverless. \r\n\r\n**Acceptance Criteria:**\r\n- All resources to be created using Terraform\r\n- RDS Aurora Mysql (version 5.7+)\r\n- Serverless version is recommended due to costs\r\n- No need for aurora replica\r\n- Use a random generated password and upload to SSM Parameter Store for future use\r\n- Use custom VPC from network stack (private subnets)\r\n- Backup just for one day retention is fine\r\n- Encryption enabled\r\n- No need for performance insights, enhanced monitoring and IAM authentication\r\n- Disable deletion protection\r\n- Database need to be accessible from public EC2 running on public subnets\r\n- GitHub can't have any secrets commited.",
+  "labels": [
+      "terraform-code",
+      "application"
+  ]
+}

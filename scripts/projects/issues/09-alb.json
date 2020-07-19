@@ -1,0 +1,8 @@
+{
+  "title": "Application Load Balancer",
+  "body": "**Objectives:**\r\n- Create an ALB that will listen on port 443\r\n- Traffic shoud be redirected to containers running on ECS\r\n- Load Balancer is publicly acessible\r\n\r\n**Acceptance Criteria:**\r\n- Accessing the load balancer URL will reach the wordpress container\r\n- Security Group associated is only allowing connection on port 443\r\n",
+  "labels": [
+      "terraform-code",
+      "application"
+  ]
+}
