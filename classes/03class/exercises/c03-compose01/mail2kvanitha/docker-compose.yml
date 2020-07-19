@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+  web:
+    build:
+      context: ../../Downloads/DevopsAcademy/classes/03class/compose/artifacts/c05-compose01/
+    ports:
+      - "8100:80"
+    volumes: 
+      - type: bind
+        source: ../../Downloads/DevopsAcademy/classes/03class/compose/artifacts/c05-compose01/src 
+        target: /var/www/html
+    environment: 
+      DB_USER: root
+      DB_PASS: password
+      DB_HOST: db
+      DB: db
+    depends_on:
+      - db
