@@ -38,9 +38,6 @@
   v2: digest: sha256:0eefc00c3a238aaa1212a1da47efdf4834cf6933ef08aa17ab796adf10355fd6 size: 1569
   ```
 
-<!-- Don't change anything below this point-->
-<!-- Before commiting, remove both commented lines-->
-
 ---
 
 Answer for exercise [c03-docker03](https://github.com/devopsacademyau/academy/blob/af3225a3436f263164e8daebc6bbd1ef3122b900/classes/03class/exercises/c03-docker03/README.md)
