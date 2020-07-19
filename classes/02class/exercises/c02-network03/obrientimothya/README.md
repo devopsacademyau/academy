@@ -4,6 +4,7 @@
 
 - Commands for creating a new VPC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ```
 aws ec2 create-vpc --cidr-block 10.0.0.0/16 \
@@ -17,6 +18,8 @@ aws ec2 create-vpc --cidr-block 10.0.0.0/16 \
 ---
 
 =======
+=======
+>>>>>>> 9a6f26ef4181e86aecc0aff9044e84563e9d3e03
 ```
 cat <<EOF > /tmp/vpc.json
 {
@@ -41,5 +44,8 @@ No issues.
 
 <!-- Don't change anything below this point-->
 ***
+<<<<<<< HEAD
 >>>>>>> Add solution for exercise c02-network03
+=======
+>>>>>>> 9a6f26ef4181e86aecc0aff9044e84563e9d3e03
 Answer for exercise [c02-network03](https://github.com/devopsacademyau/academy/blob/893381c6f0b69434d9e8597d3d4b1c17f9bc1371/classes/02class/exercises/c02-network03/README.md)
