@@ -63,6 +63,8 @@ aws ec2 create-tags \
 
 
 - Commands for associating the route tables with subnets:
+
+Create routes
 ```
 aws ec2 create-route --route-table-id rtb-088d967af4f789ea7 \
 --destination-cidr-block 0.0.0.0/0 \
@@ -74,6 +76,19 @@ aws ec2 create-route --route-table-id rtb-09e96ac9c646cc937 \
 --gateway-id nat-0854577e398e17703 \
 --region ap-southeast-2
 ```
+
+Association to subnets
+```
+aws ec2 associate-route-table --route-table-id rtb-088d967af4f789ea7 --subnet-id subnet-0d38b36b10174c83e --region ap-southeast-2
+aws ec2 associate-route-table --route-table-id rtb-088d967af4f789ea7 --subnet-id subnet-0d6e1c9ba3fa9b8f4  --region ap-southeast-2
+aws ec2 associate-route-table --route-table-id rtb-088d967af4f789ea7 --subnet-id subnet-068e76972a02c8586  --region ap-southeast-2
+
+aws ec2 associate-route-table --route-table-id rtb-09e96ac9c646cc937 --subnet-id subnet-0228cfd1fd235bbdc --region ap-southeast-2
+aws ec2 associate-route-table --route-table-id rtb-09e96ac9c646cc937 --subnet-id subnet-0fa2fabb6fa8d62c5 --region ap-southeast-2
+aws ec2 associate-route-table --route-table-id rtb-09e96ac9c646cc937 --subnet-id subnet-0de0e6cf330b35523 --region ap-southeast-2
+```
+
+
 
 - Commands for creating the following routes:
 
