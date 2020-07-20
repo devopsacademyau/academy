@@ -33,8 +33,7 @@ module "y2020-jun-project1-group1" {
     "zarajoy",
     "fabioacp",
     "feernandobraga",
-    "mfreitassm",
-    "igorjosesantos"
+    "mfreitassm"
   ]
 }
 
@@ -61,7 +60,6 @@ module "y2020-jun-project1-group3" {
     "danielvca",
     "frdvo",
     "jayanath",
-    "shahriar048",
     "mail2kvanitha"
   ]
 }
