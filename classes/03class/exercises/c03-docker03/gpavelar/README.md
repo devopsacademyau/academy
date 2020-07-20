@@ -30,6 +30,8 @@ v1: digest: sha256:8d09be6febeb7c234de4c9f52d521dbfaeda1340f9ca87d84501d3f335ee3
 
 ## Command
 docker tag fcf95bce2dd9 gpavelar/exercise02:v2
+## Command
+docker push gpavelar/exercise02:v2
 # Output
 The push refers to repository [docker.io/gpavelar/exercise02]
 216d582031b4: Pushed
