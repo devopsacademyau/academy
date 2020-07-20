@@ -1,0 +1,27 @@
+version: "3.0"
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: devops_db
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+  web:
+    build:
+      context: .
+      dockerfile: /var/scratch/Studies/academy/classes/03class/compose/artifacts/c05-compose01/Dockerfile
+    volumes:
+      - /var/scratch/Studies/academy/classes/03class/compose/artifacts/c05-compose01/src:/var/www/html/
+    ports:
+      - "8100:80"
+    depends_on:
+      - db
+    environment:
+      DB_USER: root
+      DB_PASS: "password"
+      DB_HOST: db
+      DB: "devops_db"
