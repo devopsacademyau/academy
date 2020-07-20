@@ -46,7 +46,17 @@ TARGETGROUPS	arn:aws:elasticloadbalancing:ap-southeast-2:437637330966:targetgrou
 
 - Details of the security group used
 ```
-Add command here
+aws ec2 describe-security-groups \
+    --group-ids "${SG}" \
+    --profile tobrien
+
+OUTPUT
+
+SECURITYGROUPS	app load balancer	sg-0f508f34dbfcfd36d	devopsalb-sg	437637330966	vpc-09a3c6830a6d58479
+IPPERMISSIONS	80	tcp	80
+IPRANGES	0.0.0.0/0	HTTP 80 Anywhere
+IPPERMISSIONSEGRESS	-1
+IPRANGES	0.0.0.0/0
 ```
 
 Questions:
