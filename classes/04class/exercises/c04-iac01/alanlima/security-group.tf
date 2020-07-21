@@ -19,7 +19,7 @@ resource "aws_security_group" "sg_allow_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(local.common_tags, {
+  tags = merge(var.common_tags, {
     "Name" = "allow-ssh-sg"
   })
 }

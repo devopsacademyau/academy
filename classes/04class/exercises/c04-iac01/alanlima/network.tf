@@ -1,7 +1,7 @@
 resource "aws_vpc" "vpc_devops" {
   cidr_block           = "172.32.0.0/16"
   enable_dns_hostnames = true
-  tags = merge(local.common_tags, {
+  tags = merge(var.common_tags, {
     "Name" = "devops-vpc"
   })
 }
@@ -11,7 +11,7 @@ resource "aws_subnet" "subnet_devops" {
   cidr_block              = "172.32.0.0/24"
   availability_zone       = var.availability_zones[0]
   map_public_ip_on_launch = true
-  tags = merge(local.common_tags, {
+  tags = merge(var.common_tags, {
     "Name" = "devops-subnet"
   })
 }
@@ -24,7 +24,7 @@ resource "aws_route_table" "rt_devops" {
     gateway_id = aws_internet_gateway.igw_default.id
   }
 
-  tags = merge(local.common_tags, {
+  tags = merge(var.common_tags, {
     "Name" = "devops-rt"
   })
 }
@@ -36,7 +36,7 @@ resource "aws_route_table_association" "subnet_route_link" {
 
 resource "aws_internet_gateway" "igw_default" {
   vpc_id = aws_vpc.vpc_devops.id
-  tags = merge(local.common_tags, {
-    "Name" = "terraform-devops-igw"
+  tags = merge(var.common_tags, {
+    "Name" = "devops-igw"
   })
 }

@@ -1,0 +1,353 @@
+$ terraform plan                                                                                                                                                                                                ─╯
+Acquiring state lock. This may take a few moments...
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_instance_profile.s3_readonly will be created
+  + resource "aws_iam_instance_profile" "s3_readonly" {
+      + arn         = (known after apply)
+      + create_date = (known after apply)
+      + id          = (known after apply)
+      + name        = "ec2-s3-readonly-profile"
+      + path        = "/"
+      + role        = "user_readonly_s3"
+      + roles       = (known after apply)
+      + unique_id   = (known after apply)
+    }
+
+  # aws_iam_policy.s3_readonly will be created
+  + resource "aws_iam_policy" "s3_readonly" {
+      + arn    = (known after apply)
+      + id     = (known after apply)
+      + name   = "s3_readonly_policy"
+      + path   = "/"
+      + policy = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action   = [
+                          + "s3:Get*",
+                          + "s3:List*",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = [
+                          + "arn:aws:s3:::devops-alima-bucket",
+                        ]
+                      + Sid      = "s3readonlypolicy"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+    }
+
+  # aws_iam_policy_attachment.s3_readonly will be created
+  + resource "aws_iam_policy_attachment" "s3_readonly" {
+      + id         = (known after apply)
+      + name       = "ec2-s3-readonly-policy-attachment"
+      + policy_arn = (known after apply)
+      + roles      = [
+          + "user_readonly_s3",
+        ]
+    }
+
+  # aws_iam_role.s3_readonly will be created
+  + resource "aws_iam_role" "s3_readonly" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                      + Sid       = "EC2InstancesS3Readonly"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "user_readonly_s3"
+      + path                  = "/"
+      + tags                  = {
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac01"
+        }
+      + unique_id             = (known after apply)
+    }
+
+  # aws_iam_role_policy_attachment.s3_readonly will be created
+  + resource "aws_iam_role_policy_attachment" "s3_readonly" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "user_readonly_s3"
+    }
+
+  # aws_instance.ec2_default will be created
+  + resource "aws_instance" "ec2_default" {
+      + ami                          = "ami-088ff0e3bde7b3fdf"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = (known after apply)
+      + availability_zone            = (known after apply)
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + iam_instance_profile         = "ec2-s3-readonly-profile"
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.micro"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+      + key_name                     = "kp-devops"
+      + network_interface_id         = (known after apply)
+      + outpost_arn                  = (known after apply)
+      + password_data                = (known after apply)
+      + placement_group              = (known after apply)
+      + primary_network_interface_id = (known after apply)
+      + private_dns                  = (known after apply)
+      + private_ip                   = (known after apply)
+      + public_dns                   = (known after apply)
+      + public_ip                    = (known after apply)
+      + security_groups              = (known after apply)
+      + source_dest_check            = true
+      + subnet_id                    = (known after apply)
+      + tags                         = {
+          + "Name"         = "EC2 Instance - c04-iac01"
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac01"
+        }
+      + tenancy                      = (known after apply)
+      + volume_tags                  = (known after apply)
+      + vpc_security_group_ids       = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_internet_gateway.igw_default will be created
+  + resource "aws_internet_gateway" "igw_default" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name"         = "devops-igw"
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac01"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_route_table.rt_devops will be created
+  + resource "aws_route_table" "rt_devops" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name"         = "devops-rt"
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac01"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.subnet_route_link will be created
+  + resource "aws_route_table_association" "subnet_route_link" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_s3_bucket.default will be created
+  + resource "aws_s3_bucket" "default" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = "devops-alima-bucket"
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Name"         = "Devops Bucket c04-iac01"
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac01"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = (known after apply)
+          + mfa_delete = (known after apply)
+        }
+    }
+
+  # aws_security_group.sg_allow_ssh will be created
+  + resource "aws_security_group" "sg_allow_ssh" {
+      + arn                    = (known after apply)
+      + description            = "Allow SSH connection"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Allow outbound traffic"
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "122.148.135.233/32",
+                ]
+              + description      = "Allow SSH from ip address"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "SG for Devops c04-iac01"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name"         = "allow-ssh-sg"
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac01"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # aws_subnet.subnet_devops will be created
+  + resource "aws_subnet" "subnet_devops" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "172.32.0.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name"         = "devops-subnet"
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac01"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_vpc.vpc_devops will be created
+  + resource "aws_vpc" "vpc_devops" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "172.32.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = (known after apply)
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = true
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name"         = "devops-vpc"
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac01"
+        }
+    }
+
+Plan: 13 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.

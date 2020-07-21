@@ -1,5 +1,10 @@
 terraform {
-  backend "local" {
-    path = "/home/alima/.terraform-states/c04-iac01.json"
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "alima-devopsacademy"
+
+    workspaces {
+      name = "c04-iac01"
+    }
   }
 }

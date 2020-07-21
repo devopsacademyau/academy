@@ -1,6 +1,6 @@
 resource "aws_iam_role" "s3_readonly" {
   name = "user_readonly_s3"
-  tags = local.common_tags
+  tags = var.common_tags
 
   assume_role_policy = <<POLICY
 {
@@ -12,7 +12,7 @@ resource "aws_iam_role" "s3_readonly" {
         "Service": "ec2.amazonaws.com"
       },
       "Effect": "Allow",
-      "Sid": "user_readonly_s3"
+      "Sid": "EC2InstancesS3Readonly"
     }
   ]
 }
@@ -31,8 +31,7 @@ resource "aws_iam_policy" "s3_readonly" {
             "Effect": "Allow",
             "Action": [
                 "s3:Get*",
-                "s3:List*",
-                "s3:PutObject"
+                "s3:List*"
             ],
             "Resource": [
                 "arn:aws:s3:::${var.bucket_name}"

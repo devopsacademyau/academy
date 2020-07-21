@@ -13,7 +13,7 @@ resource "aws_instance" "ec2_default" {
   subnet_id            = aws_subnet.subnet_devops.id
   iam_instance_profile = aws_iam_instance_profile.s3_readonly.name
 
-  tags = merge(local.common_tags, {
+  tags = merge(var.common_tags, {
     "Name" = "EC2 Instance - ${var.devops_class}"
   })
 }

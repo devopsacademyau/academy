@@ -6,7 +6,7 @@ variable "region" {
 
 variable "availability_zones" {
   description = "define the available zones"
-  type        = list
+  type        = list(string)
   default = [
     "ap-southeast-2a"
   ]
@@ -14,7 +14,7 @@ variable "availability_zones" {
 
 variable "sg_allowed_ip_addresses" {
   description = "define the local ip address which will be allowed to connect to the resources"
-  type        = list
+  type        = list(string)
 }
 
 variable "devops_class" {
@@ -30,4 +30,10 @@ variable "key_pair_name" {
 variable "bucket_name" {
   description = "define the s3 bucket name"
   type        = string
+}
+
+variable "common_tags" {
+  description = "define tags which will be applied for every resource created"
+  type        = map(string)
+  default     = {}
 }
