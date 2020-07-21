@@ -1,25 +1,36 @@
 # Infrastructure as Code (IaC)
+
 This class is an introduction to Infrastructure as Code (IaC).
+
 The main goal is to explain the purpose, the benefits and how to use it.
+
 In this class, we'll be using Terraform as the main tool to provision resources in AWS through code.
 
 ***Contents***
-- [What is IaC?](#what-is-iac)
-  - [Benefits of IaC](#benefits-of-iac)
-  - [IaC Models](#iac-models)
-  - [IaC Methods](#iac-methods)
-- [Terraform Foundation](#terraform-foundation)
-  - [Terraform Providers](#terrform-providers)
-  - [Terraform State](#terraform-state)
-- [Terraform Client](#terraform-client)
- - [Terraform Resources](#terraform-resources)
- - [The Power of Input Variables](#the-power-of-input-variables)
- - [Outputs](#outputs)
- - [File Organization](#file-organization)
- - [Running some code](#running-some-code)
- - [Extra](#extra)
-  - [Modules](#modules)
- - [Appendix](#appendix)
+- [Infrastructure as Code (IaC)](#infrastructure-as-code-iac)
+  - [What is IaC?](#what-is-iac)
+    - [Benefits of IaC](#benefits-of-iac)
+      - [Cost](#cost)
+      - [Speed](#speed)
+      - [Risk](#risk)
+    - [IaC Models](#iac-models)
+    - [IaC Methods](#iac-methods)
+  - [Terraform Foundation](#terraform-foundation)
+    - [Basic concepts](#basic-concepts)
+    - [Terraform CLI](#terraform-cli)
+    - [Terraform Providers](#terraform-providers)
+    - [Terraform Resources](#terraform-resources)
+    - [Terraform State](#terraform-state)
+    - [The Power of Input Variables](#the-power-of-input-variables)
+      - [Assigning values to variables](#assigning-values-to-variables)
+    - [Data Source](#data-source)
+    - [Outputs](#outputs)
+    - [Best Practices: File Organization](#best-practices-file-organization)
+    - [Show me some code!](#show-me-some-code)
+  - [Appendix](#appendix)
+    - [Formatting](#formatting)
+    - [Validating](#validating)
+    - [Modules](#modules)
 
 
 ## What is IaC?
@@ -30,6 +41,9 @@ IaC won't replace physical installation (racking and cabling equipments, for exa
 As an example, all the configuration that was executed to create the VPC, subnets, routing tables during exercises from class 2 or even configuring ECS during exercises in class 3 could be coded.
 
 With all those manual steps in a code format, it would be possible to create those resources multiple in a matter of minutes, instead of going into multiple clicks in the AWS console.
+
+![](https://www.redhat.com/cms/managed-files/Apex%20Blog%20Graphic%202%20%281%29.png)
+> Image from https://www.redhat.com/en/blog/helping-you-get-infrastructure-code
 
 ### Benefits of IaC
 The benefits of IaC are normally around three pillars:
@@ -48,23 +62,70 @@ Because everything is defined through code, you can ensure that no manual mistak
 Decreasing the possibility of manual mistakes, you increase the availability and reliability of your environment and reduce your application downtime.
 
 ### IaC Models
-There are multiple models of IaC, and the two main models are Imperative and Declarative. The more natural way to understand the difference between those two models would be that declarative focus on what and imperative focus on how.
 
-In other words, in the declarative model, you define what the desired state is, and the system will execute the necessary steps to achieve that state. As an example, you can declare that you want a S3 bucket with a specific name. 
+There are multiple models of IaC, and the two main models are **Imperative** and **Declarative**. 
 
-In the imperative model, you need to determine what actions need to be performed as well as the order, so the machine knows what it needs to do to achieve the desired state. Using the same example as above, in an imperative model you would need to describe the steps needed to create an S3 bucket in the console or the exact command required to create the S3 bucket through the aws cli command.
+The more natural way to understand the difference between those two models would be that declarative focus on what and imperative focus on how.
+
+In other words, in the *declarative model*, you define **what** the desired state is, and the system will execute the necessary steps to achieve that state. As an example, you can declare that you want a S3 bucket with a specific name.
+
+In the *imperative model*, you need to determine what actions need to be performed as well as the order, so the machine knows what it needs to do to achieve the desired state. You need to specify the **how**. 
+
+Using the same example as above, in an imperative model you would need to describe the steps needed to create an S3 bucket in the console or the exact command required to create the S3 bucket through the AWS CLI command.
 
 ### IaC Methods
-There are two methods in IaC. Push and Pull. The difference is who starts the communication between the tool and the resource.
 
-In the pull method, the resource being managed by the IaC tool will pull the tool to check if there is any change in the desired state. If any new state definition is found in the IaC tool, the resource will converge to the desired state(either through imperative or declarative models, depending on the tool).
+There are two methods in IaC. **Push** and **Pull**. 
 
-In the push method, the resource being managed stays in a `sleep mode`, and the communication is initiated by the IaC tool. In that case, the tool will push the desired state to the resource being managed and the resource will converge to the desired state (again, either through imperative or declarative model).
+The difference is who starts the communication between the tool and the resource.
+
+In the ***pull method***, the resource being managed by the IaC tool will pull the tool to check if there is any change in the desired state. 
+
+If any new state definition is found in the IaC tool, the resource will converge to the desired state(either through imperative or declarative models, depending on the tool).
+
+In the ***push method***, the resource being managed stays in a `sleep mode`, and the communication is initiated by the IaC tool. In that case, the tool will push the desired state to the resource being managed and the resource will converge to the desired state (either through imperative or declarative model).
+
+Comparing some IaC and configuration management tools:
+![Comparing IaC tools](./assets/iac_method_approach.png)
+> Image from [Wikipedia](https://en.wikipedia.org/wiki/Infrastructure_as_code)
 
 ## Terraform Foundation
-[Terraform](https://www.terraform.io/) is one of the main IaC tools available, and it uses a Declarative model with a push method. It can be used to manage resources in multiple cloud providers(including AWS, Azure and GCP) as well as manage resources in on-premises(like in VMware and Openshift).
+
+[Terraform](https://www.terraform.io/) is one of the main IaC tools available in the market, and it uses a **Declarative model** with a **push method**. 
+
+It can be used to manage resources in multiple cloud providers (including AWS, Azure and GCP) as well as manage resources in on-premises (like in VMware and OpenShift).
 
 It's a powerful tool that can be used to create, maintain and delete entire IT environments. This material will focus on how to use Terraform to manage AWS resources.
+
+![](./assets/terraform.png)
+> Image from [Medium - hackernoon](https://medium.com/hackernoon/terraform-openstack-ansible-d680ea466e22)
+
+### Basic concepts
+
+- [CLI](#terraform-cli)
+- [Providers](#terraform-providers)
+- [Resources](#terraform-resources)
+- [State](#terraform-state)
+- [Input variables](#the-power-of-input-variables)
+- [Data source](#data-source)
+- [Outputs](#outputs)
+
+### Terraform CLI
+
+The Terraform is only a single command-line application. From that, you have subcommands to interact with the Terraform code that you have in your working directory. [Here](https://www.terraform.io/docs/commands/index.html) is a full list of the options available for the terraform application, but below you have some of the most common commands used.
+
+- **terraform init**
+    - Initialize a working directory containing Terraform configuration files. This would be the first command you run after creating your code. [Details for this command](https://www.terraform.io/docs/commands/init.html)
+- **terraform plan**
+    - Performs a refresh and determines what actions are necessary to achieve the desired state specified in the configuration files. [Details for this command](https://www.terraform.io/docs/commands/plan.html)
+- **terraform apply**
+    - Apply the changes required to reach the desired state of the configuration, or the pre-determined set of actions generated by a terraform plan execution plan. [Details for this command](https://www.terraform.io/docs/commands/apply.html)
+- **terraform destroy**
+    - Destroy the Terraform-managed infrastructure. [Details for this command](https://www.terraform.io/docs/commands/destroy.html)
+
+The terraform command-line can be very helpful as well. The `--help` option will provide you with all the help you need based on the scope that you are working on.
+
+This means that `terraform --help` and `terraform init --help` will provide different outputs. The first one will give information on the terraform in general, and the second will provide help for the init option of the terraform cli.
 
 ### Terraform Providers
 
@@ -94,49 +155,8 @@ resource "aws_vpc" "devopsacademy_vpc" {
 ```
 During the code execution, considering that we're using AWS Provider, Terraform will look for credentials configured through the `aws cli` in its default location (~/.aws/credentials). You can search for different ways to authenticate [here](https://www.terraform.io/docs/providers/aws/index.html).
 
-### Terraform State
-To be able to create, change, delete and keep track of the current state of the resources being managed by itself, Terraform make uses of a file called `Terraform State`, which is used to store state about your managed infrastructure and configuration.
+### Terraform Resources
 
-This state is used by Terraform to map real-world resources to your configuration, keep track of metadata, and to improve performance for large infrastructures.
-
-This state is, by default, stored in a local file named "terraform.tfstate", but it can also be stored remotely in places like S3 or similar services from other cloud providers.
-
-With this file, Terraform can, whenever you deploy new code to your environment, alert of which resources are being added, changed or deleted, so you can make sure that the new code is executing what you expect.
-
-To specify where the Terraform State will be stored, we use the `backend` code, as the example below:
-
-```terraform
-# Define where the terraform state will be stored
-terraform {
-  backend "local" {
-    path = "/devopsacademy/critical/terraform.tfstate"
-  }
-}
-```
-If for any reason the state file is lost, terraform won't be able to know the resources that are managed by it. In that case,  you'll need to rely on the [import feature](https://www.terraform.io/docs/import/index.html) to try to recover the existent state, but this is a very manual and arduous task, so make sure you keep your state file safe.
-
-Also, when running your terraform code, the state file will be put in a `lock` state to guarantee that there is no way to have more than one change happening at the same time. This helps to keep the state file consistent.
-
-
-More details around the Terraform State can be found [here](https://www.terraform.io/docs/state/index.html).
-
-## Terraform Client
-The Terraform is only a single command-line application. From that, you have subcommands to interact with the Terraform code that you have in your working directory. [Here](https://www.terraform.io/docs/commands/index.html) is a full list of the options available for the terraform application, but below you have some of the most common commands used.
-
-- **terraform init**
-    - Initialize a working directory containing Terraform configuration files. This would be the first command you run after creating your code. [Details for this command](https://www.terraform.io/docs/commands/init.html)
-- **terraform plan**
-    - Performs a refresh and determines what actions are necessary to achieve the desired state specified in the configuration files. [Details for this command](https://www.terraform.io/docs/commands/plan.html)
-- **terraform apply**
-    - Apply the changes required to reach the desired state of the configuration, or the pre-determined set of actions generated by a terraform plan execution plan. [Details for this command](https://www.terraform.io/docs/commands/apply.html)
-- **terraform destroy**
-    - Destroy the Terraform-managed infrastructure. [Details for this command](https://www.terraform.io/docs/commands/destroy.html)
-
-The terraform command-line can be very helpful as well. The `--help` option will provide you with all the help you need based on the scope that you are working on.
-
-This means that `terraform --help` and `terraform init --help` will provide different outputs. The first one will give information on the terraform in general, and the second will provide help for the init option of the terraform cli.
-
-## Terraform Resources
 Resources are the main component of a Terraform code. Each resource block represents an object in the infrastructure that will be created and managed by Terraform.
 
 The resource block defines all the characteristics and configuration of the resource, and each resource type will have different required and optional arguments.
@@ -145,7 +165,7 @@ The resource block defines all the characteristics and configuration of the reso
 # Define a new resource of the EC2 instace type
 resource "aws_instance" "da_academy" {
   ami               = "ami-077007384e83bf4cc"
-  availability_zone = "ap-southeast2-2a"
+  availability_zone = "ap-southeast-2a"
   instance_type     = "t1.micro"
 
   tags = {
@@ -153,6 +173,7 @@ resource "aws_instance" "da_academy" {
   }
 }
 ```
+
 In the example above, an EC2 Instance named `DevOpsAcademy-Instance` would be created. In this resource, we have also identified the AMI that needs to be used, the instance type and the Availability Zone that the instance should be created into. Many more optional Arguments could be added to this resource, like `key_name`, `subnet_id`, `security_group`, and many others. A list of all Argument options for EC2 can be found [here](https://www.terraform.io/docs/providers/aws/r/instance.html).
 
 Each resource block declares a resource type and the resource name. In the example above, the instance type is `aws_instance`, and the resource name is `da_academy`.
@@ -165,7 +186,7 @@ The name is essential to be referenced by another resource being created in the 
 # Define a new resource of the EC2 instace type
 resource "aws_instance" "da_academy" {
   ami               = "ami-077007384e83bf4cc"
-  availability_zone = "ap-southeast2-a"
+  availability_zone = "ap-southeast-2a"
   instance_type     = "t1.micro"
 
   tags = {
@@ -201,7 +222,34 @@ As you can image, it's essential to know all Arguments and Attributes of each re
 
 When creating any Terraform code, consider the Provider documentation page your best friend. No one creating Terraform code lives without it.
 
-## The Power of Input Variables
+### Terraform State
+To be able to create, change, delete and keep track of the current state of the resources being managed by itself, Terraform make uses of a file called `Terraform State`, which is used to store state about your managed infrastructure and configuration.
+
+This state is used by Terraform to map real-world resources to your configuration, keep track of metadata, and to improve performance for large infrastructures.
+
+This state is, by default, stored in a local file named "terraform.tfstate", but it can also be stored remotely in places like S3 or similar services from other cloud providers.
+
+With this file, Terraform can, whenever you deploy new code to your environment, alert of which resources are being added, changed or deleted, so you can make sure that the new code is executing what you expect.
+
+To specify where the Terraform State will be stored, we use the `backend` code, as the example below:
+
+```terraform
+# Define where the terraform state will be stored
+terraform {
+  backend "local" {
+    path = "/devopsacademy/critical/terraform.tfstate"
+  }
+}
+```
+If for any reason the state file is lost, terraform won't be able to know the resources that are managed by it. In that case,  you'll need to rely on the [import feature](https://www.terraform.io/docs/import/index.html) to try to recover the existent state, but this is a very manual and arduous task, so make sure you keep your state file safe.
+
+Also, when running your terraform code, the state file will be put in a `lock` state to guarantee that there is no way to have more than one change happening at the same time. This helps to keep the state file consistent.
+
+
+More details around the Terraform State can be found [here](https://www.terraform.io/docs/state/index.html).
+
+### The Power of Input Variables
+
 Having your entire infrastructure as code with Terraform is very useful, so you can have a single source of truth for your environment as well as enables you to keep reasonable control over the changes that happen in your environment.
 
 To make IaC even more powerful, we can use variables in our code that will be used to create our resources. Input Variables serve as parameters for a Terraform code, allowing aspects of the code to be customized without altering the source code, and allowing code to be shared between different configurations.
@@ -217,7 +265,7 @@ variable "instance_type" {
 # Define a new resource of the EC2 instace type
 resource "aws_instance" "da_academy" {
   ami               = "ami-077007384e83bf4cc"
-  availability_zone = "ap-southeast2-a"
+  availability_zone = "ap-southeast-2a"
   instance_type     = var.instance_type
 
   tags = {
@@ -225,11 +273,112 @@ resource "aws_instance" "da_academy" {
   }
 }
 ```
+
 In the case above, the `instance_type` argument of the `AWS Instance` resource can be informed during the execution of the code, allowing us to reuse this piece of code multiple times without having to change the code.
 
 On the variable declaration, you can specify a default value, so if the value is not included during the code execution, it will use the default one.
 
-## Outputs
+> Check this [Variables documentation](https://www.terraform.io/docs/configuration/variables.html) 
+
+#### Assigning values to variables
+
+For setting the values of variables and automate your CI/CD pipelines, you will need to dynamically set their values. Here are the options.
+
+- **Individually, with the -var command line option.**
+
+```
+terraform apply -var="image_id=ami-abc123"
+terraform apply -var='image_id_list=["ami-abc123","ami-def456"]'
+terraform apply -var='image_id_map={"us-east-1":"ami-abc123","us-east-2":"ami-def456"}'
+```
+
+- **In variable definitions (`.tfvars`) files**
+
+The `.tfvar` file:
+```
+image_id = "ami-abc123"
+availability_zone_names = [
+  "us-east-1a",
+  "us-west-1c",
+]
+```
+
+Passing the file as argument to the CLI command:
+
+```
+terraform apply -var-file="testing.tfvars"
+```
+
+> Terraform also automatically loads a number of variable definitions files if they are present:
+> - Files named exactly terraform.tfvars or terraform.tfvars.json.
+> - Any files with names ending in .auto.tfvars or .auto.tfvars.json.
+
+- **Environment variables**
+
+Terraform searches the environment for environment variables named `TF_VAR_` followed by the name of a declared variable.
+
+```
+$ export TF_VAR_availability_zone_names='["us-west-1b","us-west-1d"]'
+$ export TF_VAR_image_id=ami-abc123
+$ terraform plan
+...
+```
+
+> [Check variable precedence](https://www.terraform.io/docs/configuration/variables.html#variable-definition-precedence)
+
+- **In a Terraform Cloud workspace**
+
+[Check about workspace variables here](https://www.terraform.io/docs/cloud/workspaces/variables.html)
+
+### Data Source
+
+Data source performs **read-only operation** and is dependant on provider configuration (like AWS provider).
+
+For example, you would like to launch an EC2 instance with the latest Amazon linux AMI. How do you automate this?
+
+You can use the `aws_ami` data source provided by the AWS provider to filter out the AMI:
+
+```
+data "aws_ami" "example" {
+  most_recent = true
+  owners      = ["amazon"]
+  filter {
+    name   = "owner-alias"
+    values = ["amazon"]
+  }
+
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm*"]
+  }
+
+  tags = {
+    Name   = "app-server"
+    Tested = "true"
+  }
+}
+```
+
+Then you just need to consume it as an input of type `data`:
+
+```
+resource "aws_instance" "da_academy" {
+  ami           = data.aws_ami.example.id
+  subnet_id     = aws_subnet.subnet_public_b.id
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "DevOpsAcademy-Instance"
+  }
+}
+```
+
+Example: 
+> From https://www.terraform-best-practices.com/key-concepts
+
+
+### Outputs
 Outputs are like return values from a terraform code. It can be useful, so you receive an attribute of a resource being created. It can also be used by another piece of code outside of your own.
 
 ```terraform
@@ -241,15 +390,21 @@ The piece of code above would print, after executing the Terraform code, the pri
 
 Each kind of resource has specific attributes that can be output, and you can check those attributes on the provider resource page.
 
-## File Organization
+### Best Practices: File Organization
+
 Just like any other programming language, Terraform has it's best practices to organize the code you create.
 
+By default, commands as `init`, `plan` and `destroy` will look into the current directory.
+
 Everything (resources, outputs, providers, state, etc) could be written in a single file with a `.tf` extension, however, to make things easier, each kind of code block should be created on a specific file.
+
+Example:
+
 - **_provider.tf**
   - All providers are declared on this file
 - **_backend.tf**
   - The backend to be used is declared on this file
-- **variables.tf**
+- **_variables.tf**
   - The variables expected to be received during the code execution are declared on this file.
 - **_outputs.tf**
   - All outputs from your code are declared on this file
@@ -258,7 +413,8 @@ Everything (resources, outputs, providers, state, etc) could be written in a sin
 - **anything.tfvars**
   - In this file you would have the variables to be used during the code execution. If you have multiple environments, you can have your `dev.tfvars` and `prod.tfvars` files containing specific values for each environment and point to each file during execution based on the environment you want to apply your code.
 
-## Running some code
+### Show me some code!
+
 Now that we have some understanding about terraform and its power let's give it a go and run some code.
 
 First of all, make sure you have your AWS credentials configured on your machine. You can use the guide from [here](https://link-to-the-cli-config)
@@ -269,23 +425,30 @@ All the code we'll use is on the [artifacts folder](artifacts/terraform) of this
 # Considering that you are on the folder of this file
 $ cd artifacts/terraform
 ```
+
 Let's initialize terraform
+
 ```bash
 $ terraform init
 ```
+
 The `terraform init` command will initialize the working directory and should only be run once unless you make any change on the following:
 - Backend configuration
 - Child Modules
-- Providers 
+- Providers
 
 Now that terraform is initialized, we can run the next command, which would determine the resources that need to be created/updated/removed.
+
 ```bash
 $ terraform plan -var-file=./class.tfvars
 ```
+
 After this command, you should see 3 resources to be created in your account. Because it's the first time that terraform is running, it's basically creating all resources defined in the code.
+
 ```bash
 $ terraform apply -var-file=./class.tfvars
 ```
+
 By running the command above and saying `yes` to the question you'll receive, terraform will proceed with the creation of the resources informed.
 
 The resources should be created, and you can go into your AWS console and check that the resources listed below were successfully created:
@@ -302,7 +465,17 @@ $ terraform plan -var-file=./class.tfvars
 ```
 The plan should now inform that the changes that will be made to the stack. For the S3 modifications we've made, because we're changing the name of the bucket, it will recreate it. For the SecurityGroup, because the change can be done without the need of recreating it, it will just update the configuration with new values.
 
-## Extra
+## Appendix
+
+### Formatting
+
+Use `terraform fmt` to format your code before commiting (or use another linter/formatting tool), your peers will thank you :)
+
+### Validating
+
+You can validate your terraform syntax (static) using `terraform validate`.
+
+It is fast and can save some `plan` time as it catches common silly errors.
 
 ### Modules
 Terraform Modules is an advanced topic and is used to reduce code duplication as well as to group up resources that are often created together.
@@ -331,7 +504,6 @@ module "full_vpc" {
 
 All the resources to be created would be defined in a module located in the path specified, which can be within the same repository or in a different repository. [This link](https://www.terraform.io/docs/modules/sources.html) provides some additional information and options aboud the `source definition` and [this link](https://www.terraform.io/docs/modules/composition.html) provides an smaller example of a VPC+ Subnets module.
 
-## Appendix
 - [Terraform Modules](https://www.terraform.io/docs/configuration/modules.html)
   - Modules can be used to create a set of resource that is used to compose a single delivery. For example, when you create a VPC, you also want to create subnets, routing tables, IGW, ACL, etc. It's an excellent strategy to create a module to delivery VPCs with all those components
 - [Terraform Expressions](https://www.terraform.io/docs/configuration/expressions.html)
