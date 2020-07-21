@@ -1,0 +1,84 @@
+
+# 1. Create a new IAM User called `user_readonly_S3`
+$ aws iam create-user  --user-name user_readonly_S3  --tags Key=Name,Value="DA S3 Read Only User"
+{
+    "User": {
+        "Path": "/",
+        "UserName": "user_readonly_S3",
+        "UserId": "AIDAWEDEMYE4DJANNLHIR",
+        "Arn": "arn:aws:iam::421117346104:user/user_readonly_S3",
+        "CreateDate": "2020-07-13T06:29:25+00:00",
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "DA S3 Read Only User"
+            }
+        ]
+    }
+}
+
+# 2. Create a new Policy called `S3readOnly` that ALLOWS only S3 reads on every S3 resource. Take note of the created Policy ARN.
+# https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html
+$ cat da-c04iam01-S3ReadPolicy.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*"
+            ]
+        }
+    ]
+}
+$ aws iam create-policy  --policy-name S3readOnly \
+    --policy-document file://da-c04iam01-S3ReadPolicy.json
+    {
+        "Policy": {
+            "PolicyName": "S3readOnly",
+            "PolicyId": "ANPAWEDEMYE4OZIY4Q5QK",
+            "Arn": "arn:aws:iam::421117346104:policy/S3readOnly",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2020-07-13T06:53:50+00:00",
+            "UpdateDate": "2020-07-13T06:53:50+00:00"
+        }
+    }
+
+
+# 3. Attach the policy to the user, tip: `attach-user-policy` command
+$ aws iam attach-user-policy --policy-arn arn:aws:iam::421117346104:policy/S3readOnly  --user-name user_readonly_S3
+
+# 4. Create a new Access Key (and secret) for this new user.
+$ aws iam create-access-key  --user-name user_readonly_S3 > useraccesskey.txt
+{
+    "AccessKey": {
+        "UserName": "user_readonly_S3",
+        "AccessKeyId": "AKI********Z",
+        "Status": "Active",
+        "SecretAccessKey": "ayU********",
+        "CreateDate": "2020-07-13T06:55:36+00:00"
+    }
+}
+
+# 5. Configure a new AWS CLI profile called `s3ReadOnlyProfile` using the credentials from the previous step.
+
+$ aws configure --profile s3ReadOnlyProfile
+AWS Access Key ID [None]: AKI********
+AWS Secret Access Key [None]: ayU********
+Default region name [None]: ap-southeast-2
+Default output format [None]: json
+
+
+# 6. For checking the new user's permissions to S3, run the command below:
+$ aws s3 ls --profile s3ReadOnlyProfile
+
+2020-06-20 20:59:48 cf-templates-gzn9zzt53w5a-ap-southeast-2
+2020-07-05 12:57:01 da-co1aws02bucket
