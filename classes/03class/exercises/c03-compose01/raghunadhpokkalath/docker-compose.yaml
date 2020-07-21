@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  db:
+    image: 'mysql:5.7'
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqlrootpwd
+      MYSQL_USER: devopsacademyuser
+      MYSQL_PASSWORD: devopsacademypwd
+      MYSQL_DATABASE: devopsacademy
+  web:
+    build: ../../../compose/artifacts/c05-compose01/
+    ports:
+      - '8100:80'
+    environment:
+      DB_USER: devopsacademyuser
+      DB_PASS: devopsacademypwd
+      DB_HOST: db
+      DB: devopsacademy
+    volumes:
+      - '../../../compose/artifacts/c05-compose01/src/:/var/www/html/'
+    depends_on: 
+      - db
