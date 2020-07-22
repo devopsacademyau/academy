@@ -8,8 +8,7 @@ Using the same code created in the [previous exercise](../c04-iac02), modify the
 Execute the `terraform plan` command.
 
 ## Submit a PR with the following files:
-- README.md based on the [ANSWER.md file](ANSWER.md) with a link to all files from your answer. Also answer the questions from this file.
-- output.txt with the output of the `terraform plan` command
+- README.md based on the [ANSWER.md file](ANSWER.md) with the output of the `terraform plan` command
 
 Your state file should not be include in your PR.
 
