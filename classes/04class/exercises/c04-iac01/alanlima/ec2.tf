@@ -1,11 +1,6 @@
-locals {
-  ec2_ami_id        = "ami-088ff0e3bde7b3fdf"
-  ec2_instance_type = "t2.micro"
-}
-
 resource "aws_instance" "ec2_default" {
-  ami           = local.ec2_ami_id
-  instance_type = local.ec2_instance_type
+  ami           = var.ec2_image_id
+  instance_type = var.ec2_instance_type
   key_name      = var.key_pair_name
   vpc_security_group_ids = [
     aws_security_group.sg_allow_ssh.id

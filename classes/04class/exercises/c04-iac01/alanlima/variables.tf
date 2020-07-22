@@ -37,3 +37,14 @@ variable "common_tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "ec2_image_id" {
+  description = "the EC2 AMI ID to be used by the instances"
+  type        = string
+}
+
+variable "ec2_instance_type" {
+  description = "the EC2 instance type"
+  type        = string
+  default     = "t2.micro"
+}
