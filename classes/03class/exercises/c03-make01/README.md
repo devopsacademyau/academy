@@ -14,7 +14,7 @@ Your Makefile should have the following steps:
     - The name of the image must be `make01`
 2. **push** - This will push the image to your DockerHub account 
 3. **run** - This will run the docker image locally.
-    - The port to be mapped for the container should be dinamycally provided during the `make run` command.
+    - The port to be mapped for the container should be dynamically provided during the `make run` command.
  
 
 ## Submit a PR with the following files:
