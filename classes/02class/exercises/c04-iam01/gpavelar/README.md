@@ -13,11 +13,11 @@ I got some errors while doing the exercies, some mistakes about files and polici
 
   > `Policy document must be version 2012-10-17 or greater.`
 
-  Solution: Added Version on json policy file.
+  **Solution**: Added Version on json policy file.
 
   > `Policy document should not specify a principal.`
 
-  Solution: Removed "Principal" key from json policy file.
+  **Solution**: Removed "Principal" key from json policy file.
 
 ---
 
