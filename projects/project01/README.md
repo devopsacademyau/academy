@@ -1,4 +1,4 @@
-# Project 1 - Application migration from on-prem to the cloud 
+# Project 1 - Running wordpress in AWS
 
 (to be released on class 4)
 
@@ -39,7 +39,7 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 - As it is a pilot migration to AWS, data migration is out of scope
 - Testers were contracted to develop unit/service/integration tests for this pipeline, so you don't need to write tests but consider including this step in your CI pipeline or automation scripts!
 - Consider the application as stateless for this pilot. In Wordpress some files may be stored locally on the server (e.g. on image upload)
-- For this pilot you don't need to create the Infra as Code for the CI pipeline
+- For this pilot we are aiming to have as much as possible as code
 - Single Github repo.
 
 ## Grading
@@ -67,7 +67,7 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 ## Suggested technologies:
 - VCS → Github
 - Infra as Code → Terraform
-- Pipeline tool → CodePipeline, CircleCI, TravisCI
+- Pipeline tool → Github actions
 - Containerization → Docker / Docker-compose
 - Relational Database → RDS MySQL
 - Container orchestrator → ECS
