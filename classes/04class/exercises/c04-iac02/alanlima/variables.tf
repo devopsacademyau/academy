@@ -4,14 +4,25 @@ variable "region" {
   default     = "ap-southeast-2"
 }
 
-variable "availability_zones" {
-  description = "define the available zones"
-  type        = list(string)
-  default = [
-    "ap-southeast-2a",
-    "ap-southeast-2b",
-    "ap-southeast-2c"
-  ]
+variable "vpc_cidr" {
+  description = "define the vpc cidr_block"
+  type        = string
+}
+
+variable "public_subnets" {
+  description = "list of public subnets"
+  type = map(object({
+    cidr_block = string
+    zone       = string
+  }))
+}
+
+variable "private_subnets" {
+  description = "list of private subnets"
+  type = map(object({
+    cidr_block = string
+    zone       = string
+  }))
 }
 
 variable "devops_class" {
