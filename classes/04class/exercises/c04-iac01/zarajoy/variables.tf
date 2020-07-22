@@ -35,4 +35,8 @@ variable "BUCKETACL" {
   type    = string
   default = "private"
 }
+variable "REGION" {
+  type    = string
+  default = "ap-southeast-2"
+}
 

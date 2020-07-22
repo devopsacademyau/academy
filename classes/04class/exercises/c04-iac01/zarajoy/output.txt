@@ -1,4 +1,4 @@
-z@bacon:~/Documents/GitHub/academy/classes/04class/exercises/c04-iac01/zarajoy$ terraform plan 
+z@bacon:~/Documents/GitHub/academy/classes/04class/exercises/c04-iac01/zarajoy$ terraform plan
 Refreshing Terraform state in-memory prior to plan...
 The refreshed state will be used to calculate this plan, but will not be
 persisted to local or remote state storage.
@@ -447,25 +447,27 @@ Do you want to perform these actions?
   Enter a value: yes
 
 aws_iam_policy.s3-ReadOnly-Policy: Creating...
-aws_iam_role.s3-ReadOnly-role: Creating...
 aws_security_group.C04-iac01-SG1: Creating...
+aws_iam_role.s3-ReadOnly-role: Creating...
 aws_s3_bucket.c04-iac01-bucket: Creating...
-aws_security_group.C04-iac01-SG1: Creation complete after 2s [id=sg-0857763435034855c]
-aws_iam_role.s3-ReadOnly-role: Creation complete after 2s [id=s3-ReadOnly-role]
+aws_security_group.C04-iac01-SG1: Creation complete after 2s [id=sg-0a3b80e7f81285160]
+aws_iam_role.s3-ReadOnly-role: Creation complete after 3s [id=s3-ReadOnly-role]
 aws_iam_instance_profile.s3-ReadOnly-profile1: Creating...
-aws_iam_policy.s3-ReadOnly-Policy: Creation complete after 3s [id=arn:aws:iam::512742231244:policy/s3-ReadOnly-Policy]
+aws_iam_policy.s3-ReadOnly-Policy: Creation complete after 4s [id=arn:aws:iam::512742231244:policy/s3-ReadOnly-Policy]
 aws_iam_role_policy_attachment.s3-ReadOnly-Policy-Attach-Role: Creating...
 aws_iam_policy_attachment.s3-ReadOnly-Policy-Attach: Creating...
-aws_s3_bucket.c04-iac01-bucket: Creation complete after 3s [id=c04-iac01-bucket]
 aws_iam_instance_profile.s3-ReadOnly-profile1: Creation complete after 3s [id=s3-ReadOnly-profile1]
 aws_instance.ec2_default: Creating...
-aws_iam_role_policy_attachment.s3-ReadOnly-Policy-Attach-Role: Creation complete after 2s [id=s3-ReadOnly-role-20200722085853295400000001]
+aws_iam_role_policy_attachment.s3-ReadOnly-Policy-Attach-Role: Creation complete after 2s [id=s3-ReadOnly-role-20200722113329245700000001]
 aws_iam_policy_attachment.s3-ReadOnly-Policy-Attach: Creation complete after 3s [id=s3-ReadOnly-Policy-Attach]
+aws_s3_bucket.c04-iac01-bucket: Still creating... [10s elapsed]
 aws_instance.ec2_default: Still creating... [10s elapsed]
+aws_s3_bucket.c04-iac01-bucket: Still creating... [20s elapsed]
 aws_instance.ec2_default: Still creating... [20s elapsed]
+aws_s3_bucket.c04-iac01-bucket: Still creating... [30s elapsed]
 aws_instance.ec2_default: Still creating... [30s elapsed]
-aws_instance.ec2_default: Still creating... [40s elapsed]
-aws_instance.ec2_default: Creation complete after 42s [id=i-0a691f8c3643ee2be]
+aws_instance.ec2_default: Creation complete after 32s [id=i-038b9e2993b7494c4]
+aws_s3_bucket.c04-iac01-bucket: Creation complete after 38s [id=c04-iac01-bucket]
 
 Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 
@@ -475,5 +477,4 @@ infrastructure, so keep it safe. To inspect the complete state
 use the `terraform show` command.
 
 State path: ./terraform.tfstate
-
 
