@@ -1,5 +1,5 @@
 resource "aws_vpc" "vpc_devops" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.vpc_cidr
   tags = merge(var.common_tags, {
     Name = "devopsacademy-iac"
   })
