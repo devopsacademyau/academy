@@ -52,7 +52,7 @@ subnet in decimals: `255.255.255.0`
 private/public: `private`
 hosts: `251`
 
-About hosts, Should it not be 254?
+> I just copied this examploe from README.md. But About the hosts, Should it not be 254?
 
 ## Resource
 
