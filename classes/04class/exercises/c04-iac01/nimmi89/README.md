@@ -33,6 +33,11 @@ aws_instance.da-instance: Still creating... [30s elapsed]
 aws_instance.da-instance: Creation complete after 31s [id=i-0f68929873924aee8]
 
 Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+Outputs:
+
+instance_ip_addr = 54.252.250.98
+
+
 ```
 
 $ aws s3 cp /home/nimmi/test.json s3://da-july-bucket upload: ../../../../../../../test.json to s3://da-july-bucket/test.json

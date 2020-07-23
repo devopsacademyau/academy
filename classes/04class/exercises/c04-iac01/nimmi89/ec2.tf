@@ -20,3 +20,7 @@ resource "aws_instance" "da-instance" {
 
  
 }
+# Get the public ip to ssh into the instance
+output "instance_ip_addr" {
+  value = aws_instance.da-instance.public_ip
+}
