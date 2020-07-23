@@ -9,15 +9,7 @@ resource "aws_instance" "da-instance" {
      Name = "DA-Instance-Terraform"
  }
  
- user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y httpd
-              curl 169.254.169.254/latest/meta-data/hostname > index.html
-              EOF
   iam_instance_profile = aws_iam_instance_profile.test_profile.name
-
-
  
 }
 # Get the public ip to ssh into the instance
