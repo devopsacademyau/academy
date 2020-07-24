@@ -11,7 +11,7 @@
   ## Command Execution Output
   - [output.txt](output.txt)
 
-
+```
   $ terraform apply
     var.ec2_image_id
     EC2 AMI ID of the instance
@@ -407,8 +407,9 @@
  security_group_id = sg-0b579f8bb20a9e029
  subnet_id = subnet-0fa14cb0a689ea751
  vpc_id = vpc-0f91661994c0a14b5
-
-
+```
+- VERIFICATION STEP:
+```
  $ ssh -i "~/AWS/AWS_Console/WEBSERVER.pem" ubuntu@3.24.138.61
  The authenticity of host '3.24.138.61 (3.24.138.61)' can't be established.
  ECDSA key fingerprint is SHA256:M3MrWs+k3pPG5QgtOaAd5R4xFuf8vr1w3RHRDhJ3QDE.
@@ -450,3 +451,4 @@
 <!-- Before commiting, remove both commented lines--> 
 ***
 Answer for exercise [c04-iac01](https://github.com/devopsacademyau/academy/blob/c41e824fb2a2c55e3a30b2371a87e3a7551b6741/classes/04class/exercises/c04-iac01/README.md)
+```
