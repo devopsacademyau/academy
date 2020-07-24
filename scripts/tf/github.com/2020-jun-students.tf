@@ -64,3 +64,18 @@ module "y2020-jun-project1-group3" {
   ]
 }
 
+module "y2020-jun-project1-externals" {
+  source              = "./da-project"
+  group_name          = "2020-jun-project1-externals"
+  admins_team_id      = module.team-admins.id
+  parent_team_id      = module.team-students-2020-jun.id
+  members             = [
+    "afaryy",
+    "carloshz4",
+    "raghunadhpokkalath",
+    "ramiray",
+    "rodrigovcesar",
+    "roperto"
+  ]
+}
+

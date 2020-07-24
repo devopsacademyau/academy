@@ -4,7 +4,7 @@
 
 - Commands for creating the internet gateway:
 ```
->>>Command to check current region[Sydney [ap-southeast2]]
+>>>Command to check current region[Sydney [ap-southeast-2]]
 aws configure get region
 
 >>>Command to create an internet gateway 
