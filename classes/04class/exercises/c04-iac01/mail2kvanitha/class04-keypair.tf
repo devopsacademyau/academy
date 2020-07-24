@@ -1,0 +1,4 @@
+resource "aws_key_pair" "class04-ec2-key" {
+  key_name = "class04-ec2-key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyDZgvl/gEJCNvS2x1kjcoOCZvPhP41c0OeSuIUkRCKwmYCJN4/qOBP+0dHFM7Mm69wKIBrWT71nyO2IH56C0EVf5mIao8p97U/vL1VmFDeyxSCAmeJ4IM5TF6gXpeUKMHXuhCOBaXrnsC/pSuv6UdCl4SRlkOCJmnug3ijXKS+aY5eViRfsCJ5LjJ3S7XGbpJFoq+PMgleRmzMc7FVEzf90mHNOAk5fW6pQdvTFyy9yHjQCzCedJNWumKVtytpACwRmNnYJd+firXODU7toYnPEaj0X1Tf1iRalobTSgVQ9EXNdCslBVdNQwsvRATi1gm+Dqu6ysCZ++MvZnYC7df WEBSERVER"
+}
