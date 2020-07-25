@@ -1,3 +1,4 @@
+# Creates VPC
 resource "aws_vpc" "devopsacademy-iac" {
   cidr_block           = "${var.aws_ip_cidr_range}"
   enable_dns_support   = true
@@ -7,6 +8,9 @@ resource "aws_vpc" "devopsacademy-iac" {
   }
 }
 
+
+
+#Creates Internet Gateway
 resource "aws_internet_gateway" "da-igw" {
   vpc_id = "${aws_vpc.devopsacademy-iac.id}"
 
@@ -15,6 +19,9 @@ resource "aws_internet_gateway" "da-igw" {
   }
 }
 
+
+
+#Creates subnets
 resource "aws_subnet" "subnet1" {
   cidr_block              = "${var.subnet-cidr["subnet1"]}"
   vpc_id                  = "${aws_vpc.devopsacademy-iac.id}"
@@ -35,7 +42,6 @@ resource "aws_subnet" "subnet2" {
   }
 }
 
-
 resource "aws_subnet" "subnet3" {
   cidr_block        = "${var.subnet-cidr["subnet3"]}"
   vpc_id            = "${aws_vpc.devopsacademy-iac.id}"
@@ -54,6 +60,9 @@ resource "aws_subnet" "subnet4" {
   }
 }
 
+
+
+#Creates Elastic IP and NAT Gateway
 resource "aws_eip" "da-eip" {
   vpc = true
 }
@@ -65,6 +74,7 @@ resource "aws_nat_gateway" "da-ngw" {
 
 
 
+#Creates Route tables and associations
 resource "aws_route_table" "rt1" {
   vpc_id = "${aws_vpc.devopsacademy-iac.id}"
 
