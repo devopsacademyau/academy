@@ -1,7 +1,7 @@
 # C04-IAC03
 
 ## Terraform plan output
- 
+``` 
      $ terraform plan --var-file=main.tfvar
    Refreshing Terraform state in-memory prior to plan...
    The refreshed state will be used to calculate this plan, but will not be
@@ -256,8 +256,7 @@
    can't guarantee that exactly these actions will be performed if
    "terraform apply" is subsequently run.
    
-   
-
+```
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
