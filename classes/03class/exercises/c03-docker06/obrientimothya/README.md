@@ -33,15 +33,13 @@ Removing intermediate container a445b9f88cfe
  ---> 271742d65ec9
 Successfully built 271742d65ec9
 Successfully tagged hello-name:v1
-
-NAME=Tim docker run -e NAME hello-name:v1
-
-Hello Tim
 ```
 
 - Commands used to execute the image and the output of container execution:
 ```
-Add command here
+NAME=Tim docker run -e NAME hello-name:v1
+
+Hello Tim
 ```
 
 <!-- Don't change anything below this point-->
