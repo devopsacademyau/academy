@@ -17,6 +17,7 @@ resource "aws_iam_role" "DA_EC2_TO_S3_ROLE" {
 }
 EOF
 
+
   tags = {
     Name = "DA_EC2_TO_S3_ROLE"
   }
@@ -25,14 +26,13 @@ EOF
 #Creates the ec2 instance profile
 resource "aws_iam_instance_profile" "DA_EC2_TO_S3_ROLE-InstanceProfile" {
   name = "DA_EC2_TO_S3_ROLE-InstanceProfile"
-  role = "${aws_iam_role.DA_EC2_TO_S3_ROLE.name}"
+  role = aws_iam_role.DA_EC2_TO_S3_ROLE.name
 }
-
 
 #Creates policy with S3 permissions and links it to the role previously created
 resource "aws_iam_role_policy" "DA_EC2_TO_S3_POLICY" {
   name   = "DA_EC2_TO_S3_POLICY"
-  role   = "${aws_iam_role.DA_EC2_TO_S3_ROLE.id}"
+  role   = aws_iam_role.DA_EC2_TO_S3_ROLE.id
   policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -48,4 +48,6 @@ resource "aws_iam_role_policy" "DA_EC2_TO_S3_POLICY" {
     ]
 }
 EOF
+
 }
+

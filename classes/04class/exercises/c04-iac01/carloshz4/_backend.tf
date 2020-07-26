@@ -4,3 +4,4 @@ terraform {
     path = "/root/academy/classes/04class/exercises/c04-iac01/carloshz4/terraform.tfstate"
   }
 }
+

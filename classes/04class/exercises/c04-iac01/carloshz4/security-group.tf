@@ -2,7 +2,7 @@ resource "aws_security_group" "da-sg" {
   name = "da-sg"
 
   ingress {
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["194.193.165.113/32"]
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -15,10 +15,8 @@ resource "aws_security_group" "da-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-
   tags = {
     Name = "devopsacademy-sg"
   }
-
 }
 
