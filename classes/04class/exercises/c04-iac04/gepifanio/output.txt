@@ -1,0 +1,4 @@
+with the output of the curl command accessing your website
+
+curl load balancer and result
+
