@@ -1,0 +1,541 @@
+➜  terraform-code git:(mrcsmonteiro/c04-iac04) ✗ terraform apply -var-file="main.tfvars"
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.alb.aws_alb.alb will be created
+  + resource "aws_alb" "alb" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "devops-academy-alb"
+      + security_groups            = (known after apply)
+      + subnets                    = (known after apply)
+      + tags                       = {
+          + "Name" = "alb-devops-academy-c04-iac04"
+        }
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id = (known after apply)
+          + subnet_id     = (known after apply)
+        }
+    }
+
+  # module.alb.aws_alb_listener.alb_listener will be created
+  + resource "aws_alb_listener" "alb_listener" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.alb.aws_alb_target_group.alb_tg will be created
+  + resource "aws_alb_target_group" "alb_tg" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + deregistration_delay               = 300
+      + id                                 = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = "devops-academy-alb-tg"
+      + port                               = 80
+      + protocol                           = "HTTP"
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + target_type                        = "instance"
+      + vpc_id                             = (known after apply)
+
+      + health_check {
+          + enabled             = (known after apply)
+          + healthy_threshold   = (known after apply)
+          + interval            = (known after apply)
+          + matcher             = (known after apply)
+          + path                = (known after apply)
+          + port                = (known after apply)
+          + protocol            = (known after apply)
+          + timeout             = (known after apply)
+          + unhealthy_threshold = (known after apply)
+        }
+
+      + stickiness {
+          + cookie_duration = (known after apply)
+          + enabled         = (known after apply)
+          + type            = (known after apply)
+        }
+    }
+
+  # module.asg.aws_autoscaling_attachment.asg_attach will be created
+  + resource "aws_autoscaling_attachment" "asg_attach" {
+      + alb_target_group_arn   = (known after apply)
+      + autoscaling_group_name = (known after apply)
+      + id                     = (known after apply)
+    }
+
+  # module.asg.aws_autoscaling_group.asg will be created
+  + resource "aws_autoscaling_group" "asg" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = 2
+      + force_delete              = true
+      + health_check_grace_period = 300
+      + health_check_type         = "ELB"
+      + id                        = (known after apply)
+      + launch_configuration      = (known after apply)
+      + load_balancers            = (known after apply)
+      + max_size                  = 3
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = "asg-devops-academy-c04-iac04"
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + target_group_arns         = (known after apply)
+      + vpc_zone_identifier       = (known after apply)
+      + wait_for_capacity_timeout = "10m"
+
+      + tag {
+          + key                 = "Name"
+          + propagate_at_launch = true
+          + value               = "asg-devops-academy-c04-iac04"
+        }
+    }
+
+  # module.asg.aws_autoscaling_policy.ec2_cpu_policy_scale_in will be created
+  + resource "aws_autoscaling_policy" "ec2_cpu_policy_scale_in" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "asg-devops-academy-c04-iac04"
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "ec2-cpu-policy-scale-in"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.asg.aws_autoscaling_policy.ec2_cpu_policy_scale_out will be created
+  + resource "aws_autoscaling_policy" "ec2_cpu_policy_scale_out" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "asg-devops-academy-c04-iac04"
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "ec2-cpu-policy-scale-out"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 1
+    }
+
+  # module.asg.aws_cloudwatch_metric_alarm.ec2_cpu_alarm_scale_in will be created
+  + resource "aws_cloudwatch_metric_alarm" "ec2_cpu_alarm_scale_in" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "ec2-cpu-alarm-scale-in"
+      + alarm_name                            = "ec2-cpu-alarm-scale-in"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "asg-devops-academy-c04-iac04"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 60
+      + statistic                             = "Average"
+      + threshold                             = 30
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.asg.aws_cloudwatch_metric_alarm.ec2_cpu_alarm_scale_out will be created
+  + resource "aws_cloudwatch_metric_alarm" "ec2_cpu_alarm_scale_out" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "example-cpu-alarm-scale-out"
+      + alarm_name                            = "ec2-cpu-alarm-scale-out"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "asg-devops-academy-c04-iac04"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 60
+      + statistic                             = "Average"
+      + threshold                             = 80
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.asg.aws_launch_configuration.launch_config will be created
+  + resource "aws_launch_configuration" "launch_config" {
+      + arn                         = (known after apply)
+      + associate_public_ip_address = false
+      + ebs_optimized               = (known after apply)
+      + enable_monitoring           = true
+      + id                          = (known after apply)
+      + image_id                    = "ami-0a58e22c727337c51"
+      + instance_type               = "t2.micro"
+      + key_name                    = "DevOpsAcademy"
+      + name                        = (known after apply)
+      + name_prefix                 = "devops-academy-c04-iac04-lc-"
+      + user_data_base64            = "IyEvYmluL2Jhc2gKc3VkbyB5dW0gdXBkYXRlCnN1ZG8gYW1hem9uLWxpbnV4LWV4dHJhcyBpbnN0YWxsIGVwZWwgLXkKc3VkbyB5dW0gaW5zdGFsbCBodHRwZCAteQpzdWRvIHl1bSBpbnN0YWxsIHN0cmVzcyAteQpzdWRvIHN5c3RlbWN0bCBzdGFydCBodHRwZApzdWRvIHN5c3RlbWN0bCBlbmFibGUgaHR0cGQKZWNobyAiPGgxPkRlcGxveWVkIHZpYSBUZXJyYWZvcm08L2gxPiIgfCBzdWRvIHRlZSAvdmFyL3d3dy9odG1sL2luZGV4Lmh0bWwKY3VybCAxNjkuMjU0LjE2OS4yNTQvbGF0ZXN0L21ldGEtZGF0YS9ob3N0bmFtZSA+PiAvdmFyL3d3dy9odG1sL2luZGV4Lmh0bWwKc3VkbyBzdHJlc3MgLS1jcHUgMSAtLXRpbWVvdXQgNjAwICYK"
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + no_device             = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.sg.aws_default_security_group.default will be created
+  + resource "aws_default_security_group" "default" {
+      + arn                    = (known after apply)
+      + description            = (known after apply)
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Allow all egress traffic to anywhere"
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Allow HTTP ingress traffic from anywhere"
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+          + {
+              + cidr_blocks      = [
+                  + "220.253.7.163/32",
+                ]
+              + description      = "Allow SSH ingress traffic for Admin"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "default-sg-devops-academy-c04-iac04"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.sg.aws_security_group.alb_sg will be created
+  + resource "aws_security_group" "alb_sg" {
+      + arn                    = (known after apply)
+      + description            = "Allow HTTP traffic"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Allow all egress traffic to anywhere"
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Allow HTTP ingress traffic from anywhere"
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "alb-sg"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "alb-sg-devops-academy-c04-iac04"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.vpc.aws_internet_gateway.igw will be created
+  + resource "aws_internet_gateway" "igw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "igw-devops-academy-c04-iac04"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # module.vpc.aws_route_table.pub_rt will be created
+  + resource "aws_route_table" "pub_rt" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "pub-rt-devops-academy-c04-iac04"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.vpc.aws_route_table_association.pub_subnet_a will be created
+  + resource "aws_route_table_association" "pub_subnet_a" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc.aws_route_table_association.pub_subnet_b will be created
+  + resource "aws_route_table_association" "pub_subnet_b" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc.aws_route_table_association.pub_subnet_c will be created
+  + resource "aws_route_table_association" "pub_subnet_c" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.pub_cidr_a will be created
+  + resource "aws_subnet" "pub_cidr_a" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.1.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-subnet-a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.pub_cidr_b will be created
+  + resource "aws_subnet" "pub_cidr_b" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.2.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-subnet-b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.pub_cidr_c will be created
+  + resource "aws_subnet" "pub_cidr_c" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2c"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.3.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-subnet-c"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_vpc.vpc will be created
+  + resource "aws_vpc" "vpc" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = (known after apply)
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = true
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "vpc-devops-academy-c04-iac04"
+        }
+    }
+
+Plan: 21 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.asg.aws_launch_configuration.launch_config: Creating...
+module.vpc.aws_vpc.vpc: Creating...
+module.asg.aws_launch_configuration.launch_config: Creation complete after 1s [id=devops-academy-c04-iac04-lc-20200728140045585000000001]
+module.vpc.aws_vpc.vpc: Creation complete after 3s [id=vpc-09343a38b75a34d71]
+module.vpc.aws_internet_gateway.igw: Creating...
+module.vpc.aws_subnet.pub_cidr_a: Creating...
+module.vpc.aws_subnet.pub_cidr_b: Creating...
+module.vpc.aws_subnet.pub_cidr_c: Creating...
+module.alb.aws_alb_target_group.alb_tg: Creating...
+module.sg.aws_security_group.alb_sg: Creating...
+module.sg.aws_default_security_group.default: Creating...
+module.alb.aws_alb_target_group.alb_tg: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:149613515908:targetgroup/devops-academy-alb-tg/fb418689352b5076]
+module.vpc.aws_subnet.pub_cidr_a: Creation complete after 1s [id=subnet-0daa32c1f4fe06c75]
+module.vpc.aws_subnet.pub_cidr_b: Creation complete after 1s [id=subnet-0bb73f1948cdf5e52]
+module.vpc.aws_subnet.pub_cidr_c: Creation complete after 1s [id=subnet-0252a150b6d230c28]
+module.asg.aws_autoscaling_group.asg: Creating...
+module.vpc.aws_internet_gateway.igw: Creation complete after 1s [id=igw-0ba69e3355c91f36f]
+module.vpc.aws_route_table.pub_rt: Creating...
+module.sg.aws_default_security_group.default: Creation complete after 2s [id=sg-0224b798597a5db86]
+module.sg.aws_security_group.alb_sg: Creation complete after 2s [id=sg-0f5a9129db20b1418]
+module.alb.aws_alb.alb: Creating...
+module.vpc.aws_route_table.pub_rt: Creation complete after 1s [id=rtb-02d207e33415cfcdf]
+module.vpc.aws_route_table_association.pub_subnet_c: Creating...
+module.vpc.aws_route_table_association.pub_subnet_b: Creating...
+module.vpc.aws_route_table_association.pub_subnet_a: Creating...
+module.vpc.aws_route_table_association.pub_subnet_a: Creation complete after 1s [id=rtbassoc-073111a878a6ae823]
+module.vpc.aws_route_table_association.pub_subnet_c: Creation complete after 1s [id=rtbassoc-0654c45718a93cf53]
+module.vpc.aws_route_table_association.pub_subnet_b: Creation complete after 1s [id=rtbassoc-05e02e8d9db88dca0]
+module.asg.aws_autoscaling_group.asg: Still creating... [10s elapsed]
+module.alb.aws_alb.alb: Still creating... [10s elapsed]
+module.asg.aws_autoscaling_group.asg: Still creating... [20s elapsed]
+module.alb.aws_alb.alb: Still creating... [20s elapsed]
+module.asg.aws_autoscaling_group.asg: Still creating... [30s elapsed]
+module.alb.aws_alb.alb: Still creating... [30s elapsed]
+module.asg.aws_autoscaling_group.asg: Still creating... [40s elapsed]
+module.alb.aws_alb.alb: Still creating... [40s elapsed]
+module.asg.aws_autoscaling_group.asg: Creation complete after 48s [id=asg-devops-academy-c04-iac04]
+module.asg.aws_autoscaling_attachment.asg_attach: Creating...
+module.asg.aws_autoscaling_policy.ec2_cpu_policy_scale_in: Creating...
+module.asg.aws_autoscaling_policy.ec2_cpu_policy_scale_out: Creating...
+module.asg.aws_autoscaling_policy.ec2_cpu_policy_scale_out: Creation complete after 1s [id=ec2-cpu-policy-scale-out]
+module.asg.aws_autoscaling_attachment.asg_attach: Creation complete after 1s [id=asg-devops-academy-c04-iac04-20200728140137685900000002]
+module.asg.aws_cloudwatch_metric_alarm.ec2_cpu_alarm_scale_out: Creating...
+module.asg.aws_autoscaling_policy.ec2_cpu_policy_scale_in: Creation complete after 1s [id=ec2-cpu-policy-scale-in]
+module.asg.aws_cloudwatch_metric_alarm.ec2_cpu_alarm_scale_in: Creating...
+module.asg.aws_cloudwatch_metric_alarm.ec2_cpu_alarm_scale_out: Creation complete after 1s [id=ec2-cpu-alarm-scale-out]
+module.asg.aws_cloudwatch_metric_alarm.ec2_cpu_alarm_scale_in: Creation complete after 1s [id=ec2-cpu-alarm-scale-in]
+module.alb.aws_alb.alb: Still creating... [50s elapsed]
+module.alb.aws_alb.alb: Still creating... [1m0s elapsed]
+module.alb.aws_alb.alb: Still creating... [1m10s elapsed]
+module.alb.aws_alb.alb: Still creating... [1m20s elapsed]
+module.alb.aws_alb.alb: Still creating... [1m30s elapsed]
+module.alb.aws_alb.alb: Still creating... [1m40s elapsed]
+module.alb.aws_alb.alb: Still creating... [1m50s elapsed]
+module.alb.aws_alb.alb: Still creating... [2m0s elapsed]
+module.alb.aws_alb.alb: Still creating... [2m10s elapsed]
+module.alb.aws_alb.alb: Still creating... [2m20s elapsed]
+module.alb.aws_alb.alb: Still creating... [2m30s elapsed]
+module.alb.aws_alb.alb: Creation complete after 2m35s [id=arn:aws:elasticloadbalancing:ap-southeast-2:149613515908:loadbalancer/app/devops-academy-alb/1c8e8f1f269176fd]
+module.alb.aws_alb_listener.alb_listener: Creating...
+module.alb.aws_alb_listener.alb_listener: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:149613515908:listener/app/devops-academy-alb/1c8e8f1f269176fd/17204510c627927c]
+
+Apply complete! Resources: 21 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+alb_dns_name = devops-academy-alb-1477884753.ap-southeast-2.elb.amazonaws.com
+public_subnet_a_id = subnet-0daa32c1f4fe06c75
+public_subnet_b_id = subnet-0bb73f1948cdf5e52
+public_subnet_c_id = subnet-0252a150b6d230c28
+vpc_id = vpc-09343a38b75a34d71
