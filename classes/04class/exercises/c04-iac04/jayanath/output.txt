@@ -1,0 +1,5 @@
+Accessing the ALB using curl:
+
+> curl doa-alb-706203564.ap-southeast-2.elb.amazonaws.com:80
+ip-192-168-130-42.ap-southeast-2.compute.internal
+

@@ -1,0 +1,42 @@
+[0m[1mdata.aws_ami.amazon-linux-2: Refreshing state...[0m
+[0m[1mmodule.doa_alb_module.aws_security_group.doa_alb_sg: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb_target_group.doa_alb_tg: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb_target_group.doa_alb_tg: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:907095435092:targetgroup/tf-20200729075516663300000001/0e72ab463afefe2d][0m[0m
+[0m[1mmodule.doa_alb_module.aws_security_group.doa_alb_sg: Creation complete after 1s [id=sg-00c555ab4a0c687ff][0m[0m
+[0m[1mmodule.doa_alb_module.aws_launch_configuration.doa_asg_launch_conf: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_launch_configuration.doa_asg_launch_conf: Creation complete after 1s [id=terraform-20200729075518553500000003][0m[0m
+[0m[1mmodule.doa_alb_module.aws_autoscaling_group.doa_asg: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_autoscaling_group.doa_asg: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_autoscaling_group.doa_asg: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_autoscaling_group.doa_asg: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_autoscaling_group.doa_asg: Creation complete after 38s [id=doa-asg][0m[0m
+[0m[1mmodule.doa_alb_module.aws_autoscaling_policy.doa_asg_capacity_increase: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_autoscaling_policy.doa_asg_capacity_decrease: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_autoscaling_policy.doa_asg_capacity_increase: Creation complete after 1s [id=doa-asg-capacity-increase][0m[0m
+[0m[1mmodule.doa_alb_module.aws_cloudwatch_metric_alarm.doa_asg_cw_alarm_scale_up: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_autoscaling_policy.doa_asg_capacity_decrease: Creation complete after 1s [id=doa-asg-capacity-decrease][0m[0m
+[0m[1mmodule.doa_alb_module.aws_cloudwatch_metric_alarm.doa_asg_cw_alarm_scale_down: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_cloudwatch_metric_alarm.doa_asg_cw_alarm_scale_up: Creation complete after 0s [id=doa-asg-cw-alarm-scale_up][0m[0m
+[0m[1mmodule.doa_alb_module.aws_cloudwatch_metric_alarm.doa_asg_cw_alarm_scale_down: Creation complete after 0s [id=doa-asg-cw-alarm-scale-down][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [2m10s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [2m20s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [2m30s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Still creating... [2m40s elapsed][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb.doa_alb: Creation complete after 2m43s [id=arn:aws:elasticloadbalancing:ap-southeast-2:907095435092:loadbalancer/app/doa-alb/4c5b26b04bef880f][0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb_listener.doa_alb_listener: Creating...[0m[0m
+[0m[1mmodule.doa_alb_module.aws_lb_listener.doa_alb_listener: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:907095435092:listener/app/doa-alb/4c5b26b04bef880f/7154fc419188ed21][0m[0m
+[0m[1m[32m
+Apply complete! Resources: 10 added, 0 changed, 0 destroyed.[0m

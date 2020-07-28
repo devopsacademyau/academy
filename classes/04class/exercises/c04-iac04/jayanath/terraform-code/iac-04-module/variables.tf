@@ -8,14 +8,8 @@ variable "vpc_id" {
   description = "VPC ID for deployments"
 }
 
-variable "private_subnet_ids" {
-  type        = list(string)
-  description = "Private subnet IDs for the ASG to provision instances"
-}
-
 variable "public_subnet_ids" {
   type        = list(string)
-  description = "Public subnet IDs for ALB"
 }
 
 variable "scale_up_by" {
