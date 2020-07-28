@@ -8,7 +8,7 @@ data "aws_ami" "amz_linux" {
   }
 }
 
-module "devops-lb" {
+module "devops_lb" {
   source = "./iac-04-module"
 
   image_id                              = data.aws_ami.amz_linux.id
