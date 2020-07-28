@@ -28,8 +28,7 @@ private_subnet_b = {
   "name" = "devopsacademy-iac-private-subnet-b"
 }
 
-igw = "devopsacademy-iac-igw"
-nat_gw = "devopsacademy-iac-nat"
-rt_public = "devopsacademy-iac-rt-public"
+igw        = "devopsacademy-iac-igw"
+nat_gw     = "devopsacademy-iac-nat"
+rt_public  = "devopsacademy-iac-rt-public"
 rt_private = "devopsacademy-iac-rt-private"
-             

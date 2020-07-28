@@ -24,17 +24,17 @@ variable "private_subnet_b" {
 
 
 variable "igw" {
-    type = string
+  type = string
 }
 
 variable "nat_gw" {
-    type = string
+  type = string
 }
 
 variable "rt_public" {
-    type = string
+  type = string
 }
 
 variable "rt_private" {
-    type = string
+  type = string
 }
