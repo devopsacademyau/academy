@@ -1,0 +1,343 @@
+$ terraform apply -var-file main.tfvars                                                                                                                                                                                                                                  ─╯
+data.aws_ami.amz_linux: Refreshing state...
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.devops-lb.aws_autoscaling_attachment.devops will be created
+  + resource "aws_autoscaling_attachment" "devops" {
+      + alb_target_group_arn   = (known after apply)
+      + autoscaling_group_name = (known after apply)
+      + id                     = (known after apply)
+    }
+
+  # module.devops-lb.aws_autoscaling_group.devops will be created
+  + resource "aws_autoscaling_group" "devops" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = 2
+      + force_delete              = false
+      + health_check_grace_period = 300
+      + health_check_type         = (known after apply)
+      + id                        = (known after apply)
+      + load_balancers            = (known after apply)
+      + max_size                  = 4
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = (known after apply)
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + target_group_arns         = (known after apply)
+      + vpc_zone_identifier       = [
+          + "subnet-0299eb6eb289cef54",
+          + "subnet-0f82d6e49b9a6dafd",
+        ]
+      + wait_for_capacity_timeout = "10m"
+
+      + launch_template {
+          + id      = (known after apply)
+          + name    = (known after apply)
+          + version = "$Latest"
+        }
+    }
+
+  # module.devops-lb.aws_autoscaling_policy.scale_in will be created
+  + resource "aws_autoscaling_policy" "scale_in" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = (known after apply)
+      + cooldown                = 180
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "devops-c04iac04-asg-scale-in-policy"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.devops-lb.aws_autoscaling_policy.scale_out will be created
+  + resource "aws_autoscaling_policy" "scale_out" {
+      + adjustment_type         = "PercentChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = (known after apply)
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "devops-c04iac04-asg-scale-out-policy"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 30
+    }
+
+  # module.devops-lb.aws_cloudwatch_metric_alarm.high_add_capacity will be created
+  + resource "aws_cloudwatch_metric_alarm" "high_add_capacity" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = (known after apply)
+      + alarm_name                            = "devops-c04iac04-AlarmHigh-AddCapacity"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = (known after apply)
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + threshold                             = 60
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.devops-lb.aws_cloudwatch_metric_alarm.low_remove_capacity will be created
+  + resource "aws_cloudwatch_metric_alarm" "low_remove_capacity" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = (known after apply)
+      + alarm_name                            = "devops-c04iac04-AlarmLow-RemoveCapacity"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanOrEqualToThreshold"
+      + dimensions                            = (known after apply)
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + threshold                             = 40
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.devops-lb.aws_launch_template.devops will be created
+  + resource "aws_launch_template" "devops" {
+      + arn             = (known after apply)
+      + default_version = (known after apply)
+      + id              = (known after apply)
+      + image_id        = "ami-0a58e22c727337c51"
+      + instance_type   = "t2.micro"
+      + key_name        = "kp-devops"
+      + latest_version  = (known after apply)
+      + name            = (known after apply)
+      + name_prefix     = "devops"
+      + user_data       = "IyEgL2Jpbi9iYXNoCnl1bSB1cGRhdGUgLXkKeXVtIGluc3RhbGwgLXkgaHR0cGQKY3VybCAxNjkuMjU0LjE2OS4yNTQvbGF0ZXN0L21ldGEtZGF0YS9ob3N0bmFtZSA+PiBpbmRleC5odG1sCm12IGluZGV4Lmh0bWwgL3Zhci93d3cvaHRtbC8Kc3lzdGVtY3RsIHN0YXJ0IGh0dHBkCg=="
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interfaces {
+          + associate_public_ip_address = "true"
+          + security_groups             = (known after apply)
+        }
+
+      + tag_specifications {
+          + resource_type = "instance"
+          + tags          = {
+              + "Name"         = "devops-c04iac04-instance"
+              + "deployed-by"  = "terraform"
+              + "devops-class" = "c04-iac04"
+            }
+        }
+    }
+
+  # module.devops-lb.aws_lb.devops will be created
+  + resource "aws_lb" "devops" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "devops-lb"
+      + security_groups            = (known after apply)
+      + subnets                    = [
+          + "subnet-0299eb6eb289cef54",
+          + "subnet-0f82d6e49b9a6dafd",
+        ]
+      + tags                       = {
+          + "Name"         = "devops-c04iac04-lb"
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac04"
+        }
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id = (known after apply)
+          + subnet_id     = (known after apply)
+        }
+    }
+
+  # module.devops-lb.aws_lb_listener.devops will be created
+  + resource "aws_lb_listener" "devops" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.devops-lb.aws_lb_target_group.devops will be created
+  + resource "aws_lb_target_group" "devops" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + deregistration_delay               = 300
+      + id                                 = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = "devops-c04iac04-lb-tg"
+      + port                               = 80
+      + protocol                           = "HTTP"
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + target_type                        = "instance"
+      + vpc_id                             = "vpc-027019faaf6756407"
+
+      + health_check {
+          + enabled             = true
+          + healthy_threshold   = 3
+          + interval            = 200
+          + matcher             = (known after apply)
+          + path                = (known after apply)
+          + port                = "traffic-port"
+          + protocol            = "HTTP"
+          + timeout             = (known after apply)
+          + unhealthy_threshold = 3
+        }
+
+      + stickiness {
+          + cookie_duration = (known after apply)
+          + enabled         = (known after apply)
+          + type            = (known after apply)
+        }
+    }
+
+  # module.devops-lb.aws_security_group.allow_internet will be created
+  + resource "aws_security_group" "allow_internet" {
+      + arn                    = (known after apply)
+      + description            = "Allow HTTP inbound traffic"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Allow HTTP incoming"
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "allow web access"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name"         = "allow web access"
+          + "deployed-by"  = "terraform"
+          + "devops-class" = "c04-iac04"
+        }
+      + vpc_id                 = "vpc-027019faaf6756407"
+    }
+
+Plan: 11 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.devops-lb.aws_security_group.allow_internet: Creating...
+module.devops-lb.aws_lb_target_group.devops: Creating...
+module.devops-lb.aws_lb_target_group.devops: Creation complete after 2s [id=arn:aws:elasticloadbalancing:ap-southeast-2:097922957316:targetgroup/devops-c04iac04-lb-tg/a79eb39d48d38d47]
+module.devops-lb.aws_security_group.allow_internet: Creation complete after 3s [id=sg-009927428a5595a5d]
+module.devops-lb.aws_lb.devops: Creating...
+module.devops-lb.aws_launch_template.devops: Creating...
+module.devops-lb.aws_launch_template.devops: Creation complete after 2s [id=lt-03d9adbd2a96a684e]
+module.devops-lb.aws_autoscaling_group.devops: Creating...
+module.devops-lb.aws_lb.devops: Still creating... [10s elapsed]
+module.devops-lb.aws_autoscaling_group.devops: Still creating... [10s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [20s elapsed]
+module.devops-lb.aws_autoscaling_group.devops: Still creating... [20s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [30s elapsed]
+module.devops-lb.aws_autoscaling_group.devops: Still creating... [30s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [40s elapsed]
+module.devops-lb.aws_autoscaling_group.devops: Still creating... [40s elapsed]
+module.devops-lb.aws_autoscaling_group.devops: Creation complete after 42s [id=tf-asg-20200728112500621800000003]
+module.devops-lb.aws_autoscaling_attachment.devops: Creating...
+module.devops-lb.aws_autoscaling_policy.scale_out: Creating...
+module.devops-lb.aws_autoscaling_policy.scale_in: Creating...
+module.devops-lb.aws_autoscaling_policy.scale_in: Creation complete after 1s [id=devops-c04iac04-asg-scale-in-policy]
+module.devops-lb.aws_cloudwatch_metric_alarm.low_remove_capacity: Creating...
+module.devops-lb.aws_autoscaling_attachment.devops: Creation complete after 1s [id=tf-asg-20200728112500621800000003-20200728112543924700000004]
+module.devops-lb.aws_autoscaling_policy.scale_out: Creation complete after 1s [id=devops-c04iac04-asg-scale-out-policy]
+module.devops-lb.aws_cloudwatch_metric_alarm.high_add_capacity: Creating...
+module.devops-lb.aws_cloudwatch_metric_alarm.low_remove_capacity: Creation complete after 1s [id=devops-c04iac04-AlarmLow-RemoveCapacity]
+module.devops-lb.aws_cloudwatch_metric_alarm.high_add_capacity: Creation complete after 1s [id=devops-c04iac04-AlarmHigh-AddCapacity]
+module.devops-lb.aws_lb.devops: Still creating... [50s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [1m0s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [1m10s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [1m20s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [1m30s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [1m40s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [1m50s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [2m0s elapsed]
+module.devops-lb.aws_lb.devops: Still creating... [2m10s elapsed]
+module.devops-lb.aws_lb.devops: Creation complete after 2m16s [id=arn:aws:elasticloadbalancing:ap-southeast-2:097922957316:loadbalancer/app/devops-lb/b31b237af93f315a]
+module.devops-lb.aws_lb_listener.devops: Creating...
+module.devops-lb.aws_lb_listener.devops: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:097922957316:listener/app/devops-lb/b31b237af93f315a/b3623ca8e0e28f98]
+
+Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: ./terraform.tfstate
+
+Outputs:
+
+load_balancer = {
+  "dns_name" = "devops-lb-710689837.ap-southeast-2.elb.amazonaws.com"
+  "id" = "arn:aws:elasticloadbalancing:ap-southeast-2:097922957316:loadbalancer/app/devops-lb/b31b237af93f315a"
+  "subnets" = [
+    "subnet-0299eb6eb289cef54",
+    "subnet-0f82d6e49b9a6dafd",
+  ]
+}
