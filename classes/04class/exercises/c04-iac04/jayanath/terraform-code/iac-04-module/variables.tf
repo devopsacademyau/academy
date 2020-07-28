@@ -1,34 +1,43 @@
 variable "aws_ami" {
-    type = string
-    description = "AWS AMI ID for the launch configuration"
+  type        = string
+  description = "AWS AMI ID for the launch configuration"
 }
 
 variable "vpc_id" {
-    type = string
-    description = "VPC ID for deployments"
+  type        = string
+  description = "VPC ID for deployments"
 }
 
 variable "private_subnet_ids" {
-    type = list
-    description = "Private subnet IDs for the ASG to provision instances"
+  type        = list(string)
+  description = "Private subnet IDs for the ASG to provision instances"
 }
 
 variable "public_subnet_ids" {
-    type = list
-    description = "Public subnet IDs for ALB"
+  type        = list(string)
+  description = "Public subnet IDs for ALB"
+}
+
+variable "scale_up_by" {
+  type = number
+}
+
+variable "scale_down_by" {
+  type = number
+  description = "This should be a negative value"
 }
 
 ## Variables with default values
 variable "key_pair" {
-    type = string
-    description = "Keys to be used for SSH connectivity"
-    default = "PubHostKeyPair"
+  type        = string
+  description = "Keys to be used for SSH connectivity"
+  default     = "PubHostKeyPair"
 }
 
 variable "instance_type" {
-    type = string
-    description = "AWS EC2 instance type"
-    default = "t2.micro"
+  type        = string
+  description = "AWS EC2 instance type"
+  default     = "t2.micro"
 }
 
 variable "ssh_allowed_ip" {
@@ -38,13 +47,13 @@ variable "ssh_allowed_ip" {
 }
 
 variable "asg_min" {
-    type = int
-    description = "ASG minimum number of hosts"
-    default = 1
+  type        = number
+  description = "ASG minimum number of hosts"
+  default     = 1
 }
 
 variable "asg_max" {
-    type = int
-    description = "ASG maximum number of hosts"
-    default = 2
+  type        = number
+  description = "ASG maximum number of hosts"
+  default     = 3
 }
