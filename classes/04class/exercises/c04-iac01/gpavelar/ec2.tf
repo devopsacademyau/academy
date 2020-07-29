@@ -1,8 +1,9 @@
 resource "aws_instance" "test-ec2-instance" {
-  ami             = "ami-0a58e22c727337c51"
-  instance_type   = "t2.micro"
-  key_name        = "devops-class"
-  security_groups = [aws_security_group.first_terraform_security_group.id]
+  ami                         = "ami-0a58e22c727337c51"
+  instance_type               = "t2.micro"
+  associate_public_ip_address = "true"
+  key_name                    = "devops-class"
+  security_groups             = [aws_security_group.first_terraform_security_group.id]
 
   tags = {
     Name = "test-terraform-instance"
