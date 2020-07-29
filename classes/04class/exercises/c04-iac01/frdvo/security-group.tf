@@ -8,7 +8,7 @@ resource "aws_security_group" "da-allow_ssh-tf" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["122.199.35.116/32"]
+    cidr_blocks = ["122.199.23.68/32"]
   }
 
   egress {
