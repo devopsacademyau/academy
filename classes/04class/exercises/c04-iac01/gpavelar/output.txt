@@ -1,0 +1,460 @@
+gpavelar/c04-iac01 ●  terraform plan
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_policy.terraform-s3-policy will be created
+  + resource "aws_iam_policy" "terraform-s3-policy" {
+      + arn         = (known after apply)
+      + description = "My first terraform s3 policy"
+      + id          = (known after apply)
+      + name        = "test_policy"
+      + path        = "/"
+      + policy      = (known after apply)
+    }
+
+  # aws_iam_policy_attachment.test-attach will be created
+  + resource "aws_iam_policy_attachment" "test-attach" {
+      + id         = (known after apply)
+      + name       = "test-attachment"
+      + policy_arn = (known after apply)
+      + roles      = [
+          + "terraform-s3-role",
+        ]
+    }
+
+  # aws_iam_role.terraform_s3_access_role will be created
+  + resource "aws_iam_role" "terraform_s3_access_role" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                      + Sid       = ""
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "terraform-s3-role"
+      + path                  = "/"
+      + tags                  = {
+          + "tag-key" = "terraform-s3-access"
+        }
+      + unique_id             = (known after apply)
+    }
+
+  # aws_instance.test-ec2-instance will be created
+  + resource "aws_instance" "test-ec2-instance" {
+      + ami                          = "ami-0a58e22c727337c51"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = (known after apply)
+      + availability_zone            = (known after apply)
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.micro"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+      + key_name                     = "devops-class"
+      + network_interface_id         = (known after apply)
+      + outpost_arn                  = (known after apply)
+      + password_data                = (known after apply)
+      + placement_group              = (known after apply)
+      + primary_network_interface_id = (known after apply)
+      + private_dns                  = (known after apply)
+      + private_ip                   = (known after apply)
+      + public_dns                   = (known after apply)
+      + public_ip                    = (known after apply)
+      + security_groups              = (known after apply)
+      + source_dest_check            = true
+      + subnet_id                    = "subnet-0f867dac87c7e75b4"
+      + tags                         = {
+          + "Name" = "test-terraform-instance"
+        }
+      + tenancy                      = (known after apply)
+      + volume_tags                  = (known after apply)
+      + vpc_security_group_ids       = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_s3_bucket.first_terraform_bucket will be created
+  + resource "aws_s3_bucket" "first_terraform_bucket" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = (known after apply)
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Name" = "DevOps-Terraform-bucket"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = (known after apply)
+          + mfa_delete = (known after apply)
+        }
+    }
+
+  # aws_security_group.first_terraform_security_group will be created
+  + resource "aws_security_group" "first_terraform_security_group" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "192.168.0.0/24",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "test terraform sg"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "test terraform sg"
+        }
+      + vpc_id                 = "vpc-074c260483405f2bb"
+    }
+
+  # random_string.random will be created
+  + resource "random_string" "random" {
+      + id          = (known after apply)
+      + length      = 5
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + result      = (known after apply)
+      + special     = false
+      + upper       = false
+    }
+
+Plan: 7 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
+
+
+gpavelar/c04-iac01 ●  terraform apply
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_policy.terraform-s3-policy will be created
+  + resource "aws_iam_policy" "terraform-s3-policy" {
+      + arn         = (known after apply)
+      + description = "My first terraform s3 policy"
+      + id          = (known after apply)
+      + name        = "test_policy"
+      + path        = "/"
+      + policy      = (known after apply)
+    }
+
+  # aws_iam_policy_attachment.test-attach will be created
+  + resource "aws_iam_policy_attachment" "test-attach" {
+      + id         = (known after apply)
+      + name       = "test-attachment"
+      + policy_arn = (known after apply)
+      + roles      = [
+          + "terraform-s3-role",
+        ]
+    }
+
+  # aws_iam_role.terraform_s3_access_role will be created
+  + resource "aws_iam_role" "terraform_s3_access_role" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                      + Sid       = ""
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "terraform-s3-role"
+      + path                  = "/"
+      + tags                  = {
+          + "tag-key" = "terraform-s3-access"
+        }
+      + unique_id             = (known after apply)
+    }
+
+  # aws_instance.test-ec2-instance will be created
+  + resource "aws_instance" "test-ec2-instance" {
+      + ami                          = "ami-0a58e22c727337c51"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = (known after apply)
+      + availability_zone            = (known after apply)
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.micro"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+      + key_name                     = "devops-class"
+      + network_interface_id         = (known after apply)
+      + outpost_arn                  = (known after apply)
+      + password_data                = (known after apply)
+      + placement_group              = (known after apply)
+      + primary_network_interface_id = (known after apply)
+      + private_dns                  = (known after apply)
+      + private_ip                   = (known after apply)
+      + public_dns                   = (known after apply)
+      + public_ip                    = (known after apply)
+      + security_groups              = (known after apply)
+      + source_dest_check            = true
+      + subnet_id                    = "subnet-0f867dac87c7e75b4"
+      + tags                         = {
+          + "Name" = "test-terraform-instance"
+        }
+      + tenancy                      = (known after apply)
+      + volume_tags                  = (known after apply)
+      + vpc_security_group_ids       = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_s3_bucket.first_terraform_bucket will be created
+  + resource "aws_s3_bucket" "first_terraform_bucket" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = (known after apply)
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Name" = "DevOps-Terraform-bucket"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = (known after apply)
+          + mfa_delete = (known after apply)
+        }
+    }
+
+  # aws_security_group.first_terraform_security_group will be created
+  + resource "aws_security_group" "first_terraform_security_group" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "192.168.0.0/24",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "test terraform sg"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "test terraform sg"
+        }
+      + vpc_id                 = "vpc-074c260483405f2bb"
+    }
+
+  # random_string.random will be created
+  + resource "random_string" "random" {
+      + id          = (known after apply)
+      + length      = 5
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + result      = (known after apply)
+      + special     = false
+      + upper       = false
+    }
+
+Plan: 7 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+random_string.random: Creating...
+random_string.random: Creation complete after 0s [id=b1494]
+aws_iam_role.terraform_s3_access_role: Creating...
+aws_security_group.first_terraform_security_group: Creating...
+aws_s3_bucket.first_terraform_bucket: Creating...
+aws_security_group.first_terraform_security_group: Creation complete after 2s [id=sg-0b38db799fe42ca0e]
+aws_instance.test-ec2-instance: Creating...
+aws_iam_role.terraform_s3_access_role: Creation complete after 3s [id=terraform-s3-role]
+aws_s3_bucket.first_terraform_bucket: Creation complete after 4s [id=bucket-terraform-dev-b1494]
+aws_iam_policy.terraform-s3-policy: Creating...
+aws_iam_policy.terraform-s3-policy: Creation complete after 3s [id=arn:aws:iam::478433196210:policy/test_policy]
+aws_iam_policy_attachment.test-attach: Creating...
+aws_iam_policy_attachment.test-attach: Creation complete after 4s [id=test-attachment]
+aws_instance.test-ec2-instance: Still creating... [10s elapsed]
+aws_instance.test-ec2-instance: Still creating... [20s elapsed]
+aws_instance.test-ec2-instance: Still creating... [30s elapsed]
+aws_instance.test-ec2-instance: Creation complete after 33s [id=i-05d5ff4a2ad44c4c5]
+
+Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: /var/scratch/Studies/terraform-states/first-terraform-state.tfstate
