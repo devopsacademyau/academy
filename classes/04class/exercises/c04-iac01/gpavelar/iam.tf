@@ -34,9 +34,11 @@ resource "aws_iam_policy" "terraform-s3-policy" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "VisualEditor0",
       "Effect": "Allow",
-      "Action": ["s3:GetObject", "s3:ListBucket"],
+      "Action": [
+        "s3:Get*",
+        "s3:List*"
+      ],
       "Resource": ["arn:aws:s3:::${aws_s3_bucket.first_terraform_bucket.bucket}", "arn:aws:s3:::${aws_s3_bucket.first_terraform_bucket.bucket}/*"]
     }
   ]
@@ -52,3 +54,8 @@ resource "aws_iam_policy_attachment" "test-attach" {
   policy_arn = aws_iam_policy.terraform-s3-policy.arn
 }
 
+## Provide instance profile
+resource "aws_iam_instance_profile" "terraform_instance_profile" {
+  name = "terraform_instance_profile"
+  role = aws_iam_role.terraform_s3_access_role.name
+}

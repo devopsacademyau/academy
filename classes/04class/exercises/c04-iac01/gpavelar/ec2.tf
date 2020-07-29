@@ -3,6 +3,7 @@ resource "aws_instance" "test-ec2-instance" {
   instance_type               = "t2.micro"
   associate_public_ip_address = "true"
   key_name                    = "devops-class"
+  iam_instance_profile        = aws_iam_instance_profile.terraform_instance_profile.name
   security_groups             = [aws_security_group.first_terraform_security_group.id]
 
   tags = {

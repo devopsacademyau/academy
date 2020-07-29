@@ -16,6 +16,7 @@
 ## Challenges
 
 - Understanding terraform documentation and syntax params ")
+- Attach all required resources. It's not good enough hahaha, just playing with it.
 
 ## Happiness
 
