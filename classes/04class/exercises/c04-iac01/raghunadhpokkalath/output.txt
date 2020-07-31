@@ -1,0 +1,461 @@
+#Verify Terraform Commands
+
+> terraform plan 
+
+raghunadhpokkalath@raghunadhs-MBP raghunadhpokkalath % terraform plan
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_instance_profile.this will be created
+  + resource "aws_iam_instance_profile" "this" {
+      + arn         = (known after apply)
+      + create_date = (known after apply)
+      + id          = (known after apply)
+      + name        = "iam_profile"
+      + path        = "/"
+      + role        = "ec2_s3_role"
+      + roles       = (known after apply)
+      + unique_id   = (known after apply)
+    }
+
+  # aws_iam_role.ec2_s3 will be created
+  + resource "aws_iam_role" "ec2_s3" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "ec2_s3_role"
+      + path                  = "/"
+      + tags                  = {
+          + "Name" = "devops-academy-ec2-s3-role"
+        }
+      + unique_id             = (known after apply)
+    }
+
+  # aws_iam_role_policy.ec2_s3 will be created
+  + resource "aws_iam_role_policy" "ec2_s3" {
+      + id     = (known after apply)
+      + name   = "ec2_s3"
+      + policy = (known after apply)
+      + role   = (known after apply)
+    }
+
+  # aws_instance.ec2 will be created
+  + resource "aws_instance" "ec2" {
+      + ami                          = "ami-0a58e22c727337c51"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = true
+      + availability_zone            = (known after apply)
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + iam_instance_profile         = "iam_profile"
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.nano"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+      + key_name                     = "EC2KeyPair"
+      + network_interface_id         = (known after apply)
+      + outpost_arn                  = (known after apply)
+      + password_data                = (known after apply)
+      + placement_group              = (known after apply)
+      + primary_network_interface_id = (known after apply)
+      + private_dns                  = (known after apply)
+      + private_ip                   = (known after apply)
+      + public_dns                   = (known after apply)
+      + public_ip                    = (known after apply)
+      + security_groups              = (known after apply)
+      + source_dest_check            = true
+      + subnet_id                    = "subnet-0ff0ad4440d0df64e"
+      + tags                         = {
+          + "Name" = "devops-academy-ec2"
+        }
+      + tenancy                      = (known after apply)
+      + volume_tags                  = (known after apply)
+      + vpc_security_group_ids       = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_s3_bucket.this will be created
+  + resource "aws_s3_bucket" "this" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = "devops-academy-terraform"
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Name" = "Devops S3 Bucket-Terraform"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = (known after apply)
+          + mfa_delete = (known after apply)
+        }
+    }
+
+  # aws_security_group.allow_ssh will be created
+  + resource "aws_security_group" "allow_ssh" {
+      + arn                    = (known after apply)
+      + description            = "Allow SSH traffic from home ip"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "58.96.95.89/32",
+                ]
+              + description      = "Allow SSH connection"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "allow_ssh"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + vpc_id                 = "vpc-076a05ec0f3be4895"
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
+
+> terraform apply
+
+
+raghunadhpokkalath@raghunadhs-MBP raghunadhpokkalath % terraform apply
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_instance_profile.this will be created
+  + resource "aws_iam_instance_profile" "this" {
+      + arn         = (known after apply)
+      + create_date = (known after apply)
+      + id          = (known after apply)
+      + name        = "iam_profile"
+      + path        = "/"
+      + role        = "ec2_s3_role"
+      + roles       = (known after apply)
+      + unique_id   = (known after apply)
+    }
+
+  # aws_iam_role.ec2_s3 will be created
+  + resource "aws_iam_role" "ec2_s3" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "ec2_s3_role"
+      + path                  = "/"
+      + tags                  = {
+          + "Name" = "devops-academy-ec2-s3-role"
+        }
+      + unique_id             = (known after apply)
+    }
+
+  # aws_iam_role_policy.ec2_s3 will be created
+  + resource "aws_iam_role_policy" "ec2_s3" {
+      + id     = (known after apply)
+      + name   = "ec2_s3"
+      + policy = (known after apply)
+      + role   = (known after apply)
+    }
+
+  # aws_instance.ec2 will be created
+  + resource "aws_instance" "ec2" {
+      + ami                          = "ami-0a58e22c727337c51"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = true
+      + availability_zone            = (known after apply)
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + iam_instance_profile         = "iam_profile"
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.nano"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+      + key_name                     = "EC2KeyPair"
+      + network_interface_id         = (known after apply)
+      + outpost_arn                  = (known after apply)
+      + password_data                = (known after apply)
+      + placement_group              = (known after apply)
+      + primary_network_interface_id = (known after apply)
+      + private_dns                  = (known after apply)
+      + private_ip                   = (known after apply)
+      + public_dns                   = (known after apply)
+      + public_ip                    = (known after apply)
+      + security_groups              = (known after apply)
+      + source_dest_check            = true
+      + subnet_id                    = "subnet-0ff0ad4440d0df64e"
+      + tags                         = {
+          + "Name" = "devops-academy-ec2"
+        }
+      + tenancy                      = (known after apply)
+      + volume_tags                  = (known after apply)
+      + vpc_security_group_ids       = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_s3_bucket.this will be created
+  + resource "aws_s3_bucket" "this" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = "devops-academy-terraform"
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Name" = "Devops S3 Bucket-Terraform"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = (known after apply)
+          + mfa_delete = (known after apply)
+        }
+    }
+
+  # aws_security_group.allow_ssh will be created
+  + resource "aws_security_group" "allow_ssh" {
+      + arn                    = (known after apply)
+      + description            = "Allow SSH traffic from home ip"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "58.96.95.89/32",
+                ]
+              + description      = "Allow SSH connection"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "allow_ssh"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + vpc_id                 = "vpc-076a05ec0f3be4895"
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_iam_role.ec2_s3: Creating...
+aws_security_group.allow_ssh: Creating...
+aws_s3_bucket.this: Creating...
+aws_security_group.allow_ssh: Creation complete after 2s [id=sg-008216ee6108fa5ba]
+aws_iam_role.ec2_s3: Creation complete after 2s [id=ec2_s3_role]
+aws_iam_instance_profile.this: Creating...
+aws_s3_bucket.this: Creation complete after 4s [id=devops-academy-terraform]
+aws_iam_role_policy.ec2_s3: Creating...
+aws_iam_instance_profile.this: Creation complete after 3s [id=iam_profile]
+aws_instance.ec2: Creating...
+aws_iam_role_policy.ec2_s3: Creation complete after 2s [id=ec2_s3_role:ec2_s3]
+aws_instance.ec2: Still creating... [10s elapsed]
+aws_instance.ec2: Still creating... [20s elapsed]
+aws_instance.ec2: Still creating... [30s elapsed]
+aws_instance.ec2: Creation complete after 31s [id=i-0d29bc8a28f3b1efe]
+
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: /Users/raghunadhpokkalath/Documents/AWS/DevopsAcadamy/terraform/terraform.tfstate
+
+
+##Verify s3 connection from EC2 instance after uploading a file
+[ec2-user@ip-10-0-101-206 ~]$ aws s3 ls devops-academy-terraform
+2020-07-26 12:39:14      20323 ironman.png
