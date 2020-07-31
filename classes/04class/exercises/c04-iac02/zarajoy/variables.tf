@@ -11,7 +11,7 @@ variable "vpcCIDR" {
 }
 
 variable "instanceTenancy" {
-    type    = list(string)
+    type    = string
     description = "defult or dedicated"
     default = ["default","dedicated"]
 }
