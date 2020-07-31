@@ -18,6 +18,7 @@ The CEO is worried that a traffic peak may bring down the website and decided to
 </p>
 
 ## Task
+
 ### Project Team: 4 people
 
 Your team needs to run a pilot migration to AWS cloud considering the following requirements:
@@ -42,12 +43,14 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 - For this pilot we are aiming to have as much as possible as code
 - Single Github repo.
 
-## Grading
+## Grading 
+
+> Just for reference, not really graded
+
 - Planning & team work (planning, agile practices, Pull requests review, Trello board) - 25%
 - Presentation - 10%
 - Documentation (READMEs, solution diagram, etc) - 15%
 - Technical solution working - 50%
-
 
 ## Kick off (today!)
 
@@ -55,13 +58,11 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 - Decide on teams (check with instructors)
 - Create Github repo (Automated) - Something like `202X-xxx-projectX-groupX`
 - Create channel in Slack with name (`202X-xxx-projectX-groupX`) - (check with instructors)
-  
-Your tasks:
-- [Create initial project backlog](../../scripts/projects/README.md)
+- [Create initial project backlog](../../scripts/projects/README.md) - (instructors)
 
 ## Resources
 
-- Source code of the wordpress application (Github)
+- Source code of the Wordpress application (Github)
 - Use Slack channel for communication and questions to teachers
 - Special readings for you:
   - [Tutorial: Using Amazon EFS file systems with Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/tutorial-efs-volumes.html)
