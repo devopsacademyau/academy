@@ -1,0 +1,323 @@
+$ terraform plan -var-file ./main.tfvars -out vpc.plan
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_eip.nat will be created
+  + resource "aws_eip" "nat" {
+      + allocation_id     = (known after apply)
+      + association_id    = (known after apply)
+      + customer_owned_ip = (known after apply)
+      + domain            = (known after apply)
+      + id                = (known after apply)
+      + instance          = (known after apply)
+      + network_interface = (known after apply)
+      + private_dns       = (known after apply)
+      + private_ip        = (known after apply)
+      + public_dns        = (known after apply)
+      + public_ip         = (known after apply)
+      + public_ipv4_pool  = (known after apply)
+      + vpc               = true
+    }
+
+  # aws_internet_gateway.tf-igw will be created
+  + resource "aws_internet_gateway" "tf-igw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "devopsacademy-igw"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_nat_gateway.tf-ngw will be created
+  + resource "aws_nat_gateway" "tf-ngw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Name" = "devopsacademy-ngw"
+        }
+    }
+
+  # aws_route.private will be created
+  + resource "aws_route" "private" {
+      + destination_cidr_block     = "0.0.0.0/0"
+      + destination_prefix_list_id = (known after apply)
+      + egress_only_gateway_id     = (known after apply)
+      + gateway_id                 = (known after apply)
+      + id                         = (known after apply)
+      + instance_id                = (known after apply)
+      + instance_owner_id          = (known after apply)
+      + nat_gateway_id             = (known after apply)
+      + network_interface_id       = (known after apply)
+      + origin                     = (known after apply)
+      + route_table_id             = (known after apply)
+      + state                      = (known after apply)
+    }
+
+  # aws_route.public will be created
+  + resource "aws_route" "public" {
+      + destination_cidr_block     = "0.0.0.0/0"
+      + destination_prefix_list_id = (known after apply)
+      + egress_only_gateway_id     = (known after apply)
+      + gateway_id                 = (known after apply)
+      + id                         = (known after apply)
+      + instance_id                = (known after apply)
+      + instance_owner_id          = (known after apply)
+      + nat_gateway_id             = (known after apply)
+      + network_interface_id       = (known after apply)
+      + origin                     = (known after apply)
+      + route_table_id             = (known after apply)
+      + state                      = (known after apply)
+    }
+
+  # aws_route.tf-pub_internet_access will be created
+  + resource "aws_route" "tf-pub_internet_access" {
+      + destination_cidr_block     = "0.0.0.0/0"
+      + destination_prefix_list_id = (known after apply)
+      + egress_only_gateway_id     = (known after apply)
+      + gateway_id                 = (known after apply)
+      + id                         = (known after apply)
+      + instance_id                = (known after apply)
+      + instance_owner_id          = (known after apply)
+      + nat_gateway_id             = (known after apply)
+      + network_interface_id       = (known after apply)
+      + origin                     = (known after apply)
+      + route_table_id             = (known after apply)
+      + state                      = (known after apply)
+    }
+
+  # aws_route_table.private will be created
+  + resource "aws_route_table" "private" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = (known after apply)
+      + tags             = {
+          + "Name" = "devopsacademy-rt-private"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table.public will be created
+  + resource "aws_route_table" "public" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = (known after apply)
+      + tags             = {
+          + "Name" = "devopsacademy-rt-public"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.private[0] will be created
+  + resource "aws_route_table_association" "private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.private[1] will be created
+  + resource "aws_route_table_association" "private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.public[0] will be created
+  + resource "aws_route_table_association" "public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.public[1] will be created
+  + resource "aws_route_table_association" "public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_subnet.private[0] will be created
+  + resource "aws_subnet" "private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.30.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private-a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.private[1] will be created
+  + resource "aws_subnet" "private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.31.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private-b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public[0] will be created
+  + resource "aws_subnet" "public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.10.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public[1] will be created
+  + resource "aws_subnet" "public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.11.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public-b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_vpc.tf-vpc will be created
+  + resource "aws_vpc" "tf-vpc" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = (known after apply)
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = (known after apply)
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "devopsacademy-i"
+        }
+    }
+
+Plan: 17 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+This plan was saved to: vpc.plan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "vpc.plan"
+
+
+$ terraform apply vpc.plan
+aws_eip.nat: Creating...
+aws_vpc.tf-vpc: Creating...
+aws_eip.nat: Creation complete after 1s [id=eipalloc-02ddc2b9da1156180]
+aws_vpc.tf-vpc: Creation complete after 3s [id=vpc-096f36b400b64c636]
+aws_route_table.private: Creating...
+aws_internet_gateway.tf-igw: Creating...
+aws_subnet.public[0]: Creating...
+aws_route_table.public: Creating...
+aws_subnet.private[1]: Creating...
+aws_subnet.private[0]: Creating...
+aws_subnet.public[1]: Creating...
+aws_route_table.private: Creation complete after 2s [id=rtb-0bad86ac8738609d5]
+aws_route_table.public: Creation complete after 2s [id=rtb-0c39e1aa5d2888da8]
+aws_subnet.private[1]: Creation complete after 2s [id=subnet-0eee8d97d2dccd733]
+aws_subnet.private[0]: Creation complete after 2s [id=subnet-0c926be01c943a635]
+aws_route_table_association.private[1]: Creating...
+aws_route_table_association.private[0]: Creating...
+aws_subnet.public[1]: Creation complete after 3s [id=subnet-0e776a920f09639f2]
+aws_internet_gateway.tf-igw: Creation complete after 3s [id=igw-06e5c3c5f9dcc2525]
+aws_subnet.public[0]: Creation complete after 3s [id=subnet-0c4cf28fa39eadeea]
+aws_route_table_association.private[0]: Creation complete after 1s [id=rtbassoc-0bc0ff2b95ab738f8]
+aws_route_table_association.private[1]: Creation complete after 1s [id=rtbassoc-0bbbcc2ce84de5470]
+aws_route_table_association.public[1]: Creating...
+aws_route.public: Creating...
+aws_route.tf-pub_internet_access: Creating...
+aws_route_table_association.public[0]: Creating...
+aws_nat_gateway.tf-ngw: Creating...
+aws_route_table_association.public[1]: Creation complete after 1s [id=rtbassoc-0f01e2f5a706c6b8a]
+aws_route_table_association.public[0]: Creation complete after 1s [id=rtbassoc-00cefa6bb4d9b78ac]
+aws_route.tf-pub_internet_access: Creation complete after 1s [id=r-rtb-0c39e1aa5d2888da81080289494]
+aws_route.public: Creation complete after 1s [id=r-rtb-0c39e1aa5d2888da81080289494]
+aws_nat_gateway.tf-ngw: Still creating... [10s elapsed]
+aws_nat_gateway.tf-ngw: Still creating... [20s elapsed]
+aws_nat_gateway.tf-ngw: Still creating... [30s elapsed]
+aws_nat_gateway.tf-ngw: Still creating... [40s elapsed]
+aws_nat_gateway.tf-ngw: Still creating... [50s elapsed]
+aws_nat_gateway.tf-ngw: Still creating... [1m0s elapsed]
+aws_nat_gateway.tf-ngw: Still creating... [1m10s elapsed]
+aws_nat_gateway.tf-ngw: Still creating... [1m20s elapsed]
+aws_nat_gateway.tf-ngw: Still creating... [1m30s elapsed]
+aws_nat_gateway.tf-ngw: Creation complete after 1m37s [id=nat-00f92b9fd0c6261a4]
+aws_route.private: Creating...
+aws_route.private: Creation complete after 0s [id=r-rtb-0bad86ac8738609d51080289494]
+
+Apply complete! Resources: 17 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: ~/DA_class4/academy/classes/04class/exercises/c04-iac02/nimmi89/terraform.tfstate
+
+Outputs:
+
+private_subnet1 = 10.0.30.0/24
+private_subnet2 = 10.0.31.0/24
+public_subnet1 = 10.0.10.0/24
+public_subnet2 = 10.0.11.0/24
+vpcCIDRblock = 10.0.0.0/16
+
