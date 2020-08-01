@@ -1,0 +1,55 @@
+$ terraform apply "c04-iac04"
+module.DA-iac-04-module.aws_lb_target_group.tf-da-tg: Creating...
+module.DA-iac-04-module.aws_security_group.tf-da-sg: Creating...
+module.DA-iac-04-module.aws_lb_target_group.tf-da-tg: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:438549961569:targetgroup/c04-iac04-tg/a3f47d3db57bd388]
+module.DA-iac-04-module.aws_security_group.tf-da-sg: Creation complete after 2s [id=sg-09624bc7f4d32e8f2]
+module.DA-iac-04-module.aws_launch_configuration.tf-da-asgconf: Creating...
+module.DA-iac-04-module.aws_lb.tf-da-lb: Creating...
+module.DA-iac-04-module.aws_launch_configuration.tf-da-asgconf: Creation complete after 0s [id=c04-iac04-config]
+module.DA-iac-04-module.aws_autoscaling_group.tf-da-asg: Creating...
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [10s elapsed]
+module.DA-iac-04-module.aws_autoscaling_group.tf-da-asg: Still creating... [10s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [20s elapsed]
+module.DA-iac-04-module.aws_autoscaling_group.tf-da-asg: Still creating... [20s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [30s elapsed]
+module.DA-iac-04-module.aws_autoscaling_group.tf-da-asg: Still creating... [30s elapsed]
+module.DA-iac-04-module.aws_autoscaling_group.tf-da-asg: Creation complete after 38s [id=c04-iac04-asg]
+module.DA-iac-04-module.aws_autoscaling_attachment.tf-asg-attachment: Creating...
+module.DA-iac-04-module.aws_autoscaling_policy.tf-da-scale-in: Creating...
+module.DA-iac-04-module.aws_autoscaling_policy.tf-da-scale-out: Creating...
+module.DA-iac-04-module.aws_autoscaling_policy.tf-da-scale-in: Creation complete after 1s [id=c04-iac04-scale-in]
+module.DA-iac-04-module.aws_autoscaling_attachment.tf-asg-attachment: Creation complete after 1s [id=c04-iac04-asg-20200801105352498900000001]
+module.DA-iac-04-module.aws_autoscaling_policy.tf-da-scale-out: Creation complete after 1s [id=c04-aws04-scale-out]
+module.DA-iac-04-module.aws_cloudwatch_metric_alarm.tf-da-remove-capacity: Creating...
+module.DA-iac-04-module.aws_cloudwatch_metric_alarm.tf-da_add_capacity: Creating...
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [40s elapsed]
+module.DA-iac-04-module.aws_cloudwatch_metric_alarm.tf-da-remove-capacity: Creation complete after 1s [id=c04-iac04-Alarm-RemoveCapacity]
+module.DA-iac-04-module.aws_cloudwatch_metric_alarm.tf-da_add_capacity: Creation complete after 1s [id=c04-iac04-Alarm-AddCapacity]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [50s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [1m0s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [1m10s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [1m20s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [1m30s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [1m40s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [1m50s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [2m0s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [2m10s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [2m20s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Still creating... [2m30s elapsed]
+module.DA-iac-04-module.aws_lb.tf-da-lb: Creation complete after 2m34s [id=arn:aws:elasticloadbalancing:ap-southeast-2:438549961569:loadbalancer/app/c04-iac04-lb/b121b21d15819d09]
+module.DA-iac-04-module.aws_lb_listener.tf-da-lb-listener: Creating...
+module.DA-iac-04-module.aws_lb_listener.tf-da-lb-listener: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:438549961569:listener/app/c04-iac04-lb/b121b21d15819d09/94d2a7aa64889d53]
+
+Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: ~/DA_class4/academy/classes/04class/exercises/c04-iac04/nimmi89/terraform-code/terraform.tfstate
+
+Outputs:
+
+lb_dns_name = c04-iac04-lb-640153939.ap-southeast-2.elb.amazonaws.com
+lb_tg_arn = arn:aws:elasticloadbalancing:ap-southeast-2:438549961569:targetgroup/c04-iac04-tg/a3f47d3db57bd388
