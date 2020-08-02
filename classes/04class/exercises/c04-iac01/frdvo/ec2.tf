@@ -1,6 +1,26 @@
+data "aws_ami" "aws-linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn-ami-hvm*"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
 # Define a new resource of the EC2 instace type
 resource "aws_instance" "devops_academy_ec2" {
-  ami               = "ami-088ff0e3bde7b3fdf"
+  ami               = data.aws_ami.aws-linux.id
   availability_zone = "ap-southeast-2a"
   instance_type     = "t2.micro"
   iam_instance_profile = "ec2-read-s3-role-tf-profile2"
