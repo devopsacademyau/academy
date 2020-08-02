@@ -1,0 +1,8 @@
+$ curl devops-lb-710689837.ap-southeast-2.elb.amazonaws.com
+ip-172-16-10-215.ap-southeast-2.compute.internal%
+
+$ curl devops-lb-710689837.ap-southeast-2.elb.amazonaws.com
+ip-172-16-10-215.ap-southeast-2.compute.internal%
+
+$ curl devops-lb-710689837.ap-southeast-2.elb.amazonaws.com
+ip-172-16-11-184.ap-southeast-2.compute.internal%
