@@ -2,7 +2,7 @@
 
 ## Terraform plan output
 
-
+```
 ➜  mfreitassm git:(mfreitassm/c04-iac02) ✗ terraform plan -var-file="main.tfvars" 
 
 Refreshing Terraform state in-memory prior to plan...
@@ -264,7 +264,7 @@ Terraform will perform the following actions:
     }
 
 Plan: 14 to add, 1 to change, 14 to destroy.
-
+```
 ------------------------------------------------------------------------
 ***
 Answer for exercise [c04-iac03](https://github.com/devopsacademyau/academy/blob/205c822cbdcd0fd791608eed129941bbee16ce5f/classes/04class/exercises/c04-iac03/README.md)
