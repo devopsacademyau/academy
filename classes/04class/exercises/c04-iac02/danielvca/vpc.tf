@@ -51,7 +51,6 @@ resource "aws_internet_gateway" "internet_gw" {
   vpc_id = aws_vpc.devopsacademyiac.id
 }
 
-# Create subnets
 resource "aws_subnet" "private_subnet_a" {
   vpc_id            = aws_vpc.devopsacademyiac.id
   cidr_block        = var.subnets.private_subnet_a.cidr
@@ -76,7 +75,6 @@ resource "aws_subnet" "public_subnet_b" {
   availability_zone = var.subnets.public_subnet_b.az
 }
 
-# Route table for public subnets
 resource "aws_route_table" "iac_vpc_public_rt" {
   vpc_id = aws_vpc.devopsacademyiac.id
 
@@ -85,9 +83,8 @@ resource "aws_route_table" "iac_vpc_public_rt" {
     gateway_id = aws_internet_gateway.internet_gw.id
   }
 
-}
+} 
 
-# Associate public subnets with the public RT
 resource "aws_route_table_association" "public_a" {
   subnet_id      = aws_subnet.public_subnet_a.id
   route_table_id = aws_route_table.iac_vpc_public_rt.id
@@ -98,12 +95,10 @@ resource "aws_route_table_association" "public_b" {
   route_table_id = aws_route_table.iac_vpc_public_rt.id
 }
 
-# Create Elastic IP for the NAT GW
 resource "aws_eip" "nat_ip" {
 
 }
 
-# Create a NAT Gateway in public subnet-a
 resource "aws_nat_gateway" "nat_gw" {
   allocation_id = aws_eip.nat_ip.id
   subnet_id     = aws_subnet.private_subnet_a.id
@@ -111,7 +106,6 @@ resource "aws_nat_gateway" "nat_gw" {
 
 }
 
-# Route table for private subnets
 resource "aws_route_table" "route_table" {
   vpc_id = aws_vpc.devopsacademyiac.id
 
@@ -122,7 +116,6 @@ resource "aws_route_table" "route_table" {
 
 }
 
-# Associate private subnets with the private RT
 resource "aws_route_table_association" "private_subnet_a" {
   subnet_id      = aws_subnet.private_subnet_a.id
   route_table_id = aws_route_table.route_table.id

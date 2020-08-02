@@ -8,5 +8,6 @@ variable "subnets" {
     cidr = string
     az   = string
   }))
-  description = "subnet name, cidr and az"
+  description = "subnets"
 }
+ 
