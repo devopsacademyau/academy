@@ -8,6 +8,7 @@ module "team-reviewers" {
     "christina-roperto",
     "roperto",
     "luizfds",
-    "lgothelipe"
+    "lgothelipe",
+    "alanlima"
   ]
 }
