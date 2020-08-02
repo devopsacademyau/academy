@@ -1,6 +1,9 @@
 resource "github_repository" "repo" {
   name         = var.group_name
 
+  allow_merge_commit     = false 
+  allow_rebase_merge     = false 
+  
   private      = false
   has_projects = true
   has_issues   = true
