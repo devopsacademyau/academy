@@ -21,13 +21,13 @@ resource "aws_security_group" "allow_http" {
 }
 
 resource "aws_security_group" "allow_only_alb" {
-    vpc_id = var.vpc.id   
+  vpc_id = var.vpc.id
   name   = "allow_only_alb"
   ingress {
-    description = "Allow only ALB connection to EC2"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"  
+    description     = "Allow only ALB connection to EC2"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
     security_groups = [aws_security_group.allow_http.id]
   }
   egress {
@@ -77,13 +77,13 @@ resource "aws_lb_listener" "this" {
 
 
 resource "aws_launch_configuration" "this" {
-  name_prefix = "devopsacademy-iac-launchconfig"
-  image_id      = var.ami_id
-  instance_type = "t2.micro"
-  key_name = "EC2KeyPair"
-  user_data_base64 =  base64encode(var.user_data)
+  name_prefix                 = "devopsacademy-iac-launchconfig"
+  image_id                    = var.ami_id
+  instance_type               = "t2.micro"
+  key_name                    = "EC2KeyPair"
+  user_data                   = file("${path.module}/user_data.sh")
   associate_public_ip_address = true
-  security_groups =  [aws_security_group.allow_only_alb.id]
+  security_groups             = [aws_security_group.allow_only_alb.id]
   lifecycle {
     create_before_destroy = true
   }
@@ -91,12 +91,12 @@ resource "aws_launch_configuration" "this" {
 
 
 resource "aws_autoscaling_group" "this" {
-  name                = "devops-academy-asg-iac"
-  vpc_zone_identifier = var.public_subnet_ids
+  name                 = "devops-academy-asg-iac"
+  vpc_zone_identifier  = var.public_subnet_ids
   launch_configuration = aws_launch_configuration.this.id
-  target_group_arns = [aws_lb_target_group.this.arn]
-  min_size       = 1
-  max_size       = 2
+  target_group_arns    = [aws_lb_target_group.this.arn]
+  min_size             = 1
+  max_size             = 2
 
   lifecycle {
     create_before_destroy = true
@@ -104,23 +104,55 @@ resource "aws_autoscaling_group" "this" {
 }
 
 resource "aws_autoscaling_policy" "scale_up" {
-  name                    = "devops-academy-asg-scale-up"
-  scaling_adjustment      = var.scales.up
-  adjustment_type         = "ChangeInCapacity"
-  cooldown                = 300
+  name                   = "devops-academy-asg-scale-up"
+  scaling_adjustment     = var.scales.up
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.this.name
 
 }
 
 resource "aws_autoscaling_policy" "scale_down" {
-  name                    = "devops-academy-asg-scale-down"
-  scaling_adjustment      = var.scales.down
-  adjustment_type         = "ChangeInCapacity"
-  cooldown                = 300
+  name                   = "devops-academy-asg-scale-down"
+  scaling_adjustment     = var.scales.down
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.this.name
+}
+
+resource "aws_cloudwatch_metric_alarm" "scale_up" {
+  alarm_name          = "devops-academy-asg-cw-alaram-up"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "80"
+
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_group.this.name
+  }
+
+  alarm_description = "Monitors cpu utilization and scale up the instance"
+  alarm_actions     = [aws_autoscaling_policy.scale_up.arn]
 }
 
 
 
+resource "aws_cloudwatch_metric_alarm" "scale_down" {
+  alarm_name          = "devops-academy-asg-cw-alaram-down"
+  comparison_operator = "LessThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "80"
 
-
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_group.this.name
+  }
+  alarm_description = "Monitors cpu utilization and scale down the instance"
+  alarm_actions     = [aws_autoscaling_policy.scale_down.arn]
+}

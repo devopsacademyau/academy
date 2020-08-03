@@ -4,5 +4,5 @@ module "devopsacademy-iac-alb-asg" {
   public_subnet_ids = var.public_subnet_ids
   ami_id            = var.ami_id
   tags              = var.tags
-  scales        = var.scales
+  scales            = var.scales
 }
