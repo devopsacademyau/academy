@@ -2,6 +2,8 @@
 
 ## Terraform plan output
 
+```
+
 terraform plan -var-file=./main.tfvars -out test.txt
 Refreshing Terraform state in-memory prior to plan...
 The refreshed state will be used to calculate this plan, but will not be
@@ -246,6 +248,8 @@ This plan was saved to: test.txt
 
 To perform exactly these actions, run the following command to apply:
     terraform apply "test.txt"
+
+```    
 
 
 <!-- Don't change anything below this point-->
