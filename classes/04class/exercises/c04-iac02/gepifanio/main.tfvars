@@ -1,10 +1,24 @@
 key_pair_name   = "MyDevopsAcademyKey" 
 vpc_cidr = "10.0.0.0/16"
-subnet_1_name = "private-a"
-subnet_1_cidr = "10.0.0.0/19"
-subnet_2_name = "private-b"
-subnet_2_cidr = "10.0.32.0/19" 
-subnet_3_name = "public-a"
-subnet_3_cidr = "10.0.64.0/18"
-subnet_4_name = "public-b"
-subnet_4_cidr = "10.0.128.0/18"
+
+public_subnets = {
+    public_a = {
+        cidr_block = "10.0.64.0/18"
+        zone       = "ap-southeast-2a"
+    }
+    public_b = {
+        cidr_block = "10.0.128.0/18"
+        zone       = "ap-southeast-2b"
+    }
+}
+
+private_subnets = {
+    private_a = {
+        cidr_block = "10.0.0.0/19"
+        zone       = "ap-southeast-2a"
+    }
+    private_b = {
+        cidr_block = "10.0.32.0/19"
+        zone       = "ap-southeast-2b"
+    }
+}

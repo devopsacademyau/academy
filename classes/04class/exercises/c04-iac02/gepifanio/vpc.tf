@@ -1,3 +1,7 @@
+data "aws_availability_zones" "available" {
+    state = "available"
+}
+
 resource "aws_vpc" "vpc_iac" {
     cidr_block       = var.vpc_cidr
     instance_tenancy = "default"
@@ -7,43 +11,23 @@ resource "aws_vpc" "vpc_iac" {
     }
 }
 
-resource "aws_subnet" "subnet_1_private" {
-    vpc_id     = aws_vpc.vpc_iac.id
-    cidr_block = var.subnet_1_cidr
-    availability_zone = var.az_southeast_a
-
+resource "aws_subnet" "public" {
+    for_each                = var.public_subnets
+    vpc_id                  = aws_vpc.vpc_iac.id
+    cidr_block              = each.value.cidr_block
+    availability_zone       = each.value.zone
     tags = {
-        Name = var.subnet_1_name
+        Name = each.key
     }
 }
 
-resource "aws_subnet" "subnet_2_private" {
-    vpc_id     = aws_vpc.vpc_iac.id
-    cidr_block = var.subnet_2_cidr
-    availability_zone = var.az_southeast_b
-
+resource "aws_subnet" "private" {
+    for_each                = var.private_subnets
+    vpc_id                  = aws_vpc.vpc_iac.id
+    cidr_block              = each.value.cidr_block
+    availability_zone       = each.value.zone
     tags = {
-        Name = var.subnet_2_name
-    }
-}
-
-resource "aws_subnet" "subnet_3_public" {
-    vpc_id     = aws_vpc.vpc_iac.id
-    cidr_block = var.subnet_3_cidr
-    availability_zone = var.az_southeast_a
-
-    tags = {
-        Name = var.subnet_3_name
-    }
-}
-
-resource "aws_subnet" "subnet_4_public" {
-    vpc_id     = aws_vpc.vpc_iac.id
-    cidr_block = var.subnet_4_cidr
-    availability_zone = var.az_southeast_b
-
-    tags = {
-        Name = var.subnet_4_name
+        Name = each.key
     }
 }
 
@@ -61,7 +45,7 @@ resource "aws_eip" "lb" {
 
 resource "aws_nat_gateway" "ngw" {
     allocation_id = aws_eip.lb.id
-    subnet_id     = aws_subnet.subnet_1_private.id
+    subnet_id     = values(aws_subnet.private)[0].id
 
     tags = {
         Name = "ngw-iac"
@@ -81,13 +65,9 @@ resource "aws_route_table" "route_table_private" {
     }
 }
 
-resource "aws_route_table_association" "private-a" {
-    subnet_id      = aws_subnet.subnet_1_private.id
-    route_table_id = aws_route_table.route_table_private.id
-}
-
-resource "aws_route_table_association" "private-b" {
-    subnet_id      = aws_subnet.subnet_2_private.id
+resource "aws_route_table_association" "private" {
+    for_each       = aws_subnet.private
+    subnet_id      = each.value.id
     route_table_id = aws_route_table.route_table_private.id
 }
 
@@ -104,12 +84,8 @@ resource "aws_route_table" "route_table_public" {
     }
 }
 
-resource "aws_route_table_association" "public-a" {
-    subnet_id      = aws_subnet.subnet_3_public.id
-    route_table_id = aws_route_table.route_table_public.id
-}
-
-resource "aws_route_table_association" "public-b" {
-    subnet_id      = aws_subnet.subnet_4_public.id
+resource "aws_route_table_association" "public" {
+    for_each       = aws_subnet.public
+    subnet_id      = each.value.id
     route_table_id = aws_route_table.route_table_public.id
 }
