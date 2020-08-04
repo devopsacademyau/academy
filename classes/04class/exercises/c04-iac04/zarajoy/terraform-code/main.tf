@@ -31,4 +31,6 @@ module "app_load_balancer" {
   image_id = var.image_id
   min_size      	= var.min_size
   max_size      	= var.max_size
+  add_threshold	= var.add_threshold
+  remove_threshold	= var.remove_threshold
 }

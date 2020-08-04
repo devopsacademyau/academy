@@ -75,7 +75,7 @@ resource "aws_cloudwatch_metric_alarm" "add" {
   statistic           = "Average"
   period              = 120
   evaluation_periods  = 2
-  threshold           = 60
+  threshold           = var.add_threshold
   comparison_operator = "GreaterThanOrEqualToThreshold"
   alarm_actions = [
     aws_autoscaling_policy.asg_policy_increase.arn
@@ -89,7 +89,7 @@ resource "aws_cloudwatch_metric_alarm" "remove" {
   statistic           = "Average"
   period              = 120
   evaluation_periods  = 2
-  threshold           = 40
+  threshold           = var.remove_threshold
   comparison_operator = "LessThanOrEqualToThreshold"
   alarm_actions = [
     aws_autoscaling_policy.asg_policy_decrease.arn

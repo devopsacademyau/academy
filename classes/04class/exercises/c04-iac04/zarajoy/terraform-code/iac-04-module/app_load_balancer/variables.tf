@@ -41,3 +41,11 @@ variable "max_size" {
   type        = number
 }
 
+variable "add_threshold" {
+  type        = number
+}
+
+variable "remove_threshold" {
+  type        = number
+}
+
