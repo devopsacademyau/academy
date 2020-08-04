@@ -7,7 +7,7 @@
 
 ## Questions:
 - What is the benefit of having the Terraform code for the resources within the module you've created?
-    - Answer here
+    Modules in terraform can be logically split and reused like functions. you can easily deploy different environments by simply changing the tfvars file (ie one with variables for a prod system, one with vaariables for a dev system).
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
