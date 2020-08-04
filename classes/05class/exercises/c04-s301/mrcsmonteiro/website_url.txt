@@ -1,0 +1,11 @@
+```
+# Check URL
+
+curl http://mrcsmonteiro.s3-website-ap-southeast-2.amazonaws.com/
+
+<html>
+        <body>
+                Welcome to DevOps Academy! :)
+        </body>
+</html>
+```
