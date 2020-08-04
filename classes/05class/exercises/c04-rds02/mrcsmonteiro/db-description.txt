@@ -1,3 +1,4 @@
+```
 aws rds describe-db-instances \
     --db-instance-identifier devopsacademy
 
@@ -85,3 +86,4 @@ aws rds describe-db-instances \
         }
     ]
 }
+```
