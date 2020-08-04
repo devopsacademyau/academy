@@ -9,5 +9,5 @@ module "team" {
 resource "github_team_repository" "team_repo" {
   team_id    = module.team.id
   repository = github_repository.repo.name
-  permission = "maintain"
+  permission = "admin"
 }
