@@ -2,7 +2,7 @@ variable "region" {
   type        = string
 }
 
-variable "amis" {
+variable "image_id" {
   type        = string
 }
 
@@ -13,13 +13,6 @@ variable "min_size" {
 variable "max_size" {
   type        = number
 }
-
-
-variable "image_id" {
-    type = string
-    default     = "ami-0b781a9543e01e880"
-}
-
 
 variable "project" {
   description = "the name of the project"

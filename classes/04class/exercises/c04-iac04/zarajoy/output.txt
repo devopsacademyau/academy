@@ -1,0 +1,5 @@
+z@bacon:~/Documents/GitHub/academy/classes/04class/exercises/c04-iac04/zarajoy/terraform-code$ curl alb-366296242.ap-southeast-2.elb.amazonaws.com
+ip-192-168-2-243.ap-southeast-2.compute.internal
+
+z@bacon:~/Documents/GitHub/academy/classes/04class/exercises/c04-iac04/zarajoy/terraform-code$ curl alb-366296242.ap-southeast-2.elb.amazonaws.com
+ip-192-168-0-223.ap-southeast-2.compute.internal

@@ -3,12 +3,6 @@ variable "autoscaling_security_group_name" {}
 variable "app_load_balancer_security_group_id" {}
 variable "app_load_balancer_security_group_name" {}
 
-
-  variable "instance_type" {
-  type        = string
-  default     = "t2.micro"
-}
-
 variable "image_id" {
     type = string
 }

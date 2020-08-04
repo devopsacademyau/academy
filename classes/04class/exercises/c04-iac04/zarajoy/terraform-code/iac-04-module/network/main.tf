@@ -45,7 +45,7 @@ resource "aws_subnet" "subnet_private_1" {
 resource "aws_subnet" "subnet_public_2" {
     	vpc_id            = aws_vpc.vpc.id
     	cidr_block        = cidrsubnet(var.vpcCIDR, 8, 2)
-    	availability_zone = data.aws_availability_zones.available.names[1]
+    	availability_zone = data.aws_availability_zones.available.names[2]
     	map_public_ip_on_launch = var.map_public_ip2
     	tags = {
        	Name = "${var.project}_${var.subnet_private_1}"
@@ -56,7 +56,7 @@ resource "aws_subnet" "subnet_public_2" {
 resource "aws_subnet" "subnet_private_2" {
     vpc_id            = aws_vpc.vpc.id
     cidr_block        = cidrsubnet(var.vpcCIDR, 8, 3)
-    availability_zone = data.aws_availability_zones.available.names[1]
+    availability_zone = data.aws_availability_zones.available.names[2]
 
     tags = {
        Name = "${var.project}_${var.subnet_private_2}"
@@ -113,7 +113,7 @@ resource "aws_route_table" "route_table_PRI" {
     vpc_id = aws_vpc.vpc.id
     route {
       cidr_block = "0.0.0.0/0"
-      gateway_id = aws_nat_gateway.NAT_GW.id
+      nat_gateway_id = aws_nat_gateway.NAT_GW.id
     }
     tags = {
 	Name = "${var.project}_route_table_PRI"
@@ -140,6 +140,6 @@ resource "aws_route_table_association" "private_1" {
 }
 
 resource "aws_route_table_association" "private_2" {
-    subnet_id = aws_subnet.subnet_private_1.id
+    subnet_id = aws_subnet.subnet_private_2.id
     route_table_id = aws_route_table.route_table_PRI.id
 }
