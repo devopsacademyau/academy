@@ -20,9 +20,7 @@ module "security" {
 module "app_load_balancer" {
   project = var.project
   source = "./iac-04-module/app_load_balancer"
-  autoscaling_security_group_id = module.security.autoscaling_security_group_id
   app_load_balancer_security_group_id = module.security.app_load_balancer_security_group_id
-  autoscaling_security_group_name = module.security.autoscaling_security_group_name
   app_load_balancer_security_group_name = module.security.app_load_balancer_security_group_name
   subnets_public_1_id = module.network.subnets_public_1_id
   subnets_public_2_id = module.network.subnets_public_2_id
