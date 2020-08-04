@@ -1,5 +1,3 @@
-variable "autoscaling_security_group_id" {}
-variable "autoscaling_security_group_name" {}
 variable "app_load_balancer_security_group_id" {}
 variable "app_load_balancer_security_group_name" {}
 
