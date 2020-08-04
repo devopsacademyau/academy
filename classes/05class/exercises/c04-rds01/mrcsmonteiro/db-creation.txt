@@ -1,0 +1,609 @@
+```
+# VPC
+
+aws ec2 create-vpc \
+    --cidr-block 10.0.0.0/16
+
+{
+    "Vpc": {
+        "CidrBlock": "10.0.0.0/16",
+        "DhcpOptionsId": "dopt-2267ed46",
+        "State": "pending",
+        "VpcId": "vpc-089fb450a12f2eab2",
+        "OwnerId": "149613515908",
+        "InstanceTenancy": "default",
+        "Ipv6CidrBlockAssociationSet": [],
+        "CidrBlockAssociationSet": [
+            {
+                "AssociationId": "vpc-cidr-assoc-037a79f8f816cc9b2",
+                "CidrBlock": "10.0.0.0/16",
+                "CidrBlockState": {
+                    "State": "associated"
+                }
+            }
+        ],
+        "IsDefault": false
+    }
+}
+
+aws ec2 create-tags \
+    --resources vpc-089fb450a12f2eab2 --tags Key=Name,Value=devops-academy-vpc
+
+# IGW
+
+aws ec2 create-internet-gateway
+
+{
+    "InternetGateway": {
+        "Attachments": [],
+        "InternetGatewayId": "igw-06f9417c6bab9125c",
+        "OwnerId": "149613515908",
+        "Tags": []
+    }
+}
+
+aws ec2 attach-internet-gateway \
+    --internet-gateway-id igw-06f9417c6bab9125c \
+    --vpc-id vpc-089fb450a12f2eab2
+
+# PUBLIC SUBNET
+
+aws ec2 create-subnet \
+    --vpc-id vpc-089fb450a12f2eab2 \
+    --availability-zone ap-southeast-2a \
+    --cidr-block 10.0.0.0/24
+
+{
+    "Subnet": {
+        "AvailabilityZone": "ap-southeast-2a",
+        "AvailabilityZoneId": "apse2-az1",
+        "AvailableIpAddressCount": 251,
+        "CidrBlock": "10.0.0.0/24",
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": false,
+        "State": "available",
+        "SubnetId": "subnet-0156f29f919dda239",
+        "VpcId": "vpc-089fb450a12f2eab2",
+        "OwnerId": "149613515908",
+        "AssignIpv6AddressOnCreation": false,
+        "Ipv6CidrBlockAssociationSet": [],
+        "SubnetArn": "arn:aws:ec2:ap-southeast-2:149613515908:subnet/subnet-0156f29f919dda239"
+    }
+}
+
+aws ec2 create-tags \
+    --resources subnet-0156f29f919dda239 --tags Key=Name,Value=public-subnet-a
+
+# PRIVATE SUBNET
+
+aws ec2 create-subnet \
+    --vpc-id vpc-089fb450a12f2eab2 \
+    --availability-zone ap-southeast-2a \
+    --cidr-block 10.0.1.0/24
+
+{
+    "Subnet": {
+        "AvailabilityZone": "ap-southeast-2a",
+        "AvailabilityZoneId": "apse2-az1",
+        "AvailableIpAddressCount": 251,
+        "CidrBlock": "10.0.1.0/24",
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": false,
+        "State": "available",
+        "SubnetId": "subnet-0882e4cd25cd1e16a",
+        "VpcId": "vpc-089fb450a12f2eab2",
+        "OwnerId": "149613515908",
+        "AssignIpv6AddressOnCreation": false,
+        "Ipv6CidrBlockAssociationSet": [],
+        "SubnetArn": "arn:aws:ec2:ap-southeast-2:149613515908:subnet/subnet-0882e4cd25cd1e16a"
+    }
+}
+
+aws ec2 create-tags \
+    --resources subnet-0882e4cd25cd1e16a --tags Key=Name,Value=private-subnet-a
+
+aws ec2 create-subnet \
+    --vpc-id vpc-089fb450a12f2eab2 \
+    --availability-zone ap-southeast-2b \
+    --cidr-block 10.0.2.0/24
+
+{
+    "Subnet": {
+        "AvailabilityZone": "ap-southeast-2b",
+        "AvailabilityZoneId": "apse2-az3",
+        "AvailableIpAddressCount": 251,
+        "CidrBlock": "10.0.2.0/24",
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": false,
+        "State": "available",
+        "SubnetId": "subnet-05f45f0e6aa3242d0",
+        "VpcId": "vpc-089fb450a12f2eab2",
+        "OwnerId": "149613515908",
+        "AssignIpv6AddressOnCreation": false,
+        "Ipv6CidrBlockAssociationSet": [],
+        "SubnetArn": "arn:aws:ec2:ap-southeast-2:149613515908:subnet/subnet-05f45f0e6aa3242d0"
+    }
+}
+
+aws ec2 create-tags \
+    --resources subnet-05f45f0e6aa3242d0 --tags Key=Name,Value=private-subnet-b
+
+# EIP
+
+aws ec2 allocate-address \
+    --domain vpc
+
+{
+    "PublicIp": "54.253.187.227",
+    "AllocationId": "eipalloc-08cf85da7c7452d6a",
+    "PublicIpv4Pool": "amazon",
+    "NetworkBorderGroup": "ap-southeast-2",
+    "Domain": "vpc"
+}
+
+# NAT GW
+
+aws ec2 create-nat-gateway \
+    --subnet-id subnet-0156f29f919dda239 \
+    --allocation-id eipalloc-08cf85da7c7452d6a
+
+{
+    "ClientToken": "050710c9-ebfa-492a-9614-ce21fc130f9e",
+    "NatGateway": {
+        "CreateTime": "2020-08-04T12:15:29+00:00",
+        "NatGatewayAddresses": [
+            {
+                "AllocationId": "eipalloc-08cf85da7c7452d6a"
+            }
+        ],
+        "NatGatewayId": "nat-0b4762e691cb14550",
+        "State": "pending",
+        "SubnetId": "subnet-0156f29f919dda239",
+        "VpcId": "vpc-089fb450a12f2eab2"
+    }
+}
+
+aws ec2 create-tags \
+    --resources nat-0ad2ef57857ad9a6a --tags Key=Name,Value=devops-academy-ngw
+
+# PUBLIC RT
+
+aws ec2 create-route-table \
+    --vpc-id vpc-089fb450a12f2eab2
+
+{
+    "RouteTable": {
+        "Associations": [],
+        "PropagatingVgws": [],
+        "RouteTableId": "rtb-0d476d9048916f113",
+        "Routes": [
+            {
+                "DestinationCidrBlock": "10.0.0.0/16",
+                "GatewayId": "local",
+                "Origin": "CreateRouteTable",
+                "State": "active"
+            }
+        ],
+        "Tags": [],
+        "VpcId": "vpc-089fb450a12f2eab2",
+        "OwnerId": "149613515908"
+    }
+}
+
+aws ec2 create-tags \
+    --resources rtb-0d476d9048916f113 --tags Key=Name,Value=devops-academy-public-rt
+
+# PUBLIC RT ROUTE ASSOCIATION
+
+aws ec2 create-route \
+    --route-table-id rtb-0d476d9048916f113 \
+    --destination-cidr-block 0.0.0.0/0 \
+    --gateway-id igw-06f9417c6bab9125c
+
+{
+    "Return": true
+}
+
+aws ec2 associate-route-table --route-table-id rtb-0d476d9048916f113 --subnet-id subnet-0156f29f919dda239
+
+{
+    "AssociationId": "rtbassoc-0d9fb127402292b32",
+    "AssociationState": {
+        "State": "associated"
+    }
+}
+
+# PRIVATE RT
+
+aws ec2 create-route-table \
+    --vpc-id vpc-089fb450a12f2eab2
+
+{
+    "RouteTable": {
+        "Associations": [],
+        "PropagatingVgws": [],
+        "RouteTableId": "rtb-0c3f580b259faf096",
+        "Routes": [
+            {
+                "DestinationCidrBlock": "10.0.0.0/16",
+                "GatewayId": "local",
+                "Origin": "CreateRouteTable",
+                "State": "active"
+            }
+        ],
+        "Tags": [],
+        "VpcId": "vpc-089fb450a12f2eab2",
+        "OwnerId": "149613515908"
+    }
+}
+
+aws ec2 create-tags \
+    --resources rtb-0c3f580b259faf096 --tags Key=Name,Value=devops-academy-private-rt
+
+# PRIVATE RT ROUTE ASSOCIATION
+
+aws ec2 associate-route-table --route-table-id rtb-0c3f580b259faf096 --subnet-id subnet-0882e4cd25cd1e16a
+
+{
+    "AssociationId": "rtbassoc-080bc7c46de4cd40a",
+    "AssociationState": {
+        "State": "associated"
+    }
+}
+
+aws ec2 associate-route-table --route-table-id rtb-0c3f580b259faf096 --subnet-id subnet-05f45f0e6aa3242d0
+
+{
+    "AssociationId": "rtbassoc-04641e61afc5aa075",
+    "AssociationState": {
+        "State": "associated"
+    }
+}
+
+aws ec2 create-route \
+    --route-table-id rtb-0c3f580b259faf096 \
+    --destination-cidr-block 0.0.0.0/0 \
+    --nat-gateway-id nat-0b4762e691cb14550
+
+{
+    "Return": true
+}
+
+# EC2
+
+aws ec2 run-instances \
+    --image-id ami-088ff0e3bde7b3fdf \
+    --instance-type t2.micro \
+    --key-name DevOpsAcademy \
+    --subnet-id subnet-0156f29f919dda239 \
+    --associate-public-ip-address \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value="public-instance"}]'
+
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-088ff0e3bde7b3fdf",
+            "InstanceId": "i-019d4ecc74e04147b",
+            "InstanceType": "t2.micro",
+            "KeyName": "DevOpsAcademy",
+            "LaunchTime": "2020-08-04T12:18:41+00:00",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "ap-southeast-2a",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-10-0-0-248.ap-southeast-2.compute.internal",
+            "PrivateIpAddress": "10.0.0.248",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-0156f29f919dda239",
+            "VpcId": "vpc-089fb450a12f2eab2",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "",
+            "EbsOptimized": false,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2020-08-04T12:18:41+00:00",
+                        "AttachmentId": "eni-attach-0ef61ee8b3a079f82",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching"
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "default",
+                            "GroupId": "sg-019854bd0750b58ca"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "02:2d:85:f9:f8:3e",
+                    "NetworkInterfaceId": "eni-0622acb314ba6d41c",
+                    "OwnerId": "149613515908",
+                    "PrivateIpAddress": "10.0.0.248",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateIpAddress": "10.0.0.248"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-0156f29f919dda239",
+                    "VpcId": "vpc-089fb450a12f2eab2",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupName": "default",
+                    "GroupId": "sg-019854bd0750b58ca"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "public-instance"
+                }
+            ],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "optional",
+                "HttpPutResponseHopLimit": 1,
+                "HttpEndpoint": "enabled"
+            }
+        }
+    ],
+    "OwnerId": "149613515908",
+    "ReservationId": "r-0b3c525eeb3510bde"
+}
+
+aws ec2 authorize-security-group-ingress \
+    --group-id sg-019854bd0750b58ca \
+    --protocol tcp \
+    --port 22 \
+    --cidr 220.253.7.163/32
+
+aws ec2 create-tags \
+    --resources sg-019854bd0750b58ca \
+    --tags Key=Name,Value=devops-academy-default-sg
+
+# RDS
+
+aws rds create-db-subnet-group \
+    --db-subnet-group-name devops-academy-db-subnet-group \
+    --db-subnet-group-description devops-academy-db-subnet-group \
+    --subnet-ids '["subnet-0882e4cd25cd1e16a","subnet-05f45f0e6aa3242d0"]'
+
+{
+    "DBSubnetGroup": {
+        "DBSubnetGroupName": "devops-academy-db-subnet-group",
+        "DBSubnetGroupDescription": "devops-academy-db-subnet-group",
+        "VpcId": "vpc-089fb450a12f2eab2",
+        "SubnetGroupStatus": "Complete",
+        "Subnets": [
+            {
+                "SubnetIdentifier": "subnet-05f45f0e6aa3242d0",
+                "SubnetAvailabilityZone": {
+                    "Name": "ap-southeast-2b"
+                },
+                "SubnetStatus": "Active"
+            },
+            {
+                "SubnetIdentifier": "subnet-0882e4cd25cd1e16a",
+                "SubnetAvailabilityZone": {
+                    "Name": "ap-southeast-2a"
+                },
+                "SubnetStatus": "Active"
+            }
+        ],
+        "DBSubnetGroupArn": "arn:aws:rds:ap-southeast-2:149613515908:subgrp:devops-academy-db-subnet-group"
+    }
+}
+
+aws rds create-db-instance \
+    --db-instance-identifier devopsacademy \
+    --db-instance-class db.t2.micro \
+    --vpc-security-group-ids '["sg-019854bd0750b58ca"]' \
+    --engine mysql \
+    --master-username admin \
+    --master-user-password admin123 \
+    --allocated-storage 20 \
+    --availability-zone ap-southeast-2a \
+    --db-subnet-group-name "devops-academy-db-subnet-group" \
+    --tags Key=Name,Value=devops-academy-db
+
+{
+    "DBInstance": {
+        "DBInstanceIdentifier": "devopsacademy",
+        "DBInstanceClass": "db.t2.micro",
+        "Engine": "mysql",
+        "DBInstanceStatus": "creating",
+        "MasterUsername": "admin",
+        "AllocatedStorage": 20,
+        "PreferredBackupWindow": "12:23-12:53",
+        "BackupRetentionPeriod": 10,
+        "DBSecurityGroups": [],
+        "VpcSecurityGroups": [
+            {
+                "VpcSecurityGroupId": "sg-019854bd0750b58ca",
+                "Status": "active"
+            }
+        ],
+        "DBParameterGroups": [
+            {
+                "DBParameterGroupName": "default.mysql8.0",
+                "ParameterApplyStatus": "in-sync"
+            }
+        ],
+        "AvailabilityZone": "ap-southeast-2a",
+        "DBSubnetGroup": {
+            "DBSubnetGroupName": "devops-academy-db-subnet-group",
+            "DBSubnetGroupDescription": "devops-academy-db-subnet-group",
+            "VpcId": "vpc-089fb450a12f2eab2",
+            "SubnetGroupStatus": "Complete",
+            "Subnets": [
+                {
+                    "SubnetIdentifier": "subnet-05f45f0e6aa3242d0",
+                    "SubnetAvailabilityZone": {
+                        "Name": "ap-southeast-2b"
+                    },
+                    "SubnetStatus": "Active"
+                },
+                {
+                    "SubnetIdentifier": "subnet-0882e4cd25cd1e16a",
+                    "SubnetAvailabilityZone": {
+                        "Name": "ap-southeast-2a"
+                    },
+                    "SubnetStatus": "Active"
+                }
+            ]
+        },
+        "PreferredMaintenanceWindow": "wed:14:16-wed:14:46",
+        "PendingModifiedValues": {
+            "MasterUserPassword": "****"
+        },
+        "MultiAZ": false,
+        "EngineVersion": "8.0.17",
+        "AutoMinorVersionUpgrade": true,
+        "ReadReplicaDBInstanceIdentifiers": [],
+        "LicenseModel": "general-public-license",
+        "OptionGroupMemberships": [
+            {
+                "OptionGroupName": "default:mysql-8-0",
+                "Status": "in-sync"
+            }
+        ],
+        "PubliclyAccessible": false,
+        "StorageType": "gp2",
+        "DbInstancePort": 0,
+        "StorageEncrypted": false,
+        "DbiResourceId": "db-5WP75ZW5K5HAOEGZ5P4F3PG2P4",
+        "CACertificateIdentifier": "rds-ca-2019",
+        "DomainMemberships": [],
+        "CopyTagsToSnapshot": false,
+        "MonitoringInterval": 0,
+        "DBInstanceArn": "arn:aws:rds:ap-southeast-2:149613515908:db:devopsacademy",
+        "IAMDatabaseAuthenticationEnabled": false,
+        "PerformanceInsightsEnabled": false,
+        "DeletionProtection": false,
+        "AssociatedRoles": []
+    }
+}
+
+aws rds describe-db-instances \
+    --db-instance-identifier devopsacademy
+
+{
+    "DBInstances": [
+        {
+            "DBInstanceIdentifier": "devopsacademy",
+            "DBInstanceClass": "db.t2.micro",
+            "Engine": "mysql",
+            "DBInstanceStatus": "available",
+            "MasterUsername": "admin",
+            "Endpoint": {
+                "Address": "devopsacademy.cjp5n23ljlms.ap-southeast-2.rds.amazonaws.com",
+                "Port": 3306,
+                "HostedZoneId": "Z32T0VRHXEXS0V"
+            },
+            "AllocatedStorage": 20,
+            "InstanceCreateTime": "2020-08-04T13:20:45.237000+00:00",
+            "PreferredBackupWindow": "12:23-12:53",
+            "BackupRetentionPeriod": 10,
+            "DBSecurityGroups": [],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-019854bd0750b58ca",
+                    "Status": "active"
+                }
+            ],
+            "DBParameterGroups": [
+                {
+                    "DBParameterGroupName": "default.mysql8.0",
+                    "ParameterApplyStatus": "in-sync"
+                }
+            ],
+            "AvailabilityZone": "ap-southeast-2a",
+            "DBSubnetGroup": {
+                "DBSubnetGroupName": "devops-academy-db-subnet-group",
+                "DBSubnetGroupDescription": "devops-academy-db-subnet-group",
+                "VpcId": "vpc-089fb450a12f2eab2",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                    {
+                        "SubnetIdentifier": "subnet-05f45f0e6aa3242d0",
+                        "SubnetAvailabilityZone": {
+                            "Name": "ap-southeast-2b"
+                        },
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-0882e4cd25cd1e16a",
+                        "SubnetAvailabilityZone": {
+                            "Name": "ap-southeast-2a"
+                        },
+                        "SubnetStatus": "Active"
+                    }
+                ]
+            },
+            "PreferredMaintenanceWindow": "wed:14:16-wed:14:46",
+            "PendingModifiedValues": {},
+            "LatestRestorableTime": "2020-08-04T13:30:00+00:00",
+            "MultiAZ": false,
+            "EngineVersion": "8.0.17",
+            "AutoMinorVersionUpgrade": true,
+            "ReadReplicaDBInstanceIdentifiers": [],
+            "LicenseModel": "general-public-license",
+            "OptionGroupMemberships": [
+                {
+                    "OptionGroupName": "default:mysql-8-0",
+                    "Status": "in-sync"
+                }
+            ],
+            "PubliclyAccessible": false,
+            "StorageType": "gp2",
+            "DbInstancePort": 0,
+            "StorageEncrypted": false,
+            "DbiResourceId": "db-5WP75ZW5K5HAOEGZ5P4F3PG2P4",
+            "CACertificateIdentifier": "rds-ca-2019",
+            "DomainMemberships": [],
+            "CopyTagsToSnapshot": false,
+            "MonitoringInterval": 0,
+            "DBInstanceArn": "arn:aws:rds:ap-southeast-2:149613515908:db:devopsacademy",
+            "IAMDatabaseAuthenticationEnabled": false,
+            "PerformanceInsightsEnabled": false,
+            "DeletionProtection": false,
+            "AssociatedRoles": []
+        }
+    ]
+}
+```
