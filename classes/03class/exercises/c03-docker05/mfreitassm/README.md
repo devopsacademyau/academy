@@ -29,8 +29,6 @@ Digest: sha256:0c1e6acfaab9f6216af2773f168dbb7faa498ce741886fa94bde0866baa1af4e
 Status: Downloaded newer image for mfreitassm/devopsacademy:v2
 620554f64e541916dd63f8fdb6c70b54887a78dfd9aa3ad964b1aa76999e91f9
 docker: Error response from daemon: driver failed programming external connectivity on endpoint determined_chatelet (2e546e12d9e44bcfe5badb01a8a6a00eac704505f68bbdf2bbafa8e065be88b2): Bind for 0.0.0.0:8081 failed: port is already allocated.
-docker run -dp 8082:80 mfreitassm/devopsacademy:v2
-015f1fc8b78a109c8becc0e8d88a4696fe91d25773a7d7668aa0bc70e4836168
 ```
 
 - A brief explanation of what happened when you executed the comands to run the containers:
