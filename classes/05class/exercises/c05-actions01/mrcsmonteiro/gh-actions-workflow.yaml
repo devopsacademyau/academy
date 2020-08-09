@@ -11,6 +11,6 @@ jobs:
     steps:
       - uses: mshick/add-pr-comment@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.MRCSMONTEIRO_PAT }}
         with:
-          message: 'Well done ${{ secrets.MY_NAME }} ! This is a nice PR'
+          message: 'Well done ${{ secrets.MRCSMONTEIRO_NAME }} ! This is a nice PR'
