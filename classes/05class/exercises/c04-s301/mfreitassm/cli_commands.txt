@@ -1,0 +1,22 @@
+aws s3 mb s3://mfreitassm
+make_bucket: mfreitassm
+
+aws s3 ls
+2020-08-06 15:42:29 devops-c01-s3
+2020-07-03 21:32:44 mfreitasbucket
+2020-08-10 14:13:09 mfreitassm
+
+
+aws s3 cp /home/mfreitas/Documents/projects/academy/classes/05class/aws_s3_rds/assets/index.html s3://mfreitassm/index.html
+upload: Documents/projects/academy/classes/05class/aws_s3_rds/assets/index.html to s3://mfreitassm/index.html
+
+aws s3 website s3://mfreitassm/ --index-document index.html
+
+aws s3api put-bucket-policy --bucket mfreitassm --policy file://Documents/projects/s3_bucket_policy.json
+
+curl http://mfreitassm.s3-website-ap-southeast-2.amazonaws.com/
+<html>
+	<body>
+		Welcome to DevOps Academy! :)
+	</body>
+</html>%   
