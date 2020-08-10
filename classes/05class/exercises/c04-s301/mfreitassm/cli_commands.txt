@@ -12,6 +12,19 @@ upload: Documents/projects/academy/classes/05class/aws_s3_rds/assets/index.html 
 
 aws s3 website s3://mfreitassm/ --index-document index.html
 
+#s3_bucket_policy.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::mfreitassm/*"
+        }
+    ]
+}
+
 aws s3api put-bucket-policy --bucket mfreitassm --policy file://Documents/projects/s3_bucket_policy.json
 
 curl http://mfreitassm.s3-website-ap-southeast-2.amazonaws.com/
