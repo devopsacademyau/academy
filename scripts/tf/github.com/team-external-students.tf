@@ -13,5 +13,6 @@ module "team-external-students" {
     "rodrigovcesar",
     "roperto",
     "ramiray"
+    "awaiszai2000"
   ]
 }
