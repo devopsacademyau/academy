@@ -1,0 +1,10 @@
+## uname
+Linux localhost.localdomain 4.18.0-193.6.3.el8_2.x86_64 #1 SMP Wed Jun 10 11:09:32 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+## git 
+git version 2.18.4
+## docker 
+Docker version 19.03.12, build 48a66213fe
+## terraform 
+Terraform v0.13.0
+## aws 
+aws-cli/2.0.27 Python/3.7.3 Linux/4.18.0-193.6.3.el8_2.x86_64 botocore/2.0.0dev31
