@@ -1,0 +1,364 @@
+## CREATE RDS MYSQL DATABASE
+
+#### CREATE VPC 
+```
+   > aws ec2 create-vpc --cidr-block 100.0.0.0/16 --no-amazon-provided-ipv6-cidr-block 
+   {
+       "Vpc": {
+           "CidrBlock": "100.0.0.0/16",
+           "DhcpOptionsId": "dopt-ebd2e48c",
+           "State": "pending",
+           "VpcId": "vpc-0f12c94fec4ca0189",
+           "OwnerId": "461186799619",
+           "InstanceTenancy": "default",
+           "Ipv6CidrBlockAssociationSet": [],
+           "CidrBlockAssociationSet": [
+               {
+                   "AssociationId": "vpc-cidr-assoc-0520eb6a3806fbefd",
+                   "CidrBlock": "100.0.0.0/16",
+                   "CidrBlockState": {
+                       "State": "associated"
+                   }
+               }
+           ],
+           "IsDefault": false
+       }
+   }
+   
+   aws ec2 create-tags --resources vpc-0f12c94fec4ca0189 --tags Key=Name,Value=rds-vpc
+```
+###CREATE InternetGateway
+```
+   aws ec2 create-internet-gateway 
+   {
+       "InternetGateway": {
+           "Attachments": [],
+           "InternetGatewayId": "igw-013c974586a9f539d",
+           "OwnerId": "461186799619",
+           "Tags": []
+       }
+   }
+   aws ec2 create-tags --resources igw-013c974586a9f539d --tag "Key=Name,Value=RDS-IGW"
+   
+   aws ec2 attach-internet-gateway --internet-gateway-id igw-013c974586a9f539d --vpc-id vpc-0f12c94fec4ca0189 
+```   
+###CREATE PUBLIC AND PRIVATE SUBNET
+```
+   aws ec2 create-subnet --cidr-block 100.0.0.0/24 --vpc-id vpc-0f12c94fec4ca0189
+   {
+       "Subnet": {
+           "AvailabilityZone": "ap-southeast-2c",
+           "AvailabilityZoneId": "apse2-az2",
+           "AvailableIpAddressCount": 251,
+           "CidrBlock": "100.0.0.0/24",
+           "DefaultForAz": false,
+           "MapPublicIpOnLaunch": false,
+           "State": "available",
+           "SubnetId": "subnet-0cdbc78a328f5787f",
+           "VpcId": "vpc-0f12c94fec4ca0189",
+           "OwnerId": "461186799619",
+           "AssignIpv6AddressOnCreation": false,
+           "Ipv6CidrBlockAssociationSet": [],
+           "SubnetArn": "arn:aws:ec2:ap-southeast-2:461186799619:subnet/subnet-0cdbc78a328f5787f"
+       }
+   }
+   
+   aws ec2 create-tags --resources subnet-0cdbc78a328f5787f --tags Key=Name,Value=rds-private-2c
+   
+   aws ec2 create-subnet --availability-zone ap-southeast-2b --cidr-block 100.0.2.0/24 --vpc-id vpc-0f12c94fec4ca0189
+   {
+       "Subnet": {
+           "AvailabilityZone": "ap-southeast-2b",
+           "AvailabilityZoneId": "apse2-az3",
+           "AvailableIpAddressCount": 251,
+           "CidrBlock": "100.0.2.0/24",
+           "DefaultForAz": false,
+           "MapPublicIpOnLaunch": false,
+           "State": "available",
+           "SubnetId": "subnet-0053e47b2702b8e06",
+           "VpcId": "vpc-0f12c94fec4ca0189",
+           "OwnerId": "461186799619",
+           "AssignIpv6AddressOnCreation": false,
+           "Ipv6CidrBlockAssociationSet": [],
+           "SubnetArn": "arn:aws:ec2:ap-southeast-2:461186799619:subnet/subnet-0053e47b2702b8e06"
+       }
+   }
+   
+   aws ec2 create-tags --resources subnet-0053e47b2702b8e06 --tags Key=Name,Value=rds-private-2b
+   
+   aws ec2 create-subnet --availability-zone ap-southeast-2a --cidr-block 100.0.10.0/24 --vpc-id vpc-0f12c94fec4ca0189
+     {
+       "Subnet": {
+           "AvailabilityZone": "ap-southeast-2a",
+           "AvailabilityZoneId": "apse2-az1",
+           "AvailableIpAddressCount": 251,
+           "CidrBlock": "100.0.10.0/24",
+           "DefaultForAz": false,
+           "MapPublicIpOnLaunch": false,
+           "State": "available",
+           "SubnetId": "subnet-06afe424fbb29c97f",
+           "VpcId": "vpc-0f12c94fec4ca0189",
+           "OwnerId": "461186799619",
+           "AssignIpv6AddressOnCreation": false,
+           "Ipv6CidrBlockAssociationSet": [],
+           "SubnetArn": "arn:aws:ec2:ap-southeast-2:461186799619:subnet/subnet-06afe424fbb29c97f"
+         }
+     }
+   
+   aws ec2 create-tags --resources subnet-06afe424fbb29c97f --tags Key=Name,Value=ec2-public-2a
+```
+### CREATE ROUTE-TABLE AND PUBLIC ROUTES
+```
+   aws ec2 create-route-table --vpc-id vpc-0f12c94fec4ca0189
+   {
+       "RouteTable": {
+           "Associations": [],
+           "PropagatingVgws": [],
+           "RouteTableId": "rtb-07c48acf59e14a7cc",
+           "Routes": [
+               {
+                   "DestinationCidrBlock": "100.0.0.0/16",
+                   "GatewayId": "local",
+                   "Origin": "CreateRouteTable",
+                   "State": "active"
+               }
+           ],
+           "Tags": [],
+           "VpcId": "vpc-0f12c94fec4ca0189",
+           "OwnerId": "461186799619"
+       }
+   }
+   
+   aws ec2 create-tags --resources rtb-07c48acf59e14a7cc --tag Key=Name,Value=RDS-Public-rt
+   
+   aws ec2 create-route --route-table-id rtb-07c48acf59e14a7cc --destination-cidr-block 0.0.0.0/0 --gateway-id igw-013c974586a9f539d 
+   {
+       "Return": true
+   }
+   
+   aws ec2 describe-route-tables --route-table-ids rtb-04fa3da97c1d8e522 (Default Route of VPC)
+   Get the Association ID from here.
+   Replace this with the Public Route table created as below.
+   
+   aws ec2 replace-route-table-association --association-id rtbassoc-0a6ce493db38be128 --route-table-id rtb-07c48acf59e14a7cc 
+```
+### CREATE SECURITY GROUPS
+ ```   
+   aws ec2 create-security-group --vpc-id vpc-0f12c94fec4ca0189 --group-name rds-sg --description "C05 - RDS Security Group"
+   {
+       "GroupId": "sg-062dabddbd269667a"
+   }
+   
+   aws ec2 create-security-group --vpc-id vpc-0f12c94fec4ca0189 --group-name RDS-EC2-sg --description "C05 - EC2 RDS Security Group"
+   {
+       "GroupId": "sg-0e6c7839fa2bc354b"
+   }
+   
+   aws ec2 authorize-security-group-ingress --group-id sg-0e6c7839fa2bc354b --protocol tcp --port 22 --cidr 27.32.243.158/32
+   
+   aws ec2 authorize-security-group-ingress --group-id sg-062dabddbd269667a --protocol tcp --port 3306 --cidr 100.0.10.0/24
+     
+```
+### CREATE EC2 INSTANCE IN PUBLIC
+```
+   aws ec2 run-instances --image-id ami-088ff0e3bde7b3fdf --count 1 --instance-type t2.micro --key-name mail2kvanithayahoo --subnet-id subnet-02346c6fecdb68103 --associate-public-ip-address --security-group-ids sg-0e6c7839fa2bc354b
+```
+### CREATE DB SUBNET GROUP
+```   
+   aws rds create-db-subnet-group --db-subnet-group-name rds-subnet-gp --db-subnet-group-description "RDS DB SUBNET GROUP" --subnet-ids '["subnet-0cdbc78a328f5787f","subnet-0053e47b2702b8e06"]'
+   {
+       "DBSubnetGroup": {
+           "DBSubnetGroupName": "rds-subnet-gp",
+           "DBSubnetGroupDescription": "RDS DB SUBNET GROUP",
+           "VpcId": "vpc-0f12c94fec4ca0189",
+           "SubnetGroupStatus": "Complete",
+           "Subnets": [
+               {
+                   "SubnetIdentifier": "subnet-0053e47b2702b8e06",
+                   "SubnetAvailabilityZone": {
+                       "Name": "ap-southeast-2b"
+                   },
+                   "SubnetStatus": "Active"
+               },
+               {
+                   "SubnetIdentifier": "subnet-0cdbc78a328f5787f",
+                   "SubnetAvailabilityZone": {
+                       "Name": "ap-southeast-2c"
+                   },
+                   "SubnetStatus": "Active"
+               }
+           ],
+           "DBSubnetGroupArn": "arn:aws:rds:ap-southeast-2:461186799619:subgrp:rds-subnet-gp"
+       }
+   }
+   
+```
+### CREATE RDS MYSQL INSTANCE
+```
+   aws rds create-db-instance --db-name devopsacademy --db-instance-identifier mysql-devopsacademy --db-instance-class db.t2.micro --engine mysql --master-username admin --master-user-password devopsacademy --vpc-security-group-ids sg-062dabddbd269667a --db-subnet-group-name rds-subnet-gp --no-publicly-accessible --allocated-storage 5
+   {
+       "DBInstance": {
+           "DBInstanceIdentifier": "mysql-devopsacademy",
+           "DBInstanceClass": "db.t2.micro",
+           "Engine": "mysql",
+           "DBInstanceStatus": "creating",
+           "MasterUsername": "admin",
+           "DBName": "devopsacademy",
+           "AllocatedStorage": 5,
+           "PreferredBackupWindow": "16:20-16:50",
+           "BackupRetentionPeriod": 10,
+           "DBSecurityGroups": [],
+           "VpcSecurityGroups": [
+               {
+                   "VpcSecurityGroupId": "sg-062dabddbd269667a",
+                   "Status": "active"
+               }
+           ],
+           "DBParameterGroups": [
+               {
+                   "DBParameterGroupName": "default.mysql8.0",
+                   "ParameterApplyStatus": "in-sync"
+               }
+           ],
+           "DBSubnetGroup": {
+               "DBSubnetGroupName": "rds-subnet-gp",
+               "DBSubnetGroupDescription": "RDS DB SUBNET GROUP",
+               "VpcId": "vpc-0f12c94fec4ca0189",
+               "SubnetGroupStatus": "Complete",
+               "Subnets": [
+                   {
+                       "SubnetIdentifier": "subnet-0053e47b2702b8e06",
+                       "SubnetAvailabilityZone": {
+                           "Name": "ap-southeast-2b"
+                       },
+                       "SubnetStatus": "Active"
+                   },
+                   {
+                       "SubnetIdentifier": "subnet-0cdbc78a328f5787f",
+                       "SubnetAvailabilityZone": {
+                           "Name": "ap-southeast-2c"
+                       },
+                       "SubnetStatus": "Active"
+                   }
+               ]
+           },
+           "PreferredMaintenanceWindow": "tue:18:02-tue:18:32",
+           "PendingModifiedValues": {
+               "MasterUserPassword": "****"
+           },
+           "MultiAZ": false,
+           "EngineVersion": "8.0.17",
+           "AutoMinorVersionUpgrade": true,
+           "ReadReplicaDBInstanceIdentifiers": [],
+           "LicenseModel": "general-public-license",
+           "OptionGroupMemberships": [
+               {
+                   "OptionGroupName": "default:mysql-8-0",
+                   "Status": "in-sync"
+               }
+           ],
+           "PubliclyAccessible": false,
+           "StorageType": "gp2",
+           "DbInstancePort": 0,
+           "StorageEncrypted": false,
+           "DbiResourceId": "db-UORXFMT6MTYGY7SNIGCSV2JK4U",
+           "CACertificateIdentifier": "rds-ca-2019",
+           "DomainMemberships": [],
+           "CopyTagsToSnapshot": false,
+           "MonitoringInterval": 0,
+           "DBInstanceArn": "arn:aws:rds:ap-southeast-2:461186799619:db:mysql-devopsacademy",
+           "IAMDatabaseAuthenticationEnabled": false,
+           "PerformanceInsightsEnabled": false,
+           "DeletionProtection": false,
+           "AssociatedRoles": []
+       }
+   }
+   
+   
+   aws rds describe-db-instances --db-instance-identifier mysql-devopsacademy
+   {
+       "DBInstances": [
+           {
+               "DBInstanceIdentifier": "mysql-devopsacademy",
+               "DBInstanceClass": "db.t2.micro",
+               "Engine": "mysql",
+               "DBInstanceStatus": "available",
+               "MasterUsername": "admin",
+               "DBName": "devopsacademy",
+               "Endpoint": {
+                   "Address": "mysql-devopsacademy.ck5fxo8lkvrn.ap-southeast-2.rds.amazonaws.com",
+                   "Port": 3306,
+                   "HostedZoneId": "Z32T0VRHXEXS0V"
+               },
+               "AllocatedStorage": 5,
+               "InstanceCreateTime": "2020-08-11T15:49:33.403000+00:00",
+               "PreferredBackupWindow": "17:35-18:05",
+               "BackupRetentionPeriod": 10,
+               "DBSecurityGroups": [],
+               "VpcSecurityGroups": [
+                   {
+                       "VpcSecurityGroupId": "sg-062dabddbd269667a",
+                       "Status": "active"
+                   }
+               ],
+               "DBParameterGroups": [
+                   {
+                       "DBParameterGroupName": "default.mysql8.0",
+                       "ParameterApplyStatus": "in-sync"
+                   }
+               ],
+               "AvailabilityZone": "ap-southeast-2b",
+               "DBSubnetGroup": {
+                   "DBSubnetGroupName": "rds-subnet-gp",
+                   "DBSubnetGroupDescription": "RDS DB SUBNET GROUP",
+                   "VpcId": "vpc-0f12c94fec4ca0189",
+                   "SubnetGroupStatus": "Complete",
+                   "Subnets": [
+                       {
+                           "SubnetIdentifier": "subnet-0053e47b2702b8e06",
+                           "SubnetAvailabilityZone": {
+                               "Name": "ap-southeast-2b"
+                           },
+                           "SubnetStatus": "Active"
+                       },
+                       {
+                           "SubnetIdentifier": "subnet-0cdbc78a328f5787f",
+                           "SubnetAvailabilityZone": {
+                               "Name": "ap-southeast-2c"
+                           },
+                           "SubnetStatus": "Active"
+                       }
+                   ]
+               },
+               "PreferredMaintenanceWindow": "tue:18:30-tue:19:00",
+               "PendingModifiedValues": {},
+               "LatestRestorableTime": "2020-08-11T15:50:43.166000+00:00",
+               "MultiAZ": false,
+               "EngineVersion": "8.0.17",
+               "AutoMinorVersionUpgrade": true,
+               "ReadReplicaDBInstanceIdentifiers": [],
+               "LicenseModel": "general-public-license",
+               "OptionGroupMemberships": [
+                   {
+                       "OptionGroupName": "default:mysql-8-0",
+                       "Status": "in-sync"
+                   }
+               ],
+               "PubliclyAccessible": false,
+               "StorageType": "gp2",
+               "DbInstancePort": 0,
+               "StorageEncrypted": false,
+               "DbiResourceId": "db-Y7KCC45JANWLMURREFEBLSINPU",
+               "CACertificateIdentifier": "rds-ca-2019",
+               "DomainMemberships": [],
+               "CopyTagsToSnapshot": false,
+               "MonitoringInterval": 0,
+               "DBInstanceArn": "arn:aws:rds:ap-southeast-2:461186799619:db:mysql-devopsacademy",
+               "IAMDatabaseAuthenticationEnabled": false,
+               "PerformanceInsightsEnabled": false,
+               "DeletionProtection": false,
+               "AssociatedRoles": []
+           }
+       ]
+   }
+ ```  
