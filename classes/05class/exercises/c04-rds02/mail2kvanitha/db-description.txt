@@ -1,0 +1,87 @@
+aws rds describe-db-instances --db-instance-identifier mysql-devopsacademy
+{
+    "DBInstances": [
+        {
+            "DBInstanceIdentifier": "mysql-devopsacademy",
+            "DBInstanceClass": "db.t2.micro",
+            "Engine": "mysql",
+            "DBInstanceStatus": "available",
+            "MasterUsername": "admin",
+            "DBName": "devopsacademy",
+            "Endpoint": {
+                "Address": "mysql-devopsacademy.ck5fxo8lkvrn.ap-southeast-2.rds.amazonaws.com",
+                "Port": 3306,
+                "HostedZoneId": "Z32T0VRHXEXS0V"
+            },
+            "AllocatedStorage": 5,
+            "InstanceCreateTime": "2020-08-11T15:49:33.403000+00:00",
+            "PreferredBackupWindow": "17:35-18:05",
+            "BackupRetentionPeriod": 10,
+            "DBSecurityGroups": [],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-062dabddbd269667a",
+                    "Status": "active"
+                }
+            ],
+            "DBParameterGroups": [
+                {
+                    "DBParameterGroupName": "default.mysql8.0",
+                    "ParameterApplyStatus": "in-sync"
+                }
+            ],
+            "AvailabilityZone": "ap-southeast-2b",
+            "DBSubnetGroup": {
+                "DBSubnetGroupName": "rds-subnet-gp",
+                "DBSubnetGroupDescription": "RDS DB SUBNET GROUP",
+                "VpcId": "vpc-0f12c94fec4ca0189",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                    {
+                        "SubnetIdentifier": "subnet-0053e47b2702b8e06",
+                        "SubnetAvailabilityZone": {
+                            "Name": "ap-southeast-2b"
+                        },
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-0cdbc78a328f5787f",
+                        "SubnetAvailabilityZone": {
+                            "Name": "ap-southeast-2c"
+                        },
+                        "SubnetStatus": "Active"
+                    }
+                ]
+            },
+            "PreferredMaintenanceWindow": "tue:18:30-tue:19:00",
+            "PendingModifiedValues": {},
+            "LatestRestorableTime": "2020-08-11T15:50:43.166000+00:00",
+            "MultiAZ": false,
+            "EngineVersion": "8.0.17",
+            "AutoMinorVersionUpgrade": true,
+            "ReadReplicaDBInstanceIdentifiers": [],
+            "LicenseModel": "general-public-license",
+            "OptionGroupMemberships": [
+                {
+                    "OptionGroupName": "default:mysql-8-0",
+                    "Status": "in-sync"
+                }
+            ],
+            "PubliclyAccessible": false,
+            "StorageType": "gp2",
+            "DbInstancePort": 0,
+            "StorageEncrypted": false,
+            "DbiResourceId": "db-Y7KCC45JANWLMURREFEBLSINPU",
+            "CACertificateIdentifier": "rds-ca-2019",
+            "DomainMemberships": [],
+            "CopyTagsToSnapshot": false,
+            "MonitoringInterval": 0,
+            "DBInstanceArn": "arn:aws:rds:ap-southeast-2:461186799619:db:mysql-devopsacademy",
+            "IAMDatabaseAuthenticationEnabled": false,
+            "PerformanceInsightsEnabled": false,
+            "DeletionProtection": false,
+            "AssociatedRoles": []
+        }
+    ]
+}
+
