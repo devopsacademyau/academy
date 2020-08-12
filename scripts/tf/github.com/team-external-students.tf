@@ -12,7 +12,7 @@ module "team-external-students" {
     "raghunadhpokkalath",
     "rodrigovcesar",
     "roperto",
-    "ramiray"
+    "ramiray",
     "awaiszai2000"
   ]
 }
