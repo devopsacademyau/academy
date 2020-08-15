@@ -181,6 +181,7 @@ The content can be accessed through each specific README link below.
     - AWS DynamoDB
     - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
+    - Serverless integration patterns
     - AWS Step Functions
     - AWS SNS
     - AWS SQS
