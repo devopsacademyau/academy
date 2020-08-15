@@ -162,6 +162,7 @@ The content can be accessed through each specific README link below.
     - AWS ECS (Elastic Container Service)
     - AWS ECR (Elastic Container Repository)
     - AWS Fargate
+    - AWS SSM - Parameter Store
     - IaC - Terraform
     - Project #1 Kick-off
 - [Class 05](classes/05class/README.md)
@@ -171,16 +172,16 @@ The content can be accessed through each specific README link below.
     - CI/CD Concepts
       - GitHub Actions
     - AWS CloudWatch
+    - AWS KMS (Key Management Service)
 - [Class 06](classes/06class/README.md)
     - Project #1 Delivery
     - Serverless introduction
-    - AWS Lambda
     - AWS API Gateway
+    - AWS Lambda
+    - AWS DynamoDB
     - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
-    - AWS DynamoDB
-    - AWS KMS (Key Management Service)
-    - AWS SSM - Parameter Store
+    - AWS Step Functions
     - AWS SNS
     - AWS SQS
 - [Class 08](classes/08class/README.md)

@@ -2,5 +2,7 @@
 
 ## Agenda
 
- - [KMS](kms/README.md)
- - [SSM](ssm/README.md)
+- [Serverless Integration patterns](serverless_integration/README.md)
+- [AWS Step Functions](sfn/README.md)
+- [AWS SNS](sns/README.md)
+- [AWS SQS](sqs/README.md)

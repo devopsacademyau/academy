@@ -2,4 +2,6 @@
 
 ## Agenda
 
- WIP
+- Project #2 Delivery
+- Next steps
+- Course Closure
