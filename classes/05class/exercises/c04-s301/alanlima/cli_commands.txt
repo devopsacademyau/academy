@@ -1,0 +1,25 @@
+# Create the bucket
+$ aws s3 mb s3://alanlima
+make_bucket: alanlima
+
+# Upload the file to the bucket
+$ aws s3 cp ./classes/05class/aws_s3_rds/assets/index.html s3://alanlima/index.html
+upload: classes/05class/aws_s3_rds/assets/index.html to s3://alanlima/index.html
+
+# Enable website feature and set index-document as index.html
+$ aws s3 website s3://alanlima --index-document index.html
+
+# Update the bucket policy to allow public get access
+$ aws s3api put-bucket-policy --bucket alanlima --policy file://bucket-publicaccess-policy.json 
+
+# Check the bucket policy
+$ aws s3api get-bucket-policy --bucket alanlima
+Policy: '{"Version":"2012-10-17","Statement":[{"Sid":"PublicReadGetObject","Effect":"Allow","Principal":"*","Action":"s3:GetObject","Resource":"arn:aws:s3:::alanlima/*"}]}'
+
+# curl the bucket public url to check if it works
+$ curl -s alanlima.s3-website-ap-southeast-2.amazonaws.com
+<html>
+        <body>
+                Welcome to DevOps Academy! :)
+        </body>
+</html>
