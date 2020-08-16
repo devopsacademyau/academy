@@ -18,6 +18,7 @@ The CEO is worried that a traffic peak may bring down the website and decided to
 </p>
 
 ## Task
+
 ### Project Team: 4 people
 
 Your team needs to run a pilot migration to AWS cloud considering the following requirements:
@@ -42,49 +43,60 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 - For this pilot we are aiming to have as much as possible as code
 - Single Github repo.
 
-## Grading
+## Grading 
+
+> Just for reference, not really graded
+
 - Planning & team work (planning, agile practices, Pull requests review, Trello board) - 25%
 - Presentation - 10%
 - Documentation (READMEs, solution diagram, etc) - 15%
 - Technical solution working - 50%
 
+## Kick off (today!)
 
-## Kick off
-- Project introduction
-- Decide on teams
-- Create channel in Slack with name (project_1_name1_name2_name3)
-- Create Github repo
-- Create `Github project` board and share 
+- Project introduction (instructors)
+- Decide on teams (check with instructors)
+- Create Github repo (Automated) - Something like `202X-xxx-projectX-groupX`
+- Create channel in Slack with name (`202X-xxx-projectX-groupX`) - (check with instructors)
+- [Create initial project backlog](../../scripts/projects/README.md) - (instructors)
 
 ## Resources
-- Source code of the wordpress application (Github)
+
+- Source code of the Wordpress application (Github)
 - Use Slack channel for communication and questions to teachers
 - Special readings for you:
-  - https://aws.amazon.com/blogs/architecture/wordpress-best-practices-on-aws/
+  - [Tutorial: Using Amazon EFS file systems with Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/tutorial-efs-volumes.html)
+  - [Wordpress Docker image](https://hub.docker.com/_/wordpress/)
+  - [Joining EC2 into an ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
   - https://medium.com/@beBrllnt/from-30-minutes-to-10-seconds-automating-wordpress-setup-5ff7526942c0
 
 
 ## Suggested technologies:
+
 - VCS → Github
 - Infra as Code → Terraform
 - Pipeline tool → Github actions
 - Containerization → Docker / Docker-compose
-- Relational Database → RDS MySQL
+- Relational Database → RDS MySQL or Aurora serverless
+- Assets repository → S3 or EFS
 - Container orchestrator → ECS
 
 ## Suggested timeline:
+
 - Week 0:
-  - Breakdown Stories (planning) in Trello and start working
+  - Breakdown Stories (planning) in Trello and start working on infrastructure tasks
 - Week 1:
   - Containerize application using Docker
-  - Start CI pipeline / automation scripts
+  - Start CI pipeline and automation scripts with 3 Musketeers
 - Week 2 (class 5):
   - Infrastructure as code working
-- Week 3:
   - Application deployed to AWS using pipeline/scripts successfully
-  - Start presentation material and refine documentation (double check if you're attending all requirements)
+- Week 3:
+  - Hardening: Review security requirements (Check NACLs, SGs, secrets management, etc)
+  - Start presentation material and refine documentation (double check if you're attending all project requirements in this document)
 - Week 4 (class 6):
   - Presentation (demo)
+    - Demo solution running and architecture walkthrough
 
 ## Credits: 
 [1] https://www.themely.com/how-to-fix-error-establishing-a-database-connection-in-wordpress/mysql-webserver-1/
