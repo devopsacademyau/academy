@@ -1,0 +1,22 @@
+name: gh-alanlima-pr
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'alanlima/**/*'
+
+jobs:
+  add_comment:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Add Comment
+        if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
+        uses: jungwinter/comment@v1
+        with:
+          type: create
+          body: "Well done **${{ secrets.ALIMA_NAME }}**! This is a nice PR"
+          issue_number: ${{ github.event.number }}
+          token: ${{ secrets.ALIMA_TOKEN }}
