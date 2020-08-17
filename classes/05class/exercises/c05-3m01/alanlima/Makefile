@@ -22,5 +22,9 @@ _delete_bucket:
 .PHONY:_delete_bucket
 
 _list_bucket_objects:
+	@echo "🤖: You again, I cannot even enjoy my standby moments in peace."
+	@echo "🤖: So now you want me to give you a list of the objects?"
+	@echo "🤖: Such a lazy human, just go to the aws console 😑. Fine here is the list:" 
 	@aws s3 ls --human-readable --summarize s3://${BUCKET_NAME}
+	@echo -e "\n🤖: anything else? maybe a mojito cocktail 🍸?"
 .PHONY:_list_bucket_objects
