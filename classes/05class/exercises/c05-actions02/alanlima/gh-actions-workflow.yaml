@@ -1,0 +1,50 @@
+name: gh-alanlima-pr-actions02
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'alanlima/c05-actions02/**/*'
+
+jobs:
+  push_image:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v2
+
+      - name: Build and Push Image
+        working-directory: 'alanlima/c05-actions02'
+        env:
+          DOCKER_TOKEN: ${{ secrets.ALIMA_DOCKER_TOKEN }}
+        run: make all
+
+      - name: Get DockerHub Tag Url
+        working-directory: 'alanlima/c05-actions02'
+        id: dockerhub
+        shell: bash
+        run: make ci_github_set_outputs
+
+      - name: Add Comment
+        uses: jungwinter/comment@v1
+        with:
+          type: create
+          issue_number: ${{ github.event.number }}
+          token: ${{ secrets.ALIMA_TOKEN }}
+          body: |
+            Well done **${{ secrets.ALIMA_NAME }}**, you are the best 🎊🎊🎊
+            You wrote a fantastic code 🧡🧡🧡🧡
+
+            **Here if the URL for the docker image that I kindly pushed to docker hub: 🐳🐳🐳🐳**
+
+            **[${{ steps.dockerhub.outputs.image_name }}](${{ steps.dockerhub.outputs.url }})**
+
+            ```bash
+            docker pull ${{ steps.dockerhub.outputs.image_name }}
+            ```
+
+            Looking forward to help you again 😜
+
+            🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
