@@ -1,0 +1,15 @@
+➜  academy git:(gepifanio/c04-s301) ✗ aws s3 mb s3://gepifanio
+make_bucket: gepifanio
+➜  academy git:(gepifanio/c04-s301) ✗ aws s3 cp ./classes/05class/aws_s3_rds/assets/index.html s3://gepifanio/index.html
+
+upload: classes/05class/aws_s3_rds/assets/index.html to s3://gepifanio/index.html
+➜  academy git:(gepifanio/c04-s301) ✗ aws s3 website s3://gepifanio/ --index-document index.html
+
+➜  academy git:(gepifanio/c04-s301) ✗ aws s3api put-bucket-policy --bucket gepifanio --policy file://s3_bucket_policy.json
+
+➜  gepifanio git:(gepifanio/c04-s301) ✗ curl http://gepifanio.s3-website-ap-southeast-2.amazonaws.com/
+<html>
+	<body>
+		Welcome to DevOps Academy! :)
+	</body>
+</html>%
