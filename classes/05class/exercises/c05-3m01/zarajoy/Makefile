@@ -1,5 +1,5 @@
 RUN_AWS ?= docker-compose run --rm aws
-BUCKET_NAME?= testbucketzara
+BUCKET_NAME?=
 .PHONY:create_bucket
 create_bucket:
 	echo Creating S3 Bucket ${BUCKET_NAME} 
