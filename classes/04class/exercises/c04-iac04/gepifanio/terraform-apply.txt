@@ -1,1 +1,619 @@
-terraform apply
+➜  terraform-code git:(gepifanio/c04-iac04) ✗ terraform apply -var-file=./main.tfvars
+module.network.data.aws_availability_zones.available: Refreshing state...
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.asg.aws_autoscaling_attachment.alb_autoscale_attach will be created
+  + resource "aws_autoscaling_attachment" "alb_autoscale_attach" {
+      + alb_target_group_arn   = (known after apply)
+      + autoscaling_group_name = "asg"
+      + id                     = (known after apply)
+    }
+
+  # module.asg.aws_autoscaling_group.asg will be created
+  + resource "aws_autoscaling_group" "asg" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = (known after apply)
+      + force_delete              = false
+      + health_check_grace_period = 0
+      + health_check_type         = "EC2"
+      + id                        = (known after apply)
+      + launch_configuration      = (known after apply)
+      + load_balancers            = (known after apply)
+      + max_size                  = 2
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = "asg"
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + target_group_arns         = (known after apply)
+      + vpc_zone_identifier       = (known after apply)
+      + wait_for_capacity_timeout = "10m"
+
+      + tag {
+          + key                 = "name"
+          + propagate_at_launch = false
+          + value               = "asg"
+        }
+    }
+
+  # module.asg.aws_autoscaling_policy.asp_decrease will be created
+  + resource "aws_autoscaling_policy" "asp_decrease" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "asg"
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "asp_decrease"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.asg.aws_autoscaling_policy.asp_increase will be created
+  + resource "aws_autoscaling_policy" "asp_increase" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "asg"
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "asp_increase"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 1
+    }
+
+  # module.asg.aws_cloudwatch_metric_alarm.down will be created
+  + resource "aws_cloudwatch_metric_alarm" "down" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "metric monitors ec2 cpu utilization and scale down when necessary"
+      + alarm_name                            = "cw-alarmdown"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "asg"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/AutoScaling"
+      + period                                = 60
+      + statistic                             = "Average"
+      + threshold                             = 80
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.asg.aws_cloudwatch_metric_alarm.up will be created
+  + resource "aws_cloudwatch_metric_alarm" "up" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "metric monitors ec2 cpu utilization and scale up if necessary"
+      + alarm_name                            = "cw-alarmup"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "asg"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/AutoScaling"
+      + period                                = 60
+      + statistic                             = "Average"
+      + threshold                             = 80
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.asg.aws_launch_configuration.ec2_lc will be created
+  + resource "aws_launch_configuration" "ec2_lc" {
+      + arn                         = (known after apply)
+      + associate_public_ip_address = true
+      + ebs_optimized               = (known after apply)
+      + enable_monitoring           = true
+      + id                          = (known after apply)
+      + image_id                    = "ami-0a58e22c727337c51"
+      + instance_type               = "t2.micro"
+      + key_name                    = (known after apply)
+      + name                        = (known after apply)
+      + security_groups             = (known after apply)
+      + user_data_base64            = "ICAgICMhIC9iaW4vYmFzaAogICAgeXVtIHVwZGF0ZSAteQogICAgeXVtIGluc3RhbGwgLXkgaHR0cGQKICAgIGN1cmwgMTY5LjI1NC4xNjkuMjU0L2xhdGVzdC9tZXRhLWRhdGEvaG9zdG5hbWUgPj4gaW5kZXguaHRtbAogICAgbXYgaW5kZXguaHRtbCAvdmFyL3d3dy9odG1sLwogICAgc3lzdGVtY3RsIHN0YXJ0IGh0dHBkCg=="
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + no_device             = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.asg.aws_security_group.sg_asg will be created
+  + resource "aws_security_group" "sg_asg" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + name                   = "sg_asg"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.lb.aws_lb.lb will be created
+  + resource "aws_lb" "lb" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "lb"
+      + security_groups            = (known after apply)
+      + subnets                    = (known after apply)
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id = (known after apply)
+          + subnet_id     = (known after apply)
+        }
+    }
+
+  # module.lb.aws_lb_listener.http will be created
+  + resource "aws_lb_listener" "http" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.lb.aws_lb_target_group.asg will be created
+  + resource "aws_lb_target_group" "asg" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + deregistration_delay               = 300
+      + id                                 = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = "asg"
+      + port                               = 80
+      + protocol                           = "HTTP"
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + target_type                        = "instance"
+      + vpc_id                             = (known after apply)
+
+      + health_check {
+          + enabled             = (known after apply)
+          + healthy_threshold   = (known after apply)
+          + interval            = (known after apply)
+          + matcher             = (known after apply)
+          + path                = (known after apply)
+          + port                = (known after apply)
+          + protocol            = (known after apply)
+          + timeout             = (known after apply)
+          + unhealthy_threshold = (known after apply)
+        }
+
+      + stickiness {
+          + cookie_duration = (known after apply)
+          + enabled         = (known after apply)
+          + type            = (known after apply)
+        }
+    }
+
+  # module.lb.aws_security_group.sg_lb will be created
+  + resource "aws_security_group" "sg_lb" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + name                   = "sg_lb"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.network.aws_eip.lb will be created
+  + resource "aws_eip" "lb" {
+      + allocation_id     = (known after apply)
+      + association_id    = (known after apply)
+      + customer_owned_ip = (known after apply)
+      + domain            = (known after apply)
+      + id                = (known after apply)
+      + instance          = (known after apply)
+      + network_interface = (known after apply)
+      + private_dns       = (known after apply)
+      + private_ip        = (known after apply)
+      + public_dns        = (known after apply)
+      + public_ip         = (known after apply)
+      + public_ipv4_pool  = (known after apply)
+      + vpc               = true
+    }
+
+  # module.network.aws_internet_gateway.igw will be created
+  + resource "aws_internet_gateway" "igw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "igw-iac"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # module.network.aws_nat_gateway.ngw will be created
+  + resource "aws_nat_gateway" "ngw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Name" = "ngw-iac"
+        }
+    }
+
+  # module.network.aws_route_table.route_table_private will be created
+  + resource "aws_route_table" "route_table_private" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = ""
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = (known after apply)
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "rt_iac_private"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.network.aws_route_table.route_table_public will be created
+  + resource "aws_route_table" "route_table_public" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "rt_iac_public"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.network.aws_route_table_association.private["private_a"] will be created
+  + resource "aws_route_table_association" "private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.network.aws_route_table_association.private["private_b"] will be created
+  + resource "aws_route_table_association" "private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.network.aws_route_table_association.public["public_a"] will be created
+  + resource "aws_route_table_association" "public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.network.aws_route_table_association.public["public_b"] will be created
+  + resource "aws_route_table_association" "public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.network.aws_subnet.private["private_a"] will be created
+  + resource "aws_subnet" "private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.0.0/19"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private_a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.network.aws_subnet.private["private_b"] will be created
+  + resource "aws_subnet" "private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.32.0/19"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private_b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.network.aws_subnet.public["public_a"] will be created
+  + resource "aws_subnet" "public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.64.0/18"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public_a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.network.aws_subnet.public["public_b"] will be created
+  + resource "aws_subnet" "public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.128.0/18"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public_b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.network.aws_vpc.vpc_iac will be created
+  + resource "aws_vpc" "vpc_iac" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = (known after apply)
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = (known after apply)
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "devopsacademy-iac"
+        }
+    }
+
+Plan: 26 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.network.aws_eip.lb: Creating...
+module.network.aws_vpc.vpc_iac: Creating...
+module.network.aws_eip.lb: Creation complete after 0s [id=eipalloc-0cb5602fa9d36ba49]
+module.network.aws_vpc.vpc_iac: Creation complete after 3s [id=vpc-0d195b93a75cf1f9c]
+module.network.aws_internet_gateway.igw: Creating...
+module.network.aws_subnet.private["private_a"]: Creating...
+module.network.aws_subnet.public["public_a"]: Creating...
+module.network.aws_subnet.private["private_b"]: Creating...
+module.network.aws_subnet.public["public_b"]: Creating...
+module.lb.aws_lb_target_group.asg: Creating...
+module.asg.aws_security_group.sg_asg: Creating...
+module.lb.aws_security_group.sg_lb: Creating...
+module.lb.aws_lb_target_group.asg: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:873547843801:targetgroup/asg/0dc17fcf483f1a70]
+module.network.aws_subnet.private["private_a"]: Creation complete after 1s [id=subnet-02ed73a2905385735]
+module.network.aws_subnet.public["public_b"]: Creation complete after 1s [id=subnet-081e6a592336e9276]
+module.network.aws_subnet.private["private_b"]: Creation complete after 1s [id=subnet-09e2e00e8412538ab]
+module.network.aws_subnet.public["public_a"]: Creation complete after 1s [id=subnet-006f6e451ff7b895f]
+module.network.aws_nat_gateway.ngw: Creating...
+module.network.aws_internet_gateway.igw: Creation complete after 1s [id=igw-03da2b917489f25f1]
+module.network.aws_route_table.route_table_public: Creating...
+module.asg.aws_security_group.sg_asg: Creation complete after 2s [id=sg-03ae47db8eff2a228]
+module.lb.aws_security_group.sg_lb: Creation complete after 2s [id=sg-07ef3b62707698511]
+module.asg.aws_launch_configuration.ec2_lc: Creating...
+module.lb.aws_lb.lb: Creating...
+module.network.aws_route_table.route_table_public: Creation complete after 1s [id=rtb-0b09d94f4f3cf9d50]
+module.network.aws_route_table_association.public["public_b"]: Creating...
+module.network.aws_route_table_association.public["public_a"]: Creating...
+module.network.aws_route_table_association.public["public_b"]: Creation complete after 1s [id=rtbassoc-0f5e3e22053d9eb2b]
+module.network.aws_route_table_association.public["public_a"]: Creation complete after 1s [id=rtbassoc-04ea265193b0edf42]
+module.asg.aws_launch_configuration.ec2_lc: Creation complete after 1s [id=terraform-20200822110349325400000001]
+module.asg.aws_autoscaling_group.asg: Creating...
+module.network.aws_nat_gateway.ngw: Still creating... [10s elapsed]
+module.lb.aws_lb.lb: Still creating... [10s elapsed]
+module.asg.aws_autoscaling_group.asg: Still creating... [10s elapsed]
+module.network.aws_nat_gateway.ngw: Still creating... [20s elapsed]
+module.lb.aws_lb.lb: Still creating... [20s elapsed]
+module.asg.aws_autoscaling_group.asg: Still creating... [20s elapsed]
+module.network.aws_nat_gateway.ngw: Still creating... [30s elapsed]
+module.lb.aws_lb.lb: Still creating... [30s elapsed]
+module.asg.aws_autoscaling_group.asg: Still creating... [30s elapsed]
+module.asg.aws_autoscaling_group.asg: Creation complete after 38s [id=asg]
+module.asg.aws_autoscaling_attachment.alb_autoscale_attach: Creating...
+module.asg.aws_autoscaling_policy.asp_decrease: Creating...
+module.asg.aws_autoscaling_policy.asp_increase: Creating...
+module.network.aws_nat_gateway.ngw: Still creating... [40s elapsed]
+module.asg.aws_autoscaling_attachment.alb_autoscale_attach: Creation complete after 1s [id=asg-20200822110428308500000002]
+module.asg.aws_autoscaling_policy.asp_increase: Creation complete after 1s [id=asp_increase]
+module.asg.aws_autoscaling_policy.asp_decrease: Creation complete after 1s [id=asp_decrease]
+module.asg.aws_cloudwatch_metric_alarm.up: Creating...
+module.asg.aws_cloudwatch_metric_alarm.down: Creating...
+module.lb.aws_lb.lb: Still creating... [40s elapsed]
+module.asg.aws_cloudwatch_metric_alarm.up: Creation complete after 0s [id=cw-alarmup]
+module.asg.aws_cloudwatch_metric_alarm.down: Creation complete after 0s [id=cw-alarmdown]
+module.network.aws_nat_gateway.ngw: Still creating... [50s elapsed]
+module.lb.aws_lb.lb: Still creating... [50s elapsed]
+module.network.aws_nat_gateway.ngw: Still creating... [1m0s elapsed]
+module.lb.aws_lb.lb: Still creating... [1m0s elapsed]
+module.network.aws_nat_gateway.ngw: Still creating... [1m10s elapsed]
+module.lb.aws_lb.lb: Still creating... [1m10s elapsed]
+module.network.aws_nat_gateway.ngw: Still creating... [1m20s elapsed]
+module.lb.aws_lb.lb: Still creating... [1m20s elapsed]
+module.network.aws_nat_gateway.ngw: Still creating... [1m30s elapsed]
+module.lb.aws_lb.lb: Still creating... [1m30s elapsed]
+module.network.aws_nat_gateway.ngw: Creation complete after 1m37s [id=nat-05c6c24e58eb5e15d]
+module.network.aws_route_table.route_table_private: Creating...
+module.network.aws_route_table.route_table_private: Creation complete after 1s [id=rtb-0905178a41b0d20cf]
+module.network.aws_route_table_association.private["private_b"]: Creating...
+module.network.aws_route_table_association.private["private_a"]: Creating...
+module.network.aws_route_table_association.private["private_a"]: Creation complete after 0s [id=rtbassoc-0f972e02d18e74279]
+module.network.aws_route_table_association.private["private_b"]: Creation complete after 0s [id=rtbassoc-0c116a2e2ad748a83]
+module.lb.aws_lb.lb: Still creating... [1m40s elapsed]
+module.lb.aws_lb.lb: Still creating... [1m50s elapsed]
+module.lb.aws_lb.lb: Still creating... [2m0s elapsed]
+module.lb.aws_lb.lb: Still creating... [2m10s elapsed]
+module.lb.aws_lb.lb: Still creating... [2m20s elapsed]
+module.lb.aws_lb.lb: Creation complete after 2m24s [id=arn:aws:elasticloadbalancing:ap-southeast-2:873547843801:loadbalancer/app/lb/1ac8b536d08ac0a7]
+module.lb.aws_lb_listener.http: Creating...
+module.lb.aws_lb_listener.http: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:873547843801:listener/app/lb/1ac8b536d08ac0a7/baf0093f45f1fae4]
+
+Apply complete! Resources: 26 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: ./terraform.tfstate
+
+Outputs:
+
+lb_dns_name = lb-1480239970.ap-southeast-2.elb.amazonaws.com

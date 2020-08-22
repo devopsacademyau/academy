@@ -1,16 +1,3 @@
-# common
-
-variable "region" {
-    type    = string
-    default = "ap-southeast-2"
-}
-
-variable "key_pair_name" {
-    type    = string
-}
-
-# vpc
-
 variable "vpc_cidr" {
     type    = string
 }

@@ -1,4 +1,2 @@
-with the output of the curl command accessing your website
-
-curl load balancer and result
-
+➜  terraform-code git:(gepifanio/c04-iac04) ✗ curl lb-1480239970.ap-southeast-2.elb.amazonaws.com
+ip-10-0-141-26.ap-southeast-2.compute.internal%

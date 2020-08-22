@@ -20,6 +20,7 @@ Deploy the code into your AWS and confirm the website is accessible(you can use 
 ## Questions:
 - What is the benefit of having the Terraform code for the resources within the module you've created?
 
+It allows you to reuse the code created for the module cross projects, so basically makes easier to create the resource, and can easily be reusable. 
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
