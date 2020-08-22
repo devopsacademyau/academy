@@ -1,0 +1,16 @@
+name: Raghu Github Actions C05-01
+on:
+  pull_request:
+    paths:
+      - "raghunadhpokkalath/**"
+jobs:
+  prcomment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.RAGHU_PAT }}
+        with:
+          message: |
+            Well done ${{ secrets.RAGHU_NAME }}! This is a nice PRN
+          allow-repeats: false
