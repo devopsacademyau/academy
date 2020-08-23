@@ -8,6 +8,7 @@ module "team-external-students" {
     "anwickes",
     "carloshz4",
     "ebeserra",
+    "hhemanth",
     "maladham1980",
     "mendoncaj",
     "raghunadhpokkalath",
