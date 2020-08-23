@@ -1,0 +1,17 @@
+name: gepifanio
+on:
+    pull_request:
+        types: [opened]
+        paths: 'gepifanio/**'
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: comment pr
+        uses: nickatnight/add-pr-comment-action@v1    
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          body: "Well done **${{ secrets.GEPIFANIO_USER_NAME_TOKEN }}**! This is a nice PR"
+          allow_duplicates: false
