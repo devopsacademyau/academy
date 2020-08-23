@@ -1,0 +1,19 @@
+## Create the bucket
+> aws s3api create-bucket --bucket jayanath20200823 --create-bucket-configuration LocationConstraint=ap-southeast-2
+
+{
+    "Location": "http://jayanath20200823.s3.amazonaws.com/"
+}
+
+
+## Copy index file into bucket
+> aws s3 cp "${PWD}/classes/05class/aws_s3_rds/assets/index.html"  s3://jayanath20200823
+
+upload: classes/05class/aws_s3_rds/assets/index.html to s3://jayanath20200823/index.html
+
+## Add bucket policy to enable public access
+> aws s3api put-bucket-policy --bucket jayanath20200823 --policy file://${PWD}/classes/05class/exercises/c04-s301/jayanath/public_s3_policy.json
+
+
+## Enable website feature
+> aws s3 website s3://jayanath20200823 --index-document index.html
