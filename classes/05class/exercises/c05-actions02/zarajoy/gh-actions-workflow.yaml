@@ -1,0 +1,27 @@
+name: zarajoy_actions02
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'zarajoy/c05-actions02/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: checkout
+      uses: actions/checkout@v2
+      
+    - name: Login_build_push
+      run: make docker_all
+      working-directory: 'zarajoy/c05-actions02'
+      env: 
+        DOCKER_PW: ${{ secrets.ZARAJOY_DOCKER_PW }}
+
+    - name: comment
+      uses: mshick/add-pr-comment@v1
+      with:
+        message: Well done "${{ secrets.ZARAJOY_NAME }}" ! This is a nice PR!!.
+        repo-token: "${{ secrets.ZARAJOY_TOKEN }}"
