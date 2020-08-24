@@ -1,0 +1,16 @@
+$ aws s3 mb s3://frdvo
+make_bucket: frdvo
+
+$ aws s3 cp index.html s3://frdvo
+upload: ./index.html to s3://frdvo/index.html
+
+$ aws s3 website s3://frdvo/ --index-document index.html
+
+$ aws s3api put-bucket-policy --bucket frdvo --policy file://s3_bucket_policy.json
+
+$ curl http://frdvo.s3-website-ap-southeast-2.amazonaws.com/
+<html>
+        <body>
+                Welcome to DevOps Academy! :)
+        </body>
+</html>
