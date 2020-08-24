@@ -1,3 +1,4 @@
+```
 > vanithak@~/3m$make create_bucket
   ...
   inflating: aws/dist/awscli/data/metadata.json  
@@ -26,12 +27,14 @@
  Successfully tagged 3m_3mdemo:latest
  WARNING: Image for service 3mdemo was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
  make_bucket: mail2kvanitha
- 
+```
+```
 > vanithak@~/3m$ make list_bucket
  docker-compose run --rm 3mdemo aws s3 ls
  2020-08-24 15:32:17 mail2kvanitha
  2020-08-18 05:13:21 webdevacademy
-
+```
+```
  > vanithak@~/3m$ make delete_bucket
  docker-compose run --rm 3mdemo sh ./scripts/delete_bucket.sh
  remove_bucket: mail2kvanitha
@@ -39,7 +42,8 @@
  > vanithak@~/3m$ make list_bucket
  docker-compose run --rm 3mdemo aws s3 ls
  2020-08-18 05:13:21 webdevacademy
- 
+ ```
+ ```
  > vanithak@~/3m$ make check_container
  docker-compose run --rm 3mdemo pwd && echo "Hello" > test.txt && ls -l
  /3m-demo
@@ -49,7 +53,8 @@
  -rw-r--r--  1 vanithak  staff  170 24 Aug 23:20 docker-compose.yaml
  drwxr-xr-x  6 vanithak  staff  192 25 Aug 01:23 scripts
  -rw-r--r--  1 vanithak  staff    6 25 Aug 01:32 test.txt
- 
+ ```
+ ```
  > vanithak@~/3m$ make check_docker
  Docker Images
  =============
@@ -81,3 +86,4 @@
  
  
  CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
