@@ -1,0 +1,12 @@
+FROM ubuntu:18.04 as shell
+
+RUN apt-get update && apt-get install curl make git zip unzip sudo python3 -y && \
+		curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+		unzip awscliv2.zip && \
+		sudo ./aws/install && \
+		aws --version && \ 
+		rm -rf /var/lib/apt/lists/* &&\
+		curl  "https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_386.zip" -o "tf-0.12.zip" &&\
+		unzip tf-0.12.zip && \
+		mv terraform /usr/local/bin/ && \ 
+		rm tf-0.12.zip
