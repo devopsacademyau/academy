@@ -3,6 +3,8 @@
 Please provide the following:
 
 - link to an open PR on the PLAYGROUND repository containing an automated comment from your GH Actions workflow.
+  - [GitHub PR](https://github.com/devopsacademyau/playground/pull/101)
+
 - attach to this PR the GH Actions workflow yaml file used:
   - [mail2kvanitha-c05-actions01.yml](mail2kvanitha-c05-actions01.yml)
 
