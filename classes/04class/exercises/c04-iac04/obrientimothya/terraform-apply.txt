@@ -1,0 +1,67 @@
+module.iac-04-module.aws_vpc.main: Creating...
+module.iac-04-module.aws_vpc.main: Creation complete after 2s [id=vpc-0da8318788fc80535]
+module.iac-04-module.aws_internet_gateway.igw: Creating...
+module.iac-04-module.aws_subnet.subnet_b: Creating...
+module.iac-04-module.aws_subnet.subnet_a: Creating...
+module.iac-04-module.aws_security_group.alb: Creating...
+module.iac-04-module.aws_alb_target_group.alb_tg: Creating...
+module.iac-04-module.aws_security_group.httpd: Creating...
+module.iac-04-module.aws_subnet.subnet_b: Creation complete after 0s [id=subnet-0fae7a9436696664e]
+module.iac-04-module.aws_subnet.subnet_a: Creation complete after 0s [id=subnet-05a3a9472aeb2a671]
+module.iac-04-module.aws_alb_target_group.alb_tg: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:437637330966:targetgroup/alg-tg-c04-iac04/dd46d902232ee8d5]
+module.iac-04-module.aws_internet_gateway.igw: Creation complete after 0s [id=igw-0e25c64d990d51cda]
+module.iac-04-module.aws_route_table.pub_route: Creating...
+module.iac-04-module.aws_route_table.pub_route: Creation complete after 1s [id=rtb-0808a4421bc20f89c]
+module.iac-04-module.aws_route_table_association.sub_b: Creating...
+module.iac-04-module.aws_route_table_association.sub_a: Creating...
+module.iac-04-module.aws_route_table_association.sub_a: Creation complete after 0s [id=rtbassoc-086426f172093d89c]
+module.iac-04-module.aws_route_table_association.sub_b: Creation complete after 0s [id=rtbassoc-06ec1adc09859e6a4]
+module.iac-04-module.aws_security_group.alb: Creation complete after 1s [id=sg-0a4242e38b170e238]
+module.iac-04-module.aws_alb.alb: Creating...
+module.iac-04-module.aws_security_group.httpd: Creation complete after 1s [id=sg-0058f87b18f37e181]
+module.iac-04-module.aws_alb.alb: Still creating... [10s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [20s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [30s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [40s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [50s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [1m0s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [1m10s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [1m20s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [1m30s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [1m40s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [1m50s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [2m0s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [2m10s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [2m20s elapsed]
+module.iac-04-module.aws_alb.alb: Still creating... [2m30s elapsed]
+module.iac-04-module.aws_alb.alb: Creation complete after 2m33s [id=arn:aws:elasticloadbalancing:ap-southeast-2:437637330966:loadbalancer/app/alb-c04-iac04/f01b9c062f32a011]
+module.iac-04-module.aws_alb_listener.alb_listener: Creating...
+module.iac-04-module.aws_launch_template.httpd: Creating...
+module.iac-04-module.aws_alb_listener.alb_listener: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:437637330966:listener/app/alb-c04-iac04/f01b9c062f32a011/776209648c151c5d]
+module.iac-04-module.aws_launch_template.httpd: Creation complete after 1s [id=lt-0c7a42d48a97ba7f6]
+module.iac-04-module.aws_autoscaling_group.httpd: Creating...
+module.iac-04-module.aws_autoscaling_group.httpd: Still creating... [10s elapsed]
+module.iac-04-module.aws_autoscaling_group.httpd: Still creating... [20s elapsed]
+module.iac-04-module.aws_autoscaling_group.httpd: Still creating... [30s elapsed]
+module.iac-04-module.aws_autoscaling_group.httpd: Creation complete after 38s [id=asg-c04-iac04]
+module.iac-04-module.aws_autoscaling_policy.scale_down: Creating...
+module.iac-04-module.aws_autoscaling_policy.scale_up: Creating...
+module.iac-04-module.aws_autoscaling_policy.scale_down: Creation complete after 1s [id=scale-down-c04-iac04]
+module.iac-04-module.aws_cloudwatch_metric_alarm.mem-low: Creating...
+module.iac-04-module.aws_autoscaling_policy.scale_up: Creation complete after 1s [id=scale-up-c04-iac04]
+module.iac-04-module.aws_cloudwatch_metric_alarm.mem-high: Creating...
+module.iac-04-module.aws_cloudwatch_metric_alarm.mem-low: Creation complete after 0s [id=mem-scale-down-c04-iac04]
+module.iac-04-module.aws_cloudwatch_metric_alarm.mem-high: Creation complete after 0s [id=mem-scale-up-c04-iac04]
+
+Apply complete! Resources: 18 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: ./terraform.tfstate
+
+Outputs:
+
+alb_dns_name = alb-c04-iac04-8588123.ap-southeast-2.elb.amazonaws.com
