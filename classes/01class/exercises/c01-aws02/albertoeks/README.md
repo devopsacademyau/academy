@@ -125,6 +125,9 @@ ubuntu@13.210.113.24$ sudo snap install aws-cli --classic
 ubuntu@13.210.113.24$ aws s3 ls c01-aws02
 2020-07-27 12:40:55         10 file.txt
 
+ubuntu@13.210.113.24$ aws s3 cp s3://c01-aws02/file.txt .
+download: s3://c01-aws02/file.txt to ./file.txt
+
 ubuntu@13.210.113.24$ ls
 file.txt
 
