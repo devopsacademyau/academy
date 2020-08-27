@@ -6,7 +6,7 @@ create_bucket:
 
 .PHONY:_create_bucket
 _create_bucket:
-	bash scripts/create_bucket.sh
+	bash create_bucket.sh
 
 .PHONY:delete_bucket
 delete_bucket:
@@ -14,4 +14,10 @@ delete_bucket:
 
 .PHONY:_delete_bucket
 _delete_bucket:
-	bash scripts/delete_bucket.sh
+	bash delete_bucket.sh
+
+cleanDocker:
+	docker-compose down --remove-orphans
+
+clean: cleanDocker
+	rm -f .env
