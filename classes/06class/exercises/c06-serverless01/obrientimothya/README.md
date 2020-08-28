@@ -11,7 +11,10 @@
 ## Command Execution Output
 
 ```
-$ curl -v -X POST https://ltef5ze76a.execute-api.ap-southeast-2.amazonaws.com/v1/customers -d "{\"firstname\": \"Timothy\", \"lastname\": \"OBrien\", \"email\": \"obrien.timothy.a@gmail.com\"}" -H "x-api-key: Vx0EYnsISl6x6gvnp7Sdh4CMbqb9AJKC3npTesLc"
+$ curl -v \
+  -X POST https://ltef5ze76a.execute-api.ap-southeast-2.amazonaws.com/v1/customers \
+  -d "{\"firstname\": \"Timothy\", \"lastname\": \"OBrien\", \"email\": \"obrien.timothy.a@gmail.com\"}" \
+  -H "x-api-key: Vx0EYnsISl6x6gvnp7Sdh4CMbqb9AJKC3npTesLc"
 
 Note: Unnecessary use of -X or --request, POST is already inferred.
 *   Trying 13.35.145.97...
