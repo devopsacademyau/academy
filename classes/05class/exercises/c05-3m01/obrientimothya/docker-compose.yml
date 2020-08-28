@@ -1,0 +1,10 @@
+---
+version: "3"
+services:
+  aws:
+    image: obrientimothya/aws-cli:2.0.0
+    working_dir: /aws-cli
+    volumes:
+      - ${PWD}:/aws-cli:z
+    env_file:
+      - .env
