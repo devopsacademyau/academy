@@ -8,11 +8,10 @@ PORT ?= 80
 .PHONY: build
 build:
 	@echo ${REGISTRY}
-
+	@echo "<b>This image was created by ${REGISTRY}, based on the ${TAG} <b>" >> index.html
 	@echo "Building Docker Image ${REGISTRY}/${IMAGE}:${TAG}"
-	@docker build -t ${IMAGE}:${TAG} \
-		--build-arg REGISTRY=${REGISTRY} \
-		--build-arg TAG=${TAG} .
+	@docker build -t ${IMAGE}:${TAG} .
+	@rm index.html
 
 .PHONY: run
 run:
