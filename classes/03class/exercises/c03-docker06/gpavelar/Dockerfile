@@ -1,3 +1,2 @@
-FROM alpine:latest
-FROM gpavelar/exercise02:v1
+FROM alpine:3.7
 ENTRYPOINT ["printf", "Hello %s \n"]

@@ -10,18 +10,21 @@
 
 ```bash
 ## Build
-docker build -t exercise06:v1
+docker build -t hello-name:v1 .
 # Output
-Sending build context to Docker daemon  4.096kB
-Step 1/3 : FROM alpine:latest
- ---> a24bb4013296
-Step 2/3 : FROM gpavelar/exercise02:v1
- ---> 73a3b15c384b
-Step 3/3 : ENTRYPOINT ["printf", "Hello %s \n"]
- ---> Using cache
- ---> 5a2b8be2c271
-Successfully built 5a2b8be2c271
-Successfully tagged exercise06:v1
+Sending build context to Docker daemon  3.584kB
+Step 1/2 : FROM alpine:3.7
+3.7: Pulling from library/alpine
+5d20c808ce19: Pull complete 
+Digest: sha256:8421d9a84432575381bfabd248f1eb56f3aa21d9d7cd2511583c68c9b7511d10
+Status: Downloaded newer image for alpine:3.7
+ ---> 6d1ef012b567
+Step 2/2 : ENTRYPOINT ["printf", "Hello %s \n"]
+ ---> Running in 2eabdf2ce373
+Removing intermediate container 2eabdf2ce373
+ ---> c3c72e15d66b
+Successfully built c3c72e15d66b
+Successfully tagged hello-name:v1
 
 ```
 
@@ -29,7 +32,7 @@ Successfully tagged exercise06:v1
 
 ```bash
 ## Run image
-docker run -it exercise06:v1 Hey
+docker run -it hello-name:v1 Hey
 # Output
 Hello Hey
 ```
