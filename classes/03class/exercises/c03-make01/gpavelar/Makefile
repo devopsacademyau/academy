@@ -1,6 +1,7 @@
 REGISTRY ?= $$(docker info | sed '/Username:/!d;s/.* //' |  sed "s/ //g")
 IMAGE ?= make01
 TAG ?= $$(git rev-parse --short HEAD)
+PORT ?= 80
 
 
 
@@ -15,8 +16,8 @@ build:
 
 .PHONY: run
 run:
-	@echo "Running the container on port 8081..."
-	@docker run -d -p 8081:80 ${IMAGE}:${TAG}
+	@echo "Running the container on port ${PORT}..."
+	@docker run -d -p ${PORT}:80 ${IMAGE}:${TAG}
 
 .PHONY: push
 push: 
