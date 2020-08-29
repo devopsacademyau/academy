@@ -50,8 +50,8 @@ make run
 Running the container on port 8083...
 8c0935d670fd86acf30dafb5a6b5f33b6ef17dd7752a102e284f35b96b8c7372
 ## Curl
-(base)  crazynight@crazynight  curl localhost:8083
-<b>This image was created by gpavelar, based on the e031811d <b>
+curl localhost:8083              
+<b>This image was created by gpavelar, based on the 711ce9e0 <b>
 ```
 
 ---
