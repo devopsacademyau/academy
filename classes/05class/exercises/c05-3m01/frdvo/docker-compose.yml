@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+    3m:
+      build: .
+      env_file: .env
+      volumes:
+        - .:/3m
+      working_dir: /3m
