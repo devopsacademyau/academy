@@ -1,0 +1,10 @@
+version: '3'
+services:
+  aws:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ~/.aws/credentials:/root/.aws/credentials
+      - .:/code
+    working_dir: /code
