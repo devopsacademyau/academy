@@ -35,7 +35,7 @@ resource "aws_ssm_parameter" "api_key" {
 }
 
 data "aws_ssm_parameter" "db_host" {
-  name = "DB_HOST"
+  name = "DB_NAME"
 }
 
 # DYNAMODB
@@ -180,7 +180,7 @@ resource "aws_lambda_function" "api" {
 
   environment {
     variables = {
-      DB_HOST = data.aws_ssm_parameter.db_host.value
+      DB_NAME = data.aws_ssm_parameter.db_host.value
     }
   }
 }

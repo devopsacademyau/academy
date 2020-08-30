@@ -1,6 +1,6 @@
 DOCKER=docker-compose run --rm
 TF_PLAN=c06-serverless01.tfplan
-DB_HOST=DA_Serverless
+DB_NAME=DA_Serverless
 
 plan: _ssm _init
 	$(DOCKER) terraform plan -out=$(TF_PLAN)
@@ -20,8 +20,8 @@ PHONY: _init
 
 _ssm:
 	$(DOCKER) aws ssm put-parameter \
-		--name DB_HOST \
-		--value $(DB_HOST) \
+		--name DB_NAME \
+		--value $(DB_NAME) \
 		--type SecureString \
 		--overwrite \
 		--region ap-southeast-2
