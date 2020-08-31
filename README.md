@@ -185,6 +185,7 @@ The content can be accessed through each specific README link below.
     - AWS Step Functions
     - AWS SNS
     - AWS SQS
+    - AWS Step Functions
 - [Class 08](classes/08class/README.md)
     - Project #2 Delivery
     - Next steps
@@ -323,7 +324,7 @@ make dashboard \
 
 ## Presentation format
 
-* We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
+* We are using plain `README.md` files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
 
 * Generate the presentation by running: 
   * `make presentation`
@@ -335,7 +336,6 @@ make dashboard \
     * Online: access `https://gitpitch.com/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`. Folder must contain a PITCHME.md file.
     * Offline: use a [Docker container](https://github.com/kns-it/Docker-GitPitch/), run `make presentation` and `open http://localhost:9000/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`
     For running in a specific folder: `FOLDER_NAME=class2 make presentation`
-
 
 ## Clean up Ready to Review tag from Closed PRs
 
