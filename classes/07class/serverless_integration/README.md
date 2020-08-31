@@ -2,13 +2,14 @@
 	- [Simple API and Robust APIs](#simple-api-and-robust-apis)
 	- [Strangler pattern](#strangler-pattern)
 	- [Publish/Subscriber messaging](#publishsubscriber-messaging)
-	- [Tolerant Asynchronous Messaging](#tolerant-asynchronous-messaging)
+	- [Persistent Asynchronous Messaging](#persistent-asynchronous-messaging)
 	- [Queue-based Load Leveling](#queue-based-load-leveling)
-	- [Flat files](#flat-files)
 		- [References](#references)
 - [AWS services](#aws-services)
 	- [DynamoDB Streams](#dynamodb-streams)
 	- [Simple Notification Service (SNS)](#simple-notification-service-sns)
+		- [Message filtering](#message-filtering)
+	- [Simple Queue Service (SQS)](#simple-queue-service-sqs)
 
 # Serverless Integration patterns
 
@@ -60,19 +61,33 @@ In this example the `Service 1` publishes a message to the SNS Topic. The servic
 Technical References:
 - [Simple Notification Service (SNS)](#simple-notification-service-sns)
 
-## Tolerant Asynchronous Messaging
+## Persistent Asynchronous Messaging
 
+A queue decouples tasks from services, creating a buffer that holds requests for less scalable backends or third-party services.
 
+![](assets/sns_sqs_lambdas.png)
+
+A common example is using a SQS to buffer API requests to amortize spikes in traffic.
+The endpoint returns `202 — Accepted` to the client, with a transaction id and a location for the result. On the client-side the UI can give feedback to the user emulating the expected behavior.
 
 ## Queue-based Load Leveling
 
 > https://read.acloud.guru/applying-the-decoupled-invocation-pattern-with-aws-lambda-2f5f7e78d18
 
+AWS Lambda and Kinesis can scale quickly, overwhelming downstream services that are less elastic or slower to scale.
 
-## Flat files
-> https://www.enterpriseintegrationpatterns.com/patterns/messaging/FileTransferIntegration.html
+By polling at a constant rate, you can ensure the consuming service does not get overloaded, without limiting the producer or creating higher latencies on the producer side.
 
-![](https://www.enterpriseintegrationpatterns.com/img/FileTransferIntegration.gif)
+![](assets/queue_leveler.png)
+
+Technical Reference:
+- [Simple Queue Service (SQS)](#simple-queue-service-sqs)
+
+<!-- ## Flat files integration
+
+> https://www.enterpriseintegrationpatterns.com/patterns/messaging/FileTransferIntegration.html -->
+
+
 
 ### References
 
@@ -112,3 +127,105 @@ Some use cases include (some the AWS website):
 
 ## Simple Notification Service (SNS)
 
+Amazon Simple Notification Service (Amazon SNS) is a web service that coordinates messages to subscribing endpoints. 
+
+In Amazon SNS, there are two types of clients — publishers and subscribers.
+
+**Publishers** communicate asynchronously with subscribers by producing and sending a message to a topic, which is a logical access point and communication channel. 
+
+**Subscribers** (that is, web servers, email addresses, Amazon SQS queues, AWS Lambda functions) consume or receive the message or notification over one of the supported protocols (that is, Amazon SQS, HTTP/S, email, SMS, Lambda) when they are subscribed to the topic.
+
+Messages have two main parts:
+- **Message body**: the actual content of the message
+- **Message attributes**: metadata about the message
+
+For attribute mapping between Amazon SNS and Amazon SQS, each message can have *up to 10 attributes*. When using raw mode or an endpoint other than Amazon SQS, a message can have *more than 10 attributes*.
+
+Key takeaways:
+- SNS supports resource policies per Topic. You need to allow identities or services to publish or subscribe to a Topic.
+- SNS supports server-side encryption (SSE) using CMKs.
+- Message attributes can be used for message filtering (see below)
+- Check [message retries policy](https://docs.aws.amazon.com/sns/latest/dg/sns-message-delivery-retries.html)
+
+> Although most of the time each message will be delivered to your application exactly once, the distributed nature of Amazon SNS and transient network conditions could result in occasional **duplicate messages** at the subscriber end. Developers should design their applications such that **processing a message more than once does not create any errors or inconsistencies**.
+
+### Message filtering
+
+By default, an Amazon SNS topic subscriber receives every message published to the topic. To receive a subset of the messages, a subscriber must assign a **filter policy** to the **topic subscription**.
+
+A **filter policy** is a simple JSON object containing attributes that define which messages the subscriber receives.
+
+Example SNS message:
+```json
+{
+   "Type": "Notification",
+   "MessageId": "a1b2c34d-567e-8f90-g1h2-i345j67klmn8",
+   "TopicArn": "arn:aws:sns:us-east-2:123456789012:MyTopic",
+   "Message": "message-body-with-transaction-details",
+   "Timestamp": "2019-11-03T23:28:01.631Z",
+   "SignatureVersion": "4",
+   "Signature": "signature",
+   "UnsubscribeURL": "unsubscribe-url",
+   "MessageAttributes": {
+      "customer_interests": {
+         "Type": "String.Array",
+         "Value": "[\"soccer\", \"rugby\", \"hockey\"]"
+      },
+      "store": {
+         "Type": "String",
+         "Value":"example_corp"
+      },
+      "event": {
+         "Type": "String",
+         "Value": "order_placed"
+      },
+      "price_usd": {
+         "Type": "Number", 
+         "Value":210.75
+      }
+   }
+}
+```
+
+Example Filter Policy:
+```json
+{
+   "store": ["example_corp"],
+   "event": [{"anything-but": "order_cancelled"}],
+   "customer_interests": [
+      "rugby",
+      "football",
+      "baseball"
+   ],
+   "price_usd": [{"numeric": [">=", 100]}]
+}
+```
+
+If any single attribute in this policy doesn't match an attribute assigned to the message, the policy rejects the message.
+
+> - The maximum size of a policy is 256 KB.
+> - A filter policy can have a maximum of 5 attribute names.
+> - [Read more about filter policies](https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html#example-filter-policies)
+
+## Simple Queue Service (SQS)
+
+Amazon Simple Queue Service (Amazon SQS) offers a secure, durable, and available hosted queue that lets you integrate and decouple distributed software systems and components.
+
+Two queue types:
+- **Standard**: At-least once delivery, best-effort ordering.
+- **FIFO**: First-in-first-out delivery, message ordering is preserved
+
+When receiving a message there are some attributes you can set as:
+- *Delivery delay*: amount of time to delay the first delivery of each message added to the queue. Up to 15 minutes.
+- *Visibility timeout*: time that a message received from a queue will not be visible to the other message consumers. Up to 12 hours.
+- *Retention period*: up to 14 days.
+- *Maximum message size*: up to 256 KB.
+- *Receive message wait time*: maximum amount of time that polling will wait for messages to become available to receive. Useful for long polling and avoiding empty responses from SQS.
+
+![](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/images/sqs-delay-queues-diagram.png)
+
+SQS key points:
+- A single SQS queue can contain an unlimited number of messages
+- Supports Server-side encryption using KMS keys
+- Supports resource-based policies to control access
+- Supports Dead-letter queue configuration. **Dead-letter queues** let you isolate problematic messages to determine why they are failing
