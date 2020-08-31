@@ -6,7 +6,7 @@ export BUCKET_NAME ?= test
 ##+MAKEFILE HELPER
 ##+
 ##+GENERAL COMMANDS
-help: 				##+ Lista os comandos disponíveis.
+help: 				##+ Show Available commands.
 	@fgrep -h "##+" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##+//'
 
 ##+
