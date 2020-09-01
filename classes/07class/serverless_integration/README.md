@@ -1,15 +1,19 @@
+## Summary
 - [Serverless Integration patterns](#serverless-integration-patterns)
-	- [Simple API and Robust APIs](#simple-api-and-robust-apis)
-	- [Strangler pattern](#strangler-pattern)
-	- [Publish/Subscriber messaging](#publishsubscriber-messaging)
-	- [Persistent Asynchronous Messaging](#persistent-asynchronous-messaging)
-	- [Queue-based Load Leveling](#queue-based-load-leveling)
-		- [References](#references)
+  - [Simple API and Robust APIs](#simple-api-and-robust-apis)
+  - [Strangler pattern](#strangler-pattern)
+  - [Publish/Subscriber messaging](#publishsubscriber-messaging)
+  - [Persistent Asynchronous Messaging](#persistent-asynchronous-messaging)
+  - [Queue-based Load Leveling](#queue-based-load-leveling)
+  - [Flat files integration](#flat-files-integration)
+  - [Scheduled jobs](#scheduled-jobs)
+  - [Event triggers](#event-triggers)
+  - [References](#references)
 - [AWS services](#aws-services)
-	- [DynamoDB Streams](#dynamodb-streams)
-	- [Simple Notification Service (SNS)](#simple-notification-service-sns)
-		- [Message filtering](#message-filtering)
-	- [Simple Queue Service (SQS)](#simple-queue-service-sqs)
+  - [DynamoDB Streams](#dynamodb-streams)
+  - [Simple Notification Service (SNS)](#simple-notification-service-sns)
+    - [Message filtering](#message-filtering)
+  - [Simple Queue Service (SQS)](#simple-queue-service-sqs)
 
 # Serverless Integration patterns
 
@@ -67,7 +71,7 @@ A queue decouples tasks from services, creating a buffer that holds requests for
 
 ![](assets/sns_sqs_lambdas.png)
 
-A common example is using a SQS to buffer API requests to amortize spikes in traffic.
+A common example is using SQS to buffer API requests to amortize spikes in traffic.
 The endpoint returns `202 — Accepted` to the client, with a transaction id and a location for the result. On the client-side the UI can give feedback to the user emulating the expected behavior.
 
 ## Queue-based Load Leveling
@@ -83,13 +87,62 @@ By polling at a constant rate, you can ensure the consuming service does not get
 Technical Reference:
 - [Simple Queue Service (SQS)](#simple-queue-service-sqs)
 
-<!-- ## Flat files integration
+## Flat files integration
 
-> https://www.enterpriseintegrationpatterns.com/patterns/messaging/FileTransferIntegration.html -->
+> https://www.enterpriseintegrationpatterns.com/patterns/messaging/FileTransferIntegration.html
+
+There are some use cases where you need to trigger the processing when a file is created, updated or deleted. Common use cases for this are for image resizing, where the original image is resized to different dimensions and becoming thumbnails used by mobile applications.
+
+For those cases you can use S3 Event Notifications to notify Lambda, SQS or SNS about an object.
+
+![](assets/s3_trigger.png)
+
+[Read more here](https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)
+
+## Scheduled jobs
+
+If you need to implement for example power management process to alleviate the costs of your infra, probably you will look into some kind of scheduler (like `cron`) to help you triggering the jobs.
+
+A common use case for it is stopping `dev` EC2 instances out of business hours to avoid paying extra instance hours when no one is using them.
+
+AWS CloudWatch Events (AWS EventBridge) can be used to schedule cronjobs and trigger 
+
+## Event triggers
+
+Events are important information sources. In event-driven architectures, after services handle requests applying business logic, zero or many domain events can be published.
+
+Other services can subscribe to these events and invoke their handlers. The source service is not aware of which services are invoked as the result of a published event, and this leads to a decoupled inter-service communication.
+
+![](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/images/log_stateec2_using_CWE_1.PNG)
+
+Amazon CloudWatch Events delivers a near real-time stream of system events that describe changes in Amazon Web Services (AWS) resources. CloudWatch Events becomes aware of operational changes as they occur. 
+
+You can configure a variety of targets to handle an event, like:
+
+- Amazon EC2 instances
+- AWS Lambda functions
+- Streams in Amazon Kinesis Data Streams
+- Delivery streams in Amazon Kinesis Data Firehose
+- Log groups in Amazon CloudWatch Logs
+- Amazon ECS tasks
+- Systems Manager Run Command
+- Systems Manager Automation
+- AWS Batch jobs
+- Step Functions state machines
+- Pipelines in CodePipeline
+- CodeBuild projects
+- Amazon Inspector assessment templates
+- Amazon SNS topics
+- Amazon SQS queues
+- Built-in targets: EC2 CreateSnapshot API call, EC2 RebootInstances API call, EC2 StopInstances API call, and EC2 TerminateInstances API call.
+- The default event bus of another AWS account
+
+
+[Read more about CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)
 
 
 
-### References
+## References
 
 - https://medium.com/@eduardoromero/serverless-architectural-patterns-261d8743020#d84d
 

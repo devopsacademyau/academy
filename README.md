@@ -185,7 +185,8 @@ The content can be accessed through each specific README link below.
     - AWS Step Functions
     - AWS SNS
     - AWS SQS
-    - AWS Step Functions
+    - AWS S3 Events
+    - AWS CloudWatch Events (EventBridge)
 - [Class 08](classes/08class/README.md)
     - Project #2 Delivery
     - Next steps

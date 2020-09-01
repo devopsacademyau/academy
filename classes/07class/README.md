@@ -3,8 +3,8 @@
 ## Agenda
 
 - [Serverless Integration patterns](serverless_integration/README.md)
-- [AWS DynamoDB Streams](ddb_streams/README.md)
-- [AWS SNS - Notification service](sns/README.md)
-- [AWS SQS - Queue service](sqs/README.md)
-- [AWS S3 triggers](s3_triggers/README.md)
-- [AWS Cloudwatch Events (EventBridge)](eventbridge/README.md)
+- [AWS DynamoDB Streams](serverless_integration/README.md#dynamodb-streams)
+- [AWS SNS - Notification service](serverless_integration/README.md#simple-notification-service-sns)
+- [AWS SQS - Queue service](serverless_integration/README.md#simple-queue-service-sqs)
+- [AWS S3 event notifications](serverless_integration/README.md#flat-files-integration)
+- [AWS Cloudwatch Events (EventBridge)](serverless_integration/README.md#event-triggers)
