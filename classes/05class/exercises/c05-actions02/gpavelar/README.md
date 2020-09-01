@@ -69,7 +69,6 @@ jobs:
 [2](https://stackoverflow.com/questions/58886293/getting-current-branch-and-commit-hash-in-github-action)
 [3](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#outputs)
 [4](https://stackoverflow.com/questions/59810838/how-to-get-the-short-sha-for-the-github-workflow)
-<!-- Don't change anything below this point-->
-<!-- Before commiting, remove both commented lines--> 
+ 
 ***
 Answer for exercise [c05-actions01](https://github.com/devopsacademyau/academy/blob/b5dbe6a3266facbde88e657573d1fa946150b51f/classes/05class/exercises/c05-actions02/README.md)
