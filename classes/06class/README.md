@@ -6,8 +6,7 @@
 - [AWS API Gateway](/classes/06class/apigateway/README.md)
 - [AWS Lambda](/classes/06class/lambda/README.md)
 - [AWS DynamoDB - NoSQL database](/classes/06class/dynamodb/README.md)
-- [AWS KMS - Key Management](/classes/06class/kms/README.md)
-- [AWS SSM Parameter Store](/classes/06class/parameterstore/README.md)
+
 ## [Exercises](/classes/06class/exercises/README.md)
 
 ## What's serverless?

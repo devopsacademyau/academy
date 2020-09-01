@@ -1,13 +1,13 @@
 # Creating a POST API using API Gateway, Lambda and DynamoDB
 
-For this exercise you will create a POST API for creating a record in the database using APIs. This is a common scenario that we see in several software projects.
+For this exercise you will create a POST API for creating a record in DynamoDB using API Gateway and Lambda. This is a common use case that we've seen in several software projects.
 
 For that you will use:
 - AWS API Gateway, Lambda, DynamoDB, KMS, SSM
 - Terraform for IaC
 - 3 Musketeers 
 
-**IMPORTANT**: copy the files [src/](./src) folder to your exercise folder under your user name. You will use them as a base to develop the solution.
+**IMPORTANT**: copy the files [src/](./src) folder to your exercise folder under your user name in the exercises folder (example `exercises/c06-serverless01/<username>/src`). You will use them as a base to develop the solution.
 
 Requirements:
 
@@ -18,8 +18,8 @@ Requirements:
    1. You need to create a public REST API that will expose the following endpoints:
       1. `POST /customers`: For creating a new customer in the database.
    2. API Gateway: All resources will have Proxy integration with Lambda
-   3. Authentication: Use API Key to protect your API. Push the value of the API key to SSM parameter store after creation.
-3. **Lambda**: 
+   3. Authentication: Use API Key to protect your API. Push the value of the `API key` to `SSM parameter store` after creation. Do not store secrets in your source code.
+3. **Lambda**:
    1. Source code is provided for you in Python (it is in the `src/lambda.zip`). Check it in [src/ folder](./src). You will point to this zip file in your terraform Lambda resource.
    2. This lambda will have an environment variable called `DB_NAME`. Make sure the value for this variable is fetched from SSM Parameter Store for deployment.
    3. *Tip: Lambda permissions: Lambda will need `dynamodb:PutItem` access*. Lambda will also need to grant invokeFunction permission to the API Gateway.
