@@ -20,4 +20,4 @@
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
-Answer for exercise [c07-serverless02](https://github.com/devopsacademyau/academy/blob/19b7d5c9106d5056047463566f7f881f04f92fe6/classes/07class/exercises/c07-serverless01/README.md)
+Answer for exercise [c07-serverless02](https://github.com/devopsacademyau/academy/blob/47822f608ca6654a1a70f53b4a407fc4b86c2d53/classes/07class/exercises/c07-serverless01/README.md)

@@ -1,6 +1,6 @@
-## (Follow up from previous exercise) - Uploading profile images
+##  Uploading profile images
 
-Use as base for this exercise, your solution for the exercise from the last class (API gateway -> Lambda -> DynamoDB).
+> Use as base for this exercise your solution for the exercise from the last class (API gateway -> Lambda -> DynamoDB).
 
 **Requirements**:
 - the name of the image is the email address of the user (to keep codification simpler)
@@ -28,5 +28,4 @@ Target state:
     - `src/report_customers_count.py`: Lambda for consuming from DDB stream and calling SNS (the lambda DOES NOT need to be Python, you can use other languages)
     - `docker-compose.yaml`: part of 3M 
     - `Makefile`: 3 Musketeers implementation
-    - In the `README.md` file include details on the execution of the test below:
-
+    - In the `README.md` file include details on the execution
