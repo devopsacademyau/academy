@@ -1,4 +1,4 @@
-## Upload profile images
+## (Follow up from previous exercise) - Uploading profile images
 
 Use as base for this exercise, your solution for the exercise from the last class (API gateway -> Lambda -> DynamoDB).
 
