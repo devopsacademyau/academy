@@ -19,3 +19,14 @@ At this stage you probably already have this:
 Target state:
 
 ![](assets/target_state.png)
+
+## Submit a PR with the following files:
+
+- README.md based on the [ANSWER.md file](ANSWER.md) with a link to the following files from your answer (the actual solution may have more files):
+    - `terraform/main.yaml`: terraform code for all resources
+    - `src/photo_handler.py`: Lambda for handling S3 event (the lambda DOES NOT need to be Python, you can use other languages)
+    - `src/report_customers_count.py`: Lambda for consuming from DDB stream and calling SNS (the lambda DOES NOT need to be Python, you can use other languages)
+    - `docker-compose.yaml`: part of 3M 
+    - `Makefile`: 3 Musketeers implementation
+    - In the `README.md` file include details on the execution of the test below:
+

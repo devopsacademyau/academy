@@ -14,4 +14,4 @@
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
-Answer for exercise [c07-serverless02](https://github.com/devopsacademyau/academy/blob/22bc97543c8193afc157cb3bc12e876d642c75ac/classes/07class/exercises/c07-serverless02/README.md)
+Answer for exercise [c07-serverless02](https://github.com/devopsacademyau/academy/blob/19b7d5c9106d5056047463566f7f881f04f92fe6/classes/07class/exercises/c07-serverless02/README.md)
