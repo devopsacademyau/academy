@@ -1,6 +1,6 @@
 # c07-serverless02
 
-## Creating a POST API using API Gateway, Lambda and DynamoDBs
+## Compliance - Shutdown EC2 instances not tagged
 
 - [_provider.tf](_provider.tf)
 - [main.tf](main.tf)
