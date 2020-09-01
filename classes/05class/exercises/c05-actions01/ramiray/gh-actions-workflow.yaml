@@ -1,0 +1,16 @@
+name: Ramiray c05-actions01
+on:
+  pull_request:
+    paths:
+      - "ramiray/**"
+jobs:
+  prcomment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.RAMYA_GITHUBTOKEN }}
+        with:
+          message: |
+            Well done ${{ secrets.RAMIRAY_NAME }}! This is a nice PRN
+          allow-repeats: false
