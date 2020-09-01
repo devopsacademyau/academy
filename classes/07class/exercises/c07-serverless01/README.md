@@ -14,10 +14,8 @@ Use as base for this exercise, your solution for the exercise from the last clas
 
 At this stage you probably already have this:
 
-![](c07-serverless02/assets/current_state.png)
+![](assets/current_state.png)
 
 Target state:
 
-![](c07-serverless02/assets/target_state.png)
-
-
+![](assets/target_state.png)
