@@ -3,9 +3,11 @@ This class is an introduction to AWS System Manager.
 The main goal is to explain the purpose, the benefits and how to use it.
 
 ***Contents***
-- [What is AWS SSM?](#what-is-aws-ssm)
-- [SSM Parameter Store](#ssm-parameter-store)
-- [Main Use cases](#main-use-cases)
+- [System Manager](#system-manager)
+	- [What is AWS SSM?](#what-is-aws-ssm)
+	- [SSM Parameter Store](#ssm-parameter-store)
+	- [Main use cases](#main-use-cases)
+	- [Appendix](#appendix)
 
 ## What is AWS SSM?
 AWS Systems Manager is an AWS service that you can use to view and control your infrastructure on AWS. Using the Systems Manager console, you can view operational data from multiple AWS services and automate operational tasks across your AWS resources.
