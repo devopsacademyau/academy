@@ -3,6 +3,12 @@ resource "aws_ssm_parameter" "db_name" {
   type  = "String"
   value = var.db_name
   tags  = var.common_tags
+
+  lifecycle {
+    ignore_changes = [ 
+      value
+    ]
+  }
 }
 
 resource "aws_ssm_parameter" "api_key" {
@@ -10,6 +16,12 @@ resource "aws_ssm_parameter" "api_key" {
   type  = "SecureString"
   value = aws_api_gateway_api_key.default.value
   tags  = var.common_tags
+
+  lifecycle {
+    ignore_changes = [ 
+      value
+    ]
+  }
 }
 
 resource "aws_kms_key" "this" {
