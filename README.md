@@ -179,19 +179,17 @@ The content can be accessed through each specific README link below.
     - AWS API Gateway
     - AWS Lambda
     - AWS DynamoDB
-    - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
     - Serverless integration patterns
-    - AWS Step Functions
+    - AWS DynamoDB Streams
     - AWS SNS
     - AWS SQS
     - AWS S3 Events
     - AWS CloudWatch Events (EventBridge)
 - [Class 08](classes/08class/README.md)
-    - Project #2 Delivery
+    - AWS Certifications
     - Next steps
     - Course Closure
-
 
 ## Exercises
 
