@@ -1,0 +1,2 @@
+$ curl c04-iac04-lb-640153939.ap-southeast-2.elb.amazonaws.com
+ip-172-16-14-182.ap-southeast-2.compute.internal

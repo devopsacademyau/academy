@@ -179,17 +179,17 @@ The content can be accessed through each specific README link below.
     - AWS API Gateway
     - AWS Lambda
     - AWS DynamoDB
-    - Project #2 Kick-off
 - [Class 07](classes/07class/README.md)
     - Serverless integration patterns
-    - AWS Step Functions
+    - AWS DynamoDB Streams
     - AWS SNS
     - AWS SQS
+    - AWS S3 Events
+    - AWS CloudWatch Events (EventBridge)
 - [Class 08](classes/08class/README.md)
-    - Project #2 Delivery
+    - AWS Certifications
     - Next steps
     - Course Closure
-
 
 ## Exercises
 
@@ -323,7 +323,7 @@ make dashboard \
 
 ## Presentation format
 
-* We are using plain README.md files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
+* We are using plain `README.md` files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
 
 * Generate the presentation by running: 
   * `make presentation`
@@ -335,7 +335,6 @@ make dashboard \
     * Online: access `https://gitpitch.com/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`. Folder must contain a PITCHME.md file.
     * Offline: use a [Docker container](https://github.com/kns-it/Docker-GitPitch/), run `make presentation` and `open http://localhost:9000/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`
     For running in a specific folder: `FOLDER_NAME=class2 make presentation`
-
 
 ## Clean up Ready to Review tag from Closed PRs
 

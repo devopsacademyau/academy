@@ -1,0 +1,357 @@
+➜  gepifanio git:(gepifanio/c04-iac02) ✗ terraform plan -var-file=./main.tfvars -out test.txt
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+data.aws_availability_zones.available: Refreshing state...
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_eip.lb will be created
+  + resource "aws_eip" "lb" {
+      + allocation_id     = (known after apply)
+      + association_id    = (known after apply)
+      + customer_owned_ip = (known after apply)
+      + domain            = (known after apply)
+      + id                = (known after apply)
+      + instance          = (known after apply)
+      + network_interface = (known after apply)
+      + private_dns       = (known after apply)
+      + private_ip        = (known after apply)
+      + public_dns        = (known after apply)
+      + public_ip         = (known after apply)
+      + public_ipv4_pool  = (known after apply)
+      + vpc               = true
+    }
+
+  # aws_internet_gateway.igw will be created
+  + resource "aws_internet_gateway" "igw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "igw-iac"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_nat_gateway.ngw will be created
+  + resource "aws_nat_gateway" "ngw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Name" = "ngw-iac"
+        }
+    }
+
+  # aws_route_table.route_table_private will be created
+  + resource "aws_route_table" "route_table_private" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = ""
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = (known after apply)
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "rt_iac_private"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table.route_table_public will be created
+  + resource "aws_route_table" "route_table_public" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "rt_iac_public"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.private["private_a"] will be created
+  + resource "aws_route_table_association" "private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.private["private_b"] will be created
+  + resource "aws_route_table_association" "private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.public["public_a"] will be created
+  + resource "aws_route_table_association" "public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.public["public_b"] will be created
+  + resource "aws_route_table_association" "public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_subnet.private["private_a"] will be created
+  + resource "aws_subnet" "private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.0.0/19"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private_a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.private["private_b"] will be created
+  + resource "aws_subnet" "private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.32.0/19"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "private_b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public["public_a"] will be created
+  + resource "aws_subnet" "public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.64.0/18"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public_a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.public["public_b"] will be created
+  + resource "aws_subnet" "public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.128.0/18"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "public_b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_vpc.vpc_iac will be created
+  + resource "aws_vpc" "vpc_iac" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = (known after apply)
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = (known after apply)
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "devopsacademy-iac"
+        }
+    }
+
+Plan: 14 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+This plan was saved to: test.txt
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "test.txt"
+
+
+➜  gepifanio git:(gepifanio/c04-iac02) ✗ terraform apply test.txt
+aws_eip.lb: Creating...
+aws_vpc.vpc_iac: Creating...
+aws_eip.lb: Creation complete after 1s [id=eipalloc-01198a6ac5d73b504]
+aws_vpc.vpc_iac: Creation complete after 3s [id=vpc-0ea82cb03ce3ddbcf]
+aws_internet_gateway.igw: Creating...
+aws_subnet.private["private_a"]: Creating...
+aws_subnet.private["private_b"]: Creating...
+aws_subnet.public["public_b"]: Creating...
+aws_subnet.public["public_a"]: Creating...
+aws_subnet.private["private_b"]: Creation complete after 1s [id=subnet-06e5a48d2443da816]
+aws_subnet.public["public_a"]: Creation complete after 1s [id=subnet-0bc9562320fc82ec5]
+aws_subnet.private["private_a"]: Creation complete after 1s [id=subnet-0304660c08cea0c00]
+aws_subnet.public["public_b"]: Creation complete after 1s [id=subnet-0da3df91163c376a2]
+aws_internet_gateway.igw: Creation complete after 1s [id=igw-0d706b6fdeca2f3f2]
+aws_nat_gateway.ngw: Creating...
+aws_route_table.route_table_public: Creating...
+aws_route_table.route_table_public: Creation complete after 1s [id=rtb-030a1a8f1544bce59]
+aws_route_table_association.public["public_b"]: Creating...
+aws_route_table_association.public["public_a"]: Creating...
+aws_route_table_association.public["public_b"]: Creation complete after 1s [id=rtbassoc-0bd490f53e9fa1463]
+aws_route_table_association.public["public_a"]: Creation complete after 1s [id=rtbassoc-0644107c8a0540100]
+aws_nat_gateway.ngw: Still creating... [10s elapsed]
+aws_nat_gateway.ngw: Still creating... [20s elapsed]
+aws_nat_gateway.ngw: Still creating... [30s elapsed]
+aws_nat_gateway.ngw: Still creating... [40s elapsed]
+aws_nat_gateway.ngw: Still creating... [50s elapsed]
+aws_nat_gateway.ngw: Still creating... [1m0s elapsed]
+aws_nat_gateway.ngw: Still creating... [1m10s elapsed]
+aws_nat_gateway.ngw: Still creating... [1m20s elapsed]
+aws_nat_gateway.ngw: Still creating... [1m30s elapsed]
+aws_nat_gateway.ngw: Creation complete after 1m37s [id=nat-0e58d6511ef04191d]
+aws_route_table.route_table_private: Creating...
+aws_route_table.route_table_private: Creation complete after 1s [id=rtb-06b607722bab600e5]
+aws_route_table_association.private["private_b"]: Creating...
+aws_route_table_association.private["private_a"]: Creating...
+aws_route_table_association.private["private_a"]: Creation complete after 0s [id=rtbassoc-0a80eb44e7a380873]
+aws_route_table_association.private["private_b"]: Creation complete after 0s [id=rtbassoc-02077897bd7b94b8d]
+
+Apply complete! Resources: 14 added, 0 changed, 0 destroyed.
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: ./terraform.tfstate
+
+Outputs:
+
+private_subnets = {
+  "subnet-0304660c08cea0c00" = {
+    "cidr_block" = "10.0.0.0/19"
+  }
+  "subnet-06e5a48d2443da816" = {
+    "cidr_block" = "10.0.32.0/19"
+  }
+}
+public_subnets = {
+  "subnet-0bc9562320fc82ec5" = {
+    "cidr_block" = "10.0.64.0/18"
+  }
+  "subnet-0da3df91163c376a2" = {
+    "cidr_block" = "10.0.128.0/18"
+  }
+}
+vpc_cidr = 10.0.0.0/16
+
+
+➜  gepifanio git:(gepifanio/c04-iac02) ✗ terraform destroy -var-file=./main.tfvars
+
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+aws_route_table_association.private["private_a"]: Destroying... [id=rtbassoc-0a80eb44e7a380873]
+aws_route_table_association.public["public_b"]: Destroying... [id=rtbassoc-0bd490f53e9fa1463]
+aws_route_table_association.public["public_a"]: Destroying... [id=rtbassoc-0644107c8a0540100]
+aws_route_table_association.private["private_b"]: Destroying... [id=rtbassoc-02077897bd7b94b8d]
+aws_route_table_association.private["private_a"]: Destruction complete after 1s
+aws_route_table_association.private["private_b"]: Destruction complete after 1s
+aws_route_table.route_table_private: Destroying... [id=rtb-06b607722bab600e5]
+aws_route_table_association.public["public_a"]: Destruction complete after 1s
+aws_route_table_association.public["public_b"]: Destruction complete after 1s
+aws_subnet.public["public_a"]: Destroying... [id=subnet-0bc9562320fc82ec5]
+aws_route_table.route_table_public: Destroying... [id=rtb-030a1a8f1544bce59]
+aws_subnet.public["public_b"]: Destroying... [id=subnet-0da3df91163c376a2]
+aws_route_table.route_table_private: Destruction complete after 0s
+aws_subnet.public["public_a"]: Destruction complete after 0s
+aws_nat_gateway.ngw: Destroying... [id=nat-0e58d6511ef04191d]
+aws_subnet.public["public_b"]: Destruction complete after 0s
+aws_route_table.route_table_public: Destruction complete after 0s
+aws_internet_gateway.igw: Destroying... [id=igw-0d706b6fdeca2f3f2]
+aws_nat_gateway.ngw: Still destroying... [id=nat-0e58d6511ef04191d, 10s elapsed]
+aws_internet_gateway.igw: Still destroying... [id=igw-0d706b6fdeca2f3f2, 10s elapsed]
+aws_nat_gateway.ngw: Still destroying... [id=nat-0e58d6511ef04191d, 20s elapsed]
+aws_internet_gateway.igw: Still destroying... [id=igw-0d706b6fdeca2f3f2, 20s elapsed]
+aws_nat_gateway.ngw: Still destroying... [id=nat-0e58d6511ef04191d, 30s elapsed]
+aws_internet_gateway.igw: Still destroying... [id=igw-0d706b6fdeca2f3f2, 30s elapsed]
+aws_nat_gateway.ngw: Still destroying... [id=nat-0e58d6511ef04191d, 40s elapsed]
+aws_internet_gateway.igw: Still destroying... [id=igw-0d706b6fdeca2f3f2, 40s elapsed]
+aws_nat_gateway.ngw: Still destroying... [id=nat-0e58d6511ef04191d, 50s elapsed]
+aws_internet_gateway.igw: Still destroying... [id=igw-0d706b6fdeca2f3f2, 50s elapsed]
+aws_internet_gateway.igw: Destruction complete after 58s
+aws_nat_gateway.ngw: Still destroying... [id=nat-0e58d6511ef04191d, 1m0s elapsed]
+aws_nat_gateway.ngw: Destruction complete after 1m2s
+aws_subnet.private["private_a"]: Destroying... [id=subnet-0304660c08cea0c00]
+aws_eip.lb: Destroying... [id=eipalloc-01198a6ac5d73b504]
+aws_subnet.private["private_b"]: Destroying... [id=subnet-06e5a48d2443da816]
+aws_subnet.private["private_a"]: Destruction complete after 1s
+aws_eip.lb: Destruction complete after 1s
+aws_subnet.private["private_b"]: Destruction complete after 1s
+aws_vpc.vpc_iac: Destroying... [id=vpc-0ea82cb03ce3ddbcf]
+aws_vpc.vpc_iac: Destruction complete after 0s
+
+Destroy complete! Resources: 14 destroyed.
