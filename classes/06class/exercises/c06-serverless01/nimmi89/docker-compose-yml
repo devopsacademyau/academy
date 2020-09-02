@@ -1,0 +1,21 @@
+  
+---
+version: "3"
+services:
+  tflint:
+    image: wata727/tflint:0.18.0
+    working_dir: /app
+    volumes:
+      - ${PWD}:/app:z
+  terraform:
+    image: hashicorp/terraform:0.12.29
+    working_dir: /app
+    volumes:
+      - ${PWD}:/app:z
+    env_file:
+      - .env
+  aws:
+    image: amazon/aws-cli:2.0.44
+    env_file:
+      - .env
+
