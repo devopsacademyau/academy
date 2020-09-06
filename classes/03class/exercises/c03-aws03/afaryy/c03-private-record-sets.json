@@ -1,0 +1,15 @@
+{
+  "Comment": "Route53 A Record Set alias to ASG from private host zone",
+  "Changes": [
+    {
+      "Action": "CREATE",
+      "ResourceRecordSet": {
+        "Name": "devopsacademy.devopsplayer.com",
+        "Type": "A",
+        "AliasTarget": {
+          "HostedZoneId": "Z1GM3OXH4ZPM65",
+          "DNSName": "da-c03-elb-787858567.ap-southeast-2.elb.amazonaws.com",
+          "EvaluateTargetHealth": false
+        }}
+    }]
+}
