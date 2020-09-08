@@ -35,7 +35,7 @@ kick-test-n-run:
 
 	@echo "\n Uploading a picture 🖼\n"
 	@touch $(CUSTOMER_TEST_EMAIL).jpg
-	@aws s3 cp $(CUSTOMER_TEST_EMAIL).jpg s3://$(BUCKET_NAME)/$(CUSTOMER_TEST_EMAIL).jpg
+	@$(RUNNER) aws s3 cp $(CUSTOMER_TEST_EMAIL).jpg s3://$(BUCKET_NAME)/$(CUSTOMER_TEST_EMAIL).jpg
 	@rm $(CUSTOMER_TEST_EMAIL).jpg
 .PHONY: kick-test-n-run
 
