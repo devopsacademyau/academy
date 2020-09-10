@@ -31,23 +31,3 @@ do
             ;;
     esac
 done
-
-
-
-# if [ ${#} -eq 0 ]; then
-#     echo "Try tf_targets.sh {deploy | clean}"
-#     exit 1
-
-# elif [ ${1} == 'deploy' ]; then
-#     echo "Starting terraform init, plan and deploy process"
-#     apply
-#     exit
-
-# elif [ ${1} == 'clean' ]; then
-#     echo "Starting terraform destroy process"
-#     clean
-#     exit
-# else
-#     echo "Try tf_targets.sh {deploy | clean}"
-#     exit 1
-# fi
