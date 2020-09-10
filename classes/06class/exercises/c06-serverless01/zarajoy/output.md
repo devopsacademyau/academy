@@ -11,7 +11,7 @@
 ## Command Execution Output
 ```
 z@bacon:~/Desktop/Working (another copy)$ make deploy
-make ssm
+make ssm-key
 make[1]: Entering directory '/home/z/Desktop/Working (another copy)'
 docker-compose run --rm aws ssm put-parameter \
 	--name DB_NAME \
