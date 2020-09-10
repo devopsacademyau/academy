@@ -7,6 +7,7 @@ RUN apt update && apt install curl make unzip sudo python3 -y && \
 		curl "https://releases.hashicorp.com/terraform/0.13.2/terraform_0.13.2_linux_amd64.zip" -o "terraform.zip" && \
 		unzip terraform.zip && \
 		sudo mv terraform /usr/local/bin && \
-		rm -rf /var/lib/apt/lists/*
+		rm -rf /var/lib/apt/lists/* && \
+		rm terraform.zip
 
 CMD [ "bash" ]
