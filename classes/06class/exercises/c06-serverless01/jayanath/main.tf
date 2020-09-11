@@ -1,8 +1,5 @@
-resource "aws_ssm_parameter" "db_name_param" {
-  name      = var.db_name_param
-  type      = "String"
-  value     = var.db_name
-  overwrite = true
+data "aws_ssm_parameter" "db_name_param" {
+  name      = "DB_NAME"
 }
 
 resource "aws_kms_key" "doa_kms_key" {
@@ -11,7 +8,7 @@ resource "aws_kms_key" "doa_kms_key" {
 }
 
 resource "aws_dynamodb_table" "doa_dynamodb_table" {
-  name         = aws_ssm_parameter.db_name_param.value
+  name         = data.aws_ssm_parameter.db_name_param.value
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "id"
 
@@ -50,7 +47,7 @@ resource "aws_lambda_function" "doa_customer_api_lambda" {
 
   environment {
     variables = {
-      DB_NAME = aws_ssm_parameter.db_name_param.value
+      DB_NAME = data.aws_ssm_parameter.db_name_param.value
     }
   }
 }
