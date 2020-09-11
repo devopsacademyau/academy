@@ -12,11 +12,12 @@ apply: pull-required-images
 
 deploy: init
 	@$(MAKE) apply TF_FLAGS=-auto-approve
-	@$(MAKE) sns-topic-subscribe
 .PHONY: deploy
 
-clean:
-	@$(MAKE) sns-topic-unsubscribe
+kick-n-run: deploy sns-topic-subscribe
+.PHONY: kick-n-run
+
+clean: sns-topic-unsubscribe terminate-instances
 	@$(RUNNER) terraform destroy -auto-approve
 	@$(RUNNER) toolbox sh -c 'rm -rf ./terraform/files'
 .PHONY:clean
@@ -37,13 +38,18 @@ run-instance-with-tag:
 		--no-cli-pager
 .PHONY:run-instance-with-tag
 
-describe-instances:
+list-instances:
 	@$(RUNNER) aws ec2 describe-instances \
 		--query 'Reservations[*].Instances | [].{Instance:InstanceId,State:State.Name,Tags:Tags}' \
 		--filters "Name=tag-key,Values=untagged-tracker" \
 		--output yaml \
 		--no-cli-pager 
-.PHONY:describe-instances
+.PHONY:list-instances
+
+terminate-instances:
+	@$(RUNNER) --entrypoint=sh \
+		aws ./scripts/terminate-instances.sh
+.PHONY:terminate-Instances
 
 sns-topic-subscribe: pull-required-images
 	$(eval SNS_TOPIC_ARN=$(shell $(RUNNER) jq -r ".outputs[\"untagged_instance_removed_topic_arn\"].value" ./terraform/terraform.tfstate))
