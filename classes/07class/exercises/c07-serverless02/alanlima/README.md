@@ -14,7 +14,7 @@
 
 ## Getting Started
 
-1. Rename [`.env.tpl`](.env.tpl) to `.env` and set the values for all variables
+1. Create a `.env` file based on [`.env.tpl`](.env.tpl) and set the values for all variables.
 
 2. Run `make kick-n-run` to initialise and deploy all resources.
 
@@ -274,35 +274,10 @@ OwnerId: '097922957316'
 ReservationId: r-0d3139696da4a2240
 ```
 
-```bash
-$ make list-instances
-- Instance: i-0d42e836480e38abd
-  State: running
-  Tags:
-  - Key: CostCentre
-    Value: dev
-  - Key: untagged-tracker
-    Value: 'true'
-- Instance: i-04aab589e26cec71f
-  State: terminated
-  Tags:
-  - Key: Name
-    Value: INVALID_TAGS
-  - Key: untagged-tracker
-    Value: 'true'
-```
-
 ### Listing created instances
 
 ```bash
 $ make list-instances
-- Instance: i-04a4148cfdfa9826d
-  State: running
-  Tags:
-  - Key: untagged-tracker
-    Value: 'true'
-  - Key: CostCentre
-    Value: dev
 - Instance: i-0d42e836480e38abd
   State: running
   Tags:
