@@ -1,36 +1,37 @@
 # Below are the steps to create Serverless Infrastructure
 
-1. MAke sure the .env file has proper ACCESS_KEY_ID and SECRET_ACCESS_KEY values
-2. Run below commands to bring the application.
-   make deploy
-   cd terraform; terraform init; terraform plan -out c06_serverless_01.tfplan 		
+      1. Make sure the .env file has proper ACCESS_KEY_ID and SECRET_ACCESS_KEY values
 
-   Initializing the backend...
+      2. Run below commands to bring the application.
+         make deploy
+         cd terraform; terraform init; terraform plan -out c06_serverless_01.tfplan 		
 
-   Initializing provider plugins...
+         Initializing the backend...
 
-   Terraform has been successfully initialized!
+         Initializing provider plugins...
 
-   You may now begin working with Terraform. Try running "terraform plan" to see
-   any changes that are required for your infrastructure. All Terraform commands
-   should now work.
+         Terraform has been successfully initialized!
 
-   If you ever set or change modules or backend configuration for Terraform,
-   rerun this command to reinitialize your working directory. If you forget, other
-   commands will detect it and remind you to do so if necessary.
-   Refreshing Terraform state in-memory prior to plan...
-   The refreshed state will be used to calculate this plan, but will not be
-   persisted to local or remote state storage.
+         You may now begin working with Terraform. Try running "terraform plan" to see
+         any changes that are required for your infrastructure. All Terraform commands
+         should now work.
 
-   data.aws_ssm_parameter.db_name: Refreshing state...
+         If you ever set or change modules or backend configuration for Terraform,
+         rerun this command to reinitialize your working directory. If you forget, other
+         commands will detect it and remind you to do so if necessary.
+         Refreshing Terraform state in-memory prior to plan...
+        The refreshed state will be used to calculate this plan, but will not be
+        persisted to local or remote state storage.
 
-  ------------------------------------------------------------------------
+        data.aws_ssm_parameter.db_name: Refreshing state...
 
-   An execution plan has been generated and is shown below.
-   Resource actions are indicated with the following symbols:
-     + create
+        ------------------------------------------------------------------------
 
-   Terraform will perform the following actions:
+        An execution plan has been generated and is shown below.
+        Resource actions are indicated with the following symbols:
+        + create
+
+       Terraform will perform the following actions:
   
     # aws_api_gateway_api_key.this will be created
     + resource "aws_api_gateway_api_key" "this" {
