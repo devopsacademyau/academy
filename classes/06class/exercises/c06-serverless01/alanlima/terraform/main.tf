@@ -8,19 +8,6 @@ data "archive_file" "lambda" {
   }
 }
 
-# resource "aws_ssm_parameter" "db_name" {
-#   name  = "/${var.project}/DB_NAME"
-#   type  = "String"
-#   value = var.db_name
-#   tags  = var.common_tags
-
-#   lifecycle {
-#     ignore_changes = [ 
-#       value
-#     ]
-#   }
-# }
-
 data "aws_ssm_parameter" "db_name" {
   name = "/${var.project}/DB_NAME"
 }

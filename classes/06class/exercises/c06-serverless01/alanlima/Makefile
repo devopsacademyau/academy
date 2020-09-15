@@ -1,28 +1,29 @@
 RUNNER ?= docker-compose run --rm -T
 DB_NAME ?= DA_Serverless
+PROJECT_NAME ?= devops_serverless01
 
 init: pull-required-images
 	@$(RUNNER) devops-toolbox 'make _init'
 .PHONY:init
 
-apply: init
+apply:
 	@$(RUNNER) devops-toolbox 'make _apply'
-.PHONY: apply
+.PHONY:apply
 
 deploy: init
 	@$(RUNNER) devops-toolbox 'make _deploy'
-.PHONY: deploy
+.PHONY:deploy
 
 clean:
 	@$(RUNNER) devops-toolbox 'make _clean'
-.PHONY: clean
+.PHONY:clean
 
 warm-up:
 	@echo "\e[32mCreating new customer...\e[0m \n"
-	@$(MAKE) create-customer FIRST_NAME="Linus" LAST_NAME="Torvalds" EMAIL="fake@mail.com"  
+	@$(MAKE) -s create-customer FIRST_NAME="Linus" LAST_NAME="Torvalds" EMAIL="fake@mail.com"  
 	@echo "\n \e[32mListing table content\e[0m \n"
-	@$(MAKE) list-customers
-.PHONY: warm-up
+	@$(MAKE) -s list-customers
+.PHONY:warm-up
 
 create-customer:
 	@$(RUNNER) \
@@ -33,7 +34,7 @@ create-customer:
 .PHONY:create-customer
 
 list-customers:
-	@$(RUNNER) devops-toolbox ./scripts/list-customers.sh
+	@$(RUNNER) devops-toolbox 'make _list-customers'
 .PHONY:list-customers
 
 pull-required-images:
@@ -42,7 +43,7 @@ pull-required-images:
 
 kick-n-run:
 	@$(RUNNER) devops-toolbox ./scripts/kick-n-run.sh
-	@$(MAKE) warm-up
+	@$(MAKE) -s warm-up
 .PHONY:kick-n-run
 
 _init:
@@ -54,7 +55,7 @@ _apply:
 .PHONY:_apply
 
 _deploy:
-	@$(MAKE) _put-db-name-parameter
+	@$(MAKE) -s _put-db-name-parameter
 	@cd terraform && terraform apply -auto-approve
 .PHONY:_deploy
 
@@ -63,15 +64,29 @@ _destroy:
 .PHONY:_deploy
 
 _clean:
-	@$(MAKE) _destroy
+	@$(MAKE) -s _destroy
 	@rm -rf ./terraform/files
-	@$(MAKE) _remove-db-name-parameter
-.PHONY: _clean
+	@$(MAKE) -s _remove-db-name-parameter
+.PHONY:_clean
 
 _put-db-name-parameter:
-	@aws ssm put-parameter --name '/devops_serverless01/DB_NAME' --value ${DB_NAME} --overwrite --type String --no-cli-pager 1>/dev/null
+	@aws ssm put-parameter \
+		--name '/${PROJECT_NAME}/DB_NAME' \
+		--value ${DB_NAME} \
+		--overwrite \
+		--type String \
+		--no-cli-pager 1>/dev/null
 .PHONY:_put-db-name-parameter
 
 _remove-db-name-parameter:
-	@aws ssm delete-parameter --name '/devops_serverless01/DB_NAME' --no-cli-pager
+	@aws ssm delete-parameter \
+		--name '/${PROJECT_NAME}/DB_NAME' \
+		--no-cli-pager
 .PHONY:_remove-db-name-parameter
+
+_list-customers:
+	@aws dynamodb scan \
+		--table-name DA_Serverless \
+		--output json \
+		| jq '[.Items[] | {id: .id.S, firstname: .firstname.S, lastname: .lastname.S, email: .email.S, created_at: .created_time.S}]'
+.PHONY:_list-customers
