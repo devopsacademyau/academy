@@ -15,8 +15,3 @@ variable "common_tags" {
     deployed_by = "terraform"
   }
 }
-
-variable "db_name" {
-  type    = string
-  default = "DA_Serverless"
-}

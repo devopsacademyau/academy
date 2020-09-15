@@ -6,16 +6,9 @@ import json
 import datetime
 from logging import error
 
-def getParameter(name):
-    ssm = boto3.client('ssm')
-    parameter = ssm.get_parameter(Name=name)
-    print(f"get parameter {parameter}")
-    return parameter['Parameter']['Value']
-
 def create_customer(firstname, lastname, email):
     dynamo_db = boto3.client('dynamodb')
-    # db_name = os.environ.get('DB_NAME', 'DA_Serverless')
-    db_name = getParameter(os.environ.get('DB_NAME'))
+    db_name = os.environ.get('DB_NAME', 'DA_Serverless')
     print(f"DB_NAME: {db_name}")
     create_item = {'id': {'S': str(uuid.uuid4())}}
 

@@ -1,14 +1,28 @@
-resource "aws_ssm_parameter" "db_name" {
-  name  = "/${var.project}/DB_NAME"
-  type  = "String"
-  value = var.db_name
-  tags  = var.common_tags
+data "archive_file" "lambda" {
+  type        = "zip"
+  output_path = "${path.module}/files/lambda.zip"
 
-  lifecycle {
-    ignore_changes = [ 
-      value
-    ]
+  source {
+    content  = file("../src/main.py")
+    filename = "main.py"
   }
+}
+
+# resource "aws_ssm_parameter" "db_name" {
+#   name  = "/${var.project}/DB_NAME"
+#   type  = "String"
+#   value = var.db_name
+#   tags  = var.common_tags
+
+#   lifecycle {
+#     ignore_changes = [ 
+#       value
+#     ]
+#   }
+# }
+
+data "aws_ssm_parameter" "db_name" {
+  name = "/${var.project}/DB_NAME"
 }
 
 resource "aws_ssm_parameter" "api_key" {
@@ -18,7 +32,7 @@ resource "aws_ssm_parameter" "api_key" {
   tags  = var.common_tags
 
   lifecycle {
-    ignore_changes = [ 
+    ignore_changes = [
       value
     ]
   }
@@ -31,7 +45,7 @@ resource "aws_kms_key" "this" {
 }
 
 resource "aws_dynamodb_table" "this" {
-  name           = var.db_name
+  name           = data.aws_ssm_parameter.db_name.value
   billing_mode   = "PROVISIONED"
   write_capacity = 5
   read_capacity  = 5
@@ -51,17 +65,17 @@ resource "aws_dynamodb_table" "this" {
 }
 
 resource "aws_lambda_function" "this" {
-  filename         = "lambda.zip"
+  filename         = data.archive_file.lambda.output_path
   function_name    = "func_customers"
   role             = aws_iam_role.lambda.arn
   handler          = "main.lambda_handler"
-  source_code_hash = filebase64sha256("lambda.zip")
+  source_code_hash = data.archive_file.lambda.output_base64sha256
   runtime          = "python3.8"
   tags             = var.common_tags
   kms_key_arn      = aws_kms_key.this.arn
   environment {
     variables = {
-      DB_NAME = aws_ssm_parameter.db_name.name
+      DB_NAME = data.aws_ssm_parameter.db_name.value
     }
   }
   depends_on = [

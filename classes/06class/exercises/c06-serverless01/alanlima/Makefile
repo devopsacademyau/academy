@@ -1,30 +1,21 @@
 RUNNER ?= docker-compose run --rm -T
+DB_NAME ?= DA_Serverless
 
 init: pull-required-images
-	@$(RUNNER) terraform init
+	@$(RUNNER) devops-toolbox 'make _init'
 .PHONY:init
 
-apply: 
-	@$(RUNNER) terraform apply
+apply: init
+	@$(RUNNER) devops-toolbox 'make _apply'
 .PHONY: apply
 
-deploy: init pack_lambda
-	@$(RUNNER) terraform apply -auto-approve
+deploy: init
+	@$(RUNNER) devops-toolbox 'make _deploy'
 .PHONY: deploy
 
 clean:
-	@$(RUNNER) terraform destroy -auto-approve
-	@rm -f ./terraform/lambda.zip
+	@$(RUNNER) devops-toolbox 'make _clean'
 .PHONY: clean
-
-pack_lambda:
-	@$(RUNNER) toolbox make _pack_lambda
-.PHONY:pack_lambda
-
-_pack_lambda:
-	@cd ./src && zip lambda.zip main.py
-	@mv ./src/lambda.zip ./terraform/lambda.zip
-.PHONY:_pack_lambda
 
 warm-up:
 	@echo "\e[32mCreating new customer...\e[0m \n"
@@ -33,53 +24,54 @@ warm-up:
 	@$(MAKE) list-customers
 .PHONY: warm-up
 
-create-customer: pull-required-images
-	@$(eval API_KEY=$(shell $(RUNNER) jq -r ".outputs[\"api_key\"].value" ./terraform/terraform.tfstate))
-	@$(eval API_URL=$(shell $(RUNNER) jq -r ".outputs[\"api_url\"].value" ./terraform/terraform.tfstate))
-
-	@$(eval CURL_REQUEST="curl -v -POST \
-		-H \"X-API-Key: $(API_KEY)\" \
-		-H \"Content-type: application/json\" \
-		--url \"$(API_URL)/customers\" \
-		-d \'{ \"firstname\": \"$(FIRST_NAME)\", \"lastname\": \"$(LAST_NAME)\", \"email\": \"$(EMAIL)\" }\'")
-
-	@echo "Running cURL command: $(CURL_REQUEST)"
-
-	@$(shell echo "$(CURL_REQUEST)")
+create-customer:
+	@$(RUNNER) \
+		-e FIRST_NAME=$(FIRST_NAME) \
+		-e LAST_NAME=$(LAST_NAME) \
+		-e EMAIL=$(EMAIL) \
+		devops-toolbox ./scripts/create-customer.sh
 .PHONY:create-customer
 
-list-customers: pull-required-images
-	@$(RUNNER) aws dynamodb scan \
-		--table-name DA_Serverless \
-		--output json \
-		| $(RUNNER) jq '[.Items[] | {id: .id.S, firstname: .firstname.S, lastname: .lastname.S, email: .email.S, created_at: .created_time.S}]' 
+list-customers:
+	@$(RUNNER) devops-toolbox ./scripts/list-customers.sh
 .PHONY:list-customers
 
 pull-required-images:
-	@if [ -z "$(shell docker image ls --filter=reference=stedolan/jq -q)" ]; then\
-		docker-compose pull jq;\
-	fi
-
-	@if [ -z "$(shell docker image ls --filter=reference=hashicorp/terraform -q)" ]; then\
-		docker-compose pull terraform;\
-	fi
-
-	@if [ -z "$(shell docker image ls --filter=reference=flemay/musketeers -q)" ]; then\
-		docker-compose pull toolbox;\
-	fi
-
-	@if [ -z "$(shell docker image ls --filter=reference=amazon/aws-cli -q)" ]; then\
-		docker-compose pull aws;\
-	fi
+	@docker-compose pull
 .PHONY:pull-required-images
 
-kick-n-run: 
-	@$(MAKE) deploy
-	@echo "\e[33mWaiting the provision of all services\e[0m"
-	@$(RUNNER) aws dynamodb wait table-exists --table-name DA_Serverless
-	@echo "\e[33mWaiting for lambda\e[0m"
-	@$(RUNNER) aws lambda wait function-active --function-name func_customers
-	@echo "\e[33mSleep time\e[0m"
-	@sleep 20s
+kick-n-run:
+	@$(RUNNER) devops-toolbox ./scripts/kick-n-run.sh
 	@$(MAKE) warm-up
 .PHONY:kick-n-run
+
+_init:
+	@cd terraform && terraform init
+.PHONY:_init
+
+_apply:
+	@cd terraform && terraform apply
+.PHONY:_apply
+
+_deploy:
+	@$(MAKE) _put-db-name-parameter
+	@cd terraform && terraform apply -auto-approve
+.PHONY:_deploy
+
+_destroy:
+	@cd terraform && terraform destroy -auto-approve
+.PHONY:_deploy
+
+_clean:
+	@$(MAKE) _destroy
+	@rm -rf ./terraform/files
+	@$(MAKE) _remove-db-name-parameter
+.PHONY: _clean
+
+_put-db-name-parameter:
+	@aws ssm put-parameter --name '/devops_serverless01/DB_NAME' --value ${DB_NAME} --overwrite --type String --no-cli-pager 1>/dev/null
+.PHONY:_put-db-name-parameter
+
+_remove-db-name-parameter:
+	@aws ssm delete-parameter --name '/devops_serverless01/DB_NAME' --no-cli-pager
+.PHONY:_remove-db-name-parameter
