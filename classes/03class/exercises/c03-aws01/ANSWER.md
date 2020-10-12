@@ -16,7 +16,7 @@ Add commands here
 Add commands here
 ```
 
-- what this line is doing? `curl https://169.254.169.254/latest/meta-data/hostname > index.html`
+- what this line is doing? `curl http://169.254.169.254/latest/meta-data/hostname > index.html`
 ```
 Your answer here
 ```
