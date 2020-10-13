@@ -1,0 +1,24 @@
+name: Raghu Github Actions C05-02
+on:
+  pull_request:
+    paths:
+      - "raghunadhpokkalath/c05-actions02/**"
+jobs:
+  dockerbuildandpush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Setup - Checkout"
+        uses: actions/checkout@v2.1.0    
+      - name: "Docker Build and Push"
+        run: |
+          cd raghunadhpokkalath/c05-actions02
+          make build
+          DOCKER_PAT=${{ secrets.RAGHU_DOCKER_PAT }} make push
+      - name: "Create Pull Request comment"
+        uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.RAGHU_PAT }}
+        with:
+          message: |
+            Well done ${{ secrets.RAGHU_NAME }}! This is a nice PRN
+          allow-repeats: false
