@@ -1,0 +1,12 @@
+version: "3.8"
+services: 
+    shell:
+        build: 
+            context: ./docker
+            dockerfile: Dockerfile.ubuntu  
+        env_file: .env   
+        environment:
+            - AWS_DEFAULT_REGION=ap-southeast-2
+        working_dir: /src
+        volumes: 
+            - .:/src
