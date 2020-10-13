@@ -1,0 +1,24 @@
+# Create a bucket used your github username
+[yvonne@centos8 afaryy]$ aws s3 mb s3://afaryy
+make_bucket: afaryy
+
+# Upload the file to the bucket
+[yvonne@centos8 afaryy]$ aws s3 cp ~/Repo/academy/classes/05class/aws_s3_rds/assets/index.html s3://afaryy/index.html
+upload: ../../../academy/classes/05class/aws_s3_rds/assets/index.html to s3://afaryy/index.html
+
+#Enable the S3 website in the bucket
+[yvonne@centos8 afaryy]$ aws s3 website s3://afaryy --index-document index.html
+
+# Update the bucket policy to allow public get access
+[yvonne@centos8 afaryy]$ aws s3api put-bucket-policy --bucket afaryy --policy file://s3-access-policy.json 
+[yvonne@centos8 afaryy]$ aws s3api get-bucket-policy --bucket afaryy
+{
+    "Policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"PublicReadGetObject\",\"Effect\":\"Allow\",\"Principal\":\"*\",\"Action\":\"s3:GetObject\",\"Resource\":\"arn:aws:s3:::afaryy/*\"}]}"
+}
+
+# Check the result via the website URL created for the bucket
+[yvonne@centos8 afaryy]$ curl afaryy.s3-website-ap-southeast-2.amazonaws.com
+<html>
+        <body>
+                Welcome to DevOps Academy! :)
+        </body>
