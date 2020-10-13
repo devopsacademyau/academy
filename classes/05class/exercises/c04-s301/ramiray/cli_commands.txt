@@ -1,0 +1,30 @@
+# Create a new bucket with your github name
+
+aws s3 mb s3://ramiray25082020 --region ap-southeast-2
+make_bucket: ramiray25082020
+
+# Upload the file in /classes/05class/aws_s3_rds/assets/index.html to the root of the S3 bucket.
+
+aws s3 cp ../../../aws_s3_rds/assets/index.html s3://ramiray25082020
+upload: ..\..\..\aws_s3_rds\assets\index.html to s3://ramiray25082020/index.html
+
+# Enable the S3 website in the bucket
+
+aws s3 website s3://ramiray25082020 --index-document index.html
+
+# Apply any other commands needed to access the website URL (via CLI only)
+ aws s3api put-bucket-policy --bucket ramiray25082020 --policy file://s3_bucket_policy.json
+
+ #Check the website via curl
+  curl http://ramiray25082020.s3-website-ap-southeast-2.amazonaws.com/
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : <html>
+                        <body>
+                                Welcome to DevOps Academy! :)
+                        </body>
+                    </html>
+
+                    
