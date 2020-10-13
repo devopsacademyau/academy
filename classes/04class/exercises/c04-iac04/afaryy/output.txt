@@ -1,0 +1,19 @@
+[yvonne@centos8 terraform-code]$ for (( c=1; c<=6; c++ )); do curl -w "\n" devopsacademy.dryvonne.net; done
+<html><body>stackname: alb-asg-stack hostname: ip-10-128-10-49.ap-southeast-2.compute.internal in Availability Zone: 
+ap-southeast-2a</body></html>
+
+<html><body>stackname: alb-asg-stack hostname: ip-10-128-10-49.ap-southeast-2.compute.internal in Availability Zone: 
+ap-southeast-2a</body></html>
+
+<html><body>stackname: alb-asg-stack hostname: ip-10-128-10-49.ap-southeast-2.compute.internal in Availability Zone: 
+ap-southeast-2a</body></html>
+
+<html><body>stackname: alb-asg-stack hostname: ip-10-128-10-49.ap-southeast-2.compute.internal in Availability Zone: 
+ap-southeast-2a</body></html>
+
+<html><body>stackname: alb-asg-stack hostname: ip-10-128-10-49.ap-southeast-2.compute.internal in Availability Zone: 
+ap-southeast-2a</body></html>
+
+<html><body>stackname: alb-asg-stack hostname: ip-10-128-10-49.ap-southeast-2.compute.internal in Availability Zone: 
+ap-southeast-2a</body></html>
+

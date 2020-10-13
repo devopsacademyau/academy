@@ -1,0 +1,416 @@
+[yvonne@centos8 terraform-code]$ terraform apply -var-file=./main.tfvars 
+module.stack.data.template_file.shell-script: Refreshing state...
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.stack.aws_autoscaling_attachment.asg_attach will be created
+  + resource "aws_autoscaling_attachment" "asg_attach" {
+      + alb_target_group_arn   = (known after apply)
+      + autoscaling_group_name = (known after apply)
+      + id                     = (known after apply)
+    }
+
+  # module.stack.aws_autoscaling_group.autoscaling will be created
+  + resource "aws_autoscaling_group" "autoscaling" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = (known after apply)
+      + force_delete              = false
+      + health_check_grace_period = 300
+      + health_check_type         = (known after apply)
+      + id                        = (known after apply)
+      + max_size                  = 2
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = "da-c04-iac04-alb-asg-stack-autoscaling"
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + vpc_zone_identifier       = [
+          + "subnet-00d8a496401ddc8de",
+          + "subnet-04709dce111382a62",
+        ]
+      + wait_for_capacity_timeout = "10m"
+
+      + launch_template {
+          + id      = (known after apply)
+          + name    = (known after apply)
+          + version = "$Latest"
+        }
+
+      + tag {
+          + key                 = "Name"
+          + propagate_at_launch = true
+          + value               = "da-c04-iac04-alb-asg-stack-autoscaling"
+        }
+    }
+
+  # module.stack.aws_autoscaling_policy.cpu_policy_scale_in will be created
+  + resource "aws_autoscaling_policy" "cpu_policy_scale_in" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "da-c04-iac04-alb-asg-stack-autoscaling"
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "da-c04-iac04-alb-asg-stack-cpu-policy-scale-in"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.stack.aws_autoscaling_policy.cpu_policy_scale_out will be created
+  + resource "aws_autoscaling_policy" "cpu_policy_scale_out" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "da-c04-iac04-alb-asg-stack-autoscaling"
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "da-c04-iac04-alb-asg-stack-cpu-policy-scale-out"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 1
+    }
+
+  # module.stack.aws_cloudwatch_metric_alarm.cpu_alarm_scale_in will be created
+  + resource "aws_cloudwatch_metric_alarm" "cpu_alarm_scale_in" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "da-c04-iac04-alb-asg-stack-cpu-alarm-scale-in"
+      + alarm_name                            = "da-c04-iac04-alb-asg-stack-cpu-alarm-scale-in"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "da-c04-iac04-alb-asg-stack-autoscaling"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 60
+      + statistic                             = "Average"
+      + threshold                             = 30
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.stack.aws_cloudwatch_metric_alarm.cpu_alarm_scale_out will be created
+  + resource "aws_cloudwatch_metric_alarm" "cpu_alarm_scale_out" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "da-c04-iac04-alb-asg-stack-cpu-alarm-scale-out"
+      + alarm_name                            = "da-c04-iac04-alb-asg-stack-cpu-alarm-scale-out"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "da-c04-iac04-alb-asg-stack-autoscaling"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 60
+      + statistic                             = "Average"
+      + threshold                             = 80
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.stack.aws_launch_template.template will be created
+  + resource "aws_launch_template" "template" {
+      + arn                    = (known after apply)
+      + default_version        = (known after apply)
+      + id                     = (known after apply)
+      + image_id               = "ami-0099823645f06b6a1"
+      + instance_type          = "t2.micro"
+      + key_name               = "da-key"
+      + latest_version         = (known after apply)
+      + name                   = "da-c04-iac04-alb-asg-stack-template"
+      + user_data              = "CiMhL2Jpbi9iYXNoCnl1bSB1cGRhdGUgLXkKeXVtIGluc3RhbGwgaHR0cGQgLXkKc2VydmljZSBodHRwZCBzdGFydApjaGtjb25maWcgaHR0cGQgb24KY2QgL3Zhci93d3cvaHRtbAplY2hvICI8aHRtbD48Ym9keT5zdGFja25hbWU6IGFsYi1hc2ctc3RhY2sgaG9zdG5hbWU6ICQoaG9zdG5hbWUgLWYpIGluIEF2YWlsYWJpbGl0eSBab25lOiAiID4gaW5kZXguaHRtbApjdXJsIGh0dHA6Ly8xNjkuMjU0LjE2OS4yNTQvbGF0ZXN0L21ldGEtZGF0YS9wbGFjZW1lbnQvYXZhaWxhYmlsaXR5LXpvbmUgPj4gaW5kZXguaHRtbAplY2hvICI8L2JvZHk+PC9odG1sPiIgPj4gaW5kZXguaHRtbAoK"
+      + vpc_security_group_ids = (known after apply)
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + monitoring {
+          + enabled = true
+        }
+
+      + tag_specifications {
+          + resource_type = "instance"
+          + tags          = {
+              + "Name" = "da-c04-iac04-alb-asg-stack-instance"
+            }
+        }
+    }
+
+  # module.stack.aws_lb.alb will be created
+  + resource "aws_lb" "alb" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "da-c04-iac04-alb-asg-stack-elb"
+      + security_groups            = (known after apply)
+      + subnets                    = [
+          + "subnet-00d8a496401ddc8de",
+          + "subnet-04709dce111382a62",
+        ]
+      + tags                       = {
+          + "Name" = "da-c04-iac04-alb-asg-stack-alb"
+        }
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id        = (known after apply)
+          + private_ipv4_address = (known after apply)
+          + subnet_id            = (known after apply)
+        }
+    }
+
+  # module.stack.aws_lb_listener.front_end will be created
+  + resource "aws_lb_listener" "front_end" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.stack.aws_lb_target_group.front_end will be created
+  + resource "aws_lb_target_group" "front_end" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + deregistration_delay               = 300
+      + id                                 = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = "da-c04-iac04-alb-asg-stack-lb-tg"
+      + port                               = 80
+      + protocol                           = "HTTP"
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + target_type                        = "instance"
+      + vpc_id                             = "vpc-02ec2836691642ace"
+
+      + health_check {
+          + enabled             = (known after apply)
+          + healthy_threshold   = (known after apply)
+          + interval            = (known after apply)
+          + matcher             = (known after apply)
+          + path                = (known after apply)
+          + port                = (known after apply)
+          + protocol            = (known after apply)
+          + timeout             = (known after apply)
+          + unhealthy_threshold = (known after apply)
+        }
+
+      + stickiness {
+          + cookie_duration = (known after apply)
+          + enabled         = (known after apply)
+          + type            = (known after apply)
+        }
+    }
+
+  # module.stack.aws_route53_record.do will be created
+  + resource "aws_route53_record" "do" {
+      + allow_overwrite = (known after apply)
+      + fqdn            = (known after apply)
+      + id              = (known after apply)
+      + name            = "devopsacademy"
+      + type            = "A"
+      + zone_id         = "Z0487567QK3UCA9HOK0T"
+
+      + alias {
+          + evaluate_target_health = true
+          + name                   = (known after apply)
+          + zone_id                = (known after apply)
+        }
+    }
+
+  # module.stack.aws_security_group.alb_security_group will be created
+  + resource "aws_security_group" "alb_security_group" {
+      + arn                    = (known after apply)
+      + description            = "security group for load balancer"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "da-c04-iac04-alb-asg-stack-elb-sg"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "da-c04-iac04-alb-asg-stack-alb-sg"
+        }
+      + vpc_id                 = "vpc-02ec2836691642ace"
+    }
+
+  # module.stack.aws_security_group.myinstance will be created
+  + resource "aws_security_group" "myinstance" {
+      + arn                    = (known after apply)
+      + description            = "security group for my instance"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = []
+              + description      = "Inbound 80 from ELB"
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 80
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Inbound SSH from Jumpbox"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = [
+                  + "sg-01aac9b3d4540fb5f",
+                ]
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "da-c04-iac04-alb-asg-stack-instance-sg"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "da-c04-iac04-alb-asg-stack-instance-sg"
+        }
+      + vpc_id                 = "vpc-02ec2836691642ace"
+    }
+
+Plan: 13 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + lb_dns_name = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.stack.aws_security_group.alb_security_group: Creating...
+module.stack.aws_lb_target_group.front_end: Creating...
+module.stack.aws_lb_target_group.front_end: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:421117346104:targetgroup/da-c04-iac04-alb-asg-stack-lb-tg/d69ec5a530459cb9]
+module.stack.aws_security_group.alb_security_group: Creation complete after 3s [id=sg-0fc39ef599ff6825b]
+module.stack.aws_lb.alb: Creating...
+module.stack.aws_security_group.myinstance: Creating...
+module.stack.aws_security_group.myinstance: Creation complete after 2s [id=sg-07ee408c957fd6211]
+module.stack.aws_launch_template.template: Creating...
+module.stack.aws_launch_template.template: Creation complete after 1s [id=lt-05d44af10f7897990]
+module.stack.aws_autoscaling_group.autoscaling: Creating...
+module.stack.aws_lb.alb: Still creating... [10s elapsed]
+module.stack.aws_autoscaling_group.autoscaling: Still creating... [10s elapsed]
+module.stack.aws_lb.alb: Still creating... [20s elapsed]
+module.stack.aws_autoscaling_group.autoscaling: Still creating... [20s elapsed]
+module.stack.aws_lb.alb: Still creating... [30s elapsed]
+module.stack.aws_autoscaling_group.autoscaling: Still creating... [30s elapsed]
+module.stack.aws_lb.alb: Still creating... [40s elapsed]
+module.stack.aws_autoscaling_group.autoscaling: Creation complete after 39s [id=da-c04-iac04-alb-asg-stack-autoscaling]
+module.stack.aws_autoscaling_attachment.asg_attach: Creating...
+module.stack.aws_autoscaling_policy.cpu_policy_scale_out: Creating...
+module.stack.aws_autoscaling_policy.cpu_policy_scale_in: Creating...
+module.stack.aws_autoscaling_policy.cpu_policy_scale_out: Creation complete after 1s [id=da-c04-iac04-alb-asg-stack-cpu-policy-scale-out]
+module.stack.aws_cloudwatch_metric_alarm.cpu_alarm_scale_out: Creating...
+module.stack.aws_autoscaling_attachment.asg_attach: Creation complete after 1s [id=da-c04-iac04-alb-asg-stack-autoscaling-20200915062733926300000002]
+module.stack.aws_autoscaling_policy.cpu_policy_scale_in: Creation complete after 0s [id=da-c04-iac04-alb-asg-stack-cpu-policy-scale-in]
+module.stack.aws_cloudwatch_metric_alarm.cpu_alarm_scale_in: Creating...
+module.stack.aws_cloudwatch_metric_alarm.cpu_alarm_scale_out: Creation complete after 1s [id=da-c04-iac04-alb-asg-stack-cpu-alarm-scale-out]
+module.stack.aws_cloudwatch_metric_alarm.cpu_alarm_scale_in: Creation complete after 1s [id=da-c04-iac04-alb-asg-stack-cpu-alarm-scale-in]
+module.stack.aws_lb.alb: Still creating... [50s elapsed]
+module.stack.aws_lb.alb: Still creating... [1m0s elapsed]
+module.stack.aws_lb.alb: Still creating... [1m10s elapsed]
+module.stack.aws_lb.alb: Still creating... [1m20s elapsed]
+module.stack.aws_lb.alb: Still creating... [1m30s elapsed]
+module.stack.aws_lb.alb: Still creating... [1m40s elapsed]
+module.stack.aws_lb.alb: Still creating... [1m50s elapsed]
+module.stack.aws_lb.alb: Still creating... [2m0s elapsed]
+module.stack.aws_lb.alb: Still creating... [2m10s elapsed]
+module.stack.aws_lb.alb: Still creating... [2m20s elapsed]
+module.stack.aws_lb.alb: Still creating... [2m30s elapsed]
+module.stack.aws_lb.alb: Still creating... [2m40s elapsed]
+module.stack.aws_lb.alb: Creation complete after 2m45s [id=arn:aws:elasticloadbalancing:ap-southeast-2:421117346104:loadbalancer/app/da-c04-iac04-alb-asg-stack-elb/656d93d2d3fe6744]
+module.stack.aws_lb_listener.front_end: Creating...
+module.stack.aws_route53_record.do: Creating...
+module.stack.aws_lb_listener.front_end: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:421117346104:listener/app/da-c04-iac04-alb-asg-stack-elb/656d93d2d3fe6744/46763c29bbc5096d]
+module.stack.aws_route53_record.do: Still creating... [10s elapsed]
+module.stack.aws_route53_record.do: Still creating... [20s elapsed]
+module.stack.aws_route53_record.do: Still creating... [30s elapsed]
+module.stack.aws_route53_record.do: Still creating... [40s elapsed]
+module.stack.aws_route53_record.do: Creation complete after 43s [id=Z0487567QK3UCA9HOK0T_devopsacademy_A]
+
+Apply complete! Resources: 13 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+lb_dns_name = da-c04-iac04-alb-asg-stack-elb-2064654809.ap-southeast-2.elb.amazonaws.com
