@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  3m_run:
+    build: .
+    env_file: .env
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
