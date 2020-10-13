@@ -1,0 +1,10 @@
+variable app_name {}
+variable vpc_cidr {}
+variable subnet_a_cidr {}
+variable subnet_b_cidr {}
+variable ami {}
+variable mem_scale_up_threshold {}
+variable mem_scale_down_threshold {}
+variable min_size {}
+variable max_size {}
+variable desired_capacity {}
