@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  toolbox:
+    image: flemay/musketeers
+    working_dir: /app
+    volumes:
+      - ${PWD}:/app
+
+  terraform:
+    image: hashicorp/terraform:0.13.2
+    working_dir: /app/terraform
+    volumes:
+      - ${PWD}:/app
+      - ${HOME}/.aws:/root/.aws
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - TF_IN_AUTOMATION=yes
+  
+  jq:
+    image: stedolan/jq
+    working_dir: /app
+    volumes:
+      - ${PWD}:/app
+
+  aws:
+    image: amazon/aws-cli:2.0.44
+    working_dir: /app
+    volumes:
+      - ${PWD}:/app
+      - ${HOME}/.aws:/root/.aws
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_DEFAULT_REGION
+    entrypoint:
+      - aws
