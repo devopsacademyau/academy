@@ -1,0 +1,825 @@
+[yvonne@centos8 afaryy]$ terraform plan -var-file=./main.tfvars
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_eip.nat will be created
+  + resource "aws_eip" "nat" {
+      + allocation_id     = (known after apply)
+      + association_id    = (known after apply)
+      + customer_owned_ip = (known after apply)
+      + domain            = (known after apply)
+      + id                = (known after apply)
+      + instance          = (known after apply)
+      + network_interface = (known after apply)
+      + private_dns       = (known after apply)
+      + private_ip        = (known after apply)
+      + public_dns        = (known after apply)
+      + public_ip         = (known after apply)
+      + public_ipv4_pool  = (known after apply)
+      + vpc               = true
+    }
+
+  # aws_internet_gateway.main-gw will be created
+  + resource "aws_internet_gateway" "main-gw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "da-c04-iac02-gw"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_nat_gateway.nat-gw will be created
+  + resource "aws_nat_gateway" "nat-gw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Name" = "da-c04-iac02-nat-gw"
+        }
+    }
+
+  # aws_route_table.main-private will be created
+  + resource "aws_route_table" "main-private" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = ""
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + local_gateway_id          = ""
+              + nat_gateway_id            = (known after apply)
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "da-c04-iac02-rt-private"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table.main-public will be created
+  + resource "aws_route_table" "main-public" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + local_gateway_id          = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "da-c04-iac02-rt-public"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.main-private["private_subnet_a"] will be created
+  + resource "aws_route_table_association" "main-private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.main-private["private_subnet_b"] will be created
+  + resource "aws_route_table_association" "main-private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.main-public["public_subnet_a"] will be created
+  + resource "aws_route_table_association" "main-public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.main-public["public_subnet_b"] will be created
+  + resource "aws_route_table_association" "main-public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_subnet.main-private["private_subnet_a"] will be created
+  + resource "aws_subnet" "main-private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.11.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "da-c04-iac02-private_subnet_a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.main-private["private_subnet_b"] will be created
+  + resource "aws_subnet" "main-private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.22.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "da-c04-iac02-private_subnet_b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.main-public["public_subnet_a"] will be created
+  + resource "aws_subnet" "main-public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.1.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "da-c04-iac02-public_subnet_a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.main-public["public_subnet_b"] will be created
+  + resource "aws_subnet" "main-public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.2.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "da-c04-iac02-public_subnet_b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_vpc.main will be created
+  + resource "aws_vpc" "main" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = false
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = true
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "da-c04-iac02-vpc"
+        }
+    }
+
+Plan: 14 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
+[yvonne@centos8 afaryy]$ terraform apply  -var-file=./main.tfvars
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_eip.nat will be created
+  + resource "aws_eip" "nat" {
+      + allocation_id     = (known after apply)
+      + association_id    = (known after apply)
+      + customer_owned_ip = (known after apply)
+      + domain            = (known after apply)
+      + id                = (known after apply)
+      + instance          = (known after apply)
+      + network_interface = (known after apply)
+      + private_dns       = (known after apply)
+      + private_ip        = (known after apply)
+      + public_dns        = (known after apply)
+      + public_ip         = (known after apply)
+      + public_ipv4_pool  = (known after apply)
+      + vpc               = true
+    }
+
+  # aws_internet_gateway.main-gw will be created
+  + resource "aws_internet_gateway" "main-gw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "da-c04-iac02-gw"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_nat_gateway.nat-gw will be created
+  + resource "aws_nat_gateway" "nat-gw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Name" = "da-c04-iac02-nat-gw"
+        }
+    }
+
+  # aws_route_table.main-private will be created
+  + resource "aws_route_table" "main-private" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = ""
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + local_gateway_id          = ""
+              + nat_gateway_id            = (known after apply)
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "da-c04-iac02-rt-private"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table.main-public will be created
+  + resource "aws_route_table" "main-public" {
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + cidr_block                = "0.0.0.0/0"
+              + egress_only_gateway_id    = ""
+              + gateway_id                = (known after apply)
+              + instance_id               = ""
+              + ipv6_cidr_block           = ""
+              + local_gateway_id          = ""
+              + nat_gateway_id            = ""
+              + network_interface_id      = ""
+              + transit_gateway_id        = ""
+              + vpc_peering_connection_id = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "da-c04-iac02-rt-public"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.main-private["private_subnet_a"] will be created
+  + resource "aws_route_table_association" "main-private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.main-private["private_subnet_b"] will be created
+  + resource "aws_route_table_association" "main-private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.main-public["public_subnet_a"] will be created
+  + resource "aws_route_table_association" "main-public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_route_table_association.main-public["public_subnet_b"] will be created
+  + resource "aws_route_table_association" "main-public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_subnet.main-private["private_subnet_a"] will be created
+  + resource "aws_subnet" "main-private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.11.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "da-c04-iac02-private_subnet_a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.main-private["private_subnet_b"] will be created
+  + resource "aws_subnet" "main-private" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.22.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "da-c04-iac02-private_subnet_b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.main-public["public_subnet_a"] will be created
+  + resource "aws_subnet" "main-public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.1.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "da-c04-iac02-public_subnet_a"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_subnet.main-public["public_subnet_b"] will be created
+  + resource "aws_subnet" "main-public" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "ap-southeast-2b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.2.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block_association_id  = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + tags                            = {
+          + "Name" = "da-c04-iac02-public_subnet_b"
+        }
+      + vpc_id                          = (known after apply)
+    }
+
+  # aws_vpc.main will be created
+  + resource "aws_vpc" "main" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = false
+      + enable_classiclink_dns_support   = (known after apply)
+      + enable_dns_hostnames             = true
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Name" = "da-c04-iac02-vpc"
+        }
+    }
+
+Plan: 14 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_eip.nat: Creating...
+aws_vpc.main: Creating...
+aws_eip.nat: Creation complete after 0s [id=eipalloc-0f17b61d386cb2f6c]
+aws_vpc.main: Creation complete after 2s [id=vpc-00d94d44dcd18a891]
+aws_subnet.main-private["private_subnet_a"]: Creating...
+aws_subnet.main-public["public_subnet_b"]: Creating...
+aws_internet_gateway.main-gw: Creating...
+aws_subnet.main-private["private_subnet_b"]: Creating...
+aws_subnet.main-public["public_subnet_a"]: Creating...
+aws_internet_gateway.main-gw: Creation complete after 2s [id=igw-0c472d5c043462460]
+aws_route_table.main-public: Creating...
+aws_subnet.main-public["public_subnet_b"]: Creation complete after 2s [id=subnet-02313c7613a3d0a34]
+aws_subnet.main-private["private_subnet_a"]: Creation complete after 2s [id=subnet-01a363f29437237db]
+aws_subnet.main-private["private_subnet_b"]: Creation complete after 2s [id=subnet-03b3088d244cdd922]
+aws_subnet.main-public["public_subnet_a"]: Creation complete after 2s [id=subnet-0578aefa1fec1ab6e]
+aws_nat_gateway.nat-gw: Creating...
+aws_route_table.main-public: Creation complete after 1s [id=rtb-0259a899ec3acc9bc]
+aws_route_table_association.main-public["public_subnet_b"]: Creating...
+aws_route_table_association.main-public["public_subnet_a"]: Creating...
+aws_route_table_association.main-public["public_subnet_a"]: Creation complete after 0s [id=rtbassoc-009babf8fff29bf08]
+aws_route_table_association.main-public["public_subnet_b"]: Creation complete after 0s [id=rtbassoc-0dde5524a77a96d2b]
+aws_nat_gateway.nat-gw: Still creating... [10s elapsed]
+aws_nat_gateway.nat-gw: Still creating... [20s elapsed]
+aws_nat_gateway.nat-gw: Still creating... [30s elapsed]
+aws_nat_gateway.nat-gw: Still creating... [40s elapsed]
+aws_nat_gateway.nat-gw: Still creating... [50s elapsed]
+aws_nat_gateway.nat-gw: Still creating... [1m0s elapsed]
+aws_nat_gateway.nat-gw: Still creating... [1m10s elapsed]
+aws_nat_gateway.nat-gw: Still creating... [1m20s elapsed]
+aws_nat_gateway.nat-gw: Still creating... [1m30s elapsed]
+aws_nat_gateway.nat-gw: Still creating... [1m40s elapsed]
+aws_nat_gateway.nat-gw: Creation complete after 1m47s [id=nat-02e3001fae289ce3e]
+aws_route_table.main-private: Creating...
+aws_route_table.main-private: Creation complete after 1s [id=rtb-058faa43823e8840f]
+aws_route_table_association.main-private["private_subnet_a"]: Creating...
+aws_route_table_association.main-private["private_subnet_b"]: Creating...
+aws_route_table_association.main-private["private_subnet_b"]: Creation complete after 0s [id=rtbassoc-0c352c51dad5e2f05]
+aws_route_table_association.main-private["private_subnet_a"]: Creation complete after 0s [id=rtbassoc-03c853fb488ab0aa7]
+
+Apply complete! Resources: 14 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+private_subnets = {
+  "subnet-01a363f29437237db" = {
+    "availability_zone" = "ap-southeast-2a"
+    "cidr_block" = "10.0.11.0/24"
+    "name" = "da-c04-iac02-private_subnet_a"
+  }
+  "subnet-03b3088d244cdd922" = {
+    "availability_zone" = "ap-southeast-2b"
+    "cidr_block" = "10.0.22.0/24"
+    "name" = "da-c04-iac02-private_subnet_b"
+  }
+}
+public_subnets = {
+  "subnet-02313c7613a3d0a34" = {
+    "availability_zone" = "ap-southeast-2b"
+    "cidr_block" = "10.0.2.0/24"
+    "name" = "da-c04-iac02-public_subnet_b"
+  }
+  "subnet-0578aefa1fec1ab6e" = {
+    "availability_zone" = "ap-southeast-2a"
+    "cidr_block" = "10.0.1.0/24"
+    "name" = "da-c04-iac02-public_subnet_a"
+  }
+}
+
+
+[yvonne@centos8 afaryy]$ terraform destroy  -var-file=./main.tfvars
+aws_eip.nat: Refreshing state... [id=eipalloc-0f17b61d386cb2f6c]
+aws_vpc.main: Refreshing state... [id=vpc-00d94d44dcd18a891]
+aws_subnet.main-private["private_subnet_a"]: Refreshing state... [id=subnet-01a363f29437237db]
+aws_subnet.main-public["public_subnet_a"]: Refreshing state... [id=subnet-0578aefa1fec1ab6e]
+aws_subnet.main-private["private_subnet_b"]: Refreshing state... [id=subnet-03b3088d244cdd922]
+aws_subnet.main-public["public_subnet_b"]: Refreshing state... [id=subnet-02313c7613a3d0a34]
+aws_internet_gateway.main-gw: Refreshing state... [id=igw-0c472d5c043462460]
+aws_route_table.main-public: Refreshing state... [id=rtb-0259a899ec3acc9bc]
+aws_nat_gateway.nat-gw: Refreshing state... [id=nat-02e3001fae289ce3e]
+aws_route_table_association.main-public["public_subnet_b"]: Refreshing state... [id=rtbassoc-0dde5524a77a96d2b]
+aws_route_table_association.main-public["public_subnet_a"]: Refreshing state... [id=rtbassoc-009babf8fff29bf08]
+aws_route_table.main-private: Refreshing state... [id=rtb-058faa43823e8840f]
+aws_route_table_association.main-private["private_subnet_a"]: Refreshing state... [id=rtbassoc-03c853fb488ab0aa7]
+aws_route_table_association.main-private["private_subnet_b"]: Refreshing state... [id=rtbassoc-0c352c51dad5e2f05]
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_eip.nat will be destroyed
+  - resource "aws_eip" "nat" {
+      - association_id    = "eipassoc-0a365e53c6c550601" -> null
+      - domain            = "vpc" -> null
+      - id                = "eipalloc-0f17b61d386cb2f6c" -> null
+      - network_interface = "eni-0d0b38385d79587fb" -> null
+      - private_dns       = "ip-10-0-11-81.ap-southeast-2.compute.internal" -> null
+      - private_ip        = "10.0.11.81" -> null
+      - public_dns        = "ec2-13-54-113-239.ap-southeast-2.compute.amazonaws.com" -> null
+      - public_ip         = "13.54.113.239" -> null
+      - public_ipv4_pool  = "amazon" -> null
+      - tags              = {} -> null
+      - vpc               = true -> null
+    }
+
+  # aws_internet_gateway.main-gw will be destroyed
+  - resource "aws_internet_gateway" "main-gw" {
+      - arn      = "arn:aws:ec2:ap-southeast-2:421117346104:internet-gateway/igw-0c472d5c043462460" -> null
+      - id       = "igw-0c472d5c043462460" -> null
+      - owner_id = "421117346104" -> null
+      - tags     = {
+          - "Name" = "da-c04-iac02-gw"
+        } -> null
+      - vpc_id   = "vpc-00d94d44dcd18a891" -> null
+    }
+
+  # aws_nat_gateway.nat-gw will be destroyed
+  - resource "aws_nat_gateway" "nat-gw" {
+      - allocation_id        = "eipalloc-0f17b61d386cb2f6c" -> null
+      - id                   = "nat-02e3001fae289ce3e" -> null
+      - network_interface_id = "eni-0d0b38385d79587fb" -> null
+      - private_ip           = "10.0.11.81" -> null
+      - public_ip            = "13.54.113.239" -> null
+      - subnet_id            = "subnet-01a363f29437237db" -> null
+      - tags                 = {
+          - "Name" = "da-c04-iac02-nat-gw"
+        } -> null
+    }
+
+  # aws_route_table.main-private will be destroyed
+  - resource "aws_route_table" "main-private" {
+      - id               = "rtb-058faa43823e8840f" -> null
+      - owner_id         = "421117346104" -> null
+      - propagating_vgws = [] -> null
+      - route            = [
+          - {
+              - cidr_block                = "0.0.0.0/0"
+              - egress_only_gateway_id    = ""
+              - gateway_id                = ""
+              - instance_id               = ""
+              - ipv6_cidr_block           = ""
+              - local_gateway_id          = ""
+              - nat_gateway_id            = "nat-02e3001fae289ce3e"
+              - network_interface_id      = ""
+              - transit_gateway_id        = ""
+              - vpc_peering_connection_id = ""
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "da-c04-iac02-rt-private"
+        } -> null
+      - vpc_id           = "vpc-00d94d44dcd18a891" -> null
+    }
+
+  # aws_route_table.main-public will be destroyed
+  - resource "aws_route_table" "main-public" {
+      - id               = "rtb-0259a899ec3acc9bc" -> null
+      - owner_id         = "421117346104" -> null
+      - propagating_vgws = [] -> null
+      - route            = [
+          - {
+              - cidr_block                = "0.0.0.0/0"
+              - egress_only_gateway_id    = ""
+              - gateway_id                = "igw-0c472d5c043462460"
+              - instance_id               = ""
+              - ipv6_cidr_block           = ""
+              - local_gateway_id          = ""
+              - nat_gateway_id            = ""
+              - network_interface_id      = ""
+              - transit_gateway_id        = ""
+              - vpc_peering_connection_id = ""
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "da-c04-iac02-rt-public"
+        } -> null
+      - vpc_id           = "vpc-00d94d44dcd18a891" -> null
+    }
+
+  # aws_route_table_association.main-private["private_subnet_a"] will be destroyed
+  - resource "aws_route_table_association" "main-private" {
+      - id             = "rtbassoc-03c853fb488ab0aa7" -> null
+      - route_table_id = "rtb-058faa43823e8840f" -> null
+      - subnet_id      = "subnet-01a363f29437237db" -> null
+    }
+
+  # aws_route_table_association.main-private["private_subnet_b"] will be destroyed
+  - resource "aws_route_table_association" "main-private" {
+      - id             = "rtbassoc-0c352c51dad5e2f05" -> null
+      - route_table_id = "rtb-058faa43823e8840f" -> null
+      - subnet_id      = "subnet-03b3088d244cdd922" -> null
+    }
+
+  # aws_route_table_association.main-public["public_subnet_a"] will be destroyed
+  - resource "aws_route_table_association" "main-public" {
+      - id             = "rtbassoc-009babf8fff29bf08" -> null
+      - route_table_id = "rtb-0259a899ec3acc9bc" -> null
+      - subnet_id      = "subnet-0578aefa1fec1ab6e" -> null
+    }
+
+  # aws_route_table_association.main-public["public_subnet_b"] will be destroyed
+  - resource "aws_route_table_association" "main-public" {
+      - id             = "rtbassoc-0dde5524a77a96d2b" -> null
+      - route_table_id = "rtb-0259a899ec3acc9bc" -> null
+      - subnet_id      = "subnet-02313c7613a3d0a34" -> null
+    }
+
+  # aws_subnet.main-private["private_subnet_a"] will be destroyed
+  - resource "aws_subnet" "main-private" {
+      - arn                             = "arn:aws:ec2:ap-southeast-2:421117346104:subnet/subnet-01a363f29437237db" -> null
+      - assign_ipv6_address_on_creation = false -> null
+      - availability_zone               = "ap-southeast-2a" -> null
+      - availability_zone_id            = "apse2-az3" -> null
+      - cidr_block                      = "10.0.11.0/24" -> null
+      - id                              = "subnet-01a363f29437237db" -> null
+      - map_public_ip_on_launch         = true -> null
+      - owner_id                        = "421117346104" -> null
+      - tags                            = {
+          - "Name" = "da-c04-iac02-private_subnet_a"
+        } -> null
+      - vpc_id                          = "vpc-00d94d44dcd18a891" -> null
+    }
+
+  # aws_subnet.main-private["private_subnet_b"] will be destroyed
+  - resource "aws_subnet" "main-private" {
+      - arn                             = "arn:aws:ec2:ap-southeast-2:421117346104:subnet/subnet-03b3088d244cdd922" -> null
+      - assign_ipv6_address_on_creation = false -> null
+      - availability_zone               = "ap-southeast-2b" -> null
+      - availability_zone_id            = "apse2-az1" -> null
+      - cidr_block                      = "10.0.22.0/24" -> null
+      - id                              = "subnet-03b3088d244cdd922" -> null
+      - map_public_ip_on_launch         = true -> null
+      - owner_id                        = "421117346104" -> null
+      - tags                            = {
+          - "Name" = "da-c04-iac02-private_subnet_b"
+        } -> null
+      - vpc_id                          = "vpc-00d94d44dcd18a891" -> null
+    }
+
+  # aws_subnet.main-public["public_subnet_a"] will be destroyed
+  - resource "aws_subnet" "main-public" {
+      - arn                             = "arn:aws:ec2:ap-southeast-2:421117346104:subnet/subnet-0578aefa1fec1ab6e" -> null
+      - assign_ipv6_address_on_creation = false -> null
+      - availability_zone               = "ap-southeast-2a" -> null
+      - availability_zone_id            = "apse2-az3" -> null
+      - cidr_block                      = "10.0.1.0/24" -> null
+      - id                              = "subnet-0578aefa1fec1ab6e" -> null
+      - map_public_ip_on_launch         = true -> null
+      - owner_id                        = "421117346104" -> null
+      - tags                            = {
+          - "Name" = "da-c04-iac02-public_subnet_a"
+        } -> null
+      - vpc_id                          = "vpc-00d94d44dcd18a891" -> null
+    }
+
+  # aws_subnet.main-public["public_subnet_b"] will be destroyed
+  - resource "aws_subnet" "main-public" {
+      - arn                             = "arn:aws:ec2:ap-southeast-2:421117346104:subnet/subnet-02313c7613a3d0a34" -> null
+      - assign_ipv6_address_on_creation = false -> null
+      - availability_zone               = "ap-southeast-2b" -> null
+      - availability_zone_id            = "apse2-az1" -> null
+      - cidr_block                      = "10.0.2.0/24" -> null
+      - id                              = "subnet-02313c7613a3d0a34" -> null
+      - map_public_ip_on_launch         = true -> null
+      - owner_id                        = "421117346104" -> null
+      - tags                            = {
+          - "Name" = "da-c04-iac02-public_subnet_b"
+        } -> null
+      - vpc_id                          = "vpc-00d94d44dcd18a891" -> null
+    }
+
+  # aws_vpc.main will be destroyed
+  - resource "aws_vpc" "main" {
+      - arn                              = "arn:aws:ec2:ap-southeast-2:421117346104:vpc/vpc-00d94d44dcd18a891" -> null
+      - assign_generated_ipv6_cidr_block = false -> null
+      - cidr_block                       = "10.0.0.0/16" -> null
+      - default_network_acl_id           = "acl-06251e79cb1ff17a7" -> null
+      - default_route_table_id           = "rtb-0788ad32ca2e3da98" -> null
+      - default_security_group_id        = "sg-08fa92f810ee4e1d4" -> null
+      - dhcp_options_id                  = "dopt-5b144a3c" -> null
+      - enable_classiclink               = false -> null
+      - enable_classiclink_dns_support   = false -> null
+      - enable_dns_hostnames             = true -> null
+      - enable_dns_support               = true -> null
+      - id                               = "vpc-00d94d44dcd18a891" -> null
+      - instance_tenancy                 = "default" -> null
+      - main_route_table_id              = "rtb-0788ad32ca2e3da98" -> null
+      - owner_id                         = "421117346104" -> null
+      - tags                             = {
+          - "Name" = "da-c04-iac02-vpc"
+        } -> null
+    }
+
+Plan: 0 to add, 0 to change, 14 to destroy.
+
+Changes to Outputs:
+  - private_subnets = {
+      - subnet-01a363f29437237db = {
+          - availability_zone = "ap-southeast-2a"
+          - cidr_block        = "10.0.11.0/24"
+          - name              = "da-c04-iac02-private_subnet_a"
+        }
+      - subnet-03b3088d244cdd922 = {
+          - availability_zone = "ap-southeast-2b"
+          - cidr_block        = "10.0.22.0/24"
+          - name              = "da-c04-iac02-private_subnet_b"
+        }
+    } -> null
+  - public_subnets  = {
+      - subnet-02313c7613a3d0a34 = {
+          - availability_zone = "ap-southeast-2b"
+          - cidr_block        = "10.0.2.0/24"
+          - name              = "da-c04-iac02-public_subnet_b"
+        }
+      - subnet-0578aefa1fec1ab6e = {
+          - availability_zone = "ap-southeast-2a"
+          - cidr_block        = "10.0.1.0/24"
+          - name              = "da-c04-iac02-public_subnet_a"
+        }
+    } -> null
+  - vpc_cidr        = "10.0.0.0/16" -> null
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+aws_route_table_association.main-private["private_subnet_a"]: Destroying... [id=rtbassoc-03c853fb488ab0aa7]
+aws_route_table_association.main-public["public_subnet_a"]: Destroying... [id=rtbassoc-009babf8fff29bf08]
+aws_route_table_association.main-private["private_subnet_b"]: Destroying... [id=rtbassoc-0c352c51dad5e2f05]
+aws_route_table_association.main-public["public_subnet_b"]: Destroying... [id=rtbassoc-0dde5524a77a96d2b]
+aws_route_table_association.main-private["private_subnet_a"]: Destruction complete after 0s
+aws_route_table_association.main-public["public_subnet_b"]: Destruction complete after 0s
+aws_route_table_association.main-public["public_subnet_a"]: Destruction complete after 0s
+aws_subnet.main-public["public_subnet_a"]: Destroying... [id=subnet-0578aefa1fec1ab6e]
+aws_subnet.main-public["public_subnet_b"]: Destroying... [id=subnet-02313c7613a3d0a34]
+aws_route_table.main-public: Destroying... [id=rtb-0259a899ec3acc9bc]
+aws_route_table_association.main-private["private_subnet_b"]: Destruction complete after 0s
+aws_route_table.main-private: Destroying... [id=rtb-058faa43823e8840f]
+aws_subnet.main-public["public_subnet_a"]: Destruction complete after 0s
+aws_route_table.main-public: Destruction complete after 0s
+aws_route_table.main-private: Destruction complete after 1s
+aws_nat_gateway.nat-gw: Destroying... [id=nat-02e3001fae289ce3e]
+aws_subnet.main-public["public_subnet_b"]: Destruction complete after 1s
+aws_nat_gateway.nat-gw: Still destroying... [id=nat-02e3001fae289ce3e, 10s elapsed]
+aws_nat_gateway.nat-gw: Still destroying... [id=nat-02e3001fae289ce3e, 20s elapsed]
+aws_nat_gateway.nat-gw: Still destroying... [id=nat-02e3001fae289ce3e, 30s elapsed]
+aws_nat_gateway.nat-gw: Still destroying... [id=nat-02e3001fae289ce3e, 40s elapsed]
+aws_nat_gateway.nat-gw: Still destroying... [id=nat-02e3001fae289ce3e, 50s elapsed]
+aws_nat_gateway.nat-gw: Destruction complete after 51s
+aws_internet_gateway.main-gw: Destroying... [id=igw-0c472d5c043462460]
+aws_subnet.main-private["private_subnet_a"]: Destroying... [id=subnet-01a363f29437237db]
+aws_subnet.main-private["private_subnet_b"]: Destroying... [id=subnet-03b3088d244cdd922]
+aws_eip.nat: Destroying... [id=eipalloc-0f17b61d386cb2f6c]
+aws_subnet.main-private["private_subnet_b"]: Destruction complete after 0s
+aws_eip.nat: Destruction complete after 1s
+aws_subnet.main-private["private_subnet_a"]: Destruction complete after 1s
+aws_internet_gateway.main-gw: Still destroying... [id=igw-0c472d5c043462460, 10s elapsed]
+aws_internet_gateway.main-gw: Destruction complete after 10s
+aws_vpc.main: Destroying... [id=vpc-00d94d44dcd18a891]
+aws_vpc.main: Destruction complete after 1s
+
+Destroy complete! Resources: 14 destroyed.
