@@ -1,0 +1,45 @@
+ 
+  > ssh -i "mail2kvanithayahoo.pem" ec2-user@3.25.94.77
+
+   Last login: Tue Aug 11 15:08:19 2020 from 27-32-243-158.tpgi.com.au
+
+          __|  __|_  )
+          _|  (     /   Amazon Linux 2 AMI
+         ___|\___|___|
+
+   https://aws.amazon.com/amazon-linux-2/
+   [ec2-user@ip-100-0-10-122 ~]$ mysql -h mysql-devopsacademy.ck5fxo8lkvrn.ap-southeast-2.rds.amazonaws.com -umaster -p
+   Enter password: 
+   ERROR 1045 (28000): Access denied for user 'master'@'pool-100-0-10-122.bstnma.fios.verizon.net' (using password: YES)
+   [ec2-user@ip-100-0-10-122 ~]$ mysql -h mysql-devopsacademy.ck5fxo8lkvrn.ap-southeast-2.rds.amazonaws.com -uadmin -p
+   Enter password: 
+   ERROR 1045 (28000): Access denied for user 'admin'@'pool-100-0-10-122.bstnma.fios.verizon.net' (using password: YES)
+   [ec2-user@ip-100-0-10-122 ~]$ mysql -h mysql-devopsacademy.ck5fxo8lkvrn.ap-southeast-2.rds.amazonaws.com -uadmin -p
+   Enter password: 
+   Welcome to the MariaDB monitor.  Commands end with ; or \g. 
+   Your MySQL connection id is 14
+   Server version: 8.0.17 Source distribution
+
+   Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+   Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+   MySQL [(none)]> show databases;
+   +--------------------+
+   | Database           |
+   +--------------------+
+   | devopsacademy      |
+   | information_schema |
+   | mysql              |
+   | performance_schema |
+   +--------------------+
+   4 rows in set (0.00 sec)
+
+   MySQL [(none)]> use devopsacademy
+   Database changed
+   MySQL [devopsacademy]> show tables;
+   Empty set (0.00 sec)
+
+   MySQL [devopsacademy]> exit
+   Bye
+   
