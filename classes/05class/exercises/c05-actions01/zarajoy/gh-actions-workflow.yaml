@@ -1,0 +1,15 @@
+name: zarajoy_actions01
+
+on:
+  pull_request:
+    paths:
+      - 'zarajoy/**'
+jobs:
+  c05_actions01_comment:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/marketplace/actions/add-pr-comment
+    - uses: mshick/add-pr-comment@v1
+      with:
+        message: Well done "${{ secrets.ZARAJOY_NAME }}" ! This is a nice PR.
+        repo-token: "${{ secrets.ZARAJOY_TOKEN }}"
