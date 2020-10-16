@@ -1,0 +1,35 @@
+#Create a new bucket with your github name 
+> aws s3 mb s3://raghunadhpokkalath --region ap-southeast-2
+make_bucket: raghunadhpokkalath
+
+#Upload index html to s3
+> aws s3 cp 05class/aws_s3_rds/assets/index.html s3://raghunadhpokkalath
+upload: 05class/aws_s3_rds/assets/index.html to s3://raghunadhpokkalath/index.html
+
+#Enable the S3 website in the bucket
+aws s3 website s3://raghunadhpokkalath --index-document index.html
+
+#Apply S3 bucket policy to access website
+> more s3_bucket_policy.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::raghunadhpokkalath/*"
+        }
+    ]
+}
+
+> aws s3api put-bucket-policy --bucket raghunadhpokkalath --policy file://s3_bucket_policy.json
+
+#Check the website via curl
+curl http://raghunadhpokkalath.s3-website-ap-southeast-2.amazonaws.com/
+
+<html>
+	<body>
+		Welcome to DevOps Academy! :)
+	</body>
+</html>%        
