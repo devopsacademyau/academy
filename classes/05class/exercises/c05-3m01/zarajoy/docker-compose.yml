@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+    aws:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      env_file: .env
+      volumes:
+        - .:/scripts
+      working_dir: /scripts 
