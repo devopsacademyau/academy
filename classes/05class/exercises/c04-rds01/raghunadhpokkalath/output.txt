@@ -1,0 +1,79 @@
+Login to EC2 instance
+ ssh -i "EC2KeyPair.pem" ec2-user@52.64.163.112
+
+Connection to 52.64.163.112 closed.
+raghunadhpokkalath@raghunadhs-MBP EC2 % ssh -i "EC2KeyPair.pem" ec2-user@52.64.163.112
+Last login: Sun Aug  9 10:10:57 2020 from 89.95.96.58.static.exetel.com.au
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+18 package(s) needed for security, out of 39 available
+Run "sudo yum update" to apply all updates.
+
+Install MySQl instance
+[ec2-user@ip-10-0-101-95 ~]$ sudo yum install mysql
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                               | 3.7 kB     00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.64-1.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package        Arch          Version                   Repository         Size
+================================================================================
+Installing:
+ mariadb        x86_64        1:5.5.64-1.amzn2          amzn2-core        9.0 M
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total download size: 9.0 M
+Installed size: 49 M
+Is this ok [y/d/N]: yes
+Downloading packages:
+mariadb-5.5.64-1.amzn2.x86_64.rpm                                                                                                                                                    | 9.0 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:mariadb-5.5.64-1.amzn2.x86_64                                                                                                                                                          1/1 
+  Verifying  : 1:mariadb-5.5.64-1.amzn2.x86_64                                                                                                                                                          1/1 
+
+Installed:
+  mariadb.x86_64 1:5.5.64-1.amzn2                                                                                                                                                                           
+
+Complete!
+
+#Connect to my sql db
+MySQL [(none)]> mysql -h devopsacademy.cyicf0mu6oyn.ap-southeast-2.rds.amazonaws.com  -u admin -psecret99Ctrl-C -- exit!
+Aborted
+[ec2-user@ip-10-0-101-95 ~]$ mysql -h devopsacademy.cyicf0mu6oyn.ap-southeast-2.rds.amazonaws.com  -u admin -psecret99
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.17 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]>  SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| devopsacademy      |
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.00 sec)
+
+MySQL [(none)]> 
+
+
