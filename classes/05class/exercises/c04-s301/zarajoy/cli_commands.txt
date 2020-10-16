@@ -1,0 +1,31 @@
+
+z@bacon:~/Documents/GitHub/academy/classes/05class/exercises/c04-s301/zarajoy$ aws s3 mb s3://zarajoy
+make_bucket: zarajoy
+
+z@bacon:~/Documents/GitHub/academy/classes/05class/exercises/c04-s301/zarajoy$ cd ../../../
+
+z@bacon:~/Documents/GitHub/academy/classes/05class$ aws s3 cp ./aws_s3_rds/assets/index.html s3://zarajoy/index.html
+upload: aws_s3_rds/assets/index.html to s3://zarajoy/index.html  
+
+
+z@bacon:~/Documents/GitHub/academy/classes/05class$ aws s3 website s3://zarajoy/ --index-document index.html
+
+z@bacon:~/Documents/GitHub/academy/classes/05class/exercises/c04-s301/zarajoy$ aws s3api put-bucket-policy --bucket zarajoy --policy file://c05_s301_policy.json
+
+Unknown output type: env
+
+z@bacon:~/Documents/GitHub/academy/classes/05class/exercises/c04-s301/zarajoy$ aws configure
+AWS Access Key ID [****************SHVZ]: 
+AWS Secret Access Key [****************KTu5]: 
+Default region name [ap-southeast-2]: 
+Default output format [env]: json
+
+z@bacon:~/Documents/GitHub/academy/classes/05class/exercises/c04-s301/zarajoy$ aws s3api put-bucket-policy --bucket zarajoy --policy file://c05_s301_policy.json
+
+z@bacon:~/Documents/GitHub/academy/classes/05class/exercises/c04-s301/zarajoy$ curl http://zarajoy.s3-website-ap-southeast-2.amazonaws.com/
+<html>
+	<body>
+		Welcome to DevOps Academy! :)
+	</body>
+</html>z@bacon:~/Documents/GitHub/academy/classes/05class/exercises/c04-s301/zarajoy$ 
+

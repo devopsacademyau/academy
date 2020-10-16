@@ -1,0 +1,6 @@
+z@bacon:~/Documents/GitHub/academy/classes/05class/exercises/c04-s301/zarajoy$ curl http://zarajoy.s3-website-ap-southeast-2.amazonaws.com/
+<html>
+	<body>
+		Welcome to DevOps Academy! :)
+	</body>
+</html>
