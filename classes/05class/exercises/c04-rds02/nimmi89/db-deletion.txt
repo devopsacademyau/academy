@@ -1,0 +1,99 @@
+aws rds delete-db-instance \
+    --db-instance-identifier test-c04-rds01  \
+    --skip-final-snapshot
+{
+    "DBInstance": {
+        "DBInstanceIdentifier": "test-c04-rds01",
+        "DBInstanceClass": "db.t2.micro",
+        "Engine": "mysql",
+        "DBInstanceStatus": "deleting",
+        "MasterUsername": "nimmi",
+        "DBName": "devopsacademy",
+        "Endpoint": {
+            "Address": "test-c04-rds01.cvhyxlvhwpvw.ap-southeast-2.rds.amazonaws.com",
+            "Port": 3306,
+            "HostedZoneId": "Z32T0VRHXEXS0V"
+        },
+        "AllocatedStorage": 20,
+        "InstanceCreateTime": "2020-08-08T03:59:25.937000+00:00",
+        "PreferredBackupWindow": "12:49-13:19",
+        "BackupRetentionPeriod": 10,
+        "DBSecurityGroups": [],
+        "VpcSecurityGroups": [
+            {
+                "VpcSecurityGroupId": "sg-040f4db337ffa4cbc",
+                "Status": "active"
+            }
+        ],
+        "DBParameterGroups": [
+            {
+                "DBParameterGroupName": "default.mysql8.0",
+                "ParameterApplyStatus": "in-sync"
+            }
+        ],
+        "AvailabilityZone": "ap-southeast-2b",
+        "DBSubnetGroup": {
+            "DBSubnetGroupName": "c04-rd01-pvtsubnetgroup",
+            "DBSubnetGroupDescription": "RDS Private subnets group",
+            "VpcId": "vpc-081afcee350babdf5",
+            "SubnetGroupStatus": "Complete",
+            "Subnets": [
+                {
+                    "SubnetIdentifier": "subnet-04abf35901ad7a22a",
+                    "SubnetAvailabilityZone": {
+                        "Name": "ap-southeast-2a"
+                    },
+                    "SubnetStatus": "Active"
+                },
+                {
+                    "SubnetIdentifier": "subnet-079b36ff8a83fc97c",
+                    "SubnetAvailabilityZone": {
+                        "Name": "ap-southeast-2b"
+                    },
+                    "SubnetStatus": "Active"
+                },
+                {
+                    "SubnetIdentifier": "subnet-04e8046e5a4532921",
+                    "SubnetAvailabilityZone": {
+                        "Name": "ap-southeast-2c"
+                    },
+                    "SubnetStatus": "Active"
+                }
+            ]
+        },
+        "PreferredMaintenanceWindow": "tue:15:40-tue:16:10",
+        "PendingModifiedValues": {},
+        "LatestRestorableTime": "2020-08-08T07:35:00+00:00",
+        "MultiAZ": false,
+        "EngineVersion": "8.0.17",
+        "AutoMinorVersionUpgrade": true,
+        "ReadReplicaDBInstanceIdentifiers": [],
+        "LicenseModel": "general-public-license",
+        "OptionGroupMemberships": [
+            {
+                "OptionGroupName": "default:mysql-8-0",
+                "Status": "in-sync"
+            }
+        ],
+        "PubliclyAccessible": false,
+        "StorageType": "gp2",
+        "DbInstancePort": 0,
+        "StorageEncrypted": false,
+        "DbiResourceId": "db-PNAS7Z6TTVLKXCBIESTFIOVNGA",
+        "CACertificateIdentifier": "",
+        "DomainMemberships": [],
+        "CopyTagsToSnapshot": false,
+        "MonitoringInterval": 0,
+        "DBInstanceArn": "arn:aws:rds:ap-southeast-2:438549961569:db:test-c04-rds01",
+        "IAMDatabaseAuthenticationEnabled": false,
+        "PerformanceInsightsEnabled": false,
+        "DeletionProtection": false,
+        "AssociatedRoles": []
+    }
+}
+
+aws ec2 revoke-security-group-ingress \
+    --group-id sg-040f4db337ffa4cbc \
+    --protocol tcp \
+    --port 3306 \
+    --cidr 172.16.13.198/32
