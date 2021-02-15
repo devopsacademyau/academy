@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+
+    aws:
+      image: amazon/aws-cli:2.1.26 
+      env_file: .env
+      volumes:
+        - .:/opt/app
+      working_dir: /opt/app
+
+    terraform:
+      image: hashicorp/terraform:0.14.6
+      env_file: .env
+      volumes:
+        - .:/opt/app
+      working_dir: /opt/app

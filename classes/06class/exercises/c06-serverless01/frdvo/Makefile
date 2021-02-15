@@ -1,7 +1,13 @@
-
-deploy: 
-	echo "Implement this!"
+DOCKER ?= docker-compose run --rm
 
 clean:
-	echo "Implement this!"
-	
+	@echo "🧹🧹🧹 Cleaning"
+	$(DOCKER) terraform destroy
+
+deploy: 
+	@echo "🔨🧟🛠️Deploying"
+	$(DOCKER) terraform apply
+
+init:
+	@echo "🏁🚥 Initializing...."
+	$(DOCKER) init
