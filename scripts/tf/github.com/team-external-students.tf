@@ -15,6 +15,7 @@ module "team-external-students" {
     "roperto",
     "ramiray",
     "tgray89",
-    "awaiszai2000"
+    "awaiszai2000",
+    "kat-new"
   ]
 }
