@@ -22,6 +22,16 @@ Straight forward read only policy for all
     ]
 }
 ```
+- aws iam create-access-key --user-name neljn-user_readonly_S3 > neljn-user_readonly_s3_keys
+- create a new section in "~/.aws/config
+```
+[s3ReadOnlyprofile]
+region=ap-southeast-2
+aws_access_key_id="value"
+aws_secret_access_key="value"
+```
+- aws s3 ls --profile s3ReadOnlyProfile
+
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
