@@ -45,12 +45,13 @@ aws ec2 associate-iam-instance-profile --instance-id <instanceID> --iam-instance
 
 - Commands to copy the S3 file to a folder inside the instance (executed from inside the EC2 Instance):
 ```
-Add your commands and their outputs here
+aws s3 cp s3://neljn-test-contino /
 ```
 
 - Add a brief description of the challenges you faced:
 ```
-Add comments here
+attatching a role to the instance had more steps than expected when compared to the Console. 
+Needed to create a profile first
 ```
  
 ***
