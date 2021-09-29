@@ -52,6 +52,8 @@ aws s3 cp s3://neljn-test-contino /
 ```
 attatching a role to the instance had more steps than expected when compared to the Console. 
 Needed to create a profile first
+
+also needed to install the cli on the instance as well
 ```
  
 ***
