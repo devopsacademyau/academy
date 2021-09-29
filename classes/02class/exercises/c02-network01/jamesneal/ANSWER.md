@@ -4,19 +4,19 @@
 
 - Answers for `10.0.0.1/24`:
 
-  - IP in binary: ``
-  - netmask in binary: `` 
-  - netmask in decimals: ``
-  - private/public: ``
-  - hosts: ``
+  - IP in binary: `00001010 00000000 00000000 00000001`
+  - netmask in binary: `255.255.255.0` 
+  - netmask in decimals: `11111111 11111111 1111111 00000000`
+  - private/public: `private`
+  - hosts: `256` .. including non usable etc
 
 - Answers for `192.168.0.1/16`:
 
-  - IP in binary: ``
-  - netmask in binary: `` 
-  - netmask in decimals: ``
-  - private/public: ``
-  - hosts: ``
+  - IP in binary: `11000000 10101000 00000000 00000001`
+  - netmask in binary: `255.255.0.0` 
+  - netmask in decimals: `11111111 11111111 00000000 00000000`
+  - private/public: `private`
+  - hosts: `65,536`
 
 - Answers for `249.165.166.135/30`:
 
