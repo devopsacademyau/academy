@@ -6,8 +6,10 @@
 ```
 Add your commands and their outputs here
 ```
-Create NAT gateway
+Create NAT gateway using the CLI
 aws ec2 create-nat-gateway --subnet-id subnet-07e70965ce6402328 --allocation-id eipalloc-02e0c6935978ddaca
+
+
 
 - Any extra challenges faced?
 
