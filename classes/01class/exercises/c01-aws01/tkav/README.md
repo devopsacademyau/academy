@@ -2,6 +2,8 @@
 
 ### Use the CLI to create a new EC2 Instance inside the default VPC with a public IP address and connect to it though SSH.
 
+***
+
 Creating a key pair
 
 ```bash
@@ -90,9 +92,11 @@ Change permissions on SSH key
 ```bash
 sudo chmod 600 ~/.ssh/tk-contino-dev.pem
 ```
-
+***
 
 ### Create another EC2, also using the CLI instance in the same VPC but with private address only and connect to it.
+
+***
 
 Create security group for tk-web-server with only port 80 ingress and all egress
 
