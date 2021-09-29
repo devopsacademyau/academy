@@ -20,11 +20,11 @@
 
 - Answers for `249.165.166.135/30`:
 
-  - IP in binary: ``
-  - netmask in binary: `` 
-  - netmask in decimals: ``
-  - private/public: ``
-  - hosts: ``
+  - IP in binary: `11111001 10100101 10100110 10000111`
+  - netmask in binary: `11111111 11111111 11111111 11111100` 
+  - netmask in decimals: `255.255.255.252`
+  - private/public: `public`
+  - hosts: `4`
 
 - Answers for `236.68.223.18/32`:
 
