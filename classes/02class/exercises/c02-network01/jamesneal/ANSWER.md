@@ -28,11 +28,11 @@
 
 - Answers for `236.68.223.18/32`:
 
-  - IP in binary: ``
-  - netmask in binary: `` 
-  - netmask in decimals: ``
-  - private/public: ``
-  - hosts: ``
+  - IP in binary: `11101100 01000100 11011111 00010010`
+  - netmask in binary: `11111111 11111111 111111111 11111111` 
+  - netmask in decimals: `255.255.255.255`
+  - private/public: `public`
+  - hosts: `1`
 
 - Answers for `172.31.0.0/16`:
 
