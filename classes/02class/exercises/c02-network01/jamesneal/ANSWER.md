@@ -36,11 +36,11 @@
 
 - Answers for `172.31.0.0/16`:
 
-  - IP in binary: ``
-  - netmask in binary: `` 
-  - netmask in decimals: ``
-  - private/public: ``
-  - hosts: ``
+  - IP in binary: `00010001 00100000 00000000 00000000`
+  - netmask in binary: `11111111 11111111 00000000 00000000` 
+  - netmask in decimals: `255.255.0.0`
+  - private/public: `private`
+  - hosts: `65, 536`
 
 <!-- Don't change anything below this point-->
 ***
