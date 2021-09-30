@@ -4,7 +4,7 @@
 
 1. Let's suppose you remotely pushed the `my_env.txt` file above. A colleague asks you to remove this information from Git. What's your colleague worried about?
 
-Sensitive data is in the repository and they should not be included in the repo ever.
+Sensitive data is in the repository and they should not be included in the repo ever. Another reason is that the env file may contain details and configurations that may affect other environments. For example, Development and Test environments would have different environmental variables. No personal, local or sensitive data should be pushed to remote source contol.
 
 2. If you modify the file in your workspace, then commit and push it, will it be enough to erase this password information from the repository? (It's not). Why?
 
