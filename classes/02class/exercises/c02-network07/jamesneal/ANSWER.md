@@ -19,7 +19,9 @@ aws ec2 create-tags --resources <rtb id> --tags Key=Name, Value="neljn-rtb-priva
 
 - Commands for associating the route tables with subnets:
 ```
-Add your commands and their outputs here
+aws ec2 associate-route-table --route-table-id <rtb id> --subnet-id <subnet id> --region ap-southeast-2
+
+6 for each pub and private in each AZ 
 ```
 
 - Commands for creating the following routes:
@@ -30,33 +32,36 @@ Add your commands and their outputs here
 |devopsacademy-rt-private|0.0.0.0|`devopsacademy-ngw`|
 
 ```
-Add your commands and their outputs here
+aws ec2 create-route --route-table-id <rtb id> --destination-cidr-block 0.0.0.0/0 --gateway-id <igw id> --region ap-southeast-2
+
+aws ec2 create-route --route-table-id <rtb id> --destination-cidr-block 0.0.0.0/0 --gateway-id <nat gw id> --region ap-southeast-2
 ```
 
 - Answer the following questions:
   - Why did you add 0.0.0.0 route to the IGW on public route table?
     ```
-    Add your answer here
+    0.0.0.0/0 represents all ipv4 traffic. Any traffice not specified in another route will be directed here for public internet access 
     ```
 
   - Why did you add 0.0.0.0 route to the NGW on private route table?
     ```
-    Add your answer here
+    0.0.0.0/0 represents all ipv4 traffic. Any traffic not specified in another route will be directed to the nat
     ```
     
   - What is the difference of IGW and NGW?
     ```
-    Add your answer here
+    Internet gateway allows services within the public subnet to get an ip out to the public internet and vice versa. Althoug services in a public subnet may have a public IP they will need to use an IG to get out.   
+    A NAT is used to allow services in a private subnet to tranmit into a public subnet and potentially out to the internet via the internet gateway
     ```
     
   - Can you delete the destination route to your VPC network? Why?
     ```
-    Add your answer here
+    this is there by default to allow communications within the VPC. Anyhting on top of it is to add restriction/control.  
     ```
     
   - What happens if you do not associate your route table with any subnets?
     ```
-    Add your answer here
+    The subnets will default to using the VPCs route table. 
     ```
 
 
