@@ -1,4 +1,4 @@
-on: 
+on:
   pull_request:
     paths:
     - 'scripts/tf/github.com/**/*'
