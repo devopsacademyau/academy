@@ -1,9 +1,9 @@
 resource "github_repository" "repo" {
   name         = var.group_name
 
-  allow_merge_commit     = false 
-  allow_rebase_merge     = false 
-  
+  allow_merge_commit     = false
+  allow_rebase_merge     = false
+
   private      = false
   has_projects = true
   has_issues   = true
@@ -22,6 +22,7 @@ resource "github_team_repository" "admins_access" {
 
 resource "github_repository_file" "README" {
   repository = github_repository.repo.name
+  branch     = "master"
   file       = "README.md"
   content    = var.group_name
   lifecycle {
@@ -34,13 +35,14 @@ resource "github_repository_file" "README" {
 
 resource "github_repository_file" "CODEOWNERS" {
   repository = github_repository.repo.name
+  branch     = "master"
   file       = "docs/CODEOWNERS"
   content    = "@devopsacademyau/admin @devopsacademyau/instructors @devopsacademyau/${var.group_name}"
 }
 
 resource "github_branch_protection" "master-protected" {
-  repository     = github_repository.repo.name
-  branch         = "master"
+  repository_id  = github_repository.repo.node_id
+  pattern        = "master"
   enforce_admins = true
   depends_on     = [
     github_repository_file.README,
@@ -50,11 +52,6 @@ resource "github_branch_protection" "master-protected" {
   required_pull_request_reviews {
     dismiss_stale_reviews      = true
     require_code_owner_reviews = true
-    dismissal_teams            = ["devopsacademyau/admin"]
-  }
-
-  restrictions {
-    teams = ["devopsacademyau/admin", "devopsacademyau/instructors"]
   }
 }
 

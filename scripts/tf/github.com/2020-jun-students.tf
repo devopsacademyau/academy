@@ -10,7 +10,6 @@ module "team-students-2020-jun" {
     "frdvo",
     "gepifanio",
     "gpavelar",
-    "igorjosesantos",
     "jayanath",
     "mail2kvanitha",
     "mfreitassm",
