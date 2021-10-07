@@ -79,7 +79,7 @@ Your team will need to present a 10-min demo of the solution + 10 min questions 
 - Containerization → Docker / Docker-compose
 - Relational Database → Azure Database for Postgresql
 - Assets repository → Azure Storage
-- Container orchestrator → WebApp or AKS
+- Container orchestrator → AppService or AKS
 - Azure VMs
 
 ## Suggested timeline:
