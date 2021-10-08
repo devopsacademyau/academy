@@ -20,9 +20,9 @@ aws ec2 create-subnet --vpc-id vpc-0437c9e5d4deb0d46 --cidr-block 10.128.22.0/24
 ```
 
 - Any extra challenges faced?
-
+```
 Ensure there are no clashes with CIDR ranges. By definition, AWS Regions contain a minimum or 2 AZs, therefore need to make sure the region has enough AZs to complete the exercise. At the time of checking there were no regions with less than 3 AZs.
-
+```
 <!-- Don't change anything below this point-->
 ***
 Answer for exercise [c02-network04](https://github.com/devopsacademyau/academy/blob/893381c6f0b69434d9e8597d3d4b1c17f9bc1371/classes/02class/exercises/c02-network04/README.md)
