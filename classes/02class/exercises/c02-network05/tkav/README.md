@@ -27,6 +27,7 @@ aws ec2 attach-internet-gateway --vpc-id vpc-0437c9e5d4deb0d46 --internet-gatewa
 
 - Any extra challenges faced?
 
+VPC and Internet gateway need to be in the same region. Make sure no other IGW is attached to this VPC.
 
 <!-- Don't change anything below this point-->
 ***
