@@ -41,6 +41,7 @@ Output
 
 - Any extra challenges faced?
 
+May need to ensure CIDR range is not conflicting with other VPCs
 
 <!-- Don't change anything below this point-->
 ***
