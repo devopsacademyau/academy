@@ -19,6 +19,8 @@ git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_f
 
 4. What are the consequences of the previous action?
 
+It removes the file from the git history
+
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
