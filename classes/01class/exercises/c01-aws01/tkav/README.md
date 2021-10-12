@@ -93,7 +93,6 @@ Add security group to instance
 aws ec2 modify-instance-attribute --instance-id i-0c3ecff8d3b6c0388 --groups sg-013f620525812aaeb
 ```
 
-
 ***
 
 ### Create another EC2, also using the CLI instance in the same VPC but with private address only and connect to it.
