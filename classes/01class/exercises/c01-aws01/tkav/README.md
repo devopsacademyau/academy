@@ -72,13 +72,13 @@ aws ec2 describe-security-groups --group-names tk-ssh-access
 Open port 22 (SSH) on the new security group
 
 ```bash
-aws ec2 authorize-security-group-ingress --group-id sg-013f620525812aaeb --protocol tcp --port 22 --cidr 116.206.228.203/32
+aws ec2 authorize-security-group-ingress --group-id sg-013f620525812aaeb --protocol tcp --port 22 --cidr $(myip)/32
 ```
 
 Allow all egress traffic
 
 ```bash
-aws ec2 authorize-security-group-egress --group-id sg-013f620525812aaeb --protocol all --port all --cidr 116.206.228.203/32
+aws ec2 authorize-security-group-egress --group-id sg-013f620525812aaeb --protocol all --port all --cidr $(myip)/32
 ```
 
 Add security group to instance
@@ -107,13 +107,13 @@ aws ec2 create-security-group --group-name tk-web-server --description "Web Serv
 Open port 80
 
 ```bash
-aws ec2 authorize-security-group-ingress --group-id sg-05f7a4854c7ce41cc --protocol tcp --port 80 --cidr 116.206.228.203/32
+aws ec2 authorize-security-group-ingress --group-id sg-05f7a4854c7ce41cc --protocol tcp --port 80 --cidr $(myip)/32
 ```
 
 Open all egress
 
 ```bash
-aws ec2 authorize-security-group-egress --group-id sg-05f7a4854c7ce41cc --protocol all --port all --cidr 116.206.228.203/32
+aws ec2 authorize-security-group-egress --group-id sg-05f7a4854c7ce41cc --protocol all --port all --cidr $(myip)/32
 ```
 
 Open port 22 (SSH) from security-group of bastion host
