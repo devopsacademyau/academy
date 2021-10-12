@@ -12,6 +12,12 @@ aws ec2 create-key-pair --key-name tk-contino-dev --query 'KeyMaterial' --output
 
 Outputs key to file. As shown in the path, key will be outputted to `~/.ssh/`
 
+Change permissions on SSH key
+
+```bash
+sudo chmod 600 ~/.ssh/tk-contino-dev.pem
+```
+
 Reference key and create new instance
 
 ```bash
@@ -87,11 +93,6 @@ Add security group to instance
 aws ec2 modify-instance-attribute --instance-id i-0c3ecff8d3b6c0388 --groups sg-013f620525812aaeb
 ```
 
-Change permissions on SSH key
-
-```bash
-sudo chmod 600 ~/.ssh/tk-contino-dev.pem
-```
 ***
 
 ### Create another EC2, also using the CLI instance in the same VPC but with private address only and connect to it.
