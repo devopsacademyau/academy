@@ -21,7 +21,7 @@ aws ec2 create-security-group \
 curl https://checkip.amazonaws.com
 
 # Add ACL to public security group
-aws ec2 authorize-security-group-ingress --group-id sg-040506fdcfbbaf676 --protocol tcp --port 22 --cidr "116.206.228.203/32"
+aws ec2 authorize-security-group-ingress --group-id sg-040506fdcfbbaf676 --protocol tcp --port 22 --cidr "$(myip)/32"
 
 #Create private security group
 aws ec2 create-security-group \
@@ -38,6 +38,7 @@ aws ec2 authorize-security-group-ingress --group-id sg-0ede42a137608a804 --proto
 
 - Any extra challenges faced?
 
+Ensure the two security groups are referencing the correct VPC
 
 <!-- Don't change anything below this point-->
 ***
