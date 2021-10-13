@@ -10,7 +10,7 @@
     
   - What is going to happen by default? Everything allowed or denied?
     ```
-    All inbound and outbound traffic is allowed by default. 
+    All inbound is denied by default and outbound traffic is allowed by default. 
     ```
     
 
@@ -21,7 +21,7 @@ Add an inbound rule to Deny traffic from source 172.16.200.0/24
 aws ec2 create-network-acl-entry \
     --network-acl-id acl-022c42e444c296f94 \
     --ingress \
-    --rule-number 5 \
+    --rule-number 100 \
     --protocol tcp \
     --port-range From=22,To=22 \
     --cidr-block 172.16.200.0/24 \
@@ -34,13 +34,15 @@ aws ec2 create-network-acl-entry \
 aws ec2 create-network-acl-entry \
     --network-acl-id acl-022c42e444c296f94 \
     --egress \
-    --rule-number 10 \
+    --rule-number 200 \
     --protocol "-1" \
     --cidr-block 180.200.50.0/24 \
     --rule-action deny
 ```
 
 - Any extra challenges faced?
+
+Potential for conflicting NACL rules. As soon as a rule matches traffic, it's applied regardless of any higher-numbered rule that might contradict it.
 
 <!-- Don't change anything below this point-->
 ***
