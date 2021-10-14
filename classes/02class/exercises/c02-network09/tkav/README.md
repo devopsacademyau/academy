@@ -17,11 +17,11 @@ aws ec2 create-security-group \
     --vpc-id vpc-0437c9e5d4deb0d46 \
     --tag-specifications "ResourceType=security-group,Tags=[{Key=Name,Value=tk-sg-public}]"
 
-# Get external IP
-curl https://checkip.amazonaws.com
+# Get external IP and add to environment variable
+EXPORT myip=$(curl https://checkip.amazonaws.com)
 
 # Add ACL to public security group
-aws ec2 authorize-security-group-ingress --group-id sg-040506fdcfbbaf676 --protocol tcp --port 22 --cidr "$(myip)/32"
+aws ec2 authorize-security-group-ingress --group-id sg-040506fdcfbbaf676 --protocol tcp --port 22 --cidr "$myip/32"
 
 #Create private security group
 aws ec2 create-security-group \
