@@ -1,0 +1,9 @@
+version: '3'
+services:
+  aws:
+    build: .
+    volumes:
+      - .:/scripts
+    working_dir: /scripts
+    env_file: .env
+
