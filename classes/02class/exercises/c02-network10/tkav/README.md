@@ -14,6 +14,7 @@ aws ec2 create-network-interface \
 
 - Any extra challenges faced?
 
+Ensuring the subnet and security group ids are correct
 
 <!-- Don't change anything below this point-->
 ***
