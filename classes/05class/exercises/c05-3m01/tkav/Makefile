@@ -1,4 +1,4 @@
-export BUCKET_NAME ?= test
+export BUCKET_NAME = INSERT_BUCKET_NAME
 
 COMPOSE_RUN_AWS = docker-compose run --rm aws
 
