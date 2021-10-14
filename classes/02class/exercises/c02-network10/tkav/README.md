@@ -13,9 +13,9 @@ aws ec2 create-network-interface \
 ```
 
 - Any extra challenges faced?
-
-Ensuring the subnet and security group ids are correct
-
+```
+Ensuring the subnet and security group ids are correct. Ensure the private IP specified is not taken.
+```
 <!-- Don't change anything below this point-->
 ***
 Answer for exercise [c02-network10](https://github.com/devopsacademyau/academy/blob/893381c6f0b69434d9e8597d3d4b1c17f9bc1371/classes/02class/exercises/c02-network10/README.md)
