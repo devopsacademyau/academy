@@ -6,7 +6,7 @@ resource "github_repository" "playground-repository" {
   has_issues   = false
 
   template {
-    owner      = "devopsacademyau"
+    owner      = "kikobr82"
     repository = "projects-template"
   }
 }
