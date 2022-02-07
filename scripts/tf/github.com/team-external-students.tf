@@ -4,11 +4,13 @@ module "team-external-students" {
   group_role          = "member"
   members             = [
     "afaryy",
+    "ajbrowne1982",
     "albertoeks",
     "anwickes",
     "carloshz4",
     "ebeserra",
     "jamesnealcontino",
+    "jaysues",
     "maladham1980",
     "mendoncaj",
     "raghunadhpokkalath",
@@ -17,7 +19,6 @@ module "team-external-students" {
     "ramiray",
     "tgray89",
     "tkav",
-    "ajbrowne1982"
-    "jaysues"
+    
   ]
 }
