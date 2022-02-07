@@ -3,6 +3,6 @@ WORKDIR tmp
 RUN echo "image change" > /tmp/devops.academy
 RUN apt-get update
 RUN apt-get -y install curl
-ADD http://apache.mirror.serversaustralia.com.au//httpd/httpd-2.4.48.tar.gz /tmp/
-RUN tar xzvf /tmp/httpd-2.4.48.tar.gz
-RUN rm -rf /tmp/httpd-2.4.48.tar.gz
+ADD http://apache.mirror.serversaustralia.com.au//httpd/httpd-2.4.51.tar.gz /tmp/
+RUN tar xzvf /tmp/httpd-2.4.51.tar.gz
+RUN rm -rf /tmp/httpd-2.4.51.tar.gz
