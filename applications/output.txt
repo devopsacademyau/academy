@@ -1,0 +1,14 @@
+## uname
+Darwin Justins-MBP 21.3.0 Darwin Kernel Version 21.3.0: Wed Jan  5 21:37:58 PST 2022; root:xnu-8019.80.24~20/RELEASE_ARM64_T6000 arm64
+## git 
+git version 2.32.0 (Apple Git-132)
+## docker 
+Docker version 20.10.12, build e91ed57
+## terraform 
+Terraform v1.1.4
+on darwin_arm64
+
+Your version of Terraform is out of date! The latest version
+is 1.1.5. You can update by downloading from https://www.terraform.io/downloads.html
+## aws 
+aws-cli/2.4.15 Python/3.8.8 Darwin/21.3.0 exe/x86_64 prompt/off
