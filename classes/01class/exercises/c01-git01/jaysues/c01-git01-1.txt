@@ -1,0 +1,20 @@
+c01-git01
+Commands executed
+Commands typed to solve the "Merging" exercise
+$ git checkout -b bugfix
+$ git commit -m "Commit on bugfix branch"
+$ git checkout main
+$ git commit -m "Commit on main branch"
+$ git merge bugfix
+
+Commands typed to solve the "Rebasing" exercise
+$ git checkout -b bugfix
+$ git commit -m "Commit on bugfix branch"
+$ git checkout main
+$ git commit -m "Commit on main branch"
+$ git checkout bugfix
+$ git rebase main
+Commands typed to solve the "Revert and reset" exercise
+$ git reset HEAD~1
+$ git checkout pushed
+$ git revert HEAD
