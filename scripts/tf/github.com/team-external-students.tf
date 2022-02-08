@@ -7,7 +7,6 @@ module "team-external-students" {
     "albertoeks",
     "anwickes",
     "carloshz4",
-    "chisholm-ray",
     "ebeserra",
     "jamesnealcontino",
     "maladham1980",
