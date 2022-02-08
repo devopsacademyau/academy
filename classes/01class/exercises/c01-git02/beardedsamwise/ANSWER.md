@@ -16,7 +16,7 @@ After squashing the commits using `git rebase` you've rewritten history, but the
 
 To compare local branches use `git diff branch1 branch2` where branch1 and branch2 are the two branches you want to compare.
 
-If the branch is remote add `origin\` before the name of the branch to compare with the remote repository, for example: `git diff origin\branch1 origin\branch2`
+If the branch is remote add `origin/` before the name of the branch to compare with the remote repository, for example: `git diff origin/branch1 origin/branch2`
 
 ***
 Answer for exercise [c01-git02](https://github.com/devopsacademyau/academy/blob/5e1ec235517f206c8d4a11a37388fcfd0220d194/classes/01class/exercises/c01-git02/README.md)
