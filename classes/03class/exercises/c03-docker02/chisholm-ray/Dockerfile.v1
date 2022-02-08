@@ -1,4 +1,0 @@
-FROM httpd:2.4.52-alpine
-ADD ./index.html /usr/local/apache2/htdocs/
-EXPOSE 80
-#note that I had to copy the index.html folder to the working directory I was in as it would not traverse folders to copy it.
