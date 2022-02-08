@@ -1,0 +1,9 @@
+# syntax=docker/dockerfile:1
+FROM alpine:latest AS builder
+RUN cd /usr/local/bin && \
+    wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip && \
+    unzip terraform_0.12.20_linux_amd64.zip && \
+    rm terraform_0.12.20_linux_amd64.zip
+
+FROM builder as runtime
+ENTRYPOINT terraform version
