@@ -1,0 +1,17 @@
+ ~/De/academy/c/03/e/c03-docker06/beardedsamwise | master ?1  docker build -t hello-name:v1 .                                              1 err | 09:59:40 am
+[+] Building 4.8s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                       0.0s
+ => => transferring dockerfile: 107B                                                                                                                       0.0s
+ => [internal] load .dockerignore                                                                                                                          0.0s
+ => => transferring context: 2B                                                                                                                            0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                                                                                           4.7s
+ => [auth] library/alpine:pull token for registry-1.docker.io                                                                                              0.0s
+ => CACHED [1/1] FROM docker.io/library/alpine:latest@sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300                              0.0s
+ => exporting to image                                                                                                                                     0.0s
+ => => exporting layers                                                                                                                                    0.0s
+ => => writing image sha256:7d9611828722f59288a3316478dccbfed4887b5efa22eac176eeafcfe9b1b8a2                                                               0.0s
+ => => naming to docker.io/library/hello-name:v1                                                                                                           0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+ ~/De/academy/c/03/e/c03-docker06/beardedsamwise | master ?1  docker run -it -e "name_var=sam" hello-name:v1                             ok | 5s | 09:59:54 am
+Hello sam
