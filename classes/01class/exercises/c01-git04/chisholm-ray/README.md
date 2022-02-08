@@ -19,16 +19,15 @@ You need to completely remove the file from all history in your local repository
 
 5. Which commands would you use? Explain what the command does.
 
-Clone a copy of the repository so it is up to date and has no local history
-```git clone```
-install then use git filter-repo, specify the full path to the file. This command processes the entire history of every branch and tag and removes the specified file.
-```git filter-repo --path path/to/my/file.txt```
-add file to .gitignore so it doesn't get pushed again
+Clone a copy of the repository so it is up to date and has no local history\
+```git clone```\
+install then use git filter-repo, specify the full path to the file. This command processes the entire history of every branch and tag and removes the specified file.\
+```git filter-repo --path path/to/my/file.txt```\
+add file to .gitignore so it doesn't get pushed again\
 
-then push all changes to the remote repo
-```git push origin --force --all```
+then push all changes to the remote repo\
+```git push origin --force --all```\
 
-<!-- Don't change anything below this point-->
-<!-- Before commiting, remove both commented lines--> 
+
 ***
 Answer for exercise [c01-git04](https://github.com/devopsacademyau/academy/blob/23cc1dfa31e85651e3cdc1b0ef38da21518841ba/classes/01class/exercises/c01-git04/README.md)
