@@ -25,11 +25,9 @@ Need to remove this file from previous commit history and then new changes can p
 
 5. Which commands would you use? Explain what the command does.
 
-- This command go through every branch and removed the specified file
-Git filter-repo --invert-paths —path my_env.txt
+- This command go through every branch and removed the specified file -> Git filter-repo --invert-paths —path my_env.txt
 - Add it .gitignore to exclude from future commits
-- Push all changes to remote repo
-Git push origin —force -all
+- Push all changes to remote repo -> Git push origin —force -all
    
 Ref - https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository
 
