@@ -8,13 +8,18 @@
 - Execution and output of the command `docker-compose ps`
 
 ```
-Insert command and output here
-```
+➜  jaysues git:(jaysues/c03-compose01) docker-compose ps
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+db                  "docker-entrypoint.s…"   db                  running             33060/tcp
+web                 "docker-php-entrypoi…"   web                 running             0.0.0.0:8100->80/tcp```
 
 - Execution and output of the command `curl http://localhost:8100`
 
 ```
-Insert command and output here
+jaysues git:(jaysues/c03-compose01) curl http://localhost:8100
+
+
+Connected Successfully%   
 ```
 
 <!-- Don't change anything below this point-->
