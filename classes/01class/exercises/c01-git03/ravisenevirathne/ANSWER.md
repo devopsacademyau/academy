@@ -23,7 +23,7 @@ $Git revert <commit#>
 
 4. What are the consequences of the previous action?
 
-Once you changed git history in local it will not be updated on remote until you push it to origin branch.  So other users might have already pulled and working on the old repo.  To solve this issue,  other users can pull the latest version before pushing new changes to the branch.  Alternatively they can use “git pull -rebase” command in this case
+Once you changed git history in local it will not be updated on remote until you push it to origin branch.  So other users might have already pulled and working on the old repo.  To solve this issue,  other users can pull the latest version before pushing new changes to the branch.  Alternatively they can use “git pull -rebase” command in this case.
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
