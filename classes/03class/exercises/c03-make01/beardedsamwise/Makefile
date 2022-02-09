@@ -14,7 +14,7 @@ push:
 	@docker tag make01:$(SHA) beardedsamwise/c03-make01:$(SHA)
 	@docker push beardedsamwise/c03-make01:$(SHA)
 
-.PHONE: run
+.PHONY: run
 run:
 	@echo "RUNNING DOCKER IMAGE WITH TAG c03-make01:$(SHA) ON PORT $(PORT)"
 	@docker run -it -p $(PORT):80 make01:$(SHA)
