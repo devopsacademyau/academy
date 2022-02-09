@@ -15,8 +15,10 @@ Git keeps track of commits history. After each commit it create another copy of 
 3. How do you remove something from Git history after it is pushed to the remote repository? Which commands would you use? 
 
 One of the command can be use to remove git history is “git revert” which create another commit to undone the previous commit
-Git log 
-Git revert <commit hash>
+
+$Git log 
+
+$Git revert <commit#>
 
 
 4. What are the consequences of the previous action?
