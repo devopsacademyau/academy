@@ -5,6 +5,12 @@
 - [Dockerfile.v2](https://github.com/devopsacademyau/academy/blob/beardedsamwise/c03-docker02/classes/03class/exercises/c03-docker02/beardedsamwise/dockerfile.v2)
 
 ## Command Execution Output
+- Commands to run docker containers
+```
+docker run -it -p 8081:80 exercise02:v1
+docker run -it --mount type=bind,src=/Users/sam.bentley@contino.io/Desktop/academy/classes/03class/exercises/c03-docker02/beardedsamwise/web,dst=/usr/local/apache2/htdocs -p 8082:80 exercise02:v2
+```
+
 - Curl command and its output of before changing the image:
 ```
 $ curl http://localhost:8081
