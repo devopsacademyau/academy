@@ -419,7 +419,7 @@ Now that we have some understanding about terraform and its power let's give it 
 
 First of all, make sure you have your AWS credentials configured on your machine. You can use the guide from [here](https://link-to-the-cli-config)
 
-All the code we'll use is on the [artifacts folder](artifacts/terraform/example) of this repository, so just get into that directory. That way terraform will consider it as the working directory.
+All the code we'll use is on the [artifacts folder](https://github.com/devopsacademyau/academy/tree/beardedsamwise-class04fix-1/classes/04class/iac/artifacts/example) of this repository, so just get into that directory. That way terraform will consider it as the working directory.
 
 ```bash
 # Considering that you are on the folder of this file
