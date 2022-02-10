@@ -21,7 +21,7 @@
 <h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
 
 % curl http://localhost:8082
-<h1>DevOps Academy - Docker - Exercise c03-docker02 *****UPDATED****</h1>
+<h1>DevOps Academy - Docker - Exercise c03-docker02 ******UPDATED*****</h1>
 
 ```
 
