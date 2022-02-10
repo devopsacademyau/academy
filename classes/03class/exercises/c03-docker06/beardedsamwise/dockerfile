@@ -1,0 +1,3 @@
+FROM alpine:latest
+ARG name_var
+ENTRYPOINT echo Hello ${name_var}
