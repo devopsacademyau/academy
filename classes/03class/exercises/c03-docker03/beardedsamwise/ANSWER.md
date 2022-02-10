@@ -1,6 +1,11 @@
 # C03-Docker03
 
 ## Commands
+- Commands executed to login to Docker Hub
+```
+$ docker login
+```
+
 - Commands executed to push both images to DockerHub as well as the output from those commands:
 ```
 $  docker tag 0c52ba6ac9bd beardedsamwise/c03-docker03:v1
