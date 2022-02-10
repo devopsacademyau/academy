@@ -1,0 +1,6 @@
+# Define the base image used to build our new image.
+FROM httpd:2.4.41-alpine
+# Delete the contents of the dst directory to ensure its empty. 
+RUN rm -rf /usr/local/apache2/htdocs/*
+# Export port 80 using the TCP protocol. 
+EXPOSE 80/tcp
