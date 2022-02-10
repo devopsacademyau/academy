@@ -58,5 +58,22 @@ $ curl localhost:8081
 This image was created by Sam Bentley, based on the short commit b02b1d8
 ```
 
+- Execution and output of the command `make run` with the PORT appended rather than prepended
+```
+$ make run PORT=8081
+RUNNING DOCKER IMAGE WITH TAG c03-make01:0e825ea ON PORT 8081
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Thu Feb 10 05:17:21.231840 2022] [mpm_event:notice] [pid 1:tid 281473089580600] AH00489: Apache/2.4.41 (Unix) configured -- resuming normal operations
+[Thu Feb 10 05:17:21.231928 2022] [core:notice] [pid 1:tid 281473089580600] AH00094: Command line: 'httpd -D FOREGROUND'
+172.17.0.1 - - [10/Feb/2022:05:17:28 +0000] "GET / HTTP/1.1" 200 73
+```
+
+- Confirm web service returns correct content
+```
+$ curl localhost:8081
+This image was created by Sam Bentley, based on the short commit 0e825ea
+```
+
 ***
 Answer for exercise [c03-make01](https://github.com/devopsacademyau/academy/blob/8b64a93a228398e7342afe7b845cd197b22afaf3/classes/03class/exercises/c03-make01/README.md)
