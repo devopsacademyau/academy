@@ -26,7 +26,7 @@ ravi.senevirathne@contino.io@Ravis-MacBook-Pro ravisenevirathne % curl http://lo
 Connected Successfully<br />
 <b>Warning</b>:  mysqli::close(): Couldn't fetch mysqli in <b>/var/www/html/db_connector.php</b> on line <b>16</b><br />
 ```
-# REF - https://www.section.io/engineering-education/dockerized-php-apache-and-mysql-container-development-environment/
+## REF - https://www.section.io/engineering-education/dockerized-php-apache-and-mysql-container-development-environment/
 
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
