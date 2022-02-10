@@ -1,8 +1,8 @@
 # C03-Docker02
 
 ## Docker 
-- [Dockerfile.v1](Dockerfile.v1)
-- [Dockerfile.v2](Dockerfile.v2)
+- [Dockerfile.v1](https://github.com/devopsacademyau/academy/blob/marshalldaniel/c03-docker02/classes/03class/exercises/c03-docker03/marshalldaniel/Dockerfile.v1)
+- [Dockerfile.v2](https://github.com/devopsacademyau/academy/blob/marshalldaniel/c03-docker02/classes/03class/exercises/c03-docker03/marshalldaniel/Dockerfile.v2)
 
 ## Command Execution Output
 - Curl command and its output of before changing the image:
