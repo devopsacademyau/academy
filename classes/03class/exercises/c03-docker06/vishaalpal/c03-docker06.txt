@@ -1,0 +1,5 @@
+# Command used to build the docker image
+docker build -t hello-name:v1 .
+
+# Command used to run the docker container and parse values for the "fname" and "lname" ENV variables. 
+docker run -i -t -e fname='vishaal' -e lname='pal' --name hellocontainer hello-name:v1
