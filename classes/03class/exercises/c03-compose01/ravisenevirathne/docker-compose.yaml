@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  database_service:
+    container_name: db
+    platform: linux/x86_64
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: contino
+      MYSQL_DATABASE: contino
+      MYSQL_USER: contino
+      MYSQL_PASSWORD: contino
+    ports:
+      - 3306:3306
+
+
+  web_service:
+    container_name: Web
+    build: ../../../compose/artifacts/c05-compose01/
+    ports:
+      - 8100:80
+    environment:
+      DB_USER: contino
+      DB_PASS: contino
+      DB_HOST: contino
+      DB_NAME: contino
+    volumes:
+      - ../../../compose/artifacts/c05-compose01/src/:/var/www/html/
+      
+# REF - https://www.section.io/engineering-education/dockerized-php-apache-and-mysql-container-development-environment/
+
