@@ -1,20 +1,9 @@
-# Get the latest Amazon linux 2 AMI ID
-data "aws_ami" "amzn2latest" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-ebs"]
-  }
-  owners = ["amazon"]
-}
-
 # Create launch configuration
 resource "aws_launch_configuration" "web" {
   depends_on = [ aws_security_group.sg_web ]
   name_prefix = "web-"
 
-  image_id = data.aws_ami.amzn2latest.id 
+  image_id = "ami-0b7dcd6e6fd797935"
   instance_type = "t2.micro"
   key_name = "ContinoDojo"
 
@@ -37,6 +26,7 @@ resource "aws_autoscaling_group" "web" {
   max_size             = 2
   
   health_check_type    = "ELB"
+  health_check_grace_period = 1500
 
   launch_configuration = aws_launch_configuration.web.name
   target_group_arns = ["${aws_lb_target_group.tg.arn}"]

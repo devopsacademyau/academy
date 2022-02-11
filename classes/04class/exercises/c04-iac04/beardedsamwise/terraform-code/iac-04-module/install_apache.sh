@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo yum update -y
-sudo yum install -y httpd
-sudo systemctl start httpd.service
-sudo systemctl enable httpd.service
+sudo apt update -y
+sudo apt install -y apache2
+sudo systemctl start apache2
+sudo systemctl enable apache2
