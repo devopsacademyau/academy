@@ -9,7 +9,9 @@ data "aws_ami" "amzn2latest" {
   owners = ["amazon"]
 }
 
+# Create launch configuration
 resource "aws_launch_configuration" "web" {
+  depends_on = [ aws_security_group.sg_web ]
   name_prefix = "web-"
 
   image_id = data.aws_ami.amzn2latest.id 
@@ -18,38 +20,35 @@ resource "aws_launch_configuration" "web" {
 
   security_groups = [ aws_security_group.sg_web.id ]
 
-  user_data = <<EOF
-#!/bin/bash
-echo "Installing httpd"
-sudo yum update -y
-sudo yum install -y httpd
-sudo systemctl start httpd.service
-sudo systemctl enable httpd.service
-EOF
+  user_data = file("./iac-04-module/install_apache.sh")
 
   lifecycle {
     create_before_destroy = true
   }
 }
 
+# Create auto scaling group
 resource "aws_autoscaling_group" "web" {
   name = "c04-iac04-asg"
+  depends_on = [aws_launch_configuration.web, aws_lb_target_group.tg]
+
   min_size             = 1
   desired_capacity     = 1
   max_size             = 2
   
-
   health_check_type    = "ELB"
 
   launch_configuration = aws_launch_configuration.web.name
-  enabled_metrics = [
-    "GroupMinSize",
-    "GroupMaxSize",
-    "GroupDesiredCapacity",
-    "GroupInServiceInstances",
-    "GroupTotalInstances"
-  ]
-  metrics_granularity = "1Minute"
+  target_group_arns = ["${aws_lb_target_group.tg.arn}"]
+
+  # enabled_metrics = [
+  #   "GroupMinSize",
+  #   "GroupMaxSize",
+  #   "GroupDesiredCapacity",
+  #   "GroupInServiceInstances",
+  #   "GroupTotalInstances"
+  # ]
+  # metrics_granularity = "1Minute"
   vpc_zone_identifier  = [
     aws_subnet.subnet1.id,
     aws_subnet.subnet2.id
@@ -60,12 +59,7 @@ resource "aws_autoscaling_group" "web" {
   }
 }
 
-# resource "aws_lb_target_group" "web" {
-#   name     = "c04-iac04-asg-tg"
-#   port     = 80
-#   protocol = "HTTP"
-#   vpc_id   = aws_vpc.main.id
-# }
+
 
 
 
