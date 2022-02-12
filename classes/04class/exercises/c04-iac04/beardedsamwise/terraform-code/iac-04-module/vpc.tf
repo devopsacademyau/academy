@@ -36,31 +36,13 @@ resource "aws_internet_gateway" "gw1" {
   }
 }
 
-# Create NAT gateway
-resource "aws_eip" "eip" {
-  vpc = true
-}
-
-resource "aws_nat_gateway" "gw" {
-  allocation_id = aws_eip.eip.id
-  subnet_id     = aws_subnet.subnet1.id
-
-  tags = {
-    Name = "c04-iac02"
-  }
-
-  # To ensure proper ordering, it is recommended to add an explicit dependency
-  # on the Internet Gateway for the VPC.
-  depends_on = [aws_internet_gateway.gw1]
-}
-
 # Create route table for the subnets
 resource "aws_route_table" "rt1" {
   vpc_id = aws_vpc.main.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.gw.id
+    gateway_id = aws_internet_gateway.gw1.id
   }
 
   tags = {

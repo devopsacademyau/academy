@@ -31,3 +31,7 @@ resource "aws_lb_listener" "front_end" {
   }
 }
 
+# Output ALB FQDN
+output "alb_fqdn" {
+  value = aws_lb.alb1.dns_name
+}

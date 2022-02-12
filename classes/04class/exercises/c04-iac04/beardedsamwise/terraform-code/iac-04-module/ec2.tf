@@ -3,9 +3,11 @@ resource "aws_launch_configuration" "web" {
   depends_on = [ aws_security_group.sg_web ]
   name_prefix = "web-"
 
-  image_id = "ami-0b7dcd6e6fd797935"
+  image_id = var.ec2_ami
   instance_type = "t2.micro"
   key_name = "ContinoDojo"
+
+  associate_public_ip_address = true
 
   security_groups = [ aws_security_group.sg_web.id ]
 
@@ -27,6 +29,8 @@ resource "aws_autoscaling_group" "web" {
   
   health_check_type    = "ELB"
   health_check_grace_period = 1500
+
+
 
   launch_configuration = aws_launch_configuration.web.name
   target_group_arns = ["${aws_lb_target_group.tg.arn}"]
