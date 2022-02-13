@@ -8,6 +8,14 @@ variable "subnet2_cidr" {
   type        = string
 }
 variable "ec2_ami" {
-  description = "AMI ID for EC2 Instance"
+  description = "Ubuntu AMI ID for EC2 Instance (or similar)"
+  type        = string
+}
+variable "high_cpu_threshold" {
+  description = "Auto scaling high CPU threshold"
+  type        = string
+}
+variable "low_cpu_threshold" {
+  description = "Auto scaling low CPU threshold"
   type        = string
 }
