@@ -1,0 +1,29 @@
+# Define the docker compose version. 
+version: "3.8"
+# Creating the database Service. 
+services:
+  db:
+    image: mysql:5.7
+    container_name: db
+    platform: linux/x86_64
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user_1
+      MYSQL_PASSWORD: abcd
+      MYSQL_DATABASE: phpdb
+# Creating the web service. 
+  web:
+    container_name: web
+    build: .
+    volumes:
+      - ./src:/var/www/html/
+    ports:
+      - "8100:80"
+    environment:
+      DB_USER: user_1 
+      DB_PASS: abcd 
+      DB_HOST: db
+      DB_NAME: phpdb
+    depends_on:
+      - db 
