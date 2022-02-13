@@ -1,4 +1,4 @@
-# Create security group to allow SSH inbound
+# Create security group to allow HTTP inbound to ALB
 resource "aws_security_group" "sg_lb" {
   name = "c04-iac04-lb"
   vpc_id = aws_vpc.main.id
@@ -21,7 +21,7 @@ resource "aws_security_group" "sg_lb" {
   }
 }
 
-# Create security group for web servers
+# Create security group for web servers to allow all traffic within VPC
 resource "aws_security_group" "sg_web" {
   name = "c04-iac04-web"
   vpc_id = aws_vpc.main.id
