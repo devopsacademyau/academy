@@ -19,7 +19,7 @@ listing buckets...
 
 ## make delete_bucket
 
-> The following output shows that we're calling the makefile within the Docker container to delete an S3 bucket using the BUCKET_NAME environment variable defined in .env
+The following output shows that we're calling the makefile within the Docker container to delete an S3 bucket using the BUCKET_NAME environment variable defined in .env
 
 ```
 $ make delete_bucket
