@@ -1,0 +1,314 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_instance_profile.marshalldaniel-profile will be created
+  + resource "aws_iam_instance_profile" "marshalldaniel-profile" {
+      + arn         = (known after apply)
+      + create_date = (known after apply)
+      + id          = (known after apply)
+      + name        = "marshalldaniel-profile"
+      + path        = "/"
+      + role        = "marshalldaniel-role"
+      + tags_all    = (known after apply)
+      + unique_id   = (known after apply)
+    }
+
+  # aws_iam_policy.marshalldaniel-instance-role-s3 will be created
+  + resource "aws_iam_policy" "marshalldaniel-instance-role-s3" {
+      + arn         = (known after apply)
+      + description = (known after apply)
+      + id          = (known after apply)
+      + name        = "marshalldaniel-instance-role-s3"
+      + path        = "/"
+      + policy      = (known after apply)
+      + policy_id   = (known after apply)
+      + tags_all    = (known after apply)
+    }
+
+  # aws_iam_policy_attachment.policy-attach will be created
+  + resource "aws_iam_policy_attachment" "policy-attach" {
+      + id         = (known after apply)
+      + name       = "policy-attach"
+      + policy_arn = (known after apply)
+      + roles      = [
+          + "marshalldaniel-role",
+        ]
+    }
+
+  # aws_iam_role.marshalldaniel-role will be created
+  + resource "aws_iam_role" "marshalldaniel-role" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                      + Sid       = ""
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "marshalldaniel-role"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags_all              = (known after apply)
+      + unique_id             = (known after apply)
+
+      + inline_policy {
+          + name   = (known after apply)
+          + policy = (known after apply)
+        }
+    }
+
+  # aws_instance.iac01-marshalldaniel will be created
+  + resource "aws_instance" "iac01-marshalldaniel" {
+      + ami                                  = "ami-04fc979a55e14b094"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = true
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t3.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "marshalldaniel-test01"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-01b270057f65a803b"
+      + tags                                 = {
+          + "Name" = "DevOpsAcademy-Instance-marshalldaniel"
+        }
+      + tags_all                             = {
+          + "Name" = "DevOpsAcademy-Instance-marshalldaniel"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_s3_bucket.marshalldaniel-s3-iac01 will be created
+  + resource "aws_s3_bucket" "marshalldaniel-s3-iac01" {
+      + acceleration_status                  = (known after apply)
+      + acl                                  = (known after apply)
+      + arn                                  = (known after apply)
+      + bucket                               = (known after apply)
+      + bucket_domain_name                   = (known after apply)
+      + bucket_regional_domain_name          = (known after apply)
+      + cors_rule                            = (known after apply)
+      + force_destroy                        = false
+      + grant                                = (known after apply)
+      + hosted_zone_id                       = (known after apply)
+      + id                                   = (known after apply)
+      + lifecycle_rule                       = (known after apply)
+      + logging                              = (known after apply)
+      + policy                               = (known after apply)
+      + region                               = (known after apply)
+      + replication_configuration            = (known after apply)
+      + request_payer                        = (known after apply)
+      + server_side_encryption_configuration = (known after apply)
+      + tags                                 = {
+          + "Name" = "marshalldaniel-s3-iac01"
+        }
+      + tags_all                             = {
+          + "Name" = "marshalldaniel-s3-iac01"
+        }
+      + versioning                           = (known after apply)
+      + website                              = (known after apply)
+      + website_domain                       = (known after apply)
+      + website_endpoint                     = (known after apply)
+
+      + object_lock_configuration {
+          + object_lock_enabled = (known after apply)
+          + rule                = (known after apply)
+        }
+    }
+
+  # aws_s3_bucket_acl.marshalldaniel-s3-iac01-acl will be created
+  + resource "aws_s3_bucket_acl" "marshalldaniel-s3-iac01-acl" {
+      + acl    = "private"
+      + bucket = (known after apply)
+      + id     = (known after apply)
+
+      + access_control_policy {
+          + grant {
+              + permission = (known after apply)
+
+              + grantee {
+                  + display_name  = (known after apply)
+                  + email_address = (known after apply)
+                  + id            = (known after apply)
+                  + type          = (known after apply)
+                  + uri           = (known after apply)
+                }
+            }
+
+          + owner {
+              + display_name = (known after apply)
+              + id           = (known after apply)
+            }
+        }
+    }
+
+  # aws_security_group.marshalldaniel-sg-iac01 will be created
+  + resource "aws_security_group" "marshalldaniel-sg-iac01" {
+      + arn                    = (known after apply)
+      + description            = "Allow SSH inbound traffic"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "10.0.0.0/16",
+                ]
+              + description      = "SSH from VPC"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "marshalldaniel-sg-iac01"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "allow_ssh"
+        }
+      + tags_all               = {
+          + "Name" = "allow_ssh"
+        }
+      + vpc_id                 = "vpc-0d91d246cabb35035"
+    }
+
+  # random_string.random will be created
+  + resource "random_string" "random" {
+      + id          = (known after apply)
+      + length      = 8
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + result      = (known after apply)
+      + special     = false
+      + upper       = false
+    }
+
+Plan: 9 to add, 0 to change, 0 to destroy.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
