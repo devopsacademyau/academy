@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rtpass1234
+      MYSQL_DATABASE: composedb1
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: usr1pass1234
+  web:
+    build: .
+    ports: 
+      - "8100:80"
+    environment:
+      DB_USER: user1
+      DB_PASS: usr1pass1234
+      DB_HOST: db
+      DB: composedb1
+    volumes:
+      - ./src:/var/www/html/
