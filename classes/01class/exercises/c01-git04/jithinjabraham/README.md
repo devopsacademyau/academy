@@ -13,7 +13,12 @@ Same answer as the previous question -  there will be versions of the file store
 
 
 5. Which commands would you use? Explain what the command does. Similar to the answer in the previous exercise, the commands that could be used are:
+
 git filter-repo --invert-paths --path file-path 
+The git filter-repo command does path based filtering. 
+In this case, we are attempting to keep all the files except for file(s) we wish to delete. The '--invert-path' tag helps us achieve that. Instead of listing all the directories we want to keep, we can list all the directories/files we would like to remove.
+Running this command will filter out all the commits related to the files, essentially rewriting git history!
+
 After the above command, the changes are to pushed to the remote branches with the below command.
 git push origin --force --all
 
