@@ -1,5 +1,4 @@
 COMPOSE_RUN_AWSCLI = docker-compose run 3musketeers
-COMPOSE_BUILD_AWSCLI = docker-compose up -d
 
 create_bucket: 
 	$(COMPOSE_RUN_AWSCLI) make _create_bucket
