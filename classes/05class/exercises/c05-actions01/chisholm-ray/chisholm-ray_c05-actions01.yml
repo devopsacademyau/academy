@@ -1,0 +1,20 @@
+on:
+  pull_request:
+    paths:
+    - 'chisholm-ray/**'
+
+jobs:
+  comment_pr:
+    runs-on: ubuntu-latest
+    name: Comment on chisholm-ray PR 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        
+        with:
+          message: 'Well done ${{ secrets.CCR_NAME }} ! This is a nice PR'
+          GITHUB_TOKEN: ${{ secrets.CCR_GITHUB_TOKEN}}
+
