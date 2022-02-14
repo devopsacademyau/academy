@@ -98,6 +98,11 @@ resource "aws_route_table_association" "private1" {
   route_table_id = aws_route_table.private.id
 }
 
+resource "aws_route_table_association" "private2" {
+  subnet_id      = aws_subnet.private2.id
+  route_table_id = aws_route_table.private.id
+}
+
 # Create NAT gateway
 resource "aws_eip" "eip" {
   vpc = true
@@ -105,7 +110,7 @@ resource "aws_eip" "eip" {
 
 resource "aws_nat_gateway" "gw" {
   allocation_id = aws_eip.eip.id
-  subnet_id     = aws_subnet.private1.id
+  subnet_id     = aws_subnet.public1.id
 
   tags = {
     Name = "c04-iac02"
