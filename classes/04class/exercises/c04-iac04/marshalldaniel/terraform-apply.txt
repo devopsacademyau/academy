@@ -1,0 +1,393 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[0m
+Terraform will perform the following actions:
+
+[1m  # module.iac-04-module.aws_autoscaling_attachment.iac04-asg-attachment[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_attachment" "iac04-asg-attachment" {
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mlb_target_group_arn[0m[0m    = (known after apply)
+    }
+
+[1m  # module.iac-04-module.aws_autoscaling_group.iac04-asg[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_group" "iac04-asg" {
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_cooldown[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mdesired_capacity[0m[0m          = 1
+      [32m+[0m [0m[1m[0mforce_delete[0m[0m              = true
+      [32m+[0m [0m[1m[0mforce_delete_warm_pool[0m[0m    = false
+      [32m+[0m [0m[1m[0mhealth_check_grace_period[0m[0m = 300
+      [32m+[0m [0m[1m[0mhealth_check_type[0m[0m         = "EC2"
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_configuration[0m[0m      = "iac04-launch-config"
+      [32m+[0m [0m[1m[0mmax_size[0m[0m                  = 2
+      [32m+[0m [0m[1m[0mmetrics_granularity[0m[0m       = "1Minute"
+      [32m+[0m [0m[1m[0mmin_size[0m[0m                  = 1
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "iac04-asg"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mprotect_from_scale_in[0m[0m     = false
+      [32m+[0m [0m[1m[0mservice_linked_role_arn[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mvpc_zone_identifier[0m[0m       = [
+          [32m+[0m [0m"subnet-01b270057f65a803b",
+          [32m+[0m [0m"subnet-0ab7b0283a24023ca",
+        ]
+      [32m+[0m [0m[1m[0mwait_for_capacity_timeout[0m[0m = "10m"
+
+      [32m+[0m [0mtimeouts {
+          [32m+[0m [0m[1m[0mdelete[0m[0m = "15m"
+        }
+    }
+
+[1m  # module.iac-04-module.aws_autoscaling_policy.iac04-scale-in[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_policy" "iac04-scale-in" {
+      [32m+[0m [0m[1m[0madjustment_type[0m[0m         = "ChangeInCapacity"
+      [32m+[0m [0m[1m[0marn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m  = "iac04-asg"
+      [32m+[0m [0m[1m[0mcooldown[0m[0m                = 300
+      [32m+[0m [0m[1m[0mid[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_aggregation_type[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                    = "iac04-scale-in"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m             = "SimpleScaling"
+      [32m+[0m [0m[1m[0mscaling_adjustment[0m[0m      = -1
+    }
+
+[1m  # module.iac-04-module.aws_autoscaling_policy.iac04-scale-out[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_policy" "iac04-scale-out" {
+      [32m+[0m [0m[1m[0madjustment_type[0m[0m         = "ChangeInCapacity"
+      [32m+[0m [0m[1m[0marn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m  = "iac04-asg"
+      [32m+[0m [0m[1m[0mcooldown[0m[0m                = 300
+      [32m+[0m [0m[1m[0mid[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_aggregation_type[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                    = "iac04-scale-out"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m             = "SimpleScaling"
+      [32m+[0m [0m[1m[0mscaling_adjustment[0m[0m      = 1
+    }
+
+[1m  # module.iac-04-module.aws_cloudwatch_metric_alarm.iac04-high-cpu-alarm[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_cloudwatch_metric_alarm" "iac04-high-cpu-alarm" {
+      [32m+[0m [0m[1m[0mactions_enabled[0m[0m                       = true
+      [32m+[0m [0m[1m[0malarm_actions[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0malarm_description[0m[0m                     = "iac04-high-cpu-alarm"
+      [32m+[0m [0m[1m[0malarm_name[0m[0m                            = "iac04-high-cpu-alarm"
+      [32m+[0m [0m[1m[0marn[0m[0m                                   = (known after apply)
+      [32m+[0m [0m[1m[0mcomparison_operator[0m[0m                   = "GreaterThanOrEqualToThreshold"
+      [32m+[0m [0m[1m[0mdimensions[0m[0m                            = {
+          [32m+[0m [0m"AutoScalingGroupName" = "iac04-asg"
+        }
+      [32m+[0m [0m[1m[0mevaluate_low_sample_count_percentiles[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mevaluation_periods[0m[0m                    = 2
+      [32m+[0m [0m[1m[0mid[0m[0m                                    = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_name[0m[0m                           = "CPUUtilization"
+      [32m+[0m [0m[1m[0mnamespace[0m[0m                             = "AWS/EC2"
+      [32m+[0m [0m[1m[0mperiod[0m[0m                                = 120
+      [32m+[0m [0m[1m[0mstatistic[0m[0m                             = "Average"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mthreshold[0m[0m                             = 80
+      [32m+[0m [0m[1m[0mtreat_missing_data[0m[0m                    = "missing"
+    }
+
+[1m  # module.iac-04-module.aws_cloudwatch_metric_alarm.iac04-low-cpu-alarm[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_cloudwatch_metric_alarm" "iac04-low-cpu-alarm" {
+      [32m+[0m [0m[1m[0mactions_enabled[0m[0m                       = true
+      [32m+[0m [0m[1m[0malarm_actions[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0malarm_description[0m[0m                     = "iac04-low-cpu-alarm"
+      [32m+[0m [0m[1m[0malarm_name[0m[0m                            = "iac04-low-cpu-alarm"
+      [32m+[0m [0m[1m[0marn[0m[0m                                   = (known after apply)
+      [32m+[0m [0m[1m[0mcomparison_operator[0m[0m                   = "LessThanOrEqualToThreshold"
+      [32m+[0m [0m[1m[0mdimensions[0m[0m                            = {
+          [32m+[0m [0m"AutoScalingGroupName" = "iac04-asg"
+        }
+      [32m+[0m [0m[1m[0mevaluate_low_sample_count_percentiles[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mevaluation_periods[0m[0m                    = 2
+      [32m+[0m [0m[1m[0mid[0m[0m                                    = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_name[0m[0m                           = "CPUUtilization"
+      [32m+[0m [0m[1m[0mnamespace[0m[0m                             = "AWS/EC2"
+      [32m+[0m [0m[1m[0mperiod[0m[0m                                = 120
+      [32m+[0m [0m[1m[0mstatistic[0m[0m                             = "Average"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mthreshold[0m[0m                             = 30
+      [32m+[0m [0m[1m[0mtreat_missing_data[0m[0m                    = "missing"
+    }
+
+[1m  # module.iac-04-module.aws_launch_configuration.iac04-launch-config[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_launch_configuration" "iac04-launch-config" {
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m = false
+      [32m+[0m [0m[1m[0mebs_optimized[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0menable_monitoring[0m[0m           = true
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mimage_id[0m[0m                    = "ami-02a45d709a415958a"
+      [32m+[0m [0m[1m[0minstance_type[0m[0m               = "t3.micro"
+      [32m+[0m [0m[1m[0mkey_name[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                        = "iac04-launch-config"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0muser_data[0m[0m                   = "1c0f93468d546289e09f7ebfb7edf92782937465"
+
+      [32m+[0m [0mebs_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mno_device[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mthroughput[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+
+      [32m+[0m [0mmetadata_options {
+          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
+        }
+
+      [32m+[0m [0mroot_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mthroughput[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+    }
+
+[1m  # module.iac-04-module.aws_lb.iac04-alb[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb" "iac04-alb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mdesync_mitigation_mode[0m[0m     = "defensive"
+      [32m+[0m [0m[1m[0mdns_name[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mdrop_invalid_header_fields[0m[0m = false
+      [32m+[0m [0m[1m[0menable_deletion_protection[0m[0m = false
+      [32m+[0m [0m[1m[0menable_http2[0m[0m               = true
+      [32m+[0m [0m[1m[0menable_waf_fail_open[0m[0m       = false
+      [32m+[0m [0m[1m[0mid[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0midle_timeout[0m[0m               = 60
+      [32m+[0m [0m[1m[0minternal[0m[0m                   = false
+      [32m+[0m [0m[1m[0mip_address_type[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_type[0m[0m         = "application"
+      [32m+[0m [0m[1m[0mname[0m[0m                       = "iac04-alb"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0msubnets[0m[0m                    = [
+          [32m+[0m [0m"subnet-01b270057f65a803b",
+          [32m+[0m [0m"subnet-0ab7b0283a24023ca",
+        ]
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mzone_id[0m[0m                    = (known after apply)
+
+      [32m+[0m [0msubnet_mapping {
+          [32m+[0m [0m[1m[0mallocation_id[0m[0m        = (known after apply)
+          [32m+[0m [0m[1m[0mipv6_address[0m[0m         = (known after apply)
+          [32m+[0m [0m[1m[0moutpost_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mprivate_ipv4_address[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0msubnet_id[0m[0m            = (known after apply)
+        }
+    }
+
+[1m  # module.iac-04-module.aws_lb_listener.iac04-alb-listener[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_listener" "iac04-alb-listener" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m              = 80
+      [32m+[0m [0m[1m[0mprotocol[0m[0m          = "HTTP"
+      [32m+[0m [0m[1m[0mssl_policy[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m          = (known after apply)
+
+      [32m+[0m [0mdefault_action {
+          [32m+[0m [0m[1m[0morder[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m             = "forward"
+        }
+    }
+
+[1m  # module.iac-04-module.aws_lb_target_group.iac04-target-group[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_target_group" "iac04-target-group" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mconnection_termination[0m[0m             = false
+      [32m+[0m [0m[1m[0mderegistration_delay[0m[0m               = "300"
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
+      [32m+[0m [0m[1m[0mload_balancing_algorithm_type[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "iac04-target-group"
+      [32m+[0m [0m[1m[0mport[0m[0m                               = 80
+      [32m+[0m [0m[1m[0mpreserve_client_ip[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "HTTP"
+      [32m+[0m [0m[1m[0mprotocol_version[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
+      [32m+[0m [0m[1m[0mslow_start[0m[0m                         = 0
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_type[0m[0m                        = "instance"
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                             = "vpc-0d91d246cabb35035"
+
+      [32m+[0m [0mhealth_check {
+          [32m+[0m [0m[1m[0menabled[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mhealthy_threshold[0m[0m   = (known after apply)
+          [32m+[0m [0m[1m[0minterval[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mmatcher[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mpath[0m[0m                = (known after apply)
+          [32m+[0m [0m[1m[0mport[0m[0m                = (known after apply)
+          [32m+[0m [0m[1m[0mprotocol[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtimeout[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0munhealthy_threshold[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mstickiness {
+          [32m+[0m [0m[1m[0mcookie_duration[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mcookie_name[0m[0m     = (known after apply)
+          [32m+[0m [0m[1m[0menabled[0m[0m         = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m            = (known after apply)
+        }
+    }
+
+[1m  # module.iac-04-module.aws_security_group.iac04-alb-sg[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "iac04-alb-sg" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Allow 80 inbound traffic"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = "80 from all"
+              [32m+[0m [0mfrom_port        = 80
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 80
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "iac04-alb-sg"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name" = "iac04-alb-sg"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = {
+          [32m+[0m [0m"Name" = "iac04-alb-sg"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = "vpc-0d91d246cabb35035"
+    }
+
+[1m  # module.iac-04-module.aws_security_group.iac04-asg-sg[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "iac04-asg-sg" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Allow 80 inbound traffic from alb"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = []
+              [32m+[0m [0mdescription      = "80 from alb"
+              [32m+[0m [0mfrom_port        = 80
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = (known after apply)
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 80
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "iac04-asg-sg"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name" = "iac04-asg-sg"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = {
+          [32m+[0m [0m"Name" = "iac04-asg-sg"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = "vpc-0d91d246cabb35035"
+    }
+
+[0m[1mPlan:[0m 12 to add, 0 to change, 0 to destroy.
+[0m[0m
+[1mChanges to Outputs:[0m[0m
+  [32m+[0m [0m[1m[0mmodule_alb_fqdn[0m[0m = (known after apply)
+[0m[1mmodule.iac-04-module.aws_lb_target_group.iac04-target-group: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_security_group.iac04-alb-sg: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_lb_target_group.iac04-target-group: Creation complete after 3s [id=arn:aws:elasticloadbalancing:ap-southeast-1:152848913167:targetgroup/iac04-target-group/d007300e92221c3f][0m
+[0m[1mmodule.iac-04-module.aws_security_group.iac04-alb-sg: Creation complete after 6s [id=sg-0d2d594553509b9ca][0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_security_group.iac04-asg-sg: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_security_group.iac04-asg-sg: Creation complete after 6s [id=sg-0469d1b24fa21d60c][0m
+[0m[1mmodule.iac-04-module.aws_launch_configuration.iac04-launch-config: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_launch_configuration.iac04-launch-config: Creation complete after 2s [id=iac04-launch-config][0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_group.iac04-asg: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_group.iac04-asg: Still creating... [10s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_group.iac04-asg: Still creating... [20s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_group.iac04-asg: Still creating... [30s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_group.iac04-asg: Creation complete after 31s [id=iac04-asg][0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_attachment.iac04-asg-attachment: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_policy.iac04-scale-in: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_policy.iac04-scale-out: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_policy.iac04-scale-out: Creation complete after 1s [id=iac04-scale-out][0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_attachment.iac04-asg-attachment: Creation complete after 1s [id=iac04-asg-20220215141515370200000001][0m
+[0m[1mmodule.iac-04-module.aws_autoscaling_policy.iac04-scale-in: Creation complete after 1s [id=iac04-scale-in][0m
+[0m[1mmodule.iac-04-module.aws_cloudwatch_metric_alarm.iac04-high-cpu-alarm: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_cloudwatch_metric_alarm.iac04-low-cpu-alarm: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [40s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_cloudwatch_metric_alarm.iac04-low-cpu-alarm: Creation complete after 1s [id=iac04-low-cpu-alarm][0m
+[0m[1mmodule.iac-04-module.aws_cloudwatch_metric_alarm.iac04-high-cpu-alarm: Creation complete after 2s [id=iac04-high-cpu-alarm][0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [50s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [1m0s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [1m10s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [1m20s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [1m30s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [1m40s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [1m50s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Still creating... [2m0s elapsed][0m[0m
+[0m[1mmodule.iac-04-module.aws_lb.iac04-alb: Creation complete after 2m7s [id=arn:aws:elasticloadbalancing:ap-southeast-1:152848913167:loadbalancer/app/iac04-alb/20a369c0c415c1ba][0m
+[0m[1mmodule.iac-04-module.aws_lb_listener.iac04-alb-listener: Creating...[0m[0m
+[0m[1mmodule.iac-04-module.aws_lb_listener.iac04-alb-listener: Creation complete after 2s [id=arn:aws:elasticloadbalancing:ap-southeast-1:152848913167:listener/app/iac04-alb/20a369c0c415c1ba/6fe9aaa0578fe004][0m
+[0m[1m[32m
+Apply complete! Resources: 12 added, 0 changed, 0 destroyed.
+[0m[0m[1m[32m
+Outputs:
+
+[0mmodule_alb_fqdn = "iac04-alb-1475502716.ap-southeast-1.elb.amazonaws.com"
