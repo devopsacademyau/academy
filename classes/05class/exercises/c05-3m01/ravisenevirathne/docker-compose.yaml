@@ -1,0 +1,12 @@
+version: '3'
+services:
+    3muskeeters:
+      platform: linux/x86_64
+      container_name: 3muskeeters
+      restart: always
+      build: .
+      volumes:
+      - .:/mnt
+      working_dir: /mnt
+      env_file:
+      - .env
