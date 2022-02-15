@@ -1,5 +1,5 @@
 COMPOSE_RUN = docker-compose run 3muskeeters
-export BUCKET_NAME ?= testasdfaswerew
+export BUCKET_NAME ?= test
 
 create_bucket:
 	$(COMPOSE_RUN) make _create_bucket
