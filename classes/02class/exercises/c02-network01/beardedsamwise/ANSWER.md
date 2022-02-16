@@ -2,10 +2,6 @@
 
 ## Commands Execution Output
 
-Addresses = Total number of IP addresses in the subnet
-Hosts = Usable IP addresses for a routable network (accounting for gateway and broadcast)
-
-
 - Answers for `10.0.0.1/24`:
 
   - IP in binary: `00001010.00000000.00000000.00000001`
@@ -13,7 +9,7 @@ Hosts = Usable IP addresses for a routable network (accounting for gateway and b
   - netmask in decimals: `255.255.255.0`
   - private/public: `private`
   - addresses: `256`
-  - hosts: `254`
+  - usable addresses: `254`
 
 - Answers for `192.168.0.1/16`:
 
@@ -22,7 +18,7 @@ Hosts = Usable IP addresses for a routable network (accounting for gateway and b
   - netmask in decimals: `255.255.0.0`
   - private/public: `private`
   - addresses: `65,536`
-  - hosts: `65,534`
+  - usable addresses: `65,534`
 
 - Answers for `249.165.166.135/30`:
 
@@ -31,7 +27,7 @@ Hosts = Usable IP addresses for a routable network (accounting for gateway and b
   - netmask in decimals: `255.255.255.252`
   - private/public: `public`
   - addresses: `4`
-  - hosts: `2`
+  - usable addresses: `2`
 
 - Answers for `236.68.223.18/32`:
 
@@ -40,7 +36,7 @@ Hosts = Usable IP addresses for a routable network (accounting for gateway and b
   - netmask in decimals: `255.255.255.255`
   - private/public: `public`
   - addresses: `1`
-  - hosts: `0`
+  - usable addresses: `0`
 
 - Answers for `172.31.0.0/16`:
 
@@ -49,7 +45,7 @@ Hosts = Usable IP addresses for a routable network (accounting for gateway and b
   - netmask in decimals: `255.255.0.0`
   - private/public: `private`
   - addresses: `65,536`
-  - hosts: `65,534`
+  - usable addresses: `65,534`
 
 ***
 Answer for exercise [c02-network01](https://github.com/devopsacademyau/academy/blob/893381c6f0b69434d9e8597d3d4b1c17f9bc1371/classes/02class/exercises/c02-network01/README.md)
