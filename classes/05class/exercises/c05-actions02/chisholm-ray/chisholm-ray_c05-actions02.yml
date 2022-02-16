@@ -1,0 +1,43 @@
+name: 3M workflow with comment on PR
+
+on:
+  pull_request:
+    paths:
+      - 'chisholm-ray/actions02/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: chisholm-ray/actions02/
+
+    steps:
+    - uses: actions/checkout@v2  
+
+    - name: set variables
+      run: |
+        echo ${{ github.sha }} | head -c 7 > TAG_SHA 
+        echo "IMAGEFULLNAME=${{ secrets.CCR_DOCKERU }}/actions02:$(cat TAG_SHA)" >> $GITHUB_ENV
+
+    - name: docker login 
+      env:
+        CCR_DOCKERU: ${{ secrets.CCR_DOCKERU }}
+        CCR_DOCKERP: ${{ secrets.CCR_DOCKERP }}
+      run: |
+        make login
+
+    - name: build image
+      run: make build
+
+    - name: push image
+      run: make push
+
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@v1
+
+      with:
+        message: 'Image name ${{ env.IMAGEFULLNAME}} has been pushed to dockerhub'
+        GITHUB_TOKEN: ${{ secrets.CCR_GITHUB_TOKEN}}
+      
