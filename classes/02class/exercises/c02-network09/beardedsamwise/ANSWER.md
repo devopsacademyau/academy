@@ -10,19 +10,19 @@
 |private-sg|inbound|Custom TCP Rule|22|`<public-sg-id>`|SSH access only from public instances on AWS|
 
 ```
-aws ec2 create-security-group --group-name public-sg --description "public-sg"
+aws ec2 create-security-group --group-name public-sg --description "public-sg" --vpc-id vpc-09666fb121d6ae087
 {
-    "GroupId": "sg-08e81cdb0c91d451e"
+    "GroupId": "sg-03306f8d0577a09d5"
 }
 
 
-aws ec2 create-security-group --group-name private-sg --description "private-sg"
+aws ec2 create-security-group --group-name private-sg --description "private-sg" --vpc-id vpc-09666fb121d6ae087
 {
-    "GroupId": "sg-030093c36c5d7aa6d"
+    "GroupId": "sg-0f83244d342a2c680"
 }
 
 aws ec2 authorize-security-group-ingress \
-    --group-name public-sg \
+    --group-id sg-03306f8d0577a09d5 \
     --protocol tcp \
     --port 22 \
     --cidr 115.64.227.252/32
@@ -30,8 +30,8 @@ aws ec2 authorize-security-group-ingress \
     "Return": true,
     "SecurityGroupRules": [
         {
-            "SecurityGroupRuleId": "sgr-02c991f7849b4683d",
-            "GroupId": "sg-08e81cdb0c91d451e",
+            "SecurityGroupRuleId": "sgr-0f61fa6b3369c9ddd",
+            "GroupId": "sg-03306f8d0577a09d5",
             "GroupOwnerId": "639247960747",
             "IsEgress": false,
             "IpProtocol": "tcp",
@@ -43,23 +43,23 @@ aws ec2 authorize-security-group-ingress \
 }
 
 aws ec2 authorize-security-group-ingress \
-    --group-name private-sg \
+    --group-id sg-0f83244d342a2c680 \
     --protocol tcp \
     --port 22 \
-    --source-group public-sg 
+    --source-group sg-03306f8d0577a09d5
 {
     "Return": true,
     "SecurityGroupRules": [
         {
-            "SecurityGroupRuleId": "sgr-089cf39b8e31707fa",
-            "GroupId": "sg-030093c36c5d7aa6d",
+            "SecurityGroupRuleId": "sgr-08798d3a71e825853",
+            "GroupId": "sg-0f83244d342a2c680",
             "GroupOwnerId": "639247960747",
             "IsEgress": false,
             "IpProtocol": "tcp",
             "FromPort": 22,
             "ToPort": 22,
             "ReferencedGroupInfo": {
-                "GroupId": "sg-08e81cdb0c91d451e"
+                "GroupId": "sg-03306f8d0577a09d5"
             }
         }
     ]
