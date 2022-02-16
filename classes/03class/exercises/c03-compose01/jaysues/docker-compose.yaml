@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: db
+    platform: linux/x86_64
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: thisisnotverysecure
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: thisisnotverysecure
+      MYSQL_DATABASE: phpdb
+
+  web:
+    container_name: web
+    build: ../../../compose/artifacts/c05-compose01/
+    volumes:
+      - ../../../compose/artifacts/c05-compose01/src/:/var/www/html/
+    ports:
+      - "8100:80"
+    environment:
+      DB_USER: test_user
+      DB_PASS: thisisnotverysecure
+      DB_HOST: db
+      DB_NAME: phpdb
+    depends_on:
+      - db 
