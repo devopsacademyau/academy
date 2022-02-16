@@ -339,7 +339,7 @@ aws ec2 run-instances \
 aws ec2 describe-instances --instance-ids i-08d6f2a3bf277efed
 ```
 
-### SSH to jump host
+### SSH to jumphost then to webserver
 
 ```
 $ ssh -A ec2-user@ec2-3-104-66-72.ap-southeast-2.compute.amazonaws.com
