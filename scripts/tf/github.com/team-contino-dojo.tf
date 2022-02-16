@@ -3,10 +3,11 @@ module "team_contino_dojo" {
   group_name          = "contino-dojo"
   group_role          = "member"
   members             = [
+    "asokaravindap",
     "aymscherrer",
-    "ian-hancock",
+    "dmfstevenson",
+    "karthik-contino",
     "kiarashv",
-    "mattgillard",
-    "ramps41"
+    "sorabhm"
   ]
 }
