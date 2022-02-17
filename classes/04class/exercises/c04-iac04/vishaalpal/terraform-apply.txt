@@ -1,0 +1,956 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.vpc.aws_eip.nat[0] will be created
+  + resource "aws_eip" "nat" {
+      + allocation_id        = (known after apply)
+      + association_id       = (known after apply)
+      + carrier_ip           = (known after apply)
+      + customer_owned_ip    = (known after apply)
+      + domain               = (known after apply)
+      + id                   = (known after apply)
+      + instance             = (known after apply)
+      + network_border_group = (known after apply)
+      + network_interface    = (known after apply)
+      + private_dns          = (known after apply)
+      + private_ip           = (known after apply)
+      + public_dns           = (known after apply)
+      + public_ip            = (known after apply)
+      + public_ipv4_pool     = (known after apply)
+      + tags                 = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-ap-southeast-2a"
+        }
+      + tags_all             = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-ap-southeast-2a"
+        }
+      + vpc                  = true
+    }
+
+  # module.vpc.aws_eip.nat[1] will be created
+  + resource "aws_eip" "nat" {
+      + allocation_id        = (known after apply)
+      + association_id       = (known after apply)
+      + carrier_ip           = (known after apply)
+      + customer_owned_ip    = (known after apply)
+      + domain               = (known after apply)
+      + id                   = (known after apply)
+      + instance             = (known after apply)
+      + network_border_group = (known after apply)
+      + network_interface    = (known after apply)
+      + private_dns          = (known after apply)
+      + private_ip           = (known after apply)
+      + public_dns           = (known after apply)
+      + public_ip            = (known after apply)
+      + public_ipv4_pool     = (known after apply)
+      + tags                 = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-ap-southeast-2b"
+        }
+      + tags_all             = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-ap-southeast-2b"
+        }
+      + vpc                  = true
+    }
+
+  # module.vpc.aws_internet_gateway.this[0] will be created
+  + resource "aws_internet_gateway" "this" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04"
+        }
+      + tags_all = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # module.vpc.aws_nat_gateway.this[0] will be created
+  + resource "aws_nat_gateway" "this" {
+      + allocation_id        = (known after apply)
+      + connectivity_type    = "public"
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-ap-southeast-2a"
+        }
+      + tags_all             = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-ap-southeast-2a"
+        }
+    }
+
+  # module.vpc.aws_nat_gateway.this[1] will be created
+  + resource "aws_nat_gateway" "this" {
+      + allocation_id        = (known after apply)
+      + connectivity_type    = "public"
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-ap-southeast-2b"
+        }
+      + tags_all             = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-ap-southeast-2b"
+        }
+    }
+
+  # module.vpc.aws_route.private_nat_gateway[0] will be created
+  + resource "aws_route" "private_nat_gateway" {
+      + destination_cidr_block = "0.0.0.0/0"
+      + id                     = (known after apply)
+      + instance_id            = (known after apply)
+      + instance_owner_id      = (known after apply)
+      + nat_gateway_id         = (known after apply)
+      + network_interface_id   = (known after apply)
+      + origin                 = (known after apply)
+      + route_table_id         = (known after apply)
+      + state                  = (known after apply)
+
+      + timeouts {
+          + create = "5m"
+        }
+    }
+
+  # module.vpc.aws_route.private_nat_gateway[1] will be created
+  + resource "aws_route" "private_nat_gateway" {
+      + destination_cidr_block = "0.0.0.0/0"
+      + id                     = (known after apply)
+      + instance_id            = (known after apply)
+      + instance_owner_id      = (known after apply)
+      + nat_gateway_id         = (known after apply)
+      + network_interface_id   = (known after apply)
+      + origin                 = (known after apply)
+      + route_table_id         = (known after apply)
+      + state                  = (known after apply)
+
+      + timeouts {
+          + create = "5m"
+        }
+    }
+
+  # module.vpc.aws_route.public_internet_gateway[0] will be created
+  + resource "aws_route" "public_internet_gateway" {
+      + destination_cidr_block = "0.0.0.0/0"
+      + gateway_id             = (known after apply)
+      + id                     = (known after apply)
+      + instance_id            = (known after apply)
+      + instance_owner_id      = (known after apply)
+      + network_interface_id   = (known after apply)
+      + origin                 = (known after apply)
+      + route_table_id         = (known after apply)
+      + state                  = (known after apply)
+
+      + timeouts {
+          + create = "5m"
+        }
+    }
+
+  # module.vpc.aws_route_table.private[0] will be created
+  + resource "aws_route_table" "private" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = (known after apply)
+      + tags             = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04 - private route table"
+        }
+      + tags_all         = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04 - private route table"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.vpc.aws_route_table.private[1] will be created
+  + resource "aws_route_table" "private" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = (known after apply)
+      + tags             = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04 - private route table"
+        }
+      + tags_all         = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04 - private route table"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.vpc.aws_route_table.public[0] will be created
+  + resource "aws_route_table" "public" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = (known after apply)
+      + tags             = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04 - public route table"
+        }
+      + tags_all         = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04 - public route table"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.vpc.aws_route_table_association.private[0] will be created
+  + resource "aws_route_table_association" "private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc.aws_route_table_association.private[1] will be created
+  + resource "aws_route_table_association" "private" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc.aws_route_table_association.public[0] will be created
+  + resource "aws_route_table_association" "public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc.aws_route_table_association.public[1] will be created
+  + resource "aws_route_table_association" "public" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.private[0] will be created
+  + resource "aws_subnet" "private" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-southeast-2a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.1.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-private-ap-southeast-2a"
+        }
+      + tags_all                                       = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-private-ap-southeast-2a"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.private[1] will be created
+  + resource "aws_subnet" "private" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-southeast-2b"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.2.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-private-ap-southeast-2b"
+        }
+      + tags_all                                       = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-private-ap-southeast-2b"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.public[0] will be created
+  + resource "aws_subnet" "public" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-southeast-2a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.101.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = true
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-public-ap-southeast-2a"
+        }
+      + tags_all                                       = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-public-ap-southeast-2a"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.public[1] will be created
+  + resource "aws_subnet" "public" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-southeast-2b"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.102.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = true
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-public-ap-southeast-2b"
+        }
+      + tags_all                                       = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-public-ap-southeast-2b"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.vpc.aws_vpc.this[0] will be created
+  + resource "aws_vpc" "this" {
+      + arn                                  = (known after apply)
+      + assign_generated_ipv6_cidr_block     = false
+      + cidr_block                           = "10.0.0.0/16"
+      + default_network_acl_id               = (known after apply)
+      + default_route_table_id               = (known after apply)
+      + default_security_group_id            = (known after apply)
+      + dhcp_options_id                      = (known after apply)
+      + enable_classiclink                   = (known after apply)
+      + enable_classiclink_dns_support       = (known after apply)
+      + enable_dns_hostnames                 = true
+      + enable_dns_support                   = true
+      + id                                   = (known after apply)
+      + instance_tenancy                     = "default"
+      + ipv6_association_id                  = (known after apply)
+      + ipv6_cidr_block                      = (known after apply)
+      + ipv6_cidr_block_network_border_group = (known after apply)
+      + main_route_table_id                  = (known after apply)
+      + owner_id                             = (known after apply)
+      + tags                                 = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04"
+        }
+      + tags_all                             = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04"
+        }
+    }
+
+  # module.webservers.aws_alb.alb will be created
+  + resource "aws_alb" "alb" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + desync_mitigation_mode     = "defensive"
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + enable_waf_fail_open       = false
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "c04-iac04-alb"
+      + security_groups            = (known after apply)
+      + subnets                    = (known after apply)
+      + tags                       = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-alb"
+        }
+      + tags_all                   = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-alb"
+        }
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id        = (known after apply)
+          + ipv6_address         = (known after apply)
+          + outpost_id           = (known after apply)
+          + private_ipv4_address = (known after apply)
+          + subnet_id            = (known after apply)
+        }
+    }
+
+  # module.webservers.aws_alb_listener.alb_listener will be created
+  + resource "aws_alb_listener" "alb_listener" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+      + tags              = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-alb-listener"
+        }
+      + tags_all          = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-alb-listener"
+        }
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.webservers.aws_alb_target_group.alb_tg will be created
+  + resource "aws_alb_target_group" "alb_tg" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + connection_termination             = false
+      + deregistration_delay               = "300"
+      + id                                 = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = "c04-iac04-alb-target-group"
+      + port                               = 80
+      + preserve_client_ip                 = (known after apply)
+      + protocol                           = "HTTP"
+      + protocol_version                   = (known after apply)
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + tags                               = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-alb-target-group"
+        }
+      + tags_all                           = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-alb-target-group"
+        }
+      + target_type                        = "instance"
+      + vpc_id                             = (known after apply)
+
+      + health_check {
+          + enabled             = true
+          + healthy_threshold   = 3
+          + interval            = 30
+          + matcher             = (known after apply)
+          + path                = "/"
+          + port                = "traffic-port"
+          + protocol            = "HTTP"
+          + timeout             = 10
+          + unhealthy_threshold = 2
+        }
+
+      + stickiness {
+          + cookie_duration = (known after apply)
+          + cookie_name     = (known after apply)
+          + enabled         = (known after apply)
+          + type            = (known after apply)
+        }
+    }
+
+  # module.webservers.aws_autoscaling_group.asg will be created
+  + resource "aws_autoscaling_group" "asg" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = 2
+      + force_delete              = false
+      + force_delete_warm_pool    = false
+      + health_check_grace_period = 300
+      + health_check_type         = (known after apply)
+      + id                        = (known after apply)
+      + max_size                  = 3
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = "c04-iac04-asg"
+      + name_prefix               = (known after apply)
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + target_group_arns         = (known after apply)
+      + vpc_zone_identifier       = (known after apply)
+      + wait_for_capacity_timeout = "10m"
+
+      + launch_template {
+          + id      = (known after apply)
+          + name    = (known after apply)
+          + version = "$Latest"
+        }
+
+      + tag {
+          + key                 = "Author"
+          + propagate_at_launch = true
+          + value               = "Vishaal Pal"
+        }
+      + tag {
+          + key                 = "Name"
+          + propagate_at_launch = true
+          + value               = "c04-iac04-asg"
+        }
+    }
+
+  # module.webservers.aws_autoscaling_policy.scale_down will be created
+  + resource "aws_autoscaling_policy" "scale_down" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "c04-iac04-asg"
+      + cooldown                = 30
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "c04-iac04-scale down policy"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.webservers.aws_autoscaling_policy.scale_up will be created
+  + resource "aws_autoscaling_policy" "scale_up" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "c04-iac04-asg"
+      + cooldown                = 30
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "c04-iac04-scale up policy"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 1
+    }
+
+  # module.webservers.aws_cloudwatch_metric_alarm.high_cpu will be created
+  + resource "aws_cloudwatch_metric_alarm" "high_cpu" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "This alarm will trigger the autoscaling policy c04-iac04-scale up policy."
+      + alarm_name                            = "c04-iac04-scale up policy - high cpu"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "c04-iac04-asg"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 3
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 300
+      + statistic                             = "Average"
+      + tags                                  = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-scale up policy-high cpu"
+        }
+      + tags_all                              = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-scale up policy-high cpu"
+        }
+      + threshold                             = 85
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.webservers.aws_cloudwatch_metric_alarm.low_cpu will be created
+  + resource "aws_cloudwatch_metric_alarm" "low_cpu" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "This alarm will trigger the autoscaling policy c04-iac04-scale down policy."
+      + alarm_name                            = "c04-iac04-scale down policy - low cpu"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "c04-iac04-asg"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 3
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 300
+      + statistic                             = "Average"
+      + tags                                  = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-scale down policy - low cpu"
+        }
+      + tags_all                              = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-scale down policy - low cpu"
+        }
+      + threshold                             = 20
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.webservers.aws_key_pair.mykey will be created
+  + resource "aws_key_pair" "mykey" {
+      + arn             = (known after apply)
+      + fingerprint     = (known after apply)
+      + id              = (known after apply)
+      + key_name        = "c04-iac04"
+      + key_name_prefix = (known after apply)
+      + key_pair_id     = (known after apply)
+      + public_key      = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCDI+XkgYknXNbHoa9RZXhR1etVExdF8sZEnn1ZvQl5WP7HCvx25sb8eWpDaM1qjtKNiJhA6NLtl0IWArtrcfJMlNn5lF/xSEGFQbItJaPZQPCY7J1SZ3Fv08aVHom/o4Apbd+p8+SsYvxwJnwnQN1AXI9StPFlYFf0jv0JnWb202IHf9grycEdBSlTFZgtIS+UBvKlbqy903FE5BRnOg1bzNxHF7xnSRAPVGoEmce0AFl7kDkqeZnnT7tuDer2i2Ae5iuFCNjXGto0V3dIldj69xpKwrPRSj3CcfPY2LEvCB1GZfZsOgo9QOCRYdNNiG7loHxOpmMB0C+BJSIfbQ3N"
+      + tags_all        = (known after apply)
+    }
+
+  # module.webservers.aws_launch_template.asg_launch_template will be created
+  + resource "aws_launch_template" "asg_launch_template" {
+      + arn             = (known after apply)
+      + default_version = (known after apply)
+      + description     = "Default auto scaling group launch template for exercise c04-iac04"
+      + id              = (known after apply)
+      + image_id        = "ami-00b2c019ee1972f91"
+      + instance_type   = "t2.micro"
+      + key_name        = "c04-iac04"
+      + latest_version  = (known after apply)
+      + name            = "c04-iac04-asg-launch-template"
+      + name_prefix     = (known after apply)
+      + tags            = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-asg-launch-template"
+        }
+      + tags_all        = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04-asg-launch-template"
+        }
+      + user_data       = "IyEvYmluL2Jhc2gKZl9uYW1lID0gIlZpc2hhYWwiOwpsX25hbWUgPSAiUGFsIjsKaW5zdGFuY2VfaWQgPSAkKGN1cmwgaHR0cDovLzE2OS4yNTQuMTY5LjI1NC9sYXRlc3QvbWV0YS1kYXRhL2luc3RhbmNlLWlkKTsKcmVnaW9uID0gJChjdXJsIGh0dHA6Ly8xNjkuMjU0LjE2OS4yNTQvbGF0ZXN0L2R5bmFtaWMvaW5zdGFuY2UtaWRlbnRpdHkvZG9jdW1lbnQgfCBncmVwIHJlZ2lvbiB8IGF3ayAtRlwiICd7cHJpbnQgJDR9Jyk7Cnl1bSB1cGRhdGUgLXkKeXVtIGluc3RhbGwgLXkgaHR0cGQueDg2XzY0CnN5c3RlbWN0bCBzdGFydCBodHRwZC5zZXJ2aWNlCnN5c3RlbWN0bCBlbmFibGUgaHR0cGQuc2VydmljZQpwcmludGYgIkhlbGxvICRmX25hbWUgJGxfbmFtZSBcbkluc3RhbmNlIElEICRpbnN0YW5jZV9pZCBcblJlZ2lvbiAkcmVnaW9uIiA+IC92YXIvd3d3L2h0bWwvaW5kZXguaHRtbA=="
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_protocol_ipv6          = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interfaces {
+          + associate_public_ip_address = "false"
+          + security_groups             = (known after apply)
+        }
+    }
+
+  # module.webservers.aws_security_group.alb_sg will be created
+  + resource "aws_security_group" "alb_sg" {
+      + arn                    = (known after apply)
+      + description            = "This security group controls traffic on a ALB."
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "allow_http"
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "c04-iac04_alb security group"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04_alb security group"
+        }
+      + tags_all               = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04_alb security group"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.webservers.aws_security_group.private_instance_sg will be created
+  + resource "aws_security_group" "private_instance_sg" {
+      + arn                    = (known after apply)
+      + description            = "This security group controls traffic on private EC2 instances."
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = []
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "c04-iac04_private instance security group"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04_private instance security group"
+        }
+      + tags_all               = {
+          + "Author" = "Vishaal Pal"
+          + "Name"   = "c04-iac04_private instance security group"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+Plan: 32 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + alb_dns_name                = (known after apply)
+  + alb_sg_id                   = (known after apply)
+  + asg_desired_capacity        = 2
+  + asg_max_size                = 3
+  + asg_min_size                = 1
+  + asg_name                    = "c04-iac04-asg"
+  + ec2_key_pair                = "c04-iac04"
+  + igw_id                      = (known after apply)
+  + private_instance_sg_id      = (known after apply)
+  + private_route_table_ids     = [
+      + (known after apply),
+      + (known after apply),
+    ]
+  + private_subnets             = [
+      + (known after apply),
+      + (known after apply),
+    ]
+  + private_subnets_cidr_blocks = [
+      + "10.0.1.0/24",
+      + "10.0.2.0/24",
+    ]
+  + public_route_table_ids      = [
+      + (known after apply),
+    ]
+  + public_subnets              = [
+      + (known after apply),
+      + (known after apply),
+    ]
+  + public_subnets_cidr_blocks  = [
+      + "10.0.101.0/24",
+      + "10.0.102.0/24",
+    ]
+  + vpc_cidr                    = "10.0.0.0/16"
+  + vpc_enable_dns_support      = true
+  + vpc_id                      = (known after apply)
+  + vpc_name                    = "c04-iac04"
+  + vpc_tenancy                 = "default"
+module.webservers.aws_key_pair.mykey: Creating...
+module.vpc.aws_eip.nat[0]: Creating...
+module.vpc.aws_eip.nat[1]: Creating...
+module.vpc.aws_vpc.this[0]: Creating...
+module.webservers.aws_key_pair.mykey: Creation complete after 1s [id=c04-iac04]
+module.vpc.aws_eip.nat[1]: Creation complete after 1s [id=eipalloc-0804e09d4cb199a44]
+module.vpc.aws_eip.nat[0]: Creation complete after 1s [id=eipalloc-04978c71786f67088]
+module.vpc.aws_vpc.this[0]: Still creating... [10s elapsed]
+module.vpc.aws_vpc.this[0]: Creation complete after 12s [id=vpc-0452dc344000be3d9]
+module.vpc.aws_internet_gateway.this[0]: Creating...
+module.vpc.aws_route_table.private[1]: Creating...
+module.vpc.aws_route_table.private[0]: Creating...
+module.vpc.aws_route_table.public[0]: Creating...
+module.vpc.aws_subnet.private[0]: Creating...
+module.vpc.aws_subnet.private[1]: Creating...
+module.vpc.aws_subnet.public[1]: Creating...
+module.vpc.aws_subnet.public[0]: Creating...
+module.webservers.aws_security_group.alb_sg: Creating...
+module.webservers.aws_alb_target_group.alb_tg: Creating...
+module.vpc.aws_route_table.private[0]: Creation complete after 1s [id=rtb-0c6da6e8dbf43579a]
+module.vpc.aws_route_table.public[0]: Creation complete after 1s [id=rtb-0cd9a3e238e1030ee]
+module.vpc.aws_route_table.private[1]: Creation complete after 1s [id=rtb-06587d388f003c9db]
+module.vpc.aws_internet_gateway.this[0]: Creation complete after 1s [id=igw-095b43542da22720d]
+module.vpc.aws_route.public_internet_gateway[0]: Creating...
+module.webservers.aws_alb_target_group.alb_tg: Creation complete after 1s [id=arn:aws:elasticloadbalancing:ap-southeast-2:969496245957:targetgroup/c04-iac04-alb-target-group/ba166491826c5025]
+module.vpc.aws_subnet.private[0]: Creation complete after 1s [id=subnet-05ea644a979f11045]
+module.vpc.aws_subnet.private[1]: Creation complete after 1s [id=subnet-05045e0e1cdef84c9]
+module.vpc.aws_route_table_association.private[1]: Creating...
+module.vpc.aws_route_table_association.private[0]: Creating...
+module.vpc.aws_route_table_association.private[0]: Creation complete after 1s [id=rtbassoc-00f68e56b731f2b16]
+module.vpc.aws_route_table_association.private[1]: Creation complete after 1s [id=rtbassoc-060456547ed954e1e]
+module.vpc.aws_route.public_internet_gateway[0]: Creation complete after 1s [id=r-rtb-0cd9a3e238e1030ee1080289494]
+module.webservers.aws_security_group.alb_sg: Creation complete after 3s [id=sg-051e675555be3188c]
+module.webservers.aws_security_group.private_instance_sg: Creating...
+module.webservers.aws_security_group.private_instance_sg: Creation complete after 3s [id=sg-0c1cb43ee1ec6359c]
+module.webservers.aws_launch_template.asg_launch_template: Creating...
+module.webservers.aws_launch_template.asg_launch_template: Creation complete after 0s [id=lt-06598524a2e42b6a2]
+module.webservers.aws_autoscaling_group.asg: Creating...
+module.vpc.aws_subnet.public[1]: Still creating... [10s elapsed]
+module.vpc.aws_subnet.public[0]: Still creating... [10s elapsed]
+module.vpc.aws_subnet.public[1]: Creation complete after 11s [id=subnet-040336324da5a203f]
+module.vpc.aws_subnet.public[0]: Creation complete after 12s [id=subnet-07d35b40d4bb90278]
+module.vpc.aws_route_table_association.public[1]: Creating...
+module.vpc.aws_route_table_association.public[0]: Creating...
+module.vpc.aws_nat_gateway.this[1]: Creating...
+module.vpc.aws_nat_gateway.this[0]: Creating...
+module.webservers.aws_alb.alb: Creating...
+module.vpc.aws_route_table_association.public[0]: Creation complete after 0s [id=rtbassoc-0fe2079582ee05a60]
+module.vpc.aws_route_table_association.public[1]: Creation complete after 0s [id=rtbassoc-0a6a152ca6783dcdb]
+module.webservers.aws_autoscaling_group.asg: Still creating... [10s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [10s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [10s elapsed]
+module.webservers.aws_alb.alb: Still creating... [10s elapsed]
+module.webservers.aws_autoscaling_group.asg: Still creating... [20s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [20s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [20s elapsed]
+module.webservers.aws_alb.alb: Still creating... [20s elapsed]
+module.webservers.aws_autoscaling_group.asg: Still creating... [30s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [30s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [30s elapsed]
+module.webservers.aws_alb.alb: Still creating... [30s elapsed]
+module.webservers.aws_autoscaling_group.asg: Still creating... [40s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [40s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [40s elapsed]
+module.webservers.aws_alb.alb: Still creating... [40s elapsed]
+module.webservers.aws_autoscaling_group.asg: Still creating... [50s elapsed]
+module.webservers.aws_alb.alb: Still creating... [50s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [50s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [50s elapsed]
+module.webservers.aws_autoscaling_group.asg: Still creating... [1m0s elapsed]
+module.webservers.aws_alb.alb: Still creating... [1m0s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m0s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [1m0s elapsed]
+module.webservers.aws_autoscaling_group.asg: Creation complete after 1m10s [id=c04-iac04-asg]
+module.webservers.aws_autoscaling_policy.scale_up: Creating...
+module.webservers.aws_autoscaling_policy.scale_down: Creating...
+module.webservers.aws_autoscaling_policy.scale_down: Creation complete after 0s [id=c04-iac04-scale down policy]
+module.webservers.aws_cloudwatch_metric_alarm.low_cpu: Creating...
+module.webservers.aws_autoscaling_policy.scale_up: Creation complete after 0s [id=c04-iac04-scale up policy]
+module.webservers.aws_cloudwatch_metric_alarm.high_cpu: Creating...
+module.webservers.aws_cloudwatch_metric_alarm.low_cpu: Creation complete after 0s [id=c04-iac04-scale down policy - low cpu]
+module.webservers.aws_cloudwatch_metric_alarm.high_cpu: Creation complete after 0s [id=c04-iac04-scale up policy - high cpu]
+module.webservers.aws_alb.alb: Still creating... [1m10s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m10s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [1m10s elapsed]
+module.webservers.aws_alb.alb: Still creating... [1m20s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [1m20s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m20s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m30s elapsed]
+module.webservers.aws_alb.alb: Still creating... [1m30s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [1m30s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Still creating... [1m40s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m40s elapsed]
+module.webservers.aws_alb.alb: Still creating... [1m40s elapsed]
+module.vpc.aws_nat_gateway.this[1]: Creation complete after 1m45s [id=nat-02527f9194cbc27eb]
+module.webservers.aws_alb.alb: Still creating... [1m50s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m50s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Creation complete after 1m55s [id=nat-019957d01ddc2f0fc]
+module.vpc.aws_route.private_nat_gateway[1]: Creating...
+module.vpc.aws_route.private_nat_gateway[0]: Creating...
+module.vpc.aws_route.private_nat_gateway[0]: Creation complete after 0s [id=r-rtb-0c6da6e8dbf43579a1080289494]
+module.vpc.aws_route.private_nat_gateway[1]: Creation complete after 0s [id=r-rtb-06587d388f003c9db1080289494]
+module.webservers.aws_alb.alb: Still creating... [2m0s elapsed]
+module.webservers.aws_alb.alb: Still creating... [2m10s elapsed]
+module.webservers.aws_alb.alb: Creation complete after 2m12s [id=arn:aws:elasticloadbalancing:ap-southeast-2:969496245957:loadbalancer/app/c04-iac04-alb/15caa2267d418c73]
+module.webservers.aws_alb_listener.alb_listener: Creating...
+module.webservers.aws_alb_listener.alb_listener: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:969496245957:listener/app/c04-iac04-alb/15caa2267d418c73/42239053f9182cf4]
+
+Apply complete! Resources: 32 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+alb_dns_name = "c04-iac04-alb-1814628376.ap-southeast-2.elb.amazonaws.com"
+alb_sg_id = "sg-051e675555be3188c"
+asg_desired_capacity = 2
+asg_max_size = 3
+asg_min_size = 1
+asg_name = "c04-iac04-asg"
+ec2_key_pair = "c04-iac04"
+igw_id = "igw-095b43542da22720d"
+private_instance_sg_id = "sg-0c1cb43ee1ec6359c"
+private_route_table_ids = [
+  "rtb-0c6da6e8dbf43579a",
+  "rtb-06587d388f003c9db",
+]
+private_subnets = [
+  "subnet-05ea644a979f11045",
+  "subnet-05045e0e1cdef84c9",
+]
+private_subnets_cidr_blocks = [
+  "10.0.1.0/24",
+  "10.0.2.0/24",
+]
+public_route_table_ids = [
+  "rtb-0cd9a3e238e1030ee",
+]
+public_subnets = [
+  "subnet-07d35b40d4bb90278",
+  "subnet-040336324da5a203f",
+]
+public_subnets_cidr_blocks = [
+  "10.0.101.0/24",
+  "10.0.102.0/24",
+]
+vpc_cidr = "10.0.0.0/16"
+vpc_enable_dns_support = true
+vpc_id = "vpc-0452dc344000be3d9"
+vpc_name = "c04-iac04"
+vpc_tenancy = "default"
