@@ -1,0 +1,74 @@
+aws iam create-user --user-name marshalldaniel-user_readonly_S3
+
+{
+    "User": {
+        "Path": "/",
+        "UserName": "marshalldaniel-user_readonly_S3",
+        "UserId": "AIDASHFUBKMHTXIUSYD4J",
+        "Arn": "arn:aws:iam::152848913167:user/marshalldaniel-user_readonly_S3",
+        "CreateDate": "2022-02-18T03:03:39+00:00"
+    }
+}
+
+touch marshalldaniel-S3readOnly.json
+vi marshalldaniel-S3readOnly.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+aws iam create-policy --policy-name marshalldaniel-S3readOnly --policy-document file://marshalldaniel-S3readOnly.json
+
+{
+    "Policy": {
+        "PolicyName": "marshalldaniel-S3readOnly",
+        "PolicyId": "ANPASHFUBKMH4LTQF6QHJ",
+        "Arn": "arn:aws:iam::152848913167:policy/marshalldaniel-S3readOnly",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "CreateDate": "2022-02-18T03:13:18+00:00",
+        "UpdateDate": "2022-02-18T03:13:18+00:00"
+    }
+}
+
+aws iam attach-user-policy --policy-arn arn:aws:iam::152848913167:policy/marshalldaniel-S3readOnly --user-name marshalldaniel-user_readonly_S3
+
+aws iam create-access-key --user-name marshalldaniel-user_readonly_S3
+
+{
+    "AccessKey": {
+        "UserName": "marshalldaniel-user_readonly_S3",
+        "AccessKeyId": "<REMOVED>",
+        "Status": "Active",
+        "SecretAccessKey": "<REMOVED>",
+        "CreateDate": "2022-02-18T03:15:05+00:00"
+    }
+}
+
+aws configure --profile s3ReadOnlyProfile
+AWS Access Key ID [None]: <REMOVED>
+AWS Secret Access Key [None]: <REMOVED>
+Default region name [None]: ap-southeast-1
+Default output format [None]: 
+
+aws s3 ls --profile s3ReadOnlyProfile
+
+2022-02-12 00:00:13 aws-athena-query-results-ap-southeast-2-152848913167
+2022-01-25 14:03:41 aws-devops-cemma
+2021-07-12 16:46:29 aws-sam-cli-managed-default-samclisourcebucket-1bfrscu67yinq
+2022-02-17 09:26:09 ccr-dojo-s3-bucket
+2022-02-16 12:33:25 cf-templates-40iodsbhcibe-ap-southeast-2
+2020-11-10 09:37:39 cf-templates-40iodsbhcibe-eu-west-1
+...
