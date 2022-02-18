@@ -1,0 +1,34 @@
+on:
+  pull_request:
+    paths:
+      - 'marshalldaniel/*'
+
+jobs:
+  comment_pr:
+    runs-on: ubuntu-latest
+    name: 3m to build, push and comment pr
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: login docker hub
+        env:
+          MARSHALLDANIEL_DH_TOKEN: ${{ secrets.MARSHALLDANIEL_DH_TOKEN }}
+          MARSHALLDANIEL_DH_NAME: ${{ secrets.MARSHALLDANIEL_DH_NAME }}
+        working-directory: marshalldaniel/c05-actions02/
+        run: make login_dockerhub
+
+      - name: build docker image
+        working-directory: marshalldaniel/c05-actions02/
+        run: make build_image
+
+      - name: push docker image
+        id: push_image_id
+        working-directory: marshalldaniel/c05-actions02/
+        run: make push_image
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: 'Image name ${{ env.FULLIMAGEID }} has been pushed to dockerhub'
+          GITHUB_TOKEN: ${{ secrets.MARSHALLDANIEL_GHKEY }}
