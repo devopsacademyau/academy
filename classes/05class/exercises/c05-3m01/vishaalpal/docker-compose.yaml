@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  cli-container:
+    platform: linux/x86_64
+    build: .
+    volumes:
+      - type: bind
+        source: .
+        target: /mnt
+    working_dir: /mnt
+    env_file:
+      - .env
