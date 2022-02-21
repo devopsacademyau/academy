@@ -1,0 +1,34 @@
+on:
+  pull_request:
+    paths:
+      - 'vishaalpal/c05-actions02/*'
+
+jobs:
+  comment_pr:
+    runs-on: ubuntu-latest
+    name: 3m to build, push and comment pr
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: login docker hub
+        env:
+          VISHAALPAL_DH_TOKEN: ${{ secrets.VISHAALPAL_DH_TOKEN }}
+          VISHAALPAL_DH_USERNAME: ${{ secrets.VISHAALPAL_DH_USERNAME }}
+        working-directory: vishaalpal/c05-actions02/
+        run: make login_dockerhub
+
+      - name: build docker image
+        working-directory: vishaalpal/c05-actions02/
+        run: make build_image
+
+      - name: push docker image
+        id: push_image_id
+        working-directory: vishaalpal/c05-actions02/
+        run: make push_image
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: 'Image name ${{ env.FULLIMAGEID }} has been pushed to dockerhub.'
+          GITHUB_TOKEN: ${{ secrets.VISHAALPAL_GH_PAT }}
