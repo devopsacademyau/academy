@@ -62,7 +62,7 @@ resource "aws_cloudwatch_metric_alarm" "highalarm" {
   namespace = "AWS/EC2"
   period = "120"
   statistic = "Average"
-  threshold = var.low_cpu_threshold
+  threshold = var.high_cpu_threshold
   dimensions = {
   "AutoScalingGroupName" = aws_autoscaling_group.web.name
   }
@@ -89,7 +89,7 @@ resource "aws_cloudwatch_metric_alarm" "lowalarm" {
   namespace = "AWS/EC2"
   period = "120"
   statistic = "Average"
-  threshold = var.high_cpu_threshold
+  threshold = var.low_cpu_threshold
   dimensions = {
   "AutoScalingGroupName" = aws_autoscaling_group.web.name
   }
