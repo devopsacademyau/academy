@@ -1,6 +1,7 @@
 # C01-AWS01
 
 ## Commands Execution Output
+```
 conor.chisholm-ray@contino.io@Conors-MacBook-Pro contin-dev % aws ec2 create-security-group \
     --group-name ccr-devopsacademy-ec2-101-sg \
     --description "CCR devops academy security group" \
@@ -8,6 +9,8 @@ conor.chisholm-ray@contino.io@Conors-MacBook-Pro contin-dev % aws ec2 create-sec
 {
     "GroupId": "sg-079abae329612febd"
 }
+```
+```
 conor.chisholm-ray@contino.io@Conors-MacBook-Pro contin-dev % aws ec2 authorize-security-group-ingress \
     --group-id sg-079abae329612febd\
     --protocol tcp \
@@ -28,6 +31,8 @@ conor.chisholm-ray@contino.io@Conors-MacBook-Pro contin-dev % aws ec2 authorize-
         }
     ]
 }
+```
+```
 conor.chisholm-ray@contino.io@Conors-MacBook-Pro contin-dev % aws ec2 run-instances \
     --image-id ami-042c4533fa25c105a \
     --instance-type t2.micro \
@@ -149,6 +154,8 @@ conor.chisholm-ray@contino.io@Conors-MacBook-Pro contin-dev % aws ec2 run-instan
     "OwnerId": "152848913167",
     "ReservationId": "r-018089b9c9db75567"
 }
+```
+```
 conor.chisholm-ray@contino.io@Conors-MacBook-Pro contin-dev % aws ec2 describe-instances --instance-ids i-02c167cc949ded115
 {
     "Reservations": [
@@ -291,6 +298,7 @@ conor.chisholm-ray@contino.io@Conors-MacBook-Pro contin-dev % aws ec2 describe-i
         }
     ]
 }
+```
 
 - ### Commands to create the first EC2 instance and any additional resource required:
 
