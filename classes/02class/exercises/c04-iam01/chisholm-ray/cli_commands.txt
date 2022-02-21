@@ -1,0 +1,48 @@
+aws iam create-user --user-name ccr-dojo-iam01
+
+{
+    "User": {
+        "Path": "/",
+        "UserName": "ccr-dojo-iam01",
+        "UserId": "AIDASHFUBKMH2SI6MQMZ5",
+        "Arn": "arn:aws:iam::152848913167:user/ccr-dojo-iam01",
+        "CreateDate": "2022-02-21T21:38:26+00:00"
+    }
+}
+
+aws iam create-policy --policy-name ccr-dojo-iam01-policy --policy-document file://s3policy.json
+
+{
+    "Policy": {
+        "PolicyName": "ccr-dojo-iam01-policy",
+        "PolicyId": "ANPASHFUBKMHYXAWRB3N6",
+        "Arn": "arn:aws:iam::152848913167:policy/ccr-dojo-iam01-policy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "CreateDate": "2022-02-21T21:41:00+00:00",
+        "UpdateDate": "2022-02-21T21:41:00+00:00"
+    }
+}
+
+aws iam attach-user-policy --policy-arn arn:aws:iam::152848913167:policy/ccr-dojo-iam01-policy --user-name ccr-dojo-iam01
+
+No output
+
+aws iam create-access-key --user-name ccr-dojo-iam01
+
+{
+    "AccessKey": {
+        "UserName": "ccr-dojo-iam01",
+        "AccessKeyId": "AKIASHFUBKMHRX7J46WE",
+        "Status": "Active",
+        "SecretAccessKey": "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",
+        "CreateDate": "2022-02-21T21:43:00+00:00"
+    }
+}
+
+aws s3 ls --profile S3ReadOnlyProfile
+
+Output full list of s3 buckets in account (not included for security reasons)
