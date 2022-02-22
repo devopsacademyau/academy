@@ -1,0 +1,577 @@
+$ terraform apply -var-file=main.tfvars                  ok | 07:13:53 pm
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.alb.aws_autoscaling_group.web will be created
+  + resource "aws_autoscaling_group" "web" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = 1
+      + force_delete              = false
+      + force_delete_warm_pool    = false
+      + health_check_grace_period = 1500
+      + health_check_type         = "ELB"
+      + id                        = (known after apply)
+      + launch_configuration      = (known after apply)
+      + max_size                  = 2
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = "c04-iac04-asg"
+      + name_prefix               = (known after apply)
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + target_group_arns         = (known after apply)
+      + vpc_zone_identifier       = (known after apply)
+      + wait_for_capacity_timeout = "10m"
+    }
+
+  # module.alb.aws_autoscaling_policy.scaledown will be created
+  + resource "aws_autoscaling_policy" "scaledown" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "c04-iac04-asg"
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "low-cpu-policy"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.alb.aws_autoscaling_policy.scaleup will be created
+  + resource "aws_autoscaling_policy" "scaleup" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "c04-iac04-asg"
+      + cooldown                = 300
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "high-cpu-policy"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 1
+    }
+
+  # module.alb.aws_cloudwatch_metric_alarm.highalarm will be created
+  + resource "aws_cloudwatch_metric_alarm" "highalarm" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "high-cpu-alarm"
+      + alarm_name                            = "high_cpu_alarm"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "c04-iac04-asg"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + tags_all                              = (known after apply)
+      + threshold                             = 70
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.alb.aws_cloudwatch_metric_alarm.lowalarm will be created
+  + resource "aws_cloudwatch_metric_alarm" "lowalarm" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "low-cpu-alarm"
+      + alarm_name                            = "low-cpu-alarm"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "c04-iac04-asg"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + tags_all                              = (known after apply)
+      + threshold                             = 10
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.alb.aws_internet_gateway.gw1 will be created
+  + resource "aws_internet_gateway" "gw1" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "c04-iac04"
+        }
+      + tags_all = {
+          + "Name" = "c04-iac04"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # module.alb.aws_launch_configuration.web will be created
+  + resource "aws_launch_configuration" "web" {
+      + arn                         = (known after apply)
+      + associate_public_ip_address = true
+      + ebs_optimized               = (known after apply)
+      + enable_monitoring           = true
+      + id                          = (known after apply)
+      + image_id                    = "ami-0b7dcd6e6fd797935"
+      + instance_type               = "t2.micro"
+      + key_name                    = "ContinoDojo"
+      + name                        = (known after apply)
+      + name_prefix                 = "web-"
+      + security_groups             = (known after apply)
+      + user_data                   = "fb3d45a4d3141f3fd28af9c8c16c41a404a409f0"
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + no_device             = (known after apply)
+          + snapshot_id           = (known after apply)
+          + throughput            = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.alb.aws_lb.alb1 will be created
+  + resource "aws_lb" "alb1" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + desync_mitigation_mode     = "defensive"
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + enable_waf_fail_open       = false
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "c04-iac04-sam"
+      + security_groups            = (known after apply)
+      + subnets                    = (known after apply)
+      + tags_all                   = (known after apply)
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id        = (known after apply)
+          + ipv6_address         = (known after apply)
+          + outpost_id           = (known after apply)
+          + private_ipv4_address = (known after apply)
+          + subnet_id            = (known after apply)
+        }
+    }
+
+  # module.alb.aws_lb_listener.front_end will be created
+  + resource "aws_lb_listener" "front_end" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+      + tags_all          = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.alb.aws_lb_target_group.tg will be created
+  + resource "aws_lb_target_group" "tg" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + connection_termination             = false
+      + deregistration_delay               = "300"
+      + id                                 = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = "TargetGroup"
+      + port                               = 80
+      + preserve_client_ip                 = (known after apply)
+      + protocol                           = "HTTP"
+      + protocol_version                   = (known after apply)
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + tags_all                           = (known after apply)
+      + target_type                        = "instance"
+      + vpc_id                             = (known after apply)
+
+      + health_check {
+          + enabled             = (known after apply)
+          + healthy_threshold   = (known after apply)
+          + interval            = (known after apply)
+          + matcher             = (known after apply)
+          + path                = (known after apply)
+          + port                = (known after apply)
+          + protocol            = (known after apply)
+          + timeout             = (known after apply)
+          + unhealthy_threshold = (known after apply)
+        }
+
+      + stickiness {
+          + cookie_duration = (known after apply)
+          + cookie_name     = (known after apply)
+          + enabled         = (known after apply)
+          + type            = (known after apply)
+        }
+    }
+
+  # module.alb.aws_route_table.rt1 will be created
+  + resource "aws_route_table" "rt1" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + carrier_gateway_id         = ""
+              + cidr_block                 = "0.0.0.0/0"
+              + destination_prefix_list_id = ""
+              + egress_only_gateway_id     = ""
+              + gateway_id                 = (known after apply)
+              + instance_id                = ""
+              + ipv6_cidr_block            = ""
+              + local_gateway_id           = ""
+              + nat_gateway_id             = ""
+              + network_interface_id       = ""
+              + transit_gateway_id         = ""
+              + vpc_endpoint_id            = ""
+              + vpc_peering_connection_id  = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "c04-iac02"
+        }
+      + tags_all         = {
+          + "Name" = "c04-iac02"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.alb.aws_route_table_association.subnet1 will be created
+  + resource "aws_route_table_association" "subnet1" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.alb.aws_route_table_association.subnet2 will be created
+  + resource "aws_route_table_association" "subnet2" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.alb.aws_security_group.sg_lb will be created
+  + resource "aws_security_group" "sg_lb" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "c04-iac04-lb"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "c04-iac04"
+        }
+      + tags_all               = {
+          + "Name" = "c04-iac04"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.alb.aws_security_group.sg_web will be created
+  + resource "aws_security_group" "sg_web" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + name                   = "c04-iac04-web"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "c04-iac04"
+        }
+      + tags_all               = {
+          + "Name" = "c04-iac04"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.alb.aws_subnet.subnet1 will be created
+  + resource "aws_subnet" "subnet1" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-southeast-2a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.0.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Name" = "c04-iac04_subnet1"
+        }
+      + tags_all                                       = {
+          + "Name" = "c04-iac04_subnet1"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.alb.aws_subnet.subnet2 will be created
+  + resource "aws_subnet" "subnet2" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-southeast-2b"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.1.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Name" = "c04-iac04_subnet2"
+        }
+      + tags_all                                       = {
+          + "Name" = "c04-iac04_subnet2"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.alb.aws_vpc.main will be created
+  + resource "aws_vpc" "main" {
+      + arn                                  = (known after apply)
+      + cidr_block                           = "10.0.0.0/16"
+      + default_network_acl_id               = (known after apply)
+      + default_route_table_id               = (known after apply)
+      + default_security_group_id            = (known after apply)
+      + dhcp_options_id                      = (known after apply)
+      + enable_classiclink                   = (known after apply)
+      + enable_classiclink_dns_support       = (known after apply)
+      + enable_dns_hostnames                 = (known after apply)
+      + enable_dns_support                   = true
+      + id                                   = (known after apply)
+      + instance_tenancy                     = "default"
+      + ipv6_association_id                  = (known after apply)
+      + ipv6_cidr_block                      = (known after apply)
+      + ipv6_cidr_block_network_border_group = (known after apply)
+      + main_route_table_id                  = (known after apply)
+      + owner_id                             = (known after apply)
+      + tags                                 = {
+          + "Name" = "c04-iac04"
+        }
+      + tags_all                             = {
+          + "Name" = "c04-iac04"
+        }
+    }
+
+Plan: 18 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + alb_fqdn = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.alb.aws_vpc.main: Creating...
+module.alb.aws_vpc.main: Still creating... [10s elapsed]
+module.alb.aws_vpc.main: Still creating... [20s elapsed]
+module.alb.aws_vpc.main: Still creating... [30s elapsed]
+module.alb.aws_vpc.main: Still creating... [40s elapsed]
+module.alb.aws_vpc.main: Still creating... [50s elapsed]
+module.alb.aws_vpc.main: Still creating... [1m0s elapsed]
+module.alb.aws_vpc.main: Creation complete after 1m4s [id=vpc-09d9a1d5964ba6489]
+module.alb.aws_internet_gateway.gw1: Creating...
+module.alb.aws_lb_target_group.tg: Creating...
+module.alb.aws_subnet.subnet1: Creating...
+module.alb.aws_subnet.subnet2: Creating...
+module.alb.aws_security_group.sg_web: Creating...
+module.alb.aws_security_group.sg_lb: Creating...
+module.alb.aws_internet_gateway.gw1: Still creating... [10s elapsed]
+module.alb.aws_lb_target_group.tg: Still creating... [10s elapsed]
+module.alb.aws_subnet.subnet1: Still creating... [10s elapsed]
+module.alb.aws_subnet.subnet2: Still creating... [10s elapsed]
+module.alb.aws_security_group.sg_lb: Still creating... [10s elapsed]
+module.alb.aws_security_group.sg_web: Still creating... [10s elapsed]
+module.alb.aws_subnet.subnet2: Creation complete after 16s [id=subnet-03a1af2f427ebd771]
+module.alb.aws_subnet.subnet1: Creation complete after 16s [id=subnet-01a28d4ab40382b04]
+module.alb.aws_internet_gateway.gw1: Still creating... [20s elapsed]
+module.alb.aws_security_group.sg_web: Still creating... [20s elapsed]
+module.alb.aws_lb_target_group.tg: Still creating... [20s elapsed]
+module.alb.aws_security_group.sg_lb: Still creating... [20s elapsed]
+module.alb.aws_internet_gateway.gw1: Creation complete after 21s [id=igw-0c0371f8626ef98e6]
+module.alb.aws_route_table.rt1: Creating...
+module.alb.aws_lb_target_group.tg: Still creating... [30s elapsed]
+module.alb.aws_security_group.sg_lb: Still creating... [30s elapsed]
+module.alb.aws_security_group.sg_web: Still creating... [30s elapsed]
+module.alb.aws_route_table.rt1: Still creating... [10s elapsed]
+module.alb.aws_lb_target_group.tg: Creation complete after 32s [id=arn:aws:elasticloadbalancing:ap-southeast-2:639247960747:targetgroup/TargetGroup/48775509c8c5f00b]
+module.alb.aws_security_group.sg_web: Still creating... [40s elapsed]
+module.alb.aws_security_group.sg_lb: Still creating... [40s elapsed]
+module.alb.aws_route_table.rt1: Still creating... [20s elapsed]
+module.alb.aws_security_group.sg_lb: Still creating... [50s elapsed]
+module.alb.aws_security_group.sg_web: Still creating... [50s elapsed]
+module.alb.aws_route_table.rt1: Still creating... [30s elapsed]
+module.alb.aws_route_table.rt1: Creation complete after 32s [id=rtb-0026d99096a38596a]
+module.alb.aws_route_table_association.subnet2: Creating...
+module.alb.aws_route_table_association.subnet1: Creating...
+module.alb.aws_security_group.sg_lb: Creation complete after 53s [id=sg-0aa101830e17805c6]
+module.alb.aws_security_group.sg_web: Creation complete after 53s [id=sg-02f0592ecfa11d063]
+module.alb.aws_launch_configuration.web: Creating...
+module.alb.aws_lb.alb1: Creating...
+module.alb.aws_route_table_association.subnet1: Still creating... [10s elapsed]
+module.alb.aws_route_table_association.subnet2: Still creating... [10s elapsed]
+module.alb.aws_launch_configuration.web: Still creating... [10s elapsed]
+module.alb.aws_lb.alb1: Still creating... [10s elapsed]
+module.alb.aws_route_table_association.subnet1: Creation complete after 16s [id=rtbassoc-0fbcfc9e1a227a10d]
+module.alb.aws_route_table_association.subnet2: Creation complete after 16s [id=rtbassoc-01690f6484cec1e00]
+module.alb.aws_launch_configuration.web: Creation complete after 16s [id=web-20220213081712275500000001]
+module.alb.aws_autoscaling_group.web: Creating...
+module.alb.aws_lb.alb1: Still creating... [20s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [10s elapsed]
+module.alb.aws_lb.alb1: Still creating... [30s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [20s elapsed]
+module.alb.aws_lb.alb1: Still creating... [40s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [30s elapsed]
+module.alb.aws_lb.alb1: Still creating... [50s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [40s elapsed]
+module.alb.aws_lb.alb1: Still creating... [1m0s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [50s elapsed]
+module.alb.aws_lb.alb1: Still creating... [1m10s elapsed]
+module.alb.aws_autoscaling_group.web: Creation complete after 55s [id=c04-iac04-asg]
+module.alb.aws_autoscaling_policy.scaledown: Creating...
+module.alb.aws_autoscaling_policy.scaleup: Creating...
+module.alb.aws_lb.alb1: Still creating... [1m20s elapsed]
+module.alb.aws_autoscaling_policy.scaleup: Still creating... [10s elapsed]
+module.alb.aws_autoscaling_policy.scaledown: Still creating... [10s elapsed]
+module.alb.aws_autoscaling_policy.scaleup: Creation complete after 10s [id=high-cpu-policy]
+module.alb.aws_autoscaling_policy.scaledown: Creation complete after 10s [id=low-cpu-policy]
+module.alb.aws_cloudwatch_metric_alarm.highalarm: Creating...
+module.alb.aws_cloudwatch_metric_alarm.lowalarm: Creating...
+module.alb.aws_lb.alb1: Still creating... [1m30s elapsed]
+module.alb.aws_cloudwatch_metric_alarm.lowalarm: Still creating... [10s elapsed]
+module.alb.aws_cloudwatch_metric_alarm.highalarm: Still creating... [10s elapsed]
+module.alb.aws_cloudwatch_metric_alarm.highalarm: Creation complete after 16s [id=high_cpu_alarm]
+module.alb.aws_cloudwatch_metric_alarm.lowalarm: Creation complete after 16s [id=low-cpu-alarm]
+module.alb.aws_lb.alb1: Still creating... [1m40s elapsed]
+module.alb.aws_lb.alb1: Still creating... [1m50s elapsed]
+module.alb.aws_lb.alb1: Still creating... [2m0s elapsed]
+module.alb.aws_lb.alb1: Still creating... [2m10s elapsed]
+module.alb.aws_lb.alb1: Still creating... [2m20s elapsed]
+module.alb.aws_lb.alb1: Still creating... [2m30s elapsed]
+module.alb.aws_lb.alb1: Still creating... [2m40s elapsed]
+module.alb.aws_lb.alb1: Still creating... [2m50s elapsed]
+module.alb.aws_lb.alb1: Creation complete after 2m53s [id=arn:aws:elasticloadbalancing:ap-southeast-2:639247960747:loadbalancer/app/c04-iac04-sam/67c32104f76c376c]
+module.alb.aws_lb_listener.front_end: Creating...
+module.alb.aws_lb_listener.front_end: Still creating... [10s elapsed]
+module.alb.aws_lb_listener.front_end: Creation complete after 16s [id=arn:aws:elasticloadbalancing:ap-southeast-2:639247960747:listener/app/c04-iac04-sam/67c32104f76c376c/4ec60483f548e31a]
+
+Apply complete! Resources: 18 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+alb_fqdn = "c04-iac04-sam-1490421276.ap-southeast-2.elb.amazonaws.com"
+ ~/De/academy/c/04/ex/c04-iac04/b/terraform-code | beardedsamwise/c04-iac04 wip !6 ?3                                                ok | 6m 21s | 07:20:20 pm
