@@ -33,12 +33,12 @@ wks_name = "Dashboard"
 
 gc = gspread.service_account()
 wks = sheet.worksheet(wks_name)
-c01_comp = float(wks.get('R3').first()[:-1])
-c02_comp = float(wks.get('R8').first()[:-1])
-c03_comp = float(wks.get('R20').first()[:-1])
-c04_comp = float(wks.get('R31').first()[:-1])
-c05_comp = float(wks.get('R38').first()[:-1])
-c06_comp = float(wks.get('R41').first()[:-1])
+c01_comp = float(wks.get('M3').first()[:-1])
+c02_comp = float(wks.get('M8').first()[:-1])
+c03_comp = float(wks.get('M20').first()[:-1])
+c04_comp = float(wks.get('M31').first()[:-1])
+c05_comp = float(wks.get('M38').first()[:-1])
+c06_comp = float(wks.get('M41').first()[:-1])
 c07_comp = 0
 
 wks_name = "ProgressionData"
