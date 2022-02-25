@@ -1,0 +1,84 @@
+# Create an IAM user
+Command:
+aws iam create-user \
+    --user-name user_readonly_S3
+
+Output:
+{
+    "User": {
+        "Path": "/",
+        "UserName": "user_readonly_S3",
+        "UserId": "AIDA6DOT2W3CSUSR35I6Q",
+        "Arn": "arn:aws:iam::969496245957:user/user_readonly_S3",
+        "CreateDate": "2022-02-25T05:17:14+00:00"
+    }
+}
+
+# Create a new IAM policy 
+Command:
+aws iam create-policy \
+    --policy-name S3readOnly \
+    --policy-document file://S3readOnly.json
+
+Output:
+{
+    "Policy": {
+        "PolicyName": "S3readOnly",
+        "PolicyId": "ANPA6DOT2W3CZQXIA5VCH",
+        "Arn": "arn:aws:iam::969496245957:policy/S3readOnly",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "CreateDate": "2022-02-25T05:17:58+00:00",
+        "UpdateDate": "2022-02-25T05:17:58+00:00"
+    }
+}
+
+# Attach the IAM policy to an IAM user
+Command:
+aws iam attach-user-policy \
+    --policy-arn arn:aws:iam::969496245957:policy/S3readOnly \
+    --user-name user_readonly_S3
+
+Output:
+➜  vishaalpal git:(vishaalpal/c04-iam01) ✗ aws iam attach-user-policy \
+    --policy-arn arn:aws:iam::969496245957:policy/S3readOnly \
+    --user-name user_readonly_S3
+➜  vishaalpal git:(vishaalpal/c04-iam01) ✗ 
+
+# Create new credentials for this IAM user 
+Command:
+aws iam create-access-key \
+    --user-name user_readonly_S3
+
+Output:
+{
+    "AccessKey": {
+        "UserName": "user_readonly_S3",
+        "AccessKeyId": "<redacted>",
+        "Status": "Active",
+        "SecretAccessKey": "<redacted>",
+        "CreateDate": "2022-02-25T05:19:52+00:00"
+    }
+}
+
+# Configure a new AWS CLI profile called s3ReadOnlyProfile
+Command:
+aws configure --profile s3ReadOnlyProfile
+
+Output:
+AWS Access Key ID [None]: <redacted>
+AWS Secret Access Key [None]: <redacted>            
+Default region name [None]: ap-southeast-2
+Default output format [None]:  
+
+# Check the new users permissions to S3 
+Command:
+aws s3 ls --profile s3ReadOnlyProfile
+
+Output:
+2021-11-01 09:03:56 cf-templates-9yu3f32cbjc3-ap-southeast-2
+2022-02-23 13:55:22 vishaal-c01-aws02
+...
