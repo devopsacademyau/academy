@@ -9,7 +9,7 @@
 - [output.md](output.md)
 
 ## Command Execution Output
-
+```
 conor.chisholm-ray@contino.io@Conors-MacBook-Pro chisholm-ray % make create_bucket
 docker-compose run --rm 3m-awscli make _create_bucket
 [+] Running 1/0
@@ -47,7 +47,7 @@ docker-compose down --remove-orphans --rmi all
 [+] Running 2/0
  ⠿ Image chisholm-ray_3m-awscli  Removed                                                                                                                 0.0s
  ⠿ Network chisholm-ray_default  Removed                            
-
+```
  
 ***
 Answer for exercise [c05-3m01](<WIP>)
