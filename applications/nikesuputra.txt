@@ -1,0 +1,14 @@
+## uname
+MINGW64_NT-10.0-19044 Tigaron-Win10 3.1.7-340.x86_64 2021-10-12 16:29 UTC x86_64 Msys
+## git 
+git version 2.33.1.windows.1
+## docker 
+Docker version 20.10.14, build a224086
+## terraform 
+Terraform v1.1.9
+on windows_amd64
+
+Your version of Terraform is out of date! The latest version
+is 1.2.0. You can update by downloading from https://www.terraform.io/downloads.html
+## aws 
+aws-cli/2.7.1 Python/3.9.11 Windows/10 exe/AMD64 prompt/off
