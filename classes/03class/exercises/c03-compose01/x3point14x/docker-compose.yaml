@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: db
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD} 
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+
+  web:
+    container_name: web
+    build: ../../../compose/artifacts/c05-compose01/
+    volumes:
+      - ../../../compose/artifacts/c05-compose01/src/:/var/www/html/
+    ports: 
+      - "8100:80"
+    environment:
+      DB_HOST: db
+      DB: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+    depends_on:
+      - db 
+
+
+
+
