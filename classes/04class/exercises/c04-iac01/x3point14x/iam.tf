@@ -16,7 +16,6 @@ resource "aws_iam_role" "bcurrey_iac_1_s3_access_role" {
             {
                 Action = "sts:AssumeRole"
                 Effect = "Allow"
-                Sid = ""
                 Principal = {
                     Service = "ec2.amazonaws.com"
                 }
