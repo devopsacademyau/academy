@@ -5,4 +5,5 @@ resource "aws_instance" "bcurrey_iac_1_ec2" {
     vpc_security_group_ids = [aws_security_group.bcurrey_iac_1_ssh_sg.id]
     key_name = "bcurrey_devops_test" # Made manually
     iam_instance_profile = aws_iam_instance_profile.bcurrey_iac_1_s3_access_profile.name
+    subnet_id = "subnet-f9ef798f"
 }
