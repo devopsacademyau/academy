@@ -1,6 +1,0 @@
-#List all images on your local as well as it's output
-    $ sudo docker images
-	REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
-	fariamarcio/devops_academy   exercise02v02       cb55d7a4eee3        4 hours ago         109MB
-	fariamarcio/devops_academy   exercise02v1        bb6af7c05c15        4 hours ago         109MB
-

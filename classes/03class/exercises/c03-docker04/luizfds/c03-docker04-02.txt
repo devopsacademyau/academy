@@ -1,7 +1,0 @@
-➜  exercises git:(master) ✗ docker volume ls
-DRIVER              VOLUME NAME
-➜  exercises git:(master) ✗ docker container ls
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-➜  exercises git:(master) ✗ docker image ls
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-➜  exercises git:(master) ✗ 

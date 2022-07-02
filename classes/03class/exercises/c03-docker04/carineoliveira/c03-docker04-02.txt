@@ -1,9 +1,0 @@
-Class 03 - Exercise Docker 04
-
-LIST IMAGES
-    carineoliveira@Carines-MBP carineoliveira % docker images                            
-    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-
-LIST CONTAINER 
-    carineoliveira@Carines-MBP carineoliveira % docker container ls                      
-    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES

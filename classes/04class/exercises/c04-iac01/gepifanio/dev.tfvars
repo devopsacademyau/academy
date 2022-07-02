@@ -1,1 +1,0 @@
-key_pair_name   = "MyDevopsAcademyKey"

@@ -1,6 +1,0 @@
-To create an internet gateway called `devopsacademy-igw` and then attach it to my previously created VPC I followed these steps:
-    1. Open the Amazon VPC console at https://console.aws.amazon.com/vpc/.
-    2. In the navigation pane, choose Internet Gateways, and then choose Create internet gateway.
-    3. Optionally name your internet gateway (I named as `devopsacademy-igw`), and then choose Create.
-    4. Select the internet gateway that you just created, and then choose Actions, Attach to VPC.
-    5. Select your VPC from the list, and then choose Attach.

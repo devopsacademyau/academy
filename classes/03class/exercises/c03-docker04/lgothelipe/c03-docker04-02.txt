@@ -1,7 +1,0 @@
-Command and it's output showing that there is no image or container
-
-$ docker images
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-
-$ docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES

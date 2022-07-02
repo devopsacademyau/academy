@@ -1,3 +1,0 @@
-### Exercise 5.2 - Docker
-All commands ran as expected, after pulling the images first and then running the parameters with the ports.
-No issues observed

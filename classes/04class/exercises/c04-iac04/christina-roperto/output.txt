@@ -1,5 +1,0 @@
-$ curl lb-tf-1246095879.ap-southeast-2.elb.amazonaws.com
-ip-10-0-0-25.ap-southeast-2.compute.internal%
-
-$ curl lb-tf-1246095879.ap-southeast-2.elb.amazonaws.com
-ip-10-0-0-43.ap-southeast-2.compute.internal%

@@ -1,4 +1,0 @@
-Class 03 - Exercise Docker 05
-
-- A brief explanation of what happened when you executed the comands to run the containers
-    When the image is pulled from the Docker Hub it creates a copy of the image localy and with a build ready to run. 

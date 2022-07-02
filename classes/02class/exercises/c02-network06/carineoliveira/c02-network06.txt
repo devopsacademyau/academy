@@ -1,9 +1,0 @@
-Class 02 - Exercise Network 06
-
-Create a NAT Gateway called devopsacademy-ngw and attach it to one of your public subnets (any) with an Elastic IP.
-
-Post how did you accomplish that on AWS console.
-
-Under VPC, select NAT Gateways, press 'Create NAT Gateway', 
-Select 'public-a' subnet, press 'Allocate Elastic IP address' and press 'Create a NAT Gateway'.
-
