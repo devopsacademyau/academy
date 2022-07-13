@@ -1,2 +1,0 @@
-
-both commands were unable to find the image on local machine and you will need download from dockerhub repo and then exec them.

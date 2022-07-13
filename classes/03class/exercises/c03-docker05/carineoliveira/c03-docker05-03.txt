@@ -1,6 +1,0 @@
-Class 03 - Exercise Docker 05
-
-    carineoliveira@Carines-MBP carineoliveira % docker images
-    REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-    carineoliveira/c03-docker03   v1                  c03148a53d14        2 hours ago         107MB
-    carineoliveira/c03-docker03   v2                  12d8c48e5e4c        2 hours ago         107MB

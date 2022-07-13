@@ -1,6 +1,0 @@
-$ curl http://netizen8920200808.s3-website.ap-southeast-2.amazonaws.com
-<html>
-        <body>
-                Welcome to DevOps Academy! :)
-        </body>
-</html>

@@ -1,9 +1,0 @@
-
-From the AWS console:
-
-1. VPC console -> Navigation pane -> NAT Gateways -> Create NAT Gateway.
-2. Selected Subnet: “public-a” -> Elastic IP Allocation ID -> Allocate Elastic ID -> “Elastic IP address (13.210.105.79) allocated” -> Create a Nat Gateway. 
-Status available – NAT Gateway is up and running. 
-3. Edit Route Tables -> Route Subnet "rtb-0c03ff247957a3b0c" associated with my VPC -> Routes tab -> Edit -> Add route: 0.0.0.0/0 (default route) -> Target, selected NAT gateway nat-0fefc9e33701f28d1-> Save routes.
-4. Later edited the name to “devopsacademy – ngw”.
-5. Deleted NAT gateway. 

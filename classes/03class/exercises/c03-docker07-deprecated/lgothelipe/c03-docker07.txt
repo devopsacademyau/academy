@@ -1,6 +1,0 @@
-c03-docker07: Containing the execution of the curl command accessing the website and it's output.
-
-$ curl http://13.210.40.218
-60
-
-Image used: docker.io/kikobr82/da-example:latest

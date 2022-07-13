@@ -1,4 +1,0 @@
-➜  exercises git:(luizfds/c03-docker05) ✗ docker image ls
-REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
-luizfdsilva/exercise02   v1                  e579588b3354        49 minutes ago      109MB
-luizfdsilva/exercise02   v2                  31fecc9d3176        50 minutes ago      109MB

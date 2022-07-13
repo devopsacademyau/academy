@@ -1,8 +1,0 @@
-#Checking all the containers
-    $  sudo docker container ls
-	CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-
-#Checking all the containers
-    $  sudo docker images
-	REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-

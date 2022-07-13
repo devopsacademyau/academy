@@ -116,7 +116,6 @@ If you need instructions on how to fork a repository and how to create a PR from
     - Concepts
     - Docker images
     - Docker Compose
-    - 3Musketeers
 - CI/CD
     - What is CI
     - What is CD
@@ -166,7 +165,6 @@ The content can be accessed through each specific README link below.
     - IaC - Terraform
     - Project #1 Kick-off
 - [Class 05](classes/05class/README.md)
-    - 3 Musketeers
     - AWS S3 (Simple Storage Service)
     - AWS RDS (Relational Database Service)
     - CI/CD Concepts
@@ -195,26 +193,7 @@ The content can be accessed through each specific README link below.
 
 We highly recommend doing the exercises from this repository. However, you will first need to raise a Pull Request from a [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) to add yourself permission to push branches.
 
-- Create a new branch from `master`
-- Open the file [/scripts/tf/github.com/team-external-students.tf](/scripts/tf/github.com/team-external-students.tf)
-- Add your GitHub username on the `members` variable in an alphabetical order (that will help you avoid merge conflicts)
-
-i.e: username is `caiocezart`
-
-```
-members = [
-  "aaa",
-  "bbb",
-  "caiocezart",
-  "ccc"
-]
-```
-- Save, add and commit the change
-- Raise a Pull Request
-- Send a message on our [Slack workspace](https://join.slack.com/t/devopsacademyau/shared_invite/zt-ajsfpwsj-GcTGG6tpZp~MOZd2DM92QA) and one of us will review as soon as possible
-
-As soon as the pull request is approved, the automation will give you `Write` permission and you will be able to push branches to the repository.
-
+- Create a new branch from `master` with your username 
 
 ### For each class **exercise**:
 
@@ -280,71 +259,6 @@ git checkout -b "my_github_username/exercise2"
 ### Available labs
 
 - [Class 01: (AWS & GIT 101)](/classes/01class/exercises/README.md)
-
-
-## Projects
-
-More info to come..
-
-- [Project 01 - Application migration from on-prem to the cloud](projects/project01/README.md)
-- [Project 02 - Cloud native application architecture on AWS](projects/project02/README.md)
-
-Projects will be submitted in the respective project `submissions` folder via PRs.
-
-Example:
-`projects/project01/submissions/caiocezart/<my-files>`
-
-
-# Contributors and Instructors
-
-## Create a dashboard (CSV file) about  exercise submissions
-
-It will use the file `labs.txt`and `students.txt`from the `scripts/dashboard` folder.
-It runs through GitHub Actions, based on the cron definition of the [dashboard,yaml](.github/workflow/dahboard.yaml) and updates the spreadsheet with the latest information.
-
-It can also be executed manually with the following commands:
-
-```
-make dashboard \
-  GOOGLE_KEY=[GOOGLE_KEY] \
-  SHEET_KEY=[SHEET_KEY] \
-  WKS_NAME="Dashboard" \
-  GH_USER=[GH_USER] \
-  GH_TOKEN=[GH_TOKEN]
-```
-
-| VARIABLE | DESCRIPTION   |
-|----------|:-------------|
-| GOOGLE_KEY | Google Service Account key with permissions to the spreadhseet |
-| SHEET_KEY | The Sheet ID   |
-| WKS_NAME | The Worksheet Name |
-| GH_USER | GutHubs user with permission to query the repository |
-| GH_TOKEN | The token from the GitHub user above |
-
-## Presentation format
-
-* We are using plain `README.md` files with markdown or [GitPitch](https://gitpitch.com/docs/markdown-features/basics/) for slideshow presentations
-
-* Generate the presentation by running: 
-  * `make presentation`
-* Generate a README.md file from the PITCHME.md file:
-  * `make pitchme_to_readme`
-
-* For GitPitch, use PITCHME.md files and subfolders using query string "p=FOLDERNAME" with the class name
-* GitPitch can run either online (out-of-the-box for Github public repos):
-    * Online: access `https://gitpitch.com/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`. Folder must contain a PITCHME.md file.
-    * Offline: use a [Docker container](https://github.com/kns-it/Docker-GitPitch/), run `make presentation` and `open http://localhost:9000/${ORG_NAME}/${REPO_NAME}/${BRANCH_NAME}?p=${FOLDER_NAME}`
-    For running in a specific folder: `FOLDER_NAME=class2 make presentation`
-
-## Clean up Ready to Review tag from Closed PRs
-
-To clean up the `Read to Review` tags of the closed PRs, the below make target can be executed.
-
-Run:  `make rtr-cleanup`
-
-Optionally you can pass the Github User and Token, so the API calls are not throttled.
-
-Run:  `make rtr-cleanup GH_USER=<YOUR_USER> GH_TOKEN=<YOUR_TOKEN>`
 
 # Authors
 

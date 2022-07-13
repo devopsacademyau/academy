@@ -6,7 +6,6 @@
 - [RDS](/classes/05class/aws_s3_rds/README.md#aws-relational-database-service-rds)
 - [KMS](/classes/05class/kms/README.md)
 - [Cloudwatch](/classes/05class/cloudwatch/README.md)
-- [3 Musketeers](/classes/05class/3musketeers/README.md)
 - [CI/CD](/classes/05class/cicd/README.md)
   - [Github Actions](/classes/05class/gh-actions/README.md)
 

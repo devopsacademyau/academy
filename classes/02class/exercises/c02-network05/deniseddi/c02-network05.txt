@@ -1,7 +1,0 @@
-From the AWS console, 
-
-1. From Navigation pane -> Internet Gateways -> Create internet gateway
-2. Named it "devopsacademy-igw" -> Create
-3. Selected the created gateway -> Actions -> Attach to VPC
-4. Selected my VPC "devopsacademy-vpc" -> Attach 
-5. Done! State: attached. 

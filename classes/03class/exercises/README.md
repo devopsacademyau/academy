@@ -17,10 +17,6 @@ For instructions on how to submit your work, [please check the main repository R
 - [Running Again (c03-docker05)](/classes/03class/exercises/c03-docker05/README.md)
 - [From the Outside (c03-docker06)](/classes/03class/exercises/c03-docker06/README.md)
 
-## Make
-
-- [Basic Makefile](/classes/03class/exercises/c03-make01/README.md)
-
 ## Docker Compose 
 
 - [Basic Compose](/classes/03class/exercises/c03-compose01/README.md)

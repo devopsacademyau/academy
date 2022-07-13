@@ -1,5 +1,0 @@
-$ sudo docker images -a
-    REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
-    driicavalcanti/exercise02   v1                  8057ab9f269e        3 hours ago         109MB
-    driicavalcanti/exercise02   v2                  cb171b88ec92        2 months ago        109MB
-When you run an image in a container, Docker downloads the image to your computer. Docker only downloads the image again if the image’s source changes on the hub.

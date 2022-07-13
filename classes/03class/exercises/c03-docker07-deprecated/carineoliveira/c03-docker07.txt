@@ -1,5 +1,0 @@
-Class 03 - Exercise Docker 07
-
-- command accessing the website and it's output
-    carineoliveira@Carines-MBP carineoliveira % curl EC2Co-EcsEl-1J7J7I5MVTWKO-1424101530.ap-southeast-2.elb.amazonaws.com
-    6

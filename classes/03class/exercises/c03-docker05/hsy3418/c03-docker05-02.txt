@@ -1,3 +1,0 @@
-pulling the image from the dockerhub.
-Docker first check if the image exists locally, since they are not in the local,
-Docker pulled the images from the DockerHub under my personal account.

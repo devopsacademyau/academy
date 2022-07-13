@@ -1,7 +1,0 @@
-Name	    Subnet ID	                                    State	        IPv4 Addresses	Availability Zone	 Route table
-private-a	vpc-05b563ad72951b5ca | devopsacademy-vpc		10.0.0.0/24	    251	            ap-southeast-2a	     rtb-0eb05e1f99f327b29 | devopsacademy-rt-private
-private-b	vpc-05b563ad72951b5ca | devopsacademy-vpc		10.0.10.0/24	251	            ap-southeast-2b	     rtb-0eb05e1f99f327b29 | devopsacademy-rt-private
-private-c	vpc-05b563ad72951b5ca | devopsacademy-vpc		10.0.2.0/24	    251	            ap-southeast-2c	     rtb-0eb05e1f99f327b29 | devopsacademy-rt-private
-public-a	vpc-05b563ad72951b5ca | devopsacademy-vpc		10.0.1.0/24	    251	            ap-southeast-2a	     rtb-0e207eae762680d7c | devopsacademy-rt-public
-public-b	vpc-05b563ad72951b5ca | devopsacademy-vpc		10.0.11.0/24	251	            ap-southeast-2b	     rtb-0e207eae762680d7c | devopsacademy-rt-public
-public-c	vpc-05b563ad72951b5ca | devopsacademy-vpc		10.0.12.0/24	251	            ap-southeast-2c	     rtb-0e207eae762680d7c | devopsacademy-rt-public

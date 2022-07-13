@@ -1,9 +1,0 @@
-2. Commands and it's output showing there is no image or container on your local
-
-denisegomes$ docker images
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-denisegomes$
-
-denisegomes$ docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-denisegomes$

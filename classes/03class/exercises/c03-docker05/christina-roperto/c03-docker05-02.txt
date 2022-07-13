@@ -1,2 +1,0 @@
-A brief explanation of what happened when you executed the comands to run the containers
-- firstly docker will check if the image exists, if it doesn't exist it's going to pull from DockerHub

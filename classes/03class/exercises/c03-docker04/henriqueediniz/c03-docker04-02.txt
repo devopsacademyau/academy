@@ -1,5 +1,0 @@
-$ docker images
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-
-$ docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS   

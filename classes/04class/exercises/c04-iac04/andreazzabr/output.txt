@@ -1,5 +1,0 @@
-anderson@andreazza:~/terras/c04-iac04/terraform-code$ curl c04-iac04-lb-2054418358.ap-southeast-2.elb.amazonaws.com
-ec2-13-55-87-12.ap-southeast-2.compute.amazonaws.com
-
-anderson@andreazza:~/terras/c04-iac04/terraform-code$ curl c04-iac04-lb-2054418358.ap-southeast-2.elb.amazonaws.com
-ec2-13-211-108-203.ap-southeast-2.compute.amazonaws.com

@@ -1,3 +1,0 @@
-aws-cli/1.14.44 Python/3.6.9 Linux/5.3.0-28-generic botocore/1.8.48
-Docker version 18.09.7, build 2d0083d
-Terraform v0.12.20

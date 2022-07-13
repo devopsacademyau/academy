@@ -1,6 +1,5 @@
 # Getting ready to start
 
-- [Join Slack](#join-slack)
 - [GitHub Account](#github-account-and-ssh-key-added)
   - [Challenge01](#challenge-01)
 - [Amazon AWS account](#amazon-aws-account)
@@ -14,13 +13,6 @@
 - [Docker command-line tool](#docker-command-line-tool)
 
 
-## join slack
-
-Slack will be used as the main real-time communication tool. While all the feedback of your work will be available through GitHub, chatting with the community and getting quick tips will be done via slack.
- 
-- Join clicking on the link below:
- 
-https://join.slack.com/t/devopsacademyau/shared_invite/enQtODI2NzE5OTYxNDExLTE5YzRjNjFiYWI2OTY2OWY4YzM5OTc3NjBjY2Y3NjQwYzM5MzJjZDUwNWQ4MGQ4ODEwNDUzNjlkZDhkYjEyZDY
  
 ## GitHub account and SSH key added
 
@@ -87,4 +79,4 @@ Terraform cli also uses AWS API to create/edit/delete resources based on code. T
 
 Docker solves long known issues like "works on my machine!" packaging the application code and all its requirements in an image. It is very similar to virtual machines without the need to use a full Operating System for each instance of the application. You will learn Docker more in-depth during the course.
  
-- Install Docker cli: https://docs.docker.com/install/
+- Install Docker cli: https://docs.docker.com/install/ (alt Rancher Desktop)

@@ -1,7 +1,0 @@
-How to create a Internet Gateway on AWS
-
-1. Log on to the AWS account
-2. Go to VPC
-3. Under Internet Gateways click on "Create internet gateway"
-4. After create, select the IGW and click on "Actions" -> Attach to VPC
-5. Select the VPC and click OK
