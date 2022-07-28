@@ -23,5 +23,5 @@ module "team-external-students" {
     "ravisenevirathne",
     "tgray89",
     "tkav"
-  ]
+  ] "mary024"
 }
