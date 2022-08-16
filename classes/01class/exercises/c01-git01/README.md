@@ -1,15 +1,38 @@
-## Merging and Rebasing (c01-git01)
+# c01-git01
 
-1. Access https://learngitbranching.js.org/ (**TIP**: if you want to start over, just type `reset`. To dismiss tutorial screens, type `Esc`)
-2. Merging exercise:
-   1. type `level intro3`
-3. Rebasing exercise:
-   1. type `level intro4`
-4. Revert and reset:
-   1. type `level rampup4`
+## Commands executed
 
-## Submit a PR with the following files
+1. Commands typed to solve the "Merging" exercise
+```
+git checkout -b bugFix
+git commit
 
-> Remember to follow the instructions on [how to submit a PR here](/README.md#exercises)s
+git checkout main
+git commit
 
-- **README.md**: copy from file [ANSWER.md](ANSWER.md), containing your answers.
+git merge bugFix
+```
+
+2. Commands typed to solve the "Rebasing" exercise
+```
+git checkout -b bugFix
+git commit
+
+git checkout main
+git commit
+
+git checkout bugFix
+git rebase main
+```
+
+3. Commands typed to solve the "Revert and reset" exercise
+```
+git reset HEAD~1
+git checkout 
+git checkout pushed
+```
+
+<!-- Don't change anything below this point-->
+<!-- Before commiting, remove both commented lines--> 
+***
+Answer for exercise [c01-git01](https://github.com/devopsacademyau/academy/blob/c54d252bda58575e9dc9f92718237bed58aae772/classes/01class/exercises/c01-git01/README.md)
