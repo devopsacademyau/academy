@@ -22,6 +22,7 @@ module "team-external-students" {
     "ramiray",
     "ravisenevirathne",
     "tgray89",
-    "tkav"
+    "tkav",
+    "mayuthombre"
   ]
 }
