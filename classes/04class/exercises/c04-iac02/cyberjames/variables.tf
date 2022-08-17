@@ -39,33 +39,13 @@ variable "subnet_pub_1_cidr" {
   type        = string
 }
 
-variable "subnet_pub_1_az" {
-  description = "Subnet Availability Zone"
-  type        = string
-}
-
 variable "subnet_pub_2_cidr" {
   description = "Subnet CIDR"
   type        = string
 }
 
-variable "subnet_pub_2_az" {
-  description = "Subnet Availability Zone"
-  type        = string
-}
-
-variable "subnet_prv_1_az" {
-  description = "Subnet Availability Zone"
-  type        = string
-}
-
 variable "subnet_prv_1_cidr" {
   description = "Subnet CIDR"
-  type        = string
-}
-
-variable "subnet_prv_2_az" {
-  description = "Subnet Availability Zone"
   type        = string
 }
 
@@ -82,10 +62,15 @@ variable "internet_gateway_name" {
   type        = string
 }
 
+variable "igw_rt_pub_name" {
+  description = "Internet Gateway Route Table Name"
+  type        = string
+}
+
 ########################################################################
 # Define variables to be used for NAT Gateway
 ########################################################################
-variable "nat_gw_name_001" {
+variable "nat_gw_name" {
   description = "NAT Gateway Name"
   type        = string
 }
@@ -95,10 +80,7 @@ variable "vpc_enabled" {
   type        = bool
 }
 
-########################################################################
-# Define variables to be used for VPC Route Tables
-########################################################################
-variable "internet_cidr" {
-  description = "Internet CIDR"
+variable "nat_gateway_rt_name" {
+  description = "NAT Gateway Route Table Name"
   type        = string
 }
