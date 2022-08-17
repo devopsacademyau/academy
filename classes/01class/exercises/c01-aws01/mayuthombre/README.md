@@ -82,8 +82,8 @@ Private IPv4 172.31.95.117
 
 Finally, using the instance with public IP we connected to the instance with private IP only. 
 
-chmod 400 Devopsacademy.pem
-ssh -i "Devopsacademy.pem" ec2-user@172.31.95.117
+chmod 400 MayuKey.pem
+ssh -i "MayuKey" ec2-user@172.31.95.117.compute-1.amazonaws.com 
 
 
 ***
