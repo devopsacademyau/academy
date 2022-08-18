@@ -10,6 +10,7 @@ module "team-external-students" {
     "beardedsamwise",
     "carloshz4",
     "chisholm-ray",
+    "cyberjames",
     "ebeserra",
     "jamesnealcontino",
     "Jaysues",
