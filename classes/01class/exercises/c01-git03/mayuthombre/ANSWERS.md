@@ -7,7 +7,7 @@
 
 2. What is the reason for this problem?
 
-> The situation occurs because git keeps copy of the file. 
+> The situation occurs because git keeps copy of the file. Files may be compressed to reduce the total size of the repo. 
 
 3. How do you remove something from Git history after it is pushed to the remote repository? Which commands would you use? 
 
