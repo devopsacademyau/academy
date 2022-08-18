@@ -6,12 +6,16 @@
 ## Command Execution Output
 - Command to build the image:
 ```
-Add command here
+docker build -t da-terraform:c03-docker-e01 .
 ```
 
 - Command to run the image and its output.:
 ```
-Add command here
+docker run -it da-terraform:c03-docker-e01
+Terraform v0.12.20
+
+Your version of Terraform is out of date! The latest version
+is 1.2.7. You can update by downloading from https://www.terraform.io/downloads.html
 ```
 
 <!-- Don't change anything below this point-->
