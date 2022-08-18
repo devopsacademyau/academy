@@ -18,7 +18,7 @@ $ docker rmi $(docker images -aq) -f
 
 - Command and it's output showing that there is no image or container on your local. Use only TEXT for the command output, don't include images (JPEG, PNG, etc):
 ```
-# The commands below will show all containers
+# The commands below will show all containers.
 $ docker ps -a
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
