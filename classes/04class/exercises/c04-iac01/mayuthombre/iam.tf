@@ -1,5 +1,9 @@
+# Create new IAM role
 resource "aws_iam_role" "EC2S3AccessRole" {
-  name = "EC2S3AccessRole"
+  name = "EC2S3AccessRole"                            # Specify IAM role name
+  tags = {
+    name = "mayu-dojo"                                # Tag for resource gruping 
+  }
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
@@ -18,10 +22,11 @@ resource "aws_iam_role" "EC2S3AccessRole" {
   })
 }
 
-
+# Create IAM role policy 
 resource "aws_iam_role_policy" "S3Access_policy" {
-  name = "S3Access_policy"
-  role = aws_iam_role.EC2S3AccessRole.id
+  name = "S3Access_policy"                                            # Specify policy name
+  role = aws_iam_role.EC2S3AccessRole.id                              # Instruction to attach the policy to the above created IAM role
+  
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
@@ -41,8 +46,12 @@ resource "aws_iam_role_policy" "S3Access_policy" {
   })
 }
 
+# Create IAM instance profile that will be attached to the EC2 instance
 resource "aws_iam_instance_profile" "S3Access_policy" {
-  name = "S3Access_policy"
-  role = aws_iam_role.EC2S3AccessRole.name
+  name = "S3Access_policy"                                            # Give IAM instance profile a name
+  role = aws_iam_role.EC2S3AccessRole.name                            # Attach the above created IAM role to the IAM instance profile. 
+  tags = {
+    name = "mayu-dojo"                                                # Tag for resource gruping 
+  }
 }
 

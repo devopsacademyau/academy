@@ -1,3 +1,6 @@
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
 Terraform will perform the following actions:
 
   # aws_iam_instance_profile.S3Access_policy will be created
@@ -8,7 +11,12 @@ Terraform will perform the following actions:
       + name        = "S3Access_policy"
       + path        = "/"
       + role        = "EC2S3AccessRole"
-      + tags_all    = (known after apply)
+      + tags        = {
+          + "name" = "mayu-dojo"
+        }
+      + tags_all    = {
+          + "name" = "mayu-dojo"
+        }
       + unique_id   = (known after apply)
     }
 
@@ -38,7 +46,12 @@ Terraform will perform the following actions:
       + name                  = "EC2S3AccessRole"
       + name_prefix           = (known after apply)
       + path                  = "/"
-      + tags_all              = (known after apply)
+      + tags                  = {
+          + "name" = "mayu-dojo"
+        }
+      + tags_all              = {
+          + "name" = "mayu-dojo"
+        }
       + unique_id             = (known after apply)
 
       + inline_policy {
@@ -206,10 +219,10 @@ Terraform will perform the following actions:
       + region                      = (known after apply)
       + request_payer               = (known after apply)
       + tags                        = {
-          + "Name" = "mayu-terrafrom-dojo"
+          + "Name" = "mayu-dojo"
         }
       + tags_all                    = {
-          + "Name" = "mayu-terrafrom-dojo"
+          + "Name" = "mayu-dojo"
         }
       + website_domain              = (known after apply)
       + website_endpoint            = (known after apply)
@@ -366,7 +379,7 @@ Terraform will perform the following actions:
       + ingress                = [
           + {
               + cidr_blocks      = [
-                  + "0.0.0.0/0",
+                  + "49.193.184.101/32",
                 ]
               + description      = "SSH"
               + from_port        = 22
@@ -383,10 +396,10 @@ Terraform will perform the following actions:
       + owner_id               = (known after apply)
       + revoke_rules_on_delete = false
       + tags                   = {
-          + "type" = "mayu-dojo-exercise"
+          + "name" = "mayu-dojo"
         }
       + tags_all               = {
-          + "type" = "mayu-dojo-exercise"
+          + "name" = "mayu-dojo"
         }
       + vpc_id                 = (known after apply)
     }
