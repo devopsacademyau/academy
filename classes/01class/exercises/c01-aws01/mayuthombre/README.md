@@ -31,7 +31,7 @@ Output
     "GroupId": "sg-087afe8df7adbfd0f"
 }
 
-aws ec2 authorize-security-group-ingress --group-id sg-087afe8df7adbfd0f --protocol tcp --port 22 --cidr 0.0.0.0/0
+aws ec2 authorize-security-group-ingress --group-id sg-087afe8df7adbfd0f --protocol tcp --port 22 --cidr 49.193.*.*/32
 
 Output
 {
@@ -61,13 +61,11 @@ Launch EC2 instance using following command
 aws ec2 run-instances --image-id  ami-090fa75af13c156b4 --count 1 --instance-type t2.micro --key-name MayuKey --security-group-ids sg-087afe8df7adbfd0f
 
 InstanceID i-0103f173a01322b11
-Public IPv4 54.242.87.155
-Private IPv4 172.31.16.96
 
 From the terminal , use the ssh command to connect the instance with the following command.
 
 chmod 400 MayuKey.pem
-ssh -i "MayuKey.pem" ec2-user@ec2-54-242-87-155.compute-1.amazonaws.com
+ssh -i MayuKey.pem ec2-user@ec2-54-242-87-155.compute-1.amazonaws.com
 
 
 # Create another EC2, also using the CLI instance in the same VPC but with private address only and connect to it.
@@ -78,12 +76,15 @@ aws ec2 run-instances --image-id  ami-090fa75af13c156b4 --count 1 --instance-typ
 
 Output
 InstanceID i-0464c1c3006b4c14b
-Private IPv4 172.31.95.117
 
-Finally, using the instance with public IP we connected to the instance with private IP only. 
+
+Finally, using the instance created earlier within public IP we can connect to the instance with private IP only. 
+However in order to do so,we will need to first copy the MayuKey.pem to EC2 instance (public subnet)
+
+scp -i MayuKey.pem MayuKey.pem ec2-user@ec2-54-242-87-155.compute-1.amazonaws.com
 
 chmod 400 MayuKey.pem
-ssh -i "MayuKey" ec2-user@172.31.95.117.compute-1.amazonaws.com 
+ssh -i MayuKey.pem ec2-user@172.31.95.117.compute-1.amazonaws.com 
 
 
 ***
