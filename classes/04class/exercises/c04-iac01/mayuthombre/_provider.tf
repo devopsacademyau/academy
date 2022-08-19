@@ -1,4 +1,4 @@
-# Configure the AWS Provider to download plugins duting terraform init
+# Configure the AWS Provider to download plugins during terraform init
 terraform {
   required_providers {
     aws = {
