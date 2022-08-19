@@ -1,18 +1,25 @@
 # C01-AWS02
 
-## Commands Execution Output
+# Exercise Goal
+
+Use the CLI to create a S3 bucket and upload a file to it.
+Access the file on the S3 bucket from any of the EC2 instances created in the previous exercise.
+Submit a PR to the DevOpsAcademy repo under the /classes/01class/exercises/c01-aws02/<github-username> folder of this class with a brief description of what you did to achieve this objective (using AWS CLI). The file containing the solution you used must be named README.md
 
 # Use the CLI to create a S3 bucket and upload a file to it.
 ```
-aws s3api create-bucket --bucket mayu-bucket-dojo --region us-east-1 
+Continuing from the last exercise, I assume that AWS CLI is setup to execute commands for S3 bucket creation. If not, go back to exercise # c01-aws01 and perform the CLI setup.
+
+To create S3 bucket, run following command
+    aws s3api create-bucket --bucket mayu-bucket-dojo --region us-east-1 
 
 > Output
 {
     "Location": "/mayu-bucket-dojo"
 }
 
-To upload file to S3
-aws s3api put-object --bucket mayu-bucket-dojo --key test.png --body test.png  
+Upload file to S3 bucket using below command
+    aws s3api put-object --bucket mayu-bucket-dojo --key test.png --body test.png  
 
 > Output
 {
@@ -37,8 +44,7 @@ Create a JSON poliy that will be attached to the IAM role. Create a new JSON fil
 }
 
 Then, using CLI run the command
-
-aws iam create-role --role-name S3BucketRole --description "Allow Access to S3Bucket"  --assume-role-policy-document file://s3bucketEc2-Role-Trust-Policy.json
+    aws iam create-role --role-name S3BucketRole --description "Allow Access to S3Bucket"  --assume-role-policy-document file://s3bucketEc2-Role-Trust-Policy.json
 
 > Output
 
@@ -63,11 +69,10 @@ aws iam create-role --role-name S3BucketRole --description "Allow Access to S3Bu
 }
 
 Now to attach the just created policy to the role,
+    aws iam attach-role-policy --role-name S3BucketRole --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 
-aws iam attach-role-policy --role-name S3BucketRole --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
-
-<To create instance profile>
-aws iam create-instance-profile --instance-profile-name Mayu-s3bucket-access-profile
+To create instance profile
+    aws iam create-instance-profile --instance-profile-name Mayu-s3bucket-access-profile
 
 > Output:
 
@@ -82,13 +87,11 @@ aws iam create-instance-profile --instance-profile-name Mayu-s3bucket-access-pro
     }
 }
 
-<Add role to the instance profile>
+Add role to the instance profile
+    aws iam add-role-to-instance-profile --instance-profile-name Mayu-s3bucket-access-profile --role-name S3BucketRole
 
-aws iam add-role-to-instance-profile --instance-profile-name Mayu-s3bucket-access-profile --role-name S3BucketRole
-
-<Finally, associate instance profile to instance ID>
-
-aws ec2 associate-iam-instance-profile --instance-id i-0721c0fec6d206721 --iam-instance-profile Name="Mayu-s3bucket-access-profile" 
+Finally, associate instance profile to instance ID
+    aws ec2 associate-iam-instance-profile --instance-id i-0721c0fec6d206721 --iam-instance-profile Name="Mayu-s3bucket-access-profile" 
 
 > Output:
 {
@@ -103,8 +106,12 @@ aws ec2 associate-iam-instance-profile --instance-id i-0721c0fec6d206721 --iam-i
     }
 }
 
-Test if S3 access is allowed using command
-aws s3 ls s3://mayu-bucket-dojo
+In order to Test if S3 access is allowed, first login to the EC2 instance with 
+    ssh -i MayuKey.pem ec2-user@ec2-54-242-87-155.compute-1.amazonaws.com
+Alternatively use the instance connect from the AWS management console to get EC2 CLI access
+
+Within the EC2 CLI, run the comman
+    aws s3 ls s3://mayu-bucket-dojo
 
 > Output should look like
 2022-08-16 07:31:01     226496 test.png
@@ -116,13 +123,12 @@ aws s3 ls s3://mayu-bucket-dojo
 Assuming you already have logged into the EC2 via CLI. If not please refer to exercice c01-aws01
 
 To copy all objects in an S3 bucket to your local machine simply use the aws s3 cp command with the --recursive option.
-
-aws s3 cp s3://mayu-bucket-dojo/test.png test.png
+    aws s3 cp s3://mayu-bucket-dojo/test.png test.png
 
 > output
 download: s3://mayu-bucket-dojo/test.png to ./test.png   
 
-use ls command to check if file is downloaded
+Use ls command to check if file is downloaded. 
 
 Reference - https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
 
