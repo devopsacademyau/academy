@@ -11,6 +11,20 @@
 ## Command Execution Output
 - [output.txt](output.txt)
 
+# Command Execution to install Terraform in AWS Console
+
+# 1. Install Terraform on AWS Console 
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum -y install terraform
+
+# 2. Deploy Terraform infra
+
+terraform init
+terraform plan 
+terraform apply 
+
+
 <!-- Don't change anything below this point-->
 <!-- Before commiting, remove both commented lines--> 
 ***
