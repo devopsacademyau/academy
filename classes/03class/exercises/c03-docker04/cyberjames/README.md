@@ -9,7 +9,7 @@
 $ docker ps -aq | xargs docker stop | xargs docker rm
 
 # The command below will remove all docker images in the list filtered by container ID. 
-$ docker rmi $(docker images -aq) -f
+$ docker rmi $(docker images -aq)
 
 # The command below will forcely removed the remaining images due to the error message - unable to delete 9ca010508525.
 $ docker rmi $(docker images -aq) -f
