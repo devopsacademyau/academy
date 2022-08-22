@@ -9,7 +9,7 @@ git checkout master
 # create new branch called bugFix and commit once
 git checkout -b bugFix
 git commit -m "first commit"
-<changing back to master branch and commit one more time>
+# changing back to master branch and commit one more time
 git checkout master
 git commit -m "second commit"
 <merge bugFix branch with master branch>
@@ -19,15 +19,15 @@ git merge bugFix
 
 2. Commands typed to solve the "Rebasing" exercise
 
-<First ensure you are on the master branch>
+# First ensure you are on the master branch
 git checkout master
-<create new branch called bugFix and commit once>
+# create new branch called bugFix and commit once
 git checkout -b bugFix
 git commit -m "first commit"
-<go back to master branch and commit one more time>
+# go back to master branch and commit one more time
 git checkout master
 git commit
-<rebase bugFix branch with master branch. Before doing rebase, swtich to bugFix branch>
+# rebase bugFix branch with master branch. Before doing rebase, swtich to bugFix branch
 git checkout bugFix
 git rebase master
 
