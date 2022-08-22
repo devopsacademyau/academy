@@ -4,10 +4,10 @@
 
 1. Commands typed to solve the "Merging" exercise
 
-<First ensure you are on the master branch>
+# First ensure you are on the master branch
 git checkout master
+# create new branch called bugFix and commit once
 git checkout -b bugFix
-<create new branch called bugFix and commit once>
 git commit -m "first commit"
 <changing back to master branch and commit one more time>
 git checkout master
