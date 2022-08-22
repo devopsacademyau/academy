@@ -1,0 +1,8 @@
+# Download base image
+FROM httpd:2.4.41-alpine
+
+# Copy files
+COPY ./index.html /usr/local/apache2/htdocs
+
+# Expose port
+EXPOSE 80

@@ -1,0 +1,8 @@
+# Download base image 
+FROM httpd:2.4.41-alpine
+
+# Ensure  "/usr/local/apache2/htdocs is empty by removing all files that might be in the directory
+RUN rm /usr/local/apache2/htdocs/*
+
+# Expose port
+EXPOSE 80
