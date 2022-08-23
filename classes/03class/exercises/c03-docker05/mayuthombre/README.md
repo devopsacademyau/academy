@@ -48,7 +48,7 @@ Output
 
 - A brief explanation of what happened when you executed the comands to run the containers:
 ```
-Docker first checked the image on the local server. Because docker daemon couldnt find the server locally it then search for any image on Docker Hub. Once found Docker pulled the required image to local machine and  ran it as expected.
+Docker first checked the image on the local server. Because docker daemon couldn't find the server locally it then searched for any image on Docker Hub. Once found Docker pulled the required image to local machine and  ran it as expected.
 
 ```
 
