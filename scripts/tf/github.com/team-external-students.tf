@@ -27,6 +27,7 @@ module "team-external-students" {
     "mayuthombre",
     "samrdaymond",
     "julio-pimentel",
-    "passivemodding"
+    "passivemodding",
+    "williamchrisp"
   ]
 }
