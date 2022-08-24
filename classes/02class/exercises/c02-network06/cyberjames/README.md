@@ -17,21 +17,28 @@ $ aws ec2 allocate-address --region us-east-1
 $ aws ec2 create-nat-gateway \
 --subnet-id subnet-005acc9c005fd6a97 \
 --allocation-id eipalloc-0759ab46d28a8ef53 \
+--tag-specifications 'ResourceType=natgateway,Tags=[{Key=Name,Value=devopsacademy-ngw}]' \
 --region us-east-1
 
 {
-    "ClientToken": "0ab3a602-0fb4-4711-bc00-3467f4fedef7",
+    "ClientToken": "19743156-db6e-4bde-989b-651816f80085",
     "NatGateway": {
-        "CreateTime": "2022-08-24T11:05:07+00:00",
+        "CreateTime": "2022-08-24T11:17:44+00:00",
         "NatGatewayAddresses": [
             {
                 "AllocationId": "eipalloc-0759ab46d28a8ef53"
             }
         ],
-        "NatGatewayId": "nat-0305a176261434df3",
+        "NatGatewayId": "nat-052aa76040091599e",
         "State": "pending",
         "SubnetId": "subnet-005acc9c005fd6a97",
         "VpcId": "vpc-0d8edf6a0d1104524",
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "devopsacademy-ngw"
+            }
+        ],
         "ConnectivityType": "public"
     }
 }
