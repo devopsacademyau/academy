@@ -1,0 +1,15 @@
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Action": [
+      "s3:ListBucket",
+      "s3:GetObject",
+      "s3:PutObject"
+    ],
+    "Resource": [
+      "arn:aws:s3:::c01-aws02-james-contino",
+      "arn:aws:s3:::c01-aws02-james-contino/*"
+    ]
+  }
+}
