@@ -25,12 +25,15 @@ $ curl http://localhost:8081
 
 curl http://localhost:8082
 <hr>
-<h1>DevOps Academy - Docker - Exercise c03-docker02</h1>
+<h1>Local File: c03-docker02</h1>
 ```
 
 - Explain any difference between the responses of the webservers before and after changing the file locally:
 ```
-During building cointaner image of `exercise02:v1`, it which contains the copied index file. While the image `exercise02:v1`, it was executed with using bind mounts from the destination folder of index file at the local filesystem to the destination folder in the container. Meaning, whatever changes been made in the index file at the local filesystem will be reflected to the container.
+The exercise image `v1` contains a copied index.html file which is static so even though changing content of the file `classes/03class/docker/artifacts/c03-docker02/index.html` locally, it's still reflected the index.html version from the original image.
+
+On the other hand, the image `v2` was executed with using bind mounts from classes/03class/docker/artifacts/c03-docker02/ at the local filesystem to the destination folder inside of the container. That means whatever changes been made in the index file at the local filesystem will be reflected to the container.
+
 ```
 
 <!-- Don't change anything below this point-->
