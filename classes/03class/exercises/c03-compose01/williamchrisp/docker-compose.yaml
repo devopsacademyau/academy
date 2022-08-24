@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+  web:
+    container_name: web
+    build: ../../../compose/artifacts/c05-compose01/
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8100:80
+    environment:
+      DB_USER: test
+      DB_PASS: test
+      DB_HOST: db
+      DB_NAME: test
+    volumes:
+      - ../../../compose/artifacts/c05-compose01/src/:/var/www/html/
+    
