@@ -1,0 +1,2 @@
+curl mayu-alb-1423756275.ap-southeast-2.elb.amazonaws.com
+DevOps exercise c04-iac04!!
