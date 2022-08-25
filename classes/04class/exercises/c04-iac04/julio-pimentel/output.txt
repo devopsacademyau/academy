@@ -1,0 +1,7 @@
+$ curl c04-iac04-alb-370937775.ap-southeast-2.elb.amazonaws.com
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+</body>
+</html>
