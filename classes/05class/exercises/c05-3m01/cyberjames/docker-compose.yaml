@@ -1,0 +1,9 @@
+version: '3'
+services:
+  aws-ec2:
+    platform: linux/amd64 # needed for using Apple M1 chip
+    build: .
+    env_file: .env
+    volumes:
+      - .:/opt
+    working_dir: /opt
