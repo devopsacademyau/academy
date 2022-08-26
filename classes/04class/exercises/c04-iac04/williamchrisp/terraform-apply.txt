@@ -1,0 +1,550 @@
+terraform apply -var-file=main.tfvars                         
+module.web_app.data.aws_availability_zones.available: Reading...
+module.web_app.data.aws_availability_zones.available: Read complete after 1s [id=us-west-2]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.web_app.aws_autoscaling_group.app_asg will be created
+  + resource "aws_autoscaling_group" "app_asg" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = 1
+      + force_delete              = false
+      + force_delete_warm_pool    = false
+      + health_check_grace_period = 300
+      + health_check_type         = "ELB"
+      + id                        = (known after apply)
+      + launch_configuration      = (known after apply)
+      + max_size                  = 2
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = "williamda-asg"
+      + name_prefix               = (known after apply)
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + target_group_arns         = (known after apply)
+      + vpc_zone_identifier       = (known after apply)
+      + wait_for_capacity_timeout = "10m"
+    }
+
+  # module.web_app.aws_autoscaling_policy.down will be created
+  + resource "aws_autoscaling_policy" "down" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "williamda-asg"
+      + cooldown                = 300
+      + enabled                 = true
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "asg_down"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.web_app.aws_autoscaling_policy.up will be created
+  + resource "aws_autoscaling_policy" "up" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "williamda-asg"
+      + cooldown                = 300
+      + enabled                 = true
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "asg_up"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 1
+    }
+
+  # module.web_app.aws_cloudwatch_metric_alarm.web_cpu_down will be created
+  + resource "aws_cloudwatch_metric_alarm" "web_cpu_down" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_name                            = "web_cpu_down"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "autoscaling_group_name" = "asg_down"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + tags_all                              = (known after apply)
+      + threshold                             = 30
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.web_app.aws_cloudwatch_metric_alarm.web_cpu_up will be created
+  + resource "aws_cloudwatch_metric_alarm" "web_cpu_up" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_name                            = "web_cpu_up"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "autoscaling_group_name" = "asg_up"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + tags_all                              = (known after apply)
+      + threshold                             = 60
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.web_app.aws_internet_gateway.igw will be created
+  + resource "aws_internet_gateway" "igw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "williamda-IGW"
+        }
+      + tags_all = {
+          + "Name" = "williamda-IGW"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # module.web_app.aws_launch_configuration.app will be created
+  + resource "aws_launch_configuration" "app" {
+      + arn                         = (known after apply)
+      + associate_public_ip_address = true
+      + ebs_optimized               = (known after apply)
+      + enable_monitoring           = true
+      + id                          = (known after apply)
+      + image_id                    = "ami-0c2ab3b8efb09f272"
+      + instance_type               = "t2.micro"
+      + key_name                    = "williamchrisp-us-west-2"
+      + name                        = (known after apply)
+      + name_prefix                 = "williamda-"
+      + security_groups             = (known after apply)
+      + user_data                   = "ab7cc434fa8115be1291ddacd1ebd0ab7aca2141"
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + no_device             = (known after apply)
+          + snapshot_id           = (known after apply)
+          + throughput            = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.web_app.aws_lb.web_alb will be created
+  + resource "aws_lb" "web_alb" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + desync_mitigation_mode     = "defensive"
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + enable_waf_fail_open       = false
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "williamdaalb"
+      + preserve_host_header       = false
+      + security_groups            = (known after apply)
+      + subnets                    = (known after apply)
+      + tags_all                   = (known after apply)
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id        = (known after apply)
+          + ipv6_address         = (known after apply)
+          + outpost_id           = (known after apply)
+          + private_ipv4_address = (known after apply)
+          + subnet_id            = (known after apply)
+        }
+    }
+
+  # module.web_app.aws_lb_listener.front_end will be created
+  + resource "aws_lb_listener" "front_end" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+      + tags_all          = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.web_app.aws_lb_target_group.tg will be created
+  + resource "aws_lb_target_group" "tg" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + connection_termination             = false
+      + deregistration_delay               = "300"
+      + id                                 = (known after apply)
+      + ip_address_type                    = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = "williamda-tg"
+      + port                               = 80
+      + preserve_client_ip                 = (known after apply)
+      + protocol                           = "HTTP"
+      + protocol_version                   = (known after apply)
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + tags_all                           = (known after apply)
+      + target_type                        = "instance"
+      + vpc_id                             = (known after apply)
+
+      + health_check {
+          + enabled             = (known after apply)
+          + healthy_threshold   = (known after apply)
+          + interval            = (known after apply)
+          + matcher             = (known after apply)
+          + path                = (known after apply)
+          + port                = (known after apply)
+          + protocol            = (known after apply)
+          + timeout             = (known after apply)
+          + unhealthy_threshold = (known after apply)
+        }
+
+      + stickiness {
+          + cookie_duration = (known after apply)
+          + cookie_name     = (known after apply)
+          + enabled         = (known after apply)
+          + type            = (known after apply)
+        }
+    }
+
+  # module.web_app.aws_route_table.route_table_public will be created
+  + resource "aws_route_table" "route_table_public" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + carrier_gateway_id         = ""
+              + cidr_block                 = "0.0.0.0/0"
+              + core_network_arn           = ""
+              + destination_prefix_list_id = ""
+              + egress_only_gateway_id     = ""
+              + gateway_id                 = (known after apply)
+              + instance_id                = ""
+              + ipv6_cidr_block            = ""
+              + local_gateway_id           = ""
+              + nat_gateway_id             = ""
+              + network_interface_id       = ""
+              + transit_gateway_id         = ""
+              + vpc_endpoint_id            = ""
+              + vpc_peering_connection_id  = ""
+            },
+        ]
+      + tags             = {
+          + "Name" = "PublicRoutingTable"
+        }
+      + tags_all         = {
+          + "Name" = "PublicRoutingTable"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.web_app.aws_route_table_association.route_public_a will be created
+  + resource "aws_route_table_association" "route_public_a" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.web_app.aws_route_table_association.route_public_b will be created
+  + resource "aws_route_table_association" "route_public_b" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.web_app.aws_security_group.ec2_sg will be created
+  + resource "aws_security_group" "ec2_sg" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = []
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "williamDA_ec2_sg"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "williamDA_ec2_sg"
+        }
+      + tags_all               = {
+          + "Name" = "williamDA_ec2_sg"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.web_app.aws_security_group.lb_sg will be created
+  + resource "aws_security_group" "lb_sg" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "williamDA_lb_sg"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "williamDA_lb_sg"
+        }
+      + tags_all               = {
+          + "Name" = "williamDA_lb_sg"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.web_app.aws_subnet.subnet_public_a will be created
+  + resource "aws_subnet" "subnet_public_a" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "us-west-2a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.1.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Name" = "public-a"
+        }
+      + tags_all                                       = {
+          + "Name" = "public-a"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.web_app.aws_subnet.subnet_public_b will be created
+  + resource "aws_subnet" "subnet_public_b" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "us-west-2b"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.2.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Name" = "public-b"
+        }
+      + tags_all                                       = {
+          + "Name" = "public-b"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.web_app.aws_vpc.vpc will be created
+  + resource "aws_vpc" "vpc" {
+      + arn                                  = (known after apply)
+      + cidr_block                           = "10.0.0.0/16"
+      + default_network_acl_id               = (known after apply)
+      + default_route_table_id               = (known after apply)
+      + default_security_group_id            = (known after apply)
+      + dhcp_options_id                      = (known after apply)
+      + enable_classiclink                   = (known after apply)
+      + enable_classiclink_dns_support       = (known after apply)
+      + enable_dns_hostnames                 = (known after apply)
+      + enable_dns_support                   = true
+      + id                                   = (known after apply)
+      + instance_tenancy                     = "default"
+      + ipv6_association_id                  = (known after apply)
+      + ipv6_cidr_block                      = (known after apply)
+      + ipv6_cidr_block_network_border_group = (known after apply)
+      + main_route_table_id                  = (known after apply)
+      + owner_id                             = (known after apply)
+      + tags                                 = {
+          + "Name" = "williamda"
+        }
+      + tags_all                             = {
+          + "Name" = "williamda"
+        }
+    }
+
+Plan: 18 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + alb_fqdn = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.web_app.aws_vpc.vpc: Creating...
+module.web_app.aws_vpc.vpc: Creation complete after 3s [id=vpc-0948d55dc3cdeb04c]
+module.web_app.aws_internet_gateway.igw: Creating...
+module.web_app.aws_subnet.subnet_public_a: Creating...
+module.web_app.aws_subnet.subnet_public_b: Creating...
+module.web_app.aws_lb_target_group.tg: Creating...
+module.web_app.aws_security_group.lb_sg: Creating...
+module.web_app.aws_subnet.subnet_public_a: Creation complete after 1s [id=subnet-0005b80ab4e0b9693]
+module.web_app.aws_internet_gateway.igw: Creation complete after 1s [id=igw-073c212f5ad444a47]
+module.web_app.aws_route_table.route_table_public: Creating...
+module.web_app.aws_subnet.subnet_public_b: Creation complete after 1s [id=subnet-088f35bd39d051de6]
+module.web_app.aws_lb_target_group.tg: Creation complete after 2s [id=arn:aws:elasticloadbalancing:us-west-2:152848913167:targetgroup/williamda-tg/83321fb35f93c729]
+module.web_app.aws_route_table.route_table_public: Creation complete after 2s [id=rtb-0797f3e82985d3187]
+module.web_app.aws_route_table_association.route_public_b: Creating...
+module.web_app.aws_route_table_association.route_public_a: Creating...
+module.web_app.aws_security_group.lb_sg: Creation complete after 3s [id=sg-0934995d056812298]
+module.web_app.aws_lb.web_alb: Creating...
+module.web_app.aws_security_group.ec2_sg: Creating...
+module.web_app.aws_route_table_association.route_public_b: Creation complete after 1s [id=rtbassoc-0161ff90393d0e2cc]
+module.web_app.aws_route_table_association.route_public_a: Creation complete after 1s [id=rtbassoc-08855f1b0fd6b4c4b]
+module.web_app.aws_security_group.ec2_sg: Creation complete after 4s [id=sg-0b22feec6a305a7d3]
+module.web_app.aws_launch_configuration.app: Creating...
+module.web_app.aws_launch_configuration.app: Creation complete after 2s [id=williamda-20220826024040079900000001]
+module.web_app.aws_autoscaling_group.app_asg: Creating...
+module.web_app.aws_lb.web_alb: Still creating... [10s elapsed]
+module.web_app.aws_autoscaling_group.app_asg: Still creating... [10s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [20s elapsed]
+module.web_app.aws_autoscaling_group.app_asg: Still creating... [20s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [30s elapsed]
+module.web_app.aws_autoscaling_group.app_asg: Still creating... [30s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [40s elapsed]
+module.web_app.aws_autoscaling_group.app_asg: Still creating... [40s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [50s elapsed]
+module.web_app.aws_autoscaling_group.app_asg: Still creating... [50s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [1m0s elapsed]
+module.web_app.aws_autoscaling_group.app_asg: Still creating... [1m0s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [1m10s elapsed]
+module.web_app.aws_autoscaling_group.app_asg: Still creating... [1m10s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [1m20s elapsed]
+module.web_app.aws_autoscaling_group.app_asg: Creation complete after 1m15s [id=williamda-asg]
+module.web_app.aws_autoscaling_policy.down: Creating...
+module.web_app.aws_autoscaling_policy.up: Creating...
+module.web_app.aws_autoscaling_policy.up: Creation complete after 1s [id=asg_up]
+module.web_app.aws_cloudwatch_metric_alarm.web_cpu_up: Creating...
+module.web_app.aws_autoscaling_policy.down: Creation complete after 1s [id=asg_down]
+module.web_app.aws_cloudwatch_metric_alarm.web_cpu_down: Creating...
+module.web_app.aws_cloudwatch_metric_alarm.web_cpu_down: Creation complete after 1s [id=web_cpu_down]
+module.web_app.aws_cloudwatch_metric_alarm.web_cpu_up: Creation complete after 1s [id=web_cpu_up]
+module.web_app.aws_lb.web_alb: Still creating... [1m30s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [1m40s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [1m50s elapsed]
+module.web_app.aws_lb.web_alb: Still creating... [2m0s elapsed]
+module.web_app.aws_lb.web_alb: Creation complete after 2m4s [id=arn:aws:elasticloadbalancing:us-west-2:152848913167:loadbalancer/app/williamdaalb/d91792536937daed]
+module.web_app.aws_lb_listener.front_end: Creating...
+module.web_app.aws_lb_listener.front_end: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-west-2:152848913167:listener/app/williamdaalb/d91792536937daed/76dbe5272d96ec67]
+
+Apply complete! Resources: 18 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+alb_fqdn = "williamdaalb-1091858441.us-west-2.elb.amazonaws.com"
+william.chrisp@contino.io@Williams-MBP terraform-code % 
