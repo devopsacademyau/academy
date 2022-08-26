@@ -76,7 +76,7 @@ Output
 
 - what this line is doing? `curl https://169.254.169.254/latest/meta-data/hostname > index.html`
 ```
-It retrieves a top-level metadata (hostname in this case) and sends the output to the index.html file, which will be shown when the webserver's public IP is typed into a browser or 'curled'.
+It retrieves a top-level metadata of the instance (hostname in this case) and sends the output to the index.html file, which will be shown when the webserver's public IP is typed into a browser or 'curled'.
 
 # Output for the curl command against the two public IPs for the webservers from my laptop
 
