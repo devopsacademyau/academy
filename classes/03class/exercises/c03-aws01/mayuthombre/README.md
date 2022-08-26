@@ -19,7 +19,7 @@ Run the below command to create an EC2 instance
 aws ec2 run-instances --image-id ami-0742b4e673072066f --count 1 --instance-type t2.nano --tag-specifications 'ResourceType=instance, Tags=[{ Key=Name,Value=mayu-dojo}]' --security-group-ids sg-087afe8df7adbfd0f --user-data file://userdata.txt
 ```
 
-Verify the instance created through the AWS Management console. Note down the Public IP address for next part.
+Verify the instance created through the AWS Management console. Note down the Instance ID address for next part.
 
 We will need to create a Launch Template for our Auto Scaling Group with the same configuration as the instance we previously launched.
 
