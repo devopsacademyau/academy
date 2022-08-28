@@ -29,7 +29,7 @@ Output
 
 Moving on to create second image with tag "exercise02:v2"
 ```
-docker build -t exercise02:v2 -f classes/03class/exercises/c03-docker02/mfreitassm/Dockerfile.v2 .
+docker build -t exercise02:v2 -f Dockerfile.v2 .
 Output
     [+] Building 1.2s (6/6) FINISHED                                                                                                  
  => [internal] load build definition from Dockerfile.v2                                                                      0.0s
@@ -64,7 +64,7 @@ docker run -dp 8081:80 exercise02:v1
 Similarly run the docker  container while mapping the port of localhost 8082 to container port 80
 
 ```
-docker run -dp 8082:80 -v ~/desktop/academy/classes/03class/docker/artifacts/c03-docker02:/usr/local/apache2/htdocs exercise02:v2 
+docker run -dp 8082:80 -v ~/Documents/academy/classes/03class/exercises/c03-docker02/mayuthombre:/usr/local/apache2/htdocs exercise02:v2 
 ```
 
 - Curl command and its output of after changing the image:
@@ -77,10 +77,10 @@ curl Localhost:8082
 
 - Explain any difference between the responses of the webservers before and after changing the file locally:
 ```
- In the first image "exercise02:v1" there is a copy of the index.html file inside the folder and that's why the webserver's response does not change even though we have made changes to index.html
- Because the changes are made to the original file but webserver is poiniting to the copy of index.html where there are no changes.
+ In the first image "exercise02:v1" there is a copy of the index.html file inside the container volume and that's why the webserver's response does not change even though we have made changes to index.html on host machine
+ Because webserver is poiniting to the copy of index.html on container volume where there are no changes.
  
- In constrast, with the second image has access to host folder using (-v flag). When you use this, a file or directory on the host machine is mounted into a container. Therfore, any changes made on the index.html are visible immediately after a refresh
+ In constrast, with the second image has access to host folder using (-v flag). When you use this, a file or directory on the host machine is mounted into a container. Therfore, any changes made on the index.html (within host machine) are visible immediately after a page refresh (http://localhost:8082).
 ```
 ***
 Answer for exercise [c03-docker02](https://github.com/devopsacademyau/academy/blob/af3225a3436f263164e8daebc6bbd1ef3122b900/classes/03class/exercises/c03-docker02/README.md)
