@@ -1,0 +1,532 @@
+module.alb.data.aws_ssm_parameter.amzn2_ami: Reading...
+module.alb.data.aws_ssm_parameter.amzn2_ami: Read complete after 1s [id=/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.alb.aws_autoscaling_group.web will be created
+  + resource "aws_autoscaling_group" "web" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = 1
+      + force_delete              = false
+      + force_delete_warm_pool    = false
+      + health_check_grace_period = 1500
+      + health_check_type         = "ELB"
+      + id                        = (known after apply)
+      + launch_configuration      = (known after apply)
+      + max_size                  = 2
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = "contino-james-asg"
+      + name_prefix               = (known after apply)
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + target_group_arns         = (known after apply)
+      + vpc_zone_identifier       = (known after apply)
+      + wait_for_capacity_timeout = "10m"
+    }
+
+  # module.alb.aws_autoscaling_policy.scaledown will be created
+  + resource "aws_autoscaling_policy" "scaledown" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "contino-james-asg"
+      + cooldown                = 300
+      + enabled                 = true
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "low-cpu-policy"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.alb.aws_autoscaling_policy.scaleup will be created
+  + resource "aws_autoscaling_policy" "scaleup" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = "contino-james-asg"
+      + cooldown                = 300
+      + enabled                 = true
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "high-cpu-policy"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 1
+    }
+
+  # module.alb.aws_cloudwatch_metric_alarm.highalarm will be created
+  + resource "aws_cloudwatch_metric_alarm" "highalarm" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "high-cpu-alarm"
+      + alarm_name                            = "high_cpu_alarm"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "contino-james-asg"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + tags_all                              = (known after apply)
+      + threshold                             = 80
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.alb.aws_cloudwatch_metric_alarm.lowalarm will be created
+  + resource "aws_cloudwatch_metric_alarm" "lowalarm" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "low-cpu-alarm"
+      + alarm_name                            = "low-cpu-alarm"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "AutoScalingGroupName" = "contino-james-asg"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + tags_all                              = (known after apply)
+      + threshold                             = 20
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.alb.aws_internet_gateway.internet_gateway will be created
+  + resource "aws_internet_gateway" "internet_gateway" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Name" = "contino-james-igw"
+        }
+      + tags_all = {
+          + "Name" = "contino-james-igw"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # module.alb.aws_launch_configuration.web will be created
+  + resource "aws_launch_configuration" "web" {
+      + arn                         = (known after apply)
+      + associate_public_ip_address = true
+      + ebs_optimized               = (known after apply)
+      + enable_monitoring           = true
+      + id                          = (known after apply)
+      + image_id                    = (sensitive)
+      + instance_type               = "t2.micro"
+      + key_name                    = "contino-james-useast1"
+      + name                        = (known after apply)
+      + name_prefix                 = "web-"
+      + security_groups             = (known after apply)
+      + user_data                   = "76c1e9e46625e12fde65efced5cfa090042e6c9a"
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + no_device             = (known after apply)
+          + snapshot_id           = (known after apply)
+          + throughput            = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.alb.aws_lb.alb1 will be created
+  + resource "aws_lb" "alb1" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + desync_mitigation_mode     = "defensive"
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + enable_waf_fail_open       = false
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "contino-james-contino-james"
+      + preserve_host_header       = false
+      + security_groups            = (known after apply)
+      + subnets                    = (known after apply)
+      + tags_all                   = (known after apply)
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id        = (known after apply)
+          + ipv6_address         = (known after apply)
+          + outpost_id           = (known after apply)
+          + private_ipv4_address = (known after apply)
+          + subnet_id            = (known after apply)
+        }
+    }
+
+  # module.alb.aws_lb_listener.front_end will be created
+  + resource "aws_lb_listener" "front_end" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+      + tags_all          = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.alb.aws_lb_target_group.tg will be created
+  + resource "aws_lb_target_group" "tg" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + connection_termination             = false
+      + deregistration_delay               = "300"
+      + id                                 = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = "TargetGroup"
+      + port                               = 80
+      + preserve_client_ip                 = (known after apply)
+      + protocol                           = "HTTP"
+      + protocol_version                   = (known after apply)
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + tags_all                           = (known after apply)
+      + target_type                        = "instance"
+      + vpc_id                             = (known after apply)
+
+      + health_check {
+          + enabled             = (known after apply)
+          + healthy_threshold   = (known after apply)
+          + interval            = (known after apply)
+          + matcher             = (known after apply)
+          + path                = (known after apply)
+          + port                = (known after apply)
+          + protocol            = (known after apply)
+          + timeout             = (known after apply)
+          + unhealthy_threshold = (known after apply)
+        }
+
+      + stickiness {
+          + cookie_duration = (known after apply)
+          + cookie_name     = (known after apply)
+          + enabled         = (known after apply)
+          + type            = (known after apply)
+        }
+    }
+
+  # module.alb.aws_route_table.internet_gateway_rt will be created
+  + resource "aws_route_table" "internet_gateway_rt" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + carrier_gateway_id         = ""
+              + cidr_block                 = "0.0.0.0/0"
+              + core_network_arn           = ""
+              + destination_prefix_list_id = ""
+              + egress_only_gateway_id     = ""
+              + gateway_id                 = (known after apply)
+              + instance_id                = ""
+              + ipv6_cidr_block            = ""
+              + local_gateway_id           = ""
+              + nat_gateway_id             = ""
+              + network_interface_id       = ""
+              + transit_gateway_id         = ""
+              + vpc_endpoint_id            = ""
+              + vpc_peering_connection_id  = ""
+            },
+        ]
+      + tags_all         = (known after apply)
+      + vpc_id           = (known after apply)
+    }
+
+  # module.alb.aws_route_table_association.internet_gateway_rta_1 will be created
+  + resource "aws_route_table_association" "internet_gateway_rta_1" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.alb.aws_route_table_association.internet_gateway_rta_2 will be created
+  + resource "aws_route_table_association" "internet_gateway_rta_2" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.alb.aws_security_group.sg_lb will be created
+  + resource "aws_security_group" "sg_lb" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "contino-james-lb"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "contino-james"
+        }
+      + tags_all               = {
+          + "Name" = "contino-james"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.alb.aws_security_group.sg_web will be created
+  + resource "aws_security_group" "sg_web" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "10.0.0.0/16",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + name                   = "contino-james-web"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "contino-james"
+        }
+      + tags_all               = {
+          + "Name" = "contino-james"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.alb.aws_subnet.public_1 will be created
+  + resource "aws_subnet" "public_1" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "us-east-1c"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.1.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Name" = "public1"
+        }
+      + tags_all                                       = {
+          + "Name" = "public1"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.alb.aws_subnet.public_2 will be created
+  + resource "aws_subnet" "public_2" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "us-east-1f"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.2.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Name" = "public2"
+        }
+      + tags_all                                       = {
+          + "Name" = "public2"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.alb.aws_vpc.vpc will be created
+  + resource "aws_vpc" "vpc" {
+      + arn                                  = (known after apply)
+      + cidr_block                           = "10.0.0.0/16"
+      + default_network_acl_id               = (known after apply)
+      + default_route_table_id               = (known after apply)
+      + default_security_group_id            = (known after apply)
+      + dhcp_options_id                      = (known after apply)
+      + enable_classiclink                   = (known after apply)
+      + enable_classiclink_dns_support       = (known after apply)
+      + enable_dns_hostnames                 = (known after apply)
+      + enable_dns_support                   = true
+      + id                                   = (known after apply)
+      + instance_tenancy                     = "default"
+      + ipv6_association_id                  = (known after apply)
+      + ipv6_cidr_block                      = (known after apply)
+      + ipv6_cidr_block_network_border_group = (known after apply)
+      + main_route_table_id                  = (known after apply)
+      + owner_id                             = (known after apply)
+      + tags                                 = {
+          + "Name" = "contino-james-web-vpc"
+        }
+      + tags_all                             = {
+          + "Name" = "contino-james-web-vpc"
+        }
+    }
+
+Plan: 18 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + alb_fqdn = (known after apply)
+module.alb.aws_vpc.vpc: Creating...
+module.alb.aws_vpc.vpc: Creation complete after 3s [id=vpc-09c9e86ed7bb91de9]
+module.alb.aws_internet_gateway.internet_gateway: Creating...
+module.alb.aws_subnet.public_1: Creating...
+module.alb.aws_subnet.public_2: Creating...
+module.alb.aws_lb_target_group.tg: Creating...
+module.alb.aws_security_group.sg_web: Creating...
+module.alb.aws_security_group.sg_lb: Creating...
+module.alb.aws_subnet.public_2: Creation complete after 2s [id=subnet-09c00ac5a606babe9]
+module.alb.aws_internet_gateway.internet_gateway: Creation complete after 2s [id=igw-0d460f2f722e55871]
+module.alb.aws_route_table.internet_gateway_rt: Creating...
+module.alb.aws_subnet.public_1: Creation complete after 3s [id=subnet-048a95d0a66807289]
+module.alb.aws_lb_target_group.tg: Creation complete after 4s [id=arn:aws:elasticloadbalancing:us-east-1:152848913167:targetgroup/TargetGroup/93a7fca982a657fa]
+module.alb.aws_route_table.internet_gateway_rt: Creation complete after 3s [id=rtb-01bec73dca06d57de]
+module.alb.aws_route_table_association.internet_gateway_rta_1: Creating...
+module.alb.aws_route_table_association.internet_gateway_rta_2: Creating...
+module.alb.aws_route_table_association.internet_gateway_rta_2: Creation complete after 1s [id=rtbassoc-026135b887bf88f67]
+module.alb.aws_route_table_association.internet_gateway_rta_1: Creation complete after 1s [id=rtbassoc-046f36a65c3021173]
+module.alb.aws_security_group.sg_lb: Creation complete after 6s [id=sg-07250862e009e7811]
+module.alb.aws_security_group.sg_web: Creation complete after 6s [id=sg-00ffa54a2a88fc547]
+module.alb.aws_lb.alb1: Creating...
+module.alb.aws_launch_configuration.web: Creating...
+module.alb.aws_launch_configuration.web: Creation complete after 2s [id=web-20220818104749262300000001]
+module.alb.aws_autoscaling_group.web: Creating...
+module.alb.aws_lb.alb1: Still creating... [10s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [10s elapsed]
+module.alb.aws_lb.alb1: Still creating... [20s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [20s elapsed]
+module.alb.aws_lb.alb1: Still creating... [30s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [30s elapsed]
+module.alb.aws_lb.alb1: Still creating... [40s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [40s elapsed]
+module.alb.aws_lb.alb1: Still creating... [50s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [50s elapsed]
+module.alb.aws_lb.alb1: Still creating... [1m0s elapsed]
+module.alb.aws_autoscaling_group.web: Still creating... [1m0s elapsed]
+module.alb.aws_lb.alb1: Still creating... [1m10s elapsed]
+module.alb.aws_autoscaling_group.web: Creation complete after 1m9s [id=contino-james-asg]
+module.alb.aws_autoscaling_policy.scaledown: Creating...
+module.alb.aws_autoscaling_policy.scaleup: Creating...
+module.alb.aws_autoscaling_policy.scaledown: Creation complete after 1s [id=low-cpu-policy]
+module.alb.aws_cloudwatch_metric_alarm.lowalarm: Creating...
+module.alb.aws_autoscaling_policy.scaleup: Creation complete after 1s [id=high-cpu-policy]
+module.alb.aws_cloudwatch_metric_alarm.highalarm: Creating...
+module.alb.aws_cloudwatch_metric_alarm.highalarm: Creation complete after 2s [id=high_cpu_alarm]
+module.alb.aws_cloudwatch_metric_alarm.lowalarm: Creation complete after 2s [id=low-cpu-alarm]
+module.alb.aws_lb.alb1: Still creating... [1m20s elapsed]
+module.alb.aws_lb.alb1: Still creating... [1m30s elapsed]
+module.alb.aws_lb.alb1: Still creating... [1m40s elapsed]
+module.alb.aws_lb.alb1: Still creating... [1m50s elapsed]
+module.alb.aws_lb.alb1: Still creating... [2m0s elapsed]
+module.alb.aws_lb.alb1: Still creating... [2m10s elapsed]
+module.alb.aws_lb.alb1: Creation complete after 2m16s [id=arn:aws:elasticloadbalancing:us-east-1:152848913167:loadbalancer/app/contino-james-contino-james/6c18ee4d6f9109dc]
+module.alb.aws_lb_listener.front_end: Creating...
+module.alb.aws_lb_listener.front_end: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:152848913167:listener/app/contino-james-contino-james/6c18ee4d6f9109dc/b25a393123c3d832]
+
+Apply complete! Resources: 18 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+alb_fqdn = "contino-james-contino-james-1786914758.us-east-1.elb.amazonaws.com"
