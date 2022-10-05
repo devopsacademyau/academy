@@ -10,5 +10,5 @@ jobs:
   git-04:
     uses: ${{ EXERCISES_PATH }}/${{ EXERCISE_NAME }}/action.yaml
     with:
-      EXERCISE_NAME: git-04
+      EXERCISE_NAME: git04
 
