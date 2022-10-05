@@ -2,4 +2,3 @@ SERVICE_NAME=account-management
 ENVIRONMENT=prod
 PASSWORD=pass1234
 
-
