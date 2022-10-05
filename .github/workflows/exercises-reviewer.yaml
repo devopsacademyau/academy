@@ -3,8 +3,6 @@ on:
   pull_request:
     paths:
       - 'students/*/exercises/**'
-env:
-  EXERCISES_PATH: ./exercises
   
 jobs:
   git04:
