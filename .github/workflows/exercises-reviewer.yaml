@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Review
-        uses: '/exercises/git04/action.yaml@caio-test'
+        uses: './exercises/git04/action.yaml@caio-test'
         with:
           EXERCISE_NAME: git04
 
