@@ -1,0 +1,16 @@
+on:
+  workflow_call:
+    inputs:
+      EXERCISE_NAME:
+        required: true
+        type: string
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run Terraform plan
+      run: |
+        env
+        echo ${{ inputs.EXERCISE_NAME }}
+        

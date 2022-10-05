@@ -1,0 +1,14 @@
+name: Review Exercises
+env:
+  EXERCISES_PATH: ./exercises
+on:
+  pull_request:
+    paths:
+      - 'students/*/exercises/**'
+
+jobs:
+  git-04:
+    uses: ${{ EXERCISES_PATH }}/${{ EXERCISE_NAME }}/action.yaml
+    with:
+      EXERCISE_NAME: git-04
+
