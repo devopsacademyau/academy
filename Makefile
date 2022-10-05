@@ -6,7 +6,6 @@ export BRANCH_NAME?=
 export FOLDER_NAME?=
 RUNNER = docker-compose run --rm
 TF_VAR_github_token?=
-EXERCISE?=
 
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
@@ -16,7 +15,7 @@ dashboard:
 
 review:
 	ls
-	$(RUNNER) review /app/${EXERCISE}/review.py
+	$(RUNNER) review /app/review.py
 
 presentation:
 	docker-compose up -d

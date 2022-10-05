@@ -32,6 +32,7 @@ services:
     environment:
       - GH_USER
       - GH_TOKEN
+      - EXERCISE
   aws-cli:
     image: amazon/aws-cli
     volumes:
