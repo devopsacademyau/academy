@@ -7,7 +7,5 @@ inputs:
 runs:
   using: docker
   image: '../Dockerfile'
-  steps:
-    - name: Run Terraform plan
-      args: 
-        - ${{ inputs.EXERCISE_NAME }}
+  args: 
+    - ${{ inputs.EXERCISE_NAME }}
