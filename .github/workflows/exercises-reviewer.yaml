@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: git-04
-        uses: ${{ EXERCISES_PATH }}/${{ EXERCISE_NAME }}/action.yaml@caio-test
+        uses: '${{ EXERCISES_PATH }}/${{ EXERCISE_NAME }}/action.yaml@caio-test'
         with:
           EXERCISE_NAME: git04
 
