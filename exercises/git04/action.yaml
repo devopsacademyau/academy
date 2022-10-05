@@ -1,0 +1,15 @@
+name: git04
+inputs:
+  EXERCISE_NAME:
+    required: true
+    type: string
+
+runs:
+  using: ubuntu-latest
+  steps:
+    - name: Run Terraform plan
+      run: |
+        env
+        echo ${{ inputs.EXERCISE_NAME }}
+        make reviewer EXERCISE=${{ inputs.EXERCISES_PATH }}/${{ inputs.EXERCISE_NAME }}/review.py
+        
