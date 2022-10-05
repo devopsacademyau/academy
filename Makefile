@@ -14,8 +14,8 @@ dashboard:
 	$(RUNNER) python-da /app/scripts/dashboard/run.sh
 	$(RUNNER) aws-cli /app/scripts/dashboard/publish.sh
 
-reviewer:
-	$(RUNNER) reviewer ${EXERCISE}
+review:
+	$(RUNNER) review ${EXERCISE}
 
 presentation:
 	docker-compose up -d
