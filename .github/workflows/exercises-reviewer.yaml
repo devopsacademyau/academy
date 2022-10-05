@@ -2,16 +2,18 @@ name: Review Exercises
 on:
   pull_request:
     paths:
-      - 'students/*/exercises/**'
-  
+      - 'students/**/*'
+
 jobs:
   git04:
+    env:
+      EXERCISES_PATH: ./exercises
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: git-04
-        uses: ${{ EXERCISES_PATH }}/${{ EXERCISE_NAME }}/action.yaml@caio-test
+        uses: '${{ EXERCISES_PATH }}/${{ EXERCISE_NAME }}/action.yaml@caio-test'
         with:
           EXERCISE_NAME: git04
 
