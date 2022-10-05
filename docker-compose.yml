@@ -26,7 +26,7 @@ services:
       - GH_USER
       - GH_TOKEN
   review:
-    build: ./scripts/review
+    build: ./exercises
     volumes:
       - ${PWD}:/app
     environment:
