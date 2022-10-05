@@ -6,14 +6,12 @@ on:
 
 jobs:
   git04:
-    env:
-      EXERCISE_NAME: git04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: git-04
-        uses: '/exercises/${{ EXERCISE_NAME }}/action.yaml@caio-test'
+      - name: Review
+        uses: '/exercises/git04/action.yaml@caio-test'
         with:
           EXERCISE_NAME: git04
 
