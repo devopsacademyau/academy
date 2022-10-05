@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Review
-        uses: 'devopsacademyau/academy/exercises/git04/@caio-test'
+        uses: ./exercises/git04/
         with:
           EXERCISE_NAME: git04
 
