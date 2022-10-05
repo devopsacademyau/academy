@@ -2,7 +2,7 @@ name: Review Exercises
 on:
   pull_request:
     paths:
-      - 'students/*/exercises/**'
+      - 'students/**'
 
 jobs:
   git04:
