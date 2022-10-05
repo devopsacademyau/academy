@@ -3,16 +3,13 @@ on:
   pull_request:
     paths:
       - 'students/**/*'
-env:
-  EXERCISE: git04
 
 jobs:
   git04:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Review
-        run: make review REVIEW_EXERCISE=${{ EXERCISE }}
+        run: make review EXERCISE=git04
 
