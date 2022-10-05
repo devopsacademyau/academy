@@ -25,8 +25,8 @@ services:
       - SHEET_KEY
       - GH_USER
       - GH_TOKEN
-  reviewer:
-    build: ./scripts/reviewer
+  review:
+    build: ./scripts/review
     volumes:
       - ${PWD}:/app
     environment:
