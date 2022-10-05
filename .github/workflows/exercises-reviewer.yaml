@@ -8,7 +8,7 @@ on:
 
 jobs:
   git-04:
-    uses: ${{ EXERCISES_PATH }}/${{ EXERCISE_NAME }}/action.yaml
+    uses: ${{ EXERCISES_PATH }}/${{ EXERCISE_NAME }}/action.yaml@caio-test
     with:
       EXERCISE_NAME: git04
 
