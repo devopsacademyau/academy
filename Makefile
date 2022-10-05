@@ -6,6 +6,7 @@ export BRANCH_NAME?=
 export FOLDER_NAME?=
 RUNNER = docker-compose run --rm
 TF_VAR_github_token?=
+EXERCISE?=
 
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
@@ -13,6 +14,8 @@ dashboard:
 	$(RUNNER) python-da /app/scripts/dashboard/run.sh
 	$(RUNNER) aws-cli /app/scripts/dashboard/publish.sh
 
+reviewer:
+	$(RUNNER) reviewer ${EXERCISE}
 
 presentation:
 	docker-compose up -d

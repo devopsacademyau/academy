@@ -25,6 +25,13 @@ services:
       - SHEET_KEY
       - GH_USER
       - GH_TOKEN
+  reviewer:
+    build: ./scripts/reviewer
+    volumes:
+      - ${PWD}:/app
+    environment:
+      - GH_USER
+      - GH_TOKEN
   aws-cli:
     image: amazon/aws-cli
     volumes:
