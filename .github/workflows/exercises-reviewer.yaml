@@ -3,8 +3,6 @@ on:
   pull_request:
     paths:
       - 'students/**/*'
-env:
-  EXERCISE: git04
 
 jobs:
   git04:
@@ -14,5 +12,5 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Review
-        run: make review REVIEW_EXERCISE=${{ EXERCISE }}
+        run: make review EXERCISE=git04
 
