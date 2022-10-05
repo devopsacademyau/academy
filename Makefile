@@ -15,6 +15,7 @@ dashboard:
 	$(RUNNER) aws-cli /app/scripts/dashboard/publish.sh
 
 review:
+	ls
 	$(RUNNER) review /app/${EXERCISE}/review.py
 
 presentation:
