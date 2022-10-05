@@ -5,12 +5,9 @@ inputs:
     type: string
 
 runs:
-  using: ubuntu-latest
+  using: docker
+  image: '../Dockerfile'
   steps:
     - name: Run Terraform plan
-      shell: bash
-      run: |
-        env
-        echo ${{ inputs.EXERCISE_NAME }}
-        make reviewer EXERCISE=${{ inputs.EXERCISES_PATH }}/${{ inputs.EXERCISE_NAME }}/review.py
-        
+      args: 
+        - ${{ inputs.EXERCISE_NAME }}
