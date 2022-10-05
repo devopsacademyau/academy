@@ -11,4 +11,3 @@ jobs:
     uses: ${{ EXERCISES_PATH }}/${{ EXERCISE_NAME }}/action.yaml@caio-test
     with:
       EXERCISE_NAME: git04
-
