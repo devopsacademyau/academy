@@ -1,4 +1,8 @@
 name: Review Exercises
+on:
+  pull_request:
+    paths:
+      - 'students/**/*'
 
 jobs:
   git04:
