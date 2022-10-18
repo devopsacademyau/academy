@@ -1,0 +1,17 @@
+name: Review Exercises
+on:
+  pull_request:
+    paths:
+      - 'classes/**/*'
+
+jobs:
+  git04:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Review
+        run: echo '----'Checking if files exist----'
+
+      - name: Check for Secret
+        run: echo '----Checking if Secret is in file----'
