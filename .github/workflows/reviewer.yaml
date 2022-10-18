@@ -1,0 +1,19 @@
+name: Review Exercises
+on:
+  pull_request:
+    paths:
+      - 'classes/**/*'
+
+jobs:
+  git04:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Review
+        run: ./file_check.sh
+        working-directory: ./scripts
+
+      - name: Check for Secret
+        run: ./secret_check.sh
+        working-directory: ./scripts
