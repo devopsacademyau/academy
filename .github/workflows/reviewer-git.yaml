@@ -4,8 +4,9 @@ on:
   pull_request:
     paths:
     - 'scripts/reviewers/git/**/*'
+    - 
 jobs:
-  label:
+  auto-review:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
