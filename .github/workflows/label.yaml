@@ -1,3 +1,4 @@
+# See https://github.com/actions/labeler
 name: ClassLabeler
 on: [pull_request]
 jobs:

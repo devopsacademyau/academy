@@ -1,3 +1,5 @@
+# See https://github.com/actions/labeler
+# Used by ./workflows/label.yaml 
 class01:
   - classes/01class/**/*
 
