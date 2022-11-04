@@ -10,6 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            git04:
+              - 'exercises/git04/**/*'
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -24,6 +31,8 @@ jobs:
           
       - name: Docker meta
         id: meta
+        if: steps.changes.outputs.git04 == 'true'
+          run: ...
         uses: docker/metadata-action@v4
         with:
           images: |
