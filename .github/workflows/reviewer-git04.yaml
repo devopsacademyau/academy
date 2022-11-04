@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -36,7 +36,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          push: ${{ github.event_name != 'pull_request' }}
+          # push: ${{ github.event_name != 'pull_request' }}
           context: ./reviewer
           file: ./reviewer/Dockerfile.python
           build-args: |
