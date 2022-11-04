@@ -29,10 +29,8 @@ jobs:
           images: |
             devopsacademyau/reviewer
           tags: |
-            type=ref,event=pr
+            type=ref,event=pr,prefix=git04
             type=semver,pattern={{major}}.{{minor}}
-          flavor: |
-            prefix=git04
 
       - name: Build and push
         uses: docker/build-push-action@v3
