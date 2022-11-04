@@ -1,0 +1,17 @@
+$ docker build -t hello-name:v1 .
+[+] Building 2.5s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                              0.0s
+ => => transferring dockerfile: 109B                                                                                                                                              0.0s
+ => [internal] load .dockerignore                                                                                                                                                 0.0s
+ => => transferring context: 2B                                                                                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                                                                                                                  2.4s
+ => [auth] library/alpine:pull token for registry-1.docker.io                                                                                                                     0.0s
+ => CACHED [1/1] FROM docker.io/library/alpine:latest@sha256:bc41182d7ef5ffc53a40b044e725193bc10142a1243f395ee852a8d9730fc2ad                                                     0.0s
+ => exporting to image                                                                                                                                                            0.0s
+ => => exporting layers                                                                                                                                                           0.0s
+ => => writing image sha256:30d02f6029b7ef0d6b22455c6910bbbfd619d3c07c5c24cf835e5b7bbf238fc0                                                                                      0.0s
+ => => naming to docker.io/library/hello-name:v1
+
+
+$ docker run -it -e "your_name=James" hello-name:v1
+Hello James
