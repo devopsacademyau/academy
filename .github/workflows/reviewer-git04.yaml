@@ -17,7 +17,7 @@ jobs:
             git04:
               - 'reviewer/exercises/git04/**/*'
             git03:
-              - 'reviewer/exercises/git04/**/*'
+              - 'reviewer/exercises/git03/**/*'
       
       # - name: Extract data from yaml file
       #   id: data
