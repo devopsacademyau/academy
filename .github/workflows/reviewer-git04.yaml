@@ -29,6 +29,7 @@ jobs:
           images: |
             devopsacademyau/reviewer
           tags: |
+            type=ref,event=pr
             type=semver,pattern={{major}}.{{minor}}
           flavor: |
             prefix=git04
