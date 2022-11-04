@@ -35,8 +35,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          directory: ./reviewer
-          dockerfile: ./reviewer/Dockerfile.python
+          context: ./reviewer
+          file: ./reviewer/Dockerfile.python
           build-args: |
             EXERCISE=git04
           tags: ${{ steps.meta.outputs.tags }}
