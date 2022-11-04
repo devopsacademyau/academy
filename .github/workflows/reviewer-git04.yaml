@@ -38,7 +38,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
       - name: Docker meta - git04
-        id: meta
+        id: meta_git04
         if: steps.changes.outputs.git04 == 'true'
         uses: docker/metadata-action@v4
         with:
@@ -57,10 +57,10 @@ jobs:
           file: ./reviewer/Dockerfile.python
           build-args: |
             EXERCISE=git04
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta_git04.outputs.tags }}
 
       - name: Docker meta - git03
-        id: meta
+        id: meta_git03
         if: steps.changes.outputs.git03 == 'true'
         uses: docker/metadata-action@v4
         with:
@@ -79,4 +79,4 @@ jobs:
           file: ./reviewer/Dockerfile.python
           build-args: |
             EXERCISE=git03
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta_git03.outputs.tags }}
