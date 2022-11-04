@@ -15,7 +15,15 @@ jobs:
         with:
           filters: |
             git04:
-              - 'exercises/git04/**/*'
+              - 'reviewer/exercises/git04/**/*'
+            git03:
+              - 'reviewer/exercises/git04/**/*'
+      
+      # - name: Extract data from yaml file
+      #   id: data
+      #   run: |
+      #     echo "::set-output name=myitems::$(cat ./config.yaml | yq e '.spokes.[] | keys | join(",")' - | jq -Rsc '. / "\n" - [""]')"          
+
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -29,7 +37,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
-      - name: Docker meta
+      - name: Docker meta - git04
         id: meta
         if: steps.changes.outputs.git04 == 'true'
         uses: docker/metadata-action@v4
@@ -40,14 +48,35 @@ jobs:
             type=ref,event=pr,prefix=git04-pr-
             type=semver,pattern={{major}}.{{minor}}
 
-      - name: Build and push
+      - name: Build and push - git04
         uses: docker/build-push-action@v3
         if: steps.changes.outputs.git04 == 'true'
         with:
-          # push: ${{ github.event_name != 'pull_request' }}
           push: true
           context: ./reviewer
           file: ./reviewer/Dockerfile.python
           build-args: |
             EXERCISE=git04
+          tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Docker meta - git03
+        id: meta
+        if: steps.changes.outputs.git03 == 'true'
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            devopsacademyau/reviewer
+          tags: |
+            type=ref,event=pr,prefix=git03-pr-
+            type=semver,pattern={{major}}.{{minor}}
+
+      - name: Build and push - git03
+        uses: docker/build-push-action@v3
+        if: steps.changes.outputs.git03 == 'true'
+        with:
+          push: true
+          context: ./reviewer
+          file: ./reviewer/Dockerfile.python
+          build-args: |
+            EXERCISE=git03
           tags: ${{ steps.meta.outputs.tags }}
