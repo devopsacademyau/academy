@@ -17,14 +17,8 @@ jobs:
             git04:
               - 'reviewer/exercises/git04/**/*'
             git03:
-              - 'reviewer/exercises/git04/**/*'
+              - 'reviewer/exercises/git03/**/*'
       
-      # - name: Extract data from yaml file
-      #   id: data
-      #   run: |
-      #     echo "::set-output name=myitems::$(cat ./config.yaml | yq e '.spokes.[] | keys | join(",")' - | jq -Rsc '. / "\n" - [""]')"          
-
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
