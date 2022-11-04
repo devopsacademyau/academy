@@ -29,7 +29,7 @@ jobs:
           images: |
             devopsacademyau/reviewer
           tags: |
-            type=ref,event=pr,prefix=git04
+            type=ref,event=pr,prefix=git04-pr-
             type=semver,pattern={{major}}.{{minor}}
 
       - name: Build and push
