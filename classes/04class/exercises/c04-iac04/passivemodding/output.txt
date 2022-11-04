@@ -1,0 +1,8 @@
+C:\>curl lb-1697196755.ap-southeast-2.elb.amazonaws.com
+ip-10-10-11-217.ap-southeast-2.compute.internal
+C:\>curl lb-1697196755.ap-southeast-2.elb.amazonaws.com
+ip-10-10-12-155.ap-southeast-2.compute.internal
+C:\>curl lb-1697196755.ap-southeast-2.elb.amazonaws.com
+ip-10-10-11-217.ap-southeast-2.compute.internal
+C:\>curl lb-1697196755.ap-southeast-2.elb.amazonaws.com
+ip-10-10-12-155.ap-southeast-2.compute.internal

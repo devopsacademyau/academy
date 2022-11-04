@@ -1,0 +1,395 @@
+terraform apply -var-file="main.tfvars"              
+data.aws_ami.this: Reading...
+data.aws_ami.this: Read complete after 0s [id=ami-016768a42b53f657a]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.iac-module.aws_autoscaling_attachment.this will be created
+  + resource "aws_autoscaling_attachment" "this" {
+      + autoscaling_group_name = (known after apply)
+      + id                     = (known after apply)
+      + lb_target_group_arn    = (known after apply)
+    }
+
+  # module.iac-module.aws_autoscaling_group.this will be created
+  + resource "aws_autoscaling_group" "this" {
+      + arn                       = (known after apply)
+      + availability_zones        = (known after apply)
+      + default_cooldown          = (known after apply)
+      + desired_capacity          = 2
+      + force_delete              = false
+      + force_delete_warm_pool    = false
+      + health_check_grace_period = 300
+      + health_check_type         = (known after apply)
+      + id                        = (known after apply)
+      + max_size                  = 4
+      + metrics_granularity       = "1Minute"
+      + min_size                  = 1
+      + name                      = (known after apply)
+      + name_prefix               = (known after apply)
+      + protect_from_scale_in     = false
+      + service_linked_role_arn   = (known after apply)
+      + vpc_zone_identifier       = [
+          + "subnet-00683b41e4c5abc2f",
+          + "subnet-0518abea8303fc4cb",
+        ]
+      + wait_for_capacity_timeout = "10m"
+
+      + launch_template {
+          + id      = (known after apply)
+          + name    = (known after apply)
+          + version = "$Latest"
+        }
+    }
+
+  # module.iac-module.aws_autoscaling_policy.scale_in will be created
+  + resource "aws_autoscaling_policy" "scale_in" {
+      + adjustment_type         = "ChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = (known after apply)
+      + cooldown                = 180
+      + enabled                 = true
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "scale_in"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = -1
+    }
+
+  # module.iac-module.aws_autoscaling_policy.scale_out will be created
+  + resource "aws_autoscaling_policy" "scale_out" {
+      + adjustment_type         = "PercentChangeInCapacity"
+      + arn                     = (known after apply)
+      + autoscaling_group_name  = (known after apply)
+      + enabled                 = true
+      + id                      = (known after apply)
+      + metric_aggregation_type = (known after apply)
+      + name                    = "scale_out"
+      + policy_type             = "SimpleScaling"
+      + scaling_adjustment      = 30
+    }
+
+  # module.iac-module.aws_cloudwatch_metric_alarm.lower_cpu_scale_in will be created
+  + resource "aws_cloudwatch_metric_alarm" "lower_cpu_scale_in" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_name                            = "lower_cpu_scale_in"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanOrEqualToThreshold"
+      + dimensions                            = (known after apply)
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + tags_all                              = (known after apply)
+      + threshold                             = 20
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.iac-module.aws_cloudwatch_metric_alarm.upper_cpu_scale_out will be created
+  + resource "aws_cloudwatch_metric_alarm" "upper_cpu_scale_out" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_name                            = "upper_cpu_scale_out"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = (known after apply)
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + period                                = 120
+      + statistic                             = "Average"
+      + tags_all                              = (known after apply)
+      + threshold                             = 80
+      + treat_missing_data                    = "missing"
+    }
+
+  # module.iac-module.aws_launch_template.this will be created
+  + resource "aws_launch_template" "this" {
+      + arn             = (known after apply)
+      + default_version = (known after apply)
+      + id              = (known after apply)
+      + image_id        = "ami-016768a42b53f657a"
+      + instance_type   = "t2.micro"
+      + key_name        = "lj_c04_iac01"
+      + latest_version  = (known after apply)
+      + name            = (known after apply)
+      + name_prefix     = (known after apply)
+      + tags_all        = (known after apply)
+      + user_data       = "IyEgL2Jpbi9iYXNoDQp5dW0gdXBkYXRlIC15DQp5dW0gaW5zdGFsbCAteSBodHRwZA0KY3VybCAxNjkuMjU0LjE2OS4yNTQvbGF0ZXN0L21ldGEtZGF0YS9ob3N0bmFtZSA+PiBpbmRleC5odG1sDQptdiBpbmRleC5odG1sIC92YXIvd3d3L2h0bWwvDQpzeXN0ZW1jdGwgc3RhcnQgaHR0cGQNCg=="
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_protocol_ipv6          = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interfaces {
+          + associate_public_ip_address = "true"
+          + security_groups             = (known after apply)
+        }
+    }
+
+  # module.iac-module.aws_lb.this will be created
+  + resource "aws_lb" "this" {
+      + arn                        = (known after apply)
+      + arn_suffix                 = (known after apply)
+      + desync_mitigation_mode     = "defensive"
+      + dns_name                   = (known after apply)
+      + drop_invalid_header_fields = false
+      + enable_deletion_protection = false
+      + enable_http2               = true
+      + enable_waf_fail_open       = false
+      + id                         = (known after apply)
+      + idle_timeout               = 60
+      + internal                   = false
+      + ip_address_type            = (known after apply)
+      + load_balancer_type         = "application"
+      + name                       = "lb"
+      + preserve_host_header       = false
+      + security_groups            = (known after apply)
+      + subnets                    = [
+          + "subnet-00683b41e4c5abc2f",
+          + "subnet-0518abea8303fc4cb",
+        ]
+      + tags_all                   = (known after apply)
+      + vpc_id                     = (known after apply)
+      + zone_id                    = (known after apply)
+
+      + subnet_mapping {
+          + allocation_id        = (known after apply)
+          + ipv6_address         = (known after apply)
+          + outpost_id           = (known after apply)
+          + private_ipv4_address = (known after apply)
+          + subnet_id            = (known after apply)
+        }
+    }
+
+  # module.iac-module.aws_lb_listener.devops will be created
+  + resource "aws_lb_listener" "devops" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+      + tags_all          = (known after apply)
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # module.iac-module.aws_lb_target_group.this will be created
+  + resource "aws_lb_target_group" "this" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + connection_termination             = false
+      + deregistration_delay               = "300"
+      + id                                 = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + name                               = (known after apply)
+      + port                               = 80
+      + preserve_client_ip                 = (known after apply)
+      + protocol                           = "HTTP"
+      + protocol_version                   = (known after apply)
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + tags_all                           = (known after apply)
+      + target_type                        = "instance"
+      + vpc_id                             = "vpc-09b37d389cf1e7937"
+
+      + health_check {
+          + enabled             = true
+          + healthy_threshold   = 3
+          + interval            = 200
+          + matcher             = (known after apply)
+          + path                = (known after apply)
+          + port                = "traffic-port"
+          + protocol            = "HTTP"
+          + timeout             = (known after apply)
+          + unhealthy_threshold = 3
+        }
+
+      + stickiness {
+          + cookie_duration = (known after apply)
+          + cookie_name     = (known after apply)
+          + enabled         = (known after apply)
+          + type            = (known after apply)
+        }
+    }
+
+  # module.iac-module.aws_security_group.instance will be created
+  + resource "aws_security_group" "instance" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "instance_security_group"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags_all               = (known after apply)
+      + vpc_id                 = "vpc-09b37d389cf1e7937"
+    }
+
+  # module.iac-module.aws_security_group.load_balancer will be created
+  + resource "aws_security_group" "load_balancer" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+            },
+        ]
+      + name                   = "load_balancer_security_group"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags_all               = (known after apply)
+      + vpc_id                 = "vpc-09b37d389cf1e7937"
+    }
+
+Plan: 12 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + lb_dns_name = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.iac-module.aws_lb_target_group.this: Creating...
+module.iac-module.aws_security_group.load_balancer: Creating...
+module.iac-module.aws_security_group.instance: Creating...
+module.iac-module.aws_lb_target_group.this: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:152848913167:targetgroup/tf-20220818010931794600000001/52c94704ef67ede7]
+module.iac-module.aws_security_group.load_balancer: Creation complete after 2s [id=sg-0575857a7d1274202]
+module.iac-module.aws_lb.this: Creating...
+module.iac-module.aws_security_group.instance: Creation complete after 2s [id=sg-0f23cdb80e078cabd]
+module.iac-module.aws_launch_template.this: Creating...
+module.iac-module.aws_launch_template.this: Creation complete after 0s [id=lt-0d90334b958f5b040]
+module.iac-module.aws_autoscaling_group.this: Creating...
+module.iac-module.aws_lb.this: Still creating... [10s elapsed]
+module.iac-module.aws_autoscaling_group.this: Still creating... [10s elapsed]
+module.iac-module.aws_lb.this: Still creating... [20s elapsed]
+module.iac-module.aws_autoscaling_group.this: Still creating... [20s elapsed]
+module.iac-module.aws_lb.this: Still creating... [30s elapsed]
+module.iac-module.aws_autoscaling_group.this: Still creating... [30s elapsed]
+module.iac-module.aws_lb.this: Still creating... [40s elapsed]
+module.iac-module.aws_autoscaling_group.this: Still creating... [40s elapsed]
+module.iac-module.aws_lb.this: Still creating... [50s elapsed]
+module.iac-module.aws_autoscaling_group.this: Still creating... [50s elapsed]
+module.iac-module.aws_lb.this: Still creating... [1m0s elapsed]
+module.iac-module.aws_autoscaling_group.this: Still creating... [1m0s elapsed]
+module.iac-module.aws_lb.this: Still creating... [1m10s elapsed]
+module.iac-module.aws_autoscaling_group.this: Still creating... [1m10s elapsed]
+module.iac-module.aws_autoscaling_group.this: Creation complete after 1m17s [id=terraform-20220818010934053000000004]
+module.iac-module.aws_autoscaling_attachment.this: Creating...
+module.iac-module.aws_autoscaling_policy.scale_in: Creating...
+module.iac-module.aws_autoscaling_policy.scale_out: Creating...
+module.iac-module.aws_autoscaling_attachment.this: Creation complete after 1s [id=terraform-20220818010934053000000004-20220818011051847800000005]
+module.iac-module.aws_autoscaling_policy.scale_in: Creation complete after 1s [id=scale_in]
+module.iac-module.aws_autoscaling_policy.scale_out: Creation complete after 1s [id=scale_out]
+module.iac-module.aws_cloudwatch_metric_alarm.lower_cpu_scale_in: Creating...
+module.iac-module.aws_cloudwatch_metric_alarm.upper_cpu_scale_out: Creating...
+module.iac-module.aws_cloudwatch_metric_alarm.lower_cpu_scale_in: Creation complete after 1s [id=lower_cpu_scale_in]
+module.iac-module.aws_cloudwatch_metric_alarm.upper_cpu_scale_out: Creation complete after 1s [id=upper_cpu_scale_out]
+module.iac-module.aws_lb.this: Still creating... [1m20s elapsed]
+module.iac-module.aws_lb.this: Still creating... [1m30s elapsed]
+module.iac-module.aws_lb.this: Still creating... [1m40s elapsed]
+module.iac-module.aws_lb.this: Still creating... [1m50s elapsed]
+module.iac-module.aws_lb.this: Still creating... [2m0s elapsed]
+module.iac-module.aws_lb.this: Still creating... [2m10s elapsed]
+module.iac-module.aws_lb.this: Still creating... [2m20s elapsed]
+module.iac-module.aws_lb.this: Creation complete after 2m22s [id=arn:aws:elasticloadbalancing:ap-southeast-2:152848913167:loadbalancer/app/lb/008c4661b7b59ed1]
+module.iac-module.aws_lb_listener.devops: Creating...
+module.iac-module.aws_lb_listener.devops: Creation complete after 0s [id=arn:aws:elasticloadbalancing:ap-southeast-2:152848913167:listener/app/lb/008c4661b7b59ed1/a9b58bba9820ddc1]
+
+Apply complete! Resources: 12 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+lb_dns_name = "lb-1697196755.ap-southeast-2.elb.amazonaws.com"
