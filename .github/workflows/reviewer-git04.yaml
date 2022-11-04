@@ -5,7 +5,7 @@ on:
     - 'reviewer/exercises/git04/**/*'
 
 jobs:
-  docker:
+  build-reviewers:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -37,7 +37,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
-      - name: Docker meta - git04
+      - name: git04 - Docker metadata
         id: meta_git04
         if: steps.changes.outputs.git04 == 'true'
         uses: docker/metadata-action@v4
@@ -48,7 +48,7 @@ jobs:
             type=ref,event=pr,prefix=git04-pr-
             type=semver,pattern={{major}}.{{minor}}
 
-      - name: Build and push - git04
+      - name: git04 - Build and push
         uses: docker/build-push-action@v3
         if: steps.changes.outputs.git04 == 'true'
         with:
@@ -59,7 +59,7 @@ jobs:
             EXERCISE=git04
           tags: ${{ steps.meta_git04.outputs.tags }}
 
-      - name: Docker meta - git03
+      - name: git03 - Docker metadata
         id: meta_git03
         if: steps.changes.outputs.git03 == 'true'
         uses: docker/metadata-action@v4
@@ -70,7 +70,7 @@ jobs:
             type=ref,event=pr,prefix=git03-pr-
             type=semver,pattern={{major}}.{{minor}}
 
-      - name: Build and push - git03
+      - name: git03 - Build and push
         uses: docker/build-push-action@v3
         if: steps.changes.outputs.git03 == 'true'
         with:
