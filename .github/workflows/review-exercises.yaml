@@ -86,6 +86,8 @@ jobs:
           echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
           echo "version=$STUDENT_VERSION" >> $GITHUB_OUTPUT
 
+          echo $GITHUB_OUTPUT
+
           # echo "tag=${{ env.IMAGE_NAME }}:${{ inputs.exercise }}-$VERSION$SUFFIX" >> $GITHUB_OUTPUT
           
       - name: ${{ steps.check.outputs.exercise }}/${{ steps.check.outputs.version }} - Review exercise
