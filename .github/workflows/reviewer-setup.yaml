@@ -1,0 +1,36 @@
+name: Reviewers Setup
+on:
+  pull_request:
+    paths:
+    - 'reviewer/exercises/**/*'
+  push:
+    paths:
+    - 'reviewer/exercises/**/*'
+
+jobs:
+  reviewers-setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          list-files: json
+          filters: |
+            reviewers:
+            - 'reviewer/exercises/**/*'
+      
+      - name: Get Reviewers metadata
+        id: validate
+        if: steps.changes.outputs.changes
+        run: |
+          echo "exercises=${{steps.changes.outputs.reviewers}}" >> $GITHUB_ENV
+  
+  call-reviewer-build-push:
+    uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yml@caio-exercises
+    with:
+      exercise: .github/labeler.yml
+      image_prefix: git04-pr-
+      image_dockerfile: ./reviewer/Dockerfile.python
+    secrets: inherit
