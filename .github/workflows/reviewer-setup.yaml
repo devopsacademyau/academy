@@ -21,11 +21,11 @@ jobs:
           list-files: json
           filters: |
             reviewers:
-            - 'reviewer/exercises/**/*'
+              - 'reviewer/exercises/**/*'
       
       - name: Debug
         run: |
-          echo ${{steps.changes.outputs.reviewers.changes}}
+          echo ${{steps.changes.outputs.changes}}
       
       # - name: Get Reviewers metadata
       #   id: validate
