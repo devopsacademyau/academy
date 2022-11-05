@@ -26,5 +26,5 @@ jobs:
           echo "some_output='test'" >> $GITHUB_OUTPUT
       
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-        if: steps.validate.outputs.some_output == 'test'
+        run: |
+          echo ${{steps.validate.outputs.some_output}}
