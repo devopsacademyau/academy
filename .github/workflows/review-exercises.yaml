@@ -38,7 +38,7 @@ jobs:
       
       - name: Check steps outputs
         run: |
-          echo ${{steps.validate.outputs.exercise}}
+          echo ${{steps.validate.outputs.error}}
 
       - name: git04 - Review exercise
         uses: addnab/docker-run-action@v3
