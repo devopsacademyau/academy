@@ -37,8 +37,17 @@ jobs:
       
       - name: Debug
         run: |
+          GITHUB_ACTOR=${{ github.actor }}
+          EXERCISE=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq -r '.[0]')
+          LATEST_VERSION=$(cat reviewer/exercises/$EXERCISE/config.json | jq -r '.version')
+          STUDENT_VERSION=$(cat students/$GITHUB_ACTOR/exercises/$EXERCISE/config.json | jq -r '.version')
+
           echo ${{ toJson(steps.changes.outputs.changes) }}
           echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length'
+          echo EXERCISE=$EXERCISE
+          echo LATEST_VERSION=$LATEST_VERSION
+          echo STUDENT_VERSION=$STUDENT_VERSION
+          echo GITHUB_ACTOR=$GITHUB_ACTOR
 
       - name: Check if multiple exercises have been submited
         run: |
@@ -52,8 +61,8 @@ jobs:
         run:
           EXERCISE=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq -r '.[0]')
           LATEST_VERSION=$(cat reviewer/exercises/$EXERCISE/config.json | jq -r '.version')
-          STUDENT_VERSION=$(cat students/exercises/$EXERCISE/config.json | jq -r '.version')
-          if [ $LATEST_VERSION -ne $STUDENT_VERSION]; then
+          STUDENT_VERSION=$(cat students/${{ github.actor }}/exercises/$EXERCISE/config.json | jq -r '.version')
+          if [ $LATEST_VERSION -ne $STUDENT_VERSION];then
             echo "::error title='Not latest version'::'Exercise is not on latest version. Please update and submit again.'";
             exit 1;
           fi;
