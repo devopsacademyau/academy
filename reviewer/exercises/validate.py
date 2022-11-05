@@ -7,8 +7,8 @@ for args in sys.argv[1:]:
 # files_changed = sys.argv[1].split(',')
 files_changed = [num for elem in files_changed for num in elem]
 exercises_changed = []
-ERROR="false"
-output_error = open('error', 'w')
+MULTIPLE="false"
+output_multiple = open('error', 'w')
 output_exercise = open('exercise', 'w')
 
 for f in files_changed:
@@ -17,7 +17,7 @@ for f in files_changed:
         exercises_changed.append(exercise)
 
 if len(exercises_changed) > 1:
-    ERROR="true"
+    MULTIPLE="true"
 
-output_error.write("{}".format(ERROR))
+output_multiple.write("{}".format(MULTIPLE))
 output_exercise.write("{}".format(exercises_changed[0]))

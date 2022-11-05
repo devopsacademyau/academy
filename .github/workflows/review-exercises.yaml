@@ -27,16 +27,22 @@ jobs:
           python3 reviewer/exercises/validate.py \
             ${{steps.changes.outputs.git03_files}} \
             ${{steps.changes.outputs.git04_files}}
-          ERROR=$(cat error)
+          MULTIPLE=$(cat error)
           EXERCISE=$(cat exercise)
-          echo "ERROR=$ERROR" >> $GITHUB_OUTPUT
+          echo "multiple=$MULTIPLE" >> $GITHUB_OUTPUT
           echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
           
-          if [ $ERROR = "true" ]; then
-            core.setFailed('Please submit only 1 exercise at a time.')
-            # echo "::error title='Multiple exercises'::'Please submit only 1 exercise at a time.'"
-            exit 1
-          fi;
+          # if [ $ERROR = "true" ]; then
+          #   core.setFailed('Please submit only 1 exercise at a time.')
+          #   # echo "::error title='Multiple exercises'::'Please submit only 1 exercise at a time.'"
+          #   exit 1
+          # fi;
+
+      - name: Check if multiple exercises have been submited
+        if: steps.validate.outputs.multiple == 'true'
+        run: |
+          echo "::error title='Multiple exercises'::'Please submit only 1 exercise at a time.'"
+          exit 1
       
       - name: Check steps outputs
         run: |
