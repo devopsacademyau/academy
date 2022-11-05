@@ -14,7 +14,7 @@ jobs:
   reviewers-setup:
     runs-on: ubuntu-latest
     outputs:
-      exercises: ${{steps.changes.outputs.changes}}
+      exercises: ${{ steps.changes.outputs.changes }}
     steps:
       - uses: actions/checkout@v3
 
@@ -30,7 +30,7 @@ jobs:
       
       - name: Debug
         run: |
-          echo ${{steps.changes.outputs.changes}}
+          echo ${{ steps.changes.outputs.changes }}
       
       # - name: Get Reviewers metadata
       #   id: validate
@@ -44,9 +44,9 @@ jobs:
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
     strategy:
       matrix:
-        exercises: ${{fromJson(needs.reviewers-setup.outputs.exercises)}}
+        exercises: ${{ fromJson(needs.reviewers-setup.outputs.exercises) }}
     with:
-      exercise: ${{needs.reviewers-setup.outputs.exercises}}
+      exercise: ${{ matrix.exercises }}
       ref: ${{ github.event_name }}
     secrets: inherit
 
