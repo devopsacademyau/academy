@@ -25,7 +25,7 @@ jobs:
         id: validate
         if: steps.changes.outputs.changes
         run: |
-          echo "exercises=${{steps.changes.outputs.reviewers}}" >> $GITHUB_ENV
+          echo "exercises=${{steps.changes.outputs.reviewers.changes}}" >> $GITHUB_ENV
   
   call-reviewer-build-push:
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
