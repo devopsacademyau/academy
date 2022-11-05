@@ -33,7 +33,8 @@ jobs:
           echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
           
           if [ $ERROR = "true" ]; then
-            echo "::setFailed title='Multiple exercises'::'Please submit only 1 exercise at a time.'"
+            echo "::error title='Multiple exercises'::'Please submit only 1 exercise at a time.'"
+            exit 1
           fi;
       
       - name: Check steps outputs
