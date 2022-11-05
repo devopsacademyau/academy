@@ -83,6 +83,5 @@ jobs:
             echo "::error title='Wrong answer'::'Secret file still exists. Please update your code and submit again.'";
             exit 1;
           fi;
-
           echo "Secret file not found. Well done cleaning all your secrets."
 
