@@ -30,7 +30,7 @@ jobs:
   call-reviewer-build-push:
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
     with:
-      exercise: ${{env.exercises}}
+      exercise: ${{exercises}}
       image_prefix: git04-pr-
       image_dockerfile: ./reviewer/Dockerfile.python
     secrets: inherit
