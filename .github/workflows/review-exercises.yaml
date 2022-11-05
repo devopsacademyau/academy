@@ -15,7 +15,7 @@ jobs:
         with:
           filters: |
             git04:
-              - 'students/**/git04/**/*'
+              - 'students/**/git03/**/*'
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
