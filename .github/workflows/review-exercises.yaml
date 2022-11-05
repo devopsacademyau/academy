@@ -20,6 +20,7 @@ jobs:
               - 'students/**/git03/**/*'
       
       - name: Check if exercise is latest version
+        id: validate
         if: steps.changes.outputs.git04 == 'true'
         run: |
           echo "some_output='test'" >> $GITHUB_OUTPUT
