@@ -23,21 +23,12 @@ jobs:
         id: changes
         with:
           list-files: json
+          # better to list individually to have a cleaner integration with matrix strategy when calling build jobs
           filters: |
             git03:
               - 'reviewer/exercises/git03/**/*'
             git04:
               - 'reviewer/exercises/git04/**/*'
-      
-      - name: Debug
-        run: |
-          echo ${{ steps.changes.outputs.changes }}
-      
-      # - name: Get Reviewers metadata
-      #   id: validate
-      #   if: steps.changes.outputs.changes
-      #   run: |
-      #     echo "exercises=" >> $GITHUB_ENV
   
   reviewers-build-push:
     name: Build&Push Reviewer
@@ -48,18 +39,4 @@ jobs:
         exercises: ${{ fromJson(needs.reviewers-setup.outputs.exercises) }}
     with:
       exercise: ${{ matrix.exercises }}
-      ref: ${{ github.event_name }}
     secrets: inherit
-
-  # call-reviewer-build-push-release:
-  #   if: ${{ github.event_name == 'push' }}
-  #   needs: [reviewers-setup]
-  #   uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
-  #   strategy:
-  #     matrix:
-  #       exercises: ${{needs.reviewers-setup.outputs.exercises}}
-  #   with:
-  #     exercise: ${{ matrix.exercises }}
-  #     image_prefix: ''
-  #     image_dockerfile: ./reviewer/Dockerfile.python
-  #   secrets: inherit

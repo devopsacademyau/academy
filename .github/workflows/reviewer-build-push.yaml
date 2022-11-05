@@ -4,13 +4,10 @@ on:
       exercise:
         required: true
         type: string
-      ref:
-        required: true
-        type: string
 
 jobs:
   reviewers-build-push:
-    name: Build ${{ inputs.exercise }}/${{ inputs.ref }}
+    name: Build ${{ inputs.exercise }}/${{ github.event_name }}
     runs-on: ubuntu-latest 
     steps:
       - name: Set up QEMU
@@ -25,31 +22,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }} 
       
-      # - name: Tags prefix build
-      #   run: |
-      #     EVENT=pr
-      #     PREFIX=pr-
-      #     if [ ${{ input.ref }} = "push" ];then
-      #       EVENT=push;
-      #       EVENT=
-      #     fi;
-      #     echo "REF=$REF" >> $GITHUB_OUTPUT
-          
-      - name: ${{ inputs.exercise }} PR - Docker metadata
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            devopsacademyau/reviewer
-          tags: |
-            type=ref
-            type=semver,pattern={{major}}.{{minor}}
-          flavor: |
-            suffix=-${{ inputs.exercise }}
+      - name: Build tag name
+        id: tag
+        run: |
+          VERSION=$(cat reviewer/exercises/${{ inputs.exercise }}/config.json | jq .version)
+          SUFFIX=$(if [ ${{ github.event_name }} = "pull_request" ]; then echo "-pr-${{ github.event.number }}"; else echo ""; fi;)
+          echo "tag=${{ inputs.exercise }}-$VERSION$SUFFIX" >> $GITHUB_OUTPUT
 
-      - name: ${{ inputs.exercise }} - Build and push
+      - name: Build and push
         uses: docker/build-push-action@v3
         with:
           push: true
           context: ./reviewer/exercises/${{ inputs.exercise }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.tag.outputs.tag }}
