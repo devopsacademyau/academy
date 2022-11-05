@@ -25,7 +25,7 @@ jobs:
         if: steps.changes.outputs.git04 == 'true'
         run: |
           echo "some_output=test" >> $GITHUB_OUTPUT
-          python3 test.py
+          python3 reviewer/exercises/validate.py
       
       - name: Check steps outputs
         if: steps.validate.outputs.some_output == 'test'
