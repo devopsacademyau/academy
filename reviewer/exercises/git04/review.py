@@ -1,7 +1,10 @@
 import sys
 
 secret_file = "my_env.txt"
-my_env = open("/exercise/{}".format(secret_file))
-if my_env:
+try:
+    my_env = open("/exercise/{}".format(secret_file))
     print("fail")
     sys.exit()
+
+except:
+    print("done")
