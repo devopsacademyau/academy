@@ -13,7 +13,7 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: changes
         with:
-          list-files: 'json'
+          list-files: 'csv'
           filters: |
             git04:
               - 'students/**/git04/**/*'
@@ -25,13 +25,14 @@ jobs:
         if: steps.changes.outputs.git04 == 'true'
         run: |
           echo "some_output=test" >> $GITHUB_OUTPUT
-          python3 reviewer/exercises/validate.py ${{steps.changes.outputs.git04_files}}
+          EXERCISE=$(python3 reviewer/exercises/validate.py ${{steps.changes.outputs.git04_files}})
+          echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
       
       - name: Check steps outputs
         if: steps.validate.outputs.some_output == 'test'
         run: |
           echo ${{steps.validate.outputs.some_output}}
-          echo ${{steps.changes.outputs.git04_files}}
+          echo ${{steps.validate.outputs.exercise}}
 
       - name: git04 - Review exercise
         uses: addnab/docker-run-action@v3
