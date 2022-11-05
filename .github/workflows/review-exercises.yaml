@@ -92,9 +92,15 @@ jobs:
       #   with:
       #     username: ${{ secrets.DOCKERHUB_USERNAME }}
       #     password: ${{ secrets.DOCKERHUB_TOKEN }} 
-          
       - name: ${{ steps.check.outputs.exercise }}/${{ steps.check.outputs.version }} - Review exercise
-        uses: addnab/docker-run-action@v3
-        with:
-            image: devopsacademyau/reviewer:${{ steps.check.outputs.exercise }}-${{ steps.check.outputs.version }}
-            options: -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise
+        run: |
+          IMAGE=devopsacademyau/reviewer:${{ steps.check.outputs.exercise }}-${{ steps.check.outputs.version }}
+          echo ${{ github.workspace }}
+          ls ${{ github.workspace }}
+          docker run -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise \
+            $IMAGE
+      # - name: ${{ steps.check.outputs.exercise }}/${{ steps.check.outputs.version }} - Review exercise
+      #   uses: addnab/docker-run-action@v3
+      #   with:
+      #       image: devopsacademyau/reviewer:${{ steps.check.outputs.exercise }}-${{ steps.check.outputs.version }}
+      #       options: -v 
