@@ -42,8 +42,10 @@ jobs:
           images: |
             devopsacademyau/reviewer
           tags: |
-            type=ref,event=${{ inputs.ref }},suffix=-${{ inputs.exercise }}
+            type=ref
             type=semver,pattern={{major}}.{{minor}}
+          flavor: |
+            suffix=-${{ inputs.exercise }}
 
       - name: ${{ inputs.exercise }} - Build and push
         uses: docker/build-push-action@v3
