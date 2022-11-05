@@ -1,11 +1,11 @@
 import json
 import sys
 
-files_changed = []
-for args in sys.argv[1:]:
-    files_changed.append(args.split(','))
-# files_changed = sys.argv[1].split(',')
-files_changed = [num for elem in files_changed for num in elem]
+# files_changed = []
+# for args in sys.argv[1:]:
+#     files_changed.append(args.split(','))
+files_changed = sys.argv[1].split(',')
+# files_changed = [num for elem in files_changed for num in elem]
 exercises_changed = []
 MULTIPLE="false"
 output_multiple = open('error', 'w')
