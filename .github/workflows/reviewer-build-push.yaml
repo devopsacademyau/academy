@@ -1,24 +1,19 @@
-name: reviewer-publish
 on:
-  pull_request:
-    paths:
-    - 'reviewer/exercises/git04/**/*'
+  workflow_call:
+    inputs:
+      exercise:
+        required: true
+        type: string
 
 jobs:
-  build-reviewers:
+  reviewers-build-push:
+    name: Build ${{ inputs.exercise }}/${{ github.event_name }}
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: devopsacademyau/reviewer
     steps:
       - uses: actions/checkout@v3
 
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            git04:
-              - 'reviewer/exercises/git04/**/*'
-            git03:
-              - 'reviewer/exercises/git03/**/*'
-      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -29,48 +24,18 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
-      - name: git04 - Docker metadata
-        id: meta_git04
-        if: steps.changes.outputs.git04 == 'true'
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            devopsacademyau/reviewer
-          tags: |
-            type=ref,event=pr,prefix=git04-pr-
-            type=semver,pattern={{major}}.{{minor}}
+          password: ${{ secrets.DOCKERHUB_TOKEN }} 
+      
+      - name: Build tag name
+        id: tag
+        run: |
+          VERSION=$(cat reviewer/exercises/${{ inputs.exercise }}/config.json | jq -r .version)
+          SUFFIX=$(if [ ${{ github.event_name }} = "pull_request" ]; then echo "-pr-${{ github.event.number }}"; else echo ""; fi;)
+          echo "tag=${{ env.IMAGE_NAME }}:${{ inputs.exercise }}-$VERSION$SUFFIX" >> $GITHUB_OUTPUT
 
-      - name: git04 - Build and push
+      - name: Build and push
         uses: docker/build-push-action@v3
-        if: steps.changes.outputs.git04 == 'true'
         with:
           push: true
-          context: ./reviewer
-          file: ./reviewer/Dockerfile.python
-          build-args: |
-            EXERCISE=git04
-          tags: ${{ steps.meta_git04.outputs.tags }}
-
-      - name: git03 - Docker metadata
-        id: meta_git03
-        if: steps.changes.outputs.git03 == 'true'
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            devopsacademyau/reviewer
-          tags: |
-            type=ref,event=pr,prefix=git03-pr-
-            type=semver,pattern={{major}}.{{minor}}
-
-      - name: git03 - Build and push
-        uses: docker/build-push-action@v3
-        if: steps.changes.outputs.git03 == 'true'
-        with:
-          push: true
-          context: ./reviewer
-          file: ./reviewer/Dockerfile.python
-          build-args: |
-            EXERCISE=git03
-          tags: ${{ steps.meta_git03.outputs.tags }}
+          context: ./reviewer/exercises/${{ inputs.exercise }}
+          tags: ${{ steps.tag.outputs.tag }}

@@ -1,10 +1,9 @@
 FROM python:3.10-slim-bullseye
 WORKDIR /app
-ARG EXERCISE
 
-ADD ./requirements.txt /app
+ADD requirements.txt /app
+ADD review.py /app
 
 RUN pip3 install -r requirements.txt
 
-ADD ./exercises/$EXERCISE/review.py /app
 CMD [ "python", "./review.py"]

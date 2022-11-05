@@ -1,0 +1,42 @@
+name: Reviewers Setup
+on:
+  pull_request:
+    paths:
+      - 'reviewer/exercises/**/*'
+  push:
+    branches:
+      - 'master'
+      - 'main'
+    paths:
+      - 'reviewer/exercises/**/*'
+
+jobs:
+  reviewers-setup:
+    name: Get list of Reviewers to be build
+    runs-on: ubuntu-latest
+    outputs:
+      exercises: ${{ steps.changes.outputs.changes }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          list-files: json
+          # better to list individually to have a cleaner integration with matrix strategy when calling build jobs
+          filters: |
+            git03:
+              - 'reviewer/exercises/git03/**/*'
+            git04:
+              - 'reviewer/exercises/git04/**/*'
+  
+  reviewers-build-push:
+    name: Build&Push Reviewer
+    needs: [reviewers-setup]
+    uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
+    strategy:
+      matrix:
+        exercises: ${{ fromJson(needs.reviewers-setup.outputs.exercises) }}
+    with:
+      exercise: ${{ matrix.exercises }}
+    secrets: inherit
