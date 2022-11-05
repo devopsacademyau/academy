@@ -37,7 +37,6 @@ jobs:
           fi;
       
       - name: Check steps outputs
-        if: steps.validate.outputs.some_output == 'test'
         run: |
           echo ${{steps.validate.outputs.exercise}}
 
