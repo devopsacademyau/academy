@@ -9,7 +9,7 @@ jobs:
     name: Review Exercises
     runs-on: ubuntu-latest
     env:
-      REVIEWER: reviewer
+      REVIEWER_FOLDER: reviewer
       STUDENTS_FOLDER: students
     steps:
       - uses: actions/checkout@v3
