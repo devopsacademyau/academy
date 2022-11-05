@@ -39,7 +39,7 @@ jobs:
     needs: [reviewers-setup]
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
     with:
-      exercise: ${{needs.reviewers-setup.output.exercises}}
+      exercise: ${{needs.reviewers-setup.outputs.exercises}}
       image_prefix: git04-pr-
       image_dockerfile: ./reviewer/Dockerfile.python
     secrets: inherit
