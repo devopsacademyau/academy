@@ -2,10 +2,13 @@ name: Reviewers Setup
 on:
   pull_request:
     paths:
-    - 'reviewer/exercises/**/*'
+      - 'reviewer/exercises/**/*'
   push:
+    branches:
+      - 'master'
+      - 'main'
     paths:
-    - 'reviewer/exercises/**/*'
+      - 'reviewer/exercises/**/*'
 
 jobs:
   reviewers-setup:
@@ -35,7 +38,18 @@ jobs:
       #   run: |
       #     echo "exercises=" >> $GITHUB_ENV
   
-  call-reviewer-build-push:
+  call-reviewer-build-push-pr:
+    if: ${{ github.event_name == 'pull_request' }}
+    needs: [reviewers-setup]
+    uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
+    with:
+      exercise: ${{needs.reviewers-setup.outputs.exercises}}
+      image_prefix: git04-pr-
+      image_dockerfile: ./reviewer/Dockerfile.python
+    secrets: inherit
+
+  call-reviewer-build-push-release:
+    if: ${{ github.event_name == 'push' }}
     needs: [reviewers-setup]
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
     with:
