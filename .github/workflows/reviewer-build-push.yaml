@@ -25,7 +25,7 @@ jobs:
       - name: Build tag name
         id: tag
         run: |
-          VERSION=$(cat reviewer/exercises/${{ inputs.exercise }}/config.json | jq .version)
+          VERSION=$(cat reviewer/exercises/${{ inputs.exercise }}/config.json | jq -r .version)
           SUFFIX=$(if [ ${{ github.event_name }} = "pull_request" ]; then echo "-pr-${{ github.event.number }}"; else echo ""; fi;)
           echo "tag=${{ inputs.exercise }}-$VERSION$SUFFIX" >> $GITHUB_OUTPUT
 
