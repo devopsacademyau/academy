@@ -13,6 +13,7 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: changes
         with:
+          list-files: 'json'
           filters: |
             git04:
               - 'students/**/git04/**/*'
