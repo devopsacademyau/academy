@@ -73,7 +73,7 @@ jobs:
           EXERCISE=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq -r '.[0]')
           LATEST_VERSION=$(cat ${{ env.REVIEWER_FOLDER }}/exercises/$EXERCISE/config.json | jq -r '.version')
           STUDENT_VERSION=$(cat students/${{ github.actor }}/exercises/$EXERCISE/config.json | jq -r '.version')
-          if [ $LATEST_VERSION -ne $STUDENT_VERSION ];then
+          if [ $LATEST_VERSION != $STUDENT_VERSION ];then
             echo "::error title='Not latest version'::'Exercise is not on latest version. Please update and submit again.'";
             exit 1;
           fi;
