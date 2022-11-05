@@ -55,7 +55,7 @@ jobs:
       - name: Check if student username exists
         run: |
           GITHUB_ACTOR=${{ github.actor }}
-          if [[ -d "${{ env.STUDENTS_FOLDER }}/$GITHUB_ACTOR }}" ]];then
+          if [[ -d "${{ env.STUDENTS_FOLDER }}/$GITHUB_ACTOR" ]];then
             echo "::error title='Student not found'::'Your Github username wasn't found under students/. Please make sure to use your Github username as student_name.'";
             exit 1;
           fi;
