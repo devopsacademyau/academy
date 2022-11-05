@@ -42,7 +42,7 @@ jobs:
       - name: Check if multiple exercises have been submited
         run: |
           EXERCISES_CHANGED=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length')
-          if $EXERCISES_CHANGED -gt 1;then
+          if [ $EXERCISES_CHANGED -gt 1 ];then
             echo "::error title='Multiple exercises found'::'Please submit only 1 exercise at a time.'";
             exit 1;
           fi;
