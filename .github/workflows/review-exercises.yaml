@@ -29,3 +29,11 @@ jobs:
         if: steps.validate.outputs.some_output == 'test'
         run: |
           echo ${{steps.validate.outputs.some_output}}
+          echo ${{steps.changes.outputs.git04_files}}
+
+      - name: git04 - Review exercise
+        uses: addnab/docker-run-action@v3
+        if: steps.changes.outputs.git04 == 'true'
+        with:
+            image: devopsacademy/reviewer:git04-latest
+            options: -v ${{ github.workspace }}:/exercise
