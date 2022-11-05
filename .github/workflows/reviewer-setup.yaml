@@ -44,11 +44,10 @@ jobs:
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
     strategy:
       matrix:
-        exercises: ${{needs.reviewers-setup.outputs.exercises}}
+        exercises: ${{fromJson(needs.reviewers-setup.outputs.exercises)}}
     with:
       exercise: ${{needs.reviewers-setup.outputs.exercises}}
-      image_prefix: pr-
-      image_dockerfile: ./reviewer/Dockerfile.python
+      ref: ${{ github.event_name }}
     secrets: inherit
 
   # call-reviewer-build-push-release:

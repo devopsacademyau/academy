@@ -4,10 +4,7 @@ on:
       exercise:
         required: true
         type: string
-      image_prefix:
-        required: true
-        type: string
-      image_dockerfile:
+      ref:
         required: true
         type: string
 
