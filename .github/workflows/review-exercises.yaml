@@ -23,34 +23,20 @@ jobs:
               - '${{ env.STUDENTS_FOLDER }}/**/git03/**/*'
             git04:
               - '${{ env.STUDENTS_FOLDER }}/**/git04/**/*'
-
-      # - name: Check multiple exercises submitted outputs
-      #   run: |
-      #     echo ${{steps.validate.outputs.error}}
       
-      # - name: Get exercises metadata
-      #   id: validate
-      #   if: steps.changes.outputs.git04 == 'true'
+      # - name: Debug
       #   run: |
-      #     python3 reviewer/exercises/validate.py ${{steps.changes.outputs.changes}}
-      #     MULTIPLE=$(cat error)
-      #     EXERCISE=$(cat exercise)
-      #     echo "multiple=$MULTIPLE" >> $GITHUB_OUTPUT
-      #     echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
-      
-      - name: Debug
-        run: |
-          GITHUB_ACTOR=${{ github.actor }}
-          EXERCISE=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq -r '.[0]')
-          LATEST_VERSION=$(cat ${{ env.REVIEWER_FOLDER }}/exercises/$EXERCISE/config.json | jq -r '.version')
-          STUDENT_VERSION=$(cat students/${{ github.actor }}/exercises/$EXERCISE/config.json | jq -r '.version')
+      #     GITHUB_ACTOR=${{ github.actor }}
+      #     EXERCISE=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq -r '.[0]')
+      #     LATEST_VERSION=$(cat ${{ env.REVIEWER_FOLDER }}/exercises/$EXERCISE/config.json | jq -r '.version')
+      #     STUDENT_VERSION=$(cat students/${{ github.actor }}/exercises/$EXERCISE/config.json | jq -r '.version')
 
-          echo ${{ toJson(steps.changes.outputs.changes) }}
-          echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length'
-          echo EXERCISE=$EXERCISE
-          echo LATEST_VERSION=$LATEST_VERSION
-          echo STUDENT_VERSION=$STUDENT_VERSION
-          echo GITHUB_ACTOR=$GITHUB_ACTOR
+      #     echo ${{ toJson(steps.changes.outputs.changes) }}
+      #     echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length'
+      #     echo EXERCISE=$EXERCISE
+      #     echo LATEST_VERSION=$LATEST_VERSION
+      #     echo STUDENT_VERSION=$STUDENT_VERSION
+      #     echo GITHUB_ACTOR=$GITHUB_ACTOR
 
       - name: Check if student username exists
         run: |
@@ -97,6 +83,5 @@ jobs:
             echo "::error title='Wrong answer'::'Secret file still exists. Please update your code and submit again.'";
             exit 1;
           fi;
-          
           echo "Secret file not found. Well done cleaning all your secrets."
 
