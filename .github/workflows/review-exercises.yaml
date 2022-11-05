@@ -84,6 +84,7 @@ jobs:
           fi;
 
           echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
+          
           echo "version=$STUDENT_VERSION" >> $GITHUB_OUTPUT
 
           echo $GITHUB_OUTPUT
