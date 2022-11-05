@@ -37,6 +37,7 @@ jobs:
       - name: Debug
         run: |
           echo ${{ toJson(steps.changes.outputs.changes) }}
+          echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length'
 
       - name: Check if multiple exercises have been submited
         run: |
