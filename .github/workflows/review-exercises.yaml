@@ -29,7 +29,7 @@ jobs:
           EXERCISE=$(cat exercise)
           echo "ERROR=$ERROR" >> $GITHUB_OUTPUT
           echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
-          cat error
+          
           if [ $EXERCISE = "true" ]; then
             echo "Multiple exercises being changed, please amend your PR to submit one exercise at a time";
           fi;
