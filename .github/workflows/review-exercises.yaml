@@ -15,8 +15,16 @@ jobs:
         with:
           filters: |
             git04:
+              - 'students/**/git04/**/*'
+            git03:
               - 'students/**/git03/**/*'
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
         if: steps.changes.outputs.git04 == 'true'
+        run: |
+          echo ::set-output name=some_output::"test"
+      
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        if: steps.validate.outputs.some_output == 'test'
