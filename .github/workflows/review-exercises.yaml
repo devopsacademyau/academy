@@ -6,6 +6,7 @@ on:
 
 jobs:
   review-exercises:
+    name: Review Exercises
     runs-on: ubuntu-latest
     steps:
       # - uses: actions/checkout@v3
@@ -46,6 +47,17 @@ jobs:
             echo "::error title='Multiple exercises found'::'Please submit only 1 exercise at a time.'";
             exit 1;
           fi;
+      
+      - name: Check if exercise is on latest version
+        run:
+          EXERCISE=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq -r '.[0]')
+          LATEST_VERSION=$(cat reviewer/exercises/$EXERCISE/config.json | jq -r '.version')
+          STUDENT_VERSION=$(cat students/exercises/$EXERCISE/config.json | jq -r '.version')
+          if [ $LATEST_VERSION -ne $STUDENT_VERSION]; then
+            echo "::error title='Not latest version'::'Exercise is not on latest version. Please update and submit again.'";
+            exit 1;
+          fi;
+            
       
       # - name: Check steps outputs
       #   run: |
