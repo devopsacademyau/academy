@@ -10,6 +10,7 @@ on:
 
 jobs:
   reviewers-build-push:
+    name: Build ${{ inputs.exercise }}/${{ inputs.ref }}
     runs-on: ubuntu-latest 
     steps:
       - name: Set up QEMU
@@ -23,6 +24,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }} 
+      
+      # - name: Tags prefix build
+      #   run: |
+      #     EVENT=pr
+      #     PREFIX=pr-
+      #     if [ ${{ input.ref }} = "push" ];then
+      #       EVENT=push;
+      #       EVENT=
+      #     fi;
+      #     echo "REF=$REF" >> $GITHUB_OUTPUT
           
       - name: ${{ inputs.exercise }} PR - Docker metadata
         id: meta
@@ -31,15 +42,12 @@ jobs:
           images: |
             devopsacademyau/reviewer
           tags: |
-            type=ref,event=pr,prefix=${{ inputs.image_prefix }}
+            type=ref,event=${{ inputs.ref }},suffix=-${{ inputs.exercise }}
             type=semver,pattern={{major}}.{{minor}}
 
       - name: ${{ inputs.exercise }} - Build and push
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: ./reviewer
-          file: ${{ inputs.image_prefix }}
-          build-args: |
-            EXERCISE=${{ inputs.exercise }}
+          context: ./reviewer/exercises/${{ inputs.exercise }}
           tags: ${{ steps.meta.outputs.tags }}

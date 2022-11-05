@@ -39,8 +39,8 @@ jobs:
       #   run: |
       #     echo "exercises=" >> $GITHUB_ENV
   
-  call-reviewer-build-push:
-    name: Build&Push Reviewer for exercise ${{ matrix.exercises }} - ${{ github.event_name }}
+  reviewers-build-push:
+    name: Build&Push Reviewer
     needs: [reviewers-setup]
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
     strategy:
