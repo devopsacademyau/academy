@@ -12,6 +12,7 @@ on:
 
 jobs:
   reviewers-setup:
+    name: Get list of Reviewers to be build
     runs-on: ubuntu-latest
     outputs:
       exercises: ${{ steps.changes.outputs.changes }}
@@ -39,7 +40,7 @@ jobs:
       #     echo "exercises=" >> $GITHUB_ENV
   
   call-reviewer-build-push:
-    if: ${{ github.event_name == 'pull_request' }}
+    name: Build&Push Reviewer for exercise ${{ matrix.exercises }} - ${{ github.event_name }}
     needs: [reviewers-setup]
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
     strategy:
