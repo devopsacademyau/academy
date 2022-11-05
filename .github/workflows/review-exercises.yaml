@@ -8,6 +8,9 @@ jobs:
   review-exercises:
     name: Review Exercises
     runs-on: ubuntu-latest
+    env:
+      REVIEWER: reviewer
+      STUDENTS_FOLDER: students
     steps:
       - uses: actions/checkout@v3
 
@@ -17,9 +20,9 @@ jobs:
           list-files: json
           filters: |
             git03:
-              - 'students/**/git03/**/*'
+              - '${{ env.STUDENTS_FOLDER }}/**/git03/**/*'
             git04:
-              - 'students/**/git04/**/*'
+              - '${{ env.STUDENTS_FOLDER }}/**/git04/**/*'
 
       # - name: Check multiple exercises submitted outputs
       #   run: |
@@ -49,6 +52,14 @@ jobs:
           echo STUDENT_VERSION=$STUDENT_VERSION
           echo GITHUB_ACTOR=$GITHUB_ACTOR
 
+      - name: Check if student username exists
+        run: |
+          GITHUB_ACTOR=${{ github.actor }}
+          if [[ -d ${{ env.STUDENTS_FOLDER/$GITHUB_ACTOR ]];then
+            echo "::error title='Student not found'::'Your Github username wasn't found under students/. Please make sure to use your Github username as student_name.'";
+            exit 1;
+          fi;
+
       - name: Check if multiple exercises have been submited
         run: |
           EXERCISES_CHANGED=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length')
@@ -60,7 +71,7 @@ jobs:
       - name: Check if exercise is on latest version
         run:
           EXERCISE=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq -r '.[0]')
-          LATEST_VERSION=$(cat reviewer/exercises/$EXERCISE/config.json | jq -r '.version')
+          LATEST_VERSION=$(cat ${{ env.REVIEWER_FOLDER }}/$EXERCISE/config.json | jq -r '.version')
           STUDENT_VERSION=$(cat students/${{ github.actor }}/exercises/$EXERCISE/config.json | jq -r '.version')
           if [ $LATEST_VERSION -ne $STUDENT_VERSION];then
             echo "::error title='Not latest version'::'Exercise is not on latest version. Please update and submit again.'";
