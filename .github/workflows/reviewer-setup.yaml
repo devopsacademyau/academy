@@ -33,7 +33,7 @@ jobs:
   reviewers-build-push:
     name: Build&Push Reviewer
     needs: [reviewers-setup]
-    uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
+    uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-new-da
     strategy:
       matrix:
         exercises: ${{ fromJson(needs.reviewers-setup.outputs.exercises) }}

@@ -6,43 +6,97 @@ on:
 
 jobs:
   review-exercises:
+    name: Review Exercises
     runs-on: ubuntu-latest
+    env:
+      REVIEWER_FOLDER: reviewer
+      STUDENTS_FOLDER: students
     steps:
       - uses: actions/checkout@v3
 
       - uses: dorny/paths-filter@v2
         id: changes
         with:
-          list-files: 'csv'
+          list-files: json
           filters: |
             git03:
-              - 'students/**/git03/**/*'
+              - '${{ env.STUDENTS_FOLDER }}/**/git03/**/*'
             git04:
-              - 'students/**/git04/**/*'
+              - '${{ env.STUDENTS_FOLDER }}/**/git04/**/*'
+
+      # - name: Check multiple exercises submitted outputs
+      #   run: |
+      #     echo ${{steps.validate.outputs.error}}
       
-      - name: Get exercises metadata
-        id: validate
-        if: steps.changes.outputs.git04 == 'true'
+      # - name: Get exercises metadata
+      #   id: validate
+      #   if: steps.changes.outputs.git04 == 'true'
+      #   run: |
+      #     python3 reviewer/exercises/validate.py ${{steps.changes.outputs.changes}}
+      #     MULTIPLE=$(cat error)
+      #     EXERCISE=$(cat exercise)
+      #     echo "multiple=$MULTIPLE" >> $GITHUB_OUTPUT
+      #     echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
+      
+      - name: Debug
         run: |
-          python3 reviewer/exercises/validate.py ${{steps.changes.outputs.changes}}
-          MULTIPLE=$(cat error)
-          EXERCISE=$(cat exercise)
-          echo "multiple=$MULTIPLE" >> $GITHUB_OUTPUT
-          echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
+          GITHUB_ACTOR=${{ github.actor }}
+          EXERCISE=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq -r '.[0]')
+          LATEST_VERSION=$(cat ${{ env.REVIEWER_FOLDER }}/exercises/$EXERCISE/config.json | jq -r '.version')
+          STUDENT_VERSION=$(cat students/${{ github.actor }}/exercises/$EXERCISE/config.json | jq -r '.version')
+
+          echo ${{ toJson(steps.changes.outputs.changes) }}
+          echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length'
+          echo EXERCISE=$EXERCISE
+          echo LATEST_VERSION=$LATEST_VERSION
+          echo STUDENT_VERSION=$STUDENT_VERSION
+          echo GITHUB_ACTOR=$GITHUB_ACTOR
+
+      - name: Check if student username exists
+        run: |
+          GITHUB_ACTOR=${{ github.actor }}
+          if [[ ! -d "${{ env.STUDENTS_FOLDER }}/$GITHUB_ACTOR" ]];then
+            echo "::error title='Student not found'::'Your Github username wasn't found under students/. Please make sure to use your Github username as student_name.'";
+            exit 1;
+          fi;
 
       - name: Check if multiple exercises have been submited
-        if: steps.validate.outputs.multiple == 'true'
         run: |
-          echo "::error title='Multiple exercises found'::'Please submit only 1 exercise at a time.'"
-          exit 1
+          EXERCISES_CHANGED=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length')
+          if [ $EXERCISES_CHANGED -gt 1 ];then
+            echo "::error title='Multiple exercises found'::'Please submit only 1 exercise at a time.'";
+            exit 1;
+          fi;
       
-      - name: Check steps outputs
-        run: |
-          echo ${{steps.validate.outputs.error}}
+      - name: Check if exercise is on latest version
+        id: check
+        run:
+          EXERCISE=$(echo "${{ toJson(steps.changes.outputs.changes) }}" | jq -r '.[0]')
+          LATEST_VERSION=$(cat ${{ env.REVIEWER_FOLDER }}/exercises/$EXERCISE/config.json | jq -r '.version')
+          STUDENT_VERSION=$(cat students/${{ github.actor }}/exercises/$EXERCISE/config.json | jq -r '.version')
 
-      - name: git04 - Review exercise
-        uses: addnab/docker-run-action@v3
-        if: steps.changes.outputs.git04 == 'true'
-        with:
-            image: devopsacademy/reviewer:git04-latest
-            options: -v ${{ github.workspace }}:/exercise
+          echo LATEST_VERSION=$LATEST_VERSION
+          echo STUDENT_VERSION=$STUDENT_VERSION
+
+          if [ $LATEST_VERSION != $STUDENT_VERSION ];then
+            echo "::error title='Not latest version'::'Student exercise $EXERCISE version is $STUDENT_VERSION, not the latest ($LATEST_VERSION). Please update and submit again.'";
+            exit 1;
+          fi;
+
+          echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
+
+          echo "version=$STUDENT_VERSION" >> $GITHUB_OUTPUT
+
+      - name: ${{ steps.check.outputs.exercise }}/${{ steps.check.outputs.version }} - Review exercise
+        run: |
+          IMAGE=devopsacademyau/reviewer:${{ steps.check.outputs.exercise }}-${{ steps.check.outputs.version }}
+          STATUS=$(docker run -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise \
+            $IMAGE)
+
+          if [ $STATUS = "fail" ];then
+            echo "::error title='Wrong answer'::'Secret file still exists. Please update your code and submit again.'";
+            exit 1;
+          fi;
+          
+          echo "Secret file not found. Well done cleaning all your secrets."
+
