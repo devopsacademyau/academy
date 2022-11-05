@@ -1,9 +1,6 @@
-FROM python:3.10-slim-bullseye
+FROM debian:bullseye-slim
 WORKDIR /app
 
-ADD requirements.txt /app
-ADD review.py /app
+ADD review.sh /app
 
-RUN pip3 install -r requirements.txt
-
-CMD [ "python", "./review.py"]
+CMD [ "bash", "review.sh"]
