@@ -28,7 +28,7 @@ jobs:
           ls
           echo "ERROR=$(cat error)" >> $GITHUB_OUTPUT
           echo "exercise=$(cat exercise)" >> $GITHUB_OUTPUT
-          if [ $(cat ERROR) ]; then
+          if [ $(cat error) ]; then
             echo "Multiple exercises being changed, please amend your PR to submit one exercise at a time";
           fi;
       
