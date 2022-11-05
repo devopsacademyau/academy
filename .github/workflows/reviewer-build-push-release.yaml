@@ -1,11 +1,11 @@
 name: reviewer-publish
 on:
-  pull_request:
+  push:
     paths:
-    - 'reviewer/exercises/git04/**/*'
+    - 'reviewer/exercises/**/*'
 
 jobs:
-  build-reviewers:
+  build-reviewers-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -30,8 +30,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
-      - name: git04 - Docker metadata
+
+      - name: git04 Release - Docker metadata
         id: meta_git04
         if: steps.changes.outputs.git04 == 'true'
         uses: docker/metadata-action@v4
@@ -39,7 +39,7 @@ jobs:
           images: |
             devopsacademyau/reviewer
           tags: |
-            type=ref,event=pr,prefix=git04-pr-
+            type=ref,event=push,prefix=git04-
             type=semver,pattern={{major}}.{{minor}}
 
       - name: git04 - Build and push
@@ -53,15 +53,15 @@ jobs:
             EXERCISE=git04
           tags: ${{ steps.meta_git04.outputs.tags }}
 
-      - name: git03 - Docker metadata
+      - name: git03 Release - Docker metadata
         id: meta_git03
-        if: steps.changes.outputs.git03 == 'true'
+        if: steps.changes.outputs.git03 == 'true' && github.event_name == 'push'
         uses: docker/metadata-action@v4
         with:
           images: |
             devopsacademyau/reviewer
           tags: |
-            type=ref,event=pr,prefix=git03-pr-
+            type=ref,event=push,prefix=git03-
             type=semver,pattern={{major}}.{{minor}}
 
       - name: git03 - Build and push

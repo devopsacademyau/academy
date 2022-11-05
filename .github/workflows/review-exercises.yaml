@@ -1,0 +1,22 @@
+name: reviewer-publish
+on:
+  pull_request:
+    paths:
+    - 'students/**/*'
+
+jobs:
+  review-exercises:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            git04:
+              - 'students/**/git04/**/*'
+      
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        if: steps.changes.outputs.git04 == 'true'
