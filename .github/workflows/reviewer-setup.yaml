@@ -20,12 +20,14 @@ jobs:
         with:
           list-files: json
           filters: |
-            reviewers:
-              - 'reviewer/exercises/**/*'
+            git03:
+              - 'reviewer/exercises/git03/**/*'
+            git04:
+              - 'reviewer/exercises/git04/**/*'
       
       - name: Debug
         run: |
-          echo ${{steps.changes.outputs.reviewers_files}}
+          echo ${{steps.changes.outputs.changes}}
       
       # - name: Get Reviewers metadata
       #   id: validate
