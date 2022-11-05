@@ -92,6 +92,6 @@ jobs:
           IMAGE=devopsacademyau/reviewer:${{ steps.check.outputs.exercise }}-${{ steps.check.outputs.version }}
           echo ${{ github.workspace }}
           ls ${{ github.workspace }}
-          docker run -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise \
-            $IMAGE >> $STATUS
+          STATUS=$(docker run -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise \
+            $IMAGE)
           echo $STATUS
