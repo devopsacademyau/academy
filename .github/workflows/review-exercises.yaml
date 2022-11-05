@@ -15,16 +15,17 @@ jobs:
         with:
           list-files: 'csv'
           filters: |
-            git04:
-              - 'students/**/git04/**/*'
             git03:
               - 'students/**/git03/**/*'
+            git04:
+              - 'students/**/git04/**/*'
       
       - name: Check if exercise is latest version
         id: validate
         if: steps.changes.outputs.git04 == 'true'
         run: |
-          python3 reviewer/exercises/validate.py ${{steps.changes.outputs.git04_files}}
+          EXERCISES=${{steps.changes.outputs.git03_files}},${{steps.changes.outputs.git04_files}}
+          python3 reviewer/exercises/validate.py $EXERCISES
           ERROR=$(cat error)
           EXERCISE=$(cat exercise)
           echo "ERROR=$ERROR" >> $GITHUB_OUTPUT
