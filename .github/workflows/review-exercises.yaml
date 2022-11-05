@@ -8,41 +8,51 @@ jobs:
   review-exercises:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      # - uses: actions/checkout@v3
 
       - uses: dorny/paths-filter@v2
         id: changes
         with:
-          list-files: 'csv'
+          list-files: 'json'
           filters: |
             git03:
               - 'students/**/git03/**/*'
             git04:
               - 'students/**/git04/**/*'
+
+      # - name: Check multiple exercises submitted outputs
+      #   run: |
+      #     echo ${{steps.validate.outputs.error}}
       
-      - name: Get exercises metadata
-        id: validate
-        if: steps.changes.outputs.git04 == 'true'
+      # - name: Get exercises metadata
+      #   id: validate
+      #   if: steps.changes.outputs.git04 == 'true'
+      #   run: |
+      #     python3 reviewer/exercises/validate.py ${{steps.changes.outputs.changes}}
+      #     MULTIPLE=$(cat error)
+      #     EXERCISE=$(cat exercise)
+      #     echo "multiple=$MULTIPLE" >> $GITHUB_OUTPUT
+      #     echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
+      
+      - name: Debug
         run: |
-          python3 reviewer/exercises/validate.py ${{steps.changes.outputs.changes}}
-          MULTIPLE=$(cat error)
-          EXERCISE=$(cat exercise)
-          echo "multiple=$MULTIPLE" >> $GITHUB_OUTPUT
-          echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
+          echo ${{ fromJson(steps.changes.outputs.changes) }}
 
       - name: Check if multiple exercises have been submited
-        if: steps.validate.outputs.multiple == 'true'
         run: |
-          echo "::error title='Multiple exercises found'::'Please submit only 1 exercise at a time.'"
-          exit 1
+          EXERCISES_CHANGED=$(echo ${{ fromJson(steps.changes.outputs.changes) }} | jq '. | length')
+          if $EXERCISES_CHANGED -gt 1;then
+            echo "::error title='Multiple exercises found'::'Please submit only 1 exercise at a time.'";
+            exit 1;
+          fi;
       
-      - name: Check steps outputs
-        run: |
-          echo ${{steps.validate.outputs.error}}
+      # - name: Check steps outputs
+      #   run: |
+      #     echo ${{steps.validate.outputs.error}}
 
-      - name: git04 - Review exercise
-        uses: addnab/docker-run-action@v3
-        if: steps.changes.outputs.git04 == 'true'
-        with:
-            image: devopsacademy/reviewer:git04-latest
-            options: -v ${{ github.workspace }}:/exercise
+      # - name: git04 - Review exercise
+      #   uses: addnab/docker-run-action@v3
+      #   if: steps.changes.outputs.git04 == 'true'
+      #   with:
+      #       image: devopsacademy/reviewer:git04-latest
+      #       options: -v ${{ github.workspace }}:/exercise
