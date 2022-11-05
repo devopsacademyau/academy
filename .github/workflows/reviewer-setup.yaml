@@ -23,17 +23,21 @@ jobs:
             reviewers:
             - 'reviewer/exercises/**/*'
       
+      - name: Debug
+        run: |
+          echo ${{steps.changes.outputs.reviewers.changes}}
+      
       # - name: Get Reviewers metadata
       #   id: validate
       #   if: steps.changes.outputs.changes
       #   run: |
       #     echo "exercises=" >> $GITHUB_ENV
   
-  call-reviewer-build-push:
-    needs: [reviewers-setup]
-    uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
-    with:
-      exercise: ${{needs.reviewers-setup.output.sexercises}}
-      image_prefix: git04-pr-
-      image_dockerfile: ./reviewer/Dockerfile.python
-    secrets: inherit
+  # call-reviewer-build-push:
+  #   needs: [reviewers-setup]
+  #   uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
+  #   with:
+  #     exercise: ${{needs.reviewers-setup.output.sexercises}}
+  #     image_prefix: git04-pr-
+  #     image_dockerfile: ./reviewer/Dockerfile.python
+  #   secrets: inherit
