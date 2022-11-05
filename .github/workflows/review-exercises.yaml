@@ -37,11 +37,11 @@ jobs:
       - name: Debug
         run: |
           echo ${{ toJson(steps.changes.outputs.changes) }}
-          echo "${{ steps.changes.outputs.changes }}" | jq '. | length'
+          echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length'
 
       - name: Check if multiple exercises have been submited
         run: |
-          EXERCISES_CHANGED=$(echo ${{ toJson(steps.changes.outputs.changes) }} | jq '. | length')
+          echo "${{ toJson(steps.changes.outputs.changes) }}" | jq '. | length' > $EXERCISES_CHANGED
           if $EXERCISES_CHANGED -gt 1;then
             echo "::error title='Multiple exercises found'::'Please submit only 1 exercise at a time.'";
             exit 1;
