@@ -8,10 +8,12 @@ on:
 jobs:
   reviewers-build-push:
     name: Build ${{ inputs.exercise }}/${{ github.event_name }}
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: devopsacademyau/reviewer
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -29,7 +31,7 @@ jobs:
         run: |
           VERSION=$(cat reviewer/exercises/${{ inputs.exercise }}/config.json | jq -r .version)
           SUFFIX=$(if [ ${{ github.event_name }} = "pull_request" ]; then echo "-pr-${{ github.event.number }}"; else echo ""; fi;)
-          echo "tag=${{ inputs.exercise }}-$VERSION$SUFFIX" >> $GITHUB_OUTPUT
+          echo "tag=${{ env.IMAGE_NAME }}:${{ inputs.exercise }}-$VERSION$SUFFIX" >> $GITHUB_OUTPUT
 
       - name: Build and push
         uses: docker/build-push-action@v3
