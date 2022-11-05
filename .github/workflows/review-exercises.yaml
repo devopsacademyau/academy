@@ -25,11 +25,12 @@ jobs:
         if: steps.changes.outputs.git04 == 'true'
         run: |
           python3 reviewer/exercises/validate.py ${{steps.changes.outputs.git04_files}}
-          ls
-          echo "ERROR=$(cat error)" >> $GITHUB_OUTPUT
-          echo "exercise=$(cat exercise)" >> $GITHUB_OUTPUT
+          ERROR=$(cat error)
+          EXERCISE=$(cat exercise)
+          echo "ERROR=$ERROR" >> $GITHUB_OUTPUT
+          echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
           cat error
-          if [ $(cat error) ]; then
+          if [ $EXERCISE = "true" ]; then
             echo "Multiple exercises being changed, please amend your PR to submit one exercise at a time";
           fi;
       
