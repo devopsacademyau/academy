@@ -25,7 +25,7 @@ jobs:
       
       - name: Debug
         run: |
-          echo ${{steps.changes.outputs.changes}}
+          echo ${{steps.changes.outputs.reviewers_files}}
       
       # - name: Get Reviewers metadata
       #   id: validate
