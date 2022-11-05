@@ -28,7 +28,7 @@ jobs:
           echo "exercises=${{steps.changes.outputs.reviewers}}" >> $GITHUB_ENV
   
   call-reviewer-build-push:
-    uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yml@caio-exercises
+    uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
     with:
       exercise: .github/labeler.yml
       image_prefix: git04-pr-
