@@ -24,14 +24,16 @@ jobs:
         id: validate
         if: steps.changes.outputs.git04 == 'true'
         run: |
-          echo "some_output=test" >> $GITHUB_OUTPUT
-          EXERCISE=$(python3 reviewer/exercises/validate.py ${{steps.changes.outputs.git04_files}})
-          echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
+          python3 reviewer/exercises/validate.py ${{steps.changes.outputs.git04_files}}
+          echo "ERROR=$(cat error)" >> $GITHUB_OUTPUT
+          echo "exercise=$(cat exercise)" >> $GITHUB_OUTPUT
+          if [ $(cat ERROR) ]; then
+            echo "Multiple exercises being changed, please amend your PR to submit one exercise at a time";
+          fi;
       
       - name: Check steps outputs
         if: steps.validate.outputs.some_output == 'test'
         run: |
-          echo ${{steps.validate.outputs.some_output}}
           echo ${{steps.validate.outputs.exercise}}
 
       - name: git04 - Review exercise

@@ -3,6 +3,9 @@ import sys
 
 files_changed = sys.argv[1].split(',')
 exercises_changed = []
+ERROR=False
+output_error = open('error', 'w')
+output_exercise = open('exercise', 'w')
 
 for f in files_changed:
     exercise = f.split('/')[2]
@@ -10,7 +13,7 @@ for f in files_changed:
         exercises_changed.append(exercise)
 
 if len(exercises_changed) > 1:
-    print("multiple exercises changed, please amend your PR")
-    sys.exit()
+    ERROR="true"
 
-print(exercises_changed[0])
+output_error.write("{}".format(ERROR))
+output_exercise.write("{}".format(exercises_changed[0]))
