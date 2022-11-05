@@ -52,8 +52,11 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     needs: [reviewers-setup]
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
+    strategy:
+      matrix:
+        exercises: ${{needs.reviewers-setup.outputs.exercises}}
     with:
-      exercise: ${{needs.reviewers-setup.outputs.exercises}}
+      exercise: ${{ matrix.exercises }}
       image_prefix: ''
       image_dockerfile: ./reviewer/Dockerfile.python
     secrets: inherit
