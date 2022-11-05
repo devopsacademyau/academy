@@ -75,12 +75,18 @@ jobs:
           LATEST_VERSION=$(cat ${{ env.REVIEWER_FOLDER }}/exercises/$EXERCISE/config.json | jq -r '.version')
           STUDENT_VERSION=$(cat students/${{ github.actor }}/exercises/$EXERCISE/config.json | jq -r '.version')
 
+          echo LATEST_VERSION=$LATEST_VERSION
+          echo STUDENT_VERSION=$STUDENT_VERSION
+
           if [ $LATEST_VERSION != $STUDENT_VERSION ];then
             echo "::error title='Not latest version'::'Student exercise $EXERCISE version is $STUDENT_VERSION, not the latest ($LATEST_VERSION). Please update and submit again.'";
             exit 1;
           fi;
+
           echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
           echo "version=$STUDENT_VERSION" >> $GITHUB_OUTPUT
+
+          # echo "tag=${{ env.IMAGE_NAME }}:${{ inputs.exercise }}-$VERSION$SUFFIX" >> $GITHUB_OUTPUT
           
       - name: ${{ steps.check.outputs.exercise }}/${{ steps.check.outputs.version }} - Review exercise
         uses: addnab/docker-run-action@v3
