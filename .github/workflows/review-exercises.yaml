@@ -23,7 +23,7 @@ jobs:
         id: validate
         if: steps.changes.outputs.git04 == 'true'
         run: |
-          echo "some_output='test'" >> $GITHUB_OUTPUT
+          echo "some_output=test" >> $GITHUB_OUTPUT
       
       - name: Set up QEMU
         if: steps.validate.outputs.some_output == 'test'
