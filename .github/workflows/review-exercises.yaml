@@ -32,7 +32,7 @@ jobs:
           echo "ERROR=$ERROR" >> $GITHUB_OUTPUT
           echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
           
-          if [ $EXERCISE = "true" ]; then
+          if [ $ERROR = "true" ]; then
             echo "Multiple exercises being changed, please amend your PR to submit one exercise at a time";
           fi;
       
