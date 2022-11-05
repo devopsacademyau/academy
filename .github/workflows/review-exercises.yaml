@@ -24,7 +24,7 @@ jobs:
         id: validate
         if: steps.changes.outputs.git04 == 'true'
         run: |
-          EXERCISES=${{steps.changes.outputs.git03_files}},${{steps.changes.outputs.git04_files}}
+          EXERCISES=$(${{steps.changes.outputs.git03_files}},${{steps.changes.outputs.git04_files}})
           python3 reviewer/exercises/validate.py $EXERCISES
           ERROR=$(cat error)
           EXERCISE=$(cat exercise)
