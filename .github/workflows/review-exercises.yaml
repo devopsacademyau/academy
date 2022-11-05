@@ -33,7 +33,7 @@ jobs:
           echo "exercise=$EXERCISE" >> $GITHUB_OUTPUT
           
           if [ $ERROR = "true" ]; then
-            echo "Multiple exercises being changed, please amend your PR to submit one exercise at a time";
+            echo "::error title='Multiple exercises'::'Please submit only 1 exercise at a time.'"
           fi;
       
       - name: Check steps outputs
