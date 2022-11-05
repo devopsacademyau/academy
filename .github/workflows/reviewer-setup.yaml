@@ -38,25 +38,28 @@ jobs:
       #   run: |
       #     echo "exercises=" >> $GITHUB_ENV
   
-  call-reviewer-build-push-pr:
+  call-reviewer-build-push:
     if: ${{ github.event_name == 'pull_request' }}
-    needs: [reviewers-setup]
-    uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
-    with:
-      exercise: ${{needs.reviewers-setup.outputs.exercises}}
-      image_prefix: pr-
-      image_dockerfile: ./reviewer/Dockerfile.python
-    secrets: inherit
-
-  call-reviewer-build-push-release:
-    if: ${{ github.event_name == 'push' }}
     needs: [reviewers-setup]
     uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
     strategy:
       matrix:
         exercises: ${{needs.reviewers-setup.outputs.exercises}}
     with:
-      exercise: ${{ matrix.exercises }}
-      image_prefix: ''
+      exercise: ${{needs.reviewers-setup.outputs.exercises}}
+      image_prefix: pr-
       image_dockerfile: ./reviewer/Dockerfile.python
     secrets: inherit
+
+  # call-reviewer-build-push-release:
+  #   if: ${{ github.event_name == 'push' }}
+  #   needs: [reviewers-setup]
+  #   uses: devopsacademyau/academy/.github/workflows/reviewer-build-push.yaml@caio-exercises
+  #   strategy:
+  #     matrix:
+  #       exercises: ${{needs.reviewers-setup.outputs.exercises}}
+  #   with:
+  #     exercise: ${{ matrix.exercises }}
+  #     image_prefix: ''
+  #     image_dockerfile: ./reviewer/Dockerfile.python
+  #   secrets: inherit
