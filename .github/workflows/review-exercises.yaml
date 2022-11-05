@@ -25,6 +25,7 @@ jobs:
         if: steps.changes.outputs.git04 == 'true'
         run: |
           python3 reviewer/exercises/validate.py ${{steps.changes.outputs.git04_files}}
+          ls
           echo "ERROR=$(cat error)" >> $GITHUB_OUTPUT
           echo "exercise=$(cat exercise)" >> $GITHUB_OUTPUT
           if [ $(cat ERROR) ]; then

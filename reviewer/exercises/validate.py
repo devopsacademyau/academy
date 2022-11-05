@@ -3,7 +3,7 @@ import sys
 
 files_changed = sys.argv[1].split(',')
 exercises_changed = []
-ERROR=False
+ERROR="false"
 output_error = open('error', 'w')
 output_exercise = open('exercise', 'w')
 
