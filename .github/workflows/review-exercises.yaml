@@ -88,5 +88,5 @@ jobs:
 
           docker logs reviewer | grep "SUMMARY:" > output
           while read line; do
-            echo "${line}" >> $GITHUB_SUMMARY
+            echo "${line}" >> $GITHUB_STEP_SUMMARY
           done < output
