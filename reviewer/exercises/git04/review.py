@@ -1,7 +1,7 @@
 import sys
 
 def github_error(message):
-    print("::error title='Exercise submission failed'::{}".format(title, message))
+    print("::error title=Exercise submission failed::{}".format(message))
 
 def github_summary(message):
     print("SUMMARY: {}".format(message))
@@ -17,5 +17,5 @@ except:
     github_summary("Secret file {} not found. Well done cleaning all your secrets.".format(secret_file))
     sys.exit()
 
-github_error("Wrong answer", "Secret file {} still exists. Please update your code and submit again.".format(secret_file))
+github_error("Secret file {} still exists. Please update your code and submit again.".format(secret_file))
 raise Exception("Submission failed.")
