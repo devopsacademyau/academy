@@ -76,8 +76,10 @@ jobs:
       - name: ${{ steps.check.outputs.exercise }}/${{ steps.check.outputs.version }} - Review exercise
         run: |
           IMAGE=devopsacademyau/reviewer:${{ steps.check.outputs.exercise }}-${{ steps.check.outputs.version }}
-          STATUS=$(docker run -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise \
-            $IMAGE)
+          # STATUS=$(docker run -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise \
+          #   $IMAGE)
+          docker run -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise \
+             $IMAGE
 
           if [ $STATUS = "fail" ];then
             echo "::error title='Wrong answer'::'Secret file still exists. Please update your code and submit again.'";
