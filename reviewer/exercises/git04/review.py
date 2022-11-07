@@ -2,7 +2,7 @@ import sys
 
 secret_file = "my_env.txt"
 
-github_error(title, message):
+def github_error(title, message):
     print("::error title={}::{}".format(title, message))
 
 try:
