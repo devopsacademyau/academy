@@ -77,7 +77,7 @@ jobs:
         run: |
           IMAGE=devopsacademyau/reviewer:${{ steps.check.outputs.exercise }}-${{ steps.check.outputs.version }}
           docker run \
-            -name reviewer \
+            --name reviewer \
             -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise \
              $IMAGE
           if [ $? -ne 0 ];then
