@@ -1,7 +1,7 @@
 #!/bin/sh
 secret_file="my_env.txt"
 if [[ -f "/exercise/$secret_file" ]];then
-    echo "Secret file $secret_file still exists. Please update your code and submit again."
+    echo "::error title=Exercise submission failed::Secret file $secret_file still exists. Please update your code and submit again."
     exit 1;
 fi;
 
