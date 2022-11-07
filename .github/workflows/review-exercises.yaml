@@ -80,9 +80,13 @@ jobs:
             --name reviewer \
             -v ${{ github.workspace }}/${{ env.STUDENTS_FOLDER }}/${{ github.actor}}/exercises/${{ steps.check.outputs.exercise }}/:/exercise \
              $IMAGE
+
           if [ $? -ne 0 ];then
+          
             exit 1;
           fi;
-          
-          docker logs reviewer | tail -1 >> $GITHUB_STEP_SUMMARY
 
+          docker logs reviewer | grep "SUMMARY:" > output
+          while read line; do
+            echo "${line}" >> $GITHUB_SUMMARY
+          done < output
