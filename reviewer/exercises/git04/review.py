@@ -1,16 +1,20 @@
 import sys
 
-secret_file = "my_env.txt"
+def github_error(message):
+    print("::error title='Exercise submission failed'::{}".format(title, message))
 
-def github_error(title, message):
-    print("::error title={}::{}".format(title, message))
+def github_summary(message):
+    print("SUMMARY: {}".format(message))
+
+
+secret_file = "my_env.txt"
 
 try:
     my_env = open("/exercise/{}".format(secret_file))
 
 except:
-    print("SUMMARY: ### Exercise completed :rocket:")
-    print("SUMMARY: Exercise completed. Secret file {} not found. Well done cleaning all your secrets.".format(secret_file))
+    github_summary("### Exercise completed :rocket:")
+    github_summary("Secret file {} not found. Well done cleaning all your secrets.".format(secret_file))
     sys.exit()
 
 github_error("Wrong answer", "Secret file {} still exists. Please update your code and submit again.".format(secret_file))
