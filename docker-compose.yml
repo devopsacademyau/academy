@@ -41,6 +41,6 @@ services:
   exercises:
     image: devopsacademyau/reviewer:latest
     volumes:
-      - ${PWD}/students:/students
+      - ${PWD}:/da
     environment:
       - GH_USER
