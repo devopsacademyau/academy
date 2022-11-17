@@ -55,3 +55,10 @@ shell:
 		echo "Environment variable $* not set"; \
 		exit 1; \
 	fi
+
+exercises:
+	$(RUNNER) exercises
+.PHONY: exercises
+
+exercises-sh:
+	$(RUNNER) --entrypoint "" exercises bash

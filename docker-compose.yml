@@ -38,3 +38,9 @@ services:
       - AWS_DEFAULT_REGION
     entrypoint:
       - bash
+  exercises:
+    image: devopsacademyau/reviewer:latest
+    volumes:
+      - ${PWD}/students:/students
+    environment:
+      - GH_USER
