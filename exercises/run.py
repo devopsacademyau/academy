@@ -14,8 +14,8 @@ def exercise(exercise):
     exercise_folder = Path(EXERCISES_FOLDER, "{}".format(exercise))
     student_exercise_folder = Path(STUDENT_EXERCISES_FOLDER, "exercises/{}".format(exercise))
 
-    print(exercise_folder)
-    print(student_exercise_folder)
+    # print(exercise_folder)
+    # print(student_exercise_folder)
     if not exercise_folder.exists():
         sys.exit("Exercise not found.")
 
@@ -28,10 +28,20 @@ def exercise(exercise):
     
     if not student_exercise_folder.exists():
         print("Creating folder {}".format(student_exercise_folder))
-        Path.mkdir(student_exercise_folder)
+        Path.mkdir(student_exercise_folder, parents=True)
 
     print("Copying all files from exercise {}".format(exercise))
     shutil.copytree(exercise_folder, student_exercise_folder, dirs_exist_ok=True)
+
+    # run exercise after script setup
+    custom_config(exercise)
+
+def custom_config(exercise):
+    if exercise == "git04":
+        with open(Path(STUDENT_EXERCISES_FOLDER, "exercises/{}/my_env.txt".format(exercise)), 'w') as f:
+            f.write("SERVICE_NAME=account-management\nENVIRONMENT=prod\nPASSWORD=pass1234")
+        os.system("git add {}".format(Path(STUDENT_EXERCISES_FOLDER, "exercises/{}/my_env.txt".format(exercise))))
+        os.system("git commit -am 'commit my secret'")
 
 def setup():
     # override folder path when running python script outside docker
