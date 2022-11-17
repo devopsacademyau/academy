@@ -5,7 +5,8 @@ import sys
 from pathlib import Path
 
 EXERCISES_FOLDER=Path("/app/")
-STUDENT_EXERCISES_FOLDER=Path("/students/{}".format(os.environ['GH_USER']))
+DA_ROOT_PATH=Path("/da")
+STUDENT_EXERCISES_FOLDER=Path("{}/students/{}".format(DA_ROOT_PATH, os.environ['GH_USER']))
 
 def exercise(exercise):
     if not exercise:
@@ -38,18 +39,25 @@ def exercise(exercise):
 
 def custom_config(exercise):
     if exercise == "git04":
-        with open(Path(STUDENT_EXERCISES_FOLDER, "exercises/{}/my_env.txt".format(exercise)), 'w') as f:
+        secret_file = "my_env.txt"
+        secret_file_path = Path(STUDENT_EXERCISES_FOLDER, "exercises/{}/{}".format(exercise, secret_file))
+        if secret_file_path.exists():
+            Path.unlink(secret_file_path)
+        print("Creating secret file {}".format(secret_file_path))
+        with open(secret_file_path, 'w') as f:
             f.write("SERVICE_NAME=account-management\nENVIRONMENT=prod\nPASSWORD=pass1234")
-        os.system("git add {}".format(Path(STUDENT_EXERCISES_FOLDER, "exercises/{}/my_env.txt".format(exercise))))
-        os.system("git commit -am 'commit my secret'")
+        
+        os.system("cd {} && git add {} && git commit -am 'commit my secret'".format(DA_ROOT_PATH, secret_file_path))
 
 def setup():
     # override folder path when running python script outside docker
     if os.getenv('LOCAL_RUN', False):
         global EXERCISES_FOLDER
         global STUDENT_EXERCISES_FOLDER
-        EXERCISES_FOLDER=Path(Path().resolve(), "exercises")
-        STUDENT_EXERCISES_FOLDER=Path(Path().resolve(), "students/{}".format(os.environ['GH_USER']))
+        global DA_ROOT_PATH
+        EXERCISES_FOLDER = Path(Path().resolve(), "exercises")
+        STUDENT_EXERCISES_FOLDER = Path(Path().resolve(), "students/{}".format(os.environ['GH_USER']))
+        DA_ROOT_PATH = Path(Path().resolve())
       
 def main():
     setup()
