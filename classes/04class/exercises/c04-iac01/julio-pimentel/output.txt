@@ -1,0 +1,90 @@
+$ terraform plan 
+aws_security_group.c04_iac01_sg: Refreshing state... [id=sg-0daa8bbcadab8e554]
+aws_iam_role.ec2_trust_role_1: Refreshing state... [id=ec2_trust_role_1]
+aws_iam_instance_profile.ec2_profile: Refreshing state... [id=ec2_profile]
+aws_instance.ec2_c01_iac01: Refreshing state... [id=i-02158ec44cad0d628]
+aws_network_interface_sg_attachment.sg_attachment: Refreshing state... [id=sg-0daa8bbcadab8e554_eni-01dabb3aa396dac1e]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_policy.s3_read_policy_1 will be created
+  + resource "aws_iam_policy" "s3_read_policy_1" {
+      + arn         = (known after apply)
+      + description = "S3 read only policy"
+      + id          = (known after apply)
+      + name        = "s3_read_policy_1"
+      + path        = "/"
+      + policy      = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action   = [
+                          + "s3:GetBucketLocation",
+                          + "s3:ListAllMyBuckets",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "arn:aws:s3:::*"
+                    },
+                  + {
+                      + Action   = "s3:*"
+                      + Effect   = "Allow"
+                      + Resource = [
+                          + "arn:aws:s3:::bucket-c04-iac01-1",
+                          + "arn:aws:s3:::bucket-c04-iac01-1/*",
+                        ]
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+    }
+
+  # aws_iam_role_policy_attachment.attach_s3_read_policy_1 will be created
+  + resource "aws_iam_role_policy_attachment" "attach_s3_read_policy_1" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "ec2_trust_role_1"
+    }
+
+  # aws_s3_bucket.bucket_c04_iac01_1 will be created
+  + resource "aws_s3_bucket" "bucket_c04_iac01_1" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = "bucket-c04-iac01-1"
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Name" = "c04-iac01"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = (known after apply)
+          + mfa_delete = (known after apply)
+        }
+    }
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on _provider.tf line 3, in provider "aws":
+│    3:   version = "~> 2.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will be removed in a future version of Terraform. To silence this
+│ warning, move the provider version constraint into the required_providers block.
+╵
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
