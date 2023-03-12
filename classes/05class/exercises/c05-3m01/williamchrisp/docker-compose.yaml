@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  3m:
+    container_name: 3m
+    platform: linux/amd64
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    env_file:
+      - .env
