@@ -1,0 +1,2 @@
+curl williamdaalb-1091858441.us-west-2.elb.amazonaws.com
+“Hello World from ip-10-0-1-168.us-west-2.compute.internal”
