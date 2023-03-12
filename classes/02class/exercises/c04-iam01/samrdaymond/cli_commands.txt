@@ -1,0 +1,12 @@
+*user creation is disabled in our sanbox but I think the below commands would be close to the desired outcome
+aws iam create-user --user-name user_readonly_s3
+
+aws iam create-policy --policy-name s3readOnly --policy-document file://classes/02class/exercises/c04-iam01/samrdaymond/s3readonlypolicy.json
+
+aws iam attach-user-policy --user-name user_readonly_s3 --policy-arn <policy arn here>
+
+aws iam create-access-key --user-name user_readonly_S3
+
+aws configure --profile s3ReadOnlyProfile
+
+aws s3 ls --profile s3ReadOnlyProfile
