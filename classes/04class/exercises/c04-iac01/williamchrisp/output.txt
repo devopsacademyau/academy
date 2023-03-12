@@ -1,0 +1,453 @@
+data.aws_ami.amznLinux: Reading...
+data.aws_ami.amznLinux: Read complete after 0s [id=ami-016768a42b53f657a]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_instance_profile.ec2s3access will be created
+  + resource "aws_iam_instance_profile" "ec2s3access" {
+      + arn         = (known after apply)
+      + create_date = (known after apply)
+      + id          = (known after apply)
+      + name        = "ec2s3access"
+      + path        = "/"
+      + role        = "williamec2s3accessrole"
+      + tags_all    = (known after apply)
+      + unique_id   = (known after apply)
+    }
+
+  # aws_iam_policy.ec2s3policy will be created
+  + resource "aws_iam_policy" "ec2s3policy" {
+      + arn         = (known after apply)
+      + description = "A ec2 to s3 access policy"
+      + id          = (known after apply)
+      + name        = "williamec2s3policy"
+      + path        = "/"
+      + policy      = (known after apply)
+      + policy_id   = (known after apply)
+      + tags_all    = (known after apply)
+    }
+
+  # aws_iam_role.ec2s3role will be created
+  + resource "aws_iam_role" "ec2s3role" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                      + Sid       = ""
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "williamec2s3accessrole"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags                  = {
+          + "Name" = "williamDArole"
+        }
+      + tags_all              = {
+          + "Name" = "williamDArole"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy {
+          + name   = (known after apply)
+          + policy = (known after apply)
+        }
+    }
+
+  # aws_iam_role_policy_attachment.ec2s3policyattach will be created
+  + resource "aws_iam_role_policy_attachment" "ec2s3policyattach" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "williamec2s3accessrole"
+    }
+
+  # aws_instance.ec2 will be created
+  + resource "aws_instance" "ec2" {
+      + ami                                  = "ami-016768a42b53f657a"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + iam_instance_profile                 = "ec2s3access"
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "williamchrisp"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = [
+          + "williamDAsg",
+        ]
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Name" = "williamDA"
+        }
+      + tags_all                             = {
+          + "Name" = "williamDA"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id                 = (known after apply)
+              + capacity_reservation_resource_group_arn = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + maintenance_options {
+          + auto_recovery = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_card_index    = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + private_dns_name_options {
+          + enable_resource_name_dns_a_record    = (known after apply)
+          + enable_resource_name_dns_aaaa_record = (known after apply)
+          + hostname_type                        = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_s3_bucket.bucket will be created
+  + resource "aws_s3_bucket" "bucket" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = (known after apply)
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Name" = "williamDAbucket"
+        }
+      + tags_all                    = {
+          + "Name" = "williamDAbucket"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + cors_rule {
+          + allowed_headers = (known after apply)
+          + allowed_methods = (known after apply)
+          + allowed_origins = (known after apply)
+          + expose_headers  = (known after apply)
+          + max_age_seconds = (known after apply)
+        }
+
+      + grant {
+          + id          = (known after apply)
+          + permissions = (known after apply)
+          + type        = (known after apply)
+          + uri         = (known after apply)
+        }
+
+      + lifecycle_rule {
+          + abort_incomplete_multipart_upload_days = (known after apply)
+          + enabled                                = (known after apply)
+          + id                                     = (known after apply)
+          + prefix                                 = (known after apply)
+          + tags                                   = (known after apply)
+
+          + expiration {
+              + date                         = (known after apply)
+              + days                         = (known after apply)
+              + expired_object_delete_marker = (known after apply)
+            }
+
+          + noncurrent_version_expiration {
+              + days = (known after apply)
+            }
+
+          + noncurrent_version_transition {
+              + days          = (known after apply)
+              + storage_class = (known after apply)
+            }
+
+          + transition {
+              + date          = (known after apply)
+              + days          = (known after apply)
+              + storage_class = (known after apply)
+            }
+        }
+
+      + logging {
+          + target_bucket = (known after apply)
+          + target_prefix = (known after apply)
+        }
+
+      + object_lock_configuration {
+          + object_lock_enabled = (known after apply)
+
+          + rule {
+              + default_retention {
+                  + days  = (known after apply)
+                  + mode  = (known after apply)
+                  + years = (known after apply)
+                }
+            }
+        }
+
+      + replication_configuration {
+          + role = (known after apply)
+
+          + rules {
+              + delete_marker_replication_status = (known after apply)
+              + id                               = (known after apply)
+              + prefix                           = (known after apply)
+              + priority                         = (known after apply)
+              + status                           = (known after apply)
+
+              + destination {
+                  + account_id         = (known after apply)
+                  + bucket             = (known after apply)
+                  + replica_kms_key_id = (known after apply)
+                  + storage_class      = (known after apply)
+
+                  + access_control_translation {
+                      + owner = (known after apply)
+                    }
+
+                  + metrics {
+                      + minutes = (known after apply)
+                      + status  = (known after apply)
+                    }
+
+                  + replication_time {
+                      + minutes = (known after apply)
+                      + status  = (known after apply)
+                    }
+                }
+
+              + filter {
+                  + prefix = (known after apply)
+                  + tags   = (known after apply)
+                }
+
+              + source_selection_criteria {
+                  + sse_kms_encrypted_objects {
+                      + enabled = (known after apply)
+                    }
+                }
+            }
+        }
+
+      + server_side_encryption_configuration {
+          + rule {
+              + bucket_key_enabled = (known after apply)
+
+              + apply_server_side_encryption_by_default {
+                  + kms_master_key_id = (known after apply)
+                  + sse_algorithm     = (known after apply)
+                }
+            }
+        }
+
+      + versioning {
+          + enabled    = (known after apply)
+          + mfa_delete = (known after apply)
+        }
+
+      + website {
+          + error_document           = (known after apply)
+          + index_document           = (known after apply)
+          + redirect_all_requests_to = (known after apply)
+          + routing_rules            = (known after apply)
+        }
+    }
+
+  # aws_s3_bucket_acl.bucket_acl will be created
+  + resource "aws_s3_bucket_acl" "bucket_acl" {
+      + acl    = "private"
+      + bucket = (known after apply)
+      + id     = (known after apply)
+
+      + access_control_policy {
+          + grant {
+              + permission = (known after apply)
+
+              + grantee {
+                  + display_name  = (known after apply)
+                  + email_address = (known after apply)
+                  + id            = (known after apply)
+                  + type          = (known after apply)
+                  + uri           = (known after apply)
+                }
+            }
+
+          + owner {
+              + display_name = (known after apply)
+              + id           = (known after apply)
+            }
+        }
+    }
+
+  # aws_security_group.sg will be created
+  + resource "aws_security_group" "sg" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "williamDAsg"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "williamDAsg"
+        }
+      + tags_all               = {
+          + "Name" = "williamDAsg"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # random_string.random will be created
+  + resource "random_string" "random" {
+      + id          = (known after apply)
+      + length      = 8
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + numeric     = true
+      + result      = (known after apply)
+      + special     = false
+      + upper       = false
+    }
+
+Plan: 9 to add, 0 to change, 0 to destroy.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
