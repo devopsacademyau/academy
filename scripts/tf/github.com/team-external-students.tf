@@ -16,6 +16,7 @@ module "team-external-students" {
     "Jaysues",
     "maladham1980",
     "marshalldaniel",
+    "matrso",
     "mendoncaj",
     "raghunadhpokkalath",
     "rodrigovcesar",
