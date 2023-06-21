@@ -12,7 +12,7 @@ Feel free to contribute to this repository with content through Pull Requests, h
 
 If you want to be part of the team behind this, get in touch on help@devopsacademy.com.au.
 
-# Table of Content
+# Table of Content #
 
 - [DevOps Academy](#devops-academy)
 - [Table of Content](#table-of-content)
