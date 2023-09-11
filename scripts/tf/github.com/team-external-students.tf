@@ -12,6 +12,7 @@ module "team-external-students" {
     "chisholm-ray",
     "cyberjames",
     "ebeserra",
+    "hawkinswinja",
     "jamesnealcontino",
     "Jaysues",
     "maladham1980",
