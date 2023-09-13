@@ -1,0 +1,11 @@
+## uname
+Linux z3maria 5.15.90.1-microsoft-standard-WSL2 #1 SMP Fri Jan 27 02:56:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+## git 
+git version 2.34.1
+## docker 
+Docker version 20.10.21, build 20.10.21-0ubuntu1~22.04.3
+## terraform 
+Terraform v1.5.7
+on linux_amd64
+## aws 
+aws-cli/2.13.17 Python/3.11.5 Linux/5.15.90.1-microsoft-standard-WSL2 exe/x86_64.ubuntu.22 prompt/off
