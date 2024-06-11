@@ -24,6 +24,7 @@ module "team-external-students" {
     "ravisenevirathne",
     "tgray89",
     "tkav",
+    "theinvincibleralph",
     "mayuthombre",
     "samrdaymond",
     "julio-pimentel",
